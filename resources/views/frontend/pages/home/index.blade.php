@@ -2,7 +2,7 @@
 
 @section('page.title', 'Motiwala')
 
-@section('page.description', 'Seedling & Associates is one of the best law firms in Delhi, India. We provide legal
+@section('page.description', 'Seedling 123 & Associates is one of the best law firms in Delhi, India. We provide legal
 assistance for startups, FDI, Property law, IP, and more')
 
 @section('page.type', 'website')
