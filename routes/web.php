@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\AccountController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -18,12 +19,6 @@ use Illuminate\Support\Facades\Mail;
 
 // Home START
 Route::get('/', [IndexController::class, 'index'])->name('index');
-Route::get('/area-of-practices', [IndexController::class, 'practice_area'])->name('practicearea');
-
-$service = DB::table('practice_areas')->pluck('slug')->toArray();
-Route::get('/{slug}', [IndexController::class, 'practice_area_detail'])
-->where('slug', implode('|', $service))
-->name('practicearea-detail');
 
 Route::get('/blog', [IndexController::class, 'blog'])->name('blog');
 Route::get('/blogs-data', [IndexController::class, 'blog_data'])->name('blog-data');
@@ -33,26 +28,11 @@ Route::get('/{category}/{slug}', [IndexController::class, 'blog_detail'])
     ->where('category', implode('|', $postCategories))
     ->name('blog.detail');
 
-Route::get('/news', [IndexController::class, 'news'])->name('news');
-Route::get('/news-data', [IndexController::class, 'news_data'])->name('news-data');
 
-Route::get('/deal-update', [IndexController::class, 'deal_update'])->name('deal-update');
-Route::get('/deal-update-data', [IndexController::class, 'deal_update_data'])->name('deal-update-data');
-
-Route::get('/media-coverage', [IndexController::class, 'media_coverage'])->name('media-coverage');
-Route::get('/media-coverage-data', [IndexController::class, 'media_coverage_data'])->name('media-coverage-data');
-
-Route::get('/publication', [IndexController::class, 'publication'])->name('publication');
-Route::get('/publication-data', [IndexController::class, 'publication_data'])->name('publication-data');
-
-
-Route::any('/team-members', [IndexController::class, 'team_members'])->name('team');
-Route::get('/team-members/{slug}', [IndexController::class, 'team_detail'])->name('team.detail');
 Route::get('/contact-us', [IndexController::class, 'contact_us'])->name('contact');
 Route::get('/information', [IndexController::class, 'information'])->name('information');
 Route::any('/instant-pay', [IndexController::class, 'instantpay'])->name('instantpay');
 Route::get('/faq', [IndexController::class, 'faq'])->name('faq');
-Route::get('/opennew-account', [IndexController::class, 'opennew_account'])->name('opennewaccount');
 Route::get('/privacy-policy', [IndexController::class, 'privacy_policy'])->name('privacy-policy');
 
 Route::get('/terms', [IndexController::class, 'terms_page'])->name('terms');
@@ -66,6 +46,12 @@ Route::post('/comment-save', [IndexController::class, 'comment_save'])->name('co
 
 Route::get('/search', [IndexController::class, 'search'])->name('search');
 // Home END
+
+
+Route::get('/account/onlineenrollment', [AccountController::class, 'online_enrollment'])->name('account.new.enrollment.page');
+
+Route::any('/create-account/{param}', [AccountController::class, 'create_account'])->name('account.create');
+
 
 
 Route::get('/clear-cache', function () {
@@ -99,3 +85,17 @@ Route::get('/send-test-email', function () {
 
     return 'Test email sent!';
 });
+
+Route::get('/test-otp', function () {
+    $sessionData = Session()->all();
+
+    // Print session data
+    dd($sessionData);
+});
+
+Route::get('/clear-session', function () {
+    Session()->flush();
+
+    echo"clear";
+});
+

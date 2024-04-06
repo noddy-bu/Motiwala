@@ -1,0 +1,368 @@
+@extends('frontend.layouts.app')
+
+@section('page.title', 'Motiwala')
+
+@section('page.description', 'Motiwala')
+
+@section('page.type', 'website')
+
+@section('page.content')
+
+
+
+    <!-- -------------------- career banner start ---------------- -->
+
+    <section class="inner_page_banner">
+        <img src="/assets/frontend/images/innwe_imagebanner.jpg" class="d-block w-100" alt="...">
+    </section>
+
+
+    <main class="main">
+        <section class="openaccount pt-5 pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="title_heading text-center black_color pb-3 heading_font">Open New Account</h4>
+                    </div>
+
+                    <div class="col-md-12">
+                        <p>Hello, <br> Greetings from Motiwala & Sons !</p>
+                        <p>Thank you very much for expressing your interest in opening a new Motiwala & Sons Golden Harvest
+                            account.
+                            Please complete the process below for us to facilitate your request.</p>
+                    </div>
+
+                    <div class="col-md-12">
+
+                        @include('frontend.pages.online_enrollment.reg_form')
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+@endsection
+
+@section('component.scripts')
+    <script>
+    
+    /*--------------------- add Phone ------------------*/
+
+        initValidate('#phone-verification');
+
+        $('#add-phone form').on('submit', function(event){
+            event.preventDefault();
+            var form = $(this);
+            var button = $(form).find('button[type="submit"]').html();
+            $(form).find('button[type="submit"]').html('please wait...');
+            $(form).find('button[type="submit"]').css('pointer-events', 'none');
+            
+            $.ajax({
+                url: $(form).attr('action'),
+                type: "POST",
+                data: $(form).serialize(),
+                success: function (response) {
+                    if(response.response_message.response == 'success') {
+                        /*
+                        $('#otp').removeClass('d-none');
+                        $('#add-phone').addClass('d-none');
+                        */
+
+                        toastr.success(response.response_message.message, response.response_message.response);
+
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1500);
+
+                    }else{
+                        $(form).find('button[type="submit"]').html(button);
+                        $(form).find('button[type="submit"]').css('pointer-events', 'inherit');
+
+                        toastr.error(response.response_message.message, response.response_message.response);
+
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1500);
+
+                    }
+                    
+                }
+            });
+        });
+
+    /*--------------------- add Phone ------------------*/ 
+    
+    /*--------------------- verify-otp------------------*/ 
+
+        initValidate('#verify-otp');
+
+        $('#otp form').on('submit', function(event){
+            event.preventDefault();
+            var form = $(this);
+            var button = $(form).find('button[type="submit"]').html();
+            $(form).find('button[type="submit"]').html('please wait...');
+            $(form).find('button[type="submit"]').css('pointer-events', 'none');
+            $.ajax({
+                url: $(form).attr('action'),
+                type: "POST",
+                data: $(form).serialize(),
+                success: function (response) {
+                    if(response.response_message.response == 'success') {
+                        /*
+                        $('#customer-detail').removeClass('d-none');
+                        $('#otp').addClass('d-none');
+                        */
+
+                        toastr.success(response.response_message.message, response.response_message.response);
+
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1500);
+
+                    }else{
+                        $(form).find('button[type="submit"]').html(button);
+                        $(form).find('button[type="submit"]').css('pointer-events', 'inherit');
+
+                        toastr.error(response.response_message.message, response.response_message.response);
+
+                    }
+                    
+                }
+            });
+        });
+    /*--------------------- verify-otp------------------*/    
+
+    /*--------------------- Resend-otp------------------*/    
+
+        $(document).ready(function(){
+            $('#resendOTPButton').click(function(e){
+                e.preventDefault();
+
+                var csrfToken = '{{ csrf_token() }}';
+
+                $.ajax({
+                    url: "{{ route('account.create', ['param' =>'resend-otp']) }}",
+                    type: "Post",
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    success: function(response) {
+                        toastr.success(response.response_message.message, response.response_message.response);
+                    },
+                    error: function(xhr, status, error) {
+                        toastr.error(response.response_message.message, response.response_message.response);
+                    }
+                });
+            });
+        });
+
+    /*--------------------- Resend-otp------------------*/  
+    
+    /*--------------------- customer info ------------------*/ 
+
+    initValidate('#customer-info');
+
+    $('#customer-detail form').on('submit', function(event){
+        event.preventDefault();
+        var form = $(this);
+        var button = $(form).find('button[type="submit"]').html();
+        $(form).find('button[type="submit"]').html('please wait...');
+        $(form).find('button[type="submit"]').css('pointer-events', 'none');
+        $.ajax({
+            url: $(form).attr('action'),
+            type: "POST",
+            data: $(form).serialize(),
+            success: function (response) {
+                if(response.response_message.response == 'success') {
+                    
+                    /*
+                    $('#plan-detail').removeClass('d-none');
+                    $('#customer-detail').addClass('d-none');
+                    */
+
+                    toastr.success(response.response_message.message, response.response_message.response);
+
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1500);
+
+                }else{
+                    $(form).find('button[type="submit"]').html(button);
+                    $(form).find('button[type="submit"]').css('pointer-events', 'inherit');
+
+                    toastr.error(response.response_message.message, response.response_message.response);
+                }
+                
+            }
+        });
+    });
+
+    /*--------------------- customer info ------------------*/ 
+
+    /*--------------------- plan info ------------------*/ 
+
+    initValidate('#plan-info');
+
+    $('#plan-detail form').on('submit', function(event){
+        event.preventDefault();
+        var form = $(this);
+        var button = $(form).find('button[type="submit"]').html();
+        $(form).find('button[type="submit"]').html('please wait...');
+        $(form).find('button[type="submit"]').css('pointer-events', 'none');
+        $.ajax({
+            url: $(form).attr('action'),
+            type: "POST",
+            data: $(form).serialize(),
+            success: function (response) {
+                if(response.response_message.response == 'success') {
+                    
+                    /*
+                    $('#plan-detail').removeClass('d-none');
+                    $('#customer-detail').addClass('d-none');
+                    */
+
+                    toastr.success(response.response_message.message, response.response_message.response);
+
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1500);
+
+                }else{
+                    $(form).find('button[type="submit"]').html(button);
+                    $(form).find('button[type="submit"]').css('pointer-events', 'inherit');
+
+                    toastr.error(response.response_message.message, response.response_message.response);
+                }
+                
+            }
+        });
+    });
+
+    /*--------------------- Plan info ------------------*/ 
+
+    /*--------------------- minimum amount ---------------*/
+
+    document.addEventListener('DOMContentLoaded', function() {
+        function toggleInstallmentAmount() {
+            var selectedOption = document.getElementById('plan_id').querySelector('option:checked');
+            var minimumInstallmentAmount = selectedOption.getAttribute('data-minium');
+            var installmentAmountElement = document.getElementById('installmentAmount');
+
+            if (selectedOption.value === '') {
+                installmentAmountElement.style.display = 'none';
+            } else {
+                installmentAmountElement.innerHTML = 'Minimum Installment Amount: ' + minimumInstallmentAmount;
+                installmentAmountElement.style.display = 'block';
+            }
+        }
+
+        // Call the function when the select element changes
+        document.getElementById('plan_id').addEventListener('change', toggleInstallmentAmount);
+
+        // Call the function on page load
+        toggleInstallmentAmount();
+    });
+
+    /*--------------------- minimum amount ---------------*/
+
+    /*--------------------- ekyc verify ------------------*/ 
+
+    initValidate('#ekyc-verify');
+
+    $('#preview-info form').on('submit', function(event){
+        event.preventDefault();
+        var form = $(this);
+        var button = $(form).find('button[type="submit"]').html();
+        $(form).find('button[type="submit"]').html('please wait...');
+        $(form).find('button[type="submit"]').css('pointer-events', 'none');
+        $.ajax({
+            url: $(form).attr('action'),
+            type: "POST",
+            data: $(form).serialize(),
+            success: function (response) {
+                if(response.response_message.response == 'success') {
+                    
+                    /*
+                    $('#plan-detail').removeClass('d-none');
+                    $('#customer-detail').addClass('d-none');
+                    */
+
+                    toastr.success(response.response_message.message, response.response_message.response);
+
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1500);
+
+                }else{
+                    $(form).find('button[type="submit"]').html(button);
+                    $(form).find('button[type="submit"]').css('pointer-events', 'inherit');
+
+                    toastr.error(response.response_message.message, response.response_message.response);
+                }
+                
+            }
+        });
+    });
+
+    /*--------------------- ekyc verify ------------------*/
+
+    /*--------------------- aadhar verify ------------------*/ 
+
+    initValidate('#aadhar-verify');
+
+    $('#ekyc form').on('submit', function(event){
+        event.preventDefault();
+        var form = $(this);
+        var button = $(form).find('button[type="submit"]').html();
+        $(form).find('button[type="submit"]').html('please wait...');
+        $(form).find('button[type="submit"]').css('pointer-events', 'none');
+        $.ajax({
+            url: $(form).attr('action'),
+            type: "POST",
+            data: $(form).serialize(),
+            success: function (response) {
+                if(response.response_message.response == 'success') {
+                    
+                    /*
+                    $('#plan-detail').removeClass('d-none');
+                    $('#customer-detail').addClass('d-none');
+                    */
+
+                    toastr.success(response.response_message.message, response.response_message.response);
+
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1500);
+
+                }else{
+                    $(form).find('button[type="submit"]').html(button);
+                    $(form).find('button[type="submit"]').css('pointer-events', 'inherit');
+
+                    toastr.error(response.response_message.message, response.response_message.response);
+                }
+                
+            }
+        });
+    });
+
+    /*--------------------- aadhar verify ------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+@endsection
