@@ -21,11 +21,11 @@
         <section class="openaccount pt-5 pb-5">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="page-heading">
                         <h4 class="title_heading text-center black_color pb-3 heading_font">Open New Account</h4>
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="page-contain">
                         <p>Hello, <br> Greetings from Motiwala & Sons !</p>
                         <p>Thank you very much for expressing your interest in opening a new Motiwala & Sons Golden Harvest
                             account.
@@ -47,49 +47,70 @@
 
 @section('component.scripts')
     <script>
+
+        /*------------------- form submit ajax --------------------*/
+
+        function ajax_form_submit(event, form){
+
+            if (form.valid()) {
+                event.preventDefault();
+
+                var button = $(form).find('button[type="submit"]').html();
+                $(form).find('button[type="submit"]').html('please wait...');
+                $(form).find('button[type="submit"]').css('pointer-events', 'none');
+                
+                $.ajax({
+                    url: $(form).attr('action'),
+                    type: "POST",
+                    data: $(form).serialize(),
+                    success: function (response) {
+                        if(response.response_message.response == 'success') {
+                            
+                            toastr.success(response.response_message.message, response.response_message.response);
+
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1500);
+
+                        }else{
+                            $(form).find('button[type="submit"]').html(button);
+                            $(form).find('button[type="submit"]').css('pointer-events', 'inherit');
+
+                            toastr.error(response.response_message.message, response.response_message.response);
+
+
+                        }
+                        
+                    }
+                });
+            } else {
+                // Get all validation errors and display them in Toastr
+                var errors = form.validate().errorMap;
+                var errorMessage = '';
+                $.each(errors, function(key, value) {
+                    errorMessage += value + '<br>';
+                });
+                toastr.error(errorMessage, 'Validation Error');
+                form.find('button[type="submit"]').html(button);
+                form.find('button[type="submit"]').css('pointer-events', 'inherit');
+            }
+
+        }
+
+
+    /*------------------- form submit ajax --------------------*/
+
+
     
     /*--------------------- add Phone ------------------*/
 
         initValidate('#phone-verification');
 
         $('#add-phone form').on('submit', function(event){
-            event.preventDefault();
+
             var form = $(this);
-            var button = $(form).find('button[type="submit"]').html();
-            $(form).find('button[type="submit"]').html('please wait...');
-            $(form).find('button[type="submit"]').css('pointer-events', 'none');
-            
-            $.ajax({
-                url: $(form).attr('action'),
-                type: "POST",
-                data: $(form).serialize(),
-                success: function (response) {
-                    if(response.response_message.response == 'success') {
-                        /*
-                        $('#otp').removeClass('d-none');
-                        $('#add-phone').addClass('d-none');
-                        */
-
-                        toastr.success(response.response_message.message, response.response_message.response);
-
-                        setTimeout(function() {
-                            location.reload();
-                        }, 1500);
-
-                    }else{
-                        $(form).find('button[type="submit"]').html(button);
-                        $(form).find('button[type="submit"]').css('pointer-events', 'inherit');
-
-                        toastr.error(response.response_message.message, response.response_message.response);
-
-                        setTimeout(function() {
-                            location.reload();
-                        }, 1500);
-
-                    }
-                    
-                }
-            });
+            ajax_form_submit(event, form);
+        
         });
 
     /*--------------------- add Phone ------------------*/ 
@@ -99,38 +120,10 @@
         initValidate('#verify-otp');
 
         $('#otp form').on('submit', function(event){
-            event.preventDefault();
+
             var form = $(this);
-            var button = $(form).find('button[type="submit"]').html();
-            $(form).find('button[type="submit"]').html('please wait...');
-            $(form).find('button[type="submit"]').css('pointer-events', 'none');
-            $.ajax({
-                url: $(form).attr('action'),
-                type: "POST",
-                data: $(form).serialize(),
-                success: function (response) {
-                    if(response.response_message.response == 'success') {
-                        /*
-                        $('#customer-detail').removeClass('d-none');
-                        $('#otp').addClass('d-none');
-                        */
+            ajax_form_submit(event, form);
 
-                        toastr.success(response.response_message.message, response.response_message.response);
-
-                        setTimeout(function() {
-                            location.reload();
-                        }, 1500);
-
-                    }else{
-                        $(form).find('button[type="submit"]').html(button);
-                        $(form).find('button[type="submit"]').css('pointer-events', 'inherit');
-
-                        toastr.error(response.response_message.message, response.response_message.response);
-
-                    }
-                    
-                }
-            });
         });
     /*--------------------- verify-otp------------------*/    
 
@@ -165,38 +158,10 @@
     initValidate('#customer-info');
 
     $('#customer-detail form').on('submit', function(event){
-        event.preventDefault();
+
         var form = $(this);
-        var button = $(form).find('button[type="submit"]').html();
-        $(form).find('button[type="submit"]').html('please wait...');
-        $(form).find('button[type="submit"]').css('pointer-events', 'none');
-        $.ajax({
-            url: $(form).attr('action'),
-            type: "POST",
-            data: $(form).serialize(),
-            success: function (response) {
-                if(response.response_message.response == 'success') {
-                    
-                    /*
-                    $('#plan-detail').removeClass('d-none');
-                    $('#customer-detail').addClass('d-none');
-                    */
+        ajax_form_submit(event, form);
 
-                    toastr.success(response.response_message.message, response.response_message.response);
-
-                    setTimeout(function() {
-                        location.reload();
-                    }, 1500);
-
-                }else{
-                    $(form).find('button[type="submit"]').html(button);
-                    $(form).find('button[type="submit"]').css('pointer-events', 'inherit');
-
-                    toastr.error(response.response_message.message, response.response_message.response);
-                }
-                
-            }
-        });
     });
 
     /*--------------------- customer info ------------------*/ 
@@ -206,38 +171,10 @@
     initValidate('#plan-info');
 
     $('#plan-detail form').on('submit', function(event){
-        event.preventDefault();
+
         var form = $(this);
-        var button = $(form).find('button[type="submit"]').html();
-        $(form).find('button[type="submit"]').html('please wait...');
-        $(form).find('button[type="submit"]').css('pointer-events', 'none');
-        $.ajax({
-            url: $(form).attr('action'),
-            type: "POST",
-            data: $(form).serialize(),
-            success: function (response) {
-                if(response.response_message.response == 'success') {
-                    
-                    /*
-                    $('#plan-detail').removeClass('d-none');
-                    $('#customer-detail').addClass('d-none');
-                    */
+        ajax_form_submit(event, form);
 
-                    toastr.success(response.response_message.message, response.response_message.response);
-
-                    setTimeout(function() {
-                        location.reload();
-                    }, 1500);
-
-                }else{
-                    $(form).find('button[type="submit"]').html(button);
-                    $(form).find('button[type="submit"]').css('pointer-events', 'inherit');
-
-                    toastr.error(response.response_message.message, response.response_message.response);
-                }
-                
-            }
-        });
     });
 
     /*--------------------- Plan info ------------------*/ 
@@ -272,82 +209,39 @@
     initValidate('#ekyc-verify');
 
     $('#preview-info form').on('submit', function(event){
-        event.preventDefault();
+
         var form = $(this);
-        var button = $(form).find('button[type="submit"]').html();
-        $(form).find('button[type="submit"]').html('please wait...');
-        $(form).find('button[type="submit"]').css('pointer-events', 'none');
-        $.ajax({
-            url: $(form).attr('action'),
-            type: "POST",
-            data: $(form).serialize(),
-            success: function (response) {
-                if(response.response_message.response == 'success') {
-                    
-                    /*
-                    $('#plan-detail').removeClass('d-none');
-                    $('#customer-detail').addClass('d-none');
-                    */
+        ajax_form_submit(event, form);
 
-                    toastr.success(response.response_message.message, response.response_message.response);
-
-                    setTimeout(function() {
-                        location.reload();
-                    }, 1500);
-
-                }else{
-                    $(form).find('button[type="submit"]').html(button);
-                    $(form).find('button[type="submit"]').css('pointer-events', 'inherit');
-
-                    toastr.error(response.response_message.message, response.response_message.response);
-                }
-                
-            }
-        });
     });
 
     /*--------------------- ekyc verify ------------------*/
 
     /*--------------------- aadhar verify ------------------*/ 
 
-    initValidate('#aadhar-verify');
+    initValidate('#aadhar-verify-request-otp');
 
     $('#ekyc form').on('submit', function(event){
-        event.preventDefault();
+
         var form = $(this);
-        var button = $(form).find('button[type="submit"]').html();
-        $(form).find('button[type="submit"]').html('please wait...');
-        $(form).find('button[type="submit"]').css('pointer-events', 'none');
-        $.ajax({
-            url: $(form).attr('action'),
-            type: "POST",
-            data: $(form).serialize(),
-            success: function (response) {
-                if(response.response_message.response == 'success') {
-                    
-                    /*
-                    $('#plan-detail').removeClass('d-none');
-                    $('#customer-detail').addClass('d-none');
-                    */
-
-                    toastr.success(response.response_message.message, response.response_message.response);
-
-                    setTimeout(function() {
-                        location.reload();
-                    }, 1500);
-
-                }else{
-                    $(form).find('button[type="submit"]').html(button);
-                    $(form).find('button[type="submit"]').css('pointer-events', 'inherit');
-
-                    toastr.error(response.response_message.message, response.response_message.response);
-                }
-                
-            }
-        });
+        ajax_form_submit(event, form);
+        
     });
 
     /*--------------------- aadhar verify ------------------*/
+
+    /*--------------------- aadhar otp verify ------------------*/ 
+
+    initValidate('#aadhar-otp-verify');
+
+    $('#ekyc-aadhar-otp-verify form').on('submit', function(event){
+
+        var form = $(this);
+        ajax_form_submit(event, form);
+        
+    });
+
+    /*--------------------- aadhar otp verify ------------------*/
 
 
 

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Common\AadharController;
 
 
 class AccountController extends Controller
@@ -48,9 +49,13 @@ class AccountController extends Controller
 
             $rsp_msg = $this->accept_ekyc_term($request);
 
-        }elseif($param == "aadhar-verify"){
+        }elseif($param == "aadhar-verify-request-otp"){
 
-            $rsp_msg = $this->aadhar_verify($request);
+            $rsp_msg = $this->aadhar_verify_request_otp($request);
+
+        }elseif($param == "aadhar-otp-verify"){
+
+            $rsp_msg = $this->aadhar_otp_verify($request);
 
         } else {
             $rsp_msg['response'] = 'error';
@@ -70,7 +75,7 @@ class AccountController extends Controller
         
         $validator = Validator::make($request->all(), [
             'accept_term' => 'required',
-            'phone' => 'required|regex:/^\+?\d{10,13}$/',
+            'phone' => 'required|regex:/^\d{10}$/',
         ]);
 
         if ($validator->fails()) {
@@ -190,11 +195,11 @@ class AccountController extends Controller
             'name' => 'required|min:3',
             'email' => 'required|email',
             'flat_no' => 'required|min:1',
-            'street' => 'required|min:2',
-            'locality' => 'required|min:3',
-            'state' => 'required|min:3',
-            'city' => 'required|min:3',
-            'pincode' => 'required|min:3',
+            'street' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            'locality' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            'state' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            'city' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            'pincode' => 'required|regex:/^[\d\s-]+$/|min:3',
             'dob' => 'required',
         ]);
 
@@ -246,8 +251,8 @@ class AccountController extends Controller
             'plan_id' => 'required',
             'installment_amount' => 'required',
             'nominee_name' => ['nullable', 'string', 'min:3'],
-            'nominee_phone' => 'nullable|regex:/^\+?\d{10,13}$/',
-            'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3'],
+            'nominee_phone' => 'nullable|regex:/^\d{10}$/',
+            'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3'],
             'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3'],
         ]);
 
@@ -322,7 +327,7 @@ class AccountController extends Controller
         
     }
 
-    public function aadhar_verify($request){
+    public function aadhar_verify_request_otp($request){
 
         $validator = Validator::make($request->all(), [
             'aadhar' => 'required|digits:12|same:aadhar_conform',
@@ -335,6 +340,104 @@ class AccountController extends Controller
 
             return $rsp_msg;
         }
+
+
+        $requestOtp = (new AadharController)->requestOtpAadhar($request->aadhar);
+        $requestOtp = json_decode($requestOtp);
+
+        if($requestOtp->success) {
+            //do success stuff
+            $response = [
+                'status'       => true,
+                'method'       => 'flash',
+                'notification' => "OTP sent to linked Mobile number with ".$request->aadhar_no." Aadhar number."
+            ];
+
+            $rsp_msg['response'] = 'success';
+            $rsp_msg['message']  = "OTP sent to linked Mobile number with ".$request->aadhar." Aadhar number.";
+            
+            //set session of aadhar client ID
+            session(['customer_aadhar_clientId' => $requestOtp->data->client_id]); 
+
+            Session::put('step', 7);
+
+        }else{
+            //do failure stuff
+            if($requestOtp->status_code == 429) {
+     
+                $rsp_msg['response'] = 'error';
+                $rsp_msg['message']  = "Wait 60 seconds to generate OTP for same Aadhaar Number.";
+                
+            }else{
+                
+                $rsp_msg['response'] = 'error';
+                $rsp_msg['message']  = "Invalid Aadhar number / No mobile number is linked with ".$request->aadhar." Aadhar number!";
+                
+            }
+        }  
+
+        return $rsp_msg;
+
+    }
+
+
+    public function aadhar_otp_verify($request){
+
+        $validator = Validator::make($request->all(), [
+            'otp' => 'required|digits:6',
+        ]);
+
+        if ($validator->fails()) {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = $validator->errors()->all();
+
+            return $rsp_msg; 
+        }
+
+        $verify = (new AadharController)->validateOtpAadhar($request->otp, session('customer_aadhar_clientId'));
+        $verify = json_decode($verify);
+
+
+        if($verify->success) {
+
+            //update query here
+            DB::table('userdetails')->where('user_id',Session::get('user_id'))->update([
+                'ekyc' => json_encode($verify),
+            ]);
+
+            $profileImage = $verify->data->profile_image;
+            $fullName = $verify->data->full_name;
+            $address = $verify->data->address;
+            $zip = $verify->data->zip;
+            $dob = $verify->data->dob;
+            $care_of = $verify->data->care_of;
+            $mobile = $verify->data->mobile_hash;
+            
+            $customer_detail = [
+                'profileImage' => $profileImage,
+                'name' => $fullName,
+                'address' => $address,
+                'zip' => $zip,
+                'dob' => $dob,
+                'care_of' => $care_of,
+                'mobile' => $mobile,
+            ];
+
+            Session::put('customer_detail', $customer_detail);
+
+            Session::put('step', 8);
+                        
+            $rsp_msg['response'] = 'success';
+            $rsp_msg['message']  = "Aadhar Number verified successfully!";
+            
+        }else{
+            
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = "OTP verification failed!";
+            
+        }
+
+        return $rsp_msg; 
 
     }
 

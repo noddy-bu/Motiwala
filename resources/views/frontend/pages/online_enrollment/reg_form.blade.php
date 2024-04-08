@@ -24,7 +24,7 @@
                     <label class="pb-3">Mobile Number* (As per Aadhaar)</label>
                     <input type="text" class="form-control" name="phone"
                         placeholder="Please Enter Mobile Number" pattern="[0-9]+" minlength="10"
-                        maxlength="13" placeholder="Please Enter Mobile Number" required/>
+                        maxlength="10" placeholder="Please Enter Mobile Number" required/>
                 </div>
 
                 <div class="form-group">
@@ -174,7 +174,7 @@
                     <div class="col-md-4">
                         <div class="form-group mt-4 adhar_field">
                             <label class="pb-3">State *</label>
-                            <input type="text" class="form-control" name="state" pattern="[A-Za-z]+" minlength="3"
+                            <input type="text" class="form-control" name="state" pattern="[A-Za-z\s]+" minlength="3"
                             placeholder="Please Enter Your State" value="{{ $user_detail->state }}" required/>
                         </div>
                     </div>
@@ -272,14 +272,14 @@
                 <div class="form-group mt-4 adhar_field">
                     <label class="pb-3">Nominee Name </label>
                     <input type="text" class="form-control" name="nominee_name" pattern="[A-Za-z]+" minlength="3" placeholder="Please Enter Your Nominee Name"
-                    value="{{ $user_detail->nominee_name }}" required/>
+                    value="{{ $user_detail->nominee_name }}" />
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="form-group mt-4 adhar_field">
                     <label class="pb-3">Nominee Contact Number </label>
-                    <input type="text" class="form-control" name="nominee_phone" pattern="[0-9]+" minlength="10" placeholder="Please Enter Your Nominee Contact Number" value="{{ $user_detail->nominee_phone }}" />
+                    <input type="text" class="form-control" name="nominee_phone" pattern="[0-9]+" minlength="10" maxlength="10" placeholder="Please Enter Your Nominee Contact Number" value="{{ $user_detail->nominee_phone }}" />
                 </div>
             </div>
 
@@ -488,7 +488,7 @@
     <div id="ekyc">
 
         <div class="row">
-            <form class="col-md-5" id="aadhar-verify" action="{{ url(route('account.create', ['param' =>'aadhar-verify'])) }}" method="post">
+            <form class="col-md-5" id="aadhar-verify-request-otp" action="{{ url(route('account.create', ['param' =>'aadhar-verify-request-otp'])) }}" method="post">
                 @csrf
 
                 <div class="d-flex">
@@ -513,6 +513,120 @@
                 </div>
 
             </form>
+
+        </div>
+
+    </div>
+
+<!--------------------------------------------- ekyc Aadhar verify --------------------------------->
+
+@endif
+
+
+@if(Session::has('step') && Session::get('step') == 7)
+
+<!--------------------------------------------- ekyc Aadhar verify --------------------------------->
+
+    <div id="ekyc-aadhar-otp-verify">
+
+        <div class="row">
+            <form class="col-md-5" id="aadhar-otp-verify" action="{{ url(route('account.create', ['param' =>'aadhar-otp-verify'])) }}" method="post">
+                @csrf
+
+                <div class="d-flex">
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Verify OTP *</label>
+                        <input type="text" class="form-control" name="otp" pattern="[0-9]+" minlength="6"
+                        maxlength="6" placeholder="Please Enter OTP" required/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="buttonclass1 mt60">
+                        <button type="submit">Submit <i class="las la-arrow-right"></i></button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+<!--------------------------------------------- ekyc Aadhar verify --------------------------------->
+
+@endif
+
+
+
+@if(Session::has('step') && Session::get('step') == 8)
+
+<!--------------------------------------------- ekyc Aadhar verify --------------------------------->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get the elements by their IDs
+            var pageHeading = document.getElementById("page-heading");
+            var pageContain = document.getElementById("page-contain");
+
+            // Set the display style to 'block' to make them visible
+            pageHeading.style.display = "none";
+            pageContain.style.display = "none";
+        });
+
+        // Reload the page after 3 seconds
+        setTimeout(function() {
+            location.reload();
+        }, 3000); // 3000 milliseconds = 3 seconds
+
+    </script>
+
+
+    <div id="aadhar-preview">
+
+        @php 
+            $customer_detail = Session::get('customer_detail');
+
+            $profileImage = $customer_detail['profileImage'];
+            $fullName = $customer_detail['name'];
+            $address = $customer_detail['address'];
+            $zip = $customer_detail['zip'];
+            $dob = $customer_detail['dob'];
+            $care_of = $customer_detail['care_of'];
+
+        @endphp
+
+        <div class="row d-flex justify-content-center">
+
+            <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+                <div class="card-header">
+                  Final KYC Reault
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <img src="data:image/png;base64,{{$profileImage}}" class="card-img-top thum" alt="profile-image" 
+                    style="width: 250px;">
+                </div>
+
+                <div class="card-body">
+                    <p class="card-text"><strong>Name : </strong>{{ $fullName }}</p>
+                    <p class="card-text"><strong>DOB : </strong>{{ $dob }}</p>
+                    <p class="card-text"><strong>Address : </strong>
+                    {{ $care_of }}
+                    @php 
+                        echo $address->house . ",\n";
+                        echo $address->loc . ",\n";
+                        echo $address->landmark . ",\n";
+                        echo $address->street . ",\n";
+                        echo $address->vtc . ",\n";
+                        echo $address->subdist . ",\n";
+                        echo $address->dist . ",\n";
+                        echo $address->state . ",\n";
+                        echo $address->country;
+                    @endphp
+                    {{ $zip }}
+                    </p>
+                </div>
+            </div>
 
         </div>
 
