@@ -47,6 +47,21 @@
 
 @section('component.scripts')
     <script>
+        /*
+        window.addEventListener('beforeunload', function() {
+
+            // Create an XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Specify the URL to hit using the route name
+            var url = '{{ route("clear-data") }}';
+
+            // Send a GET request to the URL asynchronously
+            xhr.open('GET', url, true);
+            xhr.send();
+
+        });
+        */
 
         /*------------------- form submit ajax --------------------*/
 

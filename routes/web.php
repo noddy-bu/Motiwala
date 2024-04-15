@@ -99,3 +99,10 @@ Route::get('/clear-session', function () {
     echo"clear";
 });
 
+Route::get('/clear-data', function () {
+    session()->forget('step');
+    session()->forget('otp_timestamp');
+    session()->forget('phone');
+    session()->forget('user_id');
+    session()->forget('otp');
+})->name('clear-data');

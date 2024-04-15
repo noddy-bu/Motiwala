@@ -7,7 +7,14 @@
 
     <div id="add-phone">
 
-        @php Session()->put('step', 1); @endphp
+        @php
+            session()->forget('step');
+            session()->forget('otp_timestamp');
+            session()->forget('phone');
+            session()->forget('user_id');
+            session()->forget('otp'); 
+            Session()->put('step', 1); 
+        @endphp
 
         <form id="phone-verification" action="{{ url(route('account.create', ['param' =>'phone-verification'])) }}" method="post">
             @csrf
@@ -54,15 +61,22 @@
     <div id="otp">
 
         <div class="row">
-            <form class="col-md-5" id="verify-otp" action="{{ url(route('account.create', ['param' =>'verify-otp'])) }}" method="post">
+            <form class="col-md-9" id="verify-otp" action="{{ url(route('account.create', ['param' =>'verify-otp'])) }}" method="post">
                 @csrf
 
                 <div class="d-flex">
+
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Mobile Number</label>
+                        <input type="text" class="form-control" value="{{ Session::get('phone') }}" disabled/>
+                    </div>
+
                     <div class="form-group mt-4 adhar_field">
                         <label class="pb-3">Verify OTP *</label>
                         <input type="text" class="form-control" name="otp" pattern="[0-9]+" minlength="6"
                         maxlength="6" placeholder="Please Enter OTP" required/>
                     </div>
+
 
                     <div class="form-group">
                         <div class="buttonclass1 mt60">
@@ -70,17 +84,20 @@
                         </div>
                     </div>
 
+
+                    
+                    <div class="form-group mx-2">
+                        <div class="buttonclass1 mt60">
+                            <button id="resendOTPButton">Resend OTP<i class="las la-arrow-right"></i></button>
+                        </div>
+                    </div>
+
                 </div>
+
+
 
             </form>
 
-            <div class="col-md-3">
-                <div class="form-group mx-2">
-                    <div class="buttonclass1 mt60">
-                        <button id="resendOTPButton">Resend OTP<i class="las la-arrow-right"></i></button>
-                    </div>
-                </div>
-            </div>
 
         </div>
 
@@ -573,10 +590,11 @@
             pageContain.style.display = "none";
         });
 
+
         // Reload the page after 3 seconds
         setTimeout(function() {
             location.reload();
-        }, 3000); // 3000 milliseconds = 3 seconds
+        }, 5000); // 3000 milliseconds = 3 seconds
 
     </script>
 
@@ -584,6 +602,7 @@
     <div id="aadhar-preview">
 
         @php 
+
             $customer_detail = Session::get('customer_detail');
 
             $profileImage = $customer_detail['profileImage'];
@@ -592,6 +611,7 @@
             $zip = $customer_detail['zip'];
             $dob = $customer_detail['dob'];
             $care_of = $customer_detail['care_of'];
+            $mobile = $customer_detail['mobile'];
 
         @endphp
 
@@ -610,6 +630,7 @@
                 <div class="card-body">
                     <p class="card-text"><strong>Name : </strong>{{ $fullName }}</p>
                     <p class="card-text"><strong>DOB : </strong>{{ $dob }}</p>
+                    <p class="card-text"><strong>Mobile : </strong>{{ $dob }}</p>
                     <p class="card-text"><strong>Address : </strong>
                     {{ $care_of }}
                     @php 
@@ -633,6 +654,308 @@
     </div>
 
 <!--------------------------------------------- ekyc Aadhar verify --------------------------------->
+
+@php Session()->put('step', 9); @endphp
+
+@endif
+
+
+
+@if(Session::has('step') && Session::get('step') == 9)
+
+<!--------------------------------------------- After aadhar preview info --------------------------------->    
+
+<div id="preview-info">
+
+    @php 
+        $user = DB::table('users')->where('id', Session::get('user_id'))
+            ->get(['plan_id','installment_amount','name','email','phone','ulp_id'])->first();
+
+        $user_detail = DB::table('userdetails')->where('user_id', Session::get('user_id'))
+            ->get(['nominee_name','nominee_phone','nominee_dob','nominee_address','nominee_relation','flat_no','street','locality','state','city','pincode','dob'])->first();
+
+        $plan_name = DB::table('plans')->where('id', $user->plan_id)->value('name');
+    @endphp
+ 
+    <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
+        <h5> Preview Info </h5>
+    </div>
+
+    <div class="row d-flex">
+
+        <div class="col-md-6">
+
+            <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+                <div class="card-header">
+                  Plan Details
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>Plan Type : </strong>{{ $plan_name }}</p>
+                    <p class="card-text"><strong>Installment Amount (in Rs) : </strong>{{ $user->installment_amount}}</p>
+                </div>
+              </div>
+
+              <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+                <div class="card-header">
+                  Verification Details
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>eKYC Status : </strong>Completed</p>
+                    <p class="card-text"><strong>eSign Status : </strong>Not Started</p>
+                </div>
+              </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="card col-md-12 my-5 mx-2" style="width: 39rem;">
+                <div class="card-header">
+                  Customer Details
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>Name : </strong>{{ $user->name }}</p>
+                    <p class="card-text"><strong>Address : </strong>
+                    @php 
+                        echo $user_detail->flat_no . ",\n";
+                        echo $user_detail->street . ",\n";
+                        echo $user_detail->locality . ",\n";
+                        echo $user_detail->city . ",\n";
+                        echo $user_detail->state . ",\n";
+                        echo $user_detail->pincode;
+                    @endphp
+                    </p>
+                    <p class="card-text"><strong>Email : </strong>{{ $user->email }}</p>
+                    <p class="card-text"><strong>Birthday : </strong>{{ date('d/m/Y', strtotime($user_detail->dob)) }}</p>
+                    <p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p>
+                    <p class="card-text"><strong>ULP ID : </strong>{{ $user->ulp_id }}</p>
+                    <p class="card-text"><strong>Nominee Name : </strong>{{ $user_detail->nominee_name }}</p>
+                    <p class="card-text"><strong>Nominee Phone No : </strong>{{ $user_detail->nominee_phone }}</p>
+                    <p class="card-text"><strong>Nominee DOB : </strong>{{ date('d/m/Y', strtotime($user_detail->nominee_dob)) }}</p>
+                    <p class="card-text"><strong>Nominee Address : </strong>{{ $user_detail->nominee_address }}</p>
+                    <p class="card-text"><strong>Nominee Relation : </strong>{{ $user_detail->nominee_relation }}</p>
+                </div>
+              </div>
+
+
+        </div>
+
+
+    </div>
+
+    <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
+        <h5> eKYC Process </h5>
+    </div>
+
+    <div>
+        <div class="steps-title mx-2 my-2">
+            <span style="color: var(--primary-text); font-size: var(--primary-font-size-heading);">Terms and Conditions
+            </span><br /><label style="color: var(--ternary-text); font-size: var(--tertiary-font-size); padding: 5px;"><br />
+                You are about to be redirected to www.xyz.com, a third party website. The information you provide on the third party website is subject to the terms and conditions, privacy policies and practices of the third party website and we are not responsible for the security and privacy of any information that you may provide on the third party website. </label><br />
+        </div>
+    </div>
+
+    <form id="ekyc-verify" action="{{ url(route('account.create', ['param' =>'esign-varification'])) }}" method="post">
+        @csrf
+
+        <div class="form-group mt-2">
+            <input type="checkbox" name="accept_term" id="agree" value="yes" required/>
+            <label for="agree">I accept <a href="{{ url(route('terms')) }}">“Terms and conditions”</a> of Motiwala &
+                Sons Golden Harvest.</label>
+        </div>
+
+
+        <div class="form-group">
+            <div class="buttonclass1 mt60">
+                <button type="submit">Proceed <i class="las la-arrow-right"></i></button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+<!--------------------------------------------- After aadhar preview info --------------------------------->
+
+@endif
+
+
+
+
+@if(Session::has('step') && Session::get('step') == 10)
+
+<!--------------------------------------------- eSign Aadhar verify --------------------------------->
+
+    <div id="ekyc">
+
+        <div class="row">
+            <form class="col-md-5" id="aadhar-verify-request-otp" action="{{ url(route('account.create', ['param' =>'esign-aadhar-verify-request-otp'])) }}" method="post">
+                @csrf
+
+                <div class="d-flex">
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Aadhaar *</label>
+                        <input type="text" class="form-control" name="aadhar" pattern="[0-9]+" minlength="12"
+                        maxlength="12" placeholder="Please Enter Aadhar No" required/>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <div class="buttonclass1 mt60">
+                        <button type="submit">Verify <i class="las la-arrow-right"></i></button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+<!--------------------------------------------- eSign Aadhar verify --------------------------------->
+
+@endif
+
+
+@if(Session::has('step') && Session::get('step') == 11)
+
+<!--------------------------------------------- eSign Aadhar verify --------------------------------->
+
+    <div id="ekyc-aadhar-otp-verify">
+
+        <div class="row">
+            <form class="col-md-5" id="aadhar-otp-verify" action="{{ url(route('account.create', ['param' =>'eSign-aadhar-otp-verify'])) }}" method="post">
+                @csrf
+
+                <div class="d-flex">
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Verify OTP *</label>
+                        <input type="text" class="form-control" name="otp" pattern="[0-9]+" minlength="6"
+                        maxlength="6" placeholder="Please Enter OTP" required/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="buttonclass1 mt60">
+                        <button type="submit">Submit <i class="las la-arrow-right"></i></button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+<!--------------------------------------------- eSign Aadhar verify --------------------------------->
+
+@endif
+
+
+@if(Session::has('step') && Session::get('step') == 12)
+
+<!--------------------------------------------- After esign preview info --------------------------------->    
+
+<div id="preview-info">
+
+    @php 
+        $user = DB::table('users')->where('id', Session::get('user_id'))
+            ->get(['plan_id','installment_amount','name','email','phone','ulp_id'])->first();
+
+        $user_detail = DB::table('userdetails')->where('user_id', Session::get('user_id'))
+            ->get(['nominee_name','nominee_phone','nominee_dob','nominee_address','nominee_relation','flat_no','street','locality','state','city','pincode','dob'])->first();
+
+        $plan_name = DB::table('plans')->where('id', $user->plan_id)->value('name');
+    @endphp
+ 
+    <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
+        <h5> Preview Info </h5>
+    </div>
+
+    <div class="row d-flex">
+
+        <div class="col-md-6">
+
+            <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+                <div class="card-header">
+                  Plan Details
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>Plan Type : </strong>{{ $plan_name }}</p>
+                    <p class="card-text"><strong>Installment Amount (in Rs) : </strong>{{ $user->installment_amount}}</p>
+                </div>
+              </div>
+
+              <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+                <div class="card-header">
+                  Verification Details
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>eKYC Status : </strong>Completed</p>
+                    <p class="card-text"><strong>eSign Status : </strong>Completed</p>
+                </div>
+              </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="card col-md-12 my-5 mx-2" style="width: 39rem;">
+                <div class="card-header">
+                  Customer Details
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>Name : </strong>{{ $user->name }}</p>
+                    <p class="card-text"><strong>Address : </strong>
+                    @php 
+                        echo $user_detail->flat_no . ",\n";
+                        echo $user_detail->street . ",\n";
+                        echo $user_detail->locality . ",\n";
+                        echo $user_detail->city . ",\n";
+                        echo $user_detail->state . ",\n";
+                        echo $user_detail->pincode;
+                    @endphp
+                    </p>
+                    <p class="card-text"><strong>Email : </strong>{{ $user->email }}</p>
+                    <p class="card-text"><strong>Birthday : </strong>{{ date('d/m/Y', strtotime($user_detail->dob)) }}</p>
+                    <p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p>
+                    <p class="card-text"><strong>ULP ID : </strong>{{ $user->ulp_id }}</p>
+                    <p class="card-text"><strong>Nominee Name : </strong>{{ $user_detail->nominee_name }}</p>
+                    <p class="card-text"><strong>Nominee Phone No : </strong>{{ $user_detail->nominee_phone }}</p>
+                    <p class="card-text"><strong>Nominee DOB : </strong>{{ date('d/m/Y', strtotime($user_detail->nominee_dob)) }}</p>
+                    <p class="card-text"><strong>Nominee Address : </strong>{{ $user_detail->nominee_address }}</p>
+                    <p class="card-text"><strong>Nominee Relation : </strong>{{ $user_detail->nominee_relation }}</p>
+                </div>
+              </div>
+
+
+        </div>
+
+
+    </div>
+
+    <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
+        <h5> Payment Details </h5>
+    </div>
+
+    <div>
+    </div>
+
+    <form id="ekyc-verify" action="{{ url(route('account.create', ['param' =>'payment-gateway'])) }}" method="post">
+        @csrf
+
+        <div class="form-group">
+            <div class="buttonclass1 mt60">
+                <button type="submit">Proceed Payment <i class="las la-arrow-right"></i></button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+<!--------------------------------------------- After esign preview info --------------------------------->
 
 @endif
 
