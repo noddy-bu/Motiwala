@@ -265,8 +265,13 @@
                     <label class="pb-3">Select Plan *</label>
                     <select class="form-select" aria-label="---Select----" name="plan_id" id="plan_id" required>
                         <option data-minium="2000" value="">---Select---</option>
-                        @foreach($plan as $row)
+                        {{--@foreach($plan as $row)
                             <option data-minium="{{ $row->minimum_installment_amount }}" value="{{ $row->id }}" @if($user->plan_id == $row->id) selected @endif>
+                                {{ ucfirst($row->name) }}
+                            </option>
+                        @endforeach --}}
+                        @foreach($plan as $row)
+                            <option data-minium="{{ $row->minimum_installment_amount }}" value="{{ $row->id }}">
                                 {{ ucfirst($row->name) }}
                             </option>
                         @endforeach
@@ -278,7 +283,8 @@
             <div class="col-md-8">
                 <div class="form-group mt-4 adhar_field">
                     <label class="pb-3">Installment Amount *</label>
-                    <input type="text" class="form-control" name="installment_amount" pattern="[0-9]+" placeholder="Please Enter Your Installment Amount" value="{{ $user->installment_amount }}" required/>
+                    {{--<input type="text" class="form-control" name="installment_amount" pattern="[0-9]+" placeholder="Please Enter Your Installment Amount" value="{{ $user->installment_amount }}" required/>--}}
+                    <input type="text" class="form-control" name="installment_amount" pattern="[0-9]+" placeholder="Please Enter Your Installment Amount" required/>
                     
                     <span id="installmentAmount" style="display: none; color: red;">Minimum Installment Amount : 2000.00</span>
 
@@ -557,10 +563,18 @@
                         maxlength="6" placeholder="Please Enter OTP" required/>
                     </div>
                 </div>
+                
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <div class="buttonclass1 mt60">
+                            <button type="submit">Submit <i class="las la-arrow-right"></i></button>
+                        </div>
+                    </div>
 
-                <div class="form-group">
-                    <div class="buttonclass1 mt60">
-                        <button type="submit">Submit <i class="las la-arrow-right"></i></button>
+                    <div class="form-group col-md-6 d-none" id="ReSubmit">
+                        <div class="buttonclass1 mt60">
+                            <button>ReSubmit <i class="las la-arrow-right"></i></button>
+                        </div>
                     </div>
                 </div>
 
@@ -571,6 +585,32 @@
     </div>
 
 <!--------------------------------------------- ekyc Aadhar verify --------------------------------->
+
+<script>
+    // Reload the page after 5 seconds
+    setTimeout(function() {
+        var ReSubmitBtn = document.getElementById("ReSubmit");
+        ReSubmitBtn.classList.remove("d-none"); // Remove the "d-none" class to display the button
+
+        // Add event listener to the button
+        ReSubmitBtn.addEventListener("click", function() {
+            // Create an XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Specify the URL to hit using the route name
+            var url = '{{ route("resubmit-aadhar-otp") }}';
+
+            // Send a GET request to the URL asynchronously
+            xhr.open('GET', url, true);
+            xhr.send();
+
+            // Reload the page after hitting the route
+            location.reload();
+        });
+
+    }, 5000); // 5000 milliseconds = 5 seconds
+</script>
+
 
 @endif
 
@@ -593,6 +633,18 @@
 
         // Reload the page after 3 seconds
         setTimeout(function() {
+            
+            // Create an XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Specify the URL to hit using the route name
+            var url = '{{ route("update-session") }}';
+
+            // Send a GET request to the URL asynchronously
+            xhr.open('GET', url, true);
+            xhr.send();
+
+
             location.reload();
         }, 5000); // 3000 milliseconds = 3 seconds
 
@@ -655,7 +707,7 @@
 
 <!--------------------------------------------- ekyc Aadhar verify --------------------------------->
 
-@php Session()->put('step', 9); @endphp
+{{--@php Session()->put('step', 9); @endphp --}}
 
 @endif
 

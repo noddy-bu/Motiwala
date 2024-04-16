@@ -106,3 +106,12 @@ Route::get('/clear-data', function () {
     session()->forget('user_id');
     session()->forget('otp');
 })->name('clear-data');
+
+Route::get('/update-session', function () {
+    Session()->put('step', 9);
+})->name('update-session');
+
+
+Route::get('/resubmit-aadhar-otp', function () {
+    Session()->put('step', 5);
+})->name('resubmit-aadhar-otp');

@@ -261,7 +261,7 @@ class AccountController extends Controller
 
         $validator = Validator::make($request->all(), [
             'plan_id' => 'required',
-            'installment_amount' => 'required',
+            'installment_amount' => 'required|numeric',
             'nominee_name' => ['nullable', 'string', 'min:3'],
             'nominee_phone' => 'nullable|regex:/^\d{10}$/',
             'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3'],
