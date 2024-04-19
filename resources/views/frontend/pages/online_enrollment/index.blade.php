@@ -259,6 +259,61 @@
     /*--------------------- aadhar otp verify ------------------*/
 
 
+    /*--------------------- Payment Gateway ------------------*/ 
+
+        initValidate('#payment-gateway');
+
+        $('#last-preview-info form').on('submit', function(event){
+
+            var form = $(this);
+            if (form.valid()) {
+                event.preventDefault();
+
+                var button = $(form).find('button[type="submit"]').html();
+                $(form).find('button[type="submit"]').html('please wait...');
+                $(form).find('button[type="submit"]').css('pointer-events', 'none');
+                
+                $.ajax({
+                    url: $(form).attr('action'),
+                    type: "POST",
+                    data: $(form).serialize(),
+                    success: function (response) {
+                        if(response.response_message.response == 'success') {
+                            
+                            toastr.success(response.response_message.message, response.response_message.response);
+
+                            setTimeout(function() {
+                                //location.reload();
+                                window.location.href = "{{ url(route('index')) }}";
+                            }, 1500);
+
+                        }else{
+                            $(form).find('button[type="submit"]').html(button);
+                            $(form).find('button[type="submit"]').css('pointer-events', 'inherit');
+
+                            toastr.error(response.response_message.message, response.response_message.response);
+
+
+                        }
+                        
+                    }
+                });
+            } else {
+                // Get all validation errors and display them in Toastr
+                var errors = form.validate().errorMap;
+                var errorMessage = '';
+                $.each(errors, function(key, value) {
+                    errorMessage += value + '<br>';
+                });
+                toastr.error(errorMessage, 'Validation Error');
+                form.find('button[type="submit"]').html(button);
+                form.find('button[type="submit"]').css('pointer-events', 'inherit');
+            }
+
+        });
+
+    /*--------------------- Payment Gateway ------------------*/ 
+
 
 
 

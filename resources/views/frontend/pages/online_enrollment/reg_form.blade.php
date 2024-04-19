@@ -909,7 +909,7 @@
 
 <!--------------------------------------------- After esign preview info --------------------------------->    
 
-<div id="preview-info">
+<div id="last-preview-info">
 
     @php 
         $user = DB::table('users')->where('id', Session::get('user_id'))
@@ -994,7 +994,7 @@
     <div>
     </div>
 
-    <form id="ekyc-verify" action="{{ url(route('account.create', ['param' =>'payment-gateway'])) }}" method="post">
+    <form id="payment-gateway" action="{{ url(route('account.create', ['param' =>'payment-gateway'])) }}" method="post">
         @csrf
 
         <div class="form-group">

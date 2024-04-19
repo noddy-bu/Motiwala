@@ -69,6 +69,10 @@ class AccountController extends Controller
 
             $rsp_msg = $this->esign_aadhar_otp_verify($request);
 
+        }elseif($param == "payment-gateway"){
+
+            $rsp_msg = $this->payment_gateway($request);
+
         } else {
             $rsp_msg['response'] = 'error';
             $rsp_msg['message'] = "Invalid parameter: $param";
@@ -96,6 +100,16 @@ class AccountController extends Controller
 
             return $rsp_msg; 
         } 
+
+        $user = DB::table('users')->where('phone', $request->phone)->where('status','1')->get(['id'])->first();
+
+        if($user){
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = "this No : $request->phone Already registered";
+
+            return $rsp_msg; 
+        }
+
 
         $otp = mt_rand(100000, 999999);
         $timestamp = Carbon::now();
@@ -353,23 +367,36 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
+        $user_detail = DB::table('userdetails')->where('aadhar_number', $request->aadhar)->get(['user_id'])->first();
+
+        if($user_detail){
+
+            $user = DB::table('users')->where('id', $user_detail->user_id)->where('status','1')->get(['id'])->first();
+
+            if($user){
+                $rsp_msg['response'] = 'error';
+                $rsp_msg['message']  = "this No : $request->aadhar Already registered";
+    
+                return $rsp_msg; 
+            }
+
+        }
+
+
 
         $requestOtp = (new AadharController)->requestOtpAadhar($request->aadhar);
         $requestOtp = json_decode($requestOtp);
 
         if($requestOtp->success) {
             //do success stuff
-            $response = [
-                'status'       => true,
-                'method'       => 'flash',
-                'notification' => "OTP sent to linked Mobile number with ".$request->aadhar_no." Aadhar number."
-            ];
 
             $rsp_msg['response'] = 'success';
             $rsp_msg['message']  = "OTP sent to linked Mobile number with ".$request->aadhar." Aadhar number.";
             
             //set session of aadhar client ID
             session(['customer_aadhar_clientId' => $requestOtp->data->client_id]); 
+
+            session(['aadhar_no' => $request->aadhar]); 
 
             Session::put('step', 7);
 
@@ -415,6 +442,7 @@ class AccountController extends Controller
             //update query here
             DB::table('userdetails')->where('user_id',Session::get('user_id'))->update([
                 'ekyc' => json_encode($verify),
+                'aadhar_number' => Session::get('aadhar_no'),
             ]);
 
             $ulp_id = DB::table('users')->where('id', Session::get('user_id'))->value('ulp_id');
@@ -627,6 +655,42 @@ class AccountController extends Controller
         */
 
         return $rsp_msg; 
+
+    }
+
+    public function payment_gateway($request){
+
+
+        $user_id = Session::get('user_id');
+        $random = mt_rand(100000, 999999);
+    
+        $account_number = $user_id . '' . $random;
+
+        // Ensure the length of $ulp_id is exactly 12 digits
+        if (strlen($account_number) < 12) {
+            $padding_length = 12 - strlen($account_number);
+            $account_number = str_pad($account_number, 12, '0', STR_PAD_LEFT); // Pad with leading zeros if necessary
+        } elseif (strlen($account_number) > 12) {
+            $account_number = substr($account_number, 0, 12); // Trim if longer than 12 digits
+        }
+
+        DB::table('users')->where('id', Session::get('user_id'))->update([
+            'account_number' => $account_number,
+            'password' => bcrypt(Session::get('phone')),
+            'status' => 1,
+        ]);
+
+        session()->forget('step');
+        session()->forget('otp_timestamp');
+        session()->forget('phone');
+        session()->forget('user_id');
+        session()->forget('otp');
+        session()->forget('aadhar_no');
+
+        $rsp_msg['response'] = 'success';
+        $rsp_msg['message']  = "Account created successfully!";
+
+        return $rsp_msg;
 
     }
 
