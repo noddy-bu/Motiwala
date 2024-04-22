@@ -52,6 +52,7 @@ Route::get('/account/onlineenrollment', [AccountController::class, 'online_enrol
 
 Route::any('/create-account/{param}', [AccountController::class, 'create_account'])->name('account.create');
 
+Route::post('/login', [AccountController::class, 'customer_login'])->name('customer.login');
 
 
 Route::get('/clear-cache', function () {

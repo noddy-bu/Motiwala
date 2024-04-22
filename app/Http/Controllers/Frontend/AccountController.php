@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
@@ -13,13 +14,54 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Common\AadharController;
-
+use Auth;
 
 class AccountController extends Controller
 {
 
     public function online_enrollment(){
         return view('frontend.pages.online_enrollment.index');
+    }
+
+    public function customer_login(Request $request){
+
+        // Validating the request data
+        $validator = Validator::make($request->all(), [
+            'phone' => 'required|regex:/^\d{10}$/',
+            'password' => 'required',
+        ]);
+
+        // Checking if validation fails
+        if ($validator->fails()) {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = $validator->errors()->all();
+
+            return $rsp_msg;
+        }
+
+        $authenticated = Auth::guard('web')->attempt($request->only(['phone', 'password']));
+        if($authenticated)
+        {
+            session()->forget('step');
+            session()->forget('otp_timestamp');
+            session()->forget('phone');
+            session()->forget('user_id');
+            session()->forget('otp');
+            session()->forget('aadhar_no');
+
+            Session::put('user_id', auth()->user()->id);
+
+            $rsp_msg['response'] = 'success';
+            $rsp_msg['message']  = "successfully logged In";  
+        }
+        else
+        {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = "Invalid Credentials"; 
+        }
+
+        return $rsp_msg;
+
     }
 
 
@@ -295,6 +337,13 @@ class AccountController extends Controller
         if ($plan_amount > $request->input('installment_amount')) {
             $rsp_msg['response'] = 'error';
             $rsp_msg['message'] = "Minimum Installment Amount: $plan_amount";
+
+            return $rsp_msg;
+        }
+
+        if ($request->input('installment_amount') % $plan_amount !== 0) {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message'] = "Only Multiple of this Amount: $plan_amount will Accepted";
 
             return $rsp_msg;
         }

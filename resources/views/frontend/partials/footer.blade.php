@@ -167,36 +167,8 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
 
 
 <!-- login modal popup open-->
-<div class="modal fade modal_popup_cls" id="loginmodal" aria-hidden="true" aria-labelledby="loginmodal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title title_heading black_color heading_font" id="loginmodal">Sign In</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="" method="post">
-          <div class="form-group mt-4">
-            <input type="text" class="form-control" name="user_id" placeholder="User ID*" />
-          </div>
-          <div class="form-group mt-5">
-            <input type="text" class="form-control" name="user_password" placeholder="Password*" />
-            <button class="forget_buttons">Forgot Password</button>
-          </div>
-          <div class="form-group">
-            <div class="buttonclass1 mt60">
-              <button type="button">Sign In <i class="las la-arrow-right"></i>
-              </button>
-            </div>
-          </div>
-        </form>
-        <p class="pt-5 pb-0 mb-0 fs-14">* If you already have a Golden Harvest A/c, you can sign in here.</p>
-        <p class="fs-14"> * User ID is your registered mobile number</p>
-      </div>
-    </div>
-  </div>
-</div>
-
+@include('frontend.component.login_modal_form')
+<!--- Login Modal Popup ------->
 
 
 <!-- Auto Debit modal popup open-->

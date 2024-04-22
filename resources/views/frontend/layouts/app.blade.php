@@ -38,6 +38,7 @@
     @include('frontend.partials.js')
     @yield('page.scripts')
     @yield('component.scripts')
+    @yield('login.scripts')
 
 </body>
 
