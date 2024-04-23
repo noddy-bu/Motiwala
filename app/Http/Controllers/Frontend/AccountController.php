@@ -33,34 +33,34 @@ class AccountController extends Controller
 
         // Checking if validation fails
         if ($validator->fails()) {
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message']  = $validator->errors()->all();
-
-            return $rsp_msg;
+            $errors = $validator->errors()->all();
+        
+            return response()->json([
+                'status' => 'error',
+                'message' => $errors
+            ], 200);
         }
 
         $authenticated = Auth::guard('web')->attempt($request->only(['phone', 'password']));
         if($authenticated)
         {
-            session()->forget('step');
-            session()->forget('otp_timestamp');
-            session()->forget('phone');
-            session()->forget('user_id');
-            session()->forget('otp');
-            session()->forget('aadhar_no');
+            session()->forget(['step', 'otp_timestamp', 'phone', 'user_id', 'otp', 'aadhar_no']);
 
             Session::put('user_id', auth()->user()->id);
 
-            $rsp_msg['response'] = 'success';
-            $rsp_msg['message']  = "successfully logged In";  
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Successfully logged in'
+            ], 200);
         }
         else
         {
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message']  = "Invalid Credentials"; 
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Invalid credentials'
+            ], 200);
         }
 
-        return $rsp_msg;
 
     }
 

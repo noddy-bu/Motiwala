@@ -32,38 +32,39 @@
   </div>
 
   @section("login.scripts")
-    <script>
+  <script>
 
-        $(document).ready(function(){
-            $('#loginForm').submit(function(e){
-                e.preventDefault();
+      $(document).ready(function(){
+          $('#loginForm').submit(function(e){
+              e.preventDefault();
 
-                var formData = $(this).serialize();
-                var csrfToken = '{{ csrf_token() }}';
+              var formData = $(this).serialize();
+              var csrfToken = '{{ csrf_token() }}';
 
-                $.ajax({
-                    url: "{{route('customer.login')}}",
-                    type: "Post",
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    data: formData,
-                    success: function(response) {
-                        toastr.success(response.message, response.response);
-                        
-                        setTimeout(function() {
-                            window.location.href = "{{ route('information') }}";
-                        }, 1000);
-                        
-
-                    },
-                    error: function(xhr, status, error) {
-                        toastr.error(response.message, response.response);
-                    }
-                });
-            });
-        });
-
-
+              $.ajax({
+                  url: "{{ route('customer.login') }}",
+                  type: "POST",
+                  headers: {
+                      'X-CSRF-TOKEN': csrfToken
+                  },
+                  data: formData,
+                  dataType: 'json',
+                  success: function(response) {
+                      if (response.status === 'success') {
+                          toastr.success(response.message, 'Success');
+                          setTimeout(function() {
+                              window.location.href = "{{ route('information') }}";
+                          }, 1000);
+                      } else {
+                          toastr.error(response.message, 'Error');
+                      }
+                  },
+                  error: function(xhr, status, error) {
+                      toastr.error('Something went wrong please try again', 'Error');
+                  }
+              });
+          });
+      });
+    
     </script>
   @endsection
