@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app')
+@extends(Session::has('user_id') ? 'frontend.layouts.app2' : 'frontend.layouts.app')
 
 @section('page.title', 'Seedling Associates: Top Lawyers &amp; Law Firms in Delhi, India')
 

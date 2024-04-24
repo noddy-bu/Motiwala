@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app')
+@extends(Session::has('user_id') ? 'frontend.layouts.app2' : 'frontend.layouts.app')
 
 @php
 $url = request()->segment('1');

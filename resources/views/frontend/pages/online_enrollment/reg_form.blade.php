@@ -11,7 +11,7 @@
             session()->forget('step');
             session()->forget('otp_timestamp');
             session()->forget('phone');
-            session()->forget('user_id');
+            session()->forget('temp_user_id');
             session()->forget('otp'); 
             Session()->put('step', 1); 
         @endphp

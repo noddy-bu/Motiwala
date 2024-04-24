@@ -11,14 +11,14 @@
                 <ul class="d-flex navbar-nav ms-auto my-2 my-lg-0 nav_right_menu">
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="modal" href="#loginmodal"><i class="las la-user"></i> Sign
-                            In</a>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url(route('account.new.enrollment.page')) }}"><i
                                 class="las la-user-plus"></i> New Account</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/instant-pay"><i class="las la-hand-holding-usd"></i> Instant Pay</a>
+                        <a class="nav-link" href="{{ url(route('instantpay')) }}"><i class="las la-hand-holding-usd"></i> Instant Pay</a>
                     </li>
 
                     <li class="nav-item">
@@ -27,7 +27,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/information"><i class="las la-exclamation-circle"></i>
+                        <a class="nav-link" href="{{ url(route('information')) }}"><i class="las la-exclamation-circle"></i>
                             Information</a>
                     </li>
 
@@ -36,7 +36,7 @@
                             T&C</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/faq"><i class="las la-question-circle"></i> FAQs</a>
+                        <a class="nav-link" href="{{ url(route('faq')) }}"><i class="las la-question-circle"></i> FAQs</a>
                     </li>
 
                 </ul>

@@ -44,7 +44,7 @@ class AccountController extends Controller
         $authenticated = Auth::guard('web')->attempt($request->only(['phone', 'password']));
         if($authenticated)
         {
-            session()->forget(['step', 'otp_timestamp', 'phone', 'user_id', 'otp', 'aadhar_no']);
+            session()->forget(['step', 'otp_timestamp', 'phone', 'temp_user_id', 'otp', 'aadhar_no']);
 
             Session::put('user_id', auth()->user()->id);
 
@@ -211,15 +211,15 @@ class AccountController extends Controller
                 ]);
             
                 DB::table('userdetails')->insert([
-                    'user_id' => $userId,
+                    'temp_user_id' => $userId,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
 
-                Session::put('user_id', $userId);
+                Session::put('temp_user_id', $userId);
 
             } else {
-                Session::put('user_id', $user->id);
+                Session::put('usetemp_user_idr_id', $user->id);
             }
 
             Session::put('step', 3);
@@ -279,15 +279,15 @@ class AccountController extends Controller
         }
         
 
-        if(Session::has('user_id') && !empty(Session::get('user_id'))){
+        if(Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))){
 
-            DB::table('users')->where('id',Session::get('user_id'))->update([
+            DB::table('users')->where('id',Session::get('temp_user_id'))->update([
                 'salutation' => $request->input('title'),
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
             ]);
 
-            DB::table('userdetails')->where('user_id',Session::get('user_id'))->update([
+            DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
                 'flat_no' => $request->input('flat_no'),
                 'street' => $request->input('street'),
                 'locality' => $request->input('locality'),
@@ -348,14 +348,14 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
-        if(Session::has('user_id') && !empty(Session::get('user_id'))){
+        if(Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))){
 
-            DB::table('users')->where('id',Session::get('user_id'))->update([
+            DB::table('users')->where('id',Session::get('temp_user_id'))->update([
                 'plan_id' => $request->input('plan_id'),
                 'installment_amount' => $request->input('installment_amount'),
             ]);
 
-            DB::table('userdetails')->where('user_id',Session::get('user_id'))->update([
+            DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
                 'nominee_name' => $request->input('nominee_name'),
                 'nominee_phone' => $request->input('nominee_phone'),
                 'nominee_dob' => $request->input('nominee_dob'),
@@ -489,16 +489,16 @@ class AccountController extends Controller
         if($verify->success) {
 
             //update query here
-            DB::table('userdetails')->where('user_id',Session::get('user_id'))->update([
+            DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
                 'ekyc' => json_encode($verify),
                 'aadhar_number' => Session::get('aadhar_no'),
             ]);
 
-            $ulp_id = DB::table('users')->where('id', Session::get('user_id'))->value('ulp_id');
+            $ulp_id = DB::table('users')->where('id', Session::get('temp_user_id'))->value('ulp_id');
 
             if(empty($ulp_id)){
             
-                $random = Session::get('user_id');
+                $random = Session::get('temp_user_id');
                 $DateTime = time();
             
                 $ulp_id = $random . '' . $DateTime;
@@ -511,7 +511,7 @@ class AccountController extends Controller
                     $ulp_id = substr($ulp_id, 0, 12); // Trim if longer than 12 digits
                 }
             
-                DB::table('users')->where('id', Session::get('user_id'))->update([
+                DB::table('users')->where('id', Session::get('temp_user_id'))->update([
                     'ulp_id' => $ulp_id,
                 ]);
             
@@ -666,7 +666,7 @@ class AccountController extends Controller
         if($verify->success) {
 
             //update query here
-            DB::table('userdetails')->where('user_id',Session::get('user_id'))->update([
+            DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
                 'ekyc' => json_encode($verify),
             ]);
 
@@ -710,7 +710,7 @@ class AccountController extends Controller
     public function payment_gateway($request){
 
 
-        $user_id = Session::get('user_id');
+        $user_id = Session::get('temp_user_id');
         $random = mt_rand(100000, 999999);
     
         $account_number = $user_id . '' . $random;
@@ -723,7 +723,7 @@ class AccountController extends Controller
             $account_number = substr($account_number, 0, 12); // Trim if longer than 12 digits
         }
 
-        DB::table('users')->where('id', Session::get('user_id'))->update([
+        DB::table('users')->where('id', Session::get('temp_user_id'))->update([
             'account_number' => $account_number,
             'password' => bcrypt(Session::get('phone')),
             'status' => 1,
@@ -732,7 +732,7 @@ class AccountController extends Controller
         session()->forget('step');
         session()->forget('otp_timestamp');
         session()->forget('phone');
-        session()->forget('user_id');
+        session()->forget('temp_user_id');
         session()->forget('otp');
         session()->forget('aadhar_no');
 

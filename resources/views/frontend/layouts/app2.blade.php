@@ -15,9 +15,14 @@
 
     <!---========Header======----->
 
-        @include('frontend.partials.sidebar')
+        @include('frontend.partials.header2')
 
     <!---========end Header======----->
+    <!---========sidebar======----->
+
+        @include('frontend.partials.sidebar')
+
+    <!---========end sidebar======----->
 
     <!---======== page content ====-------->
 
