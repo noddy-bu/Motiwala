@@ -41,19 +41,19 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ url(route('terms')) }}" class="nav-link align-middle px-0">
+                        <a href="{{ url(route('edit-user-profile')) }}" class="nav-link align-middle px-0">
                             <i class="la la-info"></i> <span class="ms-1 d-none d-sm-inline">Manage Profile</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ url(route('terms')) }}" class="nav-link align-middle px-0">
+                        <a href="{{ url(route('link-account')) }}" class="nav-link align-middle px-0">
                             <i class="la la-info"></i> <span class="ms-1 d-none d-sm-inline">Group Account</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ url(route('terms')) }}" class="nav-link align-middle px-0">
+                        <a href="{{ url(route('old-scheme-closure')) }}" class="nav-link align-middle px-0">
                             <i class="la la-info"></i> <span class="ms-1 d-none d-sm-inline">Old Scheme Closure</span>
                         </a>
                     </li>

@@ -38,6 +38,8 @@ Route::get('/privacy-policy', [IndexController::class, 'privacy_policy'])->name(
 Route::get('/terms', [IndexController::class, 'terms_page'])->name('terms');
 Route::get('/refund-policy', [IndexController::class, 'refund_policy'])->name('refund-policy');
 
+Route::get('/oldschemeclosure', [IndexController::class, 'old_scheme_closure'])->name('old-scheme-closure');
+
 Route::get('/404', [IndexController::class, 'not_found'])->name('error_page');
 Route::get('/thank-you', [IndexController::class, 'thank_you'])->name('thank_you');
 Route::get('/cookie-policy', [IndexController::class, 'cookie_policy'])->name('cookie-policy');
@@ -52,7 +54,18 @@ Route::get('/account/onlineenrollment', [AccountController::class, 'online_enrol
 
 Route::any('/create-account/{param}', [AccountController::class, 'create_account'])->name('account.create');
 
+Route::get('/linkaccount', [AccountController::class, 'link_account'])->name('link-account');
+
+Route::get('/edituserprofile', [AccountController::class, 'edit_user_profile'])->name('edit-user-profile');
+
+Route::post('/customer-account-update-profile', [AccountController::class, 'account_update_profile'])->name('account.customer.update.profile');
+
+Route::get('/reset-passoword', [AccountController::class, 'reset_password'])->name('customer.reset_password');
+Route::post('/customer-password-update', [AccountController::class, 'reset_password_update'])->name('customer.password.update');
+
 Route::post('/login', [AccountController::class, 'customer_login'])->name('customer.login');
+
+Route::get('/logout', [AccountController::class, 'customer_logout'])->name('customer.logout');
 
 
 Route::get('/clear-cache', function () {

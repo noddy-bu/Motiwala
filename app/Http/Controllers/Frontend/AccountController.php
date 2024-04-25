@@ -64,6 +64,124 @@ class AccountController extends Controller
 
     }
 
+    public function customer_logout(){
+        Auth::guard('web')->logout();
+        session()->forget('user_id');
+        return redirect()->route('index');
+    }
+    
+    public function link_account(){
+        return view('frontend.pages.admin.link_account.index');
+    }
+
+    public function edit_user_profile(){
+
+        $user = DB::table('users')->where('id', Session::get('user_id'))
+        ->get(['plan_id','installment_amount','name','email','phone','ulp_id'])->first();
+
+        $user_detail = DB::table('userdetails')->where('user_id', Session::get('user_id'))
+            ->get(['nominee_name','nominee_phone','nominee_dob','nominee_address','nominee_relation','flat_no','street','locality','state','city','pincode','dob'])->first();
+
+        return view('frontend.pages.admin.manage_user_profile.index', compact('user', 'user_detail'));
+    }
+
+    public function account_update_profile(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'flat_no' => 'required|min:1',
+            'street' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            'locality' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            'state' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            'city' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            'pincode' => 'required|regex:/^[\d\s-]+$/|min:3',
+            'dob' => 'required',
+
+            'nominee_name' => ['nullable', 'string', 'min:3'],
+            'nominee_phone' => 'nullable|regex:/^\d{10}$/',
+            'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3'],
+            'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3'],
+        ]);
+
+        if ($validator->fails()) {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = $validator->errors()->all();
+
+            return $rsp_msg; 
+        }
+        
+        
+        DB::table('users')->where('id', $request->input('id'))->update([
+            'email' => $request->input('email'),
+        ]);
+
+        DB::table('userdetails')->where('user_id', $request->input('id'))->update([
+            'flat_no' => $request->input('flat_no'),
+            'street' => $request->input('street'),
+            'locality' => $request->input('locality'),
+            'state' => $request->input('state'),
+            'city' => $request->input('city'),
+            'pincode' => $request->input('pincode'),
+            'dob' => $request->input('dob'),
+
+            'nominee_name' => $request->input('nominee_name'),
+            'nominee_phone' => $request->input('nominee_phone'),
+            'nominee_dob' => $request->input('nominee_dob'),
+            'nominee_address' => $request->input('nominee_address'),
+            'nominee_relation' => $request->input('nominee_relation'),
+        ]);
+
+        $rsp_msg['response'] = 'success';
+        $rsp_msg['message']  = "Profile Detail Update successfully.";
+
+        return $rsp_msg;
+
+    }
+
+    public function reset_password(){
+        $user = DB::table('users')->where('id', Session::get('user_id'))->get(['phone','id'])->first();
+
+        return view('frontend.pages.admin.manage_user_profile.reset_password', compact('user'));
+    }
+
+    public function reset_password_update(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'old_password' => 'required',
+            'password' => 'required|min:8|same:password_conform',
+            'password_conform' => 'required|min:8',
+        ]);
+
+        if ($validator->fails()) {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = $validator->errors()->all();
+
+            return $rsp_msg; 
+        }
+
+
+        $old_password = DB::table('users')->where('id', $request->input('id'))->value('password');
+
+        $rq_old_password = $request->input('old_password');
+
+
+
+        if(password_verify($rq_old_password, $old_password)){
+
+            DB::table('users')->where('id', $request->input('id'))->update([
+                'password' => bcrypt($request->input('password')),
+            ]);
+
+            $rsp_msg['response'] = 'success';
+            $rsp_msg['message']  = "Password Update successfully.";
+
+        } else {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = "Old Password Dosent Match";
+        }
+
+        return $rsp_msg; 
+    }
+
 
     public function create_account($param, Request $request){
 

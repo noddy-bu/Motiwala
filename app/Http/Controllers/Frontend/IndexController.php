@@ -117,6 +117,10 @@ class IndexController extends Controller
         return view('frontend.pages.privacypolice.index');
     }
 
+    public function old_scheme_closure(){
+        return view('frontend.pages.admin.old_scheme_closure.index');
+    }
+
 //--------------=============================== Pages ================================------------------------------
 
 //--------------=============================== contact form save ===========================------------------------------
