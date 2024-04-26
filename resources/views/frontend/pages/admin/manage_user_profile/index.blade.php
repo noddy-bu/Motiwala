@@ -10,7 +10,7 @@
 
 
 
-    <!-- -------------------- career banner start ---------------- -->
+    <!-- -------------------- Edit & Manage Profile start ---------------- -->
 
     <section class="inner_page_banner">
         <img src="/assets/frontend/images/innwe_imagebanner.jpg" class="d-block w-100" alt="...">
@@ -127,6 +127,60 @@
                                     </div>
                                 </div>
 
+                                <!------- marital status ---------------------->
+                                <div class="row mt-5 mb-3">
+
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="marital_status" id="single" value="0" @if($user_detail->marital_status == 0) checked @endif>
+                                            <label class="form-check-label" for="single">
+                                                Single
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="marital_status" value="1" id="married" @if($user_detail->marital_status == 1) checked @endif>
+                                            <label class="form-check-label" for="married">
+                                            Married
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div id="marital_info">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-4">
+                                            <div class="form-group mt-4 adhar_field">
+                                                <label class="pb-3">Spouse Name </label>
+                                                <input type="text" class="form-control" name="spouse_name" pattern="[A-Za-z]+" minlength="3" placeholder="Please Enter Your Spouse Name"
+                                                value="{{ $user_detail->spouse_name }}" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group mt-4 adhar_field">
+                                                <label class="pb-3">Spouse Date Of Birth</label>
+                                                <input type="date" class="form-control" name="spouse_dob" value="{{ $user_detail->spouse_dob }}" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group mt-4 adhar_field">
+                                                <label class="pb-3">Marriage Date</label>
+                                                <input type="date" class="form-control" name="marriage_date" value="{{ $user_detail->marriage_date }}" />
+                                            </div>
+                                        </div>
+
+
+                                    </div>  
+                                </div>
+
+                                <!------ marital status ------------------------>
+
                                 </br>
                                 <div class="p-3 mt-5 mb-3 text-white" style="background-color:#c0af78;">
                                     <h5> Nominee Details </h5>
@@ -170,6 +224,8 @@
                                         value="{{ $user_detail->nominee_relation }}" />
                                     </div>
                                 </div>
+
+
             
             
                                 <div class="form-group">
@@ -195,7 +251,7 @@
 @section('component.scripts')
     <script>
 
-    /*--------------------- Payment Gateway ------------------*/ 
+    /*--------------------- Edit & Manage Profile  ------------------*/ 
 
         initValidate('#user-panel-info');
 
@@ -255,9 +311,56 @@
 
         });
 
-    /*--------------------- Payment Gateway ------------------*/ 
+    /*--------------------- Edit & Manage Profile  ------------------*/ 
 
-    
+    // Get references to the radio buttons and the marital information container
+    const singleRadioButton = document.getElementById('single');
+    const marriedRadioButton = document.getElementById('married');
+    const maritalInfo = document.getElementById('marital_info');
+
+    // Initially hide the marital information since "Single" is checked by default
+    maritalInfo.style.display = 'none';
+
+    // Function to add or remove the required attribute from input fields inside the marital information
+    function toggleRequired(isMarried) {
+        const inputs = maritalInfo.querySelectorAll('input');
+        inputs.forEach(input => {
+            if (isMarried) {
+                input.setAttribute('required', '');
+            } else {
+                input.removeAttribute('required');
+            }
+        });
+    }
+
+    // Add event listener to the radio buttons
+    singleRadioButton.addEventListener('change', function() {
+        if (singleRadioButton.checked) {
+            maritalInfo.style.display = 'none'; // Hide marital information
+            toggleRequired(false); // Remove required attribute from inputs
+        }
+    });
+
+    marriedRadioButton.addEventListener('change', function() {
+        if (marriedRadioButton.checked) {
+            maritalInfo.style.display = 'block'; // Show marital information
+            toggleRequired(true); // Add required attribute to inputs
+        }
+    });
+
+    function check_marital_status(){
+        if (singleRadioButton.checked) {
+            maritalInfo.style.display = 'none'; // Hide marital information
+            toggleRequired(false); // Remove required attribute from inputs
+        }
+
+        if (marriedRadioButton.checked) {
+            maritalInfo.style.display = 'block'; // Show marital information
+            toggleRequired(true); // Add required attribute to inputs
+        }
+    }
+
+    check_marital_status();
 
     </script>
 @endsection

@@ -38,6 +38,10 @@ Route::get('/privacy-policy', [IndexController::class, 'privacy_policy'])->name(
 Route::get('/terms', [IndexController::class, 'terms_page'])->name('terms');
 Route::get('/refund-policy', [IndexController::class, 'refund_policy'])->name('refund-policy');
 
+Route::get('/termsofuse', [IndexController::class, 'terms_of_use'])->name('terms_use');
+
+Route::get('/feedback', [IndexController::class, 'feedback'])->name('feedback');
+
 Route::get('/oldschemeclosure', [IndexController::class, 'old_scheme_closure'])->name('old-scheme-closure');
 
 Route::get('/404', [IndexController::class, 'not_found'])->name('error_page');
@@ -62,6 +66,10 @@ Route::post('/customer-account-update-profile', [AccountController::class, 'acco
 
 Route::get('/reset-passoword', [AccountController::class, 'reset_password'])->name('customer.reset_password');
 Route::post('/customer-password-update', [AccountController::class, 'reset_password_update'])->name('customer.password.update');
+
+Route::get('/cancel-ach-si', [AccountController::class, 'cancel_ach_si'])->name('customer.cancel-ach-si');
+Route::get('/get-si-account-nos', [AccountController::class, 'get_si_account_nos'])->name('customer.get-si-account-nos');
+Route::get('/myAccounts', [AccountController::class, 'my_accounts'])->name('customer.myaccounts');
 
 Route::post('/login', [AccountController::class, 'customer_login'])->name('customer.login');
 

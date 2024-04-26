@@ -19,9 +19,9 @@ use Auth;
 class AccountController extends Controller
 {
 
-    public function online_enrollment(){
-        return view('frontend.pages.online_enrollment.index');
-    }
+
+
+    /*------------------------------ Login Logout Function -------------------------------------------------*/
 
     public function customer_login(Request $request){
 
@@ -69,9 +69,27 @@ class AccountController extends Controller
         session()->forget('user_id');
         return redirect()->route('index');
     }
+
+    /*------------------------------ Login Logout Function -------------------------------------------------*/
+
+
+    /*------------------------------ other inner Function -------------------------------------------------*/
+
     
     public function link_account(){
         return view('frontend.pages.admin.link_account.index');
+    }
+
+    public function cancel_ach_si(){
+        return view('frontend.pages.admin.cancel_ach_si.index');
+    }
+
+    public function get_si_account_nos(){
+        return view('frontend.pages.admin.get_si_account_nos.index');
+    }
+
+    public function my_accounts(){
+        return view('frontend.pages.admin.my_accounts.index');
     }
 
     public function edit_user_profile(){
@@ -80,7 +98,7 @@ class AccountController extends Controller
         ->get(['plan_id','installment_amount','name','email','phone','ulp_id'])->first();
 
         $user_detail = DB::table('userdetails')->where('user_id', Session::get('user_id'))
-            ->get(['nominee_name','nominee_phone','nominee_dob','nominee_address','nominee_relation','flat_no','street','locality','state','city','pincode','dob'])->first();
+            ->get(['nominee_name','nominee_phone','nominee_dob','nominee_address','nominee_relation','flat_no','street','locality','state','city','pincode','dob','marital_status','spouse_name','spouse_dob','marriage_date'])->first();
 
         return view('frontend.pages.admin.manage_user_profile.index', compact('user', 'user_detail'));
     }
@@ -100,6 +118,9 @@ class AccountController extends Controller
             'nominee_phone' => 'nullable|regex:/^\d{10}$/',
             'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3'],
             'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3'],
+
+            'spouse_name' => ['nullable', 'string', 'min:3'],
+            'marital_status' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -128,6 +149,12 @@ class AccountController extends Controller
             'nominee_dob' => $request->input('nominee_dob'),
             'nominee_address' => $request->input('nominee_address'),
             'nominee_relation' => $request->input('nominee_relation'),
+
+            'marital_status' => $request->input('marital_status'),
+
+            'spouse_name' => $request->input('spouse_name'),
+            'spouse_dob' => $request->input('spouse_dob'),
+            'marriage_date' => $request->input('marriage_date'),
         ]);
 
         $rsp_msg['response'] = 'success';
@@ -182,6 +209,19 @@ class AccountController extends Controller
         return $rsp_msg; 
     }
 
+
+
+
+    /*------------------------------ other inner Function -------------------------------------------------*/
+
+
+
+
+    /*------------------------------  Registration user -------------------------------------------------*/
+
+    public function online_enrollment(){
+        return view('frontend.pages.online_enrollment.index');
+    }
 
     public function create_account($param, Request $request){
 
@@ -329,7 +369,7 @@ class AccountController extends Controller
                 ]);
             
                 DB::table('userdetails')->insert([
-                    'temp_user_id' => $userId,
+                    'user_id' => $userId,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -337,7 +377,7 @@ class AccountController extends Controller
                 Session::put('temp_user_id', $userId);
 
             } else {
-                Session::put('usetemp_user_idr_id', $user->id);
+                Session::put('temp_user_id', $user->id);
             }
 
             Session::put('step', 3);
@@ -459,9 +499,9 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
-        if ($request->input('installment_amount') % $plan_amount !== 0) {
+        if ($request->input('installment_amount') % 1000 !== 0) {
             $rsp_msg['response'] = 'error';
-            $rsp_msg['message'] = "Only Multiple of this Amount: $plan_amount will Accepted";
+            $rsp_msg['message'] = "Only Multiple of this Amount: 1000 will Accepted";
 
             return $rsp_msg;
         }

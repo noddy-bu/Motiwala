@@ -23,19 +23,19 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ url(route('index')) }}" class="nav-link align-middle px-0">
+                        <a href="{{ url(route('customer.myaccounts')) }}" class="nav-link align-middle px-0">
                             <i class="la la-info"></i> <span class="ms-1 d-none d-sm-inline">Manage A/c & Benefits</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ url(route('terms')) }}#autodebit_modal" class="nav-link align-middle px-0">
+                        <a href="{{ url(route('customer.get-si-account-nos')) }}#autodebit_modal" class="nav-link align-middle px-0">
                             <i class="la la-info"></i> <span class="ms-1 d-none d-sm-inline">Auto Debit</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ url(route('terms')) }}" class="nav-link align-middle px-0">
+                        <a href="{{ url(route('customer.cancel-ach-si')) }}" class="nav-link align-middle px-0">
                             <i class="la la-info"></i> <span class="ms-1 d-none d-sm-inline">Cancel ACH / Auto Debit (SI)</span>
                         </a>
                     </li>

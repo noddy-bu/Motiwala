@@ -11,78 +11,40 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
           <h3 class="widget-title">USEFUL LINKS</h3>
           <ul class="widget-menu">
             <li>
-              <a href="">
+              <a href="#loginmodal">
                 <i class="las la-angle-right"></i> Sign In </a>
             </li>
             <li>
-              <a href="">
+              <a href="{{ url(route('account.new.enrollment.page')) }}">
                 <i class="las la-angle-right"></i> New Account </a>
             </li>
             <li>
-              <a href="">
+              <a href="{{ url(route('instantpay')) }}">
                 <i class="las la-angle-right"></i> Instant Pay </a>
             </li>
             <li>
-              <a href="">
+              <a href="#autodebit_modal">
                 <i class="las la-angle-right"></i> Auto Debit </a>
             </li>
             <li>
-              <a href="">
+              <a href="{{ url(route('information')) }}">
                 <i class="las la-angle-right"></i> Information </a>
             </li>
             <li>
-              <a href="">
+              <a href="{{ url(route('faq')) }}">
                 <i class="las la-angle-right"></i> FAQ </a>
             </li>
           </ul>
         </div>
       </div>
+
       <div class="col-lg-2 col-md-6">
-        <div class="footer-widget" data-aos-once="true" data-aos="fade-up">
-          <h3 class="widget-title">My Account</h3>
-          <ul class="widget-menu">
-            <li>
-              <a href="">
-                <i class="las la-angle-right"></i> My Profile </a>
-            </li>
-            <li>
-              <a href="">
-                <i class="las la-angle-right"></i> My Orders </a>
-            </li>
-            <li>
-              <a href="">
-                <i class="las la-angle-right"></i> My Whishlist </a>
-            </li>
-          </ul>
-        </div>
+
       </div>
       <div class="col-lg-2 col-md-6">
-        <div class="footer-widget" data-aos-once="true" data-aos="fade-up">
-          <h3 class="widget-title">Categories</h3>
-          <ul class="widget-menu">
-            <li>
-              <a href="">
-                <i class="las la-angle-right"></i> Rings </a>
-            </li>
-            <li>
-              <a href="">
-                <i class="las la-angle-right"></i> Earrings </a>
-            </li>
-            <li>
-              <a href="">
-                <i class="las la-angle-right"></i> Pendants </a>
-            </li>
-            <li>
-              <a href="">
-                <i class="las la-angle-right"></i> Gold </a>
-            </li>
-            <li>
-              <a href="">
-                <i class="las la-angle-right"></i> Bracelets & Bangels </a>
-            </li>
-          </ul>
-        </div>
+
       </div>
+
       <div class="col-lg-3 col-md-6">
         <div class="footer-widget" data-aos-once="true" data-aos="fade-up">
           <h4 class="heading_font line-height35">Download <br>Our App </h4>
@@ -119,15 +81,15 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
         <div class="col-md-4">
           <ul>
             <li>
-              <a href="/terms"> Term of Use</a>
+              <a href="{{ url(route('terms_use')) }}"> Term of Use</a>
             </li>
             <li>|</li>
             <li>
-              <a href=""> Privacy Policy</a>
+              <a href="{{ url(route('privacy-policy')) }}"> Privacy Policy</a>
             </li>
             <li>|</li>
             <li>
-              <a href=""> Give Us Feedback</a>
+              <a href="{{ url(route('feedback')) }}"> Give Us Feedback</a>
             </li>
           </ul>
         </div>

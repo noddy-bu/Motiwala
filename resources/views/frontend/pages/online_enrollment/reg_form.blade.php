@@ -121,10 +121,10 @@
             <h5> Customer Information </h5>
         </div>
 
-        @if(Session::has('user_id') && !empty(Session::get('user_id')))
+        @if(Session::has('temp_user_id') && !empty(Session::get('temp_user_id')))
             @php 
-                $user = DB::table('users')->where('id', Session::get('user_id'))->get(['salutation','name','email','phone'])->first();
-                $user_detail = DB::table('userdetails')->where('user_id', Session::get('user_id'))->get(['flat_no','street','locality','state','city','pincode','dob'])->first();
+                $user = DB::table('users')->where('id', Session::get('temp_user_id'))->get(['salutation','name','email','phone'])->first();
+                $user_detail = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->get(['flat_no','street','locality','state','city','pincode','dob'])->first();
             @endphp
         @endif
     
@@ -250,8 +250,8 @@
     </div>
 
     @php 
-        $user = DB::table('users')->where('id', Session::get('user_id'))->get(['plan_id','installment_amount'])->first();
-        $user_detail = DB::table('userdetails')->where('user_id', Session::get('user_id'))->get(['nominee_name','nominee_phone','nominee_dob','nominee_address','nominee_relation'])->first();
+        $user = DB::table('users')->where('id', Session::get('temp_user_id'))->get(['plan_id','installment_amount'])->first();
+        $user_detail = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->get(['nominee_name','nominee_phone','nominee_dob','nominee_address','nominee_relation'])->first();
         $plan = DB::table('plans')->where('status',1)->get(['id','name','minimum_installment_amount']);
     @endphp
     
@@ -356,10 +356,10 @@
 <div id="preview-info">
 
     @php 
-        $user = DB::table('users')->where('id', Session::get('user_id'))
+        $user = DB::table('users')->where('id', Session::get('temp_user_id'))
             ->get(['plan_id','installment_amount','name','email','phone'])->first();
 
-        $user_detail = DB::table('userdetails')->where('user_id', Session::get('user_id'))
+        $user_detail = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))
             ->get(['nominee_name','nominee_phone','nominee_dob','nominee_address','nominee_relation','flat_no','street','locality','state','city','pincode','dob'])->first();
 
         $plan_name = DB::table('plans')->where('id', $user->plan_id)->value('name');
@@ -440,17 +440,17 @@
             <span style="color: var(--primary-text); font-size: var(--primary-font-size-heading);">Terms and Conditions
             </span><br /><label style="color: var(--ternary-text); font-size: var(--tertiary-font-size); padding: 5px;"><br />
                 By clicking on proceed button below, you are hereby acknowledging that you are providing your Aadhaar related
-                details voluntarily to Khosla Labs Private Limited to retrieve your Aadhaar Paperless-XML from the UIDAI Portal
+                details voluntarily to   Motiwala & Sons Private Limited to retrieve your Aadhaar Paperless-XML from the UIDAI Portal
                 on your behalf based on the process detailed below. It is not mandatory for you to provide your Aadhaar details.
                 If you do not wish to continue with providing the same, request you to cancel the transactions. I understand
-                that Khosla Labs Private Limited will be able to access my photograph through XML file being parsed from the
+                that   Motiwala & Sons Private Limited will be able to access my photograph through XML file being parsed from the
                 database of Unique Identification Authority of India, to further share the same with the service provider. If
                 you do not agree for us to access the same, request you to not click on Proceed. <br /><br />By accepting the <a
                     style="color: var(--secondary-text);">Terms &amp; Conditions</a> you are expressly providing your consent to
-                the collection of your information for the purpose of providing access of the same by Khosla Labs to enable
+                the collection of your information for the purpose of providing access of the same by   Motiwala & Sons to enable
                 (&ldquo;Client&rdquo;) to initiate your on boarding to avail the Client&rsquo;s services. The information you
                 provide may be used to help improve and train our products and assist in the development of any technologies and
-                in addition Khosla Labs may use the above information to fulfil any other lawful purpose. Khosla Labs shall be
+                in addition   Motiwala & Sons may use the above information to fulfil any other lawful purpose.   Motiwala & Sons shall be
                 redacting and collecting your Aadhaar number. The first 8 digits of the Aadhaar number will be blacked out when
                 you insert the same on to the webpage. You shall be prompted to insert the Aadhaar number twice, in order to
                 ensure its correctness and the Aadhaar number will be encrypted and transferred/ accessed. </label><br />
@@ -682,7 +682,7 @@
                 <div class="card-body">
                     <p class="card-text"><strong>Name : </strong>{{ $fullName }}</p>
                     <p class="card-text"><strong>DOB : </strong>{{ $dob }}</p>
-                    <p class="card-text"><strong>Mobile : </strong>{{ $dob }}</p>
+                    <p class="card-text"><strong>Mobile : </strong>{{ $mobile }}</p>
                     <p class="card-text"><strong>Address : </strong>
                     {{ $care_of }}
                     @php 
@@ -720,10 +720,10 @@
 <div id="preview-info">
 
     @php 
-        $user = DB::table('users')->where('id', Session::get('user_id'))
+        $user = DB::table('users')->where('id', Session::get('temp_user_id'))
             ->get(['plan_id','installment_amount','name','email','phone','ulp_id'])->first();
 
-        $user_detail = DB::table('userdetails')->where('user_id', Session::get('user_id'))
+        $user_detail = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))
             ->get(['nominee_name','nominee_phone','nominee_dob','nominee_address','nominee_relation','flat_no','street','locality','state','city','pincode','dob'])->first();
 
         $plan_name = DB::table('plans')->where('id', $user->plan_id)->value('name');
@@ -912,10 +912,10 @@
 <div id="last-preview-info">
 
     @php 
-        $user = DB::table('users')->where('id', Session::get('user_id'))
+        $user = DB::table('users')->where('id', Session::get('temp_user_id'))
             ->get(['plan_id','installment_amount','name','email','phone','ulp_id'])->first();
 
-        $user_detail = DB::table('userdetails')->where('user_id', Session::get('user_id'))
+        $user_detail = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))
             ->get(['nominee_name','nominee_phone','nominee_dob','nominee_address','nominee_relation','flat_no','street','locality','state','city','pincode','dob'])->first();
 
         $plan_name = DB::table('plans')->where('id', $user->plan_id)->value('name');

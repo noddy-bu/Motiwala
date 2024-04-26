@@ -1,10 +1,9 @@
 @php
 
-$title = !empty(trim($__env->yieldContent('page.title'))) ? str_replace(['&nbsp;', '&amp;', '&amp;amp;'], ['&amp;', '&', '&'], htmlspecialchars_decode($__env->yieldContent('page.title'))) : 'Seedling Associates:Top Lawyers &amp; Law Firms in Delhi, India';
+$title = !empty(trim($__env->yieldContent('page.title'))) ? str_replace(['&nbsp;', '&amp;', '&amp;amp;'], ['&amp;', '&', '&'], htmlspecialchars_decode($__env->yieldContent('page.title'))) : 'Motiwala and Sons';
 
 $description = !empty(trim($__env->yieldContent('page.description'))) ? str_replace(['&nbsp;', '&amp;', '&amp;amp;'], ['&amp;', '&', '&'], htmlspecialchars_decode($__env->yieldContent('page.description'))) :
-'Seedling Associates is one of the best law firms in Delhi, India. We provide legal assistance for startups, FDI,
-Property law, IP, and more.';
+'Motiwala and Sons';
 
 $page_type = !empty(trim($__env->yieldContent('page.type'))) ? $__env->yieldContent('page.type') : 'website';
 
@@ -50,11 +49,11 @@ $url = url()->current();
 <!----------------- twitter ------------------->
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ahlawat & Associates">
-<meta name="twitter:description" content="Ahlawat & Associates">
+<meta name="twitter:title" content="Motiwala and Sons">
+<meta name="twitter:description" content="Motiwala and Sons">
 <meta name="twitter:image" content="{{ asset('assets/frontend/images/logo.png') }}">
 <meta name="twitter:site" content="@ahlawatlaw" />
-<link rel="shortcut icon" href="{{ asset('/assets/frontend/images/favicon.png') }}">
+<link rel="shortcut icon" href="{{ asset('/assets/frontend/images/logo.png') }}">
 
 <!----------------- twitter ------------------->
 

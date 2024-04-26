@@ -87,7 +87,7 @@
 @section('component.scripts')
     <script>
 
-    /*--------------------- Payment Gateway ------------------*/ 
+    /*--------------------- Reset Password ------------------*/ 
 
         initValidate('#user-panel-password');
 
@@ -115,7 +115,8 @@
                             toastr.success(response.message, response.response);
 
                             setTimeout(function() {
-                                location.reload();
+                                //location.reload();
+                                window.location.href = "{{ url(route('edit-user-profile')) }}";
                             }, 1500);
 
                         }else{
@@ -147,7 +148,7 @@
 
         });
 
-    /*--------------------- Payment Gateway ------------------*/ 
+    /*---------------------  Reset Password ------------------*/ 
 
     
 

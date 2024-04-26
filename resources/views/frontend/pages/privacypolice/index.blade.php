@@ -1,48 +1,58 @@
 @extends('frontend.layouts.app')
 
-@section('page.title', 'Seedling Associates: Top Lawyers &amp; Law Firms in Delhi, India')
+@section('page.title', ' ')
 
-@section('page.description', 'Seedling & Associates is one of the best law firms in Delhi, India. We provide legal assistance for startups, FDI, Property law, IP, and more')
+@section('page.description', '  ')
 
 @section('page.type', 'website')
 
 @section('page.content')
-    <!-- -------------------- blog banner start ---------------- -->
 
-    <section class="blog_banner breadcrumes_padd">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="text-center">
-                        <h1 class="breadcrumb_heading">Privacy Policy</h1>
-                        <nav aria-label="breadcrumb" class="breadcrumb d-flex justify-content-center mb-0">
-                            <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item ">
-                                    <a href="{{ url(route('index')) }}" data-aos="fade-up" data-aos-once="true">Home</a>
-                                </li>
-                                <li class="breadcrumb-item home" aria-current="page">
-                                    Privacy Policy
-                                </li>
-                            </ol>
-                        </nav>
+<!-- -------------------- privacy start ---------------- -->
+
+<section class="inner_page_banner">
+    <img src="/assets/frontend/images/innwe_imagebanner.jpg" class="d-block w-100" alt="...">
+</section>
+
+
+    <!-- -------------------- privacy content start ---------------- -->
+
+    <main class="main">
+        <section class="pt-5 terms_section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="title_heading text-center black_color pb-0 heading_font">Privacy Policy</h4>
                     </div>
-                </div>
+    
+                    <div class="col-md-12">
+                        <p>
+                            We understand that your privacy is important to you and we respect that. We ensure you that
+                            titan.co.in
+                            maintains complete confidentiality of the details that you have shared with us and will not share it
+                            with any third party. We may ask for certain details such as name; date of birth; e-mail address;
+                            residential address; contact number etc for registration purposes or for giving feedback , contests
+                            ,
+                            newsletters and placing an order. At any point in time you can unsubscribe to our newsletters or any
+                            other information which you may receive from titan.co.in. Also, for enhanced security, titan.co.in
+                            does
+                            not accept any financial information on its servers. All information entered by the customer is
+                            directly
+                            received through our payment gateway and are transmitted to their respective banks’ servers. All
+                            this is
+                            done through industry standard encryption protocol known as SSL (Secure Socket Layer). The payments
+                            on
+                            our website are processed by a third party who has signed a non-disclosure agreement with us and
+                            therefore, are not allowed to share any personal information of the customers.
+                        </p>	
+                    </div>
+    
+            
+            
+              </div>
             </div>
-        </div>
-    </section>
-
-    <!-- -------------------- blog banner end   ---------------- -->
-    <!-- -------------------- privacy content  start ---------------- -->
-
-    <section class="privacy_content mb-3 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 padd00mb">
-                    @php echo html_entity_decode(get_settings('privacy_content')) @endphp
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- -------------------- privacy content  end   ---------------- -->
 

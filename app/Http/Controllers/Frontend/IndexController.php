@@ -117,6 +117,14 @@ class IndexController extends Controller
         return view('frontend.pages.privacypolice.index');
     }
 
+    public function terms_of_use(){
+        return view('frontend.pages.terms_of_use.index');
+    }
+
+    public function feedback(){
+        return view('frontend.pages.feedback.index');
+    }
+
     public function old_scheme_closure(){
         return view('frontend.pages.admin.old_scheme_closure.index');
     }
