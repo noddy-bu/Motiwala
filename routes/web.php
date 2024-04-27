@@ -42,7 +42,7 @@ Route::get('/termsofuse', [IndexController::class, 'terms_of_use'])->name('terms
 
 Route::get('/feedback', [IndexController::class, 'feedback'])->name('feedback');
 
-Route::get('/oldschemeclosure', [IndexController::class, 'old_scheme_closure'])->name('old-scheme-closure');
+
 
 Route::get('/404', [IndexController::class, 'not_found'])->name('error_page');
 Route::get('/thank-you', [IndexController::class, 'thank_you'])->name('thank_you');
@@ -60,16 +60,23 @@ Route::any('/create-account/{param}', [AccountController::class, 'create_account
 
 Route::get('/linkaccount', [AccountController::class, 'link_account'])->name('link-account');
 
-Route::get('/edituserprofile', [AccountController::class, 'edit_user_profile'])->name('edit-user-profile');
 
-Route::post('/customer-account-update-profile', [AccountController::class, 'account_update_profile'])->name('account.customer.update.profile');
+Route::middleware('auth.frontend')->group(function () {
 
-Route::get('/reset-passoword', [AccountController::class, 'reset_password'])->name('customer.reset_password');
-Route::post('/customer-password-update', [AccountController::class, 'reset_password_update'])->name('customer.password.update');
+    Route::get('/edituserprofile', [AccountController::class, 'edit_user_profile'])->name('edit-user-profile');
 
-Route::get('/cancel-ach-si', [AccountController::class, 'cancel_ach_si'])->name('customer.cancel-ach-si');
-Route::get('/get-si-account-nos', [AccountController::class, 'get_si_account_nos'])->name('customer.get-si-account-nos');
-Route::get('/myAccounts', [AccountController::class, 'my_accounts'])->name('customer.myaccounts');
+    Route::post('/customer-account-update-profile', [AccountController::class, 'account_update_profile'])->name('account.customer.update.profile');
+
+    Route::get('/reset-passoword', [AccountController::class, 'reset_password'])->name('customer.reset_password');
+    Route::post('/customer-password-update', [AccountController::class, 'reset_password_update'])->name('customer.password.update');
+
+    Route::get('/cancel-ach-si', [AccountController::class, 'cancel_ach_si'])->name('customer.cancel-ach-si');
+    Route::get('/get-si-account-nos', [AccountController::class, 'get_si_account_nos'])->name('customer.get-si-account-nos');
+    Route::get('/myAccounts', [AccountController::class, 'my_accounts'])->name('customer.myaccounts');
+
+    Route::get('/oldschemeclosure', [IndexController::class, 'old_scheme_closure'])->name('old-scheme-closure');
+    
+});
 
 Route::post('/login', [AccountController::class, 'customer_login'])->name('customer.login');
 

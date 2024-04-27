@@ -67,6 +67,7 @@ class AccountController extends Controller
     public function customer_logout(){
         Auth::guard('web')->logout();
         session()->forget('user_id');
+        Session()->flush();
         return redirect()->route('index');
     }
 

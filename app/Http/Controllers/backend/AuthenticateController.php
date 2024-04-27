@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 
+use Illuminate\Support\Facades\Session;
+
 class AuthenticateController extends Controller
 {
     public function index(){
@@ -33,6 +35,7 @@ class AuthenticateController extends Controller
     public function logout()
     {
         Auth::guard('web')->logout();
+        Session()->flush();
         return redirect()->route('backend.login');
     }    
 }
