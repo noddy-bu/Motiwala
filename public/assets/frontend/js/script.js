@@ -9,8 +9,23 @@ function toggle() {
     popup.classList.toggle("active");
 }
 
-// calculator
 
+$(document).ready(function() {
+
+    function openModal() {
+        $('#loginmodal').modal('show');
+    }
+
+    // Check if the URL contains '#sign' and open the modal if it does
+    if (window.location.hash === '#sign') {
+        openModal();
+    }
+});
+
+
+
+// calculator
+/*
 ("use strict");
 var amountSlider = document.getElementById("myAmount");
 var amountOutput = document.getElementById("inputAmount");
@@ -91,3 +106,8 @@ function calculateIt() {
     wealthOutput.innerHTML = "Rs. " + finalOutput; // Print BMI
 }
 calculateIt();
+*/
+
+
+
+

@@ -144,3 +144,8 @@ Route::get('/update-session', function () {
 Route::get('/resubmit-aadhar-otp', function () {
     Session()->put('step', 5);
 })->name('resubmit-aadhar-otp');
+
+Route::get('/redirect-login', function () {
+    session()->forget('step');
+    session()->forget('temp_user_id');
+})->name('redirect-login');

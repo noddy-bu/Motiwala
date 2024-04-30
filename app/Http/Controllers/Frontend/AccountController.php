@@ -44,7 +44,7 @@ class AccountController extends Controller
         $authenticated = Auth::guard('web')->attempt($request->only(['phone', 'password']));
         if($authenticated)
         {
-            session()->forget(['step', 'otp_timestamp', 'phone', 'temp_user_id', 'otp', 'aadhar_no']);
+            session()->forget(['step', 'otp_timestamp', 'phone', 'temp_user_id', 'otp', 'aadhar_no', 'payment']);
 
             Session::put('user_id', auth()->user()->id);
 
@@ -66,7 +66,6 @@ class AccountController extends Controller
 
     public function customer_logout(){
         Auth::guard('web')->logout();
-        session()->forget('user_id');
         Session()->flush();
         return redirect()->route('index');
     }
@@ -426,7 +425,7 @@ class AccountController extends Controller
             'locality' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
             'state' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
             'city' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
-            'pincode' => 'required|regex:/^[\d\s-]+$/|min:3',
+            'pincode' => 'required|regex:/^[\d\s-]+$/|min:6',
             'dob' => 'required',
         ]);
 
@@ -443,7 +442,7 @@ class AccountController extends Controller
             DB::table('users')->where('id',Session::get('temp_user_id'))->update([
                 'salutation' => $request->input('title'),
                 'name' => $request->input('name'),
-                'email' => $request->input('email'),
+                'email' => strtolower($request->input('email')),
             ]);
 
             DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
@@ -888,12 +887,14 @@ class AccountController extends Controller
             'status' => 1,
         ]);
 
-        session()->forget('step');
+
         session()->forget('otp_timestamp');
         session()->forget('phone');
-        session()->forget('temp_user_id');
         session()->forget('otp');
         session()->forget('aadhar_no');
+
+        Session::put('step', 13);
+        Session::put('payment', 1);
 
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "Account created successfully!";

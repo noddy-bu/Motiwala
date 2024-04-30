@@ -417,11 +417,11 @@
                     <p class="card-text"><strong>Birthday : </strong>{{ date('d/m/Y', strtotime($user_detail->dob)) }}</p>
                     <p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p>
                     <p class="card-text"><strong>ULP ID : </strong>NA</p>
-                    <p class="card-text"><strong>Nominee Name : </strong>{{ $user_detail->nominee_name }}</p>
-                    <p class="card-text"><strong>Nominee Phone No : </strong>{{ $user_detail->nominee_phone }}</p>
-                    <p class="card-text"><strong>Nominee DOB : </strong>{{ date('d/m/Y', strtotime($user_detail->nominee_dob)) }}</p>
-                    <p class="card-text"><strong>Nominee Address : </strong>{{ $user_detail->nominee_address }}</p>
-                    <p class="card-text"><strong>Nominee Relation : </strong>{{ $user_detail->nominee_relation }}</p>
+                    <p class="card-text"><strong>Nominee Name : </strong>{{ !empty($user_detail->nominee_name) ? $user_detail->nominee_name : 'NA' }}</p>
+                    <p class="card-text"><strong>Nominee Phone No : </strong>{{ !empty($user_detail->nominee_phone) ? $user_detail->nominee_phone : 'NA' }}</p>
+                    <p class="card-text"><strong>Nominee DOB : </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}</p>
+                    <p class="card-text"><strong>Nominee Address : </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}</p>
+                    <p class="card-text"><strong>Nominee Relation : </strong>{{ !empty($user_detail->nominee_relation) ? $user_detail->nominee_relation : 'NA' }}</p>
                 </div>
               </div>
 
@@ -571,20 +571,22 @@
                         </div>
                     </div>
 
-                    <div class="form-group col-md-6 d-none" id="ReSubmit">
-                        <div class="buttonclass1 mt60">
-                            <button>ReSubmit <i class="las la-arrow-right"></i></button>
-                        </div>
-                    </div>
+
                 </div>
 
             </form>
+
+            <div class="form-group col-md-6 d-none" id="ReSubmit">
+                <div class="buttonclass1 mt60">
+                    <button>ReSubmit <i class="las la-arrow-right"></i></button>
+                </div>
+            </div>
 
         </div>
 
     </div>
 
-<!--------------------------------------------- ekyc Aadhar verify --------------------------------->
+
 
 <script>
     // Reload the page after 5 seconds
@@ -608,9 +610,11 @@
             location.reload();
         });
 
-    }, 5000); // 5000 milliseconds = 5 seconds
+    }, 60000); // 5000 milliseconds = 5 seconds
 </script>
 
+
+<!--------------------------------------------- ekyc Aadhar verify --------------------------------->
 
 @endif
 
@@ -781,11 +785,11 @@
                     <p class="card-text"><strong>Birthday : </strong>{{ date('d/m/Y', strtotime($user_detail->dob)) }}</p>
                     <p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p>
                     <p class="card-text"><strong>ULP ID : </strong>{{ $user->ulp_id }}</p>
-                    <p class="card-text"><strong>Nominee Name : </strong>{{ $user_detail->nominee_name }}</p>
-                    <p class="card-text"><strong>Nominee Phone No : </strong>{{ $user_detail->nominee_phone }}</p>
-                    <p class="card-text"><strong>Nominee DOB : </strong>{{ date('d/m/Y', strtotime($user_detail->nominee_dob)) }}</p>
-                    <p class="card-text"><strong>Nominee Address : </strong>{{ $user_detail->nominee_address }}</p>
-                    <p class="card-text"><strong>Nominee Relation : </strong>{{ $user_detail->nominee_relation }}</p>
+                    <p class="card-text"><strong>Nominee Name : </strong>{{ !empty($user_detail->nominee_name) ? $user_detail->nominee_name : 'NA' }}</p>
+                    <p class="card-text"><strong>Nominee Phone No : </strong>{{ !empty($user_detail->nominee_phone) ? $user_detail->nominee_phone : 'NA' }}</p>
+                    <p class="card-text"><strong>Nominee DOB : </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}</p>
+                    <p class="card-text"><strong>Nominee Address : </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}</p>
+                    <p class="card-text"><strong>Nominee Relation : </strong>{{ !empty($user_detail->nominee_relation) ? $user_detail->nominee_relation : 'NA' }}</p>
                 </div>
               </div>
 
@@ -796,7 +800,7 @@
     </div>
 
     <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
-        <h5> eKYC Process </h5>
+        <h5> eSign Process </h5>
     </div>
 
     <div>
@@ -973,11 +977,11 @@
                     <p class="card-text"><strong>Birthday : </strong>{{ date('d/m/Y', strtotime($user_detail->dob)) }}</p>
                     <p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p>
                     <p class="card-text"><strong>ULP ID : </strong>{{ $user->ulp_id }}</p>
-                    <p class="card-text"><strong>Nominee Name : </strong>{{ $user_detail->nominee_name }}</p>
-                    <p class="card-text"><strong>Nominee Phone No : </strong>{{ $user_detail->nominee_phone }}</p>
-                    <p class="card-text"><strong>Nominee DOB : </strong>{{ date('d/m/Y', strtotime($user_detail->nominee_dob)) }}</p>
-                    <p class="card-text"><strong>Nominee Address : </strong>{{ $user_detail->nominee_address }}</p>
-                    <p class="card-text"><strong>Nominee Relation : </strong>{{ $user_detail->nominee_relation }}</p>
+                    <p class="card-text"><strong>Nominee Name : </strong>{{ !empty($user_detail->nominee_name) ? $user_detail->nominee_name : 'NA' }}</p>
+                    <p class="card-text"><strong>Nominee Phone No : </strong>{{ !empty($user_detail->nominee_phone) ? $user_detail->nominee_phone : 'NA' }}</p>
+                    <p class="card-text"><strong>Nominee DOB : </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}</p>
+                    <p class="card-text"><strong>Nominee Address : </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}</p>
+                    <p class="card-text"><strong>Nominee Relation : </strong>{{ !empty($user_detail->nominee_relation) ? $user_detail->nominee_relation : 'NA' }}</p>
                 </div>
               </div>
 
@@ -1008,6 +1012,141 @@
 </div>
 
 <!--------------------------------------------- After esign preview info --------------------------------->
+
+@endif
+
+
+@if(Session::has('payment') && Session::get('payment') == 1)
+
+<!--------------------------------------------- After Payment preview info --------------------------------->    
+
+<div id="last-preview-info">
+
+    @php 
+
+        $user = DB::table('users')->where('id', Session::get('temp_user_id'))
+            ->get(['plan_id','installment_amount','name','email','phone','ulp_id'])->first();
+
+        $user_detail = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))
+            ->get(['nominee_name','nominee_phone','nominee_dob','nominee_address','nominee_relation','flat_no','street','locality','state','city','pincode','dob'])->first();
+
+        $plan_name = DB::table('plans')->where('id', $user->plan_id)->value('name');
+    @endphp
+ 
+    <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
+        <h5> Preview Info </h5>
+    </div>
+
+    <div class="row d-flex">
+
+        <div class="col-md-6">
+
+            <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+                <div class="card-header">
+                  Plan Details
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>Plan Type : </strong>{{ $plan_name }}</p>
+                    <p class="card-text"><strong>Installment Amount (in Rs) : </strong>{{ $user->installment_amount}}</p>
+                </div>
+              </div>
+
+              <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+                <div class="card-header">
+                  Verification Details
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>eKYC Status : </strong>Completed</p>
+                    <p class="card-text"><strong>eSign Status : </strong>Completed</p>
+
+                    <p class="card-text"><strong>Payment Status : </strong>Completed</p>
+                </div>
+              </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="card col-md-12 my-5 mx-2" style="width: 39rem;">
+                <div class="card-header">
+                  Customer Details
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>Name : </strong>{{ $user->name }}</p>
+                    <p class="card-text"><strong>Address : </strong>
+                    @php 
+                        echo $user_detail->flat_no . ",\n";
+                        echo $user_detail->street . ",\n";
+                        echo $user_detail->locality . ",\n";
+                        echo $user_detail->city . ",\n";
+                        echo $user_detail->state . ",\n";
+                        echo $user_detail->pincode;
+                    @endphp
+                    </p>
+                    <p class="card-text"><strong>Email : </strong>{{ $user->email }}</p>
+                    <p class="card-text"><strong>Birthday : </strong>{{ date('d/m/Y', strtotime($user_detail->dob)) }}</p>
+                    <p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p>
+                    <p class="card-text"><strong>ULP ID : </strong>{{ $user->ulp_id }}</p>
+                    <p class="card-text"><strong>Nominee Name : </strong>{{ !empty($user_detail->nominee_name) ? $user_detail->nominee_name : 'NA' }}</p>
+                    <p class="card-text"><strong>Nominee Phone No : </strong>{{ !empty($user_detail->nominee_phone) ? $user_detail->nominee_phone : 'NA' }}</p>
+                    <p class="card-text"><strong>Nominee DOB : </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}</p>
+                    <p class="card-text"><strong>Nominee Address : </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}</p>
+                    <p class="card-text"><strong>Nominee Relation : </strong>{{ !empty($user_detail->nominee_relation) ? $user_detail->nominee_relation : 'NA' }}</p>
+                </div>
+              </div>
+
+
+        </div>
+
+
+    </div>
+
+    <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
+        <h5> Login </h5>
+    </div>
+
+    <div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="buttonclass1 mt60">
+            <button id="login_page">Proceed to login <i class="las la-arrow-right"></i></button>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+<script>
+
+    var LoginBtn = document.getElementById("login_page");
+   
+    // Add event listener to the button
+    LoginBtn.addEventListener("click", function() {
+
+        // Create an XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
+
+        // Specify the URL to hit using the route name
+        var url = '{{ route("redirect-login") }}';
+
+        // Send a GET request to the URL asynchronously
+        xhr.open('GET', url, true);
+        xhr.send();
+
+        window.location.href = "{{ url(route('index')) }}/#sign";
+
+    });
+
+
+</script>
+
+<!--------------------------------------------- After Payment preview info --------------------------------->
 
 @endif
 

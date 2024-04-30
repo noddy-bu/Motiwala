@@ -105,7 +105,7 @@
                 $.each(errors, function(key, value) {
                     errorMessage += value + '<br>';
                 });
-                toastr.error(errorMessage, 'Validation Error');
+                toastr.error('Please fill the Mandatory fields ' + errorMessage, 'Error');
                 form.find('button[type="submit"]').html(button);
                 form.find('button[type="submit"]').css('pointer-events', 'inherit');
             }
@@ -283,8 +283,8 @@
                             toastr.success(response.response_message.message, response.response_message.response);
 
                             setTimeout(function() {
-                                //location.reload();
-                                window.location.href = "{{ url(route('index')) }}";
+                                location.reload();
+                                //window.location.href = "{{ url(route('index')) }}";
                             }, 1500);
 
                         }else{
@@ -305,7 +305,7 @@
                 $.each(errors, function(key, value) {
                     errorMessage += value + '<br>';
                 });
-                toastr.error(errorMessage, 'Validation Error');
+                toastr.error('Please fill the Mandatory fields' + errorMessage, 'Error');
                 form.find('button[type="submit"]').html(button);
                 form.find('button[type="submit"]').css('pointer-events', 'inherit');
             }
