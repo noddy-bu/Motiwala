@@ -464,7 +464,7 @@
         const amountPlusBtn = document.getElementById('amount_plus');
         const amountMinusBtn = document.getElementById('amount_minus');
 
-        let currentAmount = 2000;
+        let currentAmount = 10000;
 
         function updateAmount() {
             amountSpan.textContent = '₹ ' + currentAmount.toLocaleString();
