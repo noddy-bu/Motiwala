@@ -26,10 +26,16 @@
                     </div>
 
                     <div class="col-md-12" id="page-contain">
-                        <p>Hello, <br> Greetings from Motiwala & Sons !</p>
-                        <p>Thank you very much for expressing your interest in opening a new Motiwala & Sons Golden Harvest
-                            account.
-                            Please complete the process below for us to facilitate your request.</p>
+                        <p>Hello, <br> Warm greetings from Motiwala Jewels Gold and Diamonds Pvt Ltd!</p>
+                        
+                        <p>   We extend our heartfelt gratitude for your interest in initiating a new account with
+                           We extend our heartfelt gratitude for your interest in initiating a new account with
+                            Motiwala Jewels Golden Treasurer Purchase Plan. Your keenness is truly appreciated.
+                            Kindly proceed with the following steps to help us expedite your request.
+                        </p>
+                            <p>Thank you once again for considering Motiwala Jewels Gold and Diamonds Pvt Ltd for 
+                            your Gold and Diamonds Jewellery needs.
+                        </p>
                     </div>
 
                     <div class="col-md-12">

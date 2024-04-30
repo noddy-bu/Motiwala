@@ -24,9 +24,16 @@
                 <div class="carousel-item active">
                     <img src="/assets/frontend/images/main_banner_images.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block text-start">
-                        <h3 class="black_color heading_font">Gold Jewellery & Diamonds</h3>
-                        <p class="black_color">If you are looking for the perfect diamond, you have come to the right place.
-                            Our site features the world's top diamonds and jewellery. </p>
+                        <h3 class="black_color heading_font">Discover the magic of Gold And Diamond Jewellery right here</h3>
+                        <p class="black_color">
+                            Our website is your gateway to a world of stunning diamonds and exquisite jewellery.
+                            We bring you the very best from around the globe, ensuring you find the diamond of your dreams.
+                            Whether you're seeking classic elegance or modern glamour, we have something for everyone.
+                            Our collection is crafted with precision and care, promising you unmatched quality and beauty.
+                            Treat yourself to a piece of luxury that will shine for a lifetime. 
+                            Dive into our treasure trove of elegance and find the perfect adornment for every occasion.
+                            Welcome to a world where beauty knows no bounds!
+                        </p>
                         <div class="buttonclass mt-4">
                             <a href="">Explore <i class="las la-arrow-right"></i>
                             </a>
@@ -66,16 +73,16 @@
         <section class="steps_section">
             <div class="container">
                 <div class="top_step_content">
-                    <p class="text-center black_color" data-aos-once="true" data-aos="fade-up">Aiming for that perfect
-                        necklace?</p>
-                    <p class="text-center black_color" data-aos-once="true" data-aos="fade-up">Open a Motiwala & Sons Golden
-                        Harvest account with an amount as low as <span> ₹2000. Regular payment of a fixed installment for 10
-                            months will get you a </span> special discount of up to 75% of the 1st installment value paid
+                    <p class="text-center black_color" data-aos-once="true" data-aos="fade-up">A Dreaming of owning that stunning necklace?</p>
+                    <p class="text-center black_color" data-aos-once="true" data-aos="fade-up">
+                        Start your journey by opening a Motiwala Jewels Golden Treasure  account with just ₹2000.
+                        <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
+                        to 75% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
                     </p>
                     <h4 class="title_heading text-center black_color pb-1 heading_font pt-4 " data-aos-once="true"
-                        data-aos="fade-up">4 Easy Steps </h4>
-                    <p class="text-center black_color" data-aos-once="true" data-aos="fade-up">to purchase the jewellery of
-                        your dreams</p>
+                        data-aos="fade-up">Unlocking your dream jewellery in just 4 simple steps:</h4>
+                    <!-- <p class="text-center black_color" data-aos-once="true" data-aos="fade-up">to purchase the jewellery of
+                        your dreams</p> -->
                 </div>
                 <div class="row">
                     <div class="col-md-12">
@@ -86,8 +93,12 @@
                     <div class="col-md-3">
                         <div class="step_box steps1">
                             <div class="step_content1">
-                                <p class="black_color" data-aos-once="true" data-aos="fade-right">Open a new account on the
-                                    website, Motiwala & Sons app or in one of our 350+ stores.</p>
+                                <h3><b>Step 1</b></h3> 
+                                <p class="black_color" data-aos-once="true" data-aos="fade-right">
+                                    Get started by opening a new account on our website, the Motiwala
+                                    Jewels Golden Treasure Jewellery Purchase app,
+                                    or by visiting  our only  Store In Byculla, Mumbai Maharashtra.
+                                </p>
                             </div>
                             <div class="step_box_icon">
                                 <div class="step_box_img">
@@ -99,9 +110,12 @@
                     <div class="col-md-3">
                         <div class="step_box steps2">
                             <div class="step_content2">
-                                <p class="black_color" data-aos-once="true" data-aos="fade-right">Pay a monthly installment
-                                    of minimum ₹2000 or any greater multiples of ₹1000 for 10 months with cash/online
-                                    banking using ACH / SI or Post dated cheque facilities</p>
+                                <h3><b>Step 2</b></h3>
+                                <p class="black_color" data-aos-once="true" data-aos="fade-right">
+                                    You can pay a monthly installment of at least ₹2000, or any higher multiples of ₹1000, 
+                                    for 10 months using cash, online banking via Standing Instructions, Net-Banking, 
+                                    UPI or post-dated cheque facilities.
+                                </p>
                             </div>
                             <div class="step_box_icon">
                                 <div class="step_box_img">
@@ -113,8 +127,10 @@
                     <div class="col-md-3">
                         <div class="step_box steps3">
                             <div class="step_content3">
-                                <p class="black_color" data-aos-once="true" data-aos="fade-left">Avail a special discount of
-                                    upto 75% of the 1st installment value, at the time of redemption</p>
+                                <h3><b>Step 3</b></h3>
+                                <p class="black_color" data-aos-once="true" data-aos="fade-left">
+                                    Receive an exclusive discount of up to 75% of the value of your first installment when you redeem your plan.
+                                </p>
                             </div>
                             <div class="step_box_icon">
                                 <div class="step_box_img">
@@ -126,8 +142,10 @@
                     <div class="col-md-3">
                         <div class="step_box steps4">
                             <div class="step_content4">
-                                <p class="black_color" data-aos-once="true" data-aos="fade-left">Own your favourite
-                                    Motiwala & Sons jewellery with the total redemption value</p>
+                                <h3><b>Step 4</b></h3>
+                                <p class="black_color" data-aos-once="true" data-aos="fade-left">
+                                    Acquire your beloved Motiwala Jewels Gold and Diamonds jewellery using the entire redemption value.
+                                </p><br><br>
                             </div>
                             <div class="step_box_icon">
                                 <div class="step_box_img">
@@ -139,9 +157,10 @@
                 </div>
 
                 <div class="step_bottom_text">
-                    <p class="black_color text-center" data-aos-once="true" data-aos="fade-up">“Bringing you the best
-                        quality jewelry, latest designs at an <span> affordable price, we bring over 100 years of industry
-                            <span> experience to you.”</p>
+                    <p class="black_color text-center" data-aos-once="true" data-aos="fade-up">
+                        “Delivering top-notch quality jewellery with the latest designs at prices you can afford,
+                         we bring over a century of industry expertise right to you.”
+                    </p>
                     <div class="buttonclass mt-4" data-aos-once="true" data-aos="fade-up">
                         <a href="">Explore <i class="las la-arrow-right"></i>
                         </a>
@@ -227,12 +246,27 @@
                 <h4 class="title_heading text-center black_color pb-4 heading_font">Why Choose Us ?</h4>
                 <div class="row">
                     <div class="col-md-4">
+                        <div class="d-flex gap-4" data-aos-once="true" data-aos="fade-up">
+                            <img class="choose_img" src="/assets/frontend/images/exchange_icons.png"
+                                class="d-block w-100" alt="...">
+                            <div class="choose_content">
+                                <h5 class="black_color">Exquisite Jewellery Collection</h5>
+                                <p class="black_color">
+                                Delivering top-notch quality jewellery with the latest designs at prices you can afford,
+                                we bring over a century of industry expertise right to you.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="d-flex gap-4 pb-4" data-aos-once="true" data-aos="fade-up">
                             <img class="choose_img" src="/assets/frontend/images/best_icons.png" class="d-block w-100"
                                 alt="...">
                             <div class="choose_content">
                                 <h5 class="black_color">Best Price Guarantee</h5>
-                                <p class="black_color">We offer the best prices in the online Diamond Jewellery Business.
+                                <p class="black_color">
+                                    Our Best Price Guarantee ensures that you'll find the most competitive prices
+                                    in the online diamond jewellery business right here.
                                 </p>
                             </div>
                         </div>
@@ -242,9 +276,11 @@
                             <img class="choose_img" src="/assets/frontend/images/refer_icons.png" class="d-block w-100"
                                 alt="...">
                             <div class="choose_content">
-                                <h5 class="black_color">Refer and Earn</h5>
-                                <p class="black_color">Refer your friend/family and earn 20% of your referral’s order’s
-                                    Diamond Amount.</p>
+                                <h5 class="black_color">Certified Authenticity</h5>
+                                <p class="black_color"> 
+                                    Rest assured, our jewellery is always 100% certified,
+                                    accompanied by a certificate of authentication for your peace of mind.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -253,8 +289,11 @@
                             <img class="choose_img" src="/assets/frontend/images/earnings_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
-                                <h5 class="black_color">Motiwala Harvest</h5>
-                                <p class="black_color">A unique easy-pay system which gives you a benefit of 18.24%</p>
+                                <h5 class="black_color">Lifetime Exchange Policy</h5>
+                                <p class="black_color"> 
+                                    Upgrade your style anytime with our Lifetime Exchange policy, 
+                                    allowing you to exchange your old designs for something new whenever you desire.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -263,8 +302,11 @@
                             <img class="choose_img" src="/assets/frontend/images/certified_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
-                                <h5 class="black_color">100% Certified Jewellery</h5>
-                                <p class="black_color">Our jewellery always comes with a certificate of authentication.</p>
+                                <h5 class="black_color">Unlocking Benefits with Motiwala Jewels Golden Treasurer Purchase Plan</h5>
+                                <p class="black_color">
+                                    Introducing Motiwala Jewels Golden Treasurer: A unique and convenient payment system
+                                    that offers you a remarkable benefit.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -288,6 +330,19 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-4">
+                        <div class="d-flex gap-4" data-aos-once="true" data-aos="fade-up">
+                            <img class="choose_img" src="/assets/frontend/images/warranty_icons.png"
+                                class="d-block w-100" alt="...">
+                            <div class="choose_content">
+                                <h5 class="black_color">Quality Assurance Guaranteed: 100% Hallmark Jewellery</h5>
+                                <p class="black_color">
+                                    Rest easy knowing that your jewellery is covered by BIS Regulations. 
+                                    Should you encounter any defects, we'll promptly fix it for you.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -305,12 +360,9 @@
                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <strong>This is the first item's accordion body.</strong> It is shown by default, until the
-                                collapse plugin adds the appropriate classes that we use to style each element. These
-                                classes control the overall appearance, as well as the showing and hiding via CSS
-                                transitions. You can modify any of this with custom CSS or overriding our default variables.
-                                It's also worth noting that just about any HTML can go within the
-                                <code>.accordion-body</code>, though the transition does limit overflow.
+                                You can find our exquisite collection of jewellery at our Store In Byculla Mumbai Maharashtra.
+                                Additionally, you can explore our wide range of designs and make purchases conveniently 
+                                through our secure online store from the comfort of your own home.
                             </div>
                         </div>
                     </div>
@@ -323,12 +375,10 @@
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <strong>This is the second item's accordion body.</strong> It is hidden by default, until
-                                the collapse plugin adds the appropriate classes that we use to style each element. These
-                                classes control the overall appearance, as well as the showing and hiding via CSS
-                                transitions. You can modify any of this with custom CSS or overriding our default variables.
-                                It's also worth noting that just about any HTML can go within the
-                                <code>.accordion-body</code>, though the transition does limit overflow.
+                                Discover a stunning array of options including Earrings, Necklaces, Ring, Bracelets,
+                                Bangle and more,precious stones, crafted with precision and elegance to suit every occasion.
+                                Explore our diverse collections, from classic designs to contemporary styles,
+                                ensuring there's something special for everyone's taste and preferences
                             </div>
                         </div>
                     </div>
@@ -341,12 +391,13 @@
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
-                                collapse plugin adds the appropriate classes that we use to style each element. These
-                                classes control the overall appearance, as well as the showing and hiding via CSS
-                                transitions. You can modify any of this with custom CSS or overriding our default variables.
-                                It's also worth noting that just about any HTML can go within the
-                                <code>.accordion-body</code>, though the transition does limit overflow.
+                                Certainly! Our flexible policy allows for redemption and purchase before the 11-month period ends. 
+                                Should you find the perfect piece earlier than expected, you're welcome to redeem your plan and 
+                                make your desired purchase at your convenience. This ensures that you have the freedom to acquire 
+                                your favorite jewellery whenever you're ready, giving you the ultimate flexibility and satisfaction 
+                                in your shopping experience with us.
+                                <br>
+                                Please check
                             </div>
                         </div>
                     </div>
@@ -360,12 +411,12 @@
                         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
-                                collapse plugin adds the appropriate classes that we use to style each element. These
-                                classes control the overall appearance, as well as the showing and hiding via CSS
-                                transitions. You can modify any of this with custom CSS or overriding our default variables.
-                                It's also worth noting that just about any HTML can go within the
-                                <code>.accordion-body</code>, though the transition does limit overflow.
+                                Absolutely! Upon completing your 10 monthly payments, you'll become eligible for our special discount offer. 
+                                This means that once you've diligently paid your installments for the specified duration, 
+                                you'll unlock the opportunity to enjoy exclusive savings on your purchase. 
+                                It's our way of rewarding your commitment and dedication to our Motiwala Jewels Golden Treasurer Purchase 
+                                Plan. So, rest assured that your patience and loyalty will be duly recognized, and you'll be able to 
+                                avail yourself of the fantastic discount to make your jewellery purchase even more rewarding.
                             </div>
                         </div>
                     </div>
@@ -379,12 +430,16 @@
                         <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
-                                collapse plugin adds the appropriate classes that we use to style each element. These
-                                classes control the overall appearance, as well as the showing and hiding via CSS
-                                transitions. You can modify any of this with custom CSS or overriding our default variables.
-                                It's also worth noting that just about any HTML can go within the
-                                <code>.accordion-body</code>, though the transition does limit overflow.
+                                In addition to our special discount offer, our Motiwala Jewels Golden Treasurer Purchase 
+                                Plan comes with a range of other benefits tailored to enhance your overall experience. 
+                                Firstly, you can expect top-notch service from our dedicated team who are committed to 
+                                providing you with personalized assistance every step of the way. Moreover, we prioritize 
+                                quality in every aspect of our service, ensuring that you receive jewellery crafted to the 
+                                highest standards of craftsmanship and excellence. Furthermore, our prompt and attentive 
+                                responses to any queries or concerns you may have reflect our commitment to your satisfaction 
+                                and guarantee a seamless and enjoyable shopping experience with us. 
+                                <br>
+                                Please check
                             </div>
                         </div>
                     </div>

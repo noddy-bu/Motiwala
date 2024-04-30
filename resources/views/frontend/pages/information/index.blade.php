@@ -27,11 +27,17 @@
 
 				<div class="col-md-12">
 					<h5 class="black_color"><b>Motiwala & Sons Golden Harvest</b></h5>
-					<p>Motiwala & Sons Golden Harvest is a smart, secure and convenient way to own the Motiwala & Sons jewellery you desire. Through this plan, you can buy more than what you pay for because Tanishq will add a special discount upon maturity.</p>
+					<p>
+            Introducing Motiwala Jewels Golden Treasurer Purchase Plan – your smart, secure, 
+            and easy way to own the stunning Motiwala Jewels Gold and Diamonds jewellery you love. 
+            With this plan, you can get more jewellery for your money! How? Because when your plan matures, 
+            Motiwala Jewels Gold and Diamonds will give you an extra discount as a special bonus. 
+            It's a fantastic way to get the jewellery you want while saving money!
+          </p>
 				</div>
 
 <div class="col-md-12">
-					<h5 class="black_color pt-4 pb-3"><b>Golden Harvest - 10 Months</b></h5>
+					<h5 class="black_color pt-4 pb-3"><b>Golden Treasurer  - </b></h5>
 				</div>
 				
 				
@@ -43,8 +49,11 @@
               </div>
             </div>
             <div class="choose_content">
-              <p class="black_color">You can open a Golden Harvest account online using our website 
-or App or by visiting your nearest Motiwala & Sons showroom.</p>
+              <p class="black_color">
+                You can easily open a Motiwala Jewels Golden Treasurer Purchase 
+                Plan account either online through our website or app, or by simply 
+                visiting our Motiwala Jewels Gold and Diamonds Pvt Ltd showroom.
+              </p>
             </div>
           </div>
         </div>
@@ -57,8 +66,11 @@ or App or by visiting your nearest Motiwala & Sons showroom.</p>
               </div>
             </div>
             <div class="choose_content">
-              <p class="black_color">You have the option to pay monthly instalments by cash, card, 
-online banking using SI, ACH or post dated cheque facilities.</p>
+              <p class="black_color">
+                You've got flexible payment options! Pay your monthly installments with cash, 
+                card, or online banking using various methods like Standing Instruction (SI), 
+                Net-banking, NEFT, and UPI or even post-dated cheques.
+              </p>
             </div>
           </div>
         </div>
@@ -71,7 +83,11 @@ online banking using SI, ACH or post dated cheque facilities.</p>
               </div>
             </div>
             <div class="choose_content">
-              <p class="black_color">You must pay a fixed instalment amount on the due date every month for 10 months (minimum instalment value - INR 2000. It can go up to any amount in multiples of INR 1000).</p>
+              <p class="black_color">
+                Each month, make sure to pay a fixed installment amount by the due date for 10 months. 
+                The minimum instalment value is INR 2000, but you can choose to pay more in multiples 
+                of INR 1000 if you wish.
+              </p>
             </div>
           </div>
         </div>
@@ -84,13 +100,21 @@ online banking using SI, ACH or post dated cheque facilities.</p>
               </div>
             </div>
             <div class="choose_content">
-              <p class="black_color">After 10 months, you will be eligible for a special discount of upto 75% of the 1st instalment value paid.</p>
+              <p class="black_color">
+                Once you've completed 10 months of payments, you'll qualify for a special discount of 
+                up to 75% of your first instalment's value. That means more savings for you on the 
+                jewellery you desire!
+              </p>
             </div>
           </div>
         </div>
 
 		<div class="col-md-12">
-           <p class="pt-4 pb-4">You must mandatorily close the account within 400 days from the date of opening your Golden Harvest account.</p>
+           <p class="pt-4 pb-4">
+              You need to make sure to close your account within 
+              400 days from the date you opened your Motiwala 
+              Jewels Golden Treasurer Purchase Plan account.
+            </p>
            <p>For Example ( Only if all installments are paid on due date )</p>
         
 		   <div class="information_tb">
@@ -106,10 +130,10 @@ online banking using SI, ACH or post dated cheque facilities.</p>
   </thead>
   <tbody>
     <tr>
-      <th>1st Jan 2021</th>
-      <td>1st Jan 2022</td>
-      <td>2000</td>
-      <td>1500</td>
+      <th>1st Jan 2022</th>
+      <td>1st Jan 2023</td>
+      <td>4000</td>
+      <td>3000</td>
 	  <td>75%</td>
     </tr>
   </tbody>
