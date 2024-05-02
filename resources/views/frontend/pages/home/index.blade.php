@@ -66,7 +66,7 @@
         <section class="steps_section">
             <div class="container">
                 <div class="top_step_content">
-                    <p class="text-center black_color" data-aos-once="true" data-aos="fade-up">A Dreaming of owning that stunning necklace?</p>
+                    <p class="text-center black_color" data-aos-once="true" data-aos="fade-up">Dreaming of owning that stunning necklace?</p>
                     <p class="text-center black_color" data-aos-once="true" data-aos="fade-up">
                         Start your journey by opening a Motiwala Jewels Golden Treasure  account with just ₹2000.
                         <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
@@ -235,8 +235,8 @@
                 <h4 class="title_heading text-center black_color pb-4 heading_font">Why Choose Us ?</h4>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="d-flex gap-3" data-aos-once="true" data-aos="fade-up">
-                            <img class="choose_img" src="/assets/frontend/images/exchange_icons.png"
+                        <div class="d-flex gap-3" data-aos-once="true" data-aos="fade-up">                            
+                            <img class="choose_img" src="/assets/frontend/images/earnings_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
                                 <h5 class="black_color">Exquisite Jewellery Collection</h5>
@@ -275,7 +275,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="d-flex gap-3 pb-4" data-aos-once="true" data-aos="fade-up">
-                            <img class="choose_img" src="/assets/frontend/images/earnings_icons.png"
+                            <img class="choose_img" src="/assets/frontend/images/exchange_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
                                 <h5 class="black_color">Lifetime Exchange Policy</h5>
@@ -343,7 +343,7 @@
                                 Discover a stunning array of options including Earrings, Necklaces, Ring, Bracelets,
                                 Bangle and more,precious stones, crafted with precision and elegance to suit every occasion.
                                 Explore our diverse collections, from classic designs to contemporary styles,
-                                ensuring there's something special for everyone's taste and preferences
+                                ensuring there's something special for everyone's taste and preferences.
                             </div>
                         </div>
                     </div>

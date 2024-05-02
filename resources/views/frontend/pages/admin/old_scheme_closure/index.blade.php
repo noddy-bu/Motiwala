@@ -24,46 +24,17 @@
 				<div class="col-md-12">
 					<h4 class="title_heading text-center black_color pb-0 heading_font">Old Scheme Closure</h4>
                 </div>
-
-				<div class="col-md-12">
-				    <div class="md-title">
-						<h4>
-							For old golden harvest customers <span>
-								(for all customers who have enrolled before 20th April
-								2014)
-							</span>
-						</h4>
+				<div>
+					<div class="text-center mb-3">
+						<a class="text-decoration-none text-dark" href="/termsofuse">Terms Of Use</a> | 
+						<a class="text-decoration-none text-dark" href="/privacy-policy">Privacy Policy</a> | 
+						<a class="text-decoration-none text-dark" href="{{ url(route('feedback')) }}">Give Us Feedback</a>
 					</div>
-					
-					<div>
-						<p>
-						Titan Company Limited (TCL) formerly known as Titan industries Limited has been
-						operating the Golden Harvest (11+1) and SwarnaNidhi Jewellery purchase schemes. In the newly
-						enacted Companies Act, which became a law on 1st April 2014, certain new rules were introduced,
-						specifically under Explanation to Section 2(1) (b) of the Companies (Acceptance of Deposit)
-						Rules, 2014 which came into effect 1st April 2014, which appeared to bring such schemes also
-						under the definition of Public Deposits. TCL is now constrained to comply with this new law
-						immediately and is required to wind down the level of “deposits” (as these are termed now) in
-						its current form. This means that TCL is constrained to stop accepting any further installments
-						from the existing account holders, with immediate effect. To make it fair, practical and
-						convenient to all its Golden harvest and Swarnanidhi account holders, TCL has designed a fair
-						refund offer, the details of which are available with the stores. Please contact your nearest
-						Tanishq store for closure details. The account holders are required to bring the original
-						passbook and id proof for redemption of the account. Account holders cannot redeem the account
-						without original passbook and id proof.
-						</p>
-					</div>
-                </div>
-
-				<div class="p-3 mb-2 text-white text-center" style="background-color:#c0af78;">
-					<p>For any clarifications please contact your showroom where you opened your account or</p>
-
-					<div>
-						Call: <a href="tel:18009000000">1800 9000 000</a> | Email: <a href="mailto:xyz@gmail.com">xyz@gmail.com</a>
-					</div>
-				</div>
-
-		
+					<p> 
+						Copyright © 2024 Under Motiwala Jewels Gold And Diamonds Pvt Ltd. Company. 
+						All Rights Reserved. No imagery or logos contained within this site may be used without the express permission of Motiwala Jewels Gold And Diamonds Pvt Ltd Company
+					</p>
+				</div>	
 		
 		  </div>
 		</div>

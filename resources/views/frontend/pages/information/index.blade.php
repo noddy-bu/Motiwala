@@ -25,8 +25,7 @@
 					<h4 class="title_heading text-left black_color pb-3 heading_font">Information</h4>
 				</div>
 
-				<div class="col-md-12">
-					<h5 class="black_color"><b>Motiwala & Sons Golden Harvest</b></h5>
+				<div class="col-md-12">					
 					<p>
             Introducing Motiwala Jewels Golden Treasurer Purchase Plan – your smart, secure, 
             and easy way to own the stunning Motiwala Jewels Gold and Diamonds jewellery you love. 
