@@ -9,6 +9,10 @@ body {
     font-family: "Yeseva One", serif;
 }
 
+div#add-phone a {
+    color: #212529 !important;
+}
+
 .main {
     padding: 0px 0 0px 0px;
     background-image: url(/assets/frontend/images/body_bg.png);
@@ -56,9 +60,9 @@ body {
 /*-- banner css open-*/
 
 section.banner_section h3 {
-    font-size: 55px;
+    font-size: 40px;
     font-weight: 400;
-    line-height: 65px;
+    line-height: 47px;
     padding-bottom: 22px;
 }
 
@@ -80,10 +84,10 @@ section.banner_section img {
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
     color: #fff;
-    width: 450px;
+    width: 620px;
     left: auto;
-    margin-right: 48% !important;
-    margin-bottom: 4%;
+    margin-right: 35% !important;
+    margin-bottom: 2%;
 }
 
 .buttonclass a {
@@ -164,7 +168,7 @@ section.why_choose_section {
 
 .choose_content p {
     font-size: 14px;
-    padding-right: 90px;
+    padding-right: 20px;
 }
 
 .choose_content h5 {
@@ -404,14 +408,14 @@ section.steps_section {
 
 .step_box.steps4 {
     position: relative;
-    top: 126px;
+    top: 110px;
     left: -70px;
 }
 
 .step_content1 {
     position: relative;
-    left: -189px;
-    width: 220px;
+    left: -242px;
+    width: 286px;
     top: 20px;
 }
 
@@ -425,8 +429,8 @@ section.steps_section {
 .step_content4 {
     position: relative;
     left: 105px;
-    width: 240px;
-    top: 10px;
+    width: 273px;
+    top: 80px;
 }
 
 .top_step_content {
@@ -482,7 +486,7 @@ footer {
 
 .footer-app-image {
     position: absolute;
-    margin-top: -246px;
+    margin-top: -300px;
 }
 
 .footer-widget .widget-title {
@@ -639,7 +643,7 @@ form.form-subscribe button {
 /*-- accordion section open--*/
 
 section.faq_section {
-    padding: 70px 0px 160px 0px;
+    padding: 70px 0px 220px 0px;
 }
 
 .faq_section .accordion-item {
@@ -695,7 +699,20 @@ section.faq_section {
     border-left: 0 !important;
     width: 100%;
     color: #404040 !important;
-    padding: 17.5px 20px;
+    padding: 18.5px 16px 13.5px 16px;
+}
+
+.amount_check i {
+    font-size: 24px;
+    color: #000;
+}
+
+.btn-check:focus+.btn-primary,
+.btn-primary:focus {
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    box-shadow: none !important;
 }
 
 #amountLabel span {
@@ -898,4 +915,17 @@ td {
 
 .terms_section {
     padding-bottom: 160px;
+}
+
+label#accept_term-error {
+    position: absolute;
+    margin-top: 25px;
+    font-size: 12px;
+    padding-left: 4px;
+    color: #f00;
+}
+
+.error {
+    font-size: 12px !important;
+    color: #f00;
 }
