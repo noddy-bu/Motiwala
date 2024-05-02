@@ -80,7 +80,11 @@ Route::middleware('auth.frontend')->group(function () {
 
 Route::post('/login', [AccountController::class, 'customer_login'])->name('customer.login');
 
+Route::any('/forgot-password/{param}', [AccountController::class, 'forgot_password'])->name('customer.forgot');
+
 Route::get('/logout', [AccountController::class, 'customer_logout'])->name('customer.logout');
+
+
 
 
 Route::get('/clear-cache', function () {

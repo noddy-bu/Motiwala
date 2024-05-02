@@ -82,42 +82,7 @@ $url = url()->current();
   
 <!---------------- logo schema end --------------->
 
-<!---------------- Contact Address Schema ------------------->
-
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LegalService",
-    "name": "Seedling Associates",
-    "image": "{{ asset('/assets/frontend/images/logo.png') }}",
-    "@id": "",
-    "url": "{{ url('') }}/",
-    "telephone": "011-41023400",
-    "address": [
-      {
-        "@type": "PostalAddress",
-        "streetAddress": "Plot No. 66, LGF, #TheHub, Okhla Phase III, Okhla Industrial Estate,",
-        "addressLocality": "New Delhi",
-        "postalCode": "110020",
-        "addressCountry": "IN"
-      },
-      {
-        "@type": "PostalAddress",
-        "streetAddress": "No. 611, Reliables Pride opp.Om Heera Panna Mall, Anand Nagar, Jogeshwari West,",
-        "addressLocality": "Mumbai",
-        "postalCode": "400102",
-        "addressCountry": "IN"
-      },
-      {
-        "@type": "PostalAddress",
-        "streetAddress": "Space jam, SCO, 50-51, Sector 34A,",
-        "addressLocality": "Chandigarh",
-        "postalCode": "160022",
-        "addressCountry": "IN"
-      }
-    ]  
-  }
-</script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 @yield('page.schema')
   
