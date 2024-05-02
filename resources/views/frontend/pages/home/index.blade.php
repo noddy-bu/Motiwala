@@ -28,11 +28,6 @@
                         <p class="black_color">
                             Our website is your gateway to a world of stunning diamonds and exquisite jewellery.
                             We bring you the very best from around the globe, ensuring you find the diamond of your dreams.
-                            Whether you're seeking classic elegance or modern glamour, we have something for everyone.
-                            Our collection is crafted with precision and care, promising you unmatched quality and beauty.
-                            Treat yourself to a piece of luxury that will shine for a lifetime. 
-                            Dive into our treasure trove of elegance and find the perfect adornment for every occasion.
-                            Welcome to a world where beauty knows no bounds!
                         </p>
                         <div class="buttonclass mt-4">
                             <a href="">Explore <i class="las la-arrow-right"></i>
@@ -43,9 +38,8 @@
                 <div class="carousel-item">
                     <img src="/assets/frontend/images/main_banner_images.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block text-start">
-                        <h3 class="black_color heading_font">Gold Jewellery & Diamonds</h3>
-                        <p class="black_color">If you are looking for the perfect diamond, you have come to the right place.
-                            Our site features the world's top diamonds and jewellery. </p>
+                        <h3 class="black_color heading_font">Step into a world of looking beautiful with our Gold And Diamond Jewellery collection! </h3>
+                        <p class="black_color">Here at our website, you'll embark on a journey through a dazzling array of diamonds and exquisite jewellery. From timeless classics to contemporary stunners,</p>
                         <div class="buttonclass mt-4">
                             <a href="">Explore <i class="las la-arrow-right"></i>
                             </a>
@@ -55,9 +49,8 @@
                 <div class="carousel-item">
                     <img src="/assets/frontend/images/main_banner_images.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block text-start">
-                        <h3 class="black_color heading_font">Gold Jewellery & Diamonds</h3>
-                        <p class="black_color">If you are looking for the perfect diamond, you have come to the right place.
-                            Our site features the world's top diamonds and jewellery. </p>
+                        <h3 class="black_color heading_font">Embark on a journey of majesty with our Gold And Diamond Jewellery collection! </h3>
+                        <p class="black_color">Our online haven welcomes you to explore an enchanting array of diamonds and exquisite jewellery.</p>
                         <div class="buttonclass mt-4">
                             <a href="">Explore <i class="las la-arrow-right"></i>
                             </a>
@@ -93,7 +86,6 @@
                     <div class="col-md-3">
                         <div class="step_box steps1">
                             <div class="step_content1">
-                                <h3><b>Step 1</b></h3> 
                                 <p class="black_color" data-aos-once="true" data-aos="fade-right">
                                     Get started by opening a new account on our website, the Motiwala
                                     Jewels Golden Treasure Jewellery Purchase app,
@@ -110,7 +102,6 @@
                     <div class="col-md-3">
                         <div class="step_box steps2">
                             <div class="step_content2">
-                                <h3><b>Step 2</b></h3>
                                 <p class="black_color" data-aos-once="true" data-aos="fade-right">
                                     You can pay a monthly installment of at least ₹2000, or any higher multiples of ₹1000, 
                                     for 10 months using cash, online banking via Standing Instructions, Net-Banking, 
@@ -127,7 +118,6 @@
                     <div class="col-md-3">
                         <div class="step_box steps3">
                             <div class="step_content3">
-                                <h3><b>Step 3</b></h3>
                                 <p class="black_color" data-aos-once="true" data-aos="fade-left">
                                     Receive an exclusive discount of up to 75% of the value of your first installment when you redeem your plan.
                                 </p>
@@ -142,7 +132,6 @@
                     <div class="col-md-3">
                         <div class="step_box steps4">
                             <div class="step_content4">
-                                <h3><b>Step 4</b></h3>
                                 <p class="black_color" data-aos-once="true" data-aos="fade-left">
                                     Acquire your beloved Motiwala Jewels Gold and Diamonds jewellery using the entire redemption value.
                                 </p><br><br>
@@ -158,8 +147,8 @@
 
                 <div class="step_bottom_text">
                     <p class="black_color text-center" data-aos-once="true" data-aos="fade-up">
-                        “Delivering top-notch quality jewellery with the latest designs at prices you can afford,
-                         we bring over a century of industry expertise right to you.”
+                        “Delivering top-notch quality jewellery with the latest designs at prices <span>you can afford,
+                         we bring over a century of industry</span> <span>expertise right to you.”</span>
                     </p>
                     <div class="buttonclass mt-4" data-aos-once="true" data-aos="fade-up">
                         <a href="">Explore <i class="las la-arrow-right"></i>
@@ -189,13 +178,13 @@
                                 </div>
                                 <div class="amount_check">
 
-                                    <div class="row d-flex">
+                                    <div class="row ">
 
-                                        <div class="col-md-6">
-                                            <button id="amount_plus" class="btn btn-block btn-primary">+</button>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <button id="amount_minus" class="btn btn-block btn-primary">-</button>
+                                        <div class="col-md-12 d-flex">
+                                            <button id="amount_plus" class="btn btn-block btn-primary"><i class="las la-plus"></i></button>
+                                       
+                                        
+                                            <button id="amount_minus" class="btn btn-block btn-primary"> <i class="las la-minus"></i> </button>
                                         </div>
 
                                     </div>
@@ -246,7 +235,7 @@
                 <h4 class="title_heading text-center black_color pb-4 heading_font">Why Choose Us ?</h4>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="d-flex gap-4" data-aos-once="true" data-aos="fade-up">
+                        <div class="d-flex gap-3" data-aos-once="true" data-aos="fade-up">
                             <img class="choose_img" src="/assets/frontend/images/exchange_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
@@ -259,7 +248,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="d-flex gap-4 pb-4" data-aos-once="true" data-aos="fade-up">
+                        <div class="d-flex gap-3 pb-4" data-aos-once="true" data-aos="fade-up">
                             <img class="choose_img" src="/assets/frontend/images/best_icons.png" class="d-block w-100"
                                 alt="...">
                             <div class="choose_content">
@@ -272,7 +261,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="d-flex gap-4 pb-4" data-aos-once="true" data-aos="fade-up">
+                        <div class="d-flex gap-3 pb-4" data-aos-once="true" data-aos="fade-up">
                             <img class="choose_img" src="/assets/frontend/images/refer_icons.png" class="d-block w-100"
                                 alt="...">
                             <div class="choose_content">
@@ -285,7 +274,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="d-flex gap-4 pb-4" data-aos-once="true" data-aos="fade-up">
+                        <div class="d-flex gap-3 pb-4" data-aos-once="true" data-aos="fade-up">
                             <img class="choose_img" src="/assets/frontend/images/earnings_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
@@ -297,21 +286,9 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-md-4">
-                        <div class="d-flex gap-4" data-aos-once="true" data-aos="fade-up">
-                            <img class="choose_img" src="/assets/frontend/images/certified_icons.png"
-                                class="d-block w-100" alt="...">
-                            <div class="choose_content">
-                                <h5 class="black_color">Unlocking Benefits with Motiwala Jewels Golden Treasurer Purchase Plan</h5>
-                                <p class="black_color">
-                                    Introducing Motiwala Jewels Golden Treasurer: A unique and convenient payment system
-                                    that offers you a remarkable benefit.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="d-flex gap-4" data-aos-once="true" data-aos="fade-up">
+                        <div class="d-flex gap-3" data-aos-once="true" data-aos="fade-up">
                             <img class="choose_img" src="/assets/frontend/images/exchange_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
@@ -321,7 +298,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="d-flex gap-4" data-aos-once="true" data-aos="fade-up">
+                        <div class="d-flex gap-3" data-aos-once="true" data-aos="fade-up">
                             <img class="choose_img" src="/assets/frontend/images/warranty_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
@@ -330,19 +307,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="d-flex gap-4" data-aos-once="true" data-aos="fade-up">
-                            <img class="choose_img" src="/assets/frontend/images/warranty_icons.png"
-                                class="d-block w-100" alt="...">
-                            <div class="choose_content">
-                                <h5 class="black_color">Quality Assurance Guaranteed: 100% Hallmark Jewellery</h5>
-                                <p class="black_color">
-                                    Rest easy knowing that your jewellery is covered by BIS Regulations. 
-                                    Should you encounter any defects, we'll promptly fix it for you.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </section>

@@ -22,7 +22,18 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
               <a href="{{ url(route('instantpay')) }}">
                 <i class="las la-angle-right"></i> Instant Pay </a>
             </li>
-            <li>
+            
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="col-lg-2 col-md-6">
+        <div class="footer-widget" data-aos-once="true" data-aos="fade-up">
+          <h3 class="widget-title">QUICK LINKS</h3>
+          <ul class="widget-menu">
+
+         <li>
               <a href="#autodebit_modal">
                 <i class="las la-angle-right"></i> Auto Debit </a>
             </li>
@@ -39,15 +50,28 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
       </div>
 
       <div class="col-lg-2 col-md-6">
+        <div class="footer-widget" data-aos-once="true" data-aos="fade-up">
+          <h3 class="widget-title">CONSUMER POLICY</h3>
+          <ul class="widget-menu">
 
+          <li>
+              <a href="{{ url(route('terms_use')) }}"> <i class="las la-angle-right"></i> Term of Use</a>
+            </li>
+            <li>
+              <a href="{{ url(route('privacy-policy')) }}"> <i class="las la-angle-right"></i> Privacy Policy</a>
+            </li>
+            <li>
+              <a href="{{ url(route('feedback')) }}"> <i class="las la-angle-right"></i> Give Us Feedback</a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="col-lg-2 col-md-6">
 
-      </div>
+
 
       <div class="col-lg-3 col-md-6">
         <div class="footer-widget" data-aos-once="true" data-aos="fade-up">
-          <h4 class="heading_font line-height35">Download <br>Our App </h4>
+          <h3 class="heading_font line-height35">Download <br>Our App </h3>
           <p>Shining new app, made just for you! It's Free, Easy & Smart</p>
         </div>
       </div>
@@ -80,17 +104,7 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
       <div class="row">
         <div class="col-md-4">
           <ul>
-            <li>
-              <a href="{{ url(route('terms_use')) }}"> Term of Use</a>
-            </li>
-            <li>|</li>
-            <li>
-              <a href="{{ url(route('privacy-policy')) }}"> Privacy Policy</a>
-            </li>
-            <li>|</li>
-            <li>
-              <a href="{{ url(route('feedback')) }}"> Give Us Feedback</a>
-            </li>
+            
           </ul>
         </div>
         <div class="col-md-4">
