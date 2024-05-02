@@ -28,7 +28,7 @@
                     <div class="col-md-12" id="page-contain">
                         <p>Hello, <br> Warm greetings from Motiwala Jewels Gold and Diamonds Pvt Ltd!</p>
                         
-                        <p>   We extend our heartfelt gratitude for your interest in initiating a new account with
+                        <p>   
                            We extend our heartfelt gratitude for your interest in initiating a new account with
                             Motiwala Jewels Golden Treasurer Purchase Plan. Your keenness is truly appreciated.
                             Kindly proceed with the following steps to help us expedite your request.
