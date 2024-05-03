@@ -34,7 +34,7 @@
 
                     <div class="col-md-12" id="user_profile_detail">
 
-                        <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
+                        <div class="p-3 mb-2 text-black" style="background-color:#e3c2ab ;">
                             <h5 class="mb-0"> Profile Details </h5>
                         </div>
 
@@ -176,7 +176,7 @@
                                 <!------ marital status ------------------------>
 
                                 </br>
-                                <div class="p-3 mt-5 mb-3 text-white" style="background-color:#c0af78;">
+                                <div class="p-3 mt-5 mb-3 text-black" style="background-color:#e3c2ab ;">
                                     <h5 class="mb-0"> Nominee Details </h5>
                                 </div>
                                 </br>

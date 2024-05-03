@@ -31,10 +31,10 @@
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-8">
             <div class="form-group mt-4 adhar_field">
                 <label class="pb-3">Message *</label>
-                <textarea class="form-control" row="5" name="description" style="height: 103px;"></textarea>
+                <textarea class="form-control" row="3" name="description" style="height: 103px;"></textarea>
             </div>
         </div>
 

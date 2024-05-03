@@ -63,33 +63,38 @@
             <form class="col-md-9" id="verify-otp" action="{{ url(route('account.create', ['param' =>'verify-otp'])) }}" method="post">
                 @csrf
 
-                <div class="d-flex">
-
+                <div class="row">
+                
+                <div class="col-md-5">
                     <div class="form-group mt-4 adhar_field">
                         <label class="pb-3">Mobile Number</label>
                         <input type="text" class="form-control" value="{{ Session::get('phone') }}" disabled/>
                     </div>
+                 </div>
 
+                 <div class="col-md-5">
                     <div class="form-group mt-4 adhar_field">
                         <label class="pb-3">Verify OTP *</label>
                         <input type="text" class="form-control" name="otp" pattern="[0-9]+" minlength="6"
                         maxlength="6" placeholder="Please Enter OTP" required/>
                     </div>
+                    </div>
 
+ <div class="col-md-2"></div>
 
+  <div class="col-md-8">
                     <div class="form-group">
                         <div class="buttonclass1 mt60">
                             <button type="submit">Submit <i class="las la-arrow-right"></i></button>
                         </div>
-                    </div>
 
-
-                    
-                    <div class="form-group mx-2">
-                        <div class="buttonclass1 mt60">
+                        <div class="buttonclass1 mt60 ms-3">
                             <button id="resendOTPButton">Resend OTP<i class="las la-arrow-right"></i></button>
                         </div>
+                        
                     </div>
+                    </div>
+
 
                 </div>
 
@@ -117,7 +122,7 @@
 
         
         <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
-            <h5> Customer Information </h5>
+            <h5 class="mb-0"> Customer Information </h5>
         </div>
 
         @if(Session::has('temp_user_id') && !empty(Session::get('temp_user_id')))
@@ -245,7 +250,7 @@
 <div id="plan-detail">
  
     <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
-        <h5> Plan Details </h5>
+        <h5 class="mb-0"> Plan Details </h5>
     </div>
 
     @php 
@@ -279,7 +284,7 @@
                 </div>
             </div>
 
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <div class="form-group mt-4 adhar_field">
                     <label class="pb-3">Installment Amount *</label>
                     {{--<input type="text" class="form-control" name="installment_amount" pattern="[0-9]+" placeholder="Please Enter Your Installment Amount" value="{{ $user->installment_amount }}" required/>--}}
@@ -312,12 +317,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="form-group mt-4 adhar_field">
-                    <label class="pb-3">Nominee Address *</label>
-                    <textarea class="form-control" row="5" name="nominee_address" style="height: 103px;">{{ $user_detail->nominee_address }}</textarea>
-                </div>
-            </div>
+           
 
             <div class="col-md-4">
                 <div class="form-group mt-4 adhar_field">
@@ -327,7 +327,12 @@
                     value="{{ $user_detail->nominee_relation }}" />
                 </div>
             </div>
-
+ <div class="col-md-6">
+                <div class="form-group mt-4 adhar_field">
+                    <label class="pb-3">Nominee Address *</label>
+                    <textarea class="form-control" row="3" name="nominee_address" style="height: 103px;">{{ $user_detail->nominee_address }}</textarea>
+                </div>
+            </div>
 
             <div class="form-group">
                 <div class="buttonclass1 mt60">
@@ -365,14 +370,14 @@
     @endphp
  
     <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
-        <h5> Preview Info </h5>
+        <h5 class="mb-0"> Preview Info </h5>
     </div>
 
     <div class="row d-flex">
 
-        <div class="col-md-6">
+        <div class="col-md-6 pt-3">
 
-            <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+            <div class="card col-md-12">
                 <div class="card-header">
                   Plan Details
                 </div>
@@ -381,8 +386,10 @@
                     <p class="card-text"><strong>Installment Amount (in Rs) : </strong>{{ $user->installment_amount}}</p>
                 </div>
               </div>
+        </div>
 
-              <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+        <div class="col-md-6 pt-3">
+              <div class="card col-md-12">
                 <div class="card-header">
                   Verification Details
                 </div>
@@ -394,15 +401,26 @@
 
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-12 pt-3">
 
-            <div class="card col-md-12 my-5 mx-2" style="width: 39rem;">
+            <div class="card col-md-12" >
                 <div class="card-header">
                   Customer Details
                 </div>
                 <div class="card-body">
-                    <p class="card-text"><strong>Name : </strong>{{ $user->name }}</p>
-                    <p class="card-text"><strong>Address : </strong>
+
+<div class="row">
+    <div class="col-md-4"><p class="card-text pb-2"><strong>Name : </strong>{{ $user->name }}</p></div>
+    <div class="col-md-4"><p class="card-text pb-2"><strong>Email : </strong>{{ $user->email }}</p></div>
+    <div class="col-md-4"><p class="card-text pb-2"><strong>Birthday : </strong>{{ date('d/m/Y', strtotime($user_detail->dob)) }}</p></div>
+    <div class="col-md-4"><p class="card-text pb-2"><strong>Mobile : </strong>{{ $user->phone }}</p></div>
+    <div class="col-md-4"><p class="card-text pb-2"><strong>ULP ID : </strong>NA</p></div>
+    <div class="col-md-4"><p class="card-text pb-2"><strong>Nominee Name : </strong>{{ !empty($user_detail->nominee_name) ? $user_detail->nominee_name : 'NA' }}</p></div>
+    <div class="col-md-4"><p class="card-text pb-2"><strong>Nominee Phone No : </strong>{{ !empty($user_detail->nominee_phone) ? $user_detail->nominee_phone : 'NA' }}</p></div>
+    <div class="col-md-4"><p class="card-text pb-2"><strong>Nominee DOB : </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}</p></div>
+    <div class="col-md-4"><p class="card-text pb-2"><strong>Nominee Address : </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}</p></div>
+    <div class="col-md-4"><p class="card-text pb-2"><strong>Nominee Relation : </strong>{{ !empty($user_detail->nominee_relation) ? $user_detail->nominee_relation : 'NA' }}</p></div>
+    <div class="col-md-8"><p class="card-text pb-2"><strong>Address : </strong>
                     @php 
                         echo $user_detail->flat_no . ",\n";
                         echo $user_detail->street . ",\n";
@@ -411,16 +429,9 @@
                         echo $user_detail->state . ",\n";
                         echo $user_detail->pincode;
                     @endphp
-                    </p>
-                    <p class="card-text"><strong>Email : </strong>{{ $user->email }}</p>
-                    <p class="card-text"><strong>Birthday : </strong>{{ date('d/m/Y', strtotime($user_detail->dob)) }}</p>
-                    <p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p>
-                    <p class="card-text"><strong>ULP ID : </strong>NA</p>
-                    <p class="card-text"><strong>Nominee Name : </strong>{{ !empty($user_detail->nominee_name) ? $user_detail->nominee_name : 'NA' }}</p>
-                    <p class="card-text"><strong>Nominee Phone No : </strong>{{ !empty($user_detail->nominee_phone) ? $user_detail->nominee_phone : 'NA' }}</p>
-                    <p class="card-text"><strong>Nominee DOB : </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}</p>
-                    <p class="card-text"><strong>Nominee Address : </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}</p>
-                    <p class="card-text"><strong>Nominee Relation : </strong>{{ !empty($user_detail->nominee_relation) ? $user_detail->nominee_relation : 'NA' }}</p>
+                    </p></div>
+</div>
+
                 </div>
               </div>
 
@@ -430,50 +441,34 @@
 
     </div>
 
-    <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
-        <h5> eKYC Process </h5>
+    <div class="p-3 mb-2 text-white mt-4" style="background-color:#c0af78;">
+        <h5 class="mb-0"> eKYC Process </h5>
     </div>
 
     <div>
-        <div class="steps-title mx-2 my-2">
-            <span style="color: var(--primary-text); font-size: var(--primary-font-size-heading);">Terms and Conditions
-            </span><br /><label style="color: var(--ternary-text); font-size: var(--tertiary-font-size); padding: 5px;"><br />
-                By clicking on proceed button below, you are hereby acknowledging that you are providing your Aadhaar related
-                details voluntarily to   Motiwala & Sons Private Limited to retrieve your Aadhaar Paperless-XML from the UIDAI Portal
-                on your behalf based on the process detailed below. It is not mandatory for you to provide your Aadhaar details.
-                If you do not wish to continue with providing the same, request you to cancel the transactions. I understand
-                that   Motiwala & Sons Private Limited will be able to access my photograph through XML file being parsed from the
-                database of Unique Identification Authority of India, to further share the same with the service provider. If
-                you do not agree for us to access the same, request you to not click on Proceed. <br /><br />By accepting the <a
-                    style="color: var(--secondary-text);">Terms &amp; Conditions</a> you are expressly providing your consent to
-                the collection of your information for the purpose of providing access of the same by   Motiwala & Sons to enable
-                (&ldquo;Client&rdquo;) to initiate your on boarding to avail the Client&rsquo;s services. The information you
-                provide may be used to help improve and train our products and assist in the development of any technologies and
-                in addition   Motiwala & Sons may use the above information to fulfil any other lawful purpose.   Motiwala & Sons shall be
-                redacting and collecting your Aadhaar number. The first 8 digits of the Aadhaar number will be blacked out when
-                you insert the same on to the webpage. You shall be prompted to insert the Aadhaar number twice, in order to
-                ensure its correctness and the Aadhaar number will be encrypted and transferred/ accessed. </label><br />
-            <div style="color: var(--ternary-text); font-size: var(--tertiary-font-size); padding: 5px; word-spacing: normal;">
-                The following screens will capture your Aadhaar number / VID and other relevant details required to download
-                Paperless-XML from UIDAI Portal <a style="color: var(--secondary-text); cursor: pointer;"
-                    href="https://myaadhaar.uidai.gov.in/" target="_blank" rel="noreferrer">https://myaadhaar.uidai.gov.in/</a>
-                instead of forwarding you to UIDAI portal. We will be doing the video ID KYC process including the following
-                steps:</div>
-            <br />
-            <div style="color: var(--ternary-text); font-size: var(--tertiary-font-size); padding: 5px;">1. Connecting to UIDAI
-                portal and fetching XML.</div>
-            <div style="color: var(--ternary-text); font-size: var(--tertiary-font-size); padding: 5px;">2. Capturing OTP/TOTP
-                and Validating it using UIDAI portal.</div>
-            <div style="color: var(--ternary-text); font-size: var(--tertiary-font-size); padding: 5px;">3. Sending request to
-                UIDAI portal and get response HTML.</div>
-            <div style="color: var(--ternary-text); font-size: var(--tertiary-font-size); padding: 5px;">4. Parsing HTML and
-                populate fields in the UI.</div>
-            <div style="color: var(--ternary-text); font-size: var(--tertiary-font-size); padding: 5px;">5. Sending request to
-                offline Aadhaar portal to download the ZIP file protected with Share code.</div>
-            <div style="color: var(--ternary-text); font-size: var(--tertiary-font-size); padding: 5px;">6. Application fetches
-                ZIP XML response from Offline Aadhaar in memory.</div>
-            <div style="color: var(--ternary-text); font-size: var(--tertiary-font-size); padding: 5px;">7. ZIP XML File and
-                Share code is shared with requesting agency for consuming KYC data.</div>
+        <div class="steps-title pt-2">
+            
+			<p><b>Terms and Conditions</b></p>
+			<p>By clicking on proceed button below, you are hereby acknowledging that you are providing your Aadhaar related details voluntarily to Motiwala & Sons Private Limited to retrieve your Aadhaar Paperless-XML from the UIDAI Portal on your behalf based on the process detailed below. It is not mandatory for you to provide your Aadhaar details. If you do not wish to continue with providing the same, request you to cancel the transactions. I understand that Motiwala & Sons Private Limited will be able to access my photograph through XML file being parsed from the database of Unique Identification Authority of India, to further share the same with the service provider. If you do not agree for us to access the same, request you to not click on Proceed.
+</p>
+			<p>By accepting the Terms & Conditions you are expressly providing your consent to the collection of your information for the purpose of providing access of the same by Motiwala & Sons to enable (“Client”) to initiate your on boarding to avail the Client’s services. The information you provide may be used to help improve and train our products and assist in the development of any technologies and in addition Motiwala & Sons may use the above information to fulfil any other lawful purpose. Motiwala & Sons shall be redacting and collecting your Aadhaar number. The first 8 digits of the Aadhaar number will be blacked out when you insert the same on to the webpage. You shall be prompted to insert the Aadhaar number twice, in order to ensure its correctness and the Aadhaar number will be encrypted and transferred/ accessed.
+</p>
+
+<p>The following screens will capture your Aadhaar number / VID and other relevant details required to download Paperless-XML from UIDAI Portal <a href="https://myaadhaar.uidai.gov.in/"></a>https://myaadhaar.uidai.gov.in/ instead of forwarding you to UIDAI portal. 
+</p>
+
+<p><strong>We will be doing the video ID KYC process including the following steps:</strong></p>
+
+<ul class="steps_li">
+<li>Connecting to UIDAI portal and fetching XML.</li>
+<li>Capturing OTP/TOTP and Validating it using UIDAI portal.</li>
+<li>Sending request to UIDAI portal and get response HTML.</li>
+<li>Parsing HTML and populate fields in the UI.</li>
+<li>Sending request to offline Aadhaar portal to download the ZIP file protected with Share code.</li>
+<li>Application fetches ZIP XML response from Offline Aadhaar in memory.</li>
+<li>ZIP XML File and Share code is shared with requesting agency for consuming KYC data.</li>
+
+</ul>
         </div>
     </div>
 
