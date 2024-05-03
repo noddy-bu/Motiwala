@@ -215,6 +215,160 @@ class AccountController extends Controller
     /*------------------------------ other inner Function -------------------------------------------------*/
 
 
+    /*------------------------------ Forgot password Function --------------------------------------------*/
+
+    public function forgot_password($param, Request $request){
+
+
+        if($param == "verify-number-send-otp"){
+
+            $validator = Validator::make($request->all(), [
+                'phone' => 'required|regex:/^\d{10}$/',
+            ]);
+    
+            if ($validator->fails()) {
+                $errors = $validator->errors()->all();
+        
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $errors
+                ], 200);
+            } 
+    
+            $user = DB::table('users')->where('phone', $request->phone)->where('status','1')->get(['id'])->first();
+    
+            if($user){
+
+                Session()->flush();
+
+                $otp = mt_rand(100000, 999999);
+                $timestamp = Carbon::now();
+                Session::put('otp', $otp);
+                Session::put('otp_timestamp', $timestamp);
+                Session::put('user_forget_id', $user->id);
+                
+
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'OTP has been Share on this No : '.$request->phone.''
+                ], 200);
+
+            } else {
+
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'User Not exist Please Provide Valid Number',
+                ], 200);
+
+            }
+    
+
+        }elseif($param == "verify-forgot-otp"){
+
+            $validator = Validator::make($request->all(), [
+                'otp' => 'required|digits:6',
+            ]);
+    
+            if ($validator->fails()) {
+                $errors = $validator->errors()->all();
+        
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $errors
+                ], 200);
+            } 
+    
+            $otp = Session::get('otp');
+            $timestamp = Session::get('otp_timestamp');
+    
+            // Check if OTP expired (2 minutes)
+            if (Carbon::parse($timestamp)->diffInMinutes(Carbon::now()) > 2) {
+
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'OTP has expired. Please request a new one',
+                ], 200);
+
+            }
+    
+            if ($request->otp == $otp) {
+
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'OTP has been Verify successfully'
+                ], 200);
+
+            } else {
+
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Invalid OTP',
+                ], 200);
+
+
+            }
+    
+        
+        }elseif($param == "reset-password"){
+
+
+            $validator = Validator::make($request->all(), [
+                'password' => 'required|min:8|same:password_conform',
+                'password_conform' => 'required|min:8',
+            ]);
+    
+            if ($validator->fails()) {
+                $errors = $validator->errors()->all();
+        
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $errors
+                ], 200);
+            }
+    
+            $user = DB::table('users')->where('id', Session::get('user_forget_id'))->where('status','1')->get(['id'])->first();
+
+            if($user){
+                DB::table('users')->where('id', Session::get('user_forget_id'))->update([
+                    'password' => bcrypt($request->input('password')),
+                ]);
+    
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'New Password Update Successfully',
+                ], 200);
+
+            } else {
+
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Something Went Wrong'
+                ], 200);
+
+            }
+
+
+
+        } else {
+
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Something Went Wrong or Invalid parameter: '.$param.''
+            ], 200);
+
+        }
+
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Successfully forgot Password'
+        ], 200);
+
+    }
+
+
+    /*------------------------------ Forgot password Function -------------------------------------------*/
+
 
 
     /*------------------------------  Registration user -------------------------------------------------*/

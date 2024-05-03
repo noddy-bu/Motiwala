@@ -21,14 +21,13 @@
 
             <div class="form-group mt-2">
                 <input type="checkbox" name="accept_term" id="agree" value="yes" required/>
-                <label for="agree">I accept <a href="{{ url(route('terms')) }}">“Terms and conditions”</a> of Motiwala &
-                    Sons Golden Harvest.</label>
+                <label for="agree">I accept <a href="{{ url(route('terms')) }}">“Terms and conditions”</a> of Motiwala Jewels Gold and Diamonds Pvt Ltd.</label>
             </div>
 
 
             <div class="d-flex">
                 <div class="form-group mt-4 adhar_field">
-                    <label class="pb-3">Mobile Number* (As per Aadhaar)</label>
+                    <label class="pb-3">Mobile Number* (As on Aadhaar Card)</label>
                     <input type="text" class="form-control" name="phone"
                         placeholder="Please Enter Mobile Number" pattern="[0-9]+" minlength="10"
                         maxlength="10" placeholder="Please Enter Mobile Number" required/>

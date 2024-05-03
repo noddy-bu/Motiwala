@@ -40,6 +40,8 @@
     @yield('component.scripts')
     @yield('login.scripts')
 
+    @yield('forgot.scripts')
+
 </body>
 
 </html>

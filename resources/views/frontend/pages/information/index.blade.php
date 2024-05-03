@@ -25,8 +25,7 @@
 					<h4 class="title_heading text-left black_color pb-3 heading_font">Information</h4>
 				</div>
 
-				<div class="col-md-12">
-					<h5 class="black_color"><b>Motiwala & Sons Golden Harvest</b></h5>
+				<div class="col-md-12">					
 					<p>
             Introducing Motiwala Jewels Golden Treasurer Purchase Plan – your smart, secure, 
             and easy way to own the stunning Motiwala Jewels Gold and Diamonds jewellery you love. 
@@ -102,7 +101,7 @@
             <div class="choose_content">
               <p class="black_color">
                 Once you've completed 10 months of payments, you'll qualify for a special discount of 
-                up to 75% of your first instalment's value. That means more savings for you on the 
+                up to 75% of your first installment's value. That means more savings for you on the 
                 jewellery you desire!
               </p>
             </div>
@@ -111,9 +110,8 @@
 
 		<div class="col-md-12">
            <p class="pt-4 pb-4">
-              You need to make sure to close your account within 
-              400 days from the date you opened your Motiwala 
-              Jewels Golden Treasurer Purchase Plan account.
+              Please ensure to close your account within 400 days from the date you opened 
+              your Motiwala Jewels Golden Treasurer Purchase Plan account.
             </p>
            <p>For Example ( Only if all installments are paid on due date )</p>
         

@@ -140,11 +140,16 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
   </div>
 </footer>
 
-
+<!-- forgot password modal popup open-->
+@include('frontend.component.forgot_password_modal_form')
+<!--- forgot password Modal Popup ------->
 
 <!-- login modal popup open-->
 @include('frontend.component.login_modal_form')
 <!--- Login Modal Popup ------->
+
+
+
 
 
 <!-- Auto Debit modal popup open-->

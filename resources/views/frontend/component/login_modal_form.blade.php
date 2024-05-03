@@ -14,7 +14,7 @@
             </div>
             <div class="form-group mt-5">
               <input type="password" class="form-control" name="password" placeholder="Password*" />
-              <button class="forget_buttons">Forgot Password</button>
+              <a class="forget_buttons" onclick="open_reset_password_form();">Forgot Password</a>
             </div>
             <div class="form-group">
               <div class="buttonclass1 mt60">
@@ -33,6 +33,13 @@
 
   @section("login.scripts")
   <script>
+
+      function open_reset_password_form(){
+
+        $('#loginmodal').modal('hide');
+        $('#forgot_password').modal('show');
+
+      }
 
       $(document).ready(function(){
           $('#loginForm').submit(function(e){
@@ -64,6 +71,7 @@
                   }
               });
           });
+
       });
     
     </script>

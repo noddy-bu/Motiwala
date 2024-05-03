@@ -22,13 +22,12 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h4 class="title_heading text-center black_color pb-0 heading_font">GOLDEN HARVEST JEWELLERY PURCHASE PLAN</h4>
+					<h4 class="title_heading text-center black_color pb-0 heading_font">GOLDEN TREASURE JEWELLERY PURCHASE PLAN</h4>
 				   <h5 class="black_color text-center pb-4">TERMS AND CONDITIONS</h5>
                 </div>
 
 				<div class="col-md-12">
-				    {{--@php echo html_entity_decode(get_settings('terms_content')) @endphp--}}
-					<h2>Golden Treasure Jewellery Purchase Plan Terms and Conditions</h2>
+				    {{--@php echo html_entity_decode(get_settings('terms_content')) @endphp--}}					
 					<p>The Golden Treasure Jewellery Purchase Plan (hereinafter “Golden Treasure” or the “Plan”) 
 						offered by Motiwala Jewels Gold and Diamonds Pvt Ltd (“Company”) facilitates Customers 
 						to purchase Gold and Diamonds Jewellery by making payments for the same over a ten month 
@@ -200,14 +199,14 @@
 						on behalf of the account holder will not be entertained unless such person being a legal heir/duly 
 						authorised person claiming the benefits under the Plan, shall produce below documents to the Company:
 						<br>
-						<ul>
+						<Ol>
 							<li>Death certificate of the deceased.</li>
 							<li>Succession Certificate.</li>
 							<li>NOC from other surviving legal heir for redemption.</li>
 							<li>Indemnity undertaking to indemnify Titan from claims.</li>
 							<li>Will (if any)</li>
 							<li>Along with all other supporting documents and clarifications</li>
-						</ul>
+						</Ol>
 						<br>However, the decision of the Company shall be final on sufficiency of any document in all such cases 
 						above and the same shall be binding upon the claimants.
 					</p>

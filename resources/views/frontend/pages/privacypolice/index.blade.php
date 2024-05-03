@@ -11,7 +11,7 @@
 <!-- -------------------- privacy start ---------------- -->
 
 <section class="inner_page_banner">
-    <img src="/assets/frontend/images/innwe_imagebanner.jpg" class="d-block w-100" alt="...">
+    <img src="/assets/frontend/images/innwe_imagebanner.jpg" class="d-block w-100" alt="..." >
 </section>
 
 
@@ -26,40 +26,33 @@
                     </div>
     
                     <div class="col-md-12">
-                        <p>
-                            We understand that your privacy is important to you and we respect that. 
-                            We ensure you that Motiwala Jewels Gold And Diamonds Pvt Ltd. Company. 
-                            maintains complete confidentiality of the details that you have shared with us 
-                            and will not share it with any third party. We may ask for certain details 
-                            such as name; date of birth; e-mail address; residential address; contact number 
-                            etc for registration purposes or for giving feedback , contests , newsletters 
-                            and placing an order. At any point in time you can unsubscribe to our newsletters 
-                            or any other information which you may receive from Motiwala Jewels Gold And 
-                            Diamonds Pvt Ltd. Also, for enhanced security, Motiwala Jewels Gold and Diamonds 
-                            Pvt Ltd does not accept any financial information on its servers. 
-                            All information entered by the customer is directly received through our 
-                            payment gateway and are transmitted to their respective banks’ servers. 
-                            All this is done through industry standard encryption protocol known as 
-                            SSL (Secure Socket Layer). The payments on our website are processed by a 
-                            third party who has signed a non-disclosure agreement with us and therefore, 
-                            are not allowed to share any personal information of the customers.
-                        </p>	
+                    <p>
+                        We understand that your privacy is important to you, and we respect that.
+                        Motiwala Jewels Gold And Diamonds Pvt Ltd. Company ensures complete confidentiality 
+                        of the details you share with us and does not disclose them to any third party. 
+                        We may request certain details such as name, date of birth, email address, 
+                        residential address, and contact number for registration purposes, feedback, 
+                        contests, newsletters, or placing an order.
+                    </p>
+
+                    <p>
+                        You can unsubscribe from our newsletters or any other information you receive 
+                        from Motiwala Jewels Gold And Diamonds Pvt Ltd. at any time. For enhanced security, 
+                        Motiwala Jewels Gold and Diamonds Pvt Ltd. does not accept any financial information 
+                        on its servers. All information provided by the customer is directly received through 
+                        our payment gateway and transmitted to their respective banks' servers using 
+                        industry-standard encryption protocols known as SSL (Secure Socket Layer).
+                    </p>
+
+                    <p>
+                        Payments on our website are processed by a third party that has signed a 
+                        non-disclosure agreement with us and is therefore not permitted to share 
+                        any personal customer information.
+                    </p>
+	
                     </div>
     
-                    <div>
-                        <h4 class="text-center">Old Scheme Closure</h4>
-                        <div class="text-center mb-3">
-                            <a href="/termsofuse">Terms Of Use</a> | 
-                            <a href="/privacy-policy">Privacy Policy</a> | 
-                            <a href="#">Give Us Feedback</a>
-                        </div>
-                        <p > 
-                            Copyright © 2024 Under Motiwala Jewels Gold And Diamonds Pvt Ltd. Company. 
-                            All Rights Reserved. No imagery or logos contained within this site may be used without the express permission of Motiwala Jewels Gold And Diamonds Pvt Ltd Company
-                        </p>
-                    </div>
-
-            
+                         
             
               </div>
             </div>
