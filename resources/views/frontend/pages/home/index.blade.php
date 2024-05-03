@@ -26,8 +26,9 @@
                     <div class="carousel-caption d-none d-md-block text-start">
                         <h3 class="black_color heading_font">Discover the magic of Gold And Diamond Jewellery right here</h3>
                         <p class="black_color">
-                            Our website is your gateway to a world of stunning diamonds and exquisite jewellery.
-                            We bring you the very best from around the globe, ensuring you find the diamond of your dreams.
+                            Explore our exquisite collection of Gold and Diamond Jewellery,
+                            featuring stunning pieces crafted with precision and care, promising unmatched 
+                            quality and beauty for every occasion.
                         </p>
                         <div class="buttonclass mt-4">
                             <a href="">Explore <i class="las la-arrow-right"></i>
@@ -39,7 +40,11 @@
                     <img src="/assets/frontend/images/main_banner_images.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block text-start">
                         <h3 class="black_color heading_font">Step into a world of looking beautiful with our Gold And Diamond Jewellery collection! </h3>
-                        <p class="black_color">Here at our website, you'll embark on a journey through a dazzling array of diamonds and exquisite jewellery. From timeless classics to contemporary stunners,</p>
+                        <p class="black_color">
+                            Explore our captivating Gold and Diamond Jewellery collection, 
+                            showcasing a curated selection of timeless classics and contemporary stunners, 
+                            meticulously crafted for unparalleled quality and beauty to suit every style and occasion.
+                        </p>
                         <div class="buttonclass mt-4">
                             <a href="">Explore <i class="las la-arrow-right"></i>
                             </a>
@@ -50,7 +55,11 @@
                     <img src="/assets/frontend/images/main_banner_images.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block text-start">
                         <h3 class="black_color heading_font">Embark on a journey of majesty with our Gold And Diamond Jewellery collection! </h3>
-                        <p class="black_color">Our online haven welcomes you to explore an enchanting array of diamonds and exquisite jewellery.</p>
+                        <p class="black_color">
+                            Discover our captivating Gold and Diamond Jewellery collection, featuring an enchanting array 
+                            of meticulously crafted pieces from classic elegance to contemporary chic, 
+                            promising unparalleled quality and charm for every style and occasion.
+                        </p>
                         <div class="buttonclass mt-4">
                             <a href="">Explore <i class="las la-arrow-right"></i>
                             </a>
@@ -73,7 +82,7 @@
                         to 75% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
                     </p>
                     <h4 class="title_heading text-center black_color pb-1 heading_font pt-4 " data-aos-once="true"
-                        data-aos="fade-up">Unlocking your dream jewellery in just 4 simple steps:</h4>
+                        data-aos="fade-up">Unlock your dream jewellery in just 4 simple steps:</h4>
                     <!-- <p class="text-center black_color" data-aos-once="true" data-aos="fade-up">to purchase the jewellery of
                         your dreams</p> -->
                 </div>
@@ -292,8 +301,11 @@
                             <img class="choose_img" src="/assets/frontend/images/exchange_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
-                                <h5 class="black_color">Lifetime Exchange</h5>
-                                <p class="black_color">Exchange your old designs anytime you want an upgrade.</p>
+                                <h5 class="black_color">Unlocking Benefits with Motiwala Jewels Golden Treasurer Purchase Plan</h5>
+                                <p class="black_color">
+                                    Introducing Motiwala Jewels Golden Treasurer: 
+                                    A unique and convenient payment system that offers you a remarkable benefit.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -302,8 +314,11 @@
                             <img class="choose_img" src="/assets/frontend/images/warranty_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
-                                <h5 class="black_color">One Year Warranty</h5>
-                                <p class="black_color">If your jewellery has a defect, we will fix it.</p>
+                                <h5 class="black_color">Quality Assurance Guaranteed: 100% Hallmark Jewellery</h5>
+                                <p class="black_color">
+                                    Rest easy knowing that your jewellery is covered by BIS Regulations. 
+                                    Should you encounter any defects, we'll promptly fix it for you.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -340,10 +355,8 @@
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                Discover a stunning array of options including Earrings, Necklaces, Ring, Bracelets,
-                                Bangle and more,precious stones, crafted with precision and elegance to suit every occasion.
-                                Explore our diverse collections, from classic designs to contemporary styles,
-                                ensuring there's something special for everyone's taste and preferences.
+                                Discover a stunning array of options including Earrings, Necklaces, Ring, Bracelets, 
+                                Bangle,precious stones, and more crafted with precision and elegance to suit every occasion. Explore our diverse collections, from classic designs to contemporary styles, ensuring there's something special for everyone's taste and preferences.
                             </div>
                         </div>
                     </div>

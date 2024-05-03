@@ -101,7 +101,7 @@
             <div class="choose_content">
               <p class="black_color">
                 Once you've completed 10 months of payments, you'll qualify for a special discount of 
-                up to 75% of your first instalment's value. That means more savings for you on the 
+                up to 75% of your first installment's value. That means more savings for you on the 
                 jewellery you desire!
               </p>
             </div>
@@ -110,9 +110,8 @@
 
 		<div class="col-md-12">
            <p class="pt-4 pb-4">
-              You need to make sure to close your account within 
-              400 days from the date you opened your Motiwala 
-              Jewels Golden Treasurer Purchase Plan account.
+              Please ensure to close your account within 400 days from the date you opened 
+              your Motiwala Jewels Golden Treasurer Purchase Plan account.
             </p>
            <p>For Example ( Only if all installments are paid on due date )</p>
         
