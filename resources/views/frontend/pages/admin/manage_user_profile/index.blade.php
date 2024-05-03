@@ -24,24 +24,18 @@
                     <div class="col-md-12" id="page-heading">
                         <h4 class="title_heading text-center black_color pb-3 heading_font">Edit User Profile</h4>
                     </div>
-
-                    <div class="row mb-2">
-                        <div class="col-sm-5">
-                           <!--<h3>List</h3>-->
-                        </div>
-                        <div class="col-sm-7">
-                           <div class="text-sm-end">
+                           
+                     <div class="col-md-12">
+                    <div class="text-sm-end mb-2">
                                <a href="{{ url(route('customer.reset_password')) }}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-2"></i> Reset Password</a>
                            </div>
-                        </div>
-                        <!-- end col-->
-                     </div>
+                           </div>
 
 
                     <div class="col-md-12" id="user_profile_detail">
 
                         <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
-                            <h5> Profile Details </h5>
+                            <h5 class="mb-0"> Profile Details </h5>
                         </div>
 
                         <form id="user-panel-info" action="{{ url(route('account.customer.update.profile')) }}" method="post">
@@ -183,7 +177,7 @@
 
                                 </br>
                                 <div class="p-3 mt-5 mb-3 text-white" style="background-color:#c0af78;">
-                                    <h5> Nominee Details </h5>
+                                    <h5 class="mb-0"> Nominee Details </h5>
                                 </div>
                                 </br>
 
@@ -208,15 +202,8 @@
                                         <input type="date" class="form-control" name="nominee_dob" value="{{ $user_detail->nominee_dob }}" />
                                     </div>
                                 </div>
-                    
-                                <div class="col-md-4">
-                                    <div class="form-group mt-4 adhar_field">
-                                        <label class="pb-3">Nominee Address *</label>
-                                        <textarea class="form-control" row="5" name="nominee_address" style="height: 103px;">{{ $user_detail->nominee_address }}</textarea>
-                                    </div>
-                                </div>
-                    
-                                <div class="col-md-4">
+
+                                 <div class="col-md-4">
                                     <div class="form-group mt-4 adhar_field">
                                         <label class="pb-3">Relationship with Account Holder</label>
                                         <input type="text" class="form-control" name="nominee_relation" pattern="[A-Za-z]+" minlength="3"
@@ -224,12 +211,21 @@
                                         value="{{ $user_detail->nominee_relation }}" />
                                     </div>
                                 </div>
+                    
+                                <div class="col-md-8">
+                                    <div class="form-group mt-4 adhar_field">
+                                        <label class="pb-3">Nominee Address *</label>
+                                        <textarea class="form-control" row="2" name="nominee_address" style="height: 103px;">{{ $user_detail->nominee_address }}</textarea>
+                                    </div>
+                                </div>
+                    
+                               
 
 
             
             
                                 <div class="form-group">
-                                    <div class="buttonclass1 mt60">
+                                    <div class="buttonclass1">
                                         <button type="submit">Submit <i class="las la-arrow-right"></i></button>
                                     </div>
                                 </div>

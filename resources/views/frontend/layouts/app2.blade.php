@@ -11,7 +11,7 @@
 
 </head>
 
-<body id="index">
+<body id="index" class="after_login_body">
 
     <!---========Header======----->
 

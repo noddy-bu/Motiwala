@@ -1,10 +1,5 @@
-<header class="w-100 z-index-1">
-    <nav class="navbar navbar-expand-lg">
-
-        <div class="container-fluid pt-2 px-3">
-
-            <div class="dropdown pb-4">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+ <div class="dropdown pb-4 userlogin_box">
+                <a href="#" class="align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
                     <span class="d-none d-sm-inline mx-1 text-dark"><b>{{ ucfirst(auth()->user()->name) }}</b></span>
                 </a>
@@ -16,10 +11,3 @@
                     <li><a class="dropdown-item" href="{{ route('customer.logout') }}">Sign out</a></li>
                 </ul>
             </div>
-            
-        </div>
-        
-    </nav>
-</header>
-
-

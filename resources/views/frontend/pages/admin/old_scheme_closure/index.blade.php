@@ -18,7 +18,7 @@
 <!-- -------------------- privacy content  start ---------------- -->  
 
 <main class="main">
-	<section class="pt-5 terms_section">
+	<section class="pt-5 pb-5">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -27,7 +27,7 @@
 
 				<div class="col-md-12">
 				    <div class="md-title">
-						<h4>
+						<h4 class="text-center">
 							For old golden harvest customers <span>
 								(for all customers who have enrolled before 20th April
 								2014)
@@ -56,7 +56,7 @@
                 </div>
 
 				<div class="p-3 mb-2 text-white text-center" style="background-color:#c0af78;">
-					<p>For any clarifications please contact your showroom where you opened your account or</p>
+					<p class="mb-0">For any clarifications please contact your showroom where you opened your account or</p>
 
 					<div>
 						Call: <a href="tel:18009000000">1800 9000 000</a> | Email: <a href="mailto:xyz@gmail.com">xyz@gmail.com</a>

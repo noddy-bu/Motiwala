@@ -1,8 +1,8 @@
-<div class="container-fluid">
+<div class="container-fluid sidebaar_section">
     <div class="row">
 
-        <div class="col-sm-auto bg-light sticky-top">
-            <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center sticky-top">
+        <div class="col-md-3 width20 bg-light bg_theme">
+            <div class="d-flex flex-sm-column flex-row flex-nowrap align-items-center position-fixed">
 
                 <a href="/" class="d-block p-3 link-light text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
                     <img  src="{{ asset('/assets/frontend/images/logo.png') }}">
@@ -12,61 +12,61 @@
 
                     <li class="nav-item">
                         <a href="{{ url(route('information')) }}" class="nav-link align-middle px-0">
-                            <i class="la la-info"></i> <span class="ms-1 d-none d-sm-inline">Information</span>
+                            <i class="las la-exclamation-circle"></i> <span class="ms-1 d-none d-sm-inline">Information</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a href="{{ url(route('index')) }}" class="nav-link align-middle px-0">
-                            <i class="la la-info"></i> <span class="ms-1 d-none d-sm-inline">Pay Installments</span>
+                            <i class="las la-hand-holding-usd"></i> <span class="ms-1 d-none d-sm-inline">Pay Installments</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a href="{{ url(route('customer.myaccounts')) }}" class="nav-link align-middle px-0">
-                            <i class="la la-info"></i> <span class="ms-1 d-none d-sm-inline">Manage A/c & Benefits</span>
+                            <i class="las la-user-plus"></i><span class="ms-1 d-none d-sm-inline">Manage A/c & Benefits</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a href="{{ url(route('customer.get-si-account-nos')) }}#autodebit_modal" class="nav-link align-middle px-0">
-                            <i class="la la-info"></i> <span class="ms-1 d-none d-sm-inline">Auto Debit</span>
+                            <i class="las la-credit-card"></i> <span class="ms-1 d-none d-sm-inline">Auto Debit</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a href="{{ url(route('customer.cancel-ach-si')) }}" class="nav-link align-middle px-0">
-                            <i class="la la-info"></i> <span class="ms-1 d-none d-sm-inline">Cancel ACH / Auto Debit (SI)</span>
+                            <i class="lab la-cc-mastercard"></i> <span class="ms-1 d-none d-sm-inline">Cancel ACH / Auto Debit (SI)</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a href="{{ url(route('edit-user-profile')) }}" class="nav-link align-middle px-0">
-                            <i class="la la-info"></i> <span class="ms-1 d-none d-sm-inline">Manage Profile</span>
+                            <i class="las la-user-circle"></i> <span class="ms-1 d-none d-sm-inline">Manage Profile</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a href="{{ url(route('link-account')) }}" class="nav-link align-middle px-0">
-                            <i class="la la-info"></i> <span class="ms-1 d-none d-sm-inline">Group Account</span>
+                           <i class="las la-user-friends"></i> <span class="ms-1 d-none d-sm-inline">Group Account</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a href="{{ url(route('old-scheme-closure')) }}" class="nav-link align-middle px-0">
-                            <i class="la la-info"></i> <span class="ms-1 d-none d-sm-inline">Old Scheme Closure</span>
+                            <i class="las la-file-invoice"></i> <span class="ms-1 d-none d-sm-inline">Old Scheme Closure</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a href="{{ url(route('terms')) }}" class="nav-link align-middle px-0">
-                            <i class="la la-info"></i> <span class="ms-1 d-none d-sm-inline">Terms and Conditions</span>
+                            <i class="las la-clipboard-list"></i> <span class="ms-1 d-none d-sm-inline">Terms and Conditions</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a href="{{ url(route('faq')) }}" class="nav-link align-middle px-0">
-                            <i class="la la-info"></i> <span class="ms-1 d-none d-sm-inline">FAQ</span>
+                            <i class="las la-question-circle"></i> <span class="ms-1 d-none d-sm-inline">FAQ</span>
                         </a>
                     </li>
 
@@ -77,6 +77,6 @@
 
             </div>
         </div>
-        <div class="col-sm p-3 min-vh-100">
+        <div class="col-md-9 width80 p-3 min-vh-100">
 
 

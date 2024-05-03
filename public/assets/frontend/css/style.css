@@ -929,3 +929,226 @@ label#accept_term-error {
     font-size: 12px !important;
     color: #f00;
 }
+
+
+
+/*-- after login css start--*/
+
+.sidebaar_section .bg_theme {
+    background-color: #e3c2ab !important;
+    box-shadow: 0px 0px 13px -3px #ccc;
+    border-right: 1px solid #cccccc1a;
+}
+
+.sidebaar_section .bg_theme a.nav-link.align-middle.px-0 {
+    color: #000;
+    font-weight: 400;
+}
+
+.sidebaar_header {
+    background-color: #E3C2AB !important;
+    height: 45px;
+    position: sticky;
+    top: 0;
+}
+
+.sidebaar_header a.align-items-center.text-white.text-decoration-none.dropdown-toggle {
+    float: right;
+}
+
+.bg_theme img {
+    width: 140px;
+}
+
+.width80 .banner_section .carousel-caption {
+    position: absolute;
+    right: 15%;
+    bottom: 0;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    color: #fff;
+    width: 538px;
+    left: auto;
+    margin-right: 32% !important;
+    margin-bottom: 1%;
+}
+
+.width20 {
+    width: 265px !important;
+}
+
+body .width80 {
+    width: 80% !important;
+    padding: 0 !important;
+}
+
+
+.after_login_body .information_section {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 60px;
+}
+
+.after_login_body .step_box.steps1 {
+    position: relative;
+    top: 107px;
+    left: 152px;
+}
+
+.after_login_body .step_content1 {
+    position: relative;
+    left: -149px;
+    width: 214px;
+    top: 38px;
+}
+
+.after_login_body .step_box_icon img {
+    transition: 0.3s all;
+    text-align: center;
+    width: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 27px;
+}
+
+.after_login_body .step_box_icon {
+    background: #E3C2AB;
+    width: 100px;
+    border-radius: 100px;
+    margin-top: 40px;
+    transition: 0.3s all;
+    height: 100px;
+}
+
+.after_login_body .step_box_img {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #404040;
+    border-radius: 100px;
+    line-height: 120px;
+    text-align: center;
+    position: relative;
+    top: -10px;
+    left: 10px;
+    transition: 0.3s all;
+}
+
+.after_login_body .step_box.steps2 {
+    position: relative;
+    top: -158px;
+    left: 80px;
+}
+
+.after_login_body .step_content2 {
+    position: relative;
+    left: -171px;
+    width: 328px;
+    top: 10px;
+}
+
+.after_login_body .step_box_icon {
+    background: #E3C2AB;
+    width: 100px;
+    border-radius: 100px;
+    margin-top: 40px;
+    transition: 0.3s all;
+    height: 100px;
+}
+
+.after_login_body .step_box.steps3 {
+    position: relative;
+    top: -134px;
+    left: 70px;
+}
+
+.after_login_body .step_box.steps4 {
+    position: relative;
+    top: 61px;
+    left: -23px;
+}
+
+.after_login_body .step_content4 {
+    position: relative;
+    left: 72px;
+    width: 191px;
+    top: 85px;
+}
+
+.after_login_body section.steps_section p {
+    font-size: 12px;
+}
+
+.after_login_body section.faq_section {
+    padding: 60px 0px 60px 0px;
+}
+
+.after_login_body footer {
+    padding: 00px 0 0px 0px;
+}
+
+.after_login_body .copyright_section {
+    border-top: 0px solid #343434;
+    margin-top: 0;
+}
+
+.after_login_body .copyright_section ul li a {
+    font-size: 13px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.after_login_body .choose_content p {
+    font-size: 13px;
+    padding-right: 20px;
+}
+
+.after_login_body .terms_section {
+    padding-bottom: 0px;
+}
+
+.after_login_body .openaccount {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.after_login_body .openaccount label {
+    font-size: 15px;
+}
+
+.after_login_body .adhar_field input {
+    border: 0px;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    width: 100%;
+    margin-right: 10px;
+    background: transparent !important;
+    padding: 4px 16px 10px 0px;
+}
+
+.after_login_body .form-control {
+    font-size: 13px;
+}
+
+.inner_sectionpadd {
+    padding-bottom: 244px;
+}
+
+body .userlogin_box {
+    position: fixed !important;
+    right: 0;
+    background: #e3c2ab;
+    width: 103px;
+    padding: 7px 10px !important;
+    border-radius: 50px 0px 0px 50px;
+    z-index: 99;
+}
+
+.after_login_body .dropdown-toggle::after {
+    margin-left: .255em;
+    position: relative;
+    left: -9px;
+    top: 1px;
+    color: #000;
+}
+
+/*-- after login css close--*/
