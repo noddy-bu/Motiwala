@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\AccountController;
+
+use App\Http\Controllers\common\EsignAadharController;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -84,6 +87,8 @@ Route::any('/forgot-password/{param}', [AccountController::class, 'forgot_passwo
 
 Route::get('/logout', [AccountController::class, 'customer_logout'])->name('customer.logout');
 
+
+Route::get('/esign', [EsignAadharController::class, 'esign_nsdl']);
 
 
 
