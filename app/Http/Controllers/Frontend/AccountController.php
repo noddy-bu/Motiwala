@@ -1013,14 +1013,13 @@ class AccountController extends Controller
 
     public function dummy_esign(){
 
-        $esign = (new EsignAadharController)->esign_code();
-        $esign = json_decode($esign);
+        // $esign = (new EsignAadharController)->esign_code();
+        // $esign = json_decode($esign);
 
-        echo"<pre>";
-        var_dump($esign);
-        echo"</pre>";
+        // echo"<pre>";
+        // var_dump($esign);
+        // echo"</pre>";
 
-        /*
 
         $name = "dummy deol";
         $email = "emai@gmail.com";
@@ -1069,88 +1068,7 @@ class AccountController extends Controller
         
 
         return $rsp_msg; 
-        */
-       
 
-        
-
-/*
-        if($esign->success) {
-            //do success stuff
-            $response = [
-                'status'       => true,
-                'method'       => 'flash',
-                'notification' => "OTP sent to linked Mobile number with ".$request->aadhar_no." Aadhar number."
-            ];
-
-            $rsp_msg['response'] = 'success';
-            $rsp_msg['message']  = "OTP sent to linked Mobile number with ".$request->aadhar." Aadhar number.";
-            
-            //set session of aadhar client ID
-            session(['customer_aadhar_clientId' => $requestOtp->data->client_id]); 
-
-            Session::put('step', 7);
-
-        }else{
-            //do failure stuff
-            if($requestOtp->status_code == 429) {
-     
-                $rsp_msg['response'] = 'error';
-                $rsp_msg['message']  = "Wait 60 seconds to generate OTP for same Aadhaar Number.";
-                
-            }else{
-                
-                $rsp_msg['response'] = 'error';
-                $rsp_msg['message']  = "Invalid Aadhar number / No mobile number is linked with ".$request->aadhar." Aadhar number!";
-                
-            }
-        }
-
-
-
-    
-
-        $rsp_msg['response'] = 'success';
-        $rsp_msg['message']  = "OTP sent to linked Mobile number with ".$request->aadhar." Aadhar number.";
-        
-        Session::put('step', 11);
-*/
-        /*
-        $requestOtp = (new AadharController)->requestOtpAadhar($request->aadhar);
-        $requestOtp = json_decode($requestOtp);
-
-        if($requestOtp->success) {
-            //do success stuff
-            $response = [
-                'status'       => true,
-                'method'       => 'flash',
-                'notification' => "OTP sent to linked Mobile number with ".$request->aadhar_no." Aadhar number."
-            ];
-
-            $rsp_msg['response'] = 'success';
-            $rsp_msg['message']  = "OTP sent to linked Mobile number with ".$request->aadhar." Aadhar number.";
-            
-            //set session of aadhar client ID
-            session(['customer_aadhar_clientId' => $requestOtp->data->client_id]); 
-
-            Session::put('step', 7);
-
-        }else{
-            //do failure stuff
-            if($requestOtp->status_code == 429) {
-     
-                $rsp_msg['response'] = 'error';
-                $rsp_msg['message']  = "Wait 60 seconds to generate OTP for same Aadhaar Number.";
-                
-            }else{
-                
-                $rsp_msg['response'] = 'error';
-                $rsp_msg['message']  = "Invalid Aadhar number / No mobile number is linked with ".$request->aadhar." Aadhar number!";
-                
-            }
-        } */ 
-
-        //return $rsp_msg;
 
     }
 
