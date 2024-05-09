@@ -22,7 +22,7 @@ class EsignAadharController extends Controller
             echo"2-code";
         }
         
-
+        $redirect_url = "https://motiwala-website.webtesting.pw/create-account/esign-verify";
         var_dump($redirect_url);
 
         $bearer_token_dummy = env('AADHAR_ESIGN_TOKEN_DUMMY');
