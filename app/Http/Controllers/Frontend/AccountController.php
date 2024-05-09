@@ -422,12 +422,17 @@ class AccountController extends Controller
 
             $rsp_msg = $this->esign_aadhar_verify_request_otp($request);
 
-
-
-
         }elseif($param == "esign-verify"){
-
+            
             $rsp_msg = $this->esign_verify();
+
+            if($rsp_msg = "true"){
+                return redirect()->route('account.new.enrollment.page');
+            } else {
+                Session::put('step', 10);
+            }
+
+            return redirect()->route('account.new.enrollment.page');
 
         }elseif($param == "payment-gateway"){
 
@@ -965,7 +970,9 @@ class AccountController extends Controller
     public function esign_verify() {
         Session::put('step', 12);
         
-        return redirect()->route('account.new.enrollment.page');
+        $result = "true";
+
+        return $result;
     }
 
 
