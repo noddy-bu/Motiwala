@@ -213,6 +213,54 @@ class EsignAadharController extends Controller
 
     }
 
+    function esign_code(){
+        $curl = curl_init();
 
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://sandbox.surepass.io/api/v1/esign/initialize',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS =>'{
+            "pdf_pre_uploaded": false,
+            "callback_url": "https://example.com?state=test",
+            "config": {
+                "accept_selfie": true,
+                "allow_selfie_upload": true,
+                "accept_virtual_sign": true,
+                "track_location": true,
+                "auth_mode": "1",
+                "reason": "Contract",
+                "positions": {
+                    "1": [
+                        {
+                            "x": 10,
+                            "y": 20
+                        }
+                    ]
+                    
+                }
+            },
+            "prefill_options": {
+                "full_name": "Munna Bhaiya",
+                "mobile_number": "9876543210",
+                "user_email": "karankapoor229@gmail.com"
+            }
+        }',
+        CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json',
+            'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxMzYwNjM2OCwianRpIjoiZTk3ZWI5OGYtMjI2NS00NThmLTk0MzgtZDlhOTIxZWMyMjI1IiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiZGV2Lm1vdGl3YWxhamV3ZWxzQHN1cmVwYXNzLmlvIiwibmJmIjoxNzEzNjA2MzY4LCJleHAiOjE3MTYxOTgzNjgsInVzZXJfY2xhaW1zIjp7InNjb3BlcyI6WyJ1c2VyIl19fQ.MtH624R8r1ERW8if3SN5ehapKRTqUrmO_Bwi5fIMcW8'
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        return $response;
+    }
 
 }

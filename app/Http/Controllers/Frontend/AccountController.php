@@ -967,7 +967,7 @@ class AccountController extends Controller
         
         return redirect()->route('account.new.enrollment.page');
     }
-    
+
 
     public function payment_gateway($request){
 
@@ -1013,6 +1013,14 @@ class AccountController extends Controller
 
     public function dummy_esign(){
 
+        $esign = (new EsignAadharController)->esign_code();
+        $esign = json_decode($esign);
+
+        echo"<pre>";
+        var_dump($esign);
+        echo"</pre>";
+
+        /*
 
         $name = "dummy deol";
         $email = "emai@gmail.com";
@@ -1060,7 +1068,8 @@ class AccountController extends Controller
         $rsp_msg['url']  = $esign->data->url;
         
 
-        return $rsp_msg;
+        return $rsp_msg; 
+        */
        
 
         
