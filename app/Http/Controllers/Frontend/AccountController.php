@@ -14,6 +14,9 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Common\AadharController;
+
+use App\Http\Controllers\Common\EsignAadharController;
+
 use Auth;
 
 class AccountController extends Controller
@@ -419,9 +422,12 @@ class AccountController extends Controller
 
             $rsp_msg = $this->esign_aadhar_verify_request_otp($request);
 
-        }elseif($param == "eSign-aadhar-otp-verify"){
 
-            $rsp_msg = $this->esign_aadhar_otp_verify($request);
+
+
+        }elseif($param == "esign-verify"){
+
+            $rsp_msg = $this->esign_verify();
 
         }elseif($param == "payment-gateway"){
 
@@ -897,7 +903,9 @@ class AccountController extends Controller
     public function esign_aadhar_verify_request_otp($request){
 
         $validator = Validator::make($request->all(), [
-            'aadhar' => 'required|digits:12',
+            'name' => 'required|min:3',
+            'email' => 'required|email',
+            'phone' => 'required|regex:/^\d{10}$/',
         ]);
 
         if ($validator->fails()) {
@@ -907,117 +915,59 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
-        $rsp_msg['response'] = 'success';
-        $rsp_msg['message']  = "OTP sent to linked Mobile number with ".$request->aadhar." Aadhar number.";
+        $esign = (new EsignAadharController)->esign_nsdl($request->name, $request->email, $request->phone);
+        //$esign = json_decode($esign);
+
+        if (!$esign) {
+            // Handle the error case
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message'] = 'Failed to Verify, please try Again'; 
+
+            return $rsp_msg;
+        }
+
+        if ($esign == "error Generating link") {
+            // Handle the error case
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message'] = 'Failed to Generating Verify link, Please Try Again';
+
+            return $rsp_msg;
+        }
+
+        if ($esign == "error Generating upload link") {
+            // Handle the error case
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message'] = 'Failed to Generating Upload Term PDF link, Please Try Again';
+
+            return $rsp_msg;
+        }
+
+        if ($esign == "error uploading pdf") {
+            // Handle the error case
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message'] = 'Failed to Upload PDF, Please Try Again';
+
+            return $rsp_msg;
+        }
+
+        Session::put('client_id', $esign->data->client_id);
         
-        Session::put('step', 11);
-
-        /*
-        $requestOtp = (new AadharController)->requestOtpAadhar($request->aadhar);
-        $requestOtp = json_decode($requestOtp);
-
-        if($requestOtp->success) {
-            //do success stuff
-            $response = [
-                'status'       => true,
-                'method'       => 'flash',
-                'notification' => "OTP sent to linked Mobile number with ".$request->aadhar_no." Aadhar number."
-            ];
-
-            $rsp_msg['response'] = 'success';
-            $rsp_msg['message']  = "OTP sent to linked Mobile number with ".$request->aadhar." Aadhar number.";
-            
-            //set session of aadhar client ID
-            session(['customer_aadhar_clientId' => $requestOtp->data->client_id]); 
-
-            Session::put('step', 7);
-
-        }else{
-            //do failure stuff
-            if($requestOtp->status_code == 429) {
-     
-                $rsp_msg['response'] = 'error';
-                $rsp_msg['message']  = "Wait 60 seconds to generate OTP for same Aadhaar Number.";
-                
-            }else{
-                
-                $rsp_msg['response'] = 'error';
-                $rsp_msg['message']  = "Invalid Aadhar number / No mobile number is linked with ".$request->aadhar." Aadhar number!";
-                
-            }
-        } */ 
+        $rsp_msg['response'] = 'success';
+        $rsp_msg['message']  = "Verified link generated successfully. Please proceed to E-sign";
+        $rsp_msg['url']  = $esign->data->url;
+        
 
         return $rsp_msg;
 
     }
 
 
-    public function esign_aadhar_otp_verify($request){
-
-        $validator = Validator::make($request->all(), [
-            'otp' => 'required|digits:6',
-        ]);
-
-        if ($validator->fails()) {
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message']  = $validator->errors()->all();
-
-            return $rsp_msg; 
-        }
-
+    public function esign_verify() {
         Session::put('step', 12);
-                        
-        $rsp_msg['response'] = 'success';
-        $rsp_msg['message']  = "eSign verified successfully!";
-
-        /*
-        $verify = (new AadharController)->validateOtpAadhar($request->otp, session('customer_aadhar_clientId'));
-        $verify = json_decode($verify);
-
-
-        if($verify->success) {
-
-            //update query here
-            DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
-                'ekyc' => json_encode($verify),
-            ]);
-
-            $profileImage = $verify->data->profile_image;
-            $fullName = $verify->data->full_name;
-            $address = $verify->data->address;
-            $zip = $verify->data->zip;
-            $dob = $verify->data->dob;
-            $care_of = $verify->data->care_of;
-            $mobile = $verify->data->mobile_hash;
-            
-            $customer_detail = [
-                'profileImage' => $profileImage,
-                'name' => $fullName,
-                'address' => $address,
-                'zip' => $zip,
-                'dob' => $dob,
-                'care_of' => $care_of,
-                'mobile' => $mobile,
-            ];
-
-            Session::put('customer_detail', $customer_detail);
-
-            Session::put('step', 8);
-                        
-            $rsp_msg['response'] = 'success';
-            $rsp_msg['message']  = "Aadhar Number verified successfully!";
-            
-        }else{
-            
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message']  = "OTP verification failed!";
-            
-        }
-        */
-
-        return $rsp_msg; 
-
+        
+        return redirect()->route('account.new.enrollment.page');
     }
+    
 
     public function payment_gateway($request){
 
@@ -1056,6 +1006,164 @@ class AccountController extends Controller
         return $rsp_msg;
 
     }
+
+
+
+
+
+    public function dummy_esign(){
+
+
+        $name = "dummy deol";
+        $email = "emai@gmail.com";
+        $phone = "1234567890";
+
+        $esign = (new EsignAadharController)->esign_nsdl($name, $email, $phone);
+        //$esign = json_decode($esign);
+
+        if (!$esign) {
+            // Handle the error case
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message'] = 'Failed to Verify, please try Again'; 
+
+            return $rsp_msg;
+        }
+
+        if ($esign == "error Generating link") {
+            // Handle the error case
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message'] = 'Failed to Generating Verify link, Please Try Again';
+
+            return $rsp_msg;
+        }
+
+        if ($esign == "error Generating upload link") {
+            // Handle the error case
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message'] = 'Failed to Generating Upload Term PDF link, Please Try Again';
+
+            return $rsp_msg;
+        }
+
+        if ($esign == "error uploading pdf") {
+            // Handle the error case
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message'] = 'Failed to Upload PDF, Please Try Again';
+
+            return $rsp_msg;
+        }
+
+        Session::put('client_id', $esign->data->client_id);
+        
+        $rsp_msg['response'] = 'success';
+        $rsp_msg['message']  = "Verified link generated successfully. Please proceed to E-sign";
+        $rsp_msg['url']  = $esign->data->url;
+        
+
+        return $rsp_msg;
+       
+
+        
+
+/*
+        if($esign->success) {
+            //do success stuff
+            $response = [
+                'status'       => true,
+                'method'       => 'flash',
+                'notification' => "OTP sent to linked Mobile number with ".$request->aadhar_no." Aadhar number."
+            ];
+
+            $rsp_msg['response'] = 'success';
+            $rsp_msg['message']  = "OTP sent to linked Mobile number with ".$request->aadhar." Aadhar number.";
+            
+            //set session of aadhar client ID
+            session(['customer_aadhar_clientId' => $requestOtp->data->client_id]); 
+
+            Session::put('step', 7);
+
+        }else{
+            //do failure stuff
+            if($requestOtp->status_code == 429) {
+     
+                $rsp_msg['response'] = 'error';
+                $rsp_msg['message']  = "Wait 60 seconds to generate OTP for same Aadhaar Number.";
+                
+            }else{
+                
+                $rsp_msg['response'] = 'error';
+                $rsp_msg['message']  = "Invalid Aadhar number / No mobile number is linked with ".$request->aadhar." Aadhar number!";
+                
+            }
+        }
+
+
+
+    
+
+        $rsp_msg['response'] = 'success';
+        $rsp_msg['message']  = "OTP sent to linked Mobile number with ".$request->aadhar." Aadhar number.";
+        
+        Session::put('step', 11);
+*/
+        /*
+        $requestOtp = (new AadharController)->requestOtpAadhar($request->aadhar);
+        $requestOtp = json_decode($requestOtp);
+
+        if($requestOtp->success) {
+            //do success stuff
+            $response = [
+                'status'       => true,
+                'method'       => 'flash',
+                'notification' => "OTP sent to linked Mobile number with ".$request->aadhar_no." Aadhar number."
+            ];
+
+            $rsp_msg['response'] = 'success';
+            $rsp_msg['message']  = "OTP sent to linked Mobile number with ".$request->aadhar." Aadhar number.";
+            
+            //set session of aadhar client ID
+            session(['customer_aadhar_clientId' => $requestOtp->data->client_id]); 
+
+            Session::put('step', 7);
+
+        }else{
+            //do failure stuff
+            if($requestOtp->status_code == 429) {
+     
+                $rsp_msg['response'] = 'error';
+                $rsp_msg['message']  = "Wait 60 seconds to generate OTP for same Aadhaar Number.";
+                
+            }else{
+                
+                $rsp_msg['response'] = 'error';
+                $rsp_msg['message']  = "Invalid Aadhar number / No mobile number is linked with ".$request->aadhar." Aadhar number!";
+                
+            }
+        } */ 
+
+        //return $rsp_msg;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

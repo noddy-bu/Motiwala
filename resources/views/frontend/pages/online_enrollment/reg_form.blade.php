@@ -836,19 +836,38 @@
 
 <!--------------------------------------------- eSign Aadhar verify --------------------------------->
 
-    <div id="ekyc">
+    <div id="esign">
+
+        @php 
+            $user = DB::table('users')->where('id', Session::get('temp_user_id'))->get(['name','email','phone'])->first();
+        @endphp
 
         <div class="row">
-            <form class="col-md-5" id="aadhar-verify-request-otp" action="{{ url(route('account.create', ['param' =>'esign-aadhar-verify-request-otp'])) }}" method="post">
+            <form class="col-md-5" id="esign-aadhar-verify-request-otp" action="{{ url(route('account.create', ['param' =>'esign-aadhar-verify-request-otp'])) }}" method="post">
                 @csrf
 
-                <div class="d-flex">
+                <div class="col-md-4">
                     <div class="form-group mt-4 adhar_field">
-                        <label class="pb-3">Aadhaar *</label>
-                        <input type="text" class="form-control" name="aadhar" pattern="[0-9]+" minlength="12"
-                        maxlength="12" placeholder="Please Enter Aadhar No" required/>
+                        <label class="pb-3">Name *</label>
+                        <input type="text" class="form-control" name="name" pattern="[A-Za-z]+" minlength="3"
+                        maxlength="6" placeholder="Please Enter Your Name" value="{{ $user->name }}" readonly required/>
                     </div>
+                </div>
 
+                <div class="col-md-4">
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Email *</label>
+                        <input type="eamil" class="form-control" name="email" placeholder="Please Enter Your Email Id" 
+                        value="{{ $user->email }}" readonly required/>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Phone No *</label>
+                        <input type="text" class="form-control" name="phone" pattern="[0-9]+" minlength="10"
+                        maxlength="10" placeholder="Please Enter Phone No" readonly required/>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -870,7 +889,7 @@
 
 @if(Session::has('step') && Session::get('step') == 11)
 
-<!--------------------------------------------- eSign Aadhar verify --------------------------------->
+<!--------------------------------------------- eSign Aadhar otp verify --------------------------------->
 
     <div id="ekyc-aadhar-otp-verify">
 
@@ -898,7 +917,7 @@
 
     </div>
 
-<!--------------------------------------------- eSign Aadhar verify --------------------------------->
+<!--------------------------------------------- eSign Aadhar otp verify --------------------------------->
 
 @endif
 

@@ -3,12 +3,25 @@
 namespace App\Http\Controllers\Common;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
+
 use Illuminate\Http\Request;
 
 class EsignAadharController extends Controller
 {
 
-    function esign_nsdl(){
+    function esign_nsdl($name, $email, $phone){
+
+        $local_url = url('');
+
+        if (Str::contains($local_url, 'http://127')) {
+            $redirect_url = "https://motiwala-website.webtesting.pw/create-account/esign-verify";
+        } else {
+            $redirect_url = url(route('account.create', ['param' =>'esign-verify']));
+        }
+        
+
+        // var_dump($redirect_url);
 
         $bearer_token_dummy = env('AADHAR_ESIGN_TOKEN_DUMMY');
 
@@ -27,7 +40,7 @@ class EsignAadharController extends Controller
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS =>'{
                 "pdf_pre_uploaded": true,
-                "callback_url": "'.url(route('account.create', ['param' =>'check-esign'])).'",
+                "callback_url": "'.$redirect_url.'",
                 "config": {
                     "accept_selfie": true,
                     "allow_selfie_upload": true,
@@ -46,9 +59,9 @@ class EsignAadharController extends Controller
                     }
                 },
                 "prefill_options": {
-                    "full_name": "Munna Bhaiya",
-                    "mobile_number": "9876543210",
-                    "user_email": "karankapoor229@gmail.com"
+                    "full_name": "'.$name.'",
+                    "mobile_number": "'.$phone.'",
+                    "user_email": "'.$email.'"
                 }
             }',
             CURLOPT_HTTPHEADER => array(
@@ -65,29 +78,41 @@ class EsignAadharController extends Controller
 
         $result = json_decode($response);
 
-
+        if(isset($res_response->errors)){
+            $error = 'error Generating link';
+            return $error;
+        } 
 
         if($res_response->status_code != 200){
-            $error = 'error';
+            $error = 'error Generating link';
             return $error;
         }
 
-
+        // echo"<pre>";
+        // var_dump($result);
+        // echo"</pre>";
 
         $client_id = $result->data->client_id;
-
 
 
         $get_link_upload = $this->get_upload_link($client_id);
 
         $result_link_upload = json_decode($get_link_upload);
 
+
+        if(isset($result_link_upload->errors)){
+            $error = 'error Generating upload link';
+            return $error;
+        } 
+
         if($result_link_upload->status_code != 200){
-            $error = 'error';
+            $error = 'error Generating upload link';
             return $error;
         }
 
-
+        // echo"<pre>";
+        // var_dump($result_link_upload);
+        // echo"</pre>";
 
         $fields = $result_link_upload->data->fields;
 
@@ -103,12 +128,18 @@ class EsignAadharController extends Controller
 
         $upload_pdf = $this->upload_pdf($signature, $date, $credentials, $upload_key, $policy, $algorithm, $url);
 
-        if($upload_pdf == 'false'){
-            $error = 'error';
-            return $error;
+        if($upload_pdf !== ""){
+
+            if($upload_pdf === false){
+                $error = 'error uploading pdf';
+                return $error;
+            }
+
         }
 
-
+        // echo"<pre>";
+        // var_dump($upload_pdf);
+        // echo"</pre>";
 
         return $res_response;
     }
