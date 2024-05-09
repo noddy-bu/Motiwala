@@ -88,10 +88,10 @@ Route::any('/forgot-password/{param}', [AccountController::class, 'forgot_passwo
 Route::get('/logout', [AccountController::class, 'customer_logout'])->name('customer.logout');
 
 
-Route::get('/esign', [EsignAadharController::class, 'esign_nsdl']);
+// Route::get('/esign', [EsignAadharController::class, 'esign_nsdl']);
 
 
-Route::get('/dummy_esign', [AccountController::class, 'dummy_esign']);
+// Route::get('/dummy_esign', [AccountController::class, 'dummy_esign']);
 
 
 Route::get('/clear-cache', function () {
@@ -160,3 +160,7 @@ Route::get('/redirect-login', function () {
     session()->forget('step');
     session()->forget('temp_user_id');
 })->name('redirect-login');
+
+Route::get('/session-setup', function () {
+    Session()->put('step', 10);
+});

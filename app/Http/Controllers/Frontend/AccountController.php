@@ -427,7 +427,7 @@ class AccountController extends Controller
             $rsp_msg = $this->esign_verify();
 
             if($rsp_msg = "true"){
-                return redirect()->route('account.new.enrollment.page');
+                Session::put('step', 12);
             } else {
                 Session::put('step', 10);
             }
@@ -968,9 +968,17 @@ class AccountController extends Controller
 
 
     public function esign_verify() {
-        Session::put('step', 12);
-        
-        $result = "true";
+
+        $client_id = Session::get('client_id');
+
+        $esign = (new EsignAadharController)->esign_check_status($client_id);
+        $esign = json_decode($esign);
+
+        if($esign->success == true){
+            $result = "true";
+        } else {
+            $result = "false";
+        }
 
         return $result;
     }
@@ -1018,66 +1026,66 @@ class AccountController extends Controller
 
 
 
-    public function dummy_esign(){
+    // public function dummy_esign(){
 
-        // $esign = (new EsignAadharController)->esign_code();
-        // $esign = json_decode($esign);
+    //     // $esign = (new EsignAadharController)->esign_code();
+    //     // $esign = json_decode($esign);
 
-        // echo"<pre>";
-        // var_dump($esign);
-        // echo"</pre>";
+    //     // echo"<pre>";
+    //     // var_dump($esign);
+    //     // echo"</pre>";
 
 
-        $name = "dummy deol";
-        $email = "emai@gmail.com";
-        $phone = "1234567890";
+    //     $name = "dummy deol";
+    //     $email = "emai@gmail.com";
+    //     $phone = "1234567890";
 
-        $esign = (new EsignAadharController)->esign_nsdl($name, $email, $phone);
-        //$esign = json_decode($esign);
+    //     $esign = (new EsignAadharController)->esign_nsdl($name, $email, $phone);
+    //     //$esign = json_decode($esign);
 
-        if (!$esign) {
-            // Handle the error case
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message'] = 'Failed to Verify, please try Again'; 
+    //     if (!$esign) {
+    //         // Handle the error case
+    //         $rsp_msg['response'] = 'error';
+    //         $rsp_msg['message'] = 'Failed to Verify, please try Again'; 
 
-            return $rsp_msg;
-        }
+    //         return $rsp_msg;
+    //     }
 
-        if ($esign == "error Generating link") {
-            // Handle the error case
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message'] = 'Failed to Generating Verify link, Please Try Again';
+    //     if ($esign == "error Generating link") {
+    //         // Handle the error case
+    //         $rsp_msg['response'] = 'error';
+    //         $rsp_msg['message'] = 'Failed to Generating Verify link, Please Try Again';
 
-            return $rsp_msg;
-        }
+    //         return $rsp_msg;
+    //     }
 
-        if ($esign == "error Generating upload link") {
-            // Handle the error case
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message'] = 'Failed to Generating Upload Term PDF link, Please Try Again';
+    //     if ($esign == "error Generating upload link") {
+    //         // Handle the error case
+    //         $rsp_msg['response'] = 'error';
+    //         $rsp_msg['message'] = 'Failed to Generating Upload Term PDF link, Please Try Again';
 
-            return $rsp_msg;
-        }
+    //         return $rsp_msg;
+    //     }
 
-        if ($esign == "error uploading pdf") {
-            // Handle the error case
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message'] = 'Failed to Upload PDF, Please Try Again';
+    //     if ($esign == "error uploading pdf") {
+    //         // Handle the error case
+    //         $rsp_msg['response'] = 'error';
+    //         $rsp_msg['message'] = 'Failed to Upload PDF, Please Try Again';
 
-            return $rsp_msg;
-        }
+    //         return $rsp_msg;
+    //     }
 
-        Session::put('client_id', $esign->data->client_id);
+    //     Session::put('client_id', $esign->data->client_id);
         
-        $rsp_msg['response'] = 'success';
-        $rsp_msg['message']  = "Verified link generated successfully. Please proceed to E-sign";
-        $rsp_msg['url']  = $esign->data->url;
+    //     $rsp_msg['response'] = 'success';
+    //     $rsp_msg['message']  = "Verified link generated successfully. Please proceed to E-sign";
+    //     $rsp_msg['url']  = $esign->data->url;
         
 
-        return $rsp_msg; 
+    //     return $rsp_msg; 
 
 
-    }
+    // }
 
 
 
