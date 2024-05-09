@@ -158,7 +158,7 @@
                         <div class="form-group mt-4 adhar_field">
                             <label class="pb-3">Name *</label>
                             <input type="text" class="form-control" name="name" pattern="[A-Za-z]+" minlength="3"
-                            maxlength="6" placeholder="Please Enter Your Name" value="{{ $user->name }}" required/>
+                            maxlength="20" placeholder="Please Enter Your Name" value="{{ $user->name }}" required/>
                         </div>
                     </div>
 
@@ -866,7 +866,7 @@
                     <div class="form-group mt-4 adhar_field">
                         <label class="pb-3">Phone No *</label>
                         <input type="text" class="form-control" name="phone" pattern="[0-9]+" minlength="10"
-                        maxlength="10" placeholder="Please Enter Phone No" readonly required/>
+                        maxlength="10" placeholder="Please Enter Phone No" value="{{ $user->phone }}" readonly required/>
                     </div>
                 </div>
 
