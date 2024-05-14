@@ -87,10 +87,8 @@
                         <div class="buttonclass1 mt60">
                             <button type="submit">Submit <i class="las la-arrow-right"></i></button>
                         </div>
-
-                        <div class="buttonclass1 mt60 ms-3">
-                            <button id="resendOTPButton">Resend OTP<i class="las la-arrow-right"></i></button>
-                        </div>
+<a  class="ms-4" id="resendOTPButton">Resend OTP</a>
+                     
                         
                     </div>
                     </div>
@@ -187,28 +185,12 @@
 
                     <div class="col-md-4">
                         <div class="form-group mt-4 adhar_field">
-                            <label class="pb-3">Main / Area / Locality / Colony / LandMark *</label>
+                            <label class="pb-3">Area / Locality / Colony / LandMark *</label>
                             <input type="text" class="form-control" name="locality" pattern="[0-9A-Za-z]+" placeholder="Please Enter Your Locality"  value="{{ $user_detail->locality }}" required/>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="form-group mt-4 adhar_field">
-                            <label class="pb-3">State *</label>
-                            <input type="text" class="form-control" name="state" pattern="[A-Za-z\s]+" minlength="3"
-                            placeholder="Please Enter Your State" value="{{ $user_detail->state }}" required/>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group mt-4 adhar_field">
-                            <label class="pb-3">City / Town *</label>
-                            <input type="text" class="form-control" name="city" pattern="[A-Za-z]+" minlength="3"
-                            placeholder="Please Enter Your City" value="{{ $user_detail->city }}" required/>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group mt-4 adhar_field">
                             <label class="pb-3">Pin Code *</label>
                             <input type="text" class="form-control" name="pincode" pattern="[0-9]+" minlength="3"
@@ -216,9 +198,27 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group mt-4 adhar_field">
-                            <label class="pb-3">Date of Birth * ( As per Aadhar )</label>
+                            <label class="pb-3">State *</label>
+                            <input type="text" class="form-control" name="state" pattern="[A-Za-z\s]+" minlength="3"
+                            placeholder="Please Enter Your State" value="{{ $user_detail->state }}" required/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group mt-4 adhar_field">
+                            <label class="pb-3">City / Town *</label>
+                            <input type="text" class="form-control" name="city" pattern="[A-Za-z]+" minlength="3"
+                            placeholder="Please Enter Your City" value="{{ $user_detail->city }}" required/>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="col-md-3">
+                        <div class="form-group mt-4 adhar_field">
+                            <label class="pb-3">DOB * ( As per Aadhar )</label>
                             <input type="date" class="form-control" name="dob" value="{{ $user_detail->dob }}" required/>
                         </div>
                     </div>
@@ -505,21 +505,28 @@
     <div id="ekyc">
 
         <div class="row">
-            <form class="col-md-5" id="aadhar-verify-request-otp" action="{{ url(route('account.create', ['param' =>'aadhar-verify-request-otp'])) }}" method="post">
+            <form class="col-md-12" id="aadhar-verify-request-otp" action="{{ url(route('account.create', ['param' =>'aadhar-verify-request-otp'])) }}" method="post">
                 @csrf
 
-                <div class="d-flex">
-                    <div class="form-group mt-4 adhar_field">
+                <div class="row">
+                    <div class="col-md-4">
+                         <div class="form-group mt-4 adhar_field">
                         <label class="pb-3">Aadhaar *</label>
                         <input type="text" class="form-control" name="aadhar" pattern="[0-9]+" minlength="12"
                         maxlength="12" placeholder="Please Enter Aadhar No" required/>
                     </div>
+                    </div>
+                    <div class="col-md-4">
 
                     <div class="form-group mt-4 adhar_field">
-                        <label class="pb-3">Conform Aadhaar *</label>
+                        <label class="pb-3">Confirm Aadhaar *</label>
                         <input type="text" class="form-control" name="aadhar_conform" pattern="[0-9]+" minlength="12"
                         maxlength="12" placeholder="Please Enter Aadhar No" required/>
                     </div>
+
+
+                    </div>
+                   
 
                 </div>
 
