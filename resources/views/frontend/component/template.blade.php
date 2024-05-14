@@ -6,7 +6,10 @@
     <title>User Details PDF</title>
 </head>
 <body>
-    <h1>User Details For Esign</h1>
-    <p>Name: {{ $user }}</p>
+    <h1>Motiwala & Sons User Details For Esign</h1>
+    <p>Name: {{ $data['user']->name }}</p>
+    <p>Email: {{ $data['user']->email }}</p>
+    <p>Phone: {{ $data['user']->phone }}</p>
+    <p>Plan Name: {{ $data['plan_name'] }}</p>
 </body>
 </html>

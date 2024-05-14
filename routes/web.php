@@ -155,6 +155,11 @@ Route::get('/update-session', function () {
 })->name('update-session');
 
 
+Route::get('/custom-session', function () {
+    Session()->put('step', 10);
+    session()->put('temp_user_id', 2);
+});
+
 Route::get('/resubmit-aadhar-otp', function () {
     Session()->put('step', 5);
 })->name('resubmit-aadhar-otp');

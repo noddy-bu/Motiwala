@@ -1039,12 +1039,20 @@ class AccountController extends Controller
 
 
     public function dummy_esign(){
+        
+        $user = DB::table('users')->where('id', Session::get('temp_user_id'))
+        ->get(['plan_id','installment_amount','name','email','phone'])->first();
+
+        $plan_name = DB::table('plans')->where('id', $user->plan_id)->value('name');
 
         // Get user details
-        $user = 'this the generateed pdf';
+        $data = [
+            'user' => $user,
+            'plan_name' => $plan_name
+        ];
 
         // Render the HTML view with user details
-        $html = View::make('frontend.component.template', compact('user'))->render();
+        $html = View::make('frontend.component.template', compact('data'))->render();
 
         // Create a new DOMPDF instance
         $dompdf = new Dompdf();
@@ -1061,13 +1069,10 @@ class AccountController extends Controller
         // Generate a unique filename
         $filename = 'generated_pdf_' . time() . '.pdf';
 
-        // Save the PDF to public/generate_pdf directory
-        $dompdf->stream($filename, ['Attachment' => 0]);
-
         $output = $dompdf->output();
         Storage::disk('public')->put('generate_pdf/' . $filename, $output);
 
-        return redirect()->back()->with('success', 'PDF generated successfully.');
+        return true;
 
     }
 

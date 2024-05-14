@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Dompdf\Dompdf;
+use Illuminate\Support\Facades\View;
 
 use Illuminate\Http\Request;
 
@@ -129,8 +131,10 @@ class EsignAadharController extends Controller
 
         $url = $result_link_upload->data->url;
 
+        $generate = $this->generate_pdf($client_id);
 
-        $upload_pdf = $this->upload_pdf($signature, $date, $credentials, $upload_key, $policy, $algorithm, $url);
+
+        $upload_pdf = $this->upload_pdf($signature, $date, $credentials, $upload_key, $policy, $algorithm,$client_id,  $url);
 
         if($upload_pdf !== ""){
 
@@ -183,14 +187,53 @@ class EsignAadharController extends Controller
 
     }
 
-    function generate_pdf(){
-        
+    function generate_pdf($client_id){
+
+        $user = DB::table('users')->where('id', Session::get('temp_user_id'))
+        ->get(['plan_id','installment_amount','name','email','phone'])->first();
+
+        $plan_name = DB::table('plans')->where('id', $user->plan_id)->value('name');
+
+        // Get user details
+        $data = [
+            'user' => $user,
+            'plan_name' => $plan_name
+        ];
+
+        // Render the HTML view with user details
+        $html = View::make('frontend.component.template', compact('data'))->render();
+
+        // Create a new DOMPDF instance
+        $dompdf = new Dompdf();
+
+        // Load HTML content
+        $dompdf->loadHtml($html);
+
+        // (Optional) Set paper size and orientation
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Generate a unique filename
+        $filename = 'generated_pdf_' . $client_id . '.pdf';
+
+        $output = $dompdf->output();
+        $path = Storage::disk('public')->put('generate_pdf/' . $filename, $output);
+
+        if($path === true){
+            $res = "true";
+        } else {
+            $res = "false";
+        }
+
+        return $res;
     }
 
 
-    function upload_pdf($signature, $date, $credentials, $upload_key, $policy, $algorithm, $url){
+    function upload_pdf($signature, $date, $credentials, $upload_key, $policy, $algorithm, $client_id, $url){
 
-        $file_path = public_path('assets/frontend/pre_upload/dummy.pdf');
+        $file_path = public_path('storage/generate_pdf/generated_pdf_'.$client_id.'.pdf');
 
         $curl = curl_init();
 
@@ -303,6 +346,7 @@ class EsignAadharController extends Controller
             // Download the PDF file and save it to the storage folder
             $fileContents = file_get_contents($pdfUrl);
             $path = Storage::disk('public')->put('esign_pdf/' . $PDFName, $fileContents);
+            Storage::disk('public')->delete('generate_pdf/generated_pdf_' . $client_id . '.pdf');
 
             DB::table('userdetails')->where('user_id',$temp_user_id)->update([
                 'esign' => $PDFName,
