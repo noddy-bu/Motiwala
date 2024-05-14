@@ -134,7 +134,7 @@ class EsignAadharController extends Controller
         $generate = $this->generate_pdf($client_id);
 
 
-        $upload_pdf = $this->upload_pdf($signature, $date, $credentials, $upload_key, $policy, $algorithm,$client_id,  $url);
+        $upload_pdf = $this->upload_pdf($signature, $date, $credentials, $upload_key, $policy, $algorithm, $client_id,  $url);
 
         if($upload_pdf !== ""){
 
@@ -233,7 +233,7 @@ class EsignAadharController extends Controller
 
     function upload_pdf($signature, $date, $credentials, $upload_key, $policy, $algorithm, $client_id, $url){
 
-        $file_path = public_path('storage/generate_pdf/generated_pdf_'.$client_id.'.pdf');
+        $file_path = url('storage/generate_pdf/generated_pdf_'.$client_id.'.pdf');
 
         $curl = curl_init();
 
