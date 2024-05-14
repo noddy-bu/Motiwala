@@ -9,6 +9,9 @@ use App\Http\Controllers\common\EsignAadharController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -148,7 +151,8 @@ Route::get('/clear-data', function () {
 })->name('clear-data');
 
 Route::get('/update-session', function () {
-    Session()->put('step', 9);
+    Session()->put('step', 12);
+    Session()->put('temp_user_id', 12);
 })->name('update-session');
 
 
@@ -159,6 +163,30 @@ Route::get('/resubmit-aadhar-otp', function () {
 Route::get('/redirect-login', function () {
     session()->forget('step');
     session()->forget('temp_user_id');
+
+    $phone = request()->input('phone');
+
+    // Perform auto-login if phone is provided
+    if ($phone) {
+        // Find the user by phone number
+        $user = User::where('phone', $phone)->first();
+
+        // Log in the user if found
+        if ($user) {
+            Auth::login($user);
+
+            session()->forget(['step', 'otp_timestamp', 'phone', 'temp_user_id', 'otp', 'aadhar_no', 'payment']);
+
+            Session()->put('user_id', auth()->user()->id);
+
+            // Redirect to desired route after login
+            return true;
+        }
+    }
+
+    // Redirect to login page if phone is not provided or user not found
+    return false;
+
 })->name('redirect-login');
 
 Route::get('/session-setup', function () {

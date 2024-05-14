@@ -1076,6 +1076,17 @@
                 </div>
               </div>
 
+              <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+                <div class="card-header">
+                  Login Details
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>User ID  : </strong>{{ $user->phone }}</p>
+                    <p class="card-text"><strong>Password : </strong>{{ $user->phone }}</p>
+                    <input type="hidden" name="phone" id="phone" value="{{ $user->phone }}">
+                </div>
+              </div>
+
         </div>
 
         <div class="col-md-6">
@@ -1142,17 +1153,40 @@
     // Add event listener to the button
     LoginBtn.addEventListener("click", function() {
 
+        // Get the value of the phone input field
+        var phone = document.getElementById("phone").value;
+
+        console.log('working');
+
         // Create an XMLHttpRequest object
         var xhr = new XMLHttpRequest();
 
         // Specify the URL to hit using the route name
-        var url = '{{ route("redirect-login") }}';
+        var url = '{{ route("redirect-login") }}?phone=' + encodeURIComponent(phone);
 
         // Send a GET request to the URL asynchronously
         xhr.open('GET', url, true);
+
+            // Event listener for when the response is received
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                // Success: handle auto-login success
+                var response = xhr.responseText.trim();
+                if (response === 'true') {
+                    // Redirect to success page or perform other actions
+                    window.location.href = '{{ url(route("information")) }}';
+                } else {
+                    window.location.href = "{{ url(route('index')) }}/#sign";
+                }
+            } else {
+                window.location.href = "{{ url(route('index')) }}/#sign";
+            }
+        };
+
+
         xhr.send();
 
-        window.location.href = "{{ url(route('index')) }}/#sign";
+        //window.location.href = "{{ url(route('index')) }}/#sign";
 
     });
 
