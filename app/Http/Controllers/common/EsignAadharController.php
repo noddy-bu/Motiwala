@@ -339,7 +339,8 @@ class EsignAadharController extends Controller
 
             $user_detail = DB::table('userdetails')->where('user_id', $temp_user_id)->first(['esign']);
 
-            if (!is_null($user_detail->esign) && !empty($user_detail->esign)) {
+
+            if ($user_detail && !is_null($user_detail->esign) && !empty($user_detail->esign)) {
                 // Delete the file using its filename
                 Storage::disk('public')->delete('esign_pdf/' . $user_detail->esign);
             }
