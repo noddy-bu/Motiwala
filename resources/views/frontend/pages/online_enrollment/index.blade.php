@@ -77,7 +77,7 @@
                 event.preventDefault();
 
                 var button = $(form).find('button[type="submit"]').html();
-                $(form).find('button[type="submit"]').html('please wait...');
+                $(form).find('button[type="submit"]').html('<i class="las la-spinner la-spin"></i>');
                 $(form).find('button[type="submit"]').css('pointer-events', 'none');
                 
                 $.ajax({
@@ -277,7 +277,7 @@
             event.preventDefault();
 
             var button = $(form).find('button[type="submit"]').html();
-            $(form).find('button[type="submit"]').html('please wait...');
+            $(form).find('button[type="submit"]').html('<i class="las la-spinner la-spin"></i>');
             $(form).find('button[type="submit"]').css('pointer-events', 'none');
             
             $.ajax({
@@ -340,7 +340,7 @@
                 event.preventDefault();
 
                 var button = $(form).find('button[type="submit"]').html();
-                $(form).find('button[type="submit"]').html('please wait...');
+                $(form).find('button[type="submit"]').html('<i class="las la-spinner la-spin"></i>');
                 $(form).find('button[type="submit"]').css('pointer-events', 'none');
                 
                 $.ajax({

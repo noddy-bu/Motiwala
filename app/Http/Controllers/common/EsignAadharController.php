@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Common;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+
 use Illuminate\Http\Request;
 
 class EsignAadharController extends Controller
@@ -244,54 +248,76 @@ class EsignAadharController extends Controller
 
     }
 
-    // function esign_code(){
-    //     $curl = curl_init();
 
-    //     curl_setopt_array($curl, array(
-    //     CURLOPT_URL => 'https://sandbox.surepass.io/api/v1/esign/initialize',
-    //     CURLOPT_RETURNTRANSFER => true,
-    //     CURLOPT_ENCODING => '',
-    //     CURLOPT_MAXREDIRS => 10,
-    //     CURLOPT_TIMEOUT => 0,
-    //     CURLOPT_FOLLOWLOCATION => true,
-    //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    //     CURLOPT_CUSTOMREQUEST => 'POST',
-    //     CURLOPT_POSTFIELDS =>'{
-    //         "pdf_pre_uploaded": false,
-    //         "callback_url": "https://example.com?state=test",
-    //         "config": {
-    //             "accept_selfie": true,
-    //             "allow_selfie_upload": true,
-    //             "accept_virtual_sign": true,
-    //             "track_location": true,
-    //             "auth_mode": "1",
-    //             "reason": "Contract",
-    //             "positions": {
-    //                 "1": [
-    //                     {
-    //                         "x": 10,
-    //                         "y": 20
-    //                     }
-    //                 ]
-                    
-    //             }
-    //         },
-    //         "prefill_options": {
-    //             "full_name": "Munna Bhaiya",
-    //             "mobile_number": "9876543210",
-    //             "user_email": "karankapoor229@gmail.com"
-    //         }
-    //     }',
-    //     CURLOPT_HTTPHEADER => array(
-    //         'Content-Type: application/json',
-    //         'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxMzYwNjM2OCwianRpIjoiZTk3ZWI5OGYtMjI2NS00NThmLTk0MzgtZDlhOTIxZWMyMjI1IiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiZGV2Lm1vdGl3YWxhamV3ZWxzQHN1cmVwYXNzLmlvIiwibmJmIjoxNzEzNjA2MzY4LCJleHAiOjE3MTYxOTgzNjgsInVzZXJfY2xhaW1zIjp7InNjb3BlcyI6WyJ1c2VyIl19fQ.MtH624R8r1ERW8if3SN5ehapKRTqUrmO_Bwi5fIMcW8'
-    //     ),
-    //     ));
 
-    //     $response = curl_exec($curl);
 
-    //     curl_close($curl);
-    //     return $response;
-    // }
+    function download_esign($client_id){
+
+        $bearer_token_dummy = env('AADHAR_ESIGN_TOKEN_DUMMY');
+
+        $DUMMY_URL = "https://sandbox.surepass.io";
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => ''.$DUMMY_URL.'/api/v1/esign/get-signed-document/'.$client_id.'',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'GET',
+          CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer '.$bearer_token_dummy.''
+          ),
+        ));
+        
+        $response = curl_exec($curl);
+        
+        curl_close($curl);
+        $result = $response;
+
+        $result = json_decode($result);
+
+        if($result->success == true){
+
+            $pdfUrl = $result->data->url;
+
+            //$temp_user_id = Session::get('temp_user_id');
+            $temp_user_id = '12';
+
+            $PDFName = 'ESIGN-' . $temp_user_id . '.pdf';
+
+            $user_detail = DB::table('userdetails')->where('user_id', $temp_user_id)->first(['esign']);
+
+            if (!is_null($user_detail->esign) && !empty($user_detail->esign)) {
+                // Delete the file using its filename
+                Storage::disk('public')->delete('esign_pdf/' . $user_detail->esign);
+            }
+
+            // Download the PDF file and save it to the storage folder
+            $fileContents = file_get_contents($pdfUrl);
+            $path = Storage::disk('public')->put('esign_pdf/' . $PDFName, $fileContents);
+
+            DB::table('userdetails')->where('user_id',$temp_user_id)->update([
+                'esign' => $PDFName,
+            ]);
+
+            if($path === true){
+                $res = "true";
+            } else {
+                $res = "false";
+            }
+
+        } else {
+            $res = "false";
+        }
+
+
+        return $res;
+
+    }
+
 
 }

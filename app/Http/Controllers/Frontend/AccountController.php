@@ -601,6 +601,14 @@ class AccountController extends Controller
             return $rsp_msg;
         }
         
+        $users_email = DB::table('users')->where('email', $request->input('email'))->where('status', 1)->get();
+
+        if(count($users_email) != 0){
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = 'Email Already Exists';
+
+            return $rsp_msg;
+        }
 
         if(Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))){
 
@@ -641,10 +649,10 @@ class AccountController extends Controller
         $validator = Validator::make($request->all(), [
             'plan_id' => 'required',
             'installment_amount' => 'required|numeric',
-            'nominee_name' => ['nullable', 'string', 'min:3'],
+            'nominee_name' => ['nullable', 'string', 'min:3', 'max:250'],
             'nominee_phone' => 'nullable|regex:/^\d{10}$/',
-            'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3'],
-            'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3'],
+            'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
+            'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
         ]);
 
         if ($validator->fails()) {
@@ -975,6 +983,7 @@ class AccountController extends Controller
         $esign = json_decode($esign);
 
         if($esign->success == true){
+            $download_pdf = (new EsignAadharController)->download_esign($client_id);
             $result = "true";
         } else {
             $result = "false";
@@ -1026,66 +1035,16 @@ class AccountController extends Controller
 
 
 
-    // public function dummy_esign(){
+    public function dummy_esign(){
 
-    //     // $esign = (new EsignAadharController)->esign_code();
-    //     // $esign = json_decode($esign);
+        $client_id = "esign_vlrxgMzxHwwEWkGMOimy";
 
-    //     // echo"<pre>";
-    //     // var_dump($esign);
-    //     // echo"</pre>";
+        $esign = (new EsignAadharController)->download_esign($client_id);
+        $esign = json_decode($esign);
 
+        var_dump($esign);
 
-    //     $name = "dummy deol";
-    //     $email = "emai@gmail.com";
-    //     $phone = "1234567890";
-
-    //     $esign = (new EsignAadharController)->esign_nsdl($name, $email, $phone);
-    //     //$esign = json_decode($esign);
-
-    //     if (!$esign) {
-    //         // Handle the error case
-    //         $rsp_msg['response'] = 'error';
-    //         $rsp_msg['message'] = 'Failed to Verify, please try Again'; 
-
-    //         return $rsp_msg;
-    //     }
-
-    //     if ($esign == "error Generating link") {
-    //         // Handle the error case
-    //         $rsp_msg['response'] = 'error';
-    //         $rsp_msg['message'] = 'Failed to Generating Verify link, Please Try Again';
-
-    //         return $rsp_msg;
-    //     }
-
-    //     if ($esign == "error Generating upload link") {
-    //         // Handle the error case
-    //         $rsp_msg['response'] = 'error';
-    //         $rsp_msg['message'] = 'Failed to Generating Upload Term PDF link, Please Try Again';
-
-    //         return $rsp_msg;
-    //     }
-
-    //     if ($esign == "error uploading pdf") {
-    //         // Handle the error case
-    //         $rsp_msg['response'] = 'error';
-    //         $rsp_msg['message'] = 'Failed to Upload PDF, Please Try Again';
-
-    //         return $rsp_msg;
-    //     }
-
-    //     Session::put('client_id', $esign->data->client_id);
-        
-    //     $rsp_msg['response'] = 'success';
-    //     $rsp_msg['message']  = "Verified link generated successfully. Please proceed to E-sign";
-    //     $rsp_msg['url']  = $esign->data->url;
-        
-
-    //     return $rsp_msg; 
-
-
-    // }
+    }
 
 
 
