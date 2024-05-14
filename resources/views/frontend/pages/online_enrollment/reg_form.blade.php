@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="buttonclass1 mt60">
+                    <div class="buttonclass1 mt60 ms-4">
                         <button type="submit">Proceed <i class="las la-arrow-right"></i></button>
                     </div>
                 </div>
@@ -740,9 +740,9 @@
 
     <div class="row d-flex">
 
-        <div class="col-md-6">
+        <div class="col-md-6 mt-3">
 
-            <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+            <div class="card col-md-12">
                 <div class="card-header">
                   Plan Details
                 </div>
@@ -752,7 +752,12 @@
                 </div>
               </div>
 
-              <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+        </div>
+
+         <div class="col-md-6 mt-3">
+
+
+              <div class="card col-md-12">
                 <div class="card-header">
                   Verification Details
                 </div>
@@ -764,15 +769,27 @@
 
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-12 mt-3">
 
-            <div class="card col-md-12 my-5 mx-2" style="width: 39rem;">
+            <div class="card col-md-12">
                 <div class="card-header">
                   Customer Details
                 </div>
                 <div class="card-body">
-                    <p class="card-text"><strong>Name : </strong>{{ $user->name }}</p>
-                    <p class="card-text"><strong>Address : </strong>
+
+<div class="row">
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Name : </strong>{{ $user->name }}</p></div>
+                    
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Email : </strong>{{ $user->email }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Birthday : </strong>{{ date('d/m/Y', strtotime($user_detail->dob)) }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>ULP ID : </strong>{{ $user->ulp_id }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Nominee Name : </strong>{{ !empty($user_detail->nominee_name) ? $user_detail->nominee_name : 'NA' }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Nominee Phone No : </strong>{{ !empty($user_detail->nominee_phone) ? $user_detail->nominee_phone : 'NA' }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Nominee DOB : </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Nominee Address : </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Nominee Relation : </strong>{{ !empty($user_detail->nominee_relation) ? $user_detail->nominee_relation : 'NA' }}</p></div>
+                   <div class="col-md-8"><p class="card-text"><strong>Address : </strong>
                     @php 
                         echo $user_detail->flat_no . ",\n";
                         echo $user_detail->street . ",\n";
@@ -781,17 +798,8 @@
                         echo $user_detail->state . ",\n";
                         echo $user_detail->pincode;
                     @endphp
-                    </p>
-                    <p class="card-text"><strong>Email : </strong>{{ $user->email }}</p>
-                    <p class="card-text"><strong>Birthday : </strong>{{ date('d/m/Y', strtotime($user_detail->dob)) }}</p>
-                    <p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p>
-                    <p class="card-text"><strong>ULP ID : </strong>{{ $user->ulp_id }}</p>
-                    <p class="card-text"><strong>Nominee Name : </strong>{{ !empty($user_detail->nominee_name) ? $user_detail->nominee_name : 'NA' }}</p>
-                    <p class="card-text"><strong>Nominee Phone No : </strong>{{ !empty($user_detail->nominee_phone) ? $user_detail->nominee_phone : 'NA' }}</p>
-                    <p class="card-text"><strong>Nominee DOB : </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}</p>
-                    <p class="card-text"><strong>Nominee Address : </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}</p>
-                    <p class="card-text"><strong>Nominee Relation : </strong>{{ !empty($user_detail->nominee_relation) ? $user_detail->nominee_relation : 'NA' }}</p>
-                </div>
+                    </p></div>
+                </div></div>
               </div>
 
 
@@ -800,14 +808,13 @@
 
     </div>
 
-    <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
+    <div class="p-3 mb-2 text-white mt-3" style="background-color:#c0af78;">
         <h5> eSign Process </h5>
     </div>
 
     <div>
         <div class="steps-title mx-2 my-2">
-            <span style="color: var(--primary-text); font-size: var(--primary-font-size-heading);">Terms and Conditions
-            </span><br /><label style="color: var(--ternary-text); font-size: var(--tertiary-font-size); padding: 5px;"><br />
+            <label style="color: var(--ternary-text); font-size: var(--tertiary-font-size); padding: 5px;"><br />
                 You are about to be redirected to www.xyz.com, a third party website. The information you provide on the third party website is subject to the terms and conditions, privacy policies and practices of the third party website and we are not responsible for the security and privacy of any information that you may provide on the third party website. </label><br />
         </div>
     </div>
@@ -850,10 +857,12 @@
         @endphp
 
         <div class="row">
-            <form class="col-md-5" id="esign-aadhar-verify-request-otp" action="{{ url(route('account.create', ['param' =>'esign-aadhar-verify-request-otp'])) }}" method="post">
+            <form class="col-md-12" id="esign-aadhar-verify-request-otp" action="{{ url(route('account.create', ['param' =>'esign-aadhar-verify-request-otp'])) }}" method="post">
                 @csrf
 
-                <div class="col-md-4">
+
+                <div class="row">
+                       <div class="col-md-4">
                     <div class="form-group mt-4 adhar_field">
                         <label class="pb-3">Name *</label>
                         <input type="text" class="form-control" name="name" pattern="[A-Za-z]+" minlength="3"
@@ -861,7 +870,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                 <div class="col-md-4">
                     <div class="form-group mt-4 adhar_field">
                         <label class="pb-3">Email *</label>
                         <input type="eamil" class="form-control" name="email" placeholder="Please Enter Your Email Id" 
@@ -882,6 +891,13 @@
                         <button type="submit">Verify <i class="las la-arrow-right"></i></button>
                     </div>
                 </div>
+                </div>
+
+               
+
+               
+
+                
 
             </form>
 

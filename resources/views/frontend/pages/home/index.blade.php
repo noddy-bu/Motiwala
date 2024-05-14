@@ -65,7 +65,7 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="/assets/frontend/images/banner1.jpg" class="d-block w-100" alt="...">
+      <img src="/assets/frontend/images/banner3.jpg" class="d-block w-100" alt="...">
     </div>
 
       <div class="carousel-item">
@@ -73,11 +73,11 @@
     </div>
 
       <div class="carousel-item">
-      <img src="/assets/frontend/images/banner3.jpg" class="d-block w-100" alt="...">
+      <img src="/assets/frontend/images/banner4.jpg" class="d-block w-100" alt="...">
     </div>
 
       <div class="carousel-item">
-      <img src="/assets/frontend/images/banner4.jpg" class="d-block w-100" alt="...">
+      <img src="/assets/frontend/images/banner1.jpg" class="d-block w-100" alt="...">
     </div>
 
   
@@ -100,7 +100,7 @@
             <div class="container">
                 <div class="top_step_content">
                     <p class="text-center black_color font-weight800" data-aos-once="true" data-aos="fade-up">Dreaming of owning that stunning necklace?</p>
-                    <p class="text-center black_color" data-aos-once="true" data-aos="fade-up">
+                    <p class="text-center black_color pb-5" data-aos-once="true" data-aos="fade-up">
                         Start your journey by opening a Motiwala Jewels Golden Treasure  account with just ₹2000.
                         <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
                         to 75% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
@@ -342,9 +342,10 @@
                             <img class="choose_img" src="/assets/frontend/images/exchange_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
-                                <h5 class="black_color">Lifetime Exchange</h5>
+                                <h5 class="black_color">Exquisite Jewellery Collection</h5>
                                 <p class="black_color">
-                                   Exchange your old designs anytime you want an upgrade.
+                                  Delivering top-notch quality jewellery with the latest designs at prices you can afford, we bring over a century of industry expertise right to you.
+
                                 </p>
                             </div>
                         </div>
