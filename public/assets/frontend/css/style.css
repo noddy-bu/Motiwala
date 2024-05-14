@@ -103,7 +103,7 @@ section.banner_section img {
 }
 
 .buttonclass1 button {
-    padding: 8px 30px 9px 27px;
+    padding: 8px 18px 9px 18px;
     color: #000 !important;
     text-decoration: none;
     font-weight: 600;
@@ -405,7 +405,7 @@ input[type=number]:focus {
 }
 
 section.steps_section {
-    padding: 65px 0px 65px 0px;
+    padding: 100px 0px 65px 0px;
 }
 
 
@@ -732,7 +732,7 @@ label#amountLabel {
     border: 0px;
     border-bottom: 1px solid #ccc;
     border-radius: 0;
-    width: 340px;
+    width: 100%;
     margin-right: 22px;
     background: transparent !important;
     padding: 4px 16px 10px 0px;
@@ -1164,7 +1164,7 @@ body .userlogin_box {
 /*--step section css open--*/
 
 :root {
-    --prm-color: #0381ff;
+    --prm-color: #E3C2AB;
     --prm-gray: #b1b1b1;
 }
 
@@ -1236,4 +1236,14 @@ canvas#myCanvas {
 p#amount_13x {
     color: #b6927a;
     font-size: 28px;
+}
+
+a#resendOTPButton {
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.form-select:focus {
+    box-shadow: none !important;
 }
