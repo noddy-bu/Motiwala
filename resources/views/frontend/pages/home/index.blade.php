@@ -65,14 +65,22 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="/assets/frontend/images/banner4.png" class="d-block w-100" alt="...">
+      <img src="/assets/frontend/images/banner1.jpg" class="d-block w-100" alt="...">
     </div>
-    <div class="carousel-item">
-      <img src="/assets/frontend/images/banner5.png" class="d-block w-100" alt="...">
+
+      <div class="carousel-item">
+      <img src="/assets/frontend/images/banner2.jpg" class="d-block w-100" alt="...">
     </div>
-    <div class="carousel-item">
-      <img src="/assets/frontend/images/banner6.png" class="d-block w-100" alt="...">
+
+      <div class="carousel-item">
+      <img src="/assets/frontend/images/banner3.jpg" class="d-block w-100" alt="...">
     </div>
+
+      <div class="carousel-item">
+      <img src="/assets/frontend/images/banner4.jpg" class="d-block w-100" alt="...">
+    </div>
+
+  
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -97,8 +105,8 @@
                         <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
                         to 75% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
                     </p>
-                    <h4 class="title_heading text-center black_color pb-1 heading_font pt-5 pb-5" data-aos-once="true"
-                        data-aos="fade-up">Unlock your dream jewellery in just 4 simple steps:</h4>
+                    <h4 class="title_heading text-center black_color heading_font pt-5">4 Easy Steps </h4>
+                        <p class="text-center pb-5">to purchase the jewellery of your dreams</p>
                     <!-- <p class="text-center black_color" data-aos-once="true" data-aos="fade-up">to purchase the jewellery of
                         your dreams</p> -->
                 </div>
@@ -199,14 +207,17 @@
 
         <div class="container">
             <div class="benefits_calculator sip-calculator" data-aos-once="true" data-aos="fade-up">
-                <h4 class="title_heading text-center black_color pb-3 heading_font">Benefits Calculator</h4>
+   <div class="benefits_bgimage"><img src="/assets/frontend/images/benefits_bg.png" class="d-block" alt="..."></div>
+<div class="row align-items-center">
+    <div class="col-md-5">
+        <h4 class="title_heading text-center black_color pb-3 heading_font">Benefits Calculator</h4>
                 <form>
                     <div class="row">
 
                         <div class="col-md-12">
                             <p>Slide or enter monthly installment amount</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12 mb-4">
 
                             <div class="sip-calculator-amount">
                                 <div class="amount_monthly1">
@@ -229,7 +240,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="sip-calculator-amount">
                                 <div class="amount_monthly2">
                                     <label id="amountLabel"> YOUR TOTAL AMOUNT for 10 months <span id="amount_10x">₹
@@ -261,6 +272,13 @@
 
                     </div>
                 </form>
+    </div>
+    <div class="col-md-7">
+        <canvas id="myCanvas" width="400" height="400"></canvas>
+    </div>
+</div>
+
+                
             </div>
         </div>
 
@@ -272,26 +290,12 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="d-flex gap-3" data-aos-once="true" data-aos="fade-up">                            
-                            <img class="choose_img" src="/assets/frontend/images/earnings_icons.png"
+                            <img class="choose_img" src="/assets/frontend/images/best_icons.png"
                                 class="d-block w-100" alt="...">
-                            <div class="choose_content">
-                                <h5 class="black_color">Exquisite Jewellery Collection</h5>
-                                <p class="black_color">
-                                Delivering top-notch quality jewellery with the latest designs at prices you can afford,
-                                we bring over a century of industry expertise right to you.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="d-flex gap-3 pb-4" data-aos-once="true" data-aos="fade-up">
-                            <img class="choose_img" src="/assets/frontend/images/best_icons.png" class="d-block w-100"
-                                alt="...">
                             <div class="choose_content">
                                 <h5 class="black_color">Best Price Guarantee</h5>
                                 <p class="black_color">
-                                    Our Best Price Guarantee ensures that you'll find the most competitive prices
-                                    in the online diamond jewellery business right here.
+                                We offer the best prices in the online Diamond Jewellery Business.
                                 </p>
                             </div>
                         </div>
@@ -301,23 +305,33 @@
                             <img class="choose_img" src="/assets/frontend/images/refer_icons.png" class="d-block w-100"
                                 alt="...">
                             <div class="choose_content">
-                                <h5 class="black_color">Certified Authenticity</h5>
-                                <p class="black_color"> 
-                                    Rest assured, our jewellery is always 100% certified,
-                                    accompanied by a certificate of authentication for your peace of mind.
+                                <h5 class="black_color">Refer and Earn</h5>
+                                <p class="black_color">
+                                   Refer your friend/family and earn 20% of your referral’s order’s Diamond Amount.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="d-flex gap-3 pb-4" data-aos-once="true" data-aos="fade-up">
-                            <img class="choose_img" src="/assets/frontend/images/exchange_icons.png"
+                            <img class="choose_img" src="/assets/frontend/images/earnings_icons.png" class="d-block w-100"
+                                alt="...">
+                            <div class="choose_content">
+                                <h5 class="black_color">Motiwala Harvest</h5>
+                                <p class="black_color"> 
+                                    A unique easy-pay system which gives you a benefit of 18.24%
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex gap-3 pb-4" data-aos-once="true" data-aos="fade-up">
+                            <img class="choose_img" src="/assets/frontend/images/certified_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
-                                <h5 class="black_color">Lifetime Exchange Policy</h5>
+                                <h5 class="black_color">100% Certified Jewellery</h5>
                                 <p class="black_color"> 
-                                    Upgrade your style anytime with our Lifetime Exchange policy, 
-                                    allowing you to exchange your old designs for something new whenever you desire.
+                                   Our jewellery always comes with a certificate of authentication.
                                 </p>
                             </div>
                         </div>
@@ -328,10 +342,9 @@
                             <img class="choose_img" src="/assets/frontend/images/exchange_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
-                                <h5 class="black_color">Unlocking Benefits with Motiwala Jewels Golden Treasurer Purchase Plan</h5>
+                                <h5 class="black_color">Lifetime Exchange</h5>
                                 <p class="black_color">
-                                    Introducing Motiwala Jewels Golden Treasurer: 
-                                    A unique and convenient payment system that offers you a remarkable benefit.
+                                   Exchange your old designs anytime you want an upgrade.
                                 </p>
                             </div>
                         </div>
@@ -341,10 +354,9 @@
                             <img class="choose_img" src="/assets/frontend/images/warranty_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
-                                <h5 class="black_color">Quality Assurance Guaranteed: 100% Hallmark Jewellery</h5>
+                                <h5 class="black_color">One Year Warranty</h5>
                                 <p class="black_color">
-                                    Rest easy knowing that your jewellery is covered by BIS Regulations. 
-                                    Should you encounter any defects, we'll promptly fix it for you.
+                                   If your jewellery has a defect, we will fix it.
                                 </p>
                             </div>
                         </div>

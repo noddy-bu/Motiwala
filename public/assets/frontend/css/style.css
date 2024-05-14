@@ -179,6 +179,8 @@ section.why_choose_section {
 
 .benefits_calculator p {
     color: #404040;
+    font-size: 20px;
+    font-weight: 800;
 }
 
 .amount_price_view {
@@ -186,14 +188,29 @@ section.why_choose_section {
     display: block;
 }
 
+.benefits_bgimage img {
+    width: 100%;
+}
+
+.benefits_bgimage {
+    position: absolute;
+    right: -40px;
+    top: -46px;
+}
+
 .sip-calculator {
-    padding: 3em 3em 2em 3em;
+    padding: 5em 3em 4em 3em;
     background-color: #ffffff5c;
     box-shadow: 8px 8px 35px 0px #0000000D;
     border-radius: 50px;
-    width: 800px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.footer-app-image img {
+    width: 85% !important;
+    float: right;
 }
 
 .sip-calculator-amount,
@@ -442,7 +459,7 @@ footer {
 
 .footer-app-image {
     position: absolute;
-    margin-top: -300px;
+    margin-top: -195px;
 }
 
 .footer-widget .widget-title {
@@ -599,7 +616,7 @@ form.form-subscribe button {
 /*-- accordion section open--*/
 
 section.faq_section {
-    padding: 70px 0px 220px 0px;
+    padding: 70px 0px 120px 0px;
 }
 
 .faq_section .accordion-item {
@@ -1206,4 +1223,17 @@ body .userlogin_box {
 #progress::-webkit-progress-bar {
     background-color: var(--prm-gray);
 
+}
+
+.benefits_calculator:before {
+    background-image: url(/assets/frontend/images/benefits_bg.png);
+}
+
+canvas#myCanvas {
+    margin-left: 40px;
+}
+
+p#amount_13x {
+    color: #b6927a;
+    font-size: 28px;
 }

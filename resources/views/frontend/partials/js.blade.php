@@ -22,4 +22,7 @@
 
 <!--Custom Js-->
 <script src="/assets/frontend/js/Init.js"></script>
+<script src="https://code.createjs.com/easeljs-0.6.1.min.js"></script>
 <script src="/assets/frontend/js/script.js"></script>
+
+
