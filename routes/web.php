@@ -151,8 +151,7 @@ Route::get('/clear-data', function () {
 })->name('clear-data');
 
 Route::get('/update-session', function () {
-    Session()->put('step', 12);
-    Session()->put('temp_user_id', 12);
+    Session()->put('step', 9);
 })->name('update-session');
 
 

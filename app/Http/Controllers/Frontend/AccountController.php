@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Common\AadharController;
 
 use App\Http\Controllers\Common\EsignAadharController;
+use Dompdf\Dompdf;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Storage;
 
 use Auth;
 
@@ -1037,12 +1040,34 @@ class AccountController extends Controller
 
     public function dummy_esign(){
 
-        $client_id = "esign_vlrxgMzxHwwEWkGMOimy";
+        // Get user details
+        $user = 'this the generateed pdf';
 
-        $esign = (new EsignAadharController)->download_esign($client_id);
-        $esign = json_decode($esign);
+        // Render the HTML view with user details
+        $html = View::make('frontend.component.template', compact('user'))->render();
 
-        var_dump($esign);
+        // Create a new DOMPDF instance
+        $dompdf = new Dompdf();
+
+        // Load HTML content
+        $dompdf->loadHtml($html);
+
+        // (Optional) Set paper size and orientation
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Generate a unique filename
+        $filename = 'generated_pdf_' . time() . '.pdf';
+
+        // Save the PDF to public/generate_pdf directory
+        $dompdf->stream($filename, ['Attachment' => 0]);
+
+        $output = $dompdf->output();
+        Storage::disk('public')->put('generate_pdf/' . $filename, $output);
+
+        return redirect()->back()->with('success', 'PDF generated successfully.');
 
     }
 

@@ -183,6 +183,10 @@ class EsignAadharController extends Controller
 
     }
 
+    function generate_pdf(){
+        
+    }
+
 
     function upload_pdf($signature, $date, $credentials, $upload_key, $policy, $algorithm, $url){
 
