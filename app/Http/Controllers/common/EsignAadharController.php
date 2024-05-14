@@ -233,7 +233,8 @@ class EsignAadharController extends Controller
 
     function upload_pdf($signature, $date, $credentials, $upload_key, $policy, $algorithm, $client_id, $url){
 
-        $file_path = url('storage/generate_pdf/generated_pdf_'.$client_id.'.pdf');
+        //$file_path = url('storage/generate_pdf/generated_pdf_'.$client_id.'.pdf');
+        $file_path = './storage/generate_pdf/generated_pdf_'.$client_id.'.pdf';
 
         $curl = curl_init();
 
