@@ -10,7 +10,7 @@
 @section('page.content')
 
     <!--banner start -->
-    <section class="banner_section">
+    <!-- <section class="banner_section">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -21,7 +21,20 @@
                     aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active">
+                
+            <div class="carousel-item active">
+                    <img src="/assets/frontend/images/banner1.png" class="d-block w-100" alt="...">
+            </div>
+
+            <div class="carousel-item ">
+                    <img src="/assets/frontend/images/banner2.png" class="d-block w-100" alt="...">
+            </div>
+
+            <div class="carousel-item ">
+                    <img src="/assets/frontend/images/banner3.png" class="d-block w-100" alt="...">
+            </div>
+
+                 <!-- <div class="carousel-item active">
                     <img src="/assets/frontend/images/main_banner_images.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block text-start">
                         <h3 class="black_color heading_font">Discover the magic of Gold And Diamond Jewellery right here</h3>
@@ -35,88 +48,97 @@
                             </a>
                         </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="/assets/frontend/images/main_banner_images.png" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block text-start">
-                        <h3 class="black_color heading_font">Step into a world of looking beautiful with our Gold And Diamond Jewellery collection! </h3>
-                        <p class="black_color">
-                            Explore our captivating Gold and Diamond Jewellery collection, 
-                            showcasing a curated selection of timeless classics and contemporary stunners, 
-                            meticulously crafted for unparalleled quality and beauty to suit every style and occasion.
-                        </p>
-                        <div class="buttonclass mt-4">
-                            <a href="">Explore <i class="las la-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="/assets/frontend/images/main_banner_images.png" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block text-start">
-                        <h3 class="black_color heading_font">Embark on a journey of majesty with our Gold And Diamond Jewellery collection! </h3>
-                        <p class="black_color">
-                            Discover our captivating Gold and Diamond Jewellery collection, featuring an enchanting array 
-                            of meticulously crafted pieces from classic elegance to contemporary chic, 
-                            promising unparalleled quality and charm for every style and occasion.
-                        </p>
-                        <div class="buttonclass mt-4">
-                            <a href="">Explore <i class="las la-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                </div> 
+
             </div>
+
+            
         </div>
-    </section>
+    </section> -->
+
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/assets/frontend/images/banner4.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/assets/frontend/images/banner5.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/assets/frontend/images/banner6.png" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
     <!--banner close -->
     <main class="main">
         <!--benefits calculator open-->
         <section class="steps_section">
             <div class="container">
                 <div class="top_step_content">
-                    <p class="text-center black_color" data-aos-once="true" data-aos="fade-up">Dreaming of owning that stunning necklace?</p>
+                    <p class="text-center black_color font-weight800" data-aos-once="true" data-aos="fade-up">Dreaming of owning that stunning necklace?</p>
                     <p class="text-center black_color" data-aos-once="true" data-aos="fade-up">
                         Start your journey by opening a Motiwala Jewels Golden Treasure  account with just ₹2000.
                         <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
                         to 75% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
                     </p>
-                    <h4 class="title_heading text-center black_color pb-1 heading_font pt-4 " data-aos-once="true"
+                    <h4 class="title_heading text-center black_color pb-1 heading_font pt-5 pb-5" data-aos-once="true"
                         data-aos="fade-up">Unlock your dream jewellery in just 4 simple steps:</h4>
                     <!-- <p class="text-center black_color" data-aos-once="true" data-aos="fade-up">to purchase the jewellery of
                         your dreams</p> -->
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="step_border_img">
-                            <img src="/assets/frontend/images/round_bg_image.png" class="d-block" alt="...">
-                        </div>
-                    </div>
                     <div class="col-md-3">
                         <div class="step_box steps1">
-                            <div class="step_content1">
+                            
+                            <div class="step_box_icon">
+                                <div class="step_box_img">
+                                    <img src="/assets/frontend/images/user_icon.png" class="d-block" alt="...">
+                                </div>
+                            </div>
+                                 <div class="layer_img">
+                                    <img src="/assets/frontend/images/layer_1.png" class="d-block" alt="...">
+                                </div>
+                            <div class="step_content1 pt-5">
                                 <p class="black_color" data-aos-once="true" data-aos="fade-right">
                                     Get started by opening a new account on our website, the Motiwala
                                     Jewels Golden Treasure Jewellery Purchase app,
                                     or by visiting  our only  Store In Byculla, Mumbai Maharashtra.
                                 </p>
                             </div>
-                            <div class="step_box_icon">
-                                <div class="step_box_img">
-                                    <img src="/assets/frontend/images/user_icon.png" class="d-block" alt="...">
-                                </div>
-                            </div>
+
+                             
+
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="step_box steps2">
-                            <div class="step_content2">
+                            <div class="step_content2 pb-3">
                                 <p class="black_color" data-aos-once="true" data-aos="fade-right">
                                     You can pay a monthly installment of at least ₹2000, or any higher multiples of ₹1000, 
                                     for 10 months using cash, online banking via Standing Instructions, Net-Banking, 
                                     UPI or post-dated cheque facilities.
                                 </p>
                             </div>
+
+                             <div class="layer_img2">
+                                    <img src="/assets/frontend/images/layer_2.png" class="d-block" alt="...">
+                                </div>
                             <div class="step_box_icon">
                                 <div class="step_box_img">
                                     <img src="/assets/frontend/images/wallet_icon.png" class="d-block" alt="...">
@@ -126,24 +148,29 @@
                     </div>
                     <div class="col-md-3">
                         <div class="step_box steps3">
-                            <div class="step_content3">
-                                <p class="black_color" data-aos-once="true" data-aos="fade-left">
-                                    Receive an exclusive discount of up to 75% of the value of your first installment when you redeem your plan.
-                                </p>
-                            </div>
+                           
                             <div class="step_box_icon">
                                 <div class="step_box_img">
                                     <img src="/assets/frontend/images/percent_icon.png" class="d-block" alt="...">
                                 </div>
                             </div>
+                             <div class="layer_img3">
+                                    <img src="/assets/frontend/images/layer_1.png" class="d-block" alt="...">
+                                </div>
+                             <div class="step_content3 pt-5 pe-3 ps-4">
+                                <p class="black_color" data-aos-once="true" data-aos="fade-left">
+                                    Receive an exclusive discount of up to 75% of the value of your first installment when you redeem your plan.
+                                </p>
+                            </div>
+
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="step_box steps4">
-                            <div class="step_content4">
+                            <div class="step_content4 pb-1">
                                 <p class="black_color" data-aos-once="true" data-aos="fade-left">
                                     Acquire your beloved Motiwala Jewels Gold and Diamonds jewellery using the entire redemption value.
-                                </p><br><br>
+                                </p>
                             </div>
                             <div class="step_box_icon">
                                 <div class="step_box_img">
@@ -374,8 +401,6 @@
                                 make your desired purchase at your convenience. This ensures that you have the freedom to acquire 
                                 your favorite jewellery whenever you're ready, giving you the ultimate flexibility and satisfaction 
                                 in your shopping experience with us.
-                                <br>
-                                Please check
                             </div>
                         </div>
                     </div>
@@ -416,8 +441,7 @@
                                 highest standards of craftsmanship and excellence. Furthermore, our prompt and attentive 
                                 responses to any queries or concerns you may have reflect our commitment to your satisfaction 
                                 and guarantee a seamless and enjoyable shopping experience with us. 
-                                <br>
-                                Please check
+                                
                             </div>
                         </div>
                     </div>
