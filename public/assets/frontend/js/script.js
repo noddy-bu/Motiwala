@@ -9,20 +9,16 @@ function toggle() {
     popup.classList.toggle("active");
 }
 
-
-$(document).ready(function() {
-
+$(document).ready(function () {
     function openModal() {
-        $('#loginmodal').modal('show');
+        $("#loginmodal").modal("show");
     }
 
     // Check if the URL contains '#sign' and open the modal if it does
-    if (window.location.hash === '#sign') {
+    if (window.location.hash === "#sign") {
         openModal();
     }
 });
-
-
 
 // calculator
 /*
@@ -108,6 +104,25 @@ function calculateIt() {
 calculateIt();
 */
 
+/*step script*/
 
+const stepButtons = document.querySelectorAll(".step-button");
+const progress = document.querySelector("#progress");
 
+Array.from(stepButtons).forEach((button, index) => {
+    button.addEventListener("click", () => {
+        progress.setAttribute(
+            "value",
+            (index * 100) / (stepButtons.length - 1)
+        ); //there are 3 buttons. 2 spaces.
 
+        stepButtons.forEach((item, secindex) => {
+            if (index > secindex) {
+                item.classList.add("done");
+            }
+            if (index < secindex) {
+                item.classList.remove("done");
+            }
+        });
+    });
+});
