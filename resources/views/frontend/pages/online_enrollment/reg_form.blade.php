@@ -1156,8 +1156,6 @@
         // Get the value of the phone input field
         var phone = document.getElementById("phone").value;
 
-        console.log('working');
-
         // Create an XMLHttpRequest object
         var xhr = new XMLHttpRequest();
 
