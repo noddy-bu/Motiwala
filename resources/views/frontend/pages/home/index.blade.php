@@ -98,21 +98,24 @@
     <!--banner close -->
     <main class="main">
         <!--benefits calculator open-->
-        <section class="steps_section">
-            <div class="container">
-                <div class="top_step_content">
-                    <p class="text-center black_color font-weight800" data-aos-once="true" data-aos="fade-up">Dreaming of owning that stunning necklace?</p>
-                    <p class="text-center black_color pb-5" data-aos-once="true" data-aos="fade-up">
+
+           <section class="top_step_content">
+            <div class="container">  <h4 class="title_heading text-center black_color pb-3 heading_font">Dreaming of owning that stunning necklace?</h4>
+                    <p class="text-center black_color fontsize26" data-aos-once="true" data-aos="fade-up">
                         Start your journey by opening a Motiwala Jewels Golden Treasure  account with just ₹2000.
                         <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
                         to 75% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
                     </p>
-                    <h4 class="title_heading text-center black_color heading_font pt-5">4 Easy Steps </h4>
-                        <p class="text-center pb-5">to purchase the jewellery of your dreams</p>
-                    <!-- <p class="text-center black_color" data-aos-once="true" data-aos="fade-up">to purchase the jewellery of
-                        your dreams</p> -->
                 </div>
+</section>
+
+
+
+        <section class="steps_section">
+            <div class="container">
                 <div class="row">
+                    <h4 class="title_heading text-center black_color heading_font">4 Easy Steps </h4>
+                        <p class="text-center pb-5 black_color ">to purchase the jewellery of your dreams</p>
                     <div class="col-md-3">
                         <div class="step_box steps1">
                             
@@ -209,11 +212,12 @@
 
         <div class="container">
             <div class="benefits_calculator sip-calculator" data-aos-once="true" data-aos="fade-up">
-   <div class="benefits_bgimage">
+   <div class="benefits_bgimage swing">
     <img src="/assets/frontend/images/benefits_bg.png" class="d-block" alt="..."></div>
 <div class="row align-items-center">
+    <div class="col-md-12"><h4 class="title_heading text-center black_color pb-5 heading_font">Benefits Calculator</h4></div>
     <div class="col-md-5">
-        <h4 class="title_heading text-center black_color pb-3 heading_font">Benefits Calculator</h4>
+        
                 <form>
                     <div class="row">
 

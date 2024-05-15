@@ -205,7 +205,7 @@ section.why_choose_section {
 }
 
 .sip-calculator {
-    padding: 5em 3em 4em 3em;
+    padding: 4em 3em 4em 3em;
     background-color: #ffffff5c;
     box-shadow: 8px 8px 35px 0px #0000000D;
     border-radius: 50px;
@@ -422,8 +422,22 @@ section.steps_section {
 }
 
 .top_step_content p {
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 16px;
+}
+
+section.top_step_content {
+    padding-top: 130px;
+    background: #e3c2ab8a;
+    padding-bottom: 130px;
+}
+
+div#carouselExampleIndicators img {
+    height: 100vh;
+    object-fit: cover;
+}
+
+.fontsize26 {
+    font-size: 20px !important;
 }
 
 .top_step_content p span {
@@ -723,6 +737,7 @@ label#amountLabel {
     text-align: right;
     font-size: 28px;
     font-weight: 600;
+    padding-top: 20px;
 }
 
 
@@ -1250,4 +1265,26 @@ nav ul li a {
     right: 15px;
     top: 5px;
     cursor: pointer;
+}
+
+.swing {
+    animation: swing ease-in-out 1s infinite alternate;
+    transform-origin: center -20px;
+    float: left;
+    box-shadow: none;
+}
+
+.swing img {
+    border: 0px solid #f8f8f8;
+    display: block;
+}
+
+@keyframes swing {
+    0% {
+        transform: rotate(3deg);
+    }
+
+    100% {
+        transform: rotate(-3deg);
+    }
 }
