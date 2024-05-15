@@ -332,8 +332,7 @@ class EsignAadharController extends Controller
 
             $pdfUrl = $result->data->url;
 
-            //$temp_user_id = Session::get('temp_user_id');
-            $temp_user_id = '12';
+            $temp_user_id = Session::get('temp_user_id');
 
             $PDFName = 'ESIGN-' . $temp_user_id . '.pdf';
 
