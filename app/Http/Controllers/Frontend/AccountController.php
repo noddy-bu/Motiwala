@@ -125,7 +125,7 @@ class AccountController extends Controller
             'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3'],
             'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3'],
 
-            'spouse_name' => ['nullable', 'string', 'min:3'],
+            'spouse_name' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\/\'&]+$/i', 'min:3'],
             'marital_status' => 'required',
         ]);
 
