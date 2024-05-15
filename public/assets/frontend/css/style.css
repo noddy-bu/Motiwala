@@ -27,8 +27,9 @@ div#add-phone a {
 
 .nav_right_menu {
     background: #ffffffe0;
-    padding: 10px 36px;
+    padding: 10px 5px;
     border-radius: 10px;
+    margin-right: 35px;
 }
 
 .nav_right_menu li {
@@ -40,6 +41,11 @@ div#add-phone a {
     color: #404040;
     font-weight: 500;
     font-size: 15px;
+}
+
+body nav .nav_right_menu li a {
+    color: #000 !important;
+    padding: 0px 10px 8px 10px !important;
 }
 
 .nav_right_menu li a:hover {
@@ -1168,4 +1174,80 @@ a#resendOTPButton {
 
 .form-select:focus {
     box-shadow: none !important;
+}
+
+
+/*-- menu css--*/
+
+.menu_sec {
+    position: relative;
+    right: 24px;
+    top: 24px;
+    right: 12px;
+    top: 2px;
+    z-index: 999;
+    width: auto;
+}
+
+a#nav-icon img {
+    width: 40px;
+}
+
+nav ul.menu {
+    width: 250px;
+    height: 100vh;
+    float: right;
+    position: fixed;
+    padding-left: 0px;
+    background: #cd9f72;
+    padding-top: 90px;
+    opacity: 1;
+    right: -100%;
+    display: block;
+    top: 0;
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+}
+
+nav .menu.menu-open {
+    right: 0px;
+    transition: all 0.5s;
+}
+
+nav ul li {
+    float: none;
+    text-align: left;
+    display: block;
+    text-align: center;
+    line-height: normal;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 0.7rem 1rem !important;
+    color: #fff !important;
+    font-size: 18px;
+    padding-left: 26px !important;
+    text-align: left;
+}
+
+#nav-icon {
+    -webkit-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+    display: block;
+    float: right;
+}
+
+.cross_close {
+    float: right;
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    cursor: pointer;
 }

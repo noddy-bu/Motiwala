@@ -314,3 +314,23 @@ var data = [
     },
 ];
 HoverPie.make($("#myCanvas"), data, {});
+
+// header js
+
+$("#nav-icon").click(function () {
+    $(this).toggleClass("open");
+    $(".menu").toggleClass("menu-open");
+    $(".menu").removeClass("menu_hide2");
+    $(".menu").removeClass("cross_close_show");
+    $("body").toggleClass("overflow");
+});
+
+$(".nav_sec").click(function () {
+    $(".menu").addClass("menu_hide2");
+    $(".menu").removeClass("menu-open");
+    $("#nav-icon").removeClass("open");
+});
+
+$(".cross_close").click(function () {
+    $(".menu").removeClass("menu-open");
+});

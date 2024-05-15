@@ -17,31 +17,40 @@
                         <a class="nav-link" href="{{ url(route('account.new.enrollment.page')) }}"><i
                                 class="las la-user-plus"></i> New Account</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url(route('instantpay')) }}"><i class="las la-hand-holding-usd"></i> Instant Pay</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="modal" href="#autodebit_modal"><i
-                                class="las la-credit-card"></i> Auto Debit</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url(route('information')) }}"><i class="las la-exclamation-circle"></i>
-                            Information</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url(route('terms')) }}"><i class="las la-clipboard-list"></i>
-                            T&C</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url(route('faq')) }}"><i class="las la-question-circle"></i> FAQs</a>
-                    </li>
+                  
 
                 </ul>
 
             </div>
+
+            <nav class="menu_sec">
+       
+        <a id="nav-icon">
+          <img src="https://demo.creaadesign.com/bandhan-mutual-fund/images/menu.svg" alt="" class="img-fluid">
+        </a>
+        <ul class="menu">
+          <img src="https://demo.creaadesign.com/bandhan-mutual-fund/images/cross2.svg" alt="" class="img-fluid cross_close">
+          <li>
+            <a class="nav-link" href="{{ url(route('instantpay')) }}"><i class="las la-hand-holding-usd"></i> Instant Pay</a>
+          </li>
+          <li>
+            <a class="nav-link" data-bs-toggle="modal" href="#autodebit_modal"><i
+                                class="las la-credit-card"></i> Auto Debit</a>
+          </li>
+          <li>
+            <a class="nav-link" href="{{ url(route('information')) }}"><i class="las la-exclamation-circle"></i>
+                            Information</a>
+          </li>
+          <li>
+            <a class="nav-link" href="{{ url(route('terms')) }}"><i class="las la-clipboard-list"></i>
+                            T&C</a>
+          </li>
+          <li>
+            <a class="nav-link" href="{{ url(route('faq')) }}"><i class="las la-question-circle"></i> FAQs</a>
+          </li>
+         
+        </ul>
+      </nav>
         </div>
     </nav>
 </header>
