@@ -207,7 +207,8 @@
 
         <div class="container">
             <div class="benefits_calculator sip-calculator" data-aos-once="true" data-aos="fade-up">
-   <div class="benefits_bgimage"><img src="/assets/frontend/images/benefits_bg.png" class="d-block" alt="..."></div>
+   <div class="benefits_bgimage">
+    <img src="/assets/frontend/images/benefits_bg.png" class="d-block" alt="..."></div>
 <div class="row align-items-center">
     <div class="col-md-5">
         <h4 class="title_heading text-center black_color pb-3 heading_font">Benefits Calculator</h4>
@@ -274,7 +275,7 @@
                 </form>
     </div>
     <div class="col-md-7">
-        <canvas id="myCanvas" width="400" height="400"></canvas>
+        <canvas id="myCanvas" width="350" height="350"></canvas>
     </div>
 </div>
 

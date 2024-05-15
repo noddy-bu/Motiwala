@@ -133,8 +133,8 @@ console.log("vvvvvvvvvvvvvvvvvvvv START vvvvvvvvvvvvvvvvvvvv");
 
 var HoverPie = {};
 HoverPie.config = {
-    canvasPadding: 25,
-    hoverScaleX: 1.1,
+    canvasPadding: 1,
+    hoverScaleX: 5.1,
     hoverScaleY: 1.1,
     labelColor: "#000",
     labelHoverColor: "rgba(255,255,255,1)",
@@ -142,7 +142,7 @@ HoverPie.config = {
     labelFontFamily: "Quicksand",
     labelFontWeight: "bold",
     labelAlign: "center",
-    labelFontSize: 18,
+    labelFontSize: 14,
     sectorFillColor: "#000",
     sectorStrokeColor: "#000",
     sectorStrokeWidth: 2,
@@ -279,13 +279,6 @@ HoverPie.make = function ($canvas, data, config) {
         stage.update();
     };
 
-    // This binding fires hover() when the mouse hovers over a
-    // new set of pie sectors.
-    // We can't use an addEventListener on each sector because
-    // the hit mask on those shapes is the size of the entire
-    // pie, not the individual sector.
-    // I have not yet tried using canvas clip(). Maybe that's
-    // a better solution? Unsure.
     $canvas.mousemove(function (e) {
         var objs = stage.getObjectsUnderPoint(e.clientX, e.clientY);
         var ids = $.map(objs, function (e) {
