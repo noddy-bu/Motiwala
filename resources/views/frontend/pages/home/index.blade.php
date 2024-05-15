@@ -72,10 +72,10 @@
       <img src="/assets/frontend/images/banner2.jpg" class="d-block w-100" alt="...">
     </div>
 
-     <div class="carousel-item">
+     <!-- <div class="carousel-item">
       <img src="/assets/frontend/images/banner1.jpg" class="d-block w-100" alt="...">
-    </div>
-    
+    </div> -->
+
       <div class="carousel-item">
       <img src="/assets/frontend/images/banner4.jpg" class="d-block w-100" alt="...">
     </div>
