@@ -917,7 +917,7 @@ div#preview-info p {
 /*-- after login css start--*/
 
 .sidebaar_section .bg_theme {
-    background-color: #e3c2ab !important;
+    background-color: #fff !important;
     box-shadow: 0px 0px 13px -3px #ccc;
     border-right: 1px solid #cccccc1a;
 }
@@ -971,94 +971,6 @@ body .width80 {
     padding-bottom: 60px;
 }
 
-.after_login_body .step_box.steps1 {
-    position: relative;
-    top: 107px;
-    left: 152px;
-}
-
-.after_login_body .step_content1 {
-    position: relative;
-    left: -149px;
-    width: 214px;
-    top: 38px;
-}
-
-.after_login_body .step_box_icon img {
-    transition: 0.3s all;
-    text-align: center;
-    width: 46px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 27px;
-}
-
-.after_login_body .step_box_icon {
-    background: #E3C2AB;
-    width: 100px;
-    border-radius: 100px;
-    margin-top: 40px;
-    transition: 0.3s all;
-    height: 100px;
-}
-
-.after_login_body .step_box_img {
-    width: 100px;
-    height: 100px;
-    border: 2px solid #404040;
-    border-radius: 100px;
-    line-height: 120px;
-    text-align: center;
-    position: relative;
-    top: -10px;
-    left: 10px;
-    transition: 0.3s all;
-}
-
-.after_login_body .step_box.steps2 {
-    position: relative;
-    top: -158px;
-    left: 80px;
-}
-
-.after_login_body .step_content2 {
-    position: relative;
-    left: -171px;
-    width: 328px;
-    top: 10px;
-}
-
-.after_login_body .step_box_icon {
-    background: #E3C2AB;
-    width: 100px;
-    border-radius: 100px;
-    margin-top: 40px;
-    transition: 0.3s all;
-    height: 100px;
-}
-
-.after_login_body .step_box.steps3 {
-    position: relative;
-    top: -134px;
-    left: 70px;
-}
-
-.after_login_body .step_box.steps4 {
-    position: relative;
-    top: 61px;
-    left: -23px;
-}
-
-.after_login_body .step_content4 {
-    position: relative;
-    left: 72px;
-    width: 191px;
-    top: 85px;
-}
-
-.after_login_body section.steps_section p {
-    font-size: 12px;
-}
 
 .after_login_body section.faq_section {
     padding: 60px 0px 60px 0px;
@@ -1066,6 +978,16 @@ body .width80 {
 
 .after_login_body footer {
     padding: 00px 0 0px 0px;
+}
+
+.after_login_body .benefits_bgimage img {
+    width: 65%;
+}
+
+.after_login_body .benefits_bgimage {
+    position: absolute;
+    right: -122px;
+    top: -30px;
 }
 
 .after_login_body .copyright_section {
