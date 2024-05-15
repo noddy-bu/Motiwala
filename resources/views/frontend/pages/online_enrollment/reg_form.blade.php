@@ -969,7 +969,7 @@
 
         <div class="col-md-6">
 
-            <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+            <div class="card col-md-12 mt-3">
                 <div class="card-header">
                   Plan Details
                 </div>
@@ -978,8 +978,13 @@
                     <p class="card-text"><strong>Installment Amount (in Rs) : </strong>{{ $user->installment_amount}}</p>
                 </div>
               </div>
+        </div>
 
-              <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+
+        <div class="col-md-6">
+
+
+              <div class="card col-md-12 mt-3">
                 <div class="card-header">
                   Verification Details
                 </div>
@@ -991,15 +996,30 @@
 
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-12">
 
-            <div class="card col-md-12 my-5 mx-2" style="width: 39rem;">
+            <div class="card col-md-12 mt-3">
                 <div class="card-header">
                   Customer Details
                 </div>
                 <div class="card-body">
-                    <p class="card-text"><strong>Name : </strong>{{ $user->name }}</p>
-                    <p class="card-text"><strong>Address : </strong>
+
+
+                <div class="row">
+                
+
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Name : </strong>{{ $user->name }}</p></div>
+                   
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Email : </strong>{{ $user->email }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Birthday : </strong>{{ date('d/m/Y', strtotime($user_detail->dob)) }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>ULP ID : </strong>{{ $user->ulp_id }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Nominee Name : </strong>{{ !empty($user_detail->nominee_name) ? $user_detail->nominee_name : 'NA' }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Nominee Phone No : </strong>{{ !empty($user_detail->nominee_phone) ? $user_detail->nominee_phone : 'NA' }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Nominee DOB : </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Nominee Address : </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Nominee Relation : </strong>{{ !empty($user_detail->nominee_relation) ? $user_detail->nominee_relation : 'NA' }}</p></div>
+                    <div class="col-md-8 mb-3"><p class="card-text"><strong>Address : </strong>
                     @php 
                         echo $user_detail->flat_no . ",\n";
                         echo $user_detail->street . ",\n";
@@ -1008,16 +1028,8 @@
                         echo $user_detail->state . ",\n";
                         echo $user_detail->pincode;
                     @endphp
-                    </p>
-                    <p class="card-text"><strong>Email : </strong>{{ $user->email }}</p>
-                    <p class="card-text"><strong>Birthday : </strong>{{ date('d/m/Y', strtotime($user_detail->dob)) }}</p>
-                    <p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p>
-                    <p class="card-text"><strong>ULP ID : </strong>{{ $user->ulp_id }}</p>
-                    <p class="card-text"><strong>Nominee Name : </strong>{{ !empty($user_detail->nominee_name) ? $user_detail->nominee_name : 'NA' }}</p>
-                    <p class="card-text"><strong>Nominee Phone No : </strong>{{ !empty($user_detail->nominee_phone) ? $user_detail->nominee_phone : 'NA' }}</p>
-                    <p class="card-text"><strong>Nominee DOB : </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}</p>
-                    <p class="card-text"><strong>Nominee Address : </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}</p>
-                    <p class="card-text"><strong>Nominee Relation : </strong>{{ !empty($user_detail->nominee_relation) ? $user_detail->nominee_relation : 'NA' }}</p>
+                    </p></div>
+                </div>
                 </div>
               </div>
 
@@ -1027,7 +1039,7 @@
 
     </div>
 
-    <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
+    <div class="p-3 mb-2 text-white mt-4" style="background-color:#c0af78;">
         <h5> Payment Details </h5>
     </div>
 
@@ -1073,11 +1085,11 @@
         <h5> Preview Info </h5>
     </div>
 
-    <div class="row d-flex">
+    <div class="row">
 
-        <div class="col-md-6">
+        <div class="col-md-4">
 
-            <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+            <div class="card col-md-12 mt-3">
                 <div class="card-header">
                   Plan Details
                 </div>
@@ -1087,7 +1099,15 @@
                 </div>
               </div>
 
-              <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="card col-md-12 mt-3">
+               
+
+              <div class="card col-md-12">
                 <div class="card-header">
                   Verification Details
                 </div>
@@ -1099,7 +1119,13 @@
                 </div>
               </div>
 
-              <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+        </div>
+		
+		 </div>
+
+
+        <div class="col-md-4">
+              <div class="card col-md-12 mt-3">
                 <div class="card-header">
                   Login Details
                 </div>
@@ -1112,15 +1138,29 @@
 
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-12">
 
-            <div class="card col-md-12 my-5 mx-2" style="width: 39rem;">
+            <div class="card col-md-12 mt-4">
                 <div class="card-header">
                   Customer Details
                 </div>
                 <div class="card-body">
-                    <p class="card-text"><strong>Name : </strong>{{ $user->name }}</p>
-                    <p class="card-text"><strong>Address : </strong>
+
+
+                <div class="row">
+               
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Name : </strong>{{ $user->name }}</p></div>
+                    
+                   <div class="col-md-4 mb-3"> <p class="card-text"><strong>Email : </strong>{{ $user->email }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Birthday : </strong>{{ date('d/m/Y', strtotime($user_detail->dob)) }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>ULP ID : </strong>{{ $user->ulp_id }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Nominee Name : </strong>{{ !empty($user_detail->nominee_name) ? $user_detail->nominee_name : 'NA' }}</p></div>
+                   <div class="col-md-4 mb-3"> <p class="card-text"><strong>Nominee Phone No : </strong>{{ !empty($user_detail->nominee_phone) ? $user_detail->nominee_phone : 'NA' }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Nominee DOB : </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}</p></div>
+                    <div class="col-md-4 mb-3"><p class="card-text"><strong>Nominee Address : </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}</p></div>
+                   <div class="col-md-4 mb-3"> <p class="card-text"><strong>Nominee Relation : </strong>{{ !empty($user_detail->nominee_relation) ? $user_detail->nominee_relation : 'NA' }}</p></div>
+                   <div class="col-md-8 mb-3"><p class="card-text"><strong>Address : </strong>
                     @php 
                         echo $user_detail->flat_no . ",\n";
                         echo $user_detail->street . ",\n";
@@ -1129,17 +1169,9 @@
                         echo $user_detail->state . ",\n";
                         echo $user_detail->pincode;
                     @endphp
-                    </p>
-                    <p class="card-text"><strong>Email : </strong>{{ $user->email }}</p>
-                    <p class="card-text"><strong>Birthday : </strong>{{ date('d/m/Y', strtotime($user_detail->dob)) }}</p>
-                    <p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p>
-                    <p class="card-text"><strong>ULP ID : </strong>{{ $user->ulp_id }}</p>
-                    <p class="card-text"><strong>Nominee Name : </strong>{{ !empty($user_detail->nominee_name) ? $user_detail->nominee_name : 'NA' }}</p>
-                    <p class="card-text"><strong>Nominee Phone No : </strong>{{ !empty($user_detail->nominee_phone) ? $user_detail->nominee_phone : 'NA' }}</p>
-                    <p class="card-text"><strong>Nominee DOB : </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}</p>
-                    <p class="card-text"><strong>Nominee Address : </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}</p>
-                    <p class="card-text"><strong>Nominee Relation : </strong>{{ !empty($user_detail->nominee_relation) ? $user_detail->nominee_relation : 'NA' }}</p>
+                    </p></div>
                 </div>
+                 </div>
               </div>
 
 
@@ -1148,7 +1180,7 @@
 
     </div>
 
-    <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
+    <div class="p-3 mb-2 text-white mt-4" style="background-color:#c0af78;">
         <h5> Login </h5>
     </div>
 
