@@ -474,6 +474,37 @@
 @section('page.scripts')
 
   <script>
+
+    let total_amount = 100000;
+    let discount_amount = 7500;
+    
+    // Function to generate data dynamically based on discount_amount and total_amount
+    function generateData(discount_amount, total_amount) {
+        return [
+            {
+                percentage: 0.3,
+                fillColor: "#DEB599",
+                label: `Discount ₹${discount_amount.toLocaleString()}`,
+                textColor: "#000",
+            },
+            {
+                percentage: 0.7,
+                fillColor: "#FFDEC7",
+                label: `Pay ₹${total_amount.toLocaleString()}`,
+                textColor: "#000",
+            },
+        ];
+    }
+
+
+    // Update data and redraw when discount_amount or total_amount changes
+    function updateDataAndRedraw() {
+        data = generateData(discount_amount, total_amount);
+        HoverPie.make($("#myCanvas"), data, {});
+    }
+
+
+
       document.addEventListener('DOMContentLoaded', function() {
         const amountSpan = document.getElementById('amount');
         const amount10xSpan = document.getElementById('amount_10x');
@@ -484,11 +515,19 @@
 
         let currentAmount = 10000;
 
+
         function updateAmount() {
             amountSpan.textContent = '₹ ' + currentAmount.toLocaleString();
             amount10xSpan.textContent = '₹ ' + (currentAmount * 10).toLocaleString();
             amount13xSpan.textContent = '₹ ' + (currentAmount / 1000 * 10750).toLocaleString();
+
+            total_amount = currentAmount * 10;
+            discount_amount = (currentAmount / 1000 * 10750) - total_amount;
+
+            updateDataAndRedraw();
         }
+
+        
 
         amountPlusBtn.addEventListener('click', function(event) {
             event.preventDefault();
@@ -506,6 +545,184 @@
 
         updateAmount();
     });
+
+
+    /* canvass graph open */
+
+    console.log("vvvvvvvvvvvvvvvvvvvv KSF vvvvvvvvvvvvvvvvvvvv");
+
+    var HoverPie = {};
+    HoverPie.config = {
+        canvasPadding: 1,
+        hoverScaleX: 5.1,
+        hoverScaleY: 1.1,
+        labelColor: "#000",
+        labelHoverColor: "rgba(255,255,255,1)",
+        labelRadiusFactor: 0.66,
+        labelFontFamily: "Quicksand",
+        labelFontWeight: "bold",
+        labelAlign: "center",
+        labelFontSize: 14,
+        sectorFillColor: "#000",
+        sectorStrokeColor: "#000",
+        sectorStrokeWidth: 2,
+    };
+    HoverPie.make = function ($canvas, data, config) {
+        config = $.extend({}, HoverPie.config, config);
+
+        var percent2radians = function (percent) {
+            return percent * Math.PI * 2;
+        };
+
+        var ctx = $canvas[0].getContext("2d");
+        var oX = ctx.canvas.width / 2;
+        var oY = ctx.canvas.height / 2;
+        var r = Math.min(oX, oY) - config.canvasPadding;
+        var stage = new createjs.Stage("myCanvas");
+        stage.enableMouseOver(20);
+
+        var cumulativeAngle = 1.5 * Math.PI;
+
+        for (var i = 0; i < data.length; i++) {
+            var sector = new createjs.Shape();
+            var container = new createjs.Container();
+            container.name = container.id;
+
+            // Draw the arc
+            var sectorFillColor = data[i].fillColor || config.sectorFillColor;
+            var sectorStrokeColor = data[i].strokeColor || config.sectorStrokeColor;
+            sector.graphics
+                .moveTo(oX, oY)
+                .beginFill(sectorFillColor)
+                .setStrokeStyle(config.sectorStrokeWidth)
+                .beginStroke(sectorStrokeColor);
+
+            var sectorAngle = percent2radians(data[i].percentage);
+            sector.graphics.arc(
+                oX,
+                oY,
+                r,
+                cumulativeAngle,
+                cumulativeAngle + sectorAngle
+            );
+
+            sector.graphics.closePath();
+
+            container.addChild(sector);
+
+            // Draw the label
+            if (data[i].label) {
+                // One for unhovered sectors
+                var font =
+                    config.labelFontWeight +
+                    " " +
+                    config.labelFontSize +
+                    "px " +
+                    config.labelFontFamily;
+                var unhoverLabel = new createjs.Text(
+                    data[i].label,
+                    font,
+                    config.labelColor
+                );
+                unhoverLabel.textAlign = "center";
+                unhoverLabel.textBaseline = "bottom";
+
+                // The label is to be placed such that the center of its baseline
+                // is tangent to a circle of radius r*config.labelRadiusFactor
+                // and a line drawn along the center of the sector
+                var unhoverLabelRadius = r * config.labelRadiusFactor;
+                var unhoverLabelAngle = cumulativeAngle + sectorAngle / 2.0;
+                unhoverLabel.x =
+                    oX + unhoverLabelRadius * Math.cos(unhoverLabelAngle);
+                unhoverLabel.y =
+                    oY + unhoverLabelRadius * Math.sin(unhoverLabelAngle);
+                unhoverLabel.name = "label";
+
+                // and one for hovered sectors
+
+                container.addChild(unhoverLabel);
+            }
+
+            // Draw the description
+
+            // reposition scale origin and draw origin
+            container.regX = oX;
+            container.regY = oY;
+            container.x = oX;
+            container.y = oY;
+
+            cumulativeAngle += sectorAngle;
+            stage.addChild(container);
+            stage.update();
+        } // percentages loop
+
+        // This array tracks the currently-hovered pie sectors.
+        // if it is empty, there are no sectors hovered.
+        var hovers = [];
+
+        var hover = function (ids) {
+            //console.log(ids,stage.children);
+
+            // This function is to be called with a list of stage IDs
+            // it will revert any currently-hovered elements to their
+            // original style, and apply hover style to the new set.
+
+            // any ids in hovers that aren't in ids need to be unhovered
+            var toUnhover = [];
+            for (var i = 0; i < hovers.length; i++) {
+                if (ids.indexOf(hovers[i]) == -1) {
+                    // didn't find hover[i] in ids, so add to toUnhover
+                    toUnhover.push(hovers[i]);
+                }
+            }
+            for (var i = 0; i < toUnhover.length; i++) {
+                var child = stage.getChildByName(toUnhover[i]);
+                child.scaleX = 1;
+                child.scaleY = 1;
+            }
+
+            // and ids in ids that aren't in hovers need to be hovered
+            var toHover = [];
+            for (var i = 0; i < ids.length; i++) {
+                if (hovers.indexOf(ids[i]) == -1) {
+                    // didn't find ids[i] in hovers, so add to toHover
+                    toHover.push(ids[i]);
+                }
+            }
+            for (var i = 0; i < toHover.length; i++) {
+                var child = stage.getChildByName(toHover[i]);
+                child.scaleX = config.hoverScaleX;
+                child.scaleY = config.hoverScaleY;
+            }
+
+            hovers = ids;
+            stage.update();
+        };
+
+        $canvas.mousemove(function (e) {
+            var objs = stage.getObjectsUnderPoint(e.clientX, e.clientY);
+            var ids = $.map(objs, function (e) {
+                return e.parent.id;
+            });
+
+            // call hover() if ids does not match current hovers
+            if (ids.length != hovers.length) {
+                hover(ids);
+                return;
+            }
+            for (var i = 0; i < hovers.length; i++) {
+                if (ids[i] != hovers[i]) {
+                    hover(ids);
+                    return;
+                }
+            }
+        });
+    };
+
+    var data = generateData(discount_amount, total_amount);
+    HoverPie.make($("#myCanvas"), data, {});
+
+
   </script>
   
 @endsection
