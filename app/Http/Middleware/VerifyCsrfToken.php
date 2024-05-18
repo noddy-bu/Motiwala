@@ -14,6 +14,8 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'backend/trumbowyg/upload',
         'forgot-password/verify-forgot-otp',
-        'forgot-password/reset-password'
+        'forgot-password/reset-password',
+        'payment-cancel',
+        'payment-success'
     ];
 }

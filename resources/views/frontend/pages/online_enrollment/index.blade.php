@@ -22,6 +22,8 @@
             <div class="container">
                 <div class="row">
 
+
+
                 <div class="col-md-12">
 
 
@@ -486,9 +488,12 @@
                             
                             toastr.success(response.response_message.message, response.response_message.response);
 
+                            var orderId = response.response_message.orderId;
+                            var redirectUrl = "{{ url('/create_payumoney') }}/" + orderId;
+
                             setTimeout(function() {
-                                location.reload();
-                                //window.location.href = "{{ url(route('index')) }}"; 
+                                //location.reload();
+                                window.location.href = redirectUrl;
                             }, 1500);
 
                         }else{
@@ -521,4 +526,18 @@
     
 
     </script>
+    
+
+    @if (session('toastr'))
+        <script>
+            $(document).ready(function() {
+                var type = "{{ session('toastr.type') }}";
+                var message = "{{ session('toastr.message') }}";
+                var title = "{{ session('toastr.title') }}";
+
+                toastr[type](message, title);
+            });
+        </script>
+    @endif
+
 @endsection

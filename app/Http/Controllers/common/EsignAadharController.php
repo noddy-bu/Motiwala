@@ -192,12 +192,18 @@ class EsignAadharController extends Controller
         $user = DB::table('users')->where('id', Session::get('temp_user_id'))
         ->get(['plan_id','installment_amount','name','email','phone'])->first();
 
+        $user_detail = DB::table('userdetails')
+        ->where('user_id', Session::get('temp_user_id'))
+        ->get(['pan_number'])
+        ->first();
+
         $plan_name = DB::table('plans')->where('id', $user->plan_id)->value('name');
 
         // Get user details
         $data = [
             'user' => $user,
-            'plan_name' => $plan_name
+            'plan_name' => $plan_name,
+            'user_detail' => $user_detail
         ];
 
         // Render the HTML view with user details

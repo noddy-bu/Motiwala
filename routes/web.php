@@ -64,6 +64,17 @@ Route::get('/account/onlineenrollment', [AccountController::class, 'online_enrol
 
 Route::any('/create-account/{param}', [AccountController::class, 'create_account'])->name('account.create');
 
+Route::any('/create_payumoney/{order_id}', [AccountController::class, 'create_payumoney'])->name('create.payumoney');
+
+Route::any('/payment-success', [AccountController::class, 'payment_success'])->name('payumoney.success');
+
+Route::any('/payment-cancel', [AccountController::class, 'payment_cancel'])->name('payumoney.fail');
+
+Route::any('/webhook_pum_success', [AccountController::class, 'webhook_pum_success']);
+
+Route::any('/webhook_pum_fail', [AccountController::class, 'webhook_pum_fail']);
+
+
 Route::get('/linkaccount', [AccountController::class, 'link_account'])->name('link-account');
 
 
@@ -157,7 +168,7 @@ Route::get('/update-session', function () {
 
 Route::get('/custom-session', function () {
     Session()->put('step', 12);
-    session()->put('temp_user_id', 11);
+    session()->put('temp_user_id', 2);
 });
 
 Route::get('/resubmit-aadhar-otp', function () {

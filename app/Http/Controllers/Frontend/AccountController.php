@@ -589,11 +589,12 @@ class AccountController extends Controller
             'name' => 'required|min:3',
             'email' => 'required|email',
             'flat_no' => 'required|min:1',
-            'street' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
-            'locality' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            'street' => 'required|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:3',
+            'locality' => 'required|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:3',
             'state' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
             'city' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
             'pincode' => 'required|regex:/^[\d\s-]+$/|min:6',
+            'pan_number' => 'required|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:10|max:10',
             'dob' => 'required',
         ]);
 
@@ -629,6 +630,7 @@ class AccountController extends Controller
                 'city' => $request->input('city'),
                 'pincode' => $request->input('pincode'),
                 'dob' => $request->input('dob'),
+                'pan_number' => $request->input('pan_number'),
             ]);
 
             Session::put('step', 4);
@@ -998,7 +1000,43 @@ class AccountController extends Controller
 
     public function payment_gateway($request){
 
+        $user = DB::table('users')->where('id', Session::get('temp_user_id'))->first(['name', 'email', 'phone', 'installment_amount']);
 
+        //insert in order
+        $txnid = substr(hash('sha256', mt_rand().microtime()), 0, 20);
+        $orderId = DB::table('temp_transactions')->insertGetId([
+            'name'             => $user->name,
+            'email'            => $user->email,
+            'phone'            => $user->phone,
+            'grand_total'      => $user->installment_amount,
+            'payment_method'   => 'payu',
+            'payment_status'   => 'created',
+            'payment_id'       => $txnid,
+            'created_at'       => date('Y-m-d H:i:s'),
+            'updated_at'       => date('Y-m-d H:i:s')
+        ]);
+
+        if($orderId){
+
+            $rsp_msg['response'] = 'success';
+            $rsp_msg['message']  = "Please Proceed";
+            $rsp_msg['orderId']  = $orderId;
+
+            return $rsp_msg;
+
+            //return redirect()->route('create.payumoney', ['orderId' => $orderId]);
+
+        } else {
+
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = "Something Went Wrong!, Please try again";
+
+            return $rsp_msg;
+
+        }
+
+
+        /* 
         $user_id = Session::get('temp_user_id');
         $random = mt_rand(100000, 999999);
     
@@ -1019,10 +1057,7 @@ class AccountController extends Controller
         ]);
 
 
-        session()->forget('otp_timestamp');
-        session()->forget('phone');
-        session()->forget('otp');
-        session()->forget('aadhar_no');
+        session()->forget(['otp_timestamp', 'phone', 'otp', 'aadhar_no']);
 
         Session::put('step', 13);
         Session::put('payment', 1);
@@ -1032,11 +1067,330 @@ class AccountController extends Controller
 
         return $rsp_msg;
 
+        */
+
+    }
+
+
+/* ------------------------------- Payment gateway ------------------------------------------*/
+
+    const TEST_URL = 'https://test.payu.in';
+    //const TEST_URL = 'https://sandboxsecure.payu.in';
+    const PRODUCTION_URL = 'https://secure.payu.in';
+
+    public function create_payumoney(request $request, $order_id)
+    {
+        if($order_id)
+        {
+            $order = DB::table('temp_transactions')->where('id', $order_id)->where('payment_status', 'created')->first();
+            if($order)
+            {
+                $data = $request->all();
+                $MERCHANT_KEY = env('PAYU_MERCHANT_KEY');
+                $SALT = env('PAYU_SALT_KEY');
+        
+                $PAYU_BASE_URL = env('PAYU_TEST_MODE') ? self::TEST_URL : self::PRODUCTION_URL;
+                $action = '';
+        
+                $posted = array();
+                if (!empty($data)) {
+                    foreach ($data as $key => $value) {
+                        $posted[$key] = $value;
+                    }
+                }
+        
+                $formError = 0;
+
+                $txnid = $order->payment_id;
+
+                $hash = '';
+                // Hash Sequence
+                $hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10";
+                if (empty($posted['hash']) && sizeof($posted) > 0) {
+                    if (
+                        empty($posted['key'])
+                        || empty($posted['txnid'])
+                        || empty($posted['amount'])
+                        || empty($posted['firstname'])
+                        || empty($posted['email'])
+                        || empty($posted['phone'])
+                        || empty($posted['productinfo'])
+                        || empty($posted['surl'])
+                        || empty($posted['furl'])
+                        || empty($posted['service_provider'])
+                    ) {
+                        $formError = 1;
+                    } else {
+                        $hashVarsSeq = explode('|', $hashSequence);
+                        $hash_string = '';
+                        foreach ($hashVarsSeq as $hash_var) {
+                            $hash_string .= isset($posted[$hash_var]) ? $posted[$hash_var] : '';
+                            $hash_string .= '|';
+                        }
+        
+                        $hash_string .= $SALT;
+        
+        
+                        $hash = strtolower(hash('sha512', $hash_string));
+                        $action = $PAYU_BASE_URL.'/_payment';
+        
+                    }
+                } elseif (!empty($posted['hash'])) {
+                    $hash = $posted['hash'];
+                    $action = $PAYU_BASE_URL.'/_payment';
+        
+                }
+                
+                $updateOrder = DB::table('temp_transactions')->where('id', $order->id)->update([
+                    'pum_hash' => $hash,
+                    'temp_user_id' => Session::get('temp_user_id')
+                ]);
+        
+                return view('frontend.payumoney.pay', compact('hash', 'action', 'MERCHANT_KEY', 'formError', 'txnid', 'posted', 'SALT', 'order'));
+            }
+        }
+    }
+
+
+    public function payment_success(Request $request){
+
+        $input = $request->all();
+
+        if(!$input) //redirect if no post
+        {
+            return redirect(url(''));
+        }
+
+        $status = $input["status"];
+        $firstname = $input["firstname"];
+        $amount = $input["amount"];
+        $txnid = $input["txnid"];
+        $posted_hash = $input["hash"];
+        $key = $input["key"];
+        $productinfo = $input["productinfo"];
+        $email = $input["email"];
+        $salt = config('payu.salt_key');
+
+        // echo"<pre>";
+        // var_dump($posted_hash);
+        // echo"</pre>";
+        
+
+        // if (isset($input["additionalCharges"])) {
+        //     $additionalCharges = $input["additionalCharges"];
+        //     $retHashSeq = $additionalCharges.'|'.$salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;
+        // } else {
+        //     $retHashSeq = $salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;
+        // }
+        
+        // $hash = hash("sha512", $retHashSeq);
+
+        // echo"<pre>";
+        // var_dump($hash);
+        // echo"</pre>";
+
+        // if ($hash != $posted_hash) { //1 != 1
+        //     //order info
+        //     $order = DB::table('temp_transactions')->where('payment_id', $txnid)->first();        
+        //     return "Invalid Transaction. Please try again";
+
+        // } else {
+
+            $order = DB::table('temp_transactions')->where('payment_id', $txnid)->first();
+            
+            //avoid update if payment is paid
+            if($order->payment_status == 'paid')
+            {
+                return redirect(url(''));
+            }
+
+            /* ------------ success stuff -----------*/
+
+            $user_id = Session::get('temp_user_id');
+            $random = mt_rand(100000, 999999);
+        
+            $account_number = $user_id . '' . $random;
+    
+            // Ensure the length of $ulp_id is exactly 12 digits
+            if (strlen($account_number) < 12) {
+                $padding_length = 12 - strlen($account_number);
+                $account_number = str_pad($account_number, 12, '0', STR_PAD_LEFT); // Pad with leading zeros if necessary
+            } elseif (strlen($account_number) > 12) {
+                $account_number = substr($account_number, 0, 12); // Trim if longer than 12 digits
+            }
+
+            Session::put('step', 13);
+            Session::put('payment', 1);
+            Session::put('temp_user_id', $order->temp_user_id);
+
+
+            DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+                'account_number' => $account_number,
+                'password' => bcrypt(Session::get('phone')),
+                'status' => 1,
+            ]);
+
+            //update order
+            DB::table('transactions')->insert([
+                'user_id' => Session::get('temp_user_id'),
+                'payment_id' => $txnid,
+                'payment_amount' => $order->grand_total,
+                'payment_response' => json_encode($input),
+                'payment_status' => 'paid',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+    
+    
+            session()->forget(['otp_timestamp', 'phone', 'otp', 'aadhar_no']);
+    
+
+            /*------------ success stuff --------------*/
+
+
+            session()->flash('toastr', [
+                'type' => 'success',
+                'message' => 'Account Created Successfully',
+                'title' => 'Success'
+            ]);
+
+            // delete temp recored
+            DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
+
+            return redirect()->route('account.new.enrollment.page');
+        // }
+    }
+
+
+    public function payment_cancel(Request $request){
+
+        $data = $request->all();
+
+        if(!$data) //redirect if no post
+        {
+            return redirect(url(''));
+        } 		
+		
+        $validHash = true;
+		$txnid = $data["txnid"];
+		
+        if (!$validHash) {
+            echo "Invalid Transaction. Please try again";
+        } else {
+            //fail
+            //update order
+            $updateOrder = DB::table('temp_transactions')
+            ->where('payment_id', $txnid)
+            ->update([
+                'payment_status' => 'unpaid',
+                'payment_response' => json_encode($data),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);			
+        }
+
+        $temp_user = DB::table('temp_transactions')->where('payment_id', $txnid)->first(['temp_user_id']);
+
+        //fresh order info
+        $errorMessage = $data['error_Message'];   
+
+        $temp_user_id = $temp_user ? $temp_user->temp_user_id : 0;
+
+        return view('frontend.payumoney.fail', compact('errorMessage','data','temp_user_id'));
+
     }
 
 
 
+    public function webhook_pum_success(Request $request) {
+        
+        $fileContent = [
+            'headers' => $request->headers->all(),
+            'postData' => $request->all(),
+        ];        
+        
+        $filePath = time().'-success.txt';
 
+        // Create the file
+        Storage::disk('public')->put('webhook/' . $filePath, json_encode($fileContent));
+        
+        // Read the JSON data from the file
+        $jsonData = file_get_contents($filePath); //file_get_contents(public_path('1690456548-success.txt'));
+        
+        // Decode the JSON data into an array
+        $fileContent = json_decode($jsonData, true);  
+        $postData = $fileContent['postData'];
+        $txnid = $postData['merchantTransactionId'];
+        
+        //success
+        //order info
+        $order = DB::table('temp_transactions')->where('payment_id', $txnid)->first();
+        
+        //avoid update if payment is paid
+        if($order->payment_status != 'paid')
+        {
+            
+            /* ------------ success stuff -----------*/
+
+            $user_id = Session::get('temp_user_id');
+            $random = mt_rand(100000, 999999);
+        
+            $account_number = $user_id . '' . $random;
+    
+            // Ensure the length of $ulp_id is exactly 12 digits
+            if (strlen($account_number) < 12) {
+                $padding_length = 12 - strlen($account_number);
+                $account_number = str_pad($account_number, 12, '0', STR_PAD_LEFT); // Pad with leading zeros if necessary
+            } elseif (strlen($account_number) > 12) {
+                $account_number = substr($account_number, 0, 12); // Trim if longer than 12 digits
+            }
+
+            DB::table('users')->where('id', $order->temp_user_id)->update([
+                'account_number' => $account_number,
+                'password' => bcrypt(Session::get('phone')),
+                'status' => 1,
+            ]);
+
+            //update order
+            DB::table('transactions')->insert([
+                'user_id' => $order->temp_user_id,
+                'payment_id' => $txnid,
+                'payment_amount' => $order->grand_total,
+                'payment_response' => $jsonData,
+                'payment_status' => 'paid',
+                'comments' => 'webhook',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+    
+            /*------------ success stuff --------------*/
+
+            // delete temp recored
+            DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
+
+            // Create success
+            // file_put_contents(public_path($txnid.'-success.txt'), $txnid);          
+            Storage::disk('public')->put('webhook/' . $txnid.'-success.txt', $txnid);
+        }else{
+            return 'false';
+        }          
+    }
+    
+    public function webhook_pum_fail(Request $request){
+        $fileContent = [
+            'headers' => $request->headers->all(),
+            'postData' => $request->all(),
+        ];        
+        
+        $filePath = time().'-fail.txt';
+        Storage::disk('public')->put('webhook/' . $filePath, json_encode($fileContent));
+
+        // Create the file
+        // file_put_contents($filePath, json_encode($fileContent));
+    }
+
+
+
+/* ----------------------------- testing controller -------------------------------------------- */    
 
     public function dummy_esign(){
         

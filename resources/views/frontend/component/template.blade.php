@@ -10,6 +10,7 @@
     <p>Name: {{ $data['user']->name }}</p>
     <p>Email: {{ $data['user']->email }}</p>
     <p>Phone: {{ $data['user']->phone }}</p>
+    <p>Pan Card No: {{ $data['user_detail']->pan_number }}</p>
     <p>Plan Name: {{ $data['plan_name'] }}</p>
 </body>
 </html>
