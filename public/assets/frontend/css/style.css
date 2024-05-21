@@ -432,7 +432,7 @@ section.top_step_content {
 }
 
 div#carouselExampleIndicators img {
-    height: 100vh;
+    height: auto;
     object-fit: cover;
 }
 
