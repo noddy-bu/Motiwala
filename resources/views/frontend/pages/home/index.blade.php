@@ -65,11 +65,11 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="/assets/frontend/images/banner3.jpg" class="d-block w-100" alt="...">
+      <img src="/assets/frontend/images/bannermain1.webp" class="d-block w-100" alt="...">
     </div>
 
       <div class="carousel-item">
-      <img src="/assets/frontend/images/banner2.jpg" class="d-block w-100" alt="...">
+      <img src="/assets/frontend/images/bannermain2.webp" class="d-block w-100" alt="...">
     </div>
 
      <!-- <div class="carousel-item">
@@ -77,7 +77,7 @@
     </div> -->
 
       <div class="carousel-item">
-      <img src="/assets/frontend/images/banner4.jpg" class="d-block w-100" alt="...">
+      <img src="/assets/frontend/images/bannermain3.webp" class="d-block w-100" alt="...">
     </div>
 
      
@@ -326,7 +326,8 @@
                             <div class="choose_content">
                                 <h5 class="black_color">Motiwala Harvest</h5>
                                 <p class="black_color"> 
-                                    A unique easy-pay system which gives you a benefit of 18.24%
+                                    A unique easy-pay system that gives you a 75% benefit on the value of your first installment when you redeem your plan.
+
                                 </p>
                             </div>
                         </div>
@@ -362,9 +363,11 @@
                             <img class="choose_img" src="/assets/frontend/images/warranty_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
-                                <h5 class="black_color">One Year Warranty</h5>
+                                <h5 class="black_color">Transparent Pricing
+                                </h5>
                                 <p class="black_color">
-                                   If your jewellery has a defect, we will fix it.
+                                    We believe in transparency, providing detailed breakdowns of costs and no hidden fees, so you know exactly what you're paying for.
+
                                 </p>
                             </div>
                         </div>
@@ -437,7 +440,7 @@
                                 Absolutely! Upon completing your 10 monthly payments, you'll become eligible for our special discount offer. 
                                 This means that once you've diligently paid your installments for the specified duration, 
                                 you'll unlock the opportunity to enjoy exclusive savings on your purchase. 
-                                It's our way of rewarding your commitment and dedication to our Motiwala Jewels Golden Treasurer Purchase 
+                                It's our way of rewarding your commitment and dedication to our Motiwala Jewels Golden Treasure Purchase 
                                 Plan. So, rest assured that your patience and loyalty will be duly recognized, and you'll be able to 
                                 avail yourself of the fantastic discount to make your jewellery purchase even more rewarding.
                             </div>
@@ -453,7 +456,7 @@
                         <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                In addition to our special discount offer, our Motiwala Jewels Golden Treasurer Purchase 
+                                In addition to our special discount offer, our Motiwala Jewels Golden Treasure Purchase 
                                 Plan comes with a range of other benefits tailored to enhance your overall experience. 
                                 Firstly, you can expect top-notch service from our dedicated team who are committed to 
                                 providing you with personalized assistance every step of the way. Moreover, we prioritize 

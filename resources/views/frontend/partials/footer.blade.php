@@ -11,10 +11,6 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
           <h3 class="widget-title">USEFUL LINKS</h3>
           <ul class="widget-menu">
             <li>
-              <a href="#loginmodal">
-                <i class="las la-angle-right"></i> Sign In </a>
-            </li>
-            <li>
               <a href="{{ url(route('account.new.enrollment.page')) }}">
                 <i class="las la-angle-right"></i> New Account </a>
             </li>
@@ -32,11 +28,6 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
         <div class="footer-widget" data-aos-once="true" data-aos="fade-up">
           <h3 class="widget-title">QUICK LINKS</h3>
           <ul class="widget-menu">
-
-         <li>
-              <a href="#autodebit_modal">
-                <i class="las la-angle-right"></i> Auto Debit </a>
-            </li>
             <li>
               <a href="{{ url(route('information')) }}">
                 <i class="las la-angle-right"></i> Information </a>
@@ -82,8 +73,8 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
       </div>
       <div class="col-lg-4 col-md-6">
         <div class="footer-widget mt-5" data-aos-once="true" data-aos="fade-up">
-          <p class="pb-0 mb-0">Contact Us: 1800-255-10234</p>
-          <p>Email: care@motiwalasons.in</p>
+          <p class="pb-0 mb-0">Contact Us: <a href="tel:1800-255-10234">1800-255-10234</a></p>
+          <p>Email: <a href="mailto:care@motiwalasons.in">care@motiwalasons.in</a></p>
         </div>
       </div>
       <div class="col-lg-5 col-md-6">

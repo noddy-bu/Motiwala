@@ -1288,3 +1288,8 @@ nav ul li a {
         transform: rotate(-3deg);
     }
 }
+
+footer.footer a {
+    color: #fff;
+    text-decoration: none;
+}

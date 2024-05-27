@@ -27,7 +27,7 @@
 
 				<div class="col-md-12">					
 					<p>
-            Introducing Motiwala Jewels Golden Treasurer Purchase Plan – your smart, secure, 
+            Introducing Motiwala Jewels Golden Treasure Purchase Plan – your smart, secure, 
             and easy way to own the stunning Motiwala Jewels Gold and Diamonds jewellery you love. 
             With this plan, you can get more jewellery for your money! How? Because when your plan matures, 
             Motiwala Jewels Gold and Diamonds will give you an extra discount as a special bonus. 
@@ -36,7 +36,7 @@
 				</div>
 
 <div class="col-md-12">
-					<h5 class="black_color pt-4 pb-3"><b>Golden Treasurer  - </b></h5>
+					<h5 class="black_color pt-4 pb-3"><b>Golden Treasure  - </b></h5>
 				</div>
 				
 				
@@ -49,7 +49,7 @@
             </div>
             <div class="choose_content">
               <p class="black_color">
-                You can easily open a Motiwala Jewels Golden Treasurer Purchase 
+                You can easily open a Motiwala Jewels Golden Treasure Purchase 
                 Plan account either online through our website or app, or by simply 
                 visiting our Motiwala Jewels Gold and Diamonds Pvt Ltd showroom.
               </p>
@@ -111,7 +111,7 @@
 		<div class="col-md-12">
            <p class="pt-4 pb-4">
               Please ensure to close your account within 400 days from the date you opened 
-              your Motiwala Jewels Golden Treasurer Purchase Plan account.
+              your Motiwala Jewels Golden Treasure Purchase Plan account.
             </p>
            <p>For Example ( Only if all installments are paid on due date )</p>
         

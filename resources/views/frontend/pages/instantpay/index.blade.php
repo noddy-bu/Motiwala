@@ -27,7 +27,7 @@
 
 				<div class="col-md-12">
 					<p class="text-center">Experience instant convenience with Instant Pay!
-						<span class="d-lg-block">Easily settle your Motiwala Jewels Golden Treasurer Purchase Plan installments hassle-free. </span>
+						<span class="d-lg-block">Easily settle your Motiwala Jewels Golden Treasure Purchase Plan installments hassle-free. </span>
 						<span class="d-lg-block">Choose from a variety of online payment options including Debit card, Credit card,UPI, or Net Banking. </span>
 						<span class="d-lg-block">Say goodbye to delays and embrace seamless transactions today! </span>
 					</p>

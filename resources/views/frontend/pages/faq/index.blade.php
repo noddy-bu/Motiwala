@@ -28,14 +28,14 @@
 					<h5 class="black_color pb-2">
 						<b>Queries on Enrolment</b>
 					</h5>
-					<p class="mb-0">1. Where can I buy ?</p>
+					<p class="mb-0"><b>1. Where can I buy ?</b></p>
 					<p>
 						You can find our exquisite collection of jewellery at our Store In Byculla Mumbai Maharashtra.
 						Additionally, you can explore our wide range of designs and make purchases conveniently 
 						through our secure online store from the comfort of your own home.
 					</p>
 					
-					<p class="mb-0">2. What can I buy ?</p>
+					<p class="mb-0"><b>2. What can I buy ?</b></p>
 					<p>
 						Discover a stunning array of options including Earrings, Necklaces, Ring, Bracelets,
 						Bangle and more,precious stones, crafted with precision and elegance to suit every occasion.
@@ -43,7 +43,7 @@
 						ensuring there's something special for everyone's taste and preferences.
 					</p>
 					
-					<p class="mb-0">3.Can I reedem and purchase before 11 months ?</p>
+					<p class="mb-0"><b>3. Can I reedem and purchase before 11 months ?</b></p>
 					<p>
 						Certainly! Our flexible policy allows for redemption and purchase before the 11-month period ends. 
 						Should you find the perfect piece earlier than expected, you're welcome to redeem your plan and 
@@ -54,19 +54,19 @@
 						Please check
 					</p>
 					
-					<p class="mb-0">4. If I pay for 10 months, when will I get special discount ?</p>
+					<p class="mb-0"><b>4. If I pay for 10 months, when will I get special discount ?</b></p>
 					<p>
 						Absolutely! Upon completing your 10 monthly payments, you'll become eligible for our special discount offer. 
 						This means that once you've diligently paid your installments for the specified duration, 
 						you'll unlock the opportunity to enjoy exclusive savings on your purchase. 
-						It's our way of rewarding your commitment and dedication to our Motiwala Jewels Golden Treasurer Purchase 
+						It's our way of rewarding your commitment and dedication to our Motiwala Jewels Golden Treasure Purchase 
 						Plan. So, rest assured that your patience and loyalty will be duly recognized, and you'll be able to 
 						avail yourself of the fantastic discount to make your jewellery purchase even more rewarding.
 					</p>
 					
-					<p class="mb-0">5. What other benifits you get?</p>
+					<p class="mb-0"><b>5. What other benifits you get? </b></p>
 					<p>
-						In addition to our special discount offer, our Motiwala Jewels Golden Treasurer Purchase 
+						In addition to our special discount offer, our Motiwala Jewels Golden Treasure Purchase 
 						Plan comes with a range of other benefits tailored to enhance your overall experience. 
 						Firstly, you can expect top-notch service from our dedicated team who are committed to 
 						providing you with personalized assistance every step of the way. Moreover, we prioritize 
