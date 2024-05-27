@@ -897,13 +897,15 @@ label#amountLabel {
 
 .information_tb th,
 td {
-    font-size: 14px;
+    font-size: 16px;
     border: 0 !important;
+    border: 1px solid #0000008f !important;
+    text-align: center;
 }
 
 .information_section {
-    padding-left: 150px;
-    padding-right: 150px;
+    padding-left: 120px;
+    padding-right: 120px;
     padding-bottom: 160px;
 }
 
@@ -1292,4 +1294,27 @@ nav ul li a {
 footer.footer a {
     color: #fff;
     text-decoration: none;
+}
+
+form#loginForm a {
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+form#loginForm a:hover {
+    color: #2196F3;
+}
+
+.gives_feedback {
+    background: #fff;
+    padding: 1px 50px 50px !important;
+    width: 900px !important;
+    margin: auto;
+    margin-top: 20px !important;
+    border-radius: 10px;
+}
+
+.gives_feedback input::placeholder {
+    font-size: 14px;
 }

@@ -73,8 +73,8 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
       </div>
       <div class="col-lg-4 col-md-6">
         <div class="footer-widget mt-5" data-aos-once="true" data-aos="fade-up">
-          <p class="pb-0 mb-0">Contact Us: <a href="tel:1800-255-10234">1800-255-10234</a></p>
-          <p>Email: <a href="mailto:care@motiwalasons.in">care@motiwalasons.in</a></p>
+          <p class="pb-0 mb-0">Contact Us: <a href="tel:+91 9920077780">+91 9920077780</a></p>
+          <p>Email: <a href="mailto:motiwalajewels786@gmail.com">motiwalajewels786@gmail.com</a></p>
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
@@ -93,15 +93,11 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
   <div class="copyright_section">
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
-          <ul>
-            
-          </ul>
+       
+        <div class="col-md-6">
+          <p class="text-start">Copyright © 2024 Under Motiwala & Sons</p>
         </div>
-        <div class="col-md-4">
-          <p class="text-center">Copyright © 2024 Under Motiwala & Sons</p>
-        </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
           <ul class="float_right">
             <li>
               <a href="">
@@ -109,7 +105,7 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
               </a>
             </li>
             <li>
-              <a href="">
+              <a target="_blank" href="https://www.facebook.com/MOTIWALA.JEWELS">
                 <i class="lab la-facebook-f"></i>
               </a>
             </li>

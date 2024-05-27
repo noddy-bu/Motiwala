@@ -25,7 +25,7 @@
 					<h4 class="title_heading text-center black_color pb-0 heading_font">Give Us Feedback</h4>
                 </div>
 
-				<div class="col-md-12">
+				<div class="gives_feedback">
 				     
                     @include('frontend.component.feedback_form')
 

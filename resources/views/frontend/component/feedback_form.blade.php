@@ -31,15 +31,15 @@
             </div>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="form-group mt-4 adhar_field">
                 <label class="pb-3">Message *</label>
                 <textarea class="form-control" row="3" name="description" style="height: 103px;"></textarea>
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="buttonclass1 mt60">
+        <div class="form-group text-center">
+            <div class="buttonclass1 mt-5">
                 <button type="submit">Submit <i class="las la-arrow-right"></i></button>
             </div>
         </div>
