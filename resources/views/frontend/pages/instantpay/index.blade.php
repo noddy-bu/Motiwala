@@ -46,7 +46,7 @@
                                 <input type="tel" class="form-control" name="mobile_number" placeholder="Please Enter Your Mobile Number"/>
                             </div>
 
-                            <div class="form-group text-center">
+                            <div class="form-group text-md-start text-center">
                                 <div class="buttonclass1 mt60">
                                          <button type="button">Proceed <i class="las la-arrow-right"></i></button>
                                 </div>

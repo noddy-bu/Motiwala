@@ -109,34 +109,36 @@
         </div>
 
 		<div class="col-md-12">
-           <p class="pt-4 pb-4">
+          <p class="py-md-4 py-2">
               Please ensure to close your account within 400 days from the date you opened 
               your Motiwala Jewels Golden Treasure Purchase Plan account.
-            </p>
-           <p>For Example ( Only if all installments are paid on due date )</p>
+          </p>
+          <p>For Example ( Only if all installments are paid on due date )</p>
         
-		   <div class="information_tb">
-               <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">Enrolment Date</th>
-      <th scope="col">Maturity Date</th>
-      <th scope="col">Instalment per month (in ₹)</th>
-      <th scope="col">Discount on Jewellery purchase (in ₹)</th>
-	  <th scope="col">% of monthly installment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1st Jan 2022</th>
-      <td>1st Jan 2023</td>
-      <td>4000</td>
-      <td>3000</td>
-	  <td>75%</td>
-    </tr>
-  </tbody>
-</table>
-		   </div>
+		  <div class="information_tb">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Enrolment Date</th>
+                <th scope="col">Maturity Date</th>
+                <th scope="col">Instalment per month (in ₹)</th>
+                <th scope="col">Discount on Jewellery purchase (in ₹)</th>
+              <th scope="col">% of monthly installment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>1st Jan 2022</th>
+                <td>1st Jan 2023</td>
+                <td>4000</td>
+                <td>3000</td>
+              <td>75%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+		  </div>
 		
 		</div>
 		

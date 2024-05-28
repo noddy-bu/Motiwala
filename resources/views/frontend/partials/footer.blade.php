@@ -40,7 +40,7 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
         </div>
       </div>
 
-      <div class="col-lg-2 col-md-6">
+      <div class="col-lg-2 col-md-6 pt-lg-0 pt-0 pt-md-5">
         <div class="footer-widget" data-aos-once="true" data-aos="fade-up">
           <h3 class="widget-title">CONSUMER POLICY</h3>
           <ul class="widget-menu">
@@ -60,7 +60,7 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
 
 
 
-      <div class="col-lg-3 col-md-6">
+      <div class="col-lg-3 col-md-6 pt-lg-0 pt-0 pt-md-4">
         <div class="footer-widget" data-aos-once="true" data-aos="fade-up">
           <h3 class="heading_font line-height35">Download <br>Our App </h3>
           <p>Shining new app, made just for you! It's Free, Easy & Smart</p>
@@ -72,13 +72,13 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
         </div>
       </div>
       <div class="col-lg-4 col-md-6">
-        <div class="footer-widget mt-5" data-aos-once="true" data-aos="fade-up">
+        <div class="footer-widget mt-md-5 mt-2" data-aos-once="true" data-aos="fade-up">
           <p class="pb-0 mb-0">Contact Us: <a href="tel:+91 9920077780">+91 9920077780</a></p>
           <p>Email: <a href="mailto:motiwalajewels786@gmail.com">motiwalajewels786@gmail.com</a></p>
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-        <h6 class="font-alt mt-4 mb-3 heading_font font-size20" data-aos-once="true" data-aos="fade-up">Subscribe to our Newsletter</h6>
+        <h6 class="font-alt mt-md-4 mt-2 mb-3 heading_font font-size20" data-aos-once="true" data-aos="fade-up">Subscribe to our Newsletter</h6>
         <form class="form-subscribe" action="#">
           <div class="input-group" data-aos-once="true" data-aos="fade-up">
             <input type="text" class="form-control input-lg" placeholder="Write Your Email Address">
@@ -95,9 +95,9 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
       <div class="row">
        
         <div class="col-md-6">
-          <p class="text-start">Copyright © 2024 Under Motiwala & Sons</p>
+          <p class="text-md-start text-center mb-2 mb-md-3">Copyright © 2024 Under Motiwala & Sons</p>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 text-md-end text-center">
           <ul class="float_right">
             <li>
               <a href="">
@@ -155,7 +155,7 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
           <div class="form-group mt-5">
             <input type="text" class="form-control" name="mobile_number" placeholder="Mobile Number*" />
           </div>
-          <div class="form-group">
+          <div class="form-group text-md-start text-center">
             <div class="buttonclass1 mt60">
               <button type="button">Proceed <i class="las la-arrow-right"></i>
               </button>

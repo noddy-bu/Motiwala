@@ -1,0 +1,466 @@
+/* for mobile view */
+@media (min-width:767px) and (max-width:1020px){
+    
+    html {
+        overflow-x: hidden;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .fontsize26 {
+        font-size: 18px !important;
+    }
+
+    .title_heading {
+        font-size: 28px !important;
+        font-weight: 500;
+    }
+
+    .navbar-nav {
+        display: flex;
+        flex-direction: row !important;
+    }
+
+    #nav-icon .fa-bars {
+        font-size: 26px;
+    }
+
+    .navbar-brand img {
+        width: 70%;
+    }
+
+    .top_step_content {
+        padding-top: 50px !important;
+        padding-bottom: 40px !important;
+    }
+
+    .steps_section {
+        padding: 50px 0px 50px 0px !important ;
+    }
+
+    .step_box_icon {
+        width: 110px;
+        height: 110px;
+    }
+
+    .step_box_img {
+        width: 110px;
+        height: 110px;
+    }
+
+    .step_bottom_text {
+        padding-top: 40px;
+    }
+
+    .aos-init.aos-animate {
+        font-size: 14px !important;
+    }
+
+    .benefits_bgimage {
+        position: absolute;
+        right: -100px;
+        top: -36px;
+    }
+
+    .benefits_bgimage img {
+        width: 80%;
+    }
+        
+    .sip-calculator {
+        padding: 3em 2em 3em 2em;
+    }
+    
+    canvas#myCanvas {
+        margin-left: 50px;
+        width: 90%;
+        margin-top: 160px;
+    }
+
+    .why_choose_section {
+        padding-top: 50px !important;
+    }
+
+    .choose_content p {
+        font-size: 14px !important;
+        padding-right: 10px;
+    }
+
+    .why_choose_section .container {
+        padding: 0px 0px;
+    }
+
+    .faq_section {
+        padding: 50px 0px 50px 0px !important;
+    }
+
+    footer .row .col-lg-3.col-md-6:nth-child(5) {
+        display: none;
+    }
+    
+    .form-subscribe input {
+        padding: 8px 14px;
+        font-size: 14px;
+    }
+
+
+    ul.float_right li:nth-child(5) {
+        font-size: 16px;
+    }
+
+    
+    /* instant pay page*/
+
+    .instant_pay {
+        width: 100%;
+    }
+    
+
+    /* information page */
+
+    .information_section {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 35px;
+    }
+
+    /* terms and condition */
+
+    .terms_section {
+        padding-bottom: 10px;
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* for mobile view */
+@media (max-width:767px) {
+
+    html {
+        overflow-x: hidden;
+    }
+
+    p {
+        font-size: 14px !important;
+    }
+    
+    p.fontsize26 {
+        font-size: 14px !important;
+        margin-bottom: 0px; 
+    }
+
+    .title_heading {
+        font-size: 22px !important;
+        font-weight: 500;
+        z-index: 1;
+        position: relative;
+    }
+
+    .total_number_main {
+        padding-top: 0px;
+    }
+
+    p#amount_13x {
+        font-size: 24px;
+    }
+
+    canvas#myCanvas {
+        margin-left: 7px;
+        width: 100%;
+        padding-top: 50px;
+    }
+
+    .navbar-brand {
+        width: 29% !important;
+        margin-right: 0px !important;
+    }
+
+    .navbar-brand img {
+        width: 90%;
+    }
+
+    a#nav-icon img {
+        width: 30px;
+    }
+    
+    .nav_right_menu li {
+        padding-left: 0px !important;
+        padding-right: 10px;
+    }
+
+    .nav_right_menu li a {
+        font-size: 12px;
+    }
+
+    #nav-icon .fa-bars {
+        font-size: 22px;
+        color: #000;
+    }
+
+    .navbar-nav {
+        display: flex;
+        flex-direction: row !important;
+    }
+
+    body nav .nav_right_menu li a {
+        color: #000 !important;
+        padding: 0px 0px 8px 0px !important;
+    }
+
+    .modal_popup_cls .modal-content {
+        padding: 20px 20px 0px;                  /* sign up modal popup */
+    }
+
+    
+
+    .openaccount {
+        padding-left: 10px;                /* sign up modal popup */
+        padding-right: 10px;
+    }
+
+    .menu_sec {
+        position: relative;
+        right: 0px !important;
+    }
+
+    div#carouselExampleIndicators {
+        position: relative;
+        top: 0px;
+    }
+
+    .carousel-control-next-icon, .carousel-control-prev-icon {
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        color: #000;
+    }
+
+    .carousel-indicators [data-bs-target] {
+        width: 24px;
+        height: 3px;
+        background-color: #000 !important;
+    }
+    
+    .top_step_content {
+        padding-top: 40px;
+        background: #e3c2ab8a;
+        padding-bottom: 40px;
+    }
+
+    .steps_section {
+        padding: 30px 0px 65px 0px;
+    }
+
+    .step_box_img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .step_box_icon {
+        width: 100px;
+        height: 100px;
+        margin-top: 24px;
+    }
+
+    .step_box_icon img {
+        width: 38px;
+        padding-top: 27px;
+    }
+
+    .step_box.steps2, .step_box.steps4 {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .steps_section img:not(.step_box_img img) {
+        display: none !important;
+    }
+
+    .step_content1,.step_content2 ,.step_content3 ,.step_content4 {
+        padding-top: 15px;
+    }  
+
+    .step_bottom_text {
+        padding-top: 30px;
+        text-align: center;
+    }
+
+    .step_bottom_text p {
+        font-size: 18px;
+    }
+
+    .sip-calculator {
+        padding: 2em 2em 2em 1em;;
+    }
+
+    .sip-calculator-amount, .sip-calculator-year, .sip-calculator-roi {
+        margin-bottom: 0.2em;
+    }
+
+    .benefits_calculator.sip-calculator.aos-init.aos-animate {
+        overflow: hidden;
+    }
+
+    .benefits_bgimage img {
+        float: right;
+        width: 40%;
+    }
+
+    .benefits_bgimage {
+        position: absolute;
+        right: -24px;
+        top: -23px;
+    }
+
+    .amount_monthly1 {
+        border: 2px solid #404040;
+        padding: 4px 15px;
+        float: left;
+        width: 65%;
+    }
+
+    label#amountLabel {
+        font-size: 12px;
+    }
+
+    #amountLabel span {
+        font-size: 18px;
+    }
+
+    .amount_check button {
+        padding: 15.5px 16px 10.5px 16px;
+    }
+
+    .why_choose_section {
+        padding-top: 40px;
+    }
+
+    .choose_content p {
+        font-size: 14px;
+        padding-right: 0px;
+    }
+
+    .faq_section {
+        padding: 30px 0px 30px 0px;
+    }
+
+    .faq_section .accordion-body {
+        padding: 15px 15px;
+        font-size: 14px;
+    }
+
+    .accordion-button::after {
+        width: 14px;
+        height: 14px;
+        background-size: 16px;
+    }
+
+    footer {
+        padding: 40px 0 0px 0px;
+    }
+
+    .footer-app-image {
+        margin-top: -460px;
+        margin-left: 20%;
+    }
+
+    .footer-app-image img {
+        width: 69% !important;
+        float: right;
+    }
+
+    .footer-widget .widget-title {
+        font-size: 16px;
+        text-transform: capitalize;
+        margin-bottom: 10px;
+        padding-top: 20px;
+    }
+
+    .line-height35 {
+        line-height: 25px;
+        padding-top: 20px;
+    }
+
+    .form-subscribe input {
+        padding: 8px 14px;
+        font-size: 14px;
+    }
+
+    form.form-subscribe button {
+        border-radius: 20px 20px 20px 20px;
+        font-size: 14px;
+        padding: 10px 25px 10px 25px;
+    }
+
+    .copyright_section .float_right {
+        float: none;
+        display: flex;
+        justify-content: center;
+    }
+
+    .copyright_section {
+        border-top: 1px solid #343434;
+        padding-top: 20px;
+        margin-top: 60px;
+        padding-bottom: 20px;
+    }
+
+    ul.float_right li:nth-child(5) {
+        font-size: 14px;
+    }
+
+    /* instant pay page*/
+
+
+    .instant_pay {
+        width: 100%;
+    }
+
+    .instant_section label {
+        font-size: 16px;
+    }
+
+    .instant_pay .adhar_field input {
+        font-size: 14px;
+    }
+
+    input::placeholder {
+        font-size: 14px !important;
+    }
+
+    /* information page */
+
+    .information_section {
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-bottom: 50px;
+    }
+
+    /* terms and condition */
+
+    .terms_section {
+        padding-bottom: 0px;
+    }
+
+    /* gives feedback page */
+
+    .gives_feedback {
+        padding: 1px 10px 50px !important;
+        margin-top: 0px !important;
+
+    }
+}
