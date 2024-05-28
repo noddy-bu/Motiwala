@@ -18,7 +18,7 @@
     <!-- -------------------- privacy content start ---------------- -->
 
     <main class="main">
-        <section class="pt-5 terms_section">
+        <section class="pt-5 pb-4 terms_section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">

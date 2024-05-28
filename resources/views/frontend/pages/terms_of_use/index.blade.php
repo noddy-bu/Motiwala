@@ -18,11 +18,11 @@
 <!-- -------------------- privacy content  start ---------------- -->  
 
 <main class="main">
-	<section class="pt-5 terms_section">
+	<section class="pt-5 pb-md-4 terms_section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h4 class="title_heading text-center black_color pb-0 heading_font">Terms of Use</h4>
+					<h4 class="title_heading text-center black_color pb-md-0 pb-3 heading_font">Terms of Use</h4>
                 </div>
 
 				<div class="col-md-12">
@@ -57,7 +57,7 @@
 							on our 1800-108-1100 (Timings: 10.00 A.M – 7.00 P.M Indian Standard Time)
 						</p>
 						<div class="md-title">
-							<h4>Eligibility Criteria</h4>
+							<h4 class="pt-md-1 pt-2">Eligibility Criteria</h4>
 						</div>
 						<p>
 							If you are below 18 years of age,you are prohibited to use/purchase/contract from or with this
@@ -73,7 +73,7 @@
 							circumstances we retain the right to accept or reject the order.
 						</p>
 						<div class="md-title">
-							<h4>Pricing And Payment</h4>
+							<h4 class="pt-md-1 pt-2">Pricing And Payment</h4>
 						</div>
 						<p>
 							Prices throughout this website are quoted in indian rupees(INR) and payment can only be accepted in
@@ -107,7 +107,7 @@
 							product on delivery. Packaging of the product may vary from that displayed on the website.
 						</p>
 						<div class="md-title">
-							<h4>Delivery Schedule</h4>
+							<h4 class="pt-md-1 pt-2">Delivery Schedule</h4>
 						</div>
 						<p>
 							A tentative delivery time will be given along with the formal order confirmation email. The exact
@@ -115,7 +115,7 @@
 							registered users can track their order by checking Track Order and determine the order status.
 						</p>
 						<div class="md-title">
-							<h4>Your Obligations</h4>
+							<h4 class="pt-md-1 pt-2">Your Obligations</h4>
 						</div>
 						<p>
 							You have to provide true,accurate,current and complete information about yourself while registration
@@ -154,7 +154,7 @@
 							</li>
 						</ul>
 						<div class="md-title">
-							<h4>Restrictions</h4>
+							<h4 class="pt-md-1 pt-2">Restrictions</h4>
 						</div>
 						<p>
 							Titan Company Ltd reserves the right,at its sole restriction,to limit the quantity/value of the items
@@ -166,7 +166,7 @@
 							reserves the right at its sole discretion to prohibit sales to anyone as it may deem fit.
 						</p>
 						<div class="md-title">
-							<h4>
+							<h4 class="pt-md-1 pt-2">
 								Site Security
 							</h4>
 						</div>
@@ -206,7 +206,7 @@
 							</li>
 						</ul>
 						<div class="md-title">
-							<h4>Cancellation By Titan Company Limited</h4>
+							<h4 class="pt-md-1 pt-2">Cancellation By Titan Company Limited</h4>
 						</div>
 						<p>
 							There may be certain orders that we are unable to accept and are constrained to cancel.We reserve the
@@ -222,7 +222,7 @@
 							into your account or payment will be made via cheque.
 						</p>
 						<div class="md-title">
-							<h4>Return And Exchange Policy</h4>
+							<h4 class="pt-md-1 pt-2">Return And Exchange Policy</h4>
 						</div>
 						<p>
 							Titan.co.in is committed to ensuring full customer satisfaction with respect to the products

@@ -115,7 +115,7 @@
             <div class="container">
                 <div class="row">
                     <h4 class="title_heading text-center black_color heading_font">4 Easy Steps </h4>
-                        <p class="text-center pb-5 black_color ">to purchase the jewellery of your dreams</p>
+                        <p class="text-center pb-md-5 pb-2 black_color ">to purchase the jewellery of your dreams</p>
                     <div class="col-md-3">
                         <div class="step_box steps1">
                             
@@ -127,7 +127,7 @@
                                  <div class="layer_img">
                                     <img src="/assets/frontend/images/layer_1.png" class="d-block" alt="...">
                                 </div>
-                            <div class="step_content1 pt-5">
+                            <div class="step_content1 pt-md-5">
                                 <p class="black_color" data-aos-once="true" data-aos="fade-right">
                                     Get started by opening a new account on our website, the Motiwala
                                     Jewels Golden Treasure Jewellery Purchase app,
@@ -141,7 +141,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="step_box steps2">
-                            <div class="step_content2 pb-3">
+                            <div class="step_content2 pb-md-3">
                                 <p class="black_color" data-aos-once="true" data-aos="fade-right">
                                     You can pay a monthly installment of at least ₹2000, or any higher multiples of ₹1000, 
                                     for 10 months using cash, online banking via Standing Instructions, Net-Banking, 
@@ -170,7 +170,7 @@
                              <div class="layer_img3">
                                     <img src="/assets/frontend/images/layer_1.png" class="d-block" alt="...">
                                 </div>
-                             <div class="step_content3 pt-5 pe-3 ps-4">
+                             <div class="step_content3 pt-md-5 pe-md-3 ps-md-4">
                                 <p class="black_color" data-aos-once="true" data-aos="fade-left">
                                     Receive an exclusive discount of up to 75% of the value of your first installment when you redeem your plan.
                                 </p>
@@ -215,7 +215,7 @@
    <div class="benefits_bgimage swing">
     <img src="/assets/frontend/images/benefits_bg.png" class="d-block" alt="..."></div>
 <div class="row align-items-center">
-    <div class="col-md-12"><h4 class="title_heading text-center black_color pb-5 heading_font">Benefits Calculator</h4></div>
+    <div class="col-md-12"><h4 class="title_heading text-center black_color pb-lg-5 pb-md-4 pb-3 heading_font">Benefits Calculator</h4></div>
     <div class="col-md-5">
         
                 <form>
@@ -293,7 +293,7 @@
         <!--why choose us section start-->
         <section class="why_choose_section">
             <div class="container">
-                <h4 class="title_heading text-center black_color pb-4 heading_font">Why Choose Us ?</h4>
+                <h4 class="title_heading text-center black_color pb-md-4 pb-3  heading_font">Why Choose Us ?</h4>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="d-flex gap-3" data-aos-once="true" data-aos="fade-up">                            
@@ -308,7 +308,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="d-flex gap-3 pb-4" data-aos-once="true" data-aos="fade-up">
+                        <div class="d-flex gap-3 pb-md-4 pb-2" data-aos-once="true" data-aos="fade-up">
                             <img class="choose_img" src="/assets/frontend/images/refer_icons.png" class="d-block w-100"
                                 alt="...">
                             <div class="choose_content">
@@ -320,7 +320,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="d-flex gap-3 pb-4" data-aos-once="true" data-aos="fade-up">
+                        <div class="d-flex gap-3 pb-md-4 pb-2" data-aos-once="true" data-aos="fade-up">
                             <img class="choose_img" src="/assets/frontend/images/earnings_icons.png" class="d-block w-100"
                                 alt="...">
                             <div class="choose_content">
@@ -333,7 +333,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="d-flex gap-3 pb-4" data-aos-once="true" data-aos="fade-up">
+                        <div class="d-flex gap-3 pb-md-4 pb-2" data-aos-once="true" data-aos="fade-up">
                             <img class="choose_img" src="/assets/frontend/images/certified_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">

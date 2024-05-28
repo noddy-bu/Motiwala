@@ -8,7 +8,7 @@
 
     <div class="row d-flex">
 
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="form-group mt-4 adhar_field">
                 <label class="pb-3">Name *</label>
                 <input type="text" class="form-control" name="name" pattern="[A-Za-z]+" minlength="3"
@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="form-group mt-4 adhar_field">
                 <label class="pb-3">Email *</label>
                 <input type="eamil" class="form-control" name="email" placeholder="Please Enter Your Email Id" 
@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-12">
             <div class="form-group mt-4 adhar_field">
                 <label class="pb-3">Mobile Number *</label>
                 <input type="text" class="form-control" name="phone" pattern="[0-9]+" minlength="10" maxlength="10" placeholder="Please Enter Your Nominee Contact Number" value="" />
@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="form-group text-center">
+        <div class="form-group text-md-start text-center">
             <div class="buttonclass1 mt-5">
                 <button type="submit">Submit <i class="las la-arrow-right"></i></button>
             </div>
