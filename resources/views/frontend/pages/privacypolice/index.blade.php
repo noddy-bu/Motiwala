@@ -45,9 +45,8 @@
                     </p>
 
                     <p>
-                        Payments on our website are processed by a third party that has signed a 
-                        non-disclosure agreement with us and is therefore not permitted to share 
-                        any personal customer information.
+                        The payments on our website are processed by a third party who has signed a non-disclosure 
+                        agreement with us and therefore, are not allowed to share any personal information of the customers.
                     </p>
 	
                     </div>

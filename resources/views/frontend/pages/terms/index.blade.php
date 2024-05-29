@@ -27,7 +27,9 @@
                 </div>
 
 				<div class="col-md-12">
-				    {{--@php echo html_entity_decode(get_settings('terms_content')) @endphp--}}					
+				    {{--@php echo html_entity_decode(get_settings('terms_content')) @endphp--}}	
+								
+					<h4>Plan</h4>	
 					<p>The Golden Treasure Jewellery Purchase Plan (hereinafter “Golden Treasure” or the “Plan”) 
 						offered by Motiwala Jewels Gold and Diamonds Pvt Ltd (“Company”) facilitates Customers 
 						to purchase Gold and Diamonds Jewellery by making payments for the same over a ten month 
@@ -70,6 +72,8 @@
 					   calculated based on the one month instalment, the number of days and the number 
 					   of monthly instalments paid.
 					</p>
+
+					<h4>Pre-Close & Refund</h4>
 
 					<p>The Customer will have the option to pre-close the Plan only if the Customer has paid 
 						a minimum of six monthly instalments and after completion of 180 days from the Enrolment Date. 
@@ -148,7 +152,8 @@
 						Purchase Plan Enrolment Form is signed in the space provided, physically or electronically, 
 						as the case may be, accepting these terms and conditions.
 					</p>
-
+					
+					<h4>Payment</h4>
 					<p>Payment of monthly instalment(s) may be made by cash, credit / debit cards, NEFT/ RTGS, 
 						local cheques in favour of “MOTIWALA JEWELS GOLD AND DIAMONDS PVT LTD ” payable in the 
 						city in where the Motiwala Jewls Gold and Diamonds Pvt Ltd  Store in which the account 

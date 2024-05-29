@@ -423,7 +423,17 @@ section.steps_section {
     padding: 100px 0px 65px 0px;
 }
 
+.top_step_content_btn {
+    text-decoration: none;
+    color: #404040;
+    border: 1px solid #000;
+    border-radius: 25px;
+    padding: 7px 20px;
+}
 
+.top_step_content_btn:hover{
+    color: #404040;
+}
 
 .step_bottom_text {
     padding-top: 70px;
