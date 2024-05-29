@@ -61,7 +61,11 @@ body nav .nav_right_menu li a {
 
 #nav-icon .fa-bars {
     font-size: 32px;
-    color: #000;
+    color: #fff;
+}
+
+body .nav_right_menu {
+    margin-right: 30px !important;
 }
 
 .z-index-1 {

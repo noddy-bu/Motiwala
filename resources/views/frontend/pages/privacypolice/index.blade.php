@@ -18,11 +18,11 @@
     <!-- -------------------- privacy content start ---------------- -->
 
     <main class="main">
-        <section class="pt-5 pb-4 terms_section">
+        <section class="pt-5 pb80 terms_section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h4 class="title_heading text-center black_color pb-0 heading_font">Privacy Policy</h4>
+                        <h4 class="title_heading text-center black_color pb-0 heading_font pb-3">Privacy Policy</h4>
                     </div>
     
                     <div class="col-md-12">

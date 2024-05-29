@@ -7,41 +7,62 @@
 @section('page.type', 'website')
 
 @section('page.content')
-    <!-- -------------------- blog banner start ---------------- -->
 
-    <section class="blog_banner breadcrumes_padd">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="text-center">
-                        <h1 class="breadcrumb_heading">Refund and Cancellation Policy</h1>
-                        <nav aria-label="breadcrumb" class="breadcrumb d-flex justify-content-center mb-0">
-                            <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item">
-                                    <a href="{{ url(route('index')) }}" data-aos="fade-up" data-aos-once="true">Home</a>
-                                </li>
-                                <li class="breadcrumb-item home" aria-current="page">
-                                    Refund and Cancellation Policy
-                                </li>
-                            </ol>
-                        </nav>
+<!-- -------------------- privacy start ---------------- -->
+
+<section class="inner_page_banner">
+    <img src="/assets/frontend/images/innwe_imagebanner.jpg" class="d-block w-100" alt="..." >
+</section>
+
+
+    <!-- -------------------- privacy content start ---------------- -->
+
+    <main class="main">
+        <section class="pt-5 pb80 terms_section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="title_heading text-center black_color pb-0 heading_font pb-3">Refund Policy</h4>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
+                    <div class="col-md-12">
+                    <p>
+                        We understand that your privacy is important to you, and we respect that.
+                        Motiwala Jewels Gold And Diamonds Pvt Ltd. Company ensures complete confidentiality 
+                        of the details you share with us and does not disclose them to any third party. 
+                        We may request certain details such as name, date of birth, email address, 
+                        residential address, and contact number for registration purposes, feedback, 
+                        contests, newsletters, or placing an order.
+                    </p>
 
-    <!-- -------------------- blog banner end   ---------------- -->
-    <!-- -------------------- privacy content  start ---------------- -->
+                    <p>
+                        You can unsubscribe from our newsletters or any other information you receive 
+                        from Motiwala Jewels Gold And Diamonds Pvt Ltd. at any time. For enhanced security, 
+                        Motiwala Jewels Gold and Diamonds Pvt Ltd. does not accept any financial information 
+                        on its servers. All information provided by the customer is directly received through 
+                        our payment gateway and transmitted to their respective banks' servers using 
+                        industry-standard encryption protocols known as SSL (Secure Socket Layer).
+                    </p>
 
-    <section class="privacy_content mb-md-3 mb-2 mt-md-5 mt-3">
-        <div class="container">
-            <div class="row">
-                @php echo html_entity_decode(get_settings('refund_policy_content')) @endphp
+                    <p>
+                        Payments on our website are processed by a third party that has signed a 
+                        non-disclosure agreement with us and is therefore not permitted to share 
+                        any personal customer information.
+                    </p>
+	
+                    </div>
+    
+                         
+            
+              </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- -------------------- privacy content  end   ---------------- -->
+
+
+
+
 
     @endsection

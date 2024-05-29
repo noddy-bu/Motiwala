@@ -36,6 +36,9 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
               <a href="{{ url(route('faq')) }}">
                 <i class="las la-angle-right"></i> FAQ </a>
             </li>
+             <li>
+              <a href="{{ url(route('feedback')) }}"> <i class="las la-angle-right"></i> Give Us Feedback</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -46,14 +49,16 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
           <ul class="widget-menu">
 
           <li>
-              <a href="{{ url(route('terms_use')) }}"> <i class="las la-angle-right"></i> Term of Use</a>
+              <a href="terms-conditions"> <i class="las la-angle-right"></i> Terms Conditions</a>
             </li>
             <li>
               <a href="{{ url(route('privacy-policy')) }}"> <i class="las la-angle-right"></i> Privacy Policy</a>
             </li>
-            <li>
-              <a href="{{ url(route('feedback')) }}"> <i class="las la-angle-right"></i> Give Us Feedback</a>
+<li>
+              <a href="refund-policy"> <i class="las la-angle-right"></i> Refund Policy</a>
             </li>
+            
+           
           </ul>
         </div>
       </div>
@@ -114,11 +119,7 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
                 <i class="lab la-instagram"></i>
               </a>
             </li>
-            <li>
-              <a href="">
-                <i class="lab la-twitter"></i>
-              </a>
-            </li>
+          
             <li>Let's Get Together</li>
           </ul>
         </div>

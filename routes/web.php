@@ -41,7 +41,7 @@ Route::any('/instant-pay', [IndexController::class, 'instantpay'])->name('instan
 Route::get('/faq', [IndexController::class, 'faq'])->name('faq');
 Route::get('/privacy-policy', [IndexController::class, 'privacy_policy'])->name('privacy-policy');
 
-Route::get('/terms', [IndexController::class, 'terms_page'])->name('terms');
+Route::get('/terms-conditions', [IndexController::class, 'terms_page'])->name('terms');
 Route::get('/refund-policy', [IndexController::class, 'refund_policy'])->name('refund-policy');
 
 Route::get('/termsofuse', [IndexController::class, 'terms_of_use'])->name('terms_use');

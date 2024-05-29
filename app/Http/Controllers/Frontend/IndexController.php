@@ -121,6 +121,7 @@ class IndexController extends Controller
         return view('frontend.pages.terms_of_use.index');
     }
 
+    
     public function feedback(){
         return view('frontend.pages.feedback.index');
     }
