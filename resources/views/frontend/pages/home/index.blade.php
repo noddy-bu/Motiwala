@@ -65,11 +65,11 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="/assets/frontend/images/bannermain1.webp" class="d-block w-100" alt="...">
+      <img src="/assets/frontend/images/2.jpg" class="d-block w-100" alt="...">
     </div>
 
       <div class="carousel-item">
-      <img src="/assets/frontend/images/bannermain2.webp" class="d-block w-100" alt="...">
+      <img src="/assets/frontend/images/3.jpg" class="d-block w-100" alt="...">
     </div>
 
      <!-- <div class="carousel-item">
@@ -77,7 +77,7 @@
     </div> -->
 
       <div class="carousel-item">
-      <img src="/assets/frontend/images/bannermain3.webp" class="d-block w-100" alt="...">
+      <img src="/assets/frontend/images/4.jpg" class="d-block w-100" alt="...">
     </div>
 
      
@@ -101,12 +101,15 @@
 
            <section class="top_step_content">
             <div class="container">  <h4 class="title_heading text-center black_color pb-3 heading_font">Dreaming of owning that stunning necklace?</h4>
-                    <p class="text-center black_color fontsize26" data-aos-once="true" data-aos="fade-up">
-                        Start your journey by opening a Motiwala Jewels Golden Treasure  account with just ₹2000.
-                        <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
-                        to 75% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
-                    </p>
+                <p class="text-center black_color fontsize26" data-aos-once="true" data-aos="fade-up">
+                    Start your journey by opening a Motiwala Jewels Golden Treasure  account with just ₹2000.
+                    <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
+                    to 75% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
+                </p>
+                <div class="text-center py-md-4 mt-md-0 mt-4">
+                    <a href="https://motiwalajewels.in/account/onlineenrollment" class="top_step_content_btn">Start Now</a>
                 </div>
+            </div>
 </section>
 
 
@@ -324,7 +327,7 @@
                             <img class="choose_img" src="/assets/frontend/images/earnings_icons.png" class="d-block w-100"
                                 alt="...">
                             <div class="choose_content">
-                                <h5 class="black_color">Motiwala Harvest</h5>
+                                <h5 class="black_color">Motiwala Treasure</h5>
                                 <p class="black_color"> 
                                     A unique easy-pay system that gives you a 75% benefit on the value of your first installment when you redeem your plan.
 
