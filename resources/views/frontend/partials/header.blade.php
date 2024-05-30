@@ -1,4 +1,4 @@
-<header class="position-md-absolute position-absolute w-100 z-index-1">
+<header class="w-100 z-index-1">
     <nav class="navbar navbar-expand-lg ">
         <div class="container">
             <a class="navbar-brand" href="{{ url(route('index')) }}"><img
