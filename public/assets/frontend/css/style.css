@@ -1368,7 +1368,7 @@ form#loginForm a:hover {
 
 .contact_form_section>div {
     border-radius: 20px;
-    box-shadow: 3px 3px 10px #d3af8b;
+    box-shadow: 1px 1px 7px #d3af8b;
 }
 
 .contact_form_heading, .contact_form_text {
@@ -1378,7 +1378,7 @@ form#loginForm a:hover {
 .contact_form input,
 .contact_form textarea {
     width: 100%;
-    margin: 25px 0px;
+    margin: 15px 0px;
     border-radius: 6px;
     /* border: 1px solid #000; */
 }
