@@ -31,6 +31,10 @@
         font-size: 26px;
     }
 
+    a#nav-icon {
+        padding: 0px !important;
+    }
+
     .navbar-brand img {
         width: 70%;
     }
@@ -182,6 +186,10 @@
         padding-top: 0px;
     }
 
+    a#nav-icon {
+        padding: 0px !important;
+    }
+
     p#amount_13x {
         font-size: 24px;
     }
@@ -194,6 +202,7 @@
 
     body .nav_right_menu {
         margin-right: 0px !important;
+        align-items: center;    
     }
 
     .navbar-brand {

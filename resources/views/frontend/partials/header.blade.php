@@ -17,11 +17,13 @@
                         <a class="nav-link" href="{{ url(route('account.new.enrollment.page')) }}"><i
                                 class="las la-user-plus"></i> New Account</a>
                     </li>
+                    <li class="nav-item">
+                      <a id="nav-icon">
+                        <span class="fa fa-bars"></span>
+                      </a>
+                    </li>
                 </ul>
 
-                <a id="nav-icon">
-                  <span class="fa fa-bars"></span>
-                </a>
                 <ul class="menu">
                   <img src="https://demo.creaadesign.com/bandhan-mutual-fund/images/cross2.svg" alt="" class="img-fluid cross_close">
                   <li>
