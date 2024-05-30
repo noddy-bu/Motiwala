@@ -49,7 +49,7 @@ header {
 
 body nav .nav_right_menu li a {
     color: #000 !important;
-    padding: 4px 10px 4px 10px !important;
+    padding: 0px 10px 8px 10px !important;
 }
 
 .nav_right_menu li a:hover {
@@ -64,12 +64,16 @@ body nav .nav_right_menu li a {
 }
 
 #nav-icon .fa-bars {
-    font-size: 32px;
-    color: #000;
+    font-size: 24px;
+    color: #c1884e;
 }
 
+#nav-icon{
+    padding-bottom: 0px !important;
+}
 body .nav_right_menu {
     margin-right: 30px !important;
+    align-items: center;    
 }
 
 .z-index-1 {
