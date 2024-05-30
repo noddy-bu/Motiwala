@@ -49,7 +49,7 @@ header {
 
 body nav .nav_right_menu li a {
     color: #000 !important;
-    padding: 0px 10px 8px 10px !important;
+    padding: 4px 10px 4px 10px !important;
 }
 
 .nav_right_menu li a:hover {
@@ -65,7 +65,7 @@ body nav .nav_right_menu li a {
 
 #nav-icon .fa-bars {
     font-size: 32px;
-    color: #fff;
+    color: #000;
 }
 
 body .nav_right_menu {
@@ -1368,17 +1368,17 @@ form#loginForm a:hover {
 
 .contact_form_section>div {
     border-radius: 20px;
-    box-shadow: 3px 3px 10px #d3af8b;
+    box-shadow: 1px 1px 7px #d3af8b;
 }
 
 .contact_form_heading, .contact_form_text {
     font-family: "Yeseva One", serif;
 }
-
+ 
 .contact_form input,
 .contact_form textarea {
     width: 100%;
-    margin: 25px 0px;
+    margin: 15px 0px;
     border-radius: 6px;
     /* border: 1px solid #000; */
 }

@@ -65,19 +65,22 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="/assets/frontend/images/2.jpg" class="d-block w-100" alt="...">
+      <img src="/assets/frontend/images/2.jpg" class="d-md-block d-none w-100" alt="...">
+      <img src="/assets/frontend/images/10.jpg" class="d-md-none d-block w-100" alt="...">
     </div>
 
-      <div class="carousel-item">
-      <img src="/assets/frontend/images/3.jpg" class="d-block w-100" alt="...">
+    <div class="carousel-item">
+      <img src="/assets/frontend/images/3.jpg" class="d-md-block d-none w-100" alt="...">
+      <img src="/assets/frontend/images/11.jpg" class="d-md-none d-block w-100" alt="...">
     </div>
 
      <!-- <div class="carousel-item">
       <img src="/assets/frontend/images/banner1.jpg" class="d-block w-100" alt="...">
     </div> -->
 
-      <div class="carousel-item">
-      <img src="/assets/frontend/images/4.jpg" class="d-block w-100" alt="...">
+    <div class="carousel-item">
+      <img src="/assets/frontend/images/4.jpg" class="d-md-block d-none w-100" alt="...">
+      <img src="/assets/frontend/images/12.jpg" class="d-md-none d-block w-100" alt="...">
     </div>
 
      
