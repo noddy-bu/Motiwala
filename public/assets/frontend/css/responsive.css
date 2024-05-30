@@ -9,6 +9,10 @@
         font-size: 16px;
     }
 
+    header {
+        position: relative;
+    }
+
     .fontsize26 {
         font-size: 18px !important;
     }
@@ -170,9 +174,9 @@
         position: relative;
     }
 
-    .position-md-absolute {
-        position: relative !important;
-      }
+    header {
+        position: relative;
+    }
 
     .total_number_main {
         padding-top: 0px;

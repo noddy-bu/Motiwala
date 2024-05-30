@@ -25,6 +25,10 @@ div#add-phone a {
     color: #404040;
 }
 
+header {
+    position: absolute;
+}
+
 .nav_right_menu {
     background: #ffffffe0;
     padding: 10px 5px;
@@ -1336,4 +1340,79 @@ form#loginForm a:hover {
 
 .gives_feedback input::placeholder {
     font-size: 14px;
+}
+
+/* contact-us page */
+
+.main#contact_us_page {
+    background: none;
+}
+
+.contact_form_section {
+    padding-right: 200px;
+    padding-left: 200px;
+    padding-bottom: 120px ;
+    padding-top: 70px;
+}
+
+.contact_us_section{
+    padding-left: 223px;
+    padding-right: 120px;
+    padding-bottom: 0px;
+}
+
+.contact_form_section {
+    padding-right: 200px;
+    padding-left: 200px;
+}
+
+.contact_form_section>div {
+    border-radius: 20px;
+    box-shadow: 3px 3px 10px #d3af8b;
+}
+
+.contact_form_heading, .contact_form_text {
+    font-family: "Yeseva One", serif;
+}
+
+.contact_form input,
+.contact_form textarea {
+    width: 100%;
+    margin: 25px 0px;
+    border-radius: 6px;
+    /* border: 1px solid #000; */
+}
+
+.contact_form button {
+    width: 100%;
+    border: 1px solid #d3af8b;
+    border-radius: 5px;
+    background-color: #d3af8b;
+    color: #000;
+    font-weight: 500;
+    padding: 5px 0px;
+}
+
+.contact_info a {
+    color: #404040;
+    margin-left: 5px;
+    transition: 0.2s ease-in;
+}
+
+.contact_info i {
+    color: #b67950;
+    border: 1px solid #b67950;
+    border-radius: 50%;
+    padding: 10px;
+    margin: 5px 0px;
+}
+
+.fa-location-dot {
+    padding: 9px 11px !important;
+}
+
+.contact_info a:hover {
+    color: #404040;
+    font-weight: 500;
+
 }
