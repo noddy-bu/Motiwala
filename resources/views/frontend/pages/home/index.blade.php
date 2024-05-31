@@ -111,8 +111,11 @@
                     <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
                     to 75% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
                 </p>
-                <div class="text-center py-md-4 mt-md-0 mt-4">
-                    <a href="https://motiwalajewels.in/account/onlineenrollment" class="top_step_content_btn">Start Now</a>
+                <div class="text-center">
+                    <div class="buttonclass mt-4 " data-aos-once="true" data-aos="fade-up">
+                        <a href="/account/onlineenrollment">Start Now <i class="las la-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
 </section>
