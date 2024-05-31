@@ -62,25 +62,27 @@
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img src="/assets/frontend/images/2.jpg" class="d-md-block d-none w-100" alt="...">
-      <img src="/assets/frontend/images/10.jpg" class="d-md-none d-block w-100" alt="...">
+      <img src="/assets/frontend/images/13.jpg" class="d-md-none d-block w-100" alt="...">
     </div>
 
     <div class="carousel-item">
       <img src="/assets/frontend/images/3.jpg" class="d-md-block d-none w-100" alt="...">
-      <img src="/assets/frontend/images/11.jpg" class="d-md-none d-block w-100" alt="...">
+      <img src="/assets/frontend/images/14.jpg" class="d-md-none d-block w-100" alt="...">
     </div>
-
-     <!-- <div class="carousel-item">
-      <img src="/assets/frontend/images/banner1.jpg" class="d-block w-100" alt="...">
-    </div> -->
 
     <div class="carousel-item">
       <img src="/assets/frontend/images/4.jpg" class="d-md-block d-none w-100" alt="...">
-      <img src="/assets/frontend/images/12.jpg" class="d-md-none d-block w-100" alt="...">
+      <img src="/assets/frontend/images/15.jpg" class="d-md-none d-block w-100" alt="...">
+    </div>
+
+    <div class="carousel-item">
+      <img src="/assets/frontend/images/1.jpg" class="d-md-block d-none w-100" alt="...">
+      <img src="/assets/frontend/images/16.jpg" class="d-md-none d-block w-100" alt="...">
     </div>
 
      
