@@ -11,12 +11,22 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
           <h3 class="widget-title">USEFUL LINKS</h3>
           <ul class="widget-menu">
             <li>
-              <a href="{{ url(route('account.new.enrollment.page')) }}">
-                <i class="las la-angle-right"></i> New Account </a>
+              <a href="#">
+                <i class="las la-angle-right"></i> About Us </a>
             </li>
+
             <li>
-              <a href="{{ url(route('instantpay')) }}">
-                <i class="las la-angle-right"></i> Instant Pay </a>
+              <a href="{{ url(route('faq')) }}">
+                <i class="las la-angle-right"></i> FAQ </a>
+            </li>
+
+             <li>
+              <a href="{{ url(route('information')) }}">
+                <i class="las la-angle-right"></i> Information </a>
+            </li>
+             <li>
+              <a href="contact-us">
+                <i class="las la-angle-right"></i> Contact Us </a>
             </li>
             
           </ul>
@@ -29,13 +39,15 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
           <h3 class="widget-title">QUICK LINKS</h3>
           <ul class="widget-menu">
             <li>
-              <a href="{{ url(route('information')) }}">
-                <i class="las la-angle-right"></i> Information </a>
+              <a href="{{ url(route('account.new.enrollment.page')) }}">
+                <i class="las la-angle-right"></i> New Account </a>
             </li>
             <li>
-              <a href="{{ url(route('faq')) }}">
-                <i class="las la-angle-right"></i> FAQ </a>
+              <a href="{{ url(route('instantpay')) }}">
+                <i class="las la-angle-right"></i> Instant Pay </a>
             </li>
+           
+           
              <li>
               <a href="{{ url(route('feedback')) }}"> <i class="las la-angle-right"></i> Give Us Feedback</a>
             </li>
@@ -105,7 +117,7 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
         <div class="col-md-6 text-md-end text-center">
           <ul class="float_right">
             <li>
-              <a href="">
+              <a href="https://api.whatsapp.com/send?phone=+919920077780&text=Hi%2C+I+am+contacting+you+through+your+website+from+desktop+view+https%3A%2F%2Fhttps://motiwalajewels.in/%2F">
                 <i class="lab la-whatsapp"></i>
               </a>
             </li>
