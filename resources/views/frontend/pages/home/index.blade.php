@@ -106,13 +106,13 @@
 
            <section class="top_step_content">
             <div class="container">  <h4 class="title_heading text-center black_color pb-3 heading_font">Dreaming of owning that stunning necklace?</h4>
-                <p class="text-center black_color fontsize26" data-aos-once="true" data-aos="fade-up">
+                <p class="text-center black_color fontsize26">
                     Start your journey by opening a Motiwala Jewels Golden Treasure  account with just ₹2000.
                     <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
                     to 75% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
                 </p>
                 <div class="text-center">
-                    <div class="buttonclass mt-4 " data-aos-once="true" data-aos="fade-up">
+                    <div class="buttonclass mt-4 ">
                         <a href="/account/onlineenrollment">Start Now <i class="las la-arrow-right"></i>
                         </a>
                     </div>
@@ -139,7 +139,7 @@
                                     <img src="/assets/frontend/images/layer_1.png" class="d-block" alt="...">
                                 </div>
                             <div class="step_content1 pt-md-5">
-                                <p class="black_color" data-aos-once="true" data-aos="fade-right">
+                                <p class="black_color" >
                                     Get started by opening a new account on our website, the Motiwala
                                     Jewels Golden Treasure Jewellery Purchase app,
                                     or by visiting  our only  Store In Byculla, Mumbai Maharashtra.
@@ -153,7 +153,7 @@
                     <div class="col-md-3">
                         <div class="step_box steps2">
                             <div class="step_content2 pb-md-3">
-                                <p class="black_color" data-aos-once="true" data-aos="fade-right">
+                                <p class="black_color" >
                                     You can pay a monthly installment of at least ₹2000, or any higher multiples of ₹1000, 
                                     for 10 months using cash, online banking via Standing Instructions, Net-Banking, 
                                     UPI or post-dated cheque facilities.
@@ -182,7 +182,7 @@
                                     <img src="/assets/frontend/images/layer_1.png" class="d-block" alt="...">
                                 </div>
                              <div class="step_content3 pt-md-5 pe-md-3 ps-md-4">
-                                <p class="black_color" data-aos-once="true" data-aos="fade-left">
+                                <p class="black_color" >
                                     Receive an exclusive discount of up to 75% of the value of your first installment when you redeem your plan.
                                 </p>
                             </div>
@@ -192,7 +192,7 @@
                     <div class="col-md-3">
                         <div class="step_box steps4">
                             <div class="step_content4 pb-1">
-                                <p class="black_color" data-aos-once="true" data-aos="fade-left">
+                                <p class="black_color" >
                                     Acquire your beloved Motiwala Jewels Gold and Diamonds jewellery using the entire redemption value.
                                 </p>
                             </div>
@@ -206,11 +206,11 @@
                 </div>
 
                 <div class="step_bottom_text">
-                    <p class="black_color text-center" data-aos-once="true" data-aos="fade-up">
+                    <p class="black_color text-center">
                         “Delivering top-notch quality jewellery with the latest designs at prices <span>you can afford,
                          we bring over a century of industry</span> <span>expertise right to you.”</span>
                     </p>
-                    <div class="buttonclass mt-4" data-aos-once="true" data-aos="fade-up">
+                    <div class="buttonclass mt-4">
                         <a href="">Explore <i class="las la-arrow-right"></i>
                         </a>
                     </div>
@@ -221,84 +221,75 @@
 
 
 
-        <div class="container">
-            <div class="benefits_calculator sip-calculator" data-aos-once="true" data-aos="fade-up">
-   <div class="benefits_bgimage swing">
-    <img src="/assets/frontend/images/benefits_bg.png" class="d-block" alt="..."></div>
-<div class="row align-items-center">
-    <div class="col-md-12"><h4 class="title_heading text-center black_color pb-lg-5 pb-md-4 pb-3 heading_font">Benefits Calculator</h4></div>
-    <div class="col-md-5">
-        
-                <form>
-                    <div class="row">
-
-                        <div class="col-md-12">
-                            <p>Slide or enter monthly installment amount</p>
-                        </div>
-                        <div class="col-md-12 mb-4">
-
-                            <div class="sip-calculator-amount">
-                                <div class="amount_monthly1">
-                                    <label id="amountLabel"> MONTHLY AMOUNT <span id="amount">₹ 2000</span></label>
-                                </div>
-                                <div class="amount_check">
-
-                                    <div class="row ">
-
-                                        <div class="col-md-12 d-flex">
-                                            <button id="amount_plus" class="btn btn-block btn-primary"><i class="las la-plus"></i></button>
-                                       
-                                        
-                                            <button id="amount_minus" class="btn btn-block btn-primary"> <i class="las la-minus"></i> </button>
-                                        </div>
-
+    <div class="container">
+        <div class="benefits_calculator sip-calculator">
+            <div class="benefits_bgimage swing">
+                <img src="/assets/frontend/images/benefits_bg.png" class="d-block" alt="...">
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md-12">
+                    <h4 class="title_heading text-center black_color pb-lg-5 pb-md-4 pb-3 heading_font">Benefits Calculator</h4>
+                </div>
+                <div class="col-md-6">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>Slide or enter monthly installment amount</p>
+                            </div>
+                            <div class="col-md-12 mb-4">
+                                <div class="sip-calculator-amount">
+                                    <div class="amount_monthly1">
+                                        <label id="amountLabel"> MONTHLY AMOUNT <span id="amount">₹ 10,000</span>
+                                        </label>
                                     </div>
-
+                                    <div class="amount_check">
+                                        <div class="row ">
+                                            <div class="col-md-12 d-flex">
+                                                <button id="amount_plus" class="btn btn-block btn-primary">
+                                                    <i class="las la-plus"></i>
+                                                </button>
+                                                <button id="amount_minus" class="btn btn-block btn-primary">
+                                                    <i class="las la-minus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="sip-calculator-amount">
+                                    <div class="amount_monthly2">
+                                        <label id="amountLabel"> YOUR TOTAL AMOUNT for 10 months <span id="amount_10x">₹ 1,00,000</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <hr>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="pt-2">You can Buy Jewellery worth: (in 13th month)</p>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="total_number_main">
+                                    <p id="amount_13x">₹ 1,07,500</p>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-12">
-                            <div class="sip-calculator-amount">
-                                <div class="amount_monthly2">
-                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for 10 months <span id="amount_10x">₹
-                                            2000</span></label>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-12">
-                            <hr>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="pt-2">You can Buy Jewellery worth: (in 13th month)</p>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="total_number_main">
-                                <p id="amount_13x">₹ 22,800</p>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 text-center">
-                            <div class="buttonclass mt-4">
-                                <a href="">Open a New Account <i class="las la-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <canvas id="myCanvas" width="300" height="300"></canvas>
+                </div>  
+                <div class="col-md-12 text-md-start text-center">
+                    <div class="buttonclass mt-4">
+                        <a href="">Open a New Account <i class="las la-arrow-right"></i>
+                        </a>
                     </div>
-                </form>
-    </div>
-    <div class="col-md-7">
-        <canvas id="myCanvas" width="350" height="350"></canvas>
-    </div>
-</div>
-
-                
+                </div>
             </div>
         </div>
+    </div>
 
 
         <!--why choose us section start-->
@@ -307,7 +298,7 @@
                 <h4 class="title_heading text-center black_color pb-md-4 pb-3  heading_font">Why Choose Us ?</h4>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="d-flex gap-3" data-aos-once="true" data-aos="fade-up">                            
+                        <div class="d-flex gap-3">                            
                             <img class="choose_img" src="/assets/frontend/images/best_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
@@ -319,7 +310,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="d-flex gap-3 pb-md-4 pb-2" data-aos-once="true" data-aos="fade-up">
+                        <div class="d-flex gap-3 pb-md-4 pb-2">
                             <img class="choose_img" src="/assets/frontend/images/refer_icons.png" class="d-block w-100"
                                 alt="...">
                             <div class="choose_content">
@@ -331,8 +322,8 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="d-flex gap-3 pb-md-4 pb-2" data-aos-once="true" data-aos="fade-up">
-                            <img class="choose_img" src="/assets/frontend/images/earnings_icons.png" class="d-block w-100"
+                        <div class="d-flex gap-3 pb-md-4 pb-2">
+                            <img class="choose_img" src="/assets/frontend/images/motiwala_treasure.png" class="d-block w-100"
                                 alt="...">
                             <div class="choose_content">
                                 <h5 class="black_color">Motiwala Treasure</h5>
@@ -344,7 +335,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="d-flex gap-3 pb-md-4 pb-2" data-aos-once="true" data-aos="fade-up">
+                        <div class="d-flex gap-3 pb-md-4 pb-2">
                             <img class="choose_img" src="/assets/frontend/images/certified_icons.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
@@ -357,8 +348,8 @@
                     </div>
                     
                     <div class="col-md-4">
-                        <div class="d-flex gap-3" data-aos-once="true" data-aos="fade-up">
-                            <img class="choose_img" src="/assets/frontend/images/exchange_icons.png"
+                        <div class="d-flex gap-3">
+                            <img class="choose_img" src="/assets/frontend/images/exquisite_jewellery_collection.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
                                 <h5 class="black_color">Exquisite Jewellery Collection</h5>
@@ -370,8 +361,8 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="d-flex gap-3" data-aos-once="true" data-aos="fade-up">
-                            <img class="choose_img" src="/assets/frontend/images/warranty_icons.png"
+                        <div class="d-flex gap-3">
+                            <img class="choose_img" src="/assets/frontend/images/transparent_pricing.png"
                                 class="d-block w-100" alt="...">
                             <div class="choose_content">
                                 <h5 class="black_color">Transparent Pricing
@@ -392,7 +383,7 @@
             <div class="container">
                 <h4 class="title_heading text-center black_color pb-3 heading_font">Frequently Asked Questions</h4>
                 <div class="accordion" id="accordionExample">
-                    <div class="accordion-item" data-aos-once="true" data-aos="fade-up">
+                    <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Where can
@@ -407,7 +398,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item" data-aos-once="true" data-aos="fade-up">
+                    <div class="accordion-item">
                         <h2 class="accordion-header" id="headingTwo">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> What can
@@ -421,7 +412,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item" data-aos-once="true" data-aos="fade-up">
+                    <div class="accordion-item">
                         <h2 class="accordion-header" id="headingThree">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> Can
@@ -439,7 +430,7 @@
                         </div>
                     </div>
 
-                    <div class="accordion-item" data-aos-once="true" data-aos="fade-up">
+                    <div class="accordion-item">
                         <h2 class="accordion-header" id="headingFour">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> If I
@@ -458,7 +449,7 @@
                         </div>
                     </div>
 
-                    <div class="accordion-item" data-aos-once="true" data-aos="fade-up">
+                    <div class="accordion-item">
                         <h2 class="accordion-header" id="headingFive">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive"> What

@@ -10,7 +10,7 @@
 
 
 <section class="inner_page_banner">
-     <img src="/assets/frontend/images/innwe_imagebanner.jpg" class="d-block w-100" alt="...">
+     <img src="/assets/frontend/images/innwe_imagebanner.png" class="d-block w-100" alt="...">
 </section>
 
 <!--  ----------------- 404 start --------------------- -->

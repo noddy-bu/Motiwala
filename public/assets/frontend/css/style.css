@@ -206,6 +206,10 @@ section.why_choose_section {
     font-weight: 800;
 }
 
+.benefits_calculator .buttonclass {
+    margin-left: 110px;
+}
+
 .amount_price_view {
     padding-top: 10px;
     display: block;
@@ -229,6 +233,7 @@ section.why_choose_section {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
 }
 
 .footer-app-image img {
@@ -300,7 +305,7 @@ input[type=range]::-ms-thumb {
     cursor: pointer;
 }
 
-input[type=number] {
+/* input[type=number] {
     -moz-appearance: none;
     -webkit-appearance: none;
     cursor: pointer;
@@ -314,8 +319,8 @@ input[type=number] {
     font-family: 'Roboto', sans-serif;
     font-size: 1.5em;
     border-radius: 4px;
-    /* float: right; */
-}
+    float: right;
+} */
 
 input[type=number]:focus {
     outline: none;
@@ -770,13 +775,14 @@ label#amountLabel {
 
 /*-- open accounts page css---*/
 
-.adhar_field input::placeholder {
+.adhar_field input::placeholder, 
+.contact_form input::placeholder{
     font-size: 16px;
     padding-left: 0 !important;
     margin-left: 0;
 }
 
-.adhar_field input {
+.adhar_field input, .contact_form input, .message {
     border: 0px;
     border-bottom: 1px solid #ccc;
     border-radius: 0;
@@ -1091,7 +1097,7 @@ body .userlogin_box {
     position: fixed !important;
     right: 0;
     background: #e3c2ab;
-    width: 103px;
+    width: 130px;
     padding: 7px 10px !important;
     border-radius: 50px 0px 0px 50px;
     z-index: 99;
@@ -1352,11 +1358,16 @@ form#loginForm a:hover {
     background: none;
 }
 
-.contact_form_section {
+/* .contact_form_section {
     padding-right: 200px;
     padding-left: 200px;
     padding-bottom: 120px ;
     padding-top: 70px;
+} */
+
+.contact_form label {
+    font-size: 18px;
+    padding-bottom: 5px;
 }
 
 .contact_us_section{
@@ -1365,26 +1376,18 @@ form#loginForm a:hover {
     padding-bottom: 0px;
 }
 
-.contact_form_section {
-    padding-right: 200px;
-    padding-left: 200px;
-}
 
-.contact_form_section>div {
+/* .contact_form_section>div {
     border-radius: 20px;
     box-shadow: 1px 1px 7px #d3af8b;
-}
+} */
 
 .contact_form_heading, .contact_form_text {
     font-family: "Yeseva One", serif;
 }
- 
-.contact_form input,
-.contact_form textarea {
-    width: 100%;
-    margin: 15px 0px;
-    border-radius: 6px;
-    /* border: 1px solid #000; */
+
+.message:focus-visible {
+    outline: -webkit-focus-ring-color auto 0px;
 }
 
 .contact_form button {
@@ -1398,7 +1401,7 @@ form#loginForm a:hover {
 }
 
 .contact_info a {
-    color: #404040;
+    color: #212529;
     margin-left: 5px;
     transition: 0.2s ease-in;
 }
@@ -1411,12 +1414,15 @@ form#loginForm a:hover {
     margin: 5px 0px;
 }
 
+.contact_info {
+    margin-bottom: 9px;
+}
+
 .fa-location-dot {
     padding: 9px 11px !important;
 }
 
 .contact_info a:hover {
-    color: #404040;
-    font-weight: 500;
-
+    color: #000;
+    /* font-weight: 500; */
 }
