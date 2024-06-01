@@ -16,10 +16,10 @@
               <a href="refund-policy"> <i class="las la-angle-right"></i> Refund Policy</a>
             </li>
 
-                        <li>|</li>
+                        <!-- <li>|</li>
                         <li>
                             <a href="{{ url(route('feedback')) }}"> Give Us Feedback</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <div class="col-md-4">
