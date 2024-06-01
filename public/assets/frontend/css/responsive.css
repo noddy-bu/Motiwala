@@ -571,13 +571,44 @@
 
     /* after sing in side bar */
 
-    .bg_theme .width20 {
-        width: 100% !important;
+    .sidebaar_section {
+        padding: 0px !important;
     }
+
+    .width20 {
+        width: 70% !important;
+    }
+
+    .login_fa_bars {
+        display: block;
+        position: absolute;
+        right: 60px;
+        top: 9%;
+        z-index: 999;
+    }
+
+    #nav-bar-icon {
+        border: 0;
+        background-color: transparent;
+    }
+
+    
+    body .userlogin_box {
+        width: 110px !important;
+        padding: 7px 4px 7px 10px !important;
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
 
     .bg_theme {
         position: absolute;
         z-index: 99;
+        height: 100%;
+        /* transform: translateX(-100%); */
+        transition: transform 0.3s ease-in;
+        margin-left:-320px;
+        width: 0;
     }
 
     .bg_theme .width80 {
@@ -589,6 +620,46 @@
     }
 
     .nav-pills .nav-link {
-        color: #000;
+        color: #000 !important;
+    }
+
+
+    body .width80:not(.sidebar) {
+        width: 100% !important;
+    }
+
+    .sidebar {
+        height: 100%;
+        width: 0;
+        transition: 0.5s;
+    }
+    .sidebar a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        display: block;
+        transition: 0.3s;
+    }
+    .sidebar a {
+        color: #c1884e;
+    }
+    .sidebar a:hover {
+        color: #c1884e !important;
+    }
+    .sidebar .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+    #nav-bar-icon {
+        margin-top: 4px;
+        cursor: pointer;
+    }
+    #bg_theme {
+        transition: margin-left .5s;
+        padding: 16px;
+        position: fixed;
+        top: 0px;
     }
 }
