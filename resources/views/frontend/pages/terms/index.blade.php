@@ -11,7 +11,7 @@
 <!-- -------------------- Terms  start ---------------- -->
 
 <section class="inner_page_banner">
-     <img src="/assets/frontend/images/innwe_imagebanner.jpg" class="d-block w-100" alt="...">
+     <img src="/assets/frontend/images/innwe_imagebanner.png" class="d-block w-100" alt="...">
 </section>
 
 
@@ -23,7 +23,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h4 class="title_heading text-center black_color pb-0 heading_font">GOLDEN TREASURE JEWELLERY PURCHASE PLAN</h4>
-				   <h5 class="black_color text-center pb-4">TERMS AND CONDITIONS</h5>
+				   <h5 class="black_color text-center pb-md-4 pb-3">TERMS AND CONDITIONS</h5>
                 </div>
 
 				<div class="col-md-12">
