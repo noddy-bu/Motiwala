@@ -1417,9 +1417,9 @@ form#loginForm a:hover {
     box-shadow: 1px 1px 7px #d3af8b;
 } */
 
-.contact_form_heading, .contact_form_text {
+/* .contact_form_heading, .contact_form_text {
     font-family: "Yeseva One", serif;
-}
+} */
 
 .message:focus-visible {
     outline: -webkit-focus-ring-color auto 0px;
