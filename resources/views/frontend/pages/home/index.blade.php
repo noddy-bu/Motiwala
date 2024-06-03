@@ -126,8 +126,8 @@
             <div class="container">
                 <div class="row">
                     <h4 class="title_heading text-center black_color heading_font">4 Easy Steps </h4>
-                        <p class="text-center pb-md-5 pb-2 black_color ">to purchase the jewellery of your dreams</p>
-                    <div class="col-md-3">
+                        <p class="text-center pb-lg-5 pb-md-3 pb-2 black_color ">to purchase the jewellery of your dreams</p>
+                    <div class="col-lg-3 col-12">
                         <div class="step_box steps1">
                             
                             <div class="step_box_icon">
@@ -138,7 +138,7 @@
                                  <div class="layer_img">
                                     <img src="/assets/frontend/images/layer_1.png" class="d-block" alt="...">
                                 </div>
-                            <div class="step_content1 pt-md-5">
+                            <div class="step_content1 pt-lg-5 pt-0">
                                 <p class="black_color" >
                                     Get started by opening a new account on our website, the Motiwala
                                     Jewels Golden Treasure Jewellery Purchase app,
@@ -150,9 +150,9 @@
 
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-lg-3 col-12">
                         <div class="step_box steps2">
-                            <div class="step_content2 pb-md-3">
+                            <div class="step_content2 pb-lg -3 pb-0">
                                 <p class="black_color" >
                                     You can pay a monthly installment of at least ₹2000, or any higher multiples of ₹1000, 
                                     for 10 months using cash, online banking via Standing Instructions, Net-Banking, 
@@ -170,7 +170,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-lg-3 col-12">
                         <div class="step_box steps3">
                            
                             <div class="step_box_icon">
@@ -181,7 +181,7 @@
                              <div class="layer_img3">
                                     <img src="/assets/frontend/images/layer_1.png" class="d-block" alt="...">
                                 </div>
-                             <div class="step_content3 pt-md-5 pe-md-3 ps-md-4">
+                             <div class="step_content3 pt-lg-5 pt-md-2  pe-lg-3 ps-lg-4">
                                 <p class="black_color" >
                                     Receive an exclusive discount of up to 75% of the value of your first installment when you redeem your plan.
                                 </p>
@@ -189,7 +189,7 @@
 
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-lg-3 col-12">
                         <div class="step_box steps4">
                             <div class="step_content4 pb-1">
                                 <p class="black_color" >
@@ -297,7 +297,7 @@
             <div class="container">
                 <h4 class="title_heading text-center black_color pb-md-4 pb-3  heading_font">Why Choose Us ?</h4>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-6 col-12">
                         <div class="d-flex gap-3">                            
                             <img class="choose_img" src="/assets/frontend/images/best_icons.png"
                                 class="d-block w-100" alt="...">
@@ -309,7 +309,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-6 col-12">
                         <div class="d-flex gap-3 pb-md-4 pb-2">
                             <img class="choose_img" src="/assets/frontend/images/refer_icons.png" class="d-block w-100"
                                 alt="...">
@@ -321,7 +321,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-6 col-12">
                         <div class="d-flex gap-3 pb-md-4 pb-2">
                             <img class="choose_img" src="/assets/frontend/images/motiwala_treasure.png" class="d-block w-100"
                                 alt="...">
@@ -334,7 +334,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-6 col-12">
                         <div class="d-flex gap-3 pb-md-4 pb-2">
                             <img class="choose_img" src="/assets/frontend/images/certified_icons.png"
                                 class="d-block w-100" alt="...">
@@ -347,7 +347,7 @@
                         </div>
                     </div>
                     
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-6 col-12">
                         <div class="d-flex gap-3">
                             <img class="choose_img" src="/assets/frontend/images/exquisite_jewellery_collection.png"
                                 class="d-block w-100" alt="...">
@@ -360,7 +360,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-6 col-12">
                         <div class="d-flex gap-3">
                             <img class="choose_img" src="/assets/frontend/images/transparent_pricing.png"
                                 class="d-block w-100" alt="...">

@@ -9,7 +9,7 @@
                         </li>
                         <li>|</li>
                         <li>
-                            <a href="{{ url(route('privacy-policy')) }}"> Privacy Policy</a>
+                            <a href="{{ url(route('privacy-policy')) }}"> <i class="las la-angle-right"></i> Privacy Policy</a>
                         </li>
 <li>|</li>
                         <li>
