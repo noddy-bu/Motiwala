@@ -11,7 +11,7 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
           <h3 class="widget-title">USEFUL LINKS</h3>
           <ul class="widget-menu">
             <li>
-              <a href="about-us">
+              <a href="">
                 <i class="las la-angle-right"></i> About Us </a>
             </li>
 
