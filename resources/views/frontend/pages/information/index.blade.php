@@ -36,7 +36,7 @@
 				</div>
 
 <div class="col-md-12">
-					<h5 class="black_color pt-4 pb-3"><b>Golden Treasure  - </b></h5>
+					<h5 class="black_color pt-lg-4 pt-3 pb-3"><b>Golden Treasure  - </b></h5>
 				</div>
 				
 				
@@ -109,7 +109,7 @@
         </div>
 
 		<div class="col-md-12">
-          <p class="py-md-4 py-2">
+          <p class="py-lg-4 py-2">
               Please ensure to close your account within 400 days from the date you opened 
               your Motiwala Jewels Golden Treasure Purchase Plan account.
           </p>

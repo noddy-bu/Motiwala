@@ -2,7 +2,7 @@
 @media (min-width:768px) and (max-width:1020px){
     
     html {
-        overflow-x: hidden;
+        overflow-x: hidden !important;
     }
 
     p {
@@ -14,12 +14,80 @@
     }
 
     .fontsize26 {
-        font-size: 18px !important;
+        font-size: 16px !important;
     }
 
     .title_heading {
-        font-size: 28px !important;
+        font-size: 26px !important;
         font-weight: 500;
+    }
+
+    body .width80:not(.sidebar) {
+        width: 100% !important;
+    }
+    
+    .width20 {
+        width: 35% !important;
+    }
+
+    div#bg_theme {
+        position: fixed;
+        top: 0px;
+        z-index: 999;
+        padding: 0px 10px;
+        margin-left: -600px;
+    }
+
+    .bg_theme img {
+        width: 120px;
+    }
+
+    body .userlogin_box {
+        display: flex;
+        flex-direction: row-reverse;
+        right: 0px;
+        width: 110px;
+        position: fixed;
+        top: 6px;
+    }
+
+    .bg_theme {
+        transition: all 0.3s ease-in;
+        margin-left: -180px;
+    }
+
+    .closebtn {
+        display: block;
+    }
+
+    .sidebar .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    .sidebar a {
+        color: #c1884e;
+    }
+
+    .sidebar a:hover {
+        color: #c1884e !important;
+    }
+
+    .login_fa_bars {
+        display: block;
+        position: absolute;
+        right: 65px;
+        top: 9%;
+        z-index: 999;
+    }
+
+    #nav-bar-icon {
+        border: 0;
+        background-color: transparent;
+        margin-top: 4px;
     }
 
     .navbar-nav {
@@ -49,12 +117,27 @@
     }
 
     .steps_section {
-        padding: 50px 0px 50px 0px !important ;
+        padding: 30px 0px 30px 0px !important ;
+    }
+
+    .steps_section p {
+        margin-bottom: 0px !important;
+    }
+
+    .step_box {
+        display: flex;
+        gap: 40px;
+        align-items: center;
     }
 
     .step_box_icon {
         width: 110px;
         height: 110px;
+        margin-top: 10px;
+    }
+
+    .step_box>div:nth-child(2):not(:last-child) {
+        display: none;
     }
 
     .step_box_img {
@@ -63,7 +146,7 @@
     }
 
     .step_bottom_text {
-        padding-top: 40px;
+        padding-top: 30px;
     }
 
     .aos-init.aos-animate {
@@ -87,7 +170,7 @@
     }
         
     .sip-calculator {
-        padding: 3em 2em 3em 2em;
+        padding: 2em 2em 3em 2em;
     }
     
     canvas#myCanvas {
@@ -97,7 +180,7 @@
     }
 
     .why_choose_section {
-        padding-top: 50px !important;
+        padding-top: 30px !important;
     }
 
     .choose_content p {
@@ -106,11 +189,15 @@
     }
 
     .why_choose_section .container {
-        padding: 0px 0px;
+        padding: 0px 10px;
     }
 
     .faq_section {
-        padding: 50px 0px 50px 0px !important;
+        padding: 30px 0px 30px 0px !important;
+    }
+
+    .faq_section .accordion-item {
+        margin-bottom: 10px;
     }
 
     footer .row .col-lg-3.col-md-6:nth-child(5) {
@@ -138,9 +225,9 @@
     /* information page */
 
     .information_section {
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-bottom: 35px;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        padding-bottom: 35px !important;
     }
 
     /* terms and condition */
@@ -527,7 +614,7 @@
     .information_section {
         padding-left: 0px;
         padding-right: 0px;
-        padding-bottom: 50px;
+        padding-bottom: 30px;
     }
 
     /* terms and condition */
@@ -543,7 +630,7 @@
     /* gives feedback page */
 
     .gives_feedback {
-        padding: 1px 10px 50px !important;
+        padding: 1px 10px 30px !important;
         margin-top: 0px !important;
     }
     
@@ -582,7 +669,7 @@
     .login_fa_bars {
         display: block;
         position: absolute;
-        right: 60px;
+        right: 56px;
         top: 9%;
         z-index: 999;
     }
@@ -594,10 +681,12 @@
 
     
     body .userlogin_box {
-        width: 110px !important;
+        width: 100px !important;
         padding: 7px 4px 7px 10px !important;
         display: flex;
         flex-direction: row-reverse;
+        position: fixed !important;
+        right: 25px;
     }
 
 
@@ -658,8 +747,9 @@
     }
     #bg_theme {
         transition: margin-left .5s;
-        padding: 16px;
+        padding: 6px;
         position: fixed;
         top: 0px;
+        margin-left: -600px; 
     }
 }

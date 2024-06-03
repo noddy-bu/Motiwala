@@ -972,17 +972,22 @@ div#preview-info p {
 
 /*-- after login css start--*/
 
+div#bg_theme {
+    position: fixed;
+    top: 0px;
+}
+
 .closebtn {
-    display: none
+    display: none;
 }
 
 .bg_theme {
-    position: fixed;
-    z-index: 99;
-    padding-left: 20px;
-    height: 100%;
-    /* transform: translateX(-100%); */
-    transition: transform 0.3s ease-in;
+    transition: all 0.3s ease-in;
+    margin-left: 0px;
+}
+
+.sidebaar_section {
+    padding: 0px !important;
 }
 
 .login_fa_bars {
