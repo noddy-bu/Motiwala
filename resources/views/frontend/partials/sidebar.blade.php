@@ -6,7 +6,7 @@
         <a class="closebtn" onclick="closeNav()">
             <i class="fa fa-xmark"></i>
         </a>
-        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start mx-1" id="menu">
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start px-2" id="menu">
             <li class="nav-item">
                 <a href="http://127.0.0.1:8000/information" class="nav-link align-middle px-0">
                     <i class="las la-exclamation-circle"></i>

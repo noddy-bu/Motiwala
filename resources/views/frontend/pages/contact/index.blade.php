@@ -32,7 +32,7 @@
 	<section class="contact_form_section">
 		<div class="container d-flex py-md-5 py-3 justify-content-between" >
 			<div class="col-md-5 col-12">
-				<h4 class="title_heading text-left black_color pb-3 heading_font contact_form_heading">Contact Us</h4>
+				<h4 class="title_heading text-left black_color pb-3 contact_form_heading">Contact Us</h4>
 				<p class="contact_form_text pb-md-3">We are here for you! How can we help?</p>
 				<form action="" role="form" method="post" class="contact_form"> 
 					<label class="pt-2 pt-md-3">Name* </label>

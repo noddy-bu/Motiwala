@@ -1,7 +1,7 @@
 <footer class="footer">
     <div class="copyright_section">
         <div class="container">
-            <div class="row">
+            <div class="row gap-md-0 gap-2">
                 <div class="col-md-4">
                     <ul>
                         <li>
@@ -11,10 +11,11 @@
                         <li>
                             <a href="{{ url(route('privacy-policy')) }}"> <i class="las la-angle-right"></i> Privacy Policy</a>
                         </li>
-<li>|</li>
+                        <li>|</li>
+                        <br class="d-md-block d-none">
                         <li>
-              <a href="refund-policy"> <i class="las la-angle-right"></i> Refund Policy</a>
-            </li>
+                            <a href="refund-policy"> <i class="las la-angle-right"></i> Refund Policy</a>
+                        </li>
 
                         <!-- <li>|</li>
                         <li>
@@ -23,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <p class="text-center">Copyright © 2024 Under Motiwala & Sons</p>
+                    <span class="text-center">Copyright © 2024 Under Motiwala & Sons</span>
                 </div>
                 <div class="col-md-4">
                     <ul class="float_right">

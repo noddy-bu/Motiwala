@@ -221,8 +221,8 @@ section.why_choose_section {
 
 .benefits_bgimage {
     position: absolute;
-    right: -40px;
-    top: -46px;
+    right: 25px;
+    top: -3px;
 }
 
 .sip-calculator {
@@ -662,6 +662,8 @@ form.form-subscribe button {
 
 .copyright_section ul li i {
     font-size: 20px;
+    position: relative;
+    top: 3px;
 }
 
 
@@ -882,13 +884,18 @@ label#amountLabel {
 
 /*--- information page css--*/
 
+.information_box {
+    flex-direction: column;
+    align-items: center;
+}
+
 .information_box .step_box_icon {
     background: #E3C2AB;
-    width: 55px;
+    width: 75px;
     border-radius: 100px;
     margin-top: 8px;
     transition: 0.3s all;
-    height: 55px;
+    height: 75px;
 }
 
 .information_box .step_box_icon:hover .step_box_img {
@@ -900,22 +907,22 @@ label#amountLabel {
 .information_box .step_box_icon img {
     transition: 0.3s all;
     text-align: center;
-    width: 23px;
+    width: 33px;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 13px;
+    padding-top: 17px;
 }
 
 .information_box .step_box_img {
-    width: 55px;
-    height: 55px;
+    width: 75px;
+    height: 75px;
     border: 1px solid #404040;
     border-radius: 100px;
     line-height: 55px;
     text-align: center;
     position: relative;
-    top: -5px;
-    left: 5px;
+    top: -7px;
+    left: 6px;
     transition: 0.3s all;
 }
 
@@ -924,16 +931,46 @@ label#amountLabel {
     padding-right: 0;
 }
 
-.information_tb tr {
-    border: 1px solid #333 !important;
+.choose_content p {
+    text-align: center;
 }
 
-.information_tb th,
-td {
+.information_tb {
+    border-radius: 20px;
+    /* border: 1px solid #000; */
+    padding-top: 10px;
+
+}
+
+.table-responsive {
+    border-radius: 20px;
+    border: 1px solid #33333350;
+    box-shadow: 6px 7px 10px #00000015;
+}
+
+.information_tb th, .information_tb td {
+    padding: 20px 0px !important;
+    background-color: #fff !important;
+}
+
+table.table.table-bordered {
+    margin-bottom: 0px;
+}
+
+.information_tb thead {
+    border-bottom: 1px solid #33333350;
+}
+
+.information_tb tr {
+    border: 0px solid #333 !important;
+}
+
+.information_tb th, 
+.information_tb td{
     font-size: 16px;
     border: 0 !important;
-    border: 1px solid #0000008f !important;
-    text-align: center;
+    text-align: start;
+    padding: 20px 0px 20px 15px !important;
 }
 
 .information_section {
@@ -1072,13 +1109,13 @@ body .width80:not(.sidebar) {
 }
 
 .after_login_body .benefits_bgimage img {
-    width: 65%;
+    width: 80%;
 }
 
 .after_login_body .benefits_bgimage {
     position: absolute;
-    right: -122px;
-    top: -30px;
+    right: 0px;
+    top: 0px;
 }
 
 .after_login_body .copyright_section {
@@ -1413,13 +1450,13 @@ form#loginForm a:hover {
 
 
 /* .contact_form_section>div {
-    border-radius: 20px;
+    border-radius: 20px; 
     box-shadow: 1px 1px 7px #d3af8b;
 } */
 
-.contact_form_heading, .contact_form_text {
+/* .contact_form_heading, .contact_form_text {
     font-family: "Yeseva One", serif;
-}
+} */
 
 .message:focus-visible {
     outline: -webkit-focus-ring-color auto 0px;

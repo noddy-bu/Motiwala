@@ -162,10 +162,10 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
       </div>
       <div class="modal-body">
         <form action="" method="post">
-          <div class="form-group mt-4">
+          <div class="form-group mt-md-4 mt-3">
             <input type="text" class="form-control" name="account_number" placeholder="Account Number*" />
           </div>
-          <div class="form-group mt-5">
+          <div class="form-group mt-md-5 mt-4 pt-0">
             <input type="text" class="form-control" name="mobile_number" placeholder="Mobile Number*" />
           </div>
           <div class="form-group text-md-start text-center">

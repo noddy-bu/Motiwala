@@ -73,7 +73,7 @@
 					   of monthly instalments paid.
 					</p>
 
-					<h4>Pre-Close & Refund</h4>
+					<h4 class="pt-3">Pre-Close & Refund</h4>
 
 					<p>The Customer will have the option to pre-close the Plan only if the Customer has paid 
 						a minimum of six monthly instalments and after completion of 180 days from the Enrolment Date. 
@@ -153,7 +153,7 @@
 						as the case may be, accepting these terms and conditions.
 					</p>
 					
-					<h4>Payment</h4>
+					<h4 class="pt-3">Payment</h4>
 					<p>Payment of monthly instalment(s) may be made by cash, credit / debit cards, NEFT/ RTGS, 
 						local cheques in favour of “MOTIWALA JEWELS GOLD AND DIAMONDS PVT LTD ” payable in the 
 						city in where the Motiwala Jewls Gold and Diamonds Pvt Ltd  Store in which the account 
@@ -212,7 +212,7 @@
 							<li>Will (if any)</li>
 							<li>Along with all other supporting documents and clarifications</li>
 						</Ol>
-						<br>However, the decision of the Company shall be final on sufficiency of any document in all such cases 
+						However, the decision of the Company shall be final on sufficiency of any document in all such cases 
 						above and the same shall be binding upon the claimants.
 					</p>
 
