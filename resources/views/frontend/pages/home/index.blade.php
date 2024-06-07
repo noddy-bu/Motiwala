@@ -62,27 +62,27 @@
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button> -->
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="/assets/frontend/images/2.jpg" class="d-md-block d-none w-100" alt="...">
-      <img src="/assets/frontend/images/13.jpg" class="d-md-none d-block w-100" alt="...">
-    </div>
-
-    <div class="carousel-item">
-      <img src="/assets/frontend/images/3.jpg" class="d-md-block d-none w-100" alt="...">
-      <img src="/assets/frontend/images/14.jpg" class="d-md-none d-block w-100" alt="...">
-    </div>
-
-    <div class="carousel-item">
-      <img src="/assets/frontend/images/4.jpg" class="d-md-block d-none w-100" alt="...">
-      <img src="/assets/frontend/images/15.jpg" class="d-md-none d-block w-100" alt="...">
-    </div>
-
-    <div class="carousel-item">
-      <img src="/assets/frontend/images/1.jpg" class="d-md-block d-none w-100" alt="...">
+    <!-- <div class="carousel-item active">
+      <img src="/assets/frontend/images/homebanner1.jpg" class="d-md-block d-none w-100" alt="...">
       <img src="/assets/frontend/images/16.jpg" class="d-md-none d-block w-100" alt="...">
+    </div> -->
+
+    <div class="carousel-item active">
+      <img src="/assets/frontend/images/homebanner5.jpg" class="d-md-block d-none w-100" alt="...">
+      <img src="/assets/frontend/images/6.jpg" class="d-md-none d-block w-100" alt="...">
+    </div>
+
+    <div class="carousel-item">
+      <img src="/assets/frontend/images/homebanner6.jpg" class="d-md-block d-none w-100" alt="...">
+      <img src="/assets/frontend/images/7.jpg" class="d-md-none d-block w-100" alt="...">
+    </div>
+
+    <div class="carousel-item">
+      <img src="/assets/frontend/images/homebanner7.jpg" class="d-md-block d-none w-100" alt="...">
+      <img src="/assets/frontend/images/8.jpg" class="d-md-none d-block w-100" alt="...">
     </div>
 
      
@@ -221,10 +221,10 @@
 
 
 
-    <div class="container">
+    <div class="container"> 
         <div class="benefits_calculator sip-calculator">
             <div class="benefits_bgimage swing">
-                <img src="/assets/frontend/images/benefits_bg.png" class="d-block" alt="...">
+                <img src="/assets/frontend/images/benefit_bg.png" class="d-block" alt="...">
             </div>
             <div class="row align-items-center">
                 <div class="col-md-12">

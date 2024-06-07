@@ -1,8 +1,79 @@
-/* for mobile view */
+/* for laptop 1024 view */
+@media (min-width:1021px) and (max-width:1220px){
+
+    .fontsize26 {
+        font-size: 18px !important;
+    }
+
+    .title_heading {
+        font-size: 34px !important;
+    }
+
+    section.steps_section {
+        padding: 60px 0px 60px 0px;
+    }
+
+    .step_bottom_text {
+        padding-top: 40px;
+    }
+
+    .benefits_bgimage img {
+        width: 60%;
+    }
+
+    .sip-calculator {
+        padding: 3em 2em 3em 2em;
+    }
+
+    section.why_choose_section {
+        padding-top: 40px;
+    }
+
+    .after_login_body section.faq_section {
+        padding: 30px 0px 30px 0px;
+    }
+
+    section.top_step_content {
+        padding-top: 60px;
+        background: #e3c2ab8a;
+        padding-bottom: 60px;
+    }
+
+    div#bg_theme {
+        padding: 0px 10px;
+    }
+
+    /* after login */
+
+    .after_login_body .benefits_bgimage {
+        position: absolute;
+        right: 40px;
+        top: -2px;
+        width: 14%;
+    }
+
+    .after_login_body .benefits_bgimage img {
+        width: 100%;
+        margin-right: -120px;
+    }
+
+    .nav-pills .nav-item .nav-link {
+        padding: 14px 0px 0px !important;
+        line-height: 20px;
+    }
+
+    
+}
+
+/* for tablet view */
 @media (min-width:768px) and (max-width:1020px){
     
     html {
         overflow-x: hidden !important;
+    }
+
+    .col-md-12, .col-md-6 {
+        padding: 0px 0px 0px 0px !important;
     }
 
     p {
@@ -174,7 +245,7 @@
     }
     
     canvas#myCanvas {
-        margin-left: 50px;
+        margin-left: 40px;
         width: 90%;
         margin-top: 160px;
     }
@@ -185,7 +256,7 @@
 
     .choose_content p {
         font-size: 14px !important;
-        padding-right: 10px;
+        padding-right: 15px !important;
     }
 
     .why_choose_section .container {
@@ -286,6 +357,10 @@
         position: relative;
     }
 
+    .mt60 {
+        margin-top: 40px;
+    }
+
     header {
         position: relative;
     }
@@ -365,7 +440,7 @@
     }
 
     .modal_popup_cls .modal-content {
-        padding: 20px 20px 0px;                  /* sign up modal popup */
+        padding: 20px 10px ;                  /* sign up modal popup */
     }
 
     
@@ -508,7 +583,7 @@
 
     .choose_content p {
         font-size: 14px;
-        padding-right: 0px;
+        padding-right: 0px !important;
         line-height: 18px;
     }
 
@@ -666,6 +741,10 @@
         width: 70% !important;
     }
 
+    #menu span {
+        font-size: 15px;
+    }
+
     .login_fa_bars {
         display: block;
         position: absolute;
@@ -686,7 +765,7 @@
         display: flex;
         flex-direction: row-reverse;
         position: fixed !important;
-        right: 25px;
+        right: 0px;
     }
 
 
@@ -705,7 +784,7 @@
     }
 
     .bg_theme img {
-        width: 80px;
+        width: 120px;
     }
 
     .nav-pills .nav-link {
