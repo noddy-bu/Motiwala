@@ -1503,3 +1503,17 @@ form#loginForm a:hover {
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+/* 404 page */
+
+.container_404 h1 {
+    background: url(/assets/frontend/images/innwe_imagebanner.png);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 200px;
+    font-weight: 900;
+    background-position: right;
+    background-size: cover;
+    text-transform: uppercase;
+    font-family: montserrat, sans-serif;
+}
