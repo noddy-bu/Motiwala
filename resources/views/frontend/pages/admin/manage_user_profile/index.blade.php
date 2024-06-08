@@ -26,8 +26,8 @@
                     </div>
                            
                      <div class="col-md-12">
-                    <div class="text-sm-end mb-2">
-                               <a href="{{ url(route('customer.reset_password')) }}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-2"></i> Reset Password</a>
+                    <div class="text-sm-end mb-2 buttonclass1">
+                               <a href="{{ url(route('customer.reset_password')) }}" class="text-decoration-none mb-2"><i class="mdi mdi-plus-circle me-2"></i> Reset Password</a>
                            </div>
                            </div>
 

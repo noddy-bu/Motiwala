@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="form-group text-md-start text-center">
+        <div class="form-group text-md-center text-center">
             <div class="buttonclass1 mt-5">
                 <button type="submit">Submit <i class="las la-arrow-right"></i></button>
             </div>

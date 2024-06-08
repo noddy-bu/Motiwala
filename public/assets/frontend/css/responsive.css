@@ -603,6 +603,10 @@
         text-align: start;
     }
 
+    .information_box .choose_content p {
+        text-align: center;
+    }
+
     .faq_section {
         padding: 30px 0px 30px 0px !important; 
     }
@@ -691,6 +695,11 @@
     .step-button[aria-expanded="true"] {
         width: 48px;
         height: 48px;
+    }
+
+    label#accept_term-error {
+        position: absolute;
+        margin-top: 2px;
     }
 
     /* instant pay page*/

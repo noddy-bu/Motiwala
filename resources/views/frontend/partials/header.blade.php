@@ -46,7 +46,7 @@
                   </li>
 
                    <li>
-                    <a class="nav-link" href="contact-us"><i class="las la-question-circle"></i> Contact Us</a>
+                    <a class="nav-link" href="contact-us"><i class="far fa-address-book"></i> Contact Us</a>
                   </li>
                 
 
