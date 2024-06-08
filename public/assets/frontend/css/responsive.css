@@ -284,6 +284,17 @@
     ul.float_right li:nth-child(5) {
         font-size: 16px;
     }
+    /* new account page */
+ 
+    .step-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .step-button[aria-expanded="true"] {
+        width: 48px;
+        height: 48px;
+    }
 
     
     /* instant pay page*/
@@ -830,5 +841,17 @@
         position: fixed;
         top: 0px;
         margin-left: -600px; 
+    }
+
+    /* new account page */
+
+    .step-button {
+        width: 37px;
+        height: 37px;
+    }
+
+    .step-button[aria-expanded="true"] {
+        width: 48px;
+        height: 48px;
     }
 }
