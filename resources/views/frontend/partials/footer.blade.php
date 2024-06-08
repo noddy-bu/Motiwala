@@ -117,7 +117,7 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
         <div class="col-md-6 text-md-end text-center">
           <ul class="float_right">
             <li>
-              <a href="https://api.whatsapp.com/send?phone=+919920077780&text=Hi%2C+I+am+contacting+you+through+your+website+from+desktop+view+https%3A%2F%2Fhttps://motiwalajewels.in/%2F">
+              <a target="_blank" href="https://api.whatsapp.com/send?phone=+919920077780&text=Hi%2C+I+am+contacting+you+through+your+website+from+desktop+view+https%3A%2F%2Fhttps://motiwalajewels.in/%2F">
                 <i class="lab la-whatsapp"></i>
               </a>
             </li>

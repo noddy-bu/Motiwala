@@ -2,7 +2,7 @@
     <div class="copyright_section">
         <div class="container">
             <div class="row gap-md-0 gap-2">
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <ul>
                         <li>
                             <a href="terms-conditions"> <i class="las la-angle-right"></i> Terms Conditions</a>
@@ -26,7 +26,7 @@
                 <div class="col-md-4">
                     <span class="text-center">Copyright © 2024 Under Motiwala & Sons</span>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <ul class="float_right">
                         <li>
                             <a target="_blank" href="https://api.whatsapp.com/send?phone=+919920077780&text=Hi%2C+I+am+contacting+you+through+your+website+from+desktop+view+https%3A%2F%2Fhttps://motiwalajewels.in/%2F">
