@@ -44,7 +44,7 @@
 					<label class="pt-2 pt-md-3">Email Address* </label>
 					<input type="text" class="form-control contact_email" name="mobile_number" placeholder="Enter Your Email Id" wfd-id="id2" required="required">
 
-					<label class="pt-2 pt-md-3">Email Address* </label>
+					<label class="pt-2 pt-md-3">Message* </label>
 					<textarea class="message mb-3" 
 							name="message" 
 							rows="4" 

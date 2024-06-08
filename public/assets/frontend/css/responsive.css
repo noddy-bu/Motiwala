@@ -510,6 +510,10 @@
         padding-top: 27px;
     }
 
+    .step_box p {
+        padding-top: 10px;
+    }
+
     .step_box.steps2, .step_box.steps4 {
         display: flex;
         flex-direction: column-reverse;
@@ -596,6 +600,7 @@
         font-size: 14px;
         padding-right: 0px !important;
         line-height: 18px;
+        text-align: start;
     }
 
     .faq_section {
@@ -675,6 +680,18 @@
     .inner_page_banner {
         display: none;
     }
+    
+    /* new account page */
+
+    .step-button {
+        width: 37px;
+        height: 37px;
+    }
+
+    .step-button[aria-expanded="true"] {
+        width: 48px;
+        height: 48px;
+    }
 
     /* instant pay page*/
 
@@ -701,6 +718,11 @@
         padding-left: 0px;
         padding-right: 0px;
         padding-bottom: 30px;
+    }
+
+    .information_tb thead tr th:last-of-type, 
+    .information_tb tbody tr td:last-of-type {
+        padding-right: 15px !important;
     }
 
     /* terms and condition */
@@ -841,17 +863,5 @@
         position: fixed;
         top: 0px;
         margin-left: -600px; 
-    }
-
-    /* new account page */
-
-    .step-button {
-        width: 37px;
-        height: 37px;
-    }
-
-    .step-button[aria-expanded="true"] {
-        width: 48px;
-        height: 48px;
     }
 }

@@ -122,7 +122,7 @@
 
 
 
-        <section class="steps_section">
+        <section class="steps_section" id="pay_installments">
             <div class="container">
                 <div class="row">
                     <h4 class="title_heading text-center black_color heading_font">4 Easy Steps </h4>
@@ -211,7 +211,7 @@
                          we bring over a century of industry</span> <span>expertise right to you.”</span>
                     </p>
                     <div class="buttonclass mt-4">
-                        <a href="">Explore <i class="las la-arrow-right"></i>
+                        <a href="/instant-pay">Explore <i class="las la-arrow-right"></i>
                         </a>
                     </div>
                 </div>
@@ -283,7 +283,7 @@
                 </div>  
                 <div class="col-md-12 text-md-start text-center">
                     <div class="buttonclass mt-4">
-                        <a href="">Open a New Account <i class="las la-arrow-right"></i>
+                        <a href="/account/onlineenrollment">Open a New Account <i class="las la-arrow-right"></i>
                         </a>
                     </div>
                 </div>
