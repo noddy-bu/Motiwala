@@ -14,7 +14,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="http://127.0.0.1:8000" class="nav-link align-middle px-0">
+                <a href="http://127.0.0.1:8000#pay_installments" class="nav-link align-middle px-0">
                     <i class="las la-hand-holding-usd"></i>
                     <span class="ms-1 d-sm-inline">Pay Installments</span>
                 </a>

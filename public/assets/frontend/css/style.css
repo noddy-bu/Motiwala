@@ -932,7 +932,7 @@ label#amountLabel {
 }
 
 .choose_content p {
-    text-align: center;
+    text-align: start;
 }
 
 .information_tb {
@@ -1497,4 +1497,9 @@ form#loginForm a:hover {
 .contact_info a:hover {
     color: #000;
     /* font-weight: 500; */
+}
+
+.after_login_body .copyright_section {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

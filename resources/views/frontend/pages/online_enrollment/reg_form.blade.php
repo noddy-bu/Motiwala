@@ -23,7 +23,7 @@
             </div>
 
 
-            <div class="d-flex">
+            <div class="d-flex flex-md-row flex-column">
                 <div class="form-group mt-4 adhar_field">
                     <label class="pb-3">Mobile Number* (As on Aadhaar Card)</label>
                     <input type="text" class="form-control" name="phone" placeholder="Please Enter Mobile Number"
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="buttonclass1 mt60 ms-4">
+                    <div class="buttonclass1 mt60 ms-md-4 ms-0">
                         <button type="submit">Proceed <i class="las la-arrow-right"></i></button>
                     </div>
                 </div>
