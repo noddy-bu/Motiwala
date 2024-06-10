@@ -113,6 +113,34 @@ section.banner_section img {
     margin-bottom: 2%;
 }
 
+button.carousel-control-prev {
+    justify-content: start;
+}
+
+button.carousel-control-next {
+    justify-content: end;
+}
+
+.carousel-control-next-icon, 
+.carousel-control-prev-icon {
+    background-image: none !important;
+    font-size: 38px;
+    font-weight: 400 !important;
+    color: #c1884e;
+}
+
+.carousel-control-prev-icon:before {
+    content: "\f104";
+    font-family: fontawesome;
+    margin-left: 50px;
+}
+
+.carousel-control-next-icon:after {
+    content: "\f105";
+    font-family: fontawesome;
+    margin-left: -90px;
+}
+
 .buttonclass a {
     padding: 11px 30px 12px 27px;
     color: #000 !important;
@@ -785,7 +813,7 @@ label#amountLabel {
     margin-left: 0;
 }
 
-.adhar_field input, .contact_form input, .message {
+.adhar_field input, .message, .contact_form input, .contact_form textarea  {
     border: 0px;
     border-bottom: 1px solid #ccc;
     border-radius: 0;
@@ -975,8 +1003,8 @@ table.table.table-bordered {
 }
 
 .information_section {
-    padding-left: 120px;
-    padding-right: 120px;
+    padding-left: 0px;
+    padding-right: 0px;
     padding-bottom: 160px;
 }
 
@@ -1460,9 +1488,9 @@ form#loginForm a:hover {
 
 /* contact-us page */
 
-.main#contact_us_page {
+/* .main#contact_us_page {
     background: none;
-}
+} */
 
 /* .contact_form_section {
     padding-right: 200px;
@@ -1482,6 +1510,15 @@ form#loginForm a:hover {
     padding-bottom: 0px;
 }
 
+/* .contact_form input, .contact_form textarea {
+    border: 1.5px solid #404040;
+    border-radius: 0;
+    width: 100%;
+    padding: 20px 20px 20px 20px;
+    margin: 10px 0px;
+    background-color: transparent;
+} */
+
 
 /* .contact_form_section>div {
     border-radius: 20px; 
@@ -1496,7 +1533,7 @@ form#loginForm a:hover {
     outline: -webkit-focus-ring-color auto 0px;
 }
 
-.contact_form button {
+/* .contact_form button {
     width: 100%;
     border: 1px solid #d3af8b;
     border-radius: 5px;
@@ -1504,20 +1541,27 @@ form#loginForm a:hover {
     color: #000;
     font-weight: 500;
     padding: 5px 0px;
+} */
+
+.contact_info p,
+.contact_form_text {
+    font-size: 18px;
 }
 
 .contact_info a {
     color: #212529;
     margin-left: 5px;
     transition: 0.2s ease-in;
+    font-size: 18px;
 }
 
 .contact_info i {
-    color: #b67950;
+    color: #fff;
     border: 1px solid #b67950;
     border-radius: 50%;
     padding: 10px;
     margin: 5px 0px;
+    background-color: #b67950;
 }
 
 .contact_info {

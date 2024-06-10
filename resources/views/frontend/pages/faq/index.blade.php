@@ -45,35 +45,26 @@
 					
 					<p class="mb-0"><b>3. Can I reedem and purchase before 11 months ?</b></p>
 					<p>
-						Certainly! Our flexible policy allows for redemption and purchase before the 11-month period ends. 
-						Should you find the perfect piece earlier than expected, you're welcome to redeem your plan and 
-						make your desired purchase at your convenience. This ensures that you have the freedom to acquire 
-						your favorite jewellery whenever you're ready, giving you the ultimate flexibility and satisfaction 
-						in your shopping experience with us.
+						Enjoy ultimate flexibility with our plan—redeem and purchase before the 11-month period ends. 
+						Find your perfect piece early? Redeem your plan for a convenient purchase anytime. 
+						Experience satisfaction with the freedom to acquire your favorite jewelry whenever you're ready.
 						<br>
 						Please check
 					</p>
 					
 					<p class="mb-0"><b>4. If I pay for 10 months, when will I get special discount ?</b></p>
 					<p>
-						Absolutely! Upon completing your 10 monthly payments, you'll become eligible for our special discount offer. 
-						This means that once you've diligently paid your installments for the specified duration, 
-						you'll unlock the opportunity to enjoy exclusive savings on your purchase. 
-						It's our way of rewarding your commitment and dedication to our Motiwala Jewels Golden Treasure Purchase 
-						Plan. So, rest assured that your patience and loyalty will be duly recognized, and you'll be able to 
-						avail yourself of the fantastic discount to make your jewellery purchase even more rewarding.
+						Complete 10 monthly payments to qualify for our exclusive discount offer. 
+						Your dedication to our Golden Treasurer program will be rewarded with special savings on your purchase. 
+						Enjoy the benefits of your commitment with this fantastic discount opportunity!
 					</p>
 					
 					<p class="mb-0"><b>5. What other benifits you get? </b></p>
 					<p>
-						In addition to our special discount offer, our Motiwala Jewels Golden Treasure Purchase 
-						Plan comes with a range of other benefits tailored to enhance your overall experience. 
-						Firstly, you can expect top-notch service from our dedicated team who are committed to 
-						providing you with personalized assistance every step of the way. Moreover, we prioritize 
-						quality in every aspect of our service, ensuring that you receive jewellery crafted to the 
-						highest standards of craftsmanship and excellence. Furthermore, our prompt and attentive 
-						responses to any queries or concerns you may have reflect our commitment to your satisfaction 
-						and guarantee a seamless and enjoyable shopping experience with us. 
+						Our Golden Treasurer program offers more than just a discount. 
+						Experience personalized assistance from our dedicated team throughout your journey. 
+						Enjoy top-quality craftsmanship and excellent service standards with every piece. 
+						Our prompt responses to your queries ensure a seamless and satisfying shopping experience. 
 						<br>
 						Please check
 					</p>
