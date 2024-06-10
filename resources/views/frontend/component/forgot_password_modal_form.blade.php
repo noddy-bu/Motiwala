@@ -226,7 +226,8 @@
                             toastr.success(response.message, 'Success');
                             $('#reset_password').modal('hide');
                             setTimeout(function() {
-                                window.location.href = "{{ url(route('index')) }}/#sign";
+                                // window.location.href = "{{ url(route('index')) }}/#sign";
+                                location.reload();
                             }, 1000);
                         } else {
                             toastr.error(response.message, 'Error');

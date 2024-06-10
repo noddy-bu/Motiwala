@@ -532,6 +532,7 @@ class AccountController extends Controller
                 $userId = DB::table('users')->insertGetId([
                     'accept_term' => 1,
                     'phone' => $phone,
+                    'role_id' => 2,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -989,6 +990,11 @@ class AccountController extends Controller
 
         if($esign->success == true){
             $download_pdf = (new EsignAadharController)->download_esign($client_id);
+
+            DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
+                'esign' => 1,
+            ]);
+
             $result = "true";
         } else {
             $result = "false";
