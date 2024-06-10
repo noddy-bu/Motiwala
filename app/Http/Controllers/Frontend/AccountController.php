@@ -1266,40 +1266,44 @@ class AccountController extends Controller
             // delete temp recored
             DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
 
+            $this->auto_add_transactions(Session::get('temp_user_id'));
+
             return redirect()->route('account.new.enrollment.page');
         // }
     }
 
 
-    public function auto_add_transactions($temp_user_id, $amount){
-        $user_plan_Details = DB::table('users')->where('id', Session::get('temp_user_id'))->value('plan_id');
+    public function auto_add_transactions($temp_user_id)
+    {
+        // Retrieve the user's plan ID from the session
+        $user_plan_Details = DB::table('users')->where('id', $temp_user_id)->value('plan_id');
     
-        $plan_name = DB::table('plans')->where('id', $user_plan_Details)->get(['minimum_installment_amount','installment_period'])->first();
+        // Retrieve the plan details
+        $plan_details = DB::table('plans')->where('id', $user_plan_Details)->first(['minimum_installment_amount', 'installment_period']);
 
-        $installment = $plan_name - 1;
+        // Calculate the number of installments
+        $installments = $plan_details->installment_period;
+        $amount = $plan_details->minimum_installment_amount;
 
-        for($i = 1, $installment >= $i, $i++){
-
+        for ($i = 1; $i <= $installments; $i++) {
+            // Insert transaction records
             DB::table('transactions')->insert([
                 'user_id' => $temp_user_id,
                 'payment_amount' => $amount,
                 'payment_response' => '[]',
                 'payment_status' => 'unpaid',
-                'created_at' => date('Y-m-d H:i:s', strtotime('+$i month')),
-                'updated_at' => date('Y-m-d H:i:s', strtotime('+$i month')),
+                'created_at' => date('Y-m-d H:i:s', strtotime("+$i month")),
+                'updated_at' => date('Y-m-d H:i:s', strtotime("+$i month")),
             ]);
-
         }
-
-        echo"successful";
+    
+        echo "successful";
     }
-
-
-    public function testing(){
-
-        $this->auto_add_transactions($temp_user_id = 2, $amount = 2000);
-
-    }
+    
+    // public function testing()
+    // {
+    //     $this->auto_add_transactions(2, 2000);
+    // }
 
 
     public function payment_cancel(Request $request){
