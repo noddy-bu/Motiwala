@@ -208,6 +208,4 @@ Route::get('/session-setup', function () {
     Session()->put('step', 10);
 });
 
-Route::get('/template-design', function () {
-    return view('frontend.pages.template_design.index');
-});
+Route::get('/template-design', [IndexController::class, 'pdf'])->name('pdf');
