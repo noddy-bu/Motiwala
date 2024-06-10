@@ -471,11 +471,23 @@
         top: 0px;
     }
 
-    .carousel-control-next-icon, .carousel-control-prev-icon {
-        display: inline-block;
-        width: 26px;
-        height: 26px;
-        color: #000;
+    .carousel-control-next-icon, 
+    .carousel-control-prev-icon {
+        background-image: none !important;
+        font-size: 38px;
+        font-weight: 400 !important;
+        color: #c1884e;
+    }
+
+    .carousel-control-prev-icon:before {
+        content: "\f104";
+        font-family: fontawesome;
+        margin-left: 15px;
+    }
+    .carousel-control-next-icon:after {
+        content: "\f105";
+        font-family: fontawesome;
+        margin-left: -15px;
     }
 
     .carousel-indicators [data-bs-target] {

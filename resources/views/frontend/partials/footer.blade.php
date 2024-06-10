@@ -67,7 +67,7 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
               <a href="{{ url(route('privacy-policy')) }}"> <i class="las la-angle-right"></i> Privacy Policy</a>
             </li>
 <li>
-              <a href="refund-policy"> <i class="las la-angle-right"></i> Refund Policy</a>
+              <a href="#"> <i class="las la-angle-right"></i> Refund Policy</a>
             </li>
             
            
