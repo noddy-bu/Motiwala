@@ -18,7 +18,7 @@
 
 
 <main class="main">
-	<section class="pt-5 information_section">
+	<section class="pt-md-5 pt-4 information_section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
