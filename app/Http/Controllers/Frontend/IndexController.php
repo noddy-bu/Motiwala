@@ -16,6 +16,9 @@ use App\Models\BlogComment;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
+use Dompdf\Dompdf;
+use Illuminate\Support\Facades\View;
+
 
 class IndexController extends Controller
 {
@@ -281,6 +284,26 @@ class IndexController extends Controller
 
     public function refund_policy(){
         return view('frontend.pages.refund_policy.index');
+    }
+
+    public function pdf(){
+
+        // Render the HTML view with user details
+        $html = View::make('frontend.component.template')->render();
+
+        // Create a new DOMPDF instance
+        $dompdf = new Dompdf();
+
+        // Load HTML content
+        $dompdf->loadHtml($html);
+
+        // (Optional) Set paper size and orientation
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        return $dompdf->stream('user_details.pdf', ['Attachment' => false]);
     }
 
 

@@ -20,6 +20,8 @@ use Dompdf\Dompdf;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
 
+
+
 use Auth;
 
 class AccountController extends Controller
@@ -1247,6 +1249,7 @@ class AccountController extends Controller
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
     
+            
     
             session()->forget(['otp_timestamp', 'phone', 'otp', 'aadhar_no']);
     
@@ -1265,6 +1268,37 @@ class AccountController extends Controller
 
             return redirect()->route('account.new.enrollment.page');
         // }
+    }
+
+
+    public function auto_add_transactions($temp_user_id, $amount){
+        $user_plan_Details = DB::table('users')->where('id', Session::get('temp_user_id'))->value('plan_id');
+    
+        $plan_name = DB::table('plans')->where('id', $user_plan_Details)->get(['minimum_installment_amount','installment_period'])->first();
+
+        $installment = $plan_name - 1;
+
+        for($i = 1, $installment >= $i, $i++){
+
+            DB::table('transactions')->insert([
+                'user_id' => $temp_user_id,
+                'payment_amount' => $amount,
+                'payment_response' => '[]',
+                'payment_status' => 'unpaid',
+                'created_at' => date('Y-m-d H:i:s', strtotime('+$i month')),
+                'updated_at' => date('Y-m-d H:i:s', strtotime('+$i month')),
+            ]);
+
+        }
+
+        echo"successful";
+    }
+
+
+    public function testing(){
+
+        $this->auto_add_transactions($temp_user_id = 2, $amount = 2000);
+
     }
 
 
