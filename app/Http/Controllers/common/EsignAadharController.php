@@ -31,7 +31,8 @@ class EsignAadharController extends Controller
 
         $bearer_token_dummy = env('AADHAR_ESIGN_TOKEN_DUMMY');
 
-        $DUMMY_URL = "https://sandbox.surepass.io";
+        // $DUMMY_URL = "https://sandbox.surepass.io";
+        $DUMMY_URL ="https://kyc-api.surepass.io";
 
         $curl = curl_init();
 
@@ -158,7 +159,8 @@ class EsignAadharController extends Controller
 
         $bearer_token_dummy = env('AADHAR_ESIGN_TOKEN_DUMMY');
 
-        $DUMMY_URL = "https://sandbox.surepass.io";
+        // $DUMMY_URL = "https://sandbox.surepass.io";
+        $DUMMY_URL ="https://kyc-api.surepass.io";
 
         $curl = curl_init();
 
@@ -276,7 +278,8 @@ class EsignAadharController extends Controller
 
         $bearer_token_dummy = env('AADHAR_ESIGN_TOKEN_DUMMY');
 
-        $DUMMY_URL = "https://sandbox.surepass.io";
+        // $DUMMY_URL = "https://sandbox.surepass.io";
+        $DUMMY_URL ="https://kyc-api.surepass.io";
 
         $curl = curl_init();
 
@@ -309,7 +312,8 @@ class EsignAadharController extends Controller
 
         $bearer_token_dummy = env('AADHAR_ESIGN_TOKEN_DUMMY');
 
-        $DUMMY_URL = "https://sandbox.surepass.io";
+        // $DUMMY_URL = "https://sandbox.surepass.io";
+        $DUMMY_URL ="https://kyc-api.surepass.io";
 
         $curl = curl_init();
 
