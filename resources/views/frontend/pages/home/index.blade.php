@@ -140,8 +140,8 @@
                                  <div class="layer_img">
                                     <img src="/assets/frontend/images/layer_1.png" class="d-block" alt="...">
                                 </div>
-                            <div class="step_content1 pt-lg-5 pt-0">
-                                <p class="black_color" >
+                            <div class="step_content1 pt-lg-4 pt-0">
+                                <p class="black_color text-center" >
                                     Get started by opening a new account on our website, the Motiwala
                                     Jewels Golden Treasure Jewellery Purchase app,
                                     or by visiting  our only  Store In Byculla, Mumbai Maharashtra.
@@ -155,7 +155,7 @@
                     <div class="col-lg-3 col-12">
                         <div class="step_box steps2">
                             <div class="step_content2 pb-lg -3 pb-0">
-                                <p class="black_color" >
+                                <p class="black_color text-center" >
                                     You can pay a monthly installment of at least ₹2000, or any higher multiples of ₹1000, 
                                     for 10 months using cash, online banking via Standing Instructions, Net-Banking, 
                                     UPI or post-dated cheque facilities.
@@ -183,8 +183,8 @@
                              <div class="layer_img3">
                                     <img src="/assets/frontend/images/layer_1.png" class="d-block" alt="...">
                                 </div>
-                             <div class="step_content3 pt-lg-5 pt-md-2  pe-lg-3 ps-lg-4">
-                                <p class="black_color" >
+                             <div class="step_content3 pt-lg-4 pt-md-2  pe-lg-3 ps-lg-4">
+                                <p class="black_color text-center" >
                                     Receive an exclusive discount of up to 75% of the value of your first installment when you redeem your plan.
                                 </p>
                             </div>
@@ -194,7 +194,7 @@
                     <div class="col-lg-3 col-12">
                         <div class="step_box steps4">
                             <div class="step_content4 pb-1">
-                                <p class="black_color" >
+                                <p class="black_color text-center" >
                                     Acquire your beloved Motiwala Jewels Gold and Diamonds jewellery using the entire redemption value.
                                 </p>
                             </div>
@@ -417,17 +417,16 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingThree">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> Can
-                                I reedem and purchase before 11 months ? </button>
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> 
+                                    Can I reedem and purchase before 11 months ? 
+                            </button>
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                Certainly! Our flexible policy allows for redemption and purchase before the 11-month period ends. 
-                                Should you find the perfect piece earlier than expected, you're welcome to redeem your plan and 
-                                make your desired purchase at your convenience. This ensures that you have the freedom to acquire 
-                                your favorite jewellery whenever you're ready, giving you the ultimate flexibility and satisfaction 
-                                in your shopping experience with us.
+                                Enjoy ultimate flexibility with our plan—redeem and purchase before the 11-month period ends. 
+                                Find your perfect piece early? Redeem your plan for a convenient purchase anytime. 
+                                Experience satisfaction with the freedom to acquire your favorite jewelry whenever you're ready.
                             </div>
                         </div>
                     </div>
@@ -435,18 +434,15 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingFour">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> If I
-                                pay for 10 months, when will I get special discount ? </button>
+                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> 
+                                If I pay for 10 months, when will I get special discount ? </button>
                         </h2>
                         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                Absolutely! Upon completing your 10 monthly payments, you'll become eligible for our special discount offer. 
-                                This means that once you've diligently paid your installments for the specified duration, 
-                                you'll unlock the opportunity to enjoy exclusive savings on your purchase. 
-                                It's our way of rewarding your commitment and dedication to our Motiwala Jewels Golden Treasure Purchase 
-                                Plan. So, rest assured that your patience and loyalty will be duly recognized, and you'll be able to 
-                                avail yourself of the fantastic discount to make your jewellery purchase even more rewarding.
+                                Complete 10 monthly payments to qualify for our exclusive discount offer. 
+                                Your dedication to our Golden Treasurer program will be rewarded with special savings on your purchase. 
+                                Enjoy the benefits of your commitment with this fantastic discount opportunity!
                             </div>
                         </div>
                     </div>
@@ -454,20 +450,16 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingFive">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive"> What
-                                other benifits you get? </button>
+                                data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive"> 
+                                What other benifits you get? </button>
                         </h2>
                         <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                In addition to our special discount offer, our Motiwala Jewels Golden Treasure Purchase 
-                                Plan comes with a range of other benefits tailored to enhance your overall experience. 
-                                Firstly, you can expect top-notch service from our dedicated team who are committed to 
-                                providing you with personalized assistance every step of the way. Moreover, we prioritize 
-                                quality in every aspect of our service, ensuring that you receive jewellery crafted to the 
-                                highest standards of craftsmanship and excellence. Furthermore, our prompt and attentive 
-                                responses to any queries or concerns you may have reflect our commitment to your satisfaction 
-                                and guarantee a seamless and enjoyable shopping experience with us. 
+                                Our Golden Treasurer program offers more than just a discount. 
+                                Experience personalized assistance from our dedicated team throughout your journey. 
+                                Enjoy top-quality craftsmanship and excellent service standards with every piece. 
+                                Our prompt responses to your queries ensure a seamless and satisfying shopping experience. 
                                 
                             </div>
                         </div>
@@ -573,7 +565,7 @@
         labelFontFamily: "Quicksand",
         labelFontWeight: "bold",
         labelAlign: "center",
-        labelFontSize: 14,
+        labelFontSize: 12,
         sectorFillColor: "#000",
         sectorStrokeColor: "#000",
         sectorStrokeWidth: 2,
