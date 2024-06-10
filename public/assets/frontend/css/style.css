@@ -827,10 +827,10 @@ label#amountLabel {
     margin-top: 60px;
 }
 
-.openaccount {
-    padding-left: 150px;
-    padding-right: 150px;
-}
+/* .openaccount {
+    padding-left: 0px;
+    padding-right: 0px;
+} */
 
 
 .openaccount label {
@@ -1605,4 +1605,14 @@ form#loginForm a:hover {
     background-size: cover;
     text-transform: uppercase;
     font-family: montserrat, sans-serif;
+}
+
+/* transaction failure page */
+
+.padd70 {
+    padding: 70px 30px;
+}
+
+.fail_image {
+    width: 120px;
 }

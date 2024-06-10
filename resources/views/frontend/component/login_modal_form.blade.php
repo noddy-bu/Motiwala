@@ -24,7 +24,7 @@
             </div>
           </form>
 
-          <p class="pt-md-5 pt-3 pb-0 mb-0 fs-14">* If you already have a Golden Harvest A/c, you can sign in here.</p>
+          <p class="pt-md-5 pt-3 pb-0 mb-0 fs-14">* If you already have a Golden Treasure A/c, you can sign in here.</p>
           <p class="fs-14"> * User ID is your registered mobile number</p>
         </div>
       </div>

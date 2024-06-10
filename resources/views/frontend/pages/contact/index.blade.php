@@ -63,17 +63,17 @@
 					<form action="" role="form" method="post" class="contact_form"> 
 						<div class="col-12 mb-md-4 mb-3">
 							<!-- <label class="pt-2 pt-md-3">Name* </label> -->
-							<input type="text" class="form-control contact_name" name="name" placeholder="Enter Your Name" wfd-id="id0" required="required">
+							<input type="text" class="form-control contact_name" name="name" placeholder="Enter Your Name*" wfd-id="id0" required="required">
 						</div>
 						<div class="row">
 							<div class="col-md-6 col-12 mb-md-4 mb-3">
 								<!-- <label class="pt-2 pt-md-3">Mobile Number* </label> -->
-								<input type="tel" class="form-control contact_number" name="mobile_number" placeholder="Enter Your Mobile Number" wfd-id="id1" required="required">
+								<input type="tel" class="form-control contact_number" name="mobile_number" placeholder="Enter Your Mobile Number*" wfd-id="id1" required="required">
 							</div>
 
 							<div class="col-md-6 col-12 mb-md-4 mb-3">
 								<!-- <label class="pt-2 pt-md-3">Email Address* </label> -->
-								<input type="text" class="form-control contact_email" name="mobile_number" placeholder="Enter Your Email Id" wfd-id="id2" required="required">
+								<input type="text" class="form-control contact_email" name="mobile_number" placeholder="Enter Your Email Id*" wfd-id="id2" required="required">
 							</div>
 						</div>
 
@@ -82,14 +82,14 @@
 							<textarea class="message mb-3" 
 									name="message" 
 									rows="4" 
-									placeholder="Message"
+									placeholder="Message*"
 									required="required"></textarea>
 						</div>
 
 						<div class="text-md-start text-center
 						">
 							<div class="buttonclass1 mt-3 p-0">
-								<button type="submit">SUBMIT<i class="las la-arrow-right"></i>
+								<button type="submit">SUBMIT <i class="las la-arrow-right"></i>
 								</button>
 							</div>
 						</div>

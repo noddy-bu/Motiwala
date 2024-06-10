@@ -57,6 +57,11 @@
         margin-right: -120px;
     }
 
+    img.sidebar_logo {
+        width: 25%;
+        padding: 7px 0px 0px 10px;
+    }
+
     .nav-pills .nav-item .nav-link {
         padding: 14px 0px 0px !important;
         line-height: 20px;
@@ -279,7 +284,6 @@
         padding: 8px 14px;
         font-size: 14px;
     }
-
 
     ul.float_right li:nth-child(5) {
         font-size: 16px;
@@ -511,19 +515,22 @@
     }
 
     .step_box_img {
-        width: 100px;
-        height: 100px;
+        width: 75px;
+        height: 75px;
+        position: relative;
+        top: -7px;
+        left: 7px;
     }
 
     .step_box_icon {
-        width: 100px;
-        height: 100px;
+        width: 75px;
+        height: 75px;
         margin-top: 24px;
     }
 
     .step_box_icon img {
-        width: 38px;
-        padding-top: 27px;
+        width: 26px;
+        padding-top: 22px;
     }
 
     .step_box p {
@@ -540,7 +547,7 @@
     }
 
     .step_content1,.step_content2 ,.step_content3 ,.step_content4 {
-        padding-top: 15px;
+        padding-top: 7px;
     }  
 
     .step_bottom_text {
@@ -704,13 +711,14 @@
     /* new account page */
 
     .step-button {
-        width: 37px;
-        height: 37px;
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
     }
 
     .step-button[aria-expanded="true"] {
-        width: 48px;
-        height: 48px;
+        width: 38px;
+        height: 38px;
     }
 
     label#accept_term-error {
@@ -742,7 +750,7 @@
     .information_section {
         padding-left: 0px;
         padding-right: 0px;
-        padding-bottom: 30px;
+        padding-bottom: 30px !important;
     }
 
     .information_tb thead tr th:last-of-type, 
@@ -789,7 +797,7 @@
         gap: 25px;
     }
 
-    /* after sing in side bar */
+    /* after login in side bar */
 
     .sidebaar_section {
         padding: 0px !important;
@@ -816,6 +824,10 @@
         background-color: transparent;
     }
 
+    img.sidebar_logo {
+        width: 55%;
+        padding: 10px 0px 10px 10px;
+    }
     
     body .userlogin_box {
         width: 100px !important;
@@ -888,5 +900,16 @@
         position: fixed;
         top: 0px;
         margin-left: -600px; 
+    }
+
+    .after_login_body .copyright_section .col-md-5 ul {
+        display: block;
+    }
+
+    /* new account */
+
+    div#preview-info h5 {
+        font-size: 18px;
+        margin-bottom: 0px;
     }
 }

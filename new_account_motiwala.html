@@ -24,7 +24,7 @@
 
 
             <div class="d-flex flex-md-row flex-column">
-                <div class="form-group mt-3 adhar_field">
+                <div class="form-group mt-4 adhar_field">
                     <label class="pb-3">Mobile Number* (As on Aadhaar Card)</label>
                     <input type="text" class="form-control" name="phone" placeholder="Please Enter Mobile Number"
                         pattern="[0-9]+" minlength="10" maxlength="10" placeholder="Please Enter Mobile Number"
@@ -64,14 +64,14 @@
 
                     <div class="col-md-5">
                         <div class="form-group mt-4 adhar_field">
-                            <label class="pb-2">Mobile Number</label>
+                            <label class="pb-3">Mobile Number</label>
                             <input type="text" class="form-control" value="{{ Session::get('phone') }}" disabled />
                         </div>
                     </div>
 
                     <div class="col-md-5">
                         <div class="form-group mt-4 adhar_field">
-                            <label class="pb-2">Verify OTP *</label>
+                            <label class="pb-3">Verify OTP *</label>
                             <input type="text" class="form-control" name="otp" pattern="[0-9]+" minlength="6"
                                 maxlength="6" placeholder="Please Enter OTP" required />
                         </div>
@@ -139,9 +139,9 @@
             <div class="row d-flex">
 
 
-                <div class="col-md-3">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">Title *</label>
+                <div class="col-md-4">
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Title *</label>
                         <select class="form-select" aria-label="---Select----" name="title" required>
                             <option value="">---Select---</option>
                             <option value="Mr" @if ($user->salutation == 'Mr') selected @endif>Mr</option>
@@ -155,66 +155,66 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">Name *</label>
+                <div class="col-md-4">
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Name *</label>
                         <input type="text" class="form-control" name="name" pattern="[A-Za-z]+" minlength="3"
                             maxlength="20" placeholder="Please Enter Your Name" value="{{ $user->name }}" required />
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">Email *</label>
+                <div class="col-md-4">
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Email *</label>
                         <input type="eamil" class="form-control" name="email"
                             placeholder="Please Enter Your Email Id" value="{{ $user->email }}" required />
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">Pan Card Number *</label>
+                <div class="col-md-4">
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Pan Card Number *</label>
                         <input type="text" class="form-control" name="pan_number"
                             placeholder="Please Enter Your Pan Card Number" pattern="[0-9A-Za-z]+" value="{{ $user_detail->pan_number }}" minlength="10" maxlength="10" required />
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">Door No / Flat NO *</label>
+                <div class="col-md-4">
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Door No / Flat NO *</label>
                         <input type="text" class="form-control" name="flat_no" pattern="[0-9A-Za-z]+"
                             placeholder="Please Enter Your Door No / Flat No" value="{{ $user_detail->flat_no }}"
                             required />
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">Street / Road / Sector / Building *</label>
+                <div class="col-md-4">
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Street / Road / Sector / Building *</label>
                         <input type="text" class="form-control" name="street" pattern="[0-9A-Za-z]+"
                             placeholder="Please Enter Your Street" value="{{ $user_detail->street }}" required />
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">Area / Locality / LandMark *</label>
+                <div class="col-md-4">
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Area / Locality / Colony / LandMark *</label>
                         <input type="text" class="form-control" name="locality" pattern="[0-9A-Za-z]+"
                             placeholder="Please Enter Your Locality" value="{{ $user_detail->locality }}" required />
                     </div>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">Pin Code *</label>
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Pin Code *</label>
                         <input type="text" class="form-control" name="pincode" pattern="[0-9]+" minlength="3"
                             placeholder="Please Enter Your Pin Code" value="{{ $user_detail->pincode }}" required />
                     </div>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">State *</label>
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">State *</label>
                         <input type="text" class="form-control" name="state" pattern="[A-Za-z\s]+"
                             minlength="3" placeholder="Please Enter Your State" value="{{ $user_detail->state }}"
                             required />
@@ -222,8 +222,8 @@
                 </div>
 
                 <div class="col-md-3">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">City / Town *</label>
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">City / Town *</label>
                         <input type="text" class="form-control" name="city" pattern="[A-Za-z]+"
                             minlength="3" placeholder="Please Enter Your City" value="{{ $user_detail->city }}"
                             required />
@@ -233,8 +233,8 @@
 
 
                 <div class="col-md-3">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">DOB * ( As per Aadhar )</label>
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">DOB * ( As per Aadhar )</label>
                         <input type="date" class="form-control" name="dob" value="{{ $user_detail->dob }}"
                             required />
                     </div>
@@ -290,8 +290,8 @@
             <div class="row d-flex">
 
                 <div class="col-md-4">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">Select Plan *</label>
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Select Plan *</label>
                         <select class="form-select" aria-label="---Select----" name="plan_id" id="plan_id"
                             required>
                             <option data-minium="2000" value="">---Select---</option>
@@ -312,8 +312,8 @@
                 </div>
 
                 <div class="col-md-4">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">Installment Amount *</label>
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Installment Amount *</label>
                         {{-- <input type="text" class="form-control" name="installment_amount" pattern="[0-9]+" placeholder="Please Enter Your Installment Amount" value="{{ $user->installment_amount }}" required/> --}}
                         <input type="text" class="form-control" name="installment_amount" pattern="[0-9]+"
                             placeholder="Please Enter Your Installment Amount" required />
@@ -325,8 +325,8 @@
                 </div>
 
                 <div class="col-md-4">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">Nominee Name </label>
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Nominee Name </label>
                         <input type="text" class="form-control" name="nominee_name" pattern="[A-Za-z]+"
                             minlength="3" placeholder="Please Enter Your Nominee Name"
                             value="{{ $user_detail->nominee_name }}" />
@@ -334,8 +334,8 @@
                 </div>
 
                 <div class="col-md-4">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">Nominee Contact Number </label>
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Nominee Contact Number </label>
                         <input type="text" class="form-control" name="nominee_phone" pattern="[0-9]+"
                             minlength="10" maxlength="10" placeholder="Please Enter Your Nominee Contact Number"
                             value="{{ $user_detail->nominee_phone }}" />
@@ -343,8 +343,8 @@
                 </div>
 
                 <div class="col-md-4">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">Nominee Date Of Birth</label>
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Nominee Date Of Birth</label>
                         <input type="date" class="form-control" name="nominee_dob"
                             value="{{ $user_detail->nominee_dob }}" />
                     </div>
@@ -353,15 +353,15 @@
 
 
                 <div class="col-md-4">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">Relationship with Account Holder</label>
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Relationship with Account Holder</label>
                         <input type="text" class="form-control" name="nominee_relation" pattern="[A-Za-z]+"
                             minlength="3" placeholder="Please Enter Your Relationship with Account Holder"
                             value="{{ $user_detail->nominee_relation }}" />
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group mt-md-5 mt-3 adhar_field">
+                    <div class="form-group mt-4 adhar_field">
                         <label class="pb-3">Nominee Address *</label>
                         <textarea class="form-control" row="3" name="nominee_address" style="height: 103px;">{{ $user_detail->nominee_address }}</textarea>
                     </div>
@@ -531,7 +531,7 @@
         </div>
 
         <div>
-            <div class="steps-title pt-4">
+            <div class="steps-title pt-2">
 
                 <p><b>Terms and Conditions</b></p>
                 <p>By clicking on proceed button below, you are hereby acknowledging that you are providing your Aadhaar
@@ -556,7 +556,7 @@
 
                 <p>The following screens will capture your Aadhaar number / VID and other relevant details required to
                     download Paperless-XML from UIDAI Portal <a
-                        href="https://myaadhaar.uidai.gov.in/">https://myaadhaar.uidai.gov.in/ </a> instead of
+                        href="https://myaadhaar.uidai.gov.in/"></a>https://myaadhaar.uidai.gov.in/ instead of
                     forwarding you to UIDAI portal.
                 </p>
 
@@ -584,7 +584,7 @@
                 <input type="checkbox" name="accept_term" id="agree" value="yes" required />
                 <label for="agree">I accept <a href="{{ url(route('terms')) }}">“Terms and conditions”</a> of
                     Motiwala &
-                    Sons Golden Treasure.</label>
+                    Sons Golden Harvest.</label>
             </div>
 
 
@@ -663,7 +663,7 @@
 
                 <div class="d-flex">
                     <div class="form-group mt-4 adhar_field">
-                        <label class="pb-2">Verify OTP *</label>
+                        <label class="pb-3">Verify OTP *</label>
                         <input type="text" class="form-control" name="otp" pattern="[0-9]+" minlength="6"
                             maxlength="6" placeholder="Please Enter OTP" required />
                     </div>
@@ -983,7 +983,7 @@
                 <input type="checkbox" name="accept_term" id="agree" value="yes" required />
                 <label for="agree">I accept <a href="{{ url(route('terms')) }}">“Terms and conditions”</a> of
                     Motiwala &
-                    Sons Golden Treasure.</label>
+                    Sons Golden Harvest.</label>
             </div>
 
 
@@ -1024,8 +1024,8 @@
 
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="form-group mt-3 adhar_field">
-                            <label class="pb-2">Name *</label>
+                        <div class="form-group mt-4 adhar_field">
+                            <label class="pb-3">Name *</label>
                             <input type="text" class="form-control" name="name" pattern="[A-Za-z]+"
                                 minlength="3" maxlength="20" placeholder="Please Enter Your Name"
                                 value="{{ $user->name }}" readonly required />
@@ -1033,8 +1033,8 @@
                     </div>
 
                     <div class="col-md-4">
-                        <div class="form-group mt-3 adhar_field">
-                            <label class="pb-2">Email *</label>
+                        <div class="form-group mt-4 adhar_field">
+                            <label class="pb-3">Email *</label>
                             <input type="eamil" class="form-control" name="email"
                                 placeholder="Please Enter Your Email Id" value="{{ $user->email }}" readonly
                                 required />
@@ -1042,8 +1042,8 @@
                     </div>
 
                     <div class="col-md-4">
-                        <div class="form-group mt-3 adhar_field">
-                            <label class="pb-2">Phone No *</label>
+                        <div class="form-group mt-4 adhar_field">
+                            <label class="pb-3">Phone No *</label>
                             <input type="text" class="form-control" name="phone" pattern="[0-9]+"
                                 minlength="10" maxlength="10" placeholder="Please Enter Phone No"
                                 value="{{ $user->phone }}" readonly required />
@@ -1084,8 +1084,8 @@
                 @csrf
 
                 <div class="d-flex">
-                    <div class="form-group mt-3 adhar_field">
-                        <label class="pb-2">Verify OTP *</label>
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Verify OTP *</label>
                         <input type="text" class="form-control" name="otp" pattern="[0-9]+" minlength="6"
                             maxlength="6" placeholder="Please Enter OTP" required />
                     </div>
