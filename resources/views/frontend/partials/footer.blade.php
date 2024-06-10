@@ -7,12 +7,40 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
   <div class="container">
     <div class="row">
       <div class="col-lg-2 col-md-6">
-        <div class="footer-widget" data-aos-once="true" data-aos="fade-up">
+        <div class="footer-widget">
           <h3 class="widget-title">USEFUL LINKS</h3>
           <ul class="widget-menu">
             <li>
-              <a href="#">
+              <a href="">
                 <i class="las la-angle-right"></i> About Us </a>
+            </li>
+
+            <li>
+              <a href="{{ url(route('faq')) }}">
+                <i class="las la-angle-right"></i> FAQ </a>
+            </li>
+
+             <li>
+              <a href="{{ url(route('information')) }}">
+                <i class="las la-angle-right"></i> Information </a>
+            </li>
+             <li>
+              <a href="contact-us">
+                <i class="las la-angle-right"></i> Contact Us </a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="col-lg-2 col-md-6">
+        <div class="footer-widget">
+          <h3 class="widget-title">QUICK LINKS</h3>
+          <ul class="widget-menu">
+            <li>
+              <a href="{{ url(route('account.new.enrollment.page')) }}">
+                <i class="las la-angle-right"></i> New Account </a>
             </li>
 
             <li>
@@ -28,24 +56,6 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
               <a href="{{ url(route('instantpay')) }}">
                 <i class="las la-angle-right"></i> Contact Us </a>
             </li>
-            
-          </ul>
-        </div>
-      </div>
-
-
-      <div class="col-lg-2 col-md-6">
-        <div class="footer-widget" data-aos-once="true" data-aos="fade-up">
-          <h3 class="widget-title">QUICK LINKS</h3>
-          <ul class="widget-menu">
-            <li>
-              <a href="{{ url(route('account.new.enrollment.page')) }}">
-                <i class="las la-angle-right"></i> New Account </a>
-            </li>
-            <li>
-              <a href="{{ url(route('instantpay')) }}">
-                <i class="las la-angle-right"></i> Instant Pay </a>
-            </li>
            
            
              <li>
@@ -56,7 +66,7 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
       </div>
 
       <div class="col-lg-2 col-md-6 pt-lg-0 pt-0 pt-md-5">
-        <div class="footer-widget" data-aos-once="true" data-aos="fade-up">
+        <div class="footer-widget">
           <h3 class="widget-title">CONSUMER POLICY</h3>
           <ul class="widget-menu">
 
@@ -67,7 +77,7 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
               <a href="{{ url(route('privacy-policy')) }}"> <i class="las la-angle-right"></i> Privacy Policy</a>
             </li>
 <li>
-              <a href="refund-policy"> <i class="las la-angle-right"></i> Refund Policy</a>
+              <a href="#"> <i class="las la-angle-right"></i> Refund Policy</a>
             </li>
             
            
@@ -78,26 +88,26 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
 
 
       <div class="col-lg-3 col-md-6 pt-lg-0 pt-0 pt-md-4">
-        <div class="footer-widget" data-aos-once="true" data-aos="fade-up">
+        <div class="footer-widget">
           <h3 class="heading_font line-height35">Download <br>Our App </h3>
           <p>Shining new app, made just for you! It's Free, Easy & Smart</p>
         </div>
       </div>
       <div class="col-lg-3 col-md-6">
-        <div class="footer-app-image" data-aos-once="true" data-aos="fade-up">
+        <div class="footer-app-image">
           <img src="/assets/frontend/images/app_images.png" class="d-block w-100" alt="...">
         </div>
       </div>
       <div class="col-lg-4 col-md-6">
-        <div class="footer-widget mt-md-5 mt-2" data-aos-once="true" data-aos="fade-up">
+        <div class="footer-widget mt-md-5 mt-2">
           <p class="pb-0 mb-0">Contact Us: <a href="tel:+91 9920077780">+91 9920077780</a></p>
           <p>Email: <a href="mailto:motiwalajewels786@gmail.com">motiwalajewels786@gmail.com</a></p>
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-        <h6 class="font-alt mt-md-4 mt-2 mb-3 heading_font font-size20" data-aos-once="true" data-aos="fade-up">Subscribe to our Newsletter</h6>
+        <h6 class="font-alt mt-md-4 mt-2 mb-3 heading_font font-size20">Subscribe to our Newsletter</h6>
         <form class="form-subscribe" action="#">
-          <div class="input-group" data-aos-once="true" data-aos="fade-up">
+          <div class="input-group">
             <input type="text" class="form-control input-lg" placeholder="Write Your Email Address">
             <span class="input-group-btn">
               <button class="btn btn-success btn-lg" type="submit">Subscribe</button>
@@ -112,12 +122,12 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
       <div class="row">
        
         <div class="col-md-6">
-          <p class="text-md-start text-center mb-2 mb-md-3">Copyright © 2024 Under Motiwala & Sons</p>
+          <p class="text-md-start text-center mb-1 mb-md-3">Copyright © 2024 Under Motiwala & Sons</p>
         </div>
         <div class="col-md-6 text-md-end text-center">
           <ul class="float_right">
             <li>
-              <a href="https://api.whatsapp.com/send?phone=+919920077780&text=Hi%2C+I+am+contacting+you+through+your+website+from+desktop+view+https%3A%2F%2Fhttps://motiwalajewels.in/%2F">
+              <a target="_blank" href="https://api.whatsapp.com/send?phone=+919920077780&text=Hi%2C+I+am+contacting+you+through+your+website+from+desktop+view+https%3A%2F%2Fhttps://motiwalajewels.in/%2F">
                 <i class="lab la-whatsapp"></i>
               </a>
             </li>
@@ -162,10 +172,10 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
       </div>
       <div class="modal-body">
         <form action="" method="post">
-          <div class="form-group mt-4">
+          <div class="form-group mt-md-4 mt-3">
             <input type="text" class="form-control" name="account_number" placeholder="Account Number*" />
           </div>
-          <div class="form-group mt-5">
+          <div class="form-group mt-md-5 mt-4 pt-0">
             <input type="text" class="form-control" name="mobile_number" placeholder="Mobile Number*" />
           </div>
           <div class="form-group text-md-start text-center">

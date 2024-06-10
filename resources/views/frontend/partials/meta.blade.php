@@ -69,7 +69,7 @@ $url = url()->current();
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Seedling Associates",
+    "name": "Motiwala & Sons",
     "url": "{{ url('') }}/",
     "logo": "{{ asset('/assets/frontend/images/logo.png') }}",
     "sameAs": [

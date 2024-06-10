@@ -13,7 +13,7 @@
     <!-- -------------------- Edit & Manage Profile start ---------------- -->
 
     <section class="inner_page_banner">
-        <img src="/assets/frontend/images/innwe_imagebanner.jpg" class="d-block w-100" alt="...">
+        <img src="/assets/frontend/images/innwe_imagebanner.png" class="d-block w-100" alt="...">
     </section>
 
 
@@ -26,8 +26,8 @@
                     </div>
                            
                      <div class="col-md-12">
-                    <div class="text-sm-end mb-2">
-                               <a href="{{ url(route('customer.reset_password')) }}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-2"></i> Reset Password</a>
+                    <div class="text-sm-end mb-2 buttonclass1">
+                               <a href="{{ url(route('customer.reset_password')) }}" class="text-decoration-none mb-2"><i class="mdi mdi-plus-circle me-2"></i> Reset Password</a>
                            </div>
                            </div>
 
@@ -116,7 +116,7 @@
             
                                 <div class="col-md-4">
                                     <div class="form-group mt-4 adhar_field">
-                                        <label class="pb-3">Date of Birth * ( As per Aadhar )</label>
+                                        <label class="pb-3">Date of Birth * (As per Aadhar)</label>
                                         <input type="date" class="form-control" name="dob" value="{{ $user_detail->dob }}" required/>
                                     </div>
                                 </div>

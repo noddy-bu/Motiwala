@@ -1,39 +1,40 @@
 <footer class="footer">
     <div class="copyright_section">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4">
+            <div class="row gap-md-0 gap-2">
+                <div class="col-md-5">
                     <ul>
                         <li>
                             <a href="terms-conditions"> <i class="las la-angle-right"></i> Terms Conditions</a>
                         </li>
                         <li>|</li>
                         <li>
-                            <a href="{{ url(route('privacy-policy')) }}"> Privacy Policy</a>
+                            <a href="{{ url(route('privacy-policy')) }}"> <i class="las la-angle-right"></i> Privacy Policy</a>
                         </li>
-<li>|</li>
-                        <li>
-              <a href="refund-policy"> <i class="las la-angle-right"></i> Refund Policy</a>
-            </li>
-
                         <li>|</li>
+                        <br class="d-md-block d-none">
+                        <li>
+                            <a href="refund-policy"> <i class="las la-angle-right"></i> Refund Policy</a>
+                        </li>
+
+                        <!-- <li>|</li>
                         <li>
                             <a href="{{ url(route('feedback')) }}"> Give Us Feedback</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <p class="text-center">Copyright © 2024 Under Motiwala & Sons</p>
+                    <span class="text-center">Copyright © 2024 Under Motiwala & Sons</span>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <ul class="float_right">
                         <li>
-                            <a href="">
+                            <a target="_blank" href="https://api.whatsapp.com/send?phone=+919920077780&text=Hi%2C+I+am+contacting+you+through+your+website+from+desktop+view+https%3A%2F%2Fhttps://motiwalajewels.in/%2F">
                                 <i class="lab la-whatsapp"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a target="_blank" href="https://www.facebook.com/MOTIWALA.JEWELS">
                                 <i class="lab la-facebook-f"></i>
                             </a>
                         </li>

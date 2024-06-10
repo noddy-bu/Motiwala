@@ -11,7 +11,7 @@
 <!-- -------------------- Terms  start ---------------- -->
 
 <section class="inner_page_banner">
-     <img src="/assets/frontend/images/innwe_imagebanner.jpg" class="d-block w-100" alt="...">
+     <img src="/assets/frontend/images/innwe_imagebanner.png" class="d-block w-100" alt="...">
 </section>
 
 
@@ -23,7 +23,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h4 class="title_heading text-center black_color pb-0 heading_font">GOLDEN TREASURE JEWELLERY PURCHASE PLAN</h4>
-				   <h5 class="black_color text-center pb-4">TERMS AND CONDITIONS</h5>
+				   <h5 class="black_color text-center pb-md-4 pb-3">TERMS AND CONDITIONS</h5>
                 </div>
 
 				<div class="col-md-12">
@@ -73,7 +73,7 @@
 					   of monthly instalments paid.
 					</p>
 
-					<h4>Pre-Close & Refund</h4>
+					<h4 class="pt-3">Pre-Close & Refund</h4>
 
 					<p>The Customer will have the option to pre-close the Plan only if the Customer has paid 
 						a minimum of six monthly instalments and after completion of 180 days from the Enrolment Date. 
@@ -153,7 +153,7 @@
 						as the case may be, accepting these terms and conditions.
 					</p>
 					
-					<h4>Payment</h4>
+					<h4 class="pt-3">Payment</h4>
 					<p>Payment of monthly instalment(s) may be made by cash, credit / debit cards, NEFT/ RTGS, 
 						local cheques in favour of “MOTIWALA JEWELS GOLD AND DIAMONDS PVT LTD ” payable in the 
 						city in where the Motiwala Jewls Gold and Diamonds Pvt Ltd  Store in which the account 
@@ -212,7 +212,7 @@
 							<li>Will (if any)</li>
 							<li>Along with all other supporting documents and clarifications</li>
 						</Ol>
-						<br>However, the decision of the Company shall be final on sufficiency of any document in all such cases 
+						However, the decision of the Company shall be final on sufficiency of any document in all such cases 
 						above and the same shall be binding upon the claimants.
 					</p>
 

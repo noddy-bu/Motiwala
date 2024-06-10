@@ -17,7 +17,7 @@
                         <a class="nav-link" href="{{ url(route('account.new.enrollment.page')) }}"><i
                                 class="las la-user-plus"></i> New Account</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item bars">
                       <a id="nav-icon">
                         <span class="fa fa-bars"></span>
                       </a>
@@ -46,7 +46,7 @@
                   </li>
 
                    <li>
-                    <a class="nav-link" href="contact-us"><i class="las la-question-circle"></i> Contact Us</a>
+                    <a class="nav-link" href="contact-us"><i class="far fa-address-book"></i> Contact Us</a>
                   </li>
                 
 
