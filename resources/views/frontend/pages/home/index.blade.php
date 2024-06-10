@@ -105,15 +105,21 @@
         <!--benefits calculator open-->
 
            <section class="top_step_content">
-            <div class="container">  <h4 class="title_heading text-center black_color pb-3 heading_font">Dreaming of owning that stunning necklace?</h4>
+            <div class="container">  
+                <h4 class="title_heading text-center black_color pb-3 heading_font">Dreaming of owning that stunning necklace?</h4>
                 <p class="text-center black_color fontsize26" data-aos-once="true" data-aos="fade-up">
                     Start your journey by opening a Motiwala Jewels Golden Treasure  account with just ₹2000.
                     <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
                     to 75% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
                 </p>
-                <div class="text-center py-md-4 mt-md-0 mt-4">
-                    <a href="https://motiwalajewels.in/account/onlineenrollment" class="top_step_content_btn">Start Now</a>
-                </div>
+
+                <div class="text-center">
+                <div class="buttonclass mt-4 " data-aos-once="true" data-aos="fade-up">
+                        <a href="onlineenrollment">Start Now <i class="las la-arrow-right"></i>
+                        </a>
+                    </div>
+                    </div>
+
             </div>
 </section>
 
