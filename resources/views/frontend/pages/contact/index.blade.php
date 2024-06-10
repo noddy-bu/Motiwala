@@ -35,7 +35,7 @@
 				<div class="col-md-5 col-12">
 					<h5 class="contact_form_heading pb-md-3">Contact Us</h5>
 					<h4 class="title_heading text-left black_color pb-3 contact_form_heading">We are here for you! How can we help?</h4>
-					<p class="contact_form_text pb-md-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					<!-- <p class="contact_form_text pb-md-3"></p> -->
 					
 					<div class="contact_info address row">
 						<div class="col-1">
@@ -59,19 +59,19 @@
 
 				<div class="col-md-6 col-12">
 
-					<h3 class="form_heading mb-md-4 mb-3">Send Message to Us</h3>
+					<h3 class="form_heading mb-md-4 mb-3 mb-3">Send Message to Us</h3>
 					<form action="" role="form" method="post" class="contact_form"> 
-						<div class="col-12 mb-md-4">
+						<div class="col-12 mb-md-4 mb-3">
 							<!-- <label class="pt-2 pt-md-3">Name* </label> -->
 							<input type="text" class="form-control contact_name" name="name" placeholder="Enter Your Name" wfd-id="id0" required="required">
 						</div>
-						<div class="row mb-md-4">
-							<div class="col-md-6 col-12">
+						<div class="row">
+							<div class="col-md-6 col-12 mb-md-4 mb-3">
 								<!-- <label class="pt-2 pt-md-3">Mobile Number* </label> -->
 								<input type="tel" class="form-control contact_number" name="mobile_number" placeholder="Enter Your Mobile Number" wfd-id="id1" required="required">
 							</div>
 
-							<div class="col-md-6 col-12">
+							<div class="col-md-6 col-12 mb-md-4 mb-3">
 								<!-- <label class="pt-2 pt-md-3">Email Address* </label> -->
 								<input type="text" class="form-control contact_email" name="mobile_number" placeholder="Enter Your Email Id" wfd-id="id2" required="required">
 							</div>
