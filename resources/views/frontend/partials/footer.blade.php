@@ -42,9 +42,19 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
               <a href="{{ url(route('account.new.enrollment.page')) }}">
                 <i class="las la-angle-right"></i> New Account </a>
             </li>
+
             <li>
+              <a href="{{ url(route('faq')) }}">
+                <i class="las la-angle-right"></i> FAQ </a>
+            </li>
+
+             <li>
+              <a href="{{ url(route('information')) }}">
+                <i class="las la-angle-right"></i> Information </a>
+            </li>
+             <li>
               <a href="{{ url(route('instantpay')) }}">
-                <i class="las la-angle-right"></i> Instant Pay </a>
+                <i class="las la-angle-right"></i> Contact Us </a>
             </li>
            
            
