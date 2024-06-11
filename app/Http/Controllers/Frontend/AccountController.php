@@ -1253,7 +1253,7 @@ class AccountController extends Controller
     
             
     
-            session()->forget(['otp_timestamp', 'phone', 'otp', 'aadhar_no']);
+            session()->forget(['otp_timestamp', 'phone', 'otp', 'aadhar_no', 'customer_detail', 'client_id', 'customer_aadhar_clientId']);
     
 
             /*------------ success stuff --------------*/
