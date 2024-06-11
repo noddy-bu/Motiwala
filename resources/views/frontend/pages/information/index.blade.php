@@ -22,7 +22,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h4 class="title_heading text-left black_color pb-3 heading_font">Information</h4>
+					<h4 class="title_heading text-left black_color py-2 pb-0 heading_font">Information</h4>
 				</div>
 
 				<div class="col-md-12">					
@@ -36,12 +36,12 @@
 				</div>
 
 <div class="col-md-12">
-					<h5 class="black_color py-lg-4 py-3"><b>Golden Treasure  - </b></h5>
+					<h5 class="black_color py-lg-4 py-3 pt-1"><b>Golden Treasure  - </b></h5>
 				</div>
 				
 				
         <div class="col-md-3">
-          <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-3 information_box">
+          <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-1 information_box">
             <div class="step_box_icon">
               <div class="step_box_img">
                 <img src="/assets/frontend/images/information_user.png" class="d-block" alt="...">
@@ -58,7 +58,7 @@
         </div>
 		
 		 <div class="col-md-3">
-          <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-3 information_box">
+          <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-1 information_box">
             <div class="step_box_icon">
               <div class="step_box_img">
                 <img src="/assets/frontend/images/information_card.png" class="d-block" alt="...">
@@ -75,7 +75,7 @@
         </div>
 		
 		 <div class="col-md-3">
-          <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-3 information_box">
+          <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-1 information_box">
             <div class="step_box_icon">
               <div class="step_box_img">
                 <img src="/assets/frontend/images/information_calender.png" class="d-block" alt="...">
@@ -92,7 +92,7 @@
         </div>
 		
 		 <div class="col-md-3">
-          <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-3 information_box">
+          <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-1 information_box">
             <div class="step_box_icon">
               <div class="step_box_img">
                 <img src="/assets/frontend/images/information_percent.png" class="d-block" alt="...">
@@ -109,7 +109,7 @@
         </div>
 
 		<div class="col-md-12">
-          <p class="py-lg-2 py-2">
+          <p class="py-lg-2 py-0">
               Please ensure to close your account within 400 days from the date you opened 
               your Motiwala Jewels Golden Treasure Purchase Plan account.
           </p>

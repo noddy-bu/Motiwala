@@ -356,8 +356,13 @@
         overflow-x: hidden;
     }
 
-    p {
+    p, a {
         font-size: 14px !important;
+    }
+
+    .after_login_body .container:not(footer .container) {
+        padding-left: 20px;
+        padding-right: 20px;
     }
     
     p.fontsize26 {
@@ -407,8 +412,12 @@
         padding-top: 10px;
     }
 
-    .navbar {
+    header {
         box-shadow: 3px 2px 10px #e7dfd4;
+    }
+
+    .modal_popup_cls .modal-content input.form-control {
+        padding: 5px 0px 5px 4px;
     }
 
     body .nav_right_menu {
@@ -482,7 +491,7 @@
     .carousel-control-next-icon, 
     .carousel-control-prev-icon {
         background-image: none !important;
-        font-size: 38px;
+        font-size: 26px;
         font-weight: 400 !important;
         color: #c1884e;
     }
@@ -551,7 +560,7 @@
     }  
 
     .step_bottom_text {
-        padding-top: 30px;
+        padding-top: 10px;
         text-align: center;
     }
 
@@ -560,7 +569,7 @@
     }
 
     .sip-calculator {
-        padding: 2em 2em 2em 1em;;
+        padding: 2em 1em 2em 1em;;
     }
 
     .sip-calculator-amount, .sip-calculator-year, .sip-calculator-roi {
@@ -591,7 +600,7 @@
         border: 2px solid #404040;
         padding: 4px 15px;
         float: left;
-        width: 65%;
+        width: 60%;
     }
 
     label#amountLabel {
@@ -631,7 +640,7 @@
     }
 
     .faq_section {
-        padding: 30px 0px 30px 0px !important; 
+        padding: 10px 0px 20px 0px !important; 
     }
 
     .faq_section .accordion-body {
@@ -652,6 +661,9 @@
 
     footer {
         padding: 20px 0 0px 0px;
+        position: relative !important;
+        width: 100% !important;
+        bottom: 0px;
     }
 
     .footer-app-image {
@@ -689,8 +701,6 @@
 
     .copyright_section .float_right {
         float: none;
-        display: flex;
-        justify-content: center;
     }
 
     .copyright_section {
@@ -700,7 +710,23 @@
         padding-bottom: 10px;
     }
 
-    ul.float_right li:nth-child(5) {
+    ul.float_right li:nth-child(4) {
+        font-size: 14px;
+    }
+
+    .after_login_body .main {
+        padding-bottom: 50px;
+        margin-bottom: 20px;
+    }
+
+    .after_login_body footer {
+        padding: 0px 0 0px 0px;
+        position: absolute !important;
+        bottom: 0px;
+        width: 100%;
+    }
+
+    .after_login_body .copyright_section span {
         font-size: 14px;
     }
 
@@ -756,6 +782,14 @@
     .information_tb thead tr th:last-of-type, 
     .information_tb tbody tr td:last-of-type {
         padding-right: 15px !important;
+    }
+
+    .information_tb th, .information_tb td {
+        font-size: 13px;
+        border: 0 !important;
+        text-align: start;
+        padding: 5px 0px 10px 8px !important;
+        line-height: 16px;
     }
 
     /* terms and condition */
@@ -827,6 +861,7 @@
     img.sidebar_logo {
         width: 55%;
         padding: 10px 0px 10px 10px;
+        margin-left: 15px;
     }
     
     body .userlogin_box {
@@ -851,6 +886,7 @@
 
     .bg_theme .width80 {
         width: 100% !important;
+        position: relative;
     }
 
     .bg_theme img {
@@ -887,7 +923,7 @@
         position: absolute;
         top: 0;
         right: 25px;
-        font-size: 36px;
+        font-size: 36px !important;
         margin-left: 50px;
     }
     #nav-bar-icon {
@@ -904,6 +940,20 @@
 
     .after_login_body .copyright_section .col-md-5 ul {
         display: block;
+    }
+
+    .after_login_body .copyright_section .col-md-5 ul li {
+        margin: 0px 4px;
+        font-size: 14px;
+    }
+
+    .p-3.mt-5.mb-3.text-black {       /*  for nominee details heading alignment */
+        width: 95%;
+        margin-left: 10px;
+    }
+
+    .after_login_body section:last-child {
+        margin-bottom: 40px;
     }
 
     /* new account */
