@@ -11,9 +11,13 @@ use App\Http\Controllers\backend\TrumbowygController;
 
 use App\Http\Controllers\backend\ContactController;
 use App\Http\Controllers\backend\BusinessSettingController;
-use App\Http\Controllers\backend\ContactSettingController;
+
 use App\Http\Controllers\backend\AuthorController;
 use App\Http\Controllers\backend\UserController;
+
+use App\Http\Controllers\backend\TransactionController;
+
+use App\Http\Controllers\backend\ContactSettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +51,11 @@ Route::group(['prefix' => 'customer'], function () {
 
     Route::post('/delete/{id}', [CustomerController::class, 'delete'])->name('Customer.delete');
     Route::get('/status/{id}/{status}', [CustomerController::class, 'status'])->name('Customer.status');
+});
+
+Route::group(['prefix' => 'transaction'], function () {
+    Route::get('/index', [TransactionController::class, 'index'])->name('transaction.index');
+    Route::get('Customer-data', [TransactionController::class, 'getData'])->name('transaction.data');
 });
 
 
