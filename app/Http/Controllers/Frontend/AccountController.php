@@ -1266,7 +1266,7 @@ class AccountController extends Controller
             // delete temp recored
             DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
 
-            $this->auto_add_transactions(Session::get('temp_user_id'));
+            // $this->auto_add_transactions(Session::get('temp_user_id'));
 
             return redirect()->route('account.new.enrollment.page');
         // }
@@ -1299,12 +1299,15 @@ class AccountController extends Controller
     
         echo "successful";
     }
+
+    //-------------- test controller -------------------------
     
     // public function testing()
     // {
     //     $this->auto_add_transactions(2, 2000);
     // }
 
+    //-------------- test controller -------------------------
 
     public function payment_cancel(Request $request){
 
