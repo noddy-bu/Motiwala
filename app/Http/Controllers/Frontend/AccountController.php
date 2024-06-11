@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Common\AadharController;
 
 use App\Http\Controllers\Common\EsignAadharController;
+use App\Http\Controllers\Common\SmsController;
+
 use Dompdf\Dompdf;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
@@ -488,7 +490,7 @@ class AccountController extends Controller
         Session::put('phone', $request->phone);
 
         //sms integration
-
+        // $sms = (new SmsController)->smsgatewayhub_registration_otp($request->phone, $otp);
 
         Session::put('step', 2);
         
