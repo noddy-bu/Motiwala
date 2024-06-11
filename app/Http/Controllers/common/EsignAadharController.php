@@ -204,7 +204,7 @@ class EsignAadharController extends Controller
         // Get user details
         $data = [
             'user' => $user,
-            'plan_name' => $plan,
+            'plan' => $plan,
             'user_detail' => $user_detail
         ];
 
