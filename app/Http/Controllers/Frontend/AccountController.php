@@ -1238,6 +1238,8 @@ class AccountController extends Controller
                 'status' => 1,
             ]);
 
+            $amount = $order->grand_total;
+
             //update order
             DB::table('transactions')->insert([
                 'user_id' => Session::get('temp_user_id'),
@@ -1266,24 +1268,34 @@ class AccountController extends Controller
             // delete temp recored
             DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
 
-            // $this->auto_add_transactions(Session::get('temp_user_id'));
+            $this->auto_add_transactions(Session::get('temp_user_id'),$amount);
 
             return redirect()->route('account.new.enrollment.page');
         // }
     }
 
 
-    public function auto_add_transactions($temp_user_id)
+    public function auto_add_transactions($temp_user_id, $amount)
     {
         // Retrieve the user's plan ID from the session
         $user_plan_Details = DB::table('users')->where('id', $temp_user_id)->value('plan_id');
-    
+
         // Retrieve the plan details
         $plan_details = DB::table('plans')->where('id', $user_plan_Details)->first(['minimum_installment_amount', 'installment_period']);
 
+        $total_get_Amount = $amount / 1000 * 10750;
+
+        $redeem_id = DB::table('redeem')->insertGetId([
+            'user_id' => $temp_user_id,
+            'plan_id' => $user_plan_Details,
+            'installment_count' => 1,
+            'total_paid_amount' => $amount,
+            'total_get_amount' => $total_get_Amount,
+        ]);
+
         // Calculate the number of installments
         $installments = $plan_details->installment_period;
-        $amount = $plan_details->minimum_installment_amount;
+        // $amount = $plan_details->minimum_installment_amount;
 
         for ($i = 1; $i <= $installments; $i++) {
             // Insert transaction records
@@ -1292,8 +1304,11 @@ class AccountController extends Controller
                 'payment_amount' => $amount,
                 'payment_response' => '[]',
                 'payment_status' => 'unpaid',
-                'created_at' => date('Y-m-d H:i:s', strtotime("+$i month")),
-                'updated_at' => date('Y-m-d H:i:s', strtotime("+$i month")),
+                'date_of_installment' => date('Y-m-d H:i:s', strtotime("+$i month")),
+                'redeem_id' => $redeem_id,
+                'installment' => $i + 1,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
             ]);
         }
     
