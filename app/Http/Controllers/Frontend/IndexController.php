@@ -27,59 +27,6 @@ class IndexController extends Controller
     }
 
 
-//--------------=============================== Blog  ================================------------------------------
-
-    public function blog(){
-        $blog = Blog::where('status', 1)->whereJsonContains('blog_category_ids', '3')->orderBy('updated_at', 'desc')->paginate(6);
-
-        return view('frontend.pages.blog.index', compact('blog'));
-    }
-
-    public function blog_data(Request $request)
-    {
-        $page = $request->input('page', 1);
-        $perPage = 6;
-    
-        $blog = Blog::where('status', 1)
-            ->whereJsonContains('blog_category_ids', '3')
-            ->orderBy('updated_at', 'desc')
-            ->paginate($perPage, ['*'], 'page', $page);
-    
-        if ($request->ajax()) {
-            $view = view('frontend.component.blog_list_card', compact('blog'))->render();
-    
-            return response()->json(['html' => $view]);
-        }
-    
-        return view('frontend.pages.blog.index', compact('blog'));
-    }
-
-    public function blog_detail($category, $slug){
-
-        $category_id = BlogCategory::where('slug',$category)->first();
-
-        $detail = Blog::where('slug', $slug)->where('status', 1)->first();
-
-        //$author = json_decode($detail->user_id, true);
-        $author = $detail->user_id;
-
-        $blog = Blog::where('status', 1)->whereJsonContains('blog_category_ids', json_decode($detail->blog_category_ids)['0'])->where('id', '!=', $detail->id)->limit(3)->orderBy('id', 'desc')->get();
-
-        $current_id = $detail->id;
-
-        $previous = Blog::where('status', 1)->whereJsonContains('blog_category_ids', ''.$category_id->id.'')->where('id', '<', $current_id)->orderBy('id', 'desc')->first();
-        $next = Blog::where('status', 1)->whereJsonContains('blog_category_ids', ''.$category_id->id.'')->where('id', '>', $current_id)->orderBy('id', 'asc')->first();
-
-        $previous_slug = $previous ? $previous->slug : null;
-        $next_slug = $next ? $next->slug : null;
-
-        return view('frontend.pages.blog.detail', compact('detail','author','blog','previous_slug','next_slug'));
-    }
-
-//--------------=============================== Blog end ================================------------------------------
-
-
-
 //--------------=============================== other ================================------------------------------
 
     public function not_found(){
@@ -184,7 +131,7 @@ class IndexController extends Controller
 
         $body = '<table>';
         $body .= "<tr><td style='width: 150px;'><strong>From :</strong></td><td>" . $name . ' ' . $email . "</td></tr></br>";
-        $body .= "<tr><td style='width: 150px;'><strong>Form Name :</strong></td><td>" . $section . "</td></tr></br>";
+        // $body .= "<tr><td style='width: 150px;'><strong>Form Name :</strong></td><td>" . $section . "</td></tr></br>";
         $body .= "<tr><td style='width: 150px;'><strong>Page URL :</strong></td><td>" . $url . "</td></tr></br><p></p>";
         
         $body .= "<tr><td style='width: 150px;'><strong>Full Name :</strong></td><td>" . $name . "</td></tr></br>";
@@ -231,7 +178,7 @@ class IndexController extends Controller
     
         $response = [
             'status' => true,
-            'notification' => 'Contact added successfully!',
+            'notification' => 'Message added successfully!',
         ];
     
         return response()->json($response);

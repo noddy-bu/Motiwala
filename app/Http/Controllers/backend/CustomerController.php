@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\Transaction;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
@@ -88,6 +89,13 @@ class CustomerController extends Controller
         $data = [];
         $i = 1;
         foreach ($records as $row) {
+
+            if($row->status == 1){
+                $tran = '<a href="javascript:void(0);" class="action-icon" onclick="largeModal(\''.route('Customer.transaction', ['id' => $row->id]).'\', \'Customer Transaction\')"> <i class="ri-wallet-line" title="Transaction"></i></a>';
+            } else {
+                $tran = null;
+            }
+
             $nestedData = [
                 'id' => $i++,
                 'name' => $row->name,
@@ -98,7 +106,8 @@ class CustomerController extends Controller
                 'action' => //'<a href="'.route('Customer.status', ['id' => $row->id, 'status' => $row->status ? 0 : 1]).'" class="action-icon">'.
                 //                 '<i class="'.($row->status ? 'ri-eye-off-fill' : 'ri-eye-fill').'" title="'.($row->status ? 'Inactive' : 'Active').'"></i>'.
                 //             '</a>'.
-                            '<a href="javascript:void(0);" class="action-icon" onclick="largeModal(\''.route('Customer.edit', ['id' => $row->id]).'\', \'Privew Customer\')"> <i class="ri-eye-fill" title="Privew"></i></a>'
+                            '<a href="javascript:void(0);" class="action-icon" onclick="largeModal(\''.route('Customer.edit', ['id' => $row->id]).'\', \'Privew Customer\')"> <i class="ri-eye-fill" title="Privew"></i></a>'.
+                            $tran
                             // '<!--<a href="javascript:void(0);" class="action-icon" onclick="confirmModal(\''.route('Customer.delete', $row->id).'\', responseHandler)"><i class="mdi mdi-delete" title="Delete"></i></a>-->'
             ];
     
@@ -124,6 +133,11 @@ class CustomerController extends Controller
         $user_detail = DB::table('userdetails')->where('user_id', $id)->get()->first();
         $plan_name = DB::table('plans')->where('id', $user->plan_id)->value('name');
         return view('backend.pages.customer.edit', compact('user', 'user_detail', 'plan_name'));
+    }
+
+    public function transaction($id) {
+        $transaction = Transaction::where('user_id',$id)->where('payment_status','paid')->get();
+        return view('backend.pages.customer.transaction', compact('transaction'));
     }
 
     
