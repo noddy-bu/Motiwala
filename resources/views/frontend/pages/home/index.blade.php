@@ -128,7 +128,7 @@
             <div class="container">
                 <div class="row">
                     <h4 class="title_heading text-center black_color heading_font">4 Easy Steps </h4>
-                        <p class="text-center pb-lg-5 pb-md-3 pb-2 black_color ">to purchase the jewellery of your dreams</p>
+                        <p class="text-center pb-lg-5 pb-md-3 pb-0 mb-1 black_color ">to purchase the jewellery of your dreams</p>
                     <div class="col-lg-3 col-12">
                         <div class="step_box steps1">
                             
@@ -228,7 +228,7 @@
             <div class="benefits_bgimage swing">
                 <img src="/assets/frontend/images/benefit_bg.png" class="d-block" alt="...">
             </div>
-            <div class="row align-items-center">
+            <div class="row align-items-center justify-content-center">
                 <div class="col-md-12">
                     <h4 class="title_heading text-center black_color pb-lg-5 pb-md-4 pb-3 heading_font">Benefits Calculator</h4>
                 </div>
@@ -280,7 +280,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 col-8">
                     <canvas id="myCanvas" width="300" height="300"></canvas>
                 </div>  
                 <div class="col-md-12 text-md-start text-center">

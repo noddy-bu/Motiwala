@@ -5,16 +5,16 @@
                 <div class="col-md-5">
                     <ul>
                         <li>
-                            <a href="terms-conditions"> <i class="las la-angle-right"></i> Terms Conditions</a>
+                            <a href="terms-conditions">  Terms Conditions</a>
                         </li>
                         <li>|</li>
                         <li>
-                            <a href="{{ url(route('privacy-policy')) }}"> <i class="las la-angle-right"></i> Privacy Policy</a>
+                            <a href="{{ url(route('privacy-policy')) }}">  Privacy Policy</a>
                         </li>
                         <li>|</li>
                         <br class="d-md-block d-none">
                         <li>
-                            <a href="refund-policy"> <i class="las la-angle-right"></i> Refund Policy</a>
+                            <a href="refund-policy">  Refund Policy</a>
                         </li>
 
                         <!-- <li>|</li>
