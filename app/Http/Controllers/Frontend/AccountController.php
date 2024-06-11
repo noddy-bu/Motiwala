@@ -1270,7 +1270,7 @@ class AccountController extends Controller
 
             $this->auto_add_transactions(Session::get('temp_user_id'),$amount);
 
-            // return redirect()->route('account.new.enrollment.page');
+            return redirect()->route('account.new.enrollment.page');
         // }
     }
 
