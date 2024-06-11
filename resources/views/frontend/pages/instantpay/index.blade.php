@@ -22,7 +22,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h4 class="title_heading text-center black_color pb-3 pb-md-2 heading_font">Instant Pay</h4>
+					<h4 class="title_heading text-center black_color py-2 pb-md-2 heading_font">Instant Pay</h4>
 				</div>
 
 				<div class="col-md-12">

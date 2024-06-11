@@ -1120,6 +1120,7 @@ body .width80:not(.sidebar) {
     width: 80% !important;
     padding: 0 !important;
     float: right;
+    position: relative;
 }
 
 .nav-pills .nav-link {
@@ -1139,7 +1140,10 @@ body .width80:not(.sidebar) {
 }
 
 .after_login_body footer {
-    padding: 00px 0 0px 0px;
+    padding: 0px 0 0px 0px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
 }
 
 .after_login_body .benefits_bgimage img {
@@ -1158,7 +1162,7 @@ body .width80:not(.sidebar) {
 }
 
 .after_login_body .copyright_section ul li a {
-    font-size: 13px;
+    font-size: 14px;
     text-decoration: none;
     color: #fff;
 }
@@ -1193,10 +1197,11 @@ body .width80:not(.sidebar) {
 
 .after_login_body .form-control {
     font-size: 13px;
+    background-color: transparent;
 }
 
 .inner_sectionpadd {
-    padding-bottom: 244px;
+    padding-bottom: 306px;
 }
 
 body .userlogin_box {
@@ -1242,12 +1247,16 @@ body .userlogin_box {
     margin-top: -25px;
 }
 
+.after_login_body .main {
+    padding-bottom: 50px;
+}
+
 .copyright_section .col-md-5 ul li .la-angle-right {
     font-size: 16px;
 }
 
-.after_login_body .copyright_section .col-md-5 ul li:nth-child(even) {
-    margin: 0px 2px;
+.after_login_body .copyright_section .col-md-5 ul li {
+    margin: 0px 8px;
     font-size: 14px;
 }
 
@@ -1267,6 +1276,14 @@ body .userlogin_box {
     position: relative;
     top: -3px !important;
 }
+
+.p-3.mt-5.mb-3.text-black {       /*  for nominee details heading alignment */
+    width: 98%;
+    margin-left: 10px;
+}
+
+/* coming soon pages */
+
 
 
 
