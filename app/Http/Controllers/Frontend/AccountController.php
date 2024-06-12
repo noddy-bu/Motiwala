@@ -1270,14 +1270,14 @@ class AccountController extends Controller
             // delete temp recored
             DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
 
-            $this->auto_add_transactions(Session::get('temp_user_id'),$amount);
+            $this->auto_add_transactions(Session::get('temp_user_id'),$amount,$account_number);
 
             return redirect()->route('account.new.enrollment.page');
         // }
     }
 
 
-    public function auto_add_transactions($temp_user_id, $amount)
+    public function auto_add_transactions($temp_user_id, $amount, $account_number)
     {
         // Retrieve the user's plan ID from the session
         $user_plan_Details = DB::table('users')->where('id', $temp_user_id)->value('plan_id');
@@ -1293,6 +1293,8 @@ class AccountController extends Controller
             'installment_count' => 1,
             'total_paid_amount' => $amount,
             'total_get_amount' => $total_get_Amount,
+            'account_number' => $account_number,
+            'status' => '1',
         ]);
 
         // Calculate the number of installments
