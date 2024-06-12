@@ -44,7 +44,7 @@
           <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-1 information_box">
             <div class="step_box_icon">
               <div class="step_box_img">
-                <img src="/assets/frontend/images/information_user.png" class="d-block" alt="...">
+                <img src="/assets/frontend/images/user_icon.png" class="d-block" alt="...">
               </div>
             </div>
             <div class="choose_content">
@@ -61,7 +61,7 @@
           <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-1 information_box">
             <div class="step_box_icon">
               <div class="step_box_img">
-                <img src="/assets/frontend/images/information_card.png" class="d-block" alt="...">
+                <img src="/assets/frontend/images/information_card.svg" class="d-block" alt="...">
               </div>
             </div>
             <div class="choose_content">
@@ -78,7 +78,7 @@
           <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-1 information_box">
             <div class="step_box_icon">
               <div class="step_box_img">
-                <img src="/assets/frontend/images/information_calender.png" class="d-block" alt="...">
+                <img src="/assets/frontend/images/information_calender.svg" class="d-block" alt="...">
               </div>
             </div>
             <div class="choose_content">
@@ -95,7 +95,7 @@
           <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-1 information_box">
             <div class="step_box_icon">
               <div class="step_box_img">
-                <img src="/assets/frontend/images/information_percent.png" class="d-block" alt="...">
+                <img src="/assets/frontend/images/percent_icon.png" class="d-block" alt="...">
               </div>
             </div>
             <div class="choose_content">
