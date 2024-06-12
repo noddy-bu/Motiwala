@@ -32,19 +32,19 @@
                 if (Session::has('step') && Session::get('step') == 1) {
                     $value = 0;
                 } elseif (Session::has('step') && Session::get('step') == 3) {
-                    $value = 10;
+                    $value = 12;
                 } elseif (Session::has('step') && Session::get('step') == 4) {
-                    $value = 20;
+                    $value = 25;
                 } elseif (Session::has('step') && Session::get('step') == 5) {
-                    $value = 30;
+                    $value = 35;
                 } elseif (Session::has('step') && Session::get('step') == 6) {
-                    $value = 40;
+                    $value = 45;
                 } elseif (Session::has('step') && Session::get('step') == 7) {
-                    $value = 50;
+                    $value = 55;
                 } elseif (Session::has('step') && Session::get('step') == 8) {
-                    $value = 60;
+                    $value = 65;
                 } elseif (Session::has('step') && Session::get('step') == 9) {
-                    $value = 70;
+                    $value = 75;
                 } elseif (Session::has('step') && Session::get('step') == 10) {
                     $value = 80;
                 } elseif (Session::has('step') && Session::get('step') == 12) {
