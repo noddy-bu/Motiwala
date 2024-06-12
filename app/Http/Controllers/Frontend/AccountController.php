@@ -995,9 +995,9 @@ class AccountController extends Controller
         if($esign->success == true){
             $download_pdf = (new EsignAadharController)->download_esign($client_id);
 
-            DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
-                'esign' => 1,
-            ]);
+            // DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
+            //     'esign' => 1,
+            // ]);
 
             $result = "true";
         } else {
