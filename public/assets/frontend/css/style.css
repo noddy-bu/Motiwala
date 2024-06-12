@@ -21,7 +21,7 @@ div#add-phone a {
     background-size: cover;
 }
 
-.black_color {
+.black_color, b {
     color: #404040;
 }
 
@@ -1185,7 +1185,7 @@ body .width80:not(.sidebar) {
     font-size: 15px;
 }
 
-.after_login_body .adhar_field input {
+.after_login_body .adhar_field input, .adhar_field textarea {
     border: 0px;
     border-bottom: 1px solid #ccc;
     border-radius: 0;
@@ -1201,7 +1201,7 @@ body .width80:not(.sidebar) {
 }
 
 .inner_sectionpadd {
-    padding-bottom: 306px;
+    padding-bottom: 220px;
 }
 
 body .userlogin_box {
@@ -1255,8 +1255,12 @@ body .userlogin_box {
     font-size: 16px;
 }
 
+.copyright_text{
+    font-size: 14px;
+}
+
 .after_login_body .copyright_section .col-md-5 ul li {
-    margin: 0px 8px;
+    margin: 0px 4px;
     font-size: 14px;
 }
 

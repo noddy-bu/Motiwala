@@ -18,7 +18,7 @@
 <!-- -------------------- term content  start ---------------- -->  
 
 <main class="main">
-	<section class="pt-5 terms_section">
+	<section class="pt-5 black_color terms_section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">

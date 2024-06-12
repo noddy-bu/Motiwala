@@ -4,7 +4,7 @@
             <div class="row gap-md-0 gap-2">
                 <div class="col-md-5">
                     <ul>
-                        <li>
+                        <li class="ms-md-1 ms-0">
                             <a href="terms-conditions">  Terms Conditions</a>
                         </li>
                         <li>|</li>
@@ -23,7 +23,7 @@
                         </li> -->
                     </ul>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 copyright_text">
                     <span class="text-center">Copyright © 2024 Under Motiwala & Sons</span>
                 </div>
                 <div class="col-md-3">
