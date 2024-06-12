@@ -31,28 +31,24 @@
                 
                 if (Session::has('step') && Session::get('step') == 1) {
                     $value = 0;
-                } elseif (Session::has('step') && Session::get('step') == 2) {
-                    $value = 8;
                 } elseif (Session::has('step') && Session::get('step') == 3) {
-                    $value = 16;
+                    $value = 10;
                 } elseif (Session::has('step') && Session::get('step') == 4) {
-                    $value = 24;
+                    $value = 20;
                 } elseif (Session::has('step') && Session::get('step') == 5) {
-                    $value = 32;
+                    $value = 30;
                 } elseif (Session::has('step') && Session::get('step') == 6) {
                     $value = 40;
                 } elseif (Session::has('step') && Session::get('step') == 7) {
-                    $value = 48;
+                    $value = 50;
                 } elseif (Session::has('step') && Session::get('step') == 8) {
-                    $value = 56;
+                    $value = 60;
                 } elseif (Session::has('step') && Session::get('step') == 9) {
-                    $value = 64;
+                    $value = 70;
                 } elseif (Session::has('step') && Session::get('step') == 10) {
-                    $value = 72;
-                } elseif (Session::has('step') && Session::get('step') == 11) {
                     $value = 80;
                 } elseif (Session::has('step') && Session::get('step') == 12) {
-                    $value = 88;
+                    $value = 90;
                 } elseif (Session::has('step') && Session::get('step') == 13) {
                     $value = 100;
                 } else {
@@ -72,86 +68,67 @@
                     </div>
                     <div class="step-item">
                         <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseTwo" @if(Session::get('step') > 1) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseTwo">
+                            data-target="#collapseTwo" @if(Session::get('step') > 2) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseTwo">
                             2
                         </button>
                     </div>
                     <div class="step-item">
                         <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseThree" @if(Session::get('step') > 2) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
+                            data-target="#collapseThree" @if(Session::get('step') > 3) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
                             3
                         </button>
                     </div>
 
                     <div class="step-item">
                         <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseThree" @if(Session::get('step') > 3) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
+                            data-target="#collapseThree" @if(Session::get('step') > 4) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
                             4
                         </button>
                     </div>
 
                     <div class="step-item">
                         <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseThree" @if(Session::get('step') > 4) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
+                            data-target="#collapseThree" @if(Session::get('step') > 5) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
                             5
                         </button>
                     </div>
 
                     <div class="step-item">
                         <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseThree" @if(Session::get('step') > 5) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
+                            data-target="#collapseThree" @if(Session::get('step') > 7) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
                             6
                         </button>
                     </div>
 
                     <div class="step-item">
                         <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseThree" @if(Session::get('step') > 6) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
+                            data-target="#collapseThree" @if(Session::get('step') > 8) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
                             7
                         </button>
                     </div>
 
                     <div class="step-item">
                         <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseThree" @if(Session::get('step') > 7) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
+                            data-target="#collapseThree" @if(Session::get('step') > 9) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
                             8
                         </button>
                     </div>
 
                     <div class="step-item">
                         <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseThree" @if(Session::get('step') > 8) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
+                            data-target="#collapseThree" @if(Session::get('step') > 11) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
                             9
                         </button>
                     </div>
 
                     <div class="step-item">
                         <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseThree" @if(Session::get('step') > 9) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
+                            data-target="#collapseThree" @if(Session::get('step') > 13) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
                             10
                         </button>
                     </div>
 
-                    <div class="step-item">
-                        <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseThree" @if(Session::get('step') > 10) aria-expanded="true" @else aria-expanded="false" @endif aria-controls="collapseThree">
-                            11
-                        </button>
-                    </div>
 
-                    <div class="step-item">
-                        <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseThree" @if(Session::get('step') > 11) aria-expanded="true" @else aria-expanded="false" @endif aria-controls="collapseThree">
-                            12
-                        </button>
-                    </div>
-
-                    <div class="step-item">
-                        <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseThree" @if(Session::get('step') > 12) aria-expanded="true" @else aria-expanded="false" @endif aria-controls="collapseThree">
-                            13
-                        </button>
-                    </div>
                 </div>
 
             </div>

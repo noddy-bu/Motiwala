@@ -99,21 +99,21 @@
 
  <div style="width:100%; padding-top:15px;">
     <div style="width:18%; float:left;"><b>Nominee Name:</b></div>
-    <div style="width:82%; float:left; border-bottom:1px solid #ccc;">{{ $data['user_detail']->nominee_name }}</div>
+    <div style="width:82%; float:left; border-bottom:1px solid #ccc;">{{ !empty($data['user_detail']->nominee_name) ? $data['user_detail']->nominee_name : 'NA' }}</div>
 </div>
 <br>
 
     <div style="width:55%; clear:both; padding-top:15px;">
     <div style="width:70%; float:left;"><b>Relationship with account holder:</b></div>
-    <div style="width:30%; float:left; border-bottom:1px solid #ccc;">{{ $data['user_detail']->nominee_relation }}</div>
+    <div style="width:30%; float:left; border-bottom:1px solid #ccc;">{{ !empty($data['user_detail']->nominee_relation) ? $data['user_detail']->nominee_relation : 'NA' }}</div>
 </div>
  <div style="width:45%; ">
     <div style="width:42%; float:left;"><b> Contact Number:</b></div>
-    <div style="width:58%; float:left; border-bottom:1px solid #ccc;">{{ $data['user_detail']->nominee_phone }}</div>
+    <div style="width:58%; float:left; border-bottom:1px solid #ccc;">{{ !empty($data['user_detail']->nominee_phone) ? $data['user_detail']->nominee_phone : 'NA' }}</div>
 </div>
  <div style="width:100%; clear:both; padding-top:15px;">
     <div style="width:23%; float:left;"><b>Customer Address:</b></div>
-    <div style="width:77%; float:left; border-bottom:1px solid #ccc;">{{ $data['user_detail']->nominee_address }}</div>
+    <div style="width:77%; float:left; border-bottom:1px solid #ccc;">{{ !empty($data['user_detail']->nominee_address) ? $data['user_detail']->nominee_address : 'NA' }}</div>
 </div>
 
  <div style="width:100%; clear:both; margin-bottom:0px;padding-top:40px;">
