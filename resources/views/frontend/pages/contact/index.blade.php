@@ -33,8 +33,8 @@
 		<div class="container py-md-5 py-3">
 			<div class="row justify-content-between align-items-center">
 				<div class="col-md-5 col-12">
-					<h5 class="contact_form_heading pb-md-3">Contact Us</h5>
-					<h4 class="title_heading text-left black_color pb-3 contact_form_heading">We are here for you! How can we help?</h4>
+					<h5 class="contact_form_heading black_color pb-md-3">Contact Us</h5>
+					<h2 class="text-left pb-3 black_color contact_form_heading">We are here for you! <span class="d-block"> How can we help? </span> </h2>
 					<!-- <p class="contact_form_text pb-md-3"></p> -->
 					
 					<div class="contact_info address row">
@@ -57,9 +57,9 @@
 					</div>				
 				</div>
 
-				<div class="col-md-6 col-12">
+				<div class="col-md-6 col-12 pt-md-0 pt-4">
 
-					<h3 class="form_heading mb-md-4 mb-3 mb-3">Send Message to Us</h3>
+					<h3 class="form_heading black_color mb-md-4 mb-3 mb-3">Send Message to Us</h3>
 					<form action="" role="form" method="post" class="contact_form"> 
 						<div class="col-12 mb-md-4 mb-3">
 							<!-- <label class="pt-2 pt-md-3">Name* </label> -->

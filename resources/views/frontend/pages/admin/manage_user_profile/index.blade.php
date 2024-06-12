@@ -122,7 +122,7 @@
                                 </div>
 
                                 <!------- marital status ---------------------->
-                                <div class="row mt-5 mb-3">
+                                <div class="col-md-8 row mt-5 mb-3 pt-4">
 
                                     <div class="col-md-3">
                                         <div class="form-check">
@@ -215,7 +215,7 @@
                                 <div class="col-md-8">
                                     <div class="form-group mt-4 adhar_field">
                                         <label class="pb-3">Nominee Address *</label>
-                                        <textarea class="form-control" row="2" name="nominee_address" style="height: 103px;">{{ $user_detail->nominee_address }}</textarea>
+                                        <textarea class="form-control" name="nominee_address" style="height: 0px;">{{ $user_detail->nominee_address }}</textarea>
                                     </div>
                                 </div>
                     

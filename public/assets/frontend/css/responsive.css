@@ -226,7 +226,7 @@
     }
 
     .aos-init.aos-animate {
-        font-size: 14px !important;
+        font-size: 16px !important;
     }
 
     .benefits_bgimage {
@@ -260,7 +260,7 @@
     }
 
     .choose_content p {
-        font-size: 14px !important;
+        font-size: 16px !important;
         padding-right: 15px !important;
     }
 
@@ -357,7 +357,7 @@
     }
 
     p, a {
-        font-size: 14px !important;
+        font-size: 16px !important;
     }
 
     .after_login_body .container:not(footer .container) {
@@ -366,7 +366,7 @@
     }
     
     p.fontsize26 {
-        font-size: 14px !important;
+        font-size: 16px !important;
         margin-bottom: 0px; 
     }
 
@@ -391,6 +391,7 @@
 
     .total_number_main {
         padding-top: 0px;
+        text-align: center;
     }
 
     a#nav-icon {
@@ -465,6 +466,7 @@
     body nav .nav_right_menu li a {
         color: #000 !important;
         padding: 0px 0px 8px 0px !important;
+        font-size: 14px !important;
     }
 
     .modal_popup_cls .modal-content {
@@ -600,7 +602,7 @@
         border: 2px solid #404040;
         padding: 4px 15px;
         float: left;
-        width: 60%;
+        width: 62%;
     }
 
     label#amountLabel {
@@ -629,7 +631,7 @@
     }
 
     .choose_content p {
-        font-size: 14px;
+        font-size: 16px;
         padding-right: 0px !important;
         line-height: 18px;
         text-align: start;
@@ -724,6 +726,10 @@
         position: absolute !important;
         bottom: 0px;
         width: 100%;
+    }
+
+    .after_login_body .copyright_section ul li a {
+        font-size: 14px !important;
     }
 
     .after_login_body .copyright_section span {
