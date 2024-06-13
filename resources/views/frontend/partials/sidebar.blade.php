@@ -25,30 +25,30 @@
                     <span class="ms-1 d-sm-inline">Manage A/c &amp; Benefits</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a href="/get-si-account-nos#autodebit_modal" class="nav-link align-middle px-0">
                     <i class="las la-credit-card"></i>
                     <span class="ms-1 d-sm-inline">Auto Debit</span>
                 </a>
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
                 <a href="/cancel-ach-si" class="nav-link align-middle px-0">
                     <i class="lab la-cc-mastercard"></i>
                     <span class="ms-1 d-sm-inline">Cancel ACH / Auto Debit (SI)</span>
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a href="/edituserprofile" class="nav-link align-middle px-0">
                     <i class="las la-user-circle"></i>
                     <span class="ms-1 d-sm-inline">Manage Profile</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a href="/linkaccount" class="nav-link align-middle px-0">
                     <i class="las la-user-friends"></i>
                     <span class="ms-1 d-sm-inline">Group Account</span>
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a href="/oldschemeclosure" class="nav-link align-middle px-0">
                     <i class="las la-file-invoice"></i>
