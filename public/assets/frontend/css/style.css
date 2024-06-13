@@ -1046,6 +1046,7 @@ div#preview-info p {
 div#bg_theme {
     position: fixed;
     top: 0px;
+    height: 100%;
 }
 
 .closebtn {
@@ -1262,6 +1263,39 @@ body .userlogin_box {
 .after_login_body .copyright_section .col-md-5 ul li {
     margin: 0px 4px;
     font-size: 14px;
+}
+
+/* pay installment page */
+
+.card {
+    padding: 0px 0px !important;
+    border-radius: 20px !important;
+    border: 1px solid #c0c0c0 !important;
+    margin-bottom: 30px;
+    box-shadow: 6px 7px 10px #00000015;
+}
+
+.card-header {
+    padding: 15px 16px !important;
+}
+
+.card-header h4 {
+    margin-bottom: 0px;
+}
+
+.information_tb .card-header {
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #fff !important;
+    border-radius: 20px 20px 0px 0px !important;
+}
+
+.information_tb .card-text {
+    margin-bottom: 5px;
+}
+
+#basic-datatable {
+    margin-bottom: 0px;
 }
 
 /* edit user profile page */

@@ -45,43 +45,49 @@
                             ->where('payment_status', 'unpaid')
                             ->first();
                     @endphp
-
-                    <div class="card">
-                        <div class="card-body">
+                    <div class="col-md-12 mt-md-4 mt-3">                        
+                        <div class="">
                             <div class="col-md-12">
                                 <h4>
                                     {{ ucfirst($info->name) }} - {{ $info->account_number }}
                                 </h4>
                             </div>
                         </div>
-                    </div>
 
 
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h4>Payment Details</h4>
-
-                                    <p>Toatal Amount Received : {{ $info->total_paid_amount }}</p><br>
-                                    <p>Next Payment Due :
-                                        {{ date('d-m-Y', strtotime($next_payment_date->date_of_installment)) }}</p></br>
-                                    <p>Last Payment Due :
-                                        {{ date('d-m-Y', strtotime($last_payment_date->date_of_installment)) }}</p></br>
-                                    <p>No of Installments Paid : {{ $info->installment_count }}</p></br>
+                        <div class="col-md-12 mt-md-4 mt-3">
+                            <div class="row ">
+                                <div class="col-md-6 information_tb">
+                                    <div class="card">
+                                        <h5 class="card-header">Payment Details</h5>
+                                        <div class="card-body">
+                                            <p class="card-text">Total Amount Received : {{ $info->total_paid_amount }}</p>
+                                            <p class="card-text">Next Payment Due :
+                                                {{ date('d-m-Y', strtotime($next_payment_date->date_of_installment)) }}</p>
+                                            <p class="card-text">Last Payment Due :
+                                                {{ date('d-m-Y', strtotime($last_payment_date->date_of_installment)) }}</p>
+                                            <p class="card-text">No of Installments Paid : {{ $info->installment_count }}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <h4>Maturity Details</h4>
-
-                                    <p>Enrollment Date : {{ date('d-m-Y', strtotime($info->created_at)) }}</p><br>
-                                    <p>Maturity Date : {{ date('d-m-Y', strtotime($Maturity_date->date_of_installment)) }}
-                                    </p></br>
+                                <div class="col-md-6 information_tb">
+                                    <div class="card">
+                                        <h5 class="card-header">Maturity Details</h5>
+                                        <div class="card-body">
+                                            <p class="card-text">Enrollment Date : {{ date('d-m-Y', strtotime($info->created_at)) }}</p>
+                                            <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($Maturity_date->date_of_installment)) }}
+                                            </p>
+                                            <br>
+                                            <br>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12 information_tb">
 
                         <div class="table-responsive">
                             <table id="basic-datatable" class="table dt-responsive nowrap w-100">
@@ -129,9 +135,7 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </section>
