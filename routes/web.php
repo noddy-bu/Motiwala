@@ -26,15 +26,6 @@ use App\Models\User;
 // Home START
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
-Route::get('/blog', [IndexController::class, 'blog'])->name('blog');
-Route::get('/blogs-data', [IndexController::class, 'blog_data'])->name('blog-data');
-
-$postCategories = DB::table('blog_categories')->pluck('slug')->toArray();
-Route::get('/{category}/{slug}', [IndexController::class, 'blog_detail'])
-    ->where('category', implode('|', $postCategories))
-    ->name('blog.detail');
-
-
 Route::get('/contact-us', [IndexController::class, 'contact_us'])->name('contact');
 Route::get('/information', [IndexController::class, 'information'])->name('information');
 Route::any('/instant-pay', [IndexController::class, 'instantpay'])->name('instantpay');
@@ -92,6 +83,8 @@ Route::middleware('auth.frontend')->group(function () {
     Route::get('/myAccounts', [AccountController::class, 'my_accounts'])->name('customer.myaccounts');
 
     Route::get('/oldschemeclosure', [IndexController::class, 'old_scheme_closure'])->name('old-scheme-closure');
+
+    Route::get('/pay_installments', [AccountController::class, 'pay_installments'])->name('pay-installments');
     
 });
 

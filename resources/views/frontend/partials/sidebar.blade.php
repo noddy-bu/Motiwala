@@ -8,37 +8,37 @@
         </a>
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start px-2 pt-md-3 pt-5" id="menu">
             <li class="nav-item">
-                <a href="/information" class="nav-link align-middle px-0">
+                <a href="{{ url(route('information')) }}" class="nav-link align-middle px-0">
                     <i class="las la-exclamation-circle"></i>
                     <span class="ms-1 d-sm-inline">Information</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#pay_installments" class="nav-link align-middle px-0">
+                <a href="{{ url(route('pay-installments')) }}" class="nav-link align-middle px-0">
                     <i class="las la-hand-holding-usd"></i>
                     <span class="ms-1 d-sm-inline">Pay Installments</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/myAccounts" class="nav-link align-middle px-0">
+                <a href="{{ url(route('customer.myaccounts')) }}" class="nav-link align-middle px-0">
                     <i class="las la-user-plus"></i>
                     <span class="ms-1 d-sm-inline">Manage A/c &amp; Benefits</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/get-si-account-nos#autodebit_modal" class="nav-link align-middle px-0">
+                <a href="{{ url(route('customer.get-si-account-nos')) }}" class="nav-link align-middle px-0">
                     <i class="las la-credit-card"></i>
                     <span class="ms-1 d-sm-inline">Auto Debit</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/cancel-ach-si" class="nav-link align-middle px-0">
+                <a href="{{ url(route('customer.cancel-ach-si')) }}" class="nav-link align-middle px-0">
                     <i class="lab la-cc-mastercard"></i>
                     <span class="ms-1 d-sm-inline">Cancel ACH / Auto Debit (SI)</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/edituserprofile" class="nav-link align-middle px-0">
+                <a href="{{ url(route('edit-user-profile')) }}" class="nav-link align-middle px-0">
                     <i class="las la-user-circle"></i>
                     <span class="ms-1 d-sm-inline">Manage Profile</span>
                 </a>
@@ -50,7 +50,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/oldschemeclosure" class="nav-link align-middle px-0">
+                <a href="{{ url(route('old-scheme-closure')) }}" class="nav-link align-middle px-0">
                     <i class="las la-file-invoice"></i>
                     <span class="ms-1 d-sm-inline">Old Scheme Closure</span>
                 </a>
@@ -62,7 +62,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/faq" class="nav-link align-middle px-0">
+                <a href="{{ url(route('faq')) }}" class="nav-link align-middle px-0">
                     <i class="las la-question-circle"></i>
                     <span class="ms-1 d-sm-inline">FAQ</span>
                 </a>

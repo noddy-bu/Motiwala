@@ -102,6 +102,29 @@ class AccountController extends Controller
         return view('frontend.pages.admin.my_accounts.index');
     }
 
+    public function pay_installments(){
+
+        $info = DB::table('users')
+        ->select([
+            'users.account_number',
+            'users.created_at',
+            'users.plan_id',
+            'plans.name',
+            'plans.installment_period',
+            'redeem.total_paid_amount',
+            'redeem.installment_count'
+        ])
+        ->join('plans', 'users.plan_id', '=', 'plans.id')
+        ->join('redeem', 'users.id', '=', 'redeem.user_id')
+        ->where('redeem.status', 1)
+        ->where('users.id',Session::get('user_id'))
+        ->get()->first();
+        
+        $transactions = DB::table('transactions')->where('user_id',Session::get('user_id'))->get();
+
+        return view('frontend.pages.admin.pay_installments.index', compact('info','transactions'));
+    }
+
     public function edit_user_profile(){
 
         $user = DB::table('users')->where('id', Session::get('user_id'))
@@ -1249,6 +1272,8 @@ class AccountController extends Controller
                 'payment_amount' => $order->grand_total,
                 'payment_response' => json_encode($input),
                 'payment_status' => 'paid',
+                'date_of_installment' => date('Y-m-d H:i:s'),
+                'installment' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
