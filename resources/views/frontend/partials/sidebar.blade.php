@@ -19,7 +19,7 @@
                     <span class="ms-1 d-sm-inline">Pay Installments</span>
                 </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a href="{{ url(route('customer.myaccounts')) }}" class="nav-link align-middle px-0">
                     <i class="las la-user-plus"></i>
                     <span class="ms-1 d-sm-inline">Manage A/c &amp; Benefits</span>
@@ -36,19 +36,19 @@
                     <i class="lab la-cc-mastercard"></i>
                     <span class="ms-1 d-sm-inline">Cancel ACH / Auto Debit (SI)</span>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
                 <a href="{{ url(route('edit-user-profile')) }}" class="nav-link align-middle px-0">
                     <i class="las la-user-circle"></i>
                     <span class="ms-1 d-sm-inline">Manage Profile</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a href="/linkaccount" class="nav-link align-middle px-0">
                     <i class="las la-user-friends"></i>
                     <span class="ms-1 d-sm-inline">Group Account</span>
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a href="{{ url(route('old-scheme-closure')) }}" class="nav-link align-middle px-0">
                     <i class="las la-file-invoice"></i>
