@@ -157,9 +157,17 @@
 
                 <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">Name *</label>
+                        <label class="pb-2">First Name *</label>
                         <input type="text" class="form-control" name="name" pattern="[A-Za-z]+" minlength="3"
-                            maxlength="20" placeholder="Please Enter Your Name" value="{{ $user->name }}" required />
+                            maxlength="20" placeholder="Please Enter Your First Name" value="{{ $user->name }}" required />
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group mt-md-5 mt-3 adhar_field">
+                        <label class="pb-2">Last Name *</label>
+                        <input type="text" class="form-control" name="name" pattern="[A-Za-z]+" minlength="3"
+                            maxlength="20" placeholder="Please Enter Your Last Name" value="{{ $user->name }}" required />
                     </div>
                 </div>
 
