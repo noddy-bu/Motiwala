@@ -72,7 +72,7 @@
     </div> -->
 
     <div class="carousel-item active">
-      <img src="/assets/frontend/images/homebanner5.jpg" class="d-md-block d-none w-100" alt="...">
+      <img src="/assets/frontend/images/1.jpg" class="d-md-block d-none w-100" alt="...">
       <img src="/assets/frontend/images/6.jpg" class="d-md-none d-block w-100" alt="...">
     </div>
 
