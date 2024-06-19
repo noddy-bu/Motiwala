@@ -1261,9 +1261,9 @@
 
         </div>
 
-        <div class="p-3 mb-2 text-white mt-4" style="background-color:#c0af78;">
+        <!-- <div class="p-3 mb-2 text-white mt-4" style="background-color:#c0af78;">
             <h5> Payment Details </h5>
-        </div>
+        </div> -->
 
         <div>
         </div>
@@ -1273,7 +1273,7 @@
             @csrf
 
             <div class="form-group">
-                <div class="buttonclass1 mt60">
+                <div class="buttonclass1 mt30">
                     <button type="submit">Proceed Payment <i class="las la-arrow-right"></i></button>
                 </div>
             </div>
@@ -1329,7 +1329,7 @@
 
             <div class="col-md-4">
 
-                <div class="card col-md-12 mt-3">
+                <div class="card col-md-12 mt-2">
                     <div class="card-header">
                         Plan Details
                     </div>
@@ -1345,7 +1345,7 @@
 
             <div class="col-md-4">
 
-                <div class="card col-md-12 mt-3">
+                <div class="col-md-12 mt-2">
 
 
                     <div class="card col-md-12">
@@ -1366,7 +1366,7 @@
 
 
             <div class="col-md-4">
-                <div class="card col-md-12 mt-3">
+                <div class="card col-md-12 mt-2">
                     <div class="card-header">
                         Login Details
                     </div>
@@ -1381,7 +1381,7 @@
 
             <div class="col-md-12">
 
-                <div class="card col-md-12 mt-4">
+                <div class="card col-md-12 mt-2">
                     <div class="card-header">
                         Customer Details
                     </div>
@@ -1454,7 +1454,7 @@
 
         </div>
 
-        <div class="p-3 mb-2 text-white mt-4" style="background-color:#c0af78;">
+        <div class="p-3 mb-2 text-white mt-2" style="background-color:#c0af78;">
             <h5> Login </h5>
         </div>
 
