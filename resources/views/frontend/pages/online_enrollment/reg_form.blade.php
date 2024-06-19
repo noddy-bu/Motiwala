@@ -115,7 +115,7 @@
     <div id="customer-detail">
 
 
-        <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
+        <div class="p-3 mb-2 text-white" style="background-color:#e1aa7a;">
             <h5 class="mb-0"> Customer Information </h5>
         </div>
 
@@ -274,7 +274,7 @@
 
     <div id="plan-detail">
 
-        <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
+        <div class="p-3 mb-2 text-white" style="background-color:#e1aa7a;">
             <h5 class="mb-0"> Plan Details </h5>
         </div>
 
@@ -428,7 +428,7 @@
                 ->value('name');
         @endphp
 
-        <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
+        <div class="p-3 mb-2 text-white" style="background-color:#e1aa7a;">
             <h5 class="mb-0"> Preview Info </h5>
         </div>
 
@@ -534,7 +534,7 @@
 
         </div>
 
-        <div class="p-3 mb-2 text-white mt-4" style="background-color:#c0af78;">
+        <div class="p-3 mb-2 text-white mt-4" style="background-color:#e1aa7a;">
             <h5 class="mb-0"> eKYC Process </h5>
         </div>
 
@@ -860,7 +860,7 @@
                 ->value('name');
         @endphp
 
-        <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
+        <div class="p-3 mb-2 text-white" style="background-color:#e1aa7a;">
             <h5> Preview Info </h5>
         </div>
 
@@ -969,7 +969,7 @@
 
         </div>
 
-        <div class="p-3 mb-2 text-white mt-3" style="background-color:#c0af78;">
+        <div class="p-3 mb-2 text-white mt-3" style="background-color:#e1aa7a;">
             <h5> eSign Process </h5>
         </div>
 
@@ -1149,7 +1149,7 @@
                 ->value('name');
         @endphp
 
-        <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
+        <div class="p-3 mb-2 text-white" style="background-color:#e1aa7a;">
             <h5> Preview Info </h5>
         </div>
 
@@ -1261,7 +1261,7 @@
 
         </div>
 
-        <!-- <div class="p-3 mb-2 text-white mt-4" style="background-color:#c0af78;">
+        <!-- <div class="p-3 mb-2 text-white mt-4" style="background-color:#e1aa7a;">
             <h5> Payment Details </h5>
         </div> -->
 
@@ -1321,7 +1321,7 @@
                 ->value('name');
         @endphp
 
-        <div class="p-3 mb-2 text-white" style="background-color:#c0af78;">
+        <div class="p-3 mb-2 text-white" style="background-color:#e1aa7a;">
             <h5> Preview Info </h5>
         </div>
 
@@ -1454,7 +1454,7 @@
 
         </div>
 
-        <div class="p-3 mb-2 text-white mt-2" style="background-color:#c0af78;">
+        <div class="p-3 mb-2 text-white mt-2" style="background-color:#e1aa7a;">
             <h5> Login </h5>
         </div>
 
