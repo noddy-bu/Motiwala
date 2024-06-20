@@ -35,7 +35,7 @@
                   </li>
                   <li>
                     <a class="nav-link" href="{{ url(route('information')) }}"><i class="las la-exclamation-circle"></i>
-                                    Information</a>
+                                    Information (Plan)</a>
                   </li>
                   <li>
                     <a class="nav-link" href="{{ url(route('terms')) }}"><i class="las la-clipboard-list"></i>

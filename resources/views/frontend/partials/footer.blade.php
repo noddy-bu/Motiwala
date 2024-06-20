@@ -50,7 +50,7 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
 
              <li>
               <a href="{{ url(route('information')) }}">
-                <i class="las la-angle-right"></i> Information </a>
+                <i class="las la-angle-right"></i> Information (Plan) </a>
             </li>
              <li>
               <a href="{{ url(route('instantpay')) }}">
@@ -77,7 +77,7 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
               <a href="{{ url(route('privacy-policy')) }}"> <i class="las la-angle-right"></i> Privacy Policy</a>
             </li>
 <li>
-              <a href="#"> <i class="las la-angle-right"></i> Refund Policy</a>
+              <a href="refund-policy"> <i class="las la-angle-right"></i> Refund Policy</a>
             </li>
             
            
@@ -119,12 +119,12 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
   </div>
   <div class="copyright_section">
     <div class="container">
-      <div class="row">
+      <div class="row flex-md-row flex-column-reverse gap-md-0 gap-2">
        
         <div class="col-md-6">
           <p class="text-md-start text-center mb-1 mb-md-3">Copyright © 2024 Under Motiwala & Sons</p>
         </div>
-        <div class="col-md-6 text-md-end text-center">
+        <div class="col-md-6 text-md-end text-center footer_social">
           <ul class="float_right">
             <li>
               <a target="_blank" href="https://api.whatsapp.com/send?phone=+919920077780&text=Hi%2C+I+am+contacting+you+through+your+website+from+desktop+view+https%3A%2F%2Fhttps://motiwalajewels.in/%2F">
