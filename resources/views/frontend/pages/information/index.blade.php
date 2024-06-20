@@ -68,7 +68,7 @@
               <p class="black_color">
                 You've got flexible payment options! Pay your monthly installments with cash, 
                 card, or online banking using various methods like Standing Instruction (SI), 
-                Net-banking, NEFT, and UPI or even post-dated cheques.
+                Net-banking, NEFT, and UPI.
               </p>
             </div>
           </div>
@@ -124,13 +124,13 @@
                 <th scope="col">Maturity Date</th>
                 <th scope="col">Instalment per month (in ₹)</th>
                 <th scope="col">Discount on Jewellery purchase (in ₹)</th>
-              <th scope="col">% of monthly installment</th>
+              <th scope="col">% of your first installment</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>1st Jan 2022</td>
                 <td>1st Jan 2023</td>
+                <td>1st Jan 2024</td>
                 <td>4000</td>
                 <td>3000</td>
               <td>75%</td>

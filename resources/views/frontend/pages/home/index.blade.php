@@ -107,7 +107,7 @@
         <!--benefits calculator open-->
 
            <section class="top_step_content">
-            <div class="container">  <h4 class="title_heading text-center black_color pb-3 heading_font">Dreaming of owning that stunning necklace?</h4>
+            <div class="container">  <h4 class="title_heading text-center black_color pb-3 heading_font">Dreaming of owning that <span class="stunning_necklace"> stunning necklace? </span></h4>
                 <p class="text-center black_color fontsize26">
                     Start your journey by opening a Motiwala Jewels Golden Treasure  account with just ₹2000.
                     <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
@@ -297,7 +297,7 @@
         <!--why choose us section start-->
         <section class="why_choose_section">
             <div class="container">
-                <h4 class="title_heading text-center black_color pb-md-4 pb-3  heading_font">Why Choose Us ?</h4>
+                <h4 class="title_heading text-center black_color pb-md-4 pb-2  heading_font">Why Choose Us ?</h4>
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="d-flex gap-3">                            
@@ -383,7 +383,7 @@
         <!--faq start -->
         <section class="faq_section">
             <div class="container">
-                <h4 class="title_heading text-center black_color pb-3 heading_font">Frequently Asked Questions</h4>
+                <h4 class="title_heading text-center black_color pb-2 heading_font">Frequently Asked Questions</h4>
                 <div class="accordion" id="accordionExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">

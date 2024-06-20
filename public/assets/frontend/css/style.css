@@ -615,7 +615,7 @@ footer ul.widget-menu li a {
     color: #fff;
     text-decoration: none;
     transition: 0.5s all;
-    font-size: 14px;
+    font-size: 14px !important;
 }
 
 .form-control:focus {
@@ -1441,7 +1441,7 @@ a#nav-icon img {
 }
 
 nav ul.menu {
-    width: 250px;
+    width: 300px;
     height: 100vh;
     float: right;
     position: fixed;
