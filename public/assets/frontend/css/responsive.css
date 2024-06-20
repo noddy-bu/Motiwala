@@ -536,7 +536,7 @@
     }
 
     .stunning_necklace {
-        display: block;
+        display: inline;
     }
     
     .top_step_content {
@@ -958,7 +958,7 @@
     }
 
     
-    .after_login_body .stunning_necklace {
+     .stunning_necklace {
         display: inline;
     }
 
