@@ -1,4 +1,5 @@
- @php
+ <!-- {{--
+@php
     $data = [
         'user' => (object) [
             'id' => '12',
@@ -26,6 +27,7 @@
     ];
 
 @endphp
+--}} -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +39,7 @@
 
         @font-face {
             font-family: 'Quicksand';
-            src: url('https://fonts.gstatic.com/s/quicksand/v31/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2') format('woff2');
+            src: url('http://127.0.0.1:8000/assets/frontend/fonts/116af611cbcd9e4bada60b4e700430c1.woff2') format('woff2');
             font-weight: normal;
             font-style: normal;
         }
@@ -49,6 +51,8 @@
     </style>
 </head>
 <body>
+
+
 
     <h1 style="text-align:center; font-size:26px; padding-bottom:20px;">Golden Treasure Plan Customer Application</h1>
     <p><b>Application Number: {{ $data['user']->id }}</b></p>
