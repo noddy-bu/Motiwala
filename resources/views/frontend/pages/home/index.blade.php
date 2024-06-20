@@ -1,6 +1,6 @@
 @extends(Session::has('user_id') ? 'frontend.layouts.app2' : 'frontend.layouts.app')
 
-@section('page.title', 'Motiwala & Sons')
+@section('page.title', 'Motiwala Jewels Gold & Diamond Private Limited')
 
 @section('page.description',
     ' ')

@@ -770,7 +770,7 @@ section.faq_section {
 
 .amount_monthly1 {
     border: 2px solid #404040;
-    padding: 4px 15px;
+    padding: 3px 15px;
     float: left;
     width: 70%;
 }
@@ -1376,7 +1376,7 @@ body .userlogin_box {
 .buttonclass1 button:hover,
 .buttonclass1 a:hover {
     position: relative;
-    top: -3px !important;
+    top: -1px !important;
 }
 
 .p-3.mt-5.mb-3.text-black {
