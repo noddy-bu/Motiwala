@@ -30,7 +30,7 @@
 						<a class="text-decoration-none text-dark" href="/privacy-policy">Privacy Policy</a> | 
 						<a class="text-decoration-none text-dark" href="{{ url(route('feedback')) }}">Give Us Feedback</a>
 					</div>
-					<p> 
+					<p class="text-center"> 
 						Copyright © 2024 Under Motiwala Jewels Gold And Diamonds Pvt Ltd. Company. 
 						All Rights Reserved. No imagery or logos contained within this site may be used without the express permission of Motiwala Jewels Gold And Diamonds Pvt Ltd Company
 					</p>

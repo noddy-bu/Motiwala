@@ -941,6 +941,18 @@
         color: #000 !important;
     }
 
+    
+    .after_login_body .stunning_necklace {
+        display: inline;
+    }
+
+    .after_login_body .top_step_content p span {
+        display: inline !important;
+    }
+
+    .after_login_body .step_bottom_text p span {
+        display: inline;
+    }
 
     body .width80:not(.sidebar) {
         width: 100% !important;
