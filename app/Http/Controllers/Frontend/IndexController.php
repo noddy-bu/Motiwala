@@ -76,6 +76,10 @@ class IndexController extends Controller
         return view('frontend.pages.feedback.index');
     }
 
+    public function about_us(){
+        return view('frontend.pages.about.index');
+    }
+
     public function old_scheme_closure(){
         return view('frontend.pages.admin.old_scheme_closure.index');
     }

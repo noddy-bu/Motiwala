@@ -17,7 +17,7 @@
             @csrf
 
             <div class="form-group mt-2">
-                <input type="checkbox" name="accept_term" id="agree" value="yes" required />
+                <input class="me-2" type="checkbox" name="accept_term" id="agree" value="yes" required />
                 <label for="agree">I accept <a href="{{ url(route('terms')) }}">“Terms & conditions”</a></label>
             </div>
 
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="buttonclass1 mt60 ms-md-4 ms-0">
+                    <div class="buttonclass1 mt40 ms-md-4 ms-0">
                         <button type="submit">Proceed <i class="las la-arrow-right"></i></button>
                     </div>
                 </div>
@@ -80,6 +80,11 @@
 
                     <div class="col-md-8">
                         <div class="form-group">
+
+                            <div class="buttonclass me-4 mb-3">
+                                <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
+                            </div>
+
                             <div class="buttonclass1 mt60">
                                 <button type="submit">Submit <i class="las la-arrow-right"></i></button>
                             </div>
@@ -249,6 +254,9 @@
 
 
                 <div class="form-group">
+                    <div class="buttonclass me-4">
+                        <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
+                    </div>
                     <div class="buttonclass1 mt60">
                         <button type="submit">Submit <i class="las la-arrow-right"></i></button>
                     </div>
@@ -375,6 +383,11 @@
                 </div>
 
                 <div class="form-group">
+
+                    <div class="buttonclass me-4">
+                        <a class="text-decoration-none text-white" onclick="back_to_privious();"><i class="las la-arrow-left"></i>Back</a>
+                    </div>
+
                     <div class="buttonclass1 mt60">
                         <button type="submit">Submit <i class="las la-arrow-right"></i></button>
                     </div>
@@ -596,6 +609,10 @@
 
 
             <div class="form-group">
+                
+                <div class="buttonclass me-4">
+                    <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
+                </div>
                 <div class="buttonclass1 mt60">
                     <button type="submit">Proceed <i class="las la-arrow-right"></i></button>
                 </div>
@@ -643,6 +660,9 @@
                 </div>
 
                 <div class="form-group">
+                    <div class="buttonclass me-4">
+                        <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
+                    </div>
                     <div class="buttonclass1 mt60">
                         <button type="submit">Verify <i class="las la-arrow-right"></i></button>
                     </div>
@@ -678,6 +698,9 @@
 
                 <div class="row">
                     <div class="form-group col-md-4">
+                        <div class="buttonclass me-4">
+                            <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
+                        </div>
                         <div class="buttonclass1 mt60">
                             <button type="submit">Submit <i class="las la-arrow-right"></i></button>
                         </div>
@@ -689,7 +712,7 @@
             </form>
 
             <div class="form-group col-md-6 d-none" id="ReSubmit">
-                <div class="buttonclass1 mt60">
+                <div class="buttonclass1 mt40">
                     <button>ReSubmit <i class="las la-arrow-right"></i></button>
                 </div>
             </div>
@@ -815,6 +838,11 @@
             </div>
 
         </div>
+
+        
+            <div class="buttonclass me-4">
+                <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
+            </div>
 
     </div>
 
@@ -988,13 +1016,14 @@
 
             <div class="form-group mt-2">
                 <input type="checkbox" name="accept_term" id="agree" value="yes" required />
-                <label for="agree">I accept <a href="{{ url(route('terms')) }}">“Terms and conditions”</a> of
-                    Motiwala &
-                    Sons Golden Treasure.</label>
+                <label for="agree">I accept <a href="{{ url(route('terms')) }}">“Terms and conditions”</a> </label>
             </div>
 
 
             <div class="form-group">
+                <div class="buttonclass me-4">
+                    <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
+                </div>
                 <div class="buttonclass1 mt60">
                     <button type="submit">Proceed <i class="las la-arrow-right"></i></button>
                 </div>
@@ -1058,6 +1087,11 @@
                     </div>
 
                     <div class="form-group">
+
+                        <div class="buttonclass me-4">
+                            <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
+                        </div>
+
                         <div class="buttonclass1 mt60">
                             <button type="submit">Verify <i class="las la-arrow-right"></i></button>
                         </div>
@@ -1099,6 +1133,9 @@
                 </div>
 
                 <div class="form-group">
+                    <div class="buttonclass me-4">
+                        <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
+                    </div>
                     <div class="buttonclass1 mt60">
                         <button type="submit">Submit <i class="las la-arrow-right"></i></button>
                     </div>
@@ -1272,6 +1309,9 @@
             @csrf
 
             <div class="form-group">
+                <div class="buttonclass me-4">
+                    <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
+                </div>
                 <div class="buttonclass1 mt30">
                     <button type="submit">Proceed Payment <i class="las la-arrow-right"></i></button>
                 </div>

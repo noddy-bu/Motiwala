@@ -124,7 +124,7 @@
                 <th scope="col">Maturity Date</th>
                 <th scope="col">Instalment per month (in ₹)</th>
                 <th scope="col">Discount on Jewellery purchase (in ₹)</th>
-              <th scope="col">% of your first installment</th>
+              <th scope="col">% of your first installment value</th>
               </tr>
             </thead>
             <tbody>

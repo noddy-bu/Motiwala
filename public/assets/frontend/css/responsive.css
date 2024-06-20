@@ -300,6 +300,10 @@
         height: 48px;
     }
 
+    .card {
+        margin-bottom: 10px;
+    }
+
     
     /* instant pay page*/
 
@@ -672,13 +676,21 @@
         bottom: 0px;
     }
 
+    .footer .row>div:nth-child(4) > .footer-widget {
+        position: absolute;
+        top: 20px;
+        right: 10px;
+        width: 40%;
+    }
+
     .footer-app-image {
-        margin-top: -460px;
-        margin-left: 20%;
+        margin-top: -300px;
+        position: absolute;
+        right: 1%;
     }
 
     .footer-app-image img {
-        width: 69% !important;
+        width: 170px !important;
         float: right;
     }
 

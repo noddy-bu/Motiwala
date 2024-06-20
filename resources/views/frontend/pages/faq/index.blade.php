@@ -25,9 +25,9 @@
 					<h4 class="title_heading text-center black_color pb-3 heading_font">Faq</h4>
 				</div>
 				<div class="col-md-12">
-					<h5 class="black_color pb-2">
-						<b>Queries on Enrolment</b>
-					</h5>
+					<h4 class="black_color text-center pb-2">
+						Queries on Enrolment
+					</h4>
 					<p class="mb-0"><b>1. Where can I buy ?</b></p>
 					<p>
 						You can find our exquisite collection of jewellery at our Store In Byculla Mumbai Maharashtra.

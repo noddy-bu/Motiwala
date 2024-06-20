@@ -39,6 +39,10 @@ Route::get('/termsofuse', [IndexController::class, 'terms_of_use'])->name('terms
 
 Route::get('/feedback', [IndexController::class, 'feedback'])->name('feedback');
 
+Route::get('/about-us', [IndexController::class, 'about_us'])->name('about_us');
+
+Route::get('/contact-us', [IndexController::class, 'contact_us'])->name('contact_us');
+
 
 
 Route::get('/404', [IndexController::class, 'not_found'])->name('error_page');
@@ -132,6 +136,12 @@ Route::get('/send-test-email', function () {
 
     return 'Test email sent!';
 });
+
+Route::any('/get-privious-page', function () {
+    $step = Session()->get('step');
+    $step = $step - 1;
+    Session()->put('step', $step);
+})->name('get-privious-page');
 
 Route::get('/test-otp', function () {
     $sessionData = Session()->all();

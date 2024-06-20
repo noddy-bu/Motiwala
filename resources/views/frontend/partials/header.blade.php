@@ -37,17 +37,15 @@
                     <a class="nav-link" href="{{ url(route('information')) }}"><i class="las la-exclamation-circle"></i>
                                     Information (Plan)</a>
                   </li>
+                  
                   <li>
-                    <a class="nav-link" href="{{ url(route('terms')) }}"><i class="las la-clipboard-list"></i>
-                                    T&C</a>
+                    <a class="nav-link" href="{{ url(route('contact_us')) }}"><i class="far fa-address-book"></i> Contact Us</a>
                   </li>
+
                   <li>
                     <a class="nav-link" href="{{ url(route('faq')) }}"><i class="las la-question-circle"></i> FAQs</a>
                   </li>
 
-                   <li>
-                    <a class="nav-link" href="contact-us"><i class="far fa-address-book"></i> Contact Us</a>
-                  </li>
                 
 
                   

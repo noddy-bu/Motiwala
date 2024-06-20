@@ -182,6 +182,23 @@
         });
         */
 
+        function back_to_privious(){
+            // Create an XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Specify the URL to hit using the route name
+            var url = '{{ route("get-privious-page") }}';
+
+            // Send a GET request to the URL asynchronously
+            xhr.open('GET', url, true);
+            xhr.send();
+
+            setTimeout(function () {
+                location.reload();
+            }, 1000);
+
+        }
+
         /*------------------- form submit ajax --------------------*/
 
         function ajax_form_submit(event, form){
