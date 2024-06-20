@@ -1,12 +1,33 @@
+@font-face {
+    font-family: "Ace Sans Demo";
+    src: url("/assets/frontend/fonts/43b9c0cc53c24afcb38658ee41ca8889.eot"),
+        url("/assets/frontend/fonts/43b9c0cc53c24afcb38658ee41ca8889.woff2")format("woff2"),
+        url("/assets/frontend/fonts/t/43b9c0cc53c24afcb38658ee41ca8889.woff")format("woff"),
+        url("/assets/frontend/fonts/43b9c0cc53c24afcb38658ee41ca8889.ttf")format("truetype");
+}
+
+
+/*for body*/
+@font-face {
+    font-family: "Avenir Light";
+    src: url("/assets/frontend/fonts/116af611cbcd9e4bada60b4e700430c1.eot"),
+        url("/assets/frontend/fonts/116af611cbcd9e4bada60b4e700430c1.woff2")format("woff2"),
+        url("/assets/frontend/fonts/116af611cbcd9e4bada60b4e700430c1.woff")format("woff"),
+        url("/assets/frontend/fonts/116af611cbcd9e4bada60b4e700430c1.ttf")format("truetype");
+}
+
+
 body {
     margin: 0;
     padding: 0;
-    font-family: "Quicksand", sans-serif !important;
+    font-family: "Avenir Light" !important;
     overflow-x: hidden;
 }
 
 .heading_font {
-    font-family: "Yeseva One", serif;
+    font-family: "Ace Sans Demo";
+    font-weight: bolder !important;
+    letter-spacing: 2px;
 }
 
 div#add-phone a {
@@ -21,7 +42,8 @@ div#add-phone a {
     background-size: cover;
 }
 
-.black_color, b {
+.black_color,
+b {
     color: #404040;
 }
 
@@ -63,17 +85,20 @@ body nav .nav_right_menu li a {
     top: 4px;
 }
 
-#nav-icon .fa-bars, #nav-bar-icon .fa-bars {
+#nav-icon .fa-bars,
+#nav-bar-icon .fa-bars {
     font-size: 24px;
     color: #c1884e;
 }
 
-#nav-icon, #nav-bar-icon{
+#nav-icon,
+#nav-bar-icon {
     padding-bottom: 0px !important;
 }
+
 body .nav_right_menu {
     margin-right: 30px !important;
-    align-items: center;    
+    align-items: center;
 }
 
 .z-index-1 {
@@ -121,7 +146,7 @@ button.carousel-control-next {
     justify-content: end;
 }
 
-.carousel-control-next-icon, 
+.carousel-control-next-icon,
 .carousel-control-prev-icon {
     background-image: none !important;
     font-size: 38px;
@@ -153,7 +178,8 @@ button.carousel-control-next {
     transition: 0.3s all;
 }
 
-.buttonclass1 button, .buttonclass1 a {
+.buttonclass1 button,
+.buttonclass1 a {
     padding: 8px 18px 9px 18px;
     color: #000 !important;
     text-decoration: none;
@@ -186,7 +212,8 @@ button.carousel-control-next {
     border: 1px solid #e3c2ab;
 }
 
-.buttonclass1 button:hover, .buttonclass1 a:hover {
+.buttonclass1 button:hover,
+.buttonclass1 a:hover {
     position: relative;
     top: 1px;
     left: 0;
@@ -473,7 +500,7 @@ section.steps_section {
     padding: 7px 20px;
 }
 
-.top_step_content_btn:hover{
+.top_step_content_btn:hover {
     color: #404040;
 }
 
@@ -806,14 +833,17 @@ label#amountLabel {
 
 /*-- open accounts page css---*/
 
-.adhar_field input::placeholder, 
-.contact_form input::placeholder{
+.adhar_field input::placeholder,
+.contact_form input::placeholder {
     font-size: 16px;
     padding-left: 0 !important;
     margin-left: 0;
 }
 
-.adhar_field input, .message, .contact_form input, .contact_form textarea  {
+.adhar_field input,
+.message,
+.contact_form input,
+.contact_form textarea {
     border: 0px;
     border-bottom: 1px solid #ccc;
     border-radius: 0;
@@ -977,7 +1007,8 @@ label#amountLabel {
     box-shadow: 6px 7px 10px #00000015;
 }
 
-.information_tb th, .information_tb td {
+.information_tb th,
+.information_tb td {
     padding: 20px 0px !important;
     background-color: #fff !important;
 }
@@ -994,8 +1025,8 @@ table.table.table-bordered {
     border: 0px solid #333 !important;
 }
 
-.information_tb th, 
-.information_tb td{
+.information_tb th,
+.information_tb td {
     font-size: 16px;
     border: 0 !important;
     text-align: start;
@@ -1194,7 +1225,8 @@ body .width80:not(.sidebar) {
     font-size: 15px;
 }
 
-.after_login_body .adhar_field input, .adhar_field textarea {
+.after_login_body .adhar_field input,
+.adhar_field textarea {
     border: 0px;
     border-bottom: 1px solid #ccc;
     border-radius: 0;
@@ -1264,7 +1296,7 @@ body .userlogin_box {
     font-size: 16px;
 }
 
-.copyright_text{
+.copyright_text {
     font-size: 14px;
 }
 
@@ -1318,12 +1350,14 @@ body .userlogin_box {
     top: -10px;
 }
 
-.buttonclass1 button:hover, .buttonclass1 a:hover {
+.buttonclass1 button:hover,
+.buttonclass1 a:hover {
     position: relative;
     top: -3px !important;
 }
 
-.p-3.mt-5.mb-3.text-black {       /*  for nominee details heading alignment */
+.p-3.mt-5.mb-3.text-black {
+    /*  for nominee details heading alignment */
     width: 98%;
     margin-left: 10px;
 }
@@ -1567,7 +1601,7 @@ form#loginForm a:hover {
     padding-bottom: 5px;
 }
 
-.contact_us_section{
+.contact_us_section {
     padding-left: 223px;
     padding-right: 120px;
     padding-bottom: 0px;
