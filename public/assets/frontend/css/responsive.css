@@ -641,7 +641,6 @@
     .choose_content p {
         font-size: 16px;
         padding-right: 0px !important;
-        line-height: 18px;
         text-align: start;
     }
 
@@ -684,13 +683,13 @@
     }
 
     .footer-app-image {
-        margin-top: -300px;
+        margin-top: -320px;
         position: absolute;
         right: 1%;
     }
 
     .footer-app-image img {
-        width: 170px !important;
+        width: 180px !important;
         float: right;
     }
 
@@ -702,10 +701,18 @@
         font-weight: 600;
     }
 
+    .footer .col-lg-5.col-md-6 .font-size20 {
+        font-size: 18px !important;
+    }
+
     .footer_social ul {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    footer ul.widget-menu li a {
+        font-size: 14px !important;
     }
 
     .line-height35 {
@@ -767,6 +774,10 @@
 
     .openaccount label {
         font-size: 16px;
+    }
+
+    .steps {
+        margin-bottom: 1rem;
     }
 
     .step-button {
