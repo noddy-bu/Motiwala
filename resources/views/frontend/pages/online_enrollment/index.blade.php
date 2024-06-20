@@ -18,7 +18,7 @@
 
 
     <main class="main">
-        <section class="openaccount pt-5 pb-5">
+        <section class="openaccount pt-md-5 pt-3 pb-mf-5 pb-3">
             <div class="container">
                 <div class="row">
 

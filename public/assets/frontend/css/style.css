@@ -940,7 +940,7 @@ label#amountLabel {
 }
 
 .fs-14 {
-    font-size: 14px;
+    font-size: 14px !important;
 }
 
 .forget_buttons {

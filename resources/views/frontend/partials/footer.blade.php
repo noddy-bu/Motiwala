@@ -75,7 +75,7 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
       <div class="col-lg-3 col-md-6 pt-lg-0 pt-0 pt-md-4">
         <div class="footer-widget">
           <h3 class="heading_font line-height35">Download <br>Our App </h3>
-          <p>Shining new app, made just for you! It's Free, Easy & Smart</p>
+          <p class="d-md-block d-none">Shining new app, made just for you! It's Free, Easy & Smart</p>
         </div>
       </div>
       <div class="col-lg-3 col-md-6">
@@ -84,9 +84,9 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
         </div>
       </div>
       <div class="col-lg-4 col-md-6">
-        <div class="footer-widget mt-md-5 mt-2">
-          <p class="pb-0 mb-0">Contact Us: <a href="tel:+91 9920077780">+91 9920077780</a></p>
-          <p>Email: <a href="mailto:motiwalajewels786@gmail.com">motiwalajewels786@gmail.com</a></p>
+        <div class="footer-widget mt-md-5 mt-3">
+          <p class="pb-0 mb-0"><strong> Contact Us: </strong> <a href="tel:+91 9920077780">+91 9920077780</a></p>
+          <p><strong>Email: </strong> <a href="mailto:motiwalajewels786@gmail.com">motiwalajewels786@gmail.com</a></p>
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
