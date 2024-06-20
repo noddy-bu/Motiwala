@@ -26,7 +26,7 @@
 				</div>
 				<h4 class="black_color text-center pb-2">The Legacy of Motiwala and Sons Gold and Diamonds Jewellers</h4>
 				<div class="col-md-12">
-				    <h5 class="black_color text-md-start text-center pt-2">A Century of Trust</h5>
+				    <h5 class="black_color text-md-start text-start pt-2">A Century of Trust</h5>
 					<p>
 					   Motiwala and Sons Gold and Diamonds Jewellers began its journey in 1923, 
 					   establishing a legacy of over a century in the jewellery industry. 
@@ -35,7 +35,7 @@
 					   craftsmanship in gold and diamond jewellery.
 					</p>
 
-					<h5 class="black_color text-md-start text-center pt-2">Enduring elegance </h5>
+					<h5 class="black_color text-md-start text-start pt-2">Enduring elegance </h5>
 					<p>
 						At Motiwala and Sons, jewellery is not just a product but a testament to artistry. 
 						Our collections balance traditional charm with contemporary elegance, catering to 
@@ -44,7 +44,7 @@
 						resonates with their unique stories and milestones.
 					</p>
 
-					<h5 class="black_color text-md-start text-center pt-2">Embodying Brilliance</h5>
+					<h5 class="black_color text-md-start text-start pt-2">Embodying Brilliance</h5>
 					<p>
 						We are committed to delivering excellence consistently. 
 						Motiwala and Sons have set high standards of business ethics and product reliability, 
@@ -55,7 +55,7 @@
 						is designed to meet the unique needs and preferences of our discerning customers.
 					</p>
 
-					<h5 class="black_color text-md-start text-center pt-2">Success Wisdom</h5>
+					<h5 class="black_color text-md-start text-start pt-2">Success Wisdom</h5>
 					<p>
 						Our profound understanding of the Indian jewellery market, coupled with our ability 
 						to adapt to evolving trends, has earned us the loyalty of our customers. 

@@ -226,7 +226,7 @@
     <div class="container"> 
         <div class="benefits_calculator sip-calculator">
             <div class="benefits_bgimage">
-                <img src="/assets/frontend/images/calculator_images.jpg" class="d-block" alt="...">
+                <img src="/assets/frontend/images/calculator_images.JPG" class="d-block" alt="...">
             </div>
             <div class="row align-items-center justify-content-center">
                 <div class="col-md-12">
