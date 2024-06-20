@@ -67,7 +67,7 @@
         line-height: 20px;
     }
 
-    .top_step_content p span {
+    .after_login_body .top_step_content p span {
         display: inline;
     }
 
@@ -248,7 +248,7 @@
         width: 80%;
     }
     
-    .top_step_content p span {
+    .after_login_body .top_step_content p span {
         display: inline;
     }
 
