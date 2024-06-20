@@ -25,7 +25,7 @@ body {
 }
 
 .heading_font {
-    font-family: "Ace Sans Demo";
+    font-family: "Ace Sans Demo" !important;
     font-weight: bolder !important;
     letter-spacing: 2px;
 }
@@ -273,7 +273,14 @@ section.why_choose_section {
 }
 
 .benefits_bgimage img {
-    width: 100%;
+    width: 335px;
+    height: 647px;
+    object-fit: cover;
+    right: -26px;
+    top: 3px;
+    object-position: center;
+    position: relative;
+    border-radius: 0px 50px 50px 0px;
 }
 
 .benefits_bgimage {

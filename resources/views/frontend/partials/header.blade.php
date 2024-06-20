@@ -29,6 +29,7 @@
                   <li>
                     <a class="nav-link" href="{{ url(route('instantpay')) }}"><i class="las la-hand-holding-usd"></i> Instant Pay</a>
                   </li>
+                  
                   <li>
                     <a class="nav-link" data-bs-toggle="modal" href="#autodebit_modal"><i
                                         class="las la-credit-card"></i> Auto Debit</a>
@@ -36,6 +37,10 @@
                   <li>
                     <a class="nav-link" href="{{ url(route('information')) }}"><i class="las la-exclamation-circle"></i>
                                     Information (Plan)</a>
+                  </li>
+
+                  <li>
+                    <a class="nav-link" href="{{ url(route('about_us')) }}"><i class="far fa-address-card"></i> About Us</a>
                   </li>
                   
                   <li>
