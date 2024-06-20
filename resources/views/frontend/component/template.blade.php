@@ -1,17 +1,31 @@
-{{---- @php
+ @php
     $data = [
-        'user' => [
+        'user' => (object) [
+            'id' => '12',
             'name' => 'abcd',
             'email' => 'emai@test.com',
             'phone' => '12345678',
             'plan_name' => 'Sample Plan',
+            'ulp_id' => '12',
+            'installment_amount' => '123',
         ],
-        'user_detail' => [
+        'user_detail' => (object) [
             'pan_number' => '1234567890',
-            'address' => 'gfhgfhgfhf jhgjhgjhgk jkgkjgkjhg kugkugkjhgkj lhkljh kjkhkjhkh',
+            'flat_no' => '1',
+            'street' => '1',
+            'locality' => '1',
+            'city' => '1',
+            'state' => '1',
+            'pincode' => '1',
+            'aadhar_number' => '12345',
+            'pan_number' => '123',
+        ],
+        'plan' => (object) [
+            'installment_period' => '123',
         ],
     ];
-@endphp ----}}
+
+@endphp
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +50,7 @@
 </head>
 <body>
 
-    <h1 style="text-align:center; font-size:26px; padding-bottom:20px;">Golden Treasure Plan Customer Application Copy</h1>
+    <h1 style="text-align:center; font-size:26px; padding-bottom:20px;">Golden Treasure Plan Customer Application</h1>
     <p><b>Application Number: {{ $data['user']->id }}</b></p>
 
 
@@ -118,14 +132,6 @@
 
  <div style="width:100%; clear:both; margin-bottom:0px;padding-top:40px;">
     <div style="margin-bottom:0px">I have read, understood and agree to all the Terms & Conditions of the Golden Harvest Scheme and I agree  to abide by the same.</div>
-</div>
-
- <div style="width:100%; clear:both; margin-bottom:0px;padding-top:20px;">
-    <div style="margin-bottom:0px">I hereby declare that above bank details are completely correct and I will not raise any claim on TITAN in  case there is discrepancy in the bank details. I also agree with TITAN refunding my principal amount in the  above bank account as per the terms and conditions.</div>
-</div>
-
- <div style="width:100%; clear:both; margin-bottom:0px;padding-top:50px;">
-    <div style="margin-bottom:0px;float:right;"><b>Account Holder Signature</b></div>
 </div>
 
 
