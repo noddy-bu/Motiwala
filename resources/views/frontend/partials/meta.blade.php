@@ -1,9 +1,9 @@
 @php
 
-$title = !empty(trim($__env->yieldContent('page.title'))) ? str_replace(['&nbsp;', '&amp;', '&amp;amp;'], ['&amp;', '&', '&'], htmlspecialchars_decode($__env->yieldContent('page.title'))) : 'Motiwala and Sons';
+$title = !empty(trim($__env->yieldContent('page.title'))) ? str_replace(['&nbsp;', '&amp;', '&amp;amp;'], ['&amp;', '&', '&'], htmlspecialchars_decode($__env->yieldContent('page.title'))) : 'Motiwala Jewels Gold & Diamond Private Limited';
 
 $description = !empty(trim($__env->yieldContent('page.description'))) ? str_replace(['&nbsp;', '&amp;', '&amp;amp;'], ['&amp;', '&', '&'], htmlspecialchars_decode($__env->yieldContent('page.description'))) :
-'Motiwala and Sons';
+'Motiwala Jewels Gold & Diamond Private Limited';
 
 $page_type = !empty(trim($__env->yieldContent('page.type'))) ? $__env->yieldContent('page.type') : 'website';
 
@@ -65,20 +65,6 @@ $url = url()->current();
 
 <!---------------- logo Schema ------------------->
 
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Motiwala & Sons",
-    "url": "{{ url('') }}/",
-    "logo": "{{ asset('/assets/frontend/images/logo.png') }}",
-    "sameAs": [
-      "https://www.facebook.com/ahlawatassociates/",
-      "https://twitter.com/AhlawatLaw/",
-      "https://in.linkedin.com/company/ahlawat-associates"
-    ]
-  }
-</script>
   
 <!---------------- logo schema end --------------->
 
