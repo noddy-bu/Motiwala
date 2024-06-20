@@ -1,6 +1,7 @@
  @php
     $data = [
-        'user' => [
+        'user' => (object) [
+            'id' => '12',
             'name' => 'abcd',
             'email' => 'emai@test.com',
             'phone' => '12345678',
@@ -8,18 +9,22 @@
             'ulp_id' => '12',
             'installment_amount' => '123',
         ],
-        'user_detail' => [
+        'user_detail' => (object) [
             'pan_number' => '1234567890',
-            'address' => 'gfhgfhgfhf jhgjhgjhgk jkgkjgkjhg kugkugkjhgkj lhkljh kjkhkjhkh',
-            'aadhar_number' => '12345';
-            'pan_number' => '123';
+            'flat_no' => '1',
+            'street' => '1',
+            'locality' => '1',
+            'city' => '1',
+            'state' => '1',
+            'pincode' => '1',
+            'aadhar_number' => '12345',
+            'pan_number' => '123',
         ],
-        'plan' => [
-            'installment_period' => '123';
+        'plan' => (object) [
+            'installment_period' => '123',
         ],
     ];
 
-    
 @endphp
 
 <!DOCTYPE html>
