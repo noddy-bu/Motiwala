@@ -25,7 +25,7 @@ body {
 }
 
 .heading_font {
-    font-family: "Ace Sans Demo";
+    font-family: "Ace Sans Demo" !important;
     font-weight: bolder !important;
     letter-spacing: 2px;
 }

@@ -67,23 +67,23 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="/assets/frontend/images/1.jpg" class="d-md-block d-none w-100" alt="...">
-      <img src="/assets/frontend/images/5.jpg" class="d-md-none d-block w-100" alt="...">
+      <img src="/assets/frontend/images/banner-1.webp" class="d-md-block d-none w-100" alt="...">
+      <img src="/assets/frontend/images/banner-5.webp" class="d-md-none d-block w-100" alt="...">
     </div>
 
-    <div class="carousel-item ">
-      <img src="/assets/frontend/images/2.jpg" class="d-md-block d-none w-100" alt="...">
-      <img src="/assets/frontend/images/6.jpg" class="d-md-none d-block w-100" alt="...">
-    </div>
-
-    <div class="carousel-item">
-      <img src="/assets/frontend/images/3.jpg" class="d-md-block d-none w-100" alt="...">
-      <img src="/assets/frontend/images/7.jpg" class="d-md-none d-block w-100" alt="...">
+    <div class="carousel-item "> 
+      <img src="/assets/frontend/images/banner-2.webp" class="d-md-block d-none w-100" alt="...">
+      <img src="/assets/frontend/images/banner-6.webp" class="d-md-none d-block w-100" alt="...">
     </div>
 
     <div class="carousel-item">
-      <img src="/assets/frontend/images/4.jpg" class="d-md-block d-none w-100" alt="...">
-      <img src="/assets/frontend/images/8.jpg" class="d-md-none d-block w-100" alt="...">
+      <img src="/assets/frontend/images/banner-3.webp" class="d-md-block d-none w-100" alt="...">
+      <img src="/assets/frontend/images/banner-7.webp" class="d-md-none d-block w-100" alt="...">
+    </div>
+
+    <div class="carousel-item">
+      <img src="/assets/frontend/images/banner-4.webp" class="d-md-block d-none w-100" alt="...">
+      <img src="/assets/frontend/images/banner-8.webp" class="d-md-none d-block w-100" alt="...">
     </div>
 
      
