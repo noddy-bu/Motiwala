@@ -22,8 +22,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h4 class="title_heading text-center black_color pb-0 heading_font">GOLDEN TREASURE JEWELLERY PURCHASE PLAN</h4>
-				   <h5 class="black_color text-center pb-md-4 pb-3">TERMS AND CONDITIONS</h5>
+					<h4 class="title_heading text-center black_color pb-0 heading_font">TERMS AND CONDITIONS</h4>
+				   <h5 class="black_color text-center pb-md-4 pb-3">GOLDEN TREASURE JEWELLERY PURCHASE PLAN</h5>
                 </div>
 
 				<div class="col-md-12">
