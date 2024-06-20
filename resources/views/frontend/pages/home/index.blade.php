@@ -226,13 +226,13 @@
     <div class="container"> 
         <div class="benefits_calculator sip-calculator">
             <div class="benefits_bgimage">
-                <img src="/assets/frontend/images/calculator_image.jpg" class="d-block" alt="...">
+                <img src="/assets/frontend/images/calculator_images.jpg" class="d-block" alt="...">
             </div>
             <div class="row align-items-center justify-content-center">
                 <div class="col-md-12">
-                    <h4 class="title_heading text-center black_color pb-lg-5 pb-md-4 pb-3 heading_font">Benefits Calculator</h4>
+                    <h4 class="title_heading text-left black_color pb-lg-5 pb-md-4 pb-3 heading_font">Benefits Calculator</h4>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <form>
                         <div class="row">
                             <div class="col-md-12">
@@ -280,9 +280,15 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-6 col-8">
+                <div class="col-md-4 col-8">
                     <canvas id="myCanvas" width="300" height="300"></canvas>
-                </div>  
+                </div> 
+
+                <div class="col-md-3 col-8">
+                  
+                </div> 
+                
+                
                 <div class="col-md-12 text-md-start text-center">
                     <div class="buttonclass mt-4">
                         <a href="/account/onlineenrollment">Open a New Account <i class="las la-arrow-right"></i>
@@ -383,7 +389,7 @@
         <!--faq start -->
         <section class="faq_section">
             <div class="container">
-                <h4 class="title_heading text-center black_color pb-2 heading_font">Frequently Asked Questions</h4>
+                <h4 class="title_heading text-center black_color pb-4 heading_font">Frequently Asked Questions</h4>
                 <div class="accordion" id="accordionExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
