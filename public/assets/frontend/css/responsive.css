@@ -67,6 +67,14 @@
         line-height: 20px;
     }
 
+    .top_step_content p span {
+        display: inline;
+    }
+
+    .inner_sectionpadd {
+        padding-bottom: 30px;
+    }
+
     
 }
 
@@ -238,6 +246,14 @@
 
     .benefits_bgimage img {
         width: 80%;
+    }
+    
+    .top_step_content p span {
+        display: inline;
+    }
+
+    .inner_sectionpadd {
+        padding-bottom: 30px;
     }
 
     
@@ -1010,6 +1026,10 @@
 
     .after_login_body section:last-child {
         margin-bottom: 40px;
+    }
+    
+    .inner_sectionpadd {
+        padding-bottom: 30px;
     }
 
     /* new account */
