@@ -232,7 +232,7 @@
                 <div class="col-md-12">
                     <h4 class="title_heading text-left black_color pb-lg-5 pb-md-4 pb-3 heading_font">Benefits Calculator</h4>
                 </div>
-                <div class="col-md-5">
+                <div class="col-lg-5 col-md-6">
                     <form>
                         <div class="row">
                             <div class="col-md-12">
@@ -280,14 +280,9 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-4 col-8">
+                <div class="col-lg-7 col-md-6 col-8">
                     <canvas id="myCanvas" width="300" height="300"></canvas>
-                </div> 
-
-                <div class="col-md-3 col-8">
-                  
-                </div> 
-                
+                </div>           
                 
                 <div class="col-md-12 text-md-start text-center">
                     <div class="buttonclass mt-4">

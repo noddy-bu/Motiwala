@@ -2,11 +2,7 @@
 <form id="add_contact_us_form" action="{{url(route('contact.create'))}}" method="post" enctype="multipart/form-data">
     @csrf
 
-    <div class="mb-3">
-        <input type="hidden" name="section" value="feedback Form" data-aos-once="true" data-aos="fade-up" />
-    </div>
-
-    <div class="row d-flex">
+    <div class="row d-flex px-md-0 px-3">
 
         <div class="col-md-6">
             <div class="form-group mt-4 adhar_field">

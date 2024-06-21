@@ -37,15 +37,11 @@
 					<h2 class="text-left pb-3 black_color contact_form_heading">We are here for you! <span class="d-block"> How can we help? </span> </h2>
 					<!-- <p class="contact_form_text pb-md-3"></p> -->
 					
-					<div class="contact_info address row">
-						<div class="col-1">
-							<i class="fa fa-location-dot"></i>
-						</div>
-						<div class="col-10 ps-3">
-							<p class="mb-0">
-								Shop No. 3, Fortune Tower, 337, Sir J J Road, Byculla Mumbai - 400 008. Maharashtra, India. 
-							</p>
-						</div>
+					<div class="contact_info address">
+						<i class="fa fa-location-dot"></i>
+						<p class="mb-0">
+							Shop No. 3, Fortune Tower, 337, Sir J J Road, Byculla Mumbai - 400 008. Maharashtra, India. 
+						</p>
 					</div>	 	
 					<div class="contact_info number">
 						<i class="fa fa-phone"></i>

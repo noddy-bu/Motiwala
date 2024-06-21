@@ -78,7 +78,7 @@
 
                     <div class="col-md-2"></div>
 
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="form-group">
 
                             <div class="buttonclass me-4 mb-3">
@@ -88,7 +88,7 @@
                             <div class="buttonclass1 mt60">
                                 <button type="submit">Submit <i class="las la-arrow-right"></i></button>
                             </div>
-                            <a class="ms-4" id="resendOTPButton">Resend OTP</a>
+                            <a class="ms-4 d-sm-inline d-block" id="resendOTPButton">Resend OTP</a>
 
 
                         </div>
@@ -580,7 +580,7 @@
                     forwarding you to UIDAI portal.
                 </p>
 
-                <p><strong>We will be doing the video ID KYC process including the following steps:</strong></p>
+                <p><strong>We will be doing the ID KYC process including the following steps:</strong></p>
 
                 <ul class="steps_li">
                     <li>Connecting to UIDAI portal and fetching XML.</li>
@@ -602,9 +602,7 @@
 
             <div class="form-group mt-2">
                 <input type="checkbox" name="accept_term" id="agree" value="yes" required />
-                <label for="agree">I accept <a href="{{ url(route('terms')) }}">“Terms and conditions”</a> of
-                    Motiwala &
-                    Sons Golden Treasure.</label>
+                <label for="agree">I accept <a href="{{ url(route('terms')) }}">“Terms and conditions”</a></label>
             </div>
 
 
@@ -684,7 +682,7 @@
     <div id="ekyc-aadhar-otp-verify">
 
         <div class="row">
-            <form class="col-md-5" id="aadhar-otp-verify"
+            <form class="col-md-7" id="aadhar-otp-verify"
                 action="{{ url(route('account.create', ['param' => 'aadhar-otp-verify'])) }}" method="post">
                 @csrf
 
@@ -697,7 +695,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-12">
                         <div class="buttonclass me-4">
                             <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
                         </div>
@@ -711,7 +709,7 @@
 
             </form>
 
-            <div class="form-group col-md-6 d-none" id="ReSubmit">
+            <div class="form-group col-md-5 d-none" id="ReSubmit">
                 <div class="buttonclass1 mt40">
                     <button>ReSubmit <i class="las la-arrow-right"></i></button>
                 </div>

@@ -18,11 +18,24 @@
     }
 
     .benefits_bgimage img {
-        width: 60%;
+        width: 40%;
+        float: right
+    }
+
+    .benefits_bgimage img {
+        height: 677px;
     }
 
     .sip-calculator {
         padding: 3em 2em 3em 2em;
+    }
+
+    .amount_check button {
+        padding: 18.5px 13px 13.5px 13px;
+    }
+
+    canvas#myCanvas {
+        margin-left: 0px;
     }
 
     section.why_choose_section {
@@ -43,7 +56,17 @@
         padding: 0px 10px;
     }
 
+    /* instant pay page */
+
+    .instant_pay {
+        width: 80%;
+    }
+
     /* after login */
+
+    .userlogin_box span {
+        display: inline;
+    }
 
     .after_login_body .benefits_bgimage {
         position: absolute;
@@ -58,7 +81,7 @@
     }
 
     img.sidebar_logo {
-        width: 25%;
+        width: 85%;
         padding: 7px 0px 0px 10px;
     }
 
@@ -75,19 +98,58 @@
         padding-bottom: 30px;
     }
 
+    /* contact us page */
+
+    .address {
+        display: flex;
+        gap: 4%;
+    }
+
     
 }
 
+@media (min-width:992px) and (max-width:1020px){
+
+    .benefits_bgimage {
+        display: none;
+    }
+    
+    canvas#myCanvas {
+        width: 41%;
+        position: absolute;
+        top: 30%;
+        margin-left: 110px;
+    }
+
+    .col-md-12.mb-4 .sip-calculator-amount {
+        width: 100%;
+    }
+
+    .col-md-12 .sip-calculator-amount {
+        width: 105%;
+    }
+
+    /* after login */
+
+    .userlogin_box span {
+        display: none;
+    }
+
+    .after_login_body footer .container {
+        width: 100% !important;
+    }
+}
+
 /* for tablet view */
-@media (min-width:768px) and (max-width:1020px){
+@media (min-width:768px) and (max-width:991px){
     
     html {
         overflow-x: hidden !important;
     }
 
-    .col-md-12, .col-md-6 {
+    /* .col-md-12, .col-md-6 {
         padding: 0px 0px 0px 0px !important;
-    }
+    } */
 
     p {
         font-size: 16px;
@@ -104,6 +166,10 @@
     .title_heading {
         font-size: 26px !important;
         font-weight: 500;
+    }
+
+    body .nav_right_menu {
+        margin-right: 0px !important;
     }
 
     body .width80:not(.sidebar) {
@@ -264,11 +330,24 @@
     .sip-calculator {
         padding: 2em 2em 3em 2em;
     }
+
+    .amount_monthly2 {
+        border: 2px solid #404040;
+        padding: 4px 0px 4px 15px;
+    }
+
+    .col-md-12.mb-4 .sip-calculator-amount {
+        width: 100%
+    }
+
+    .col-md-12 .sip-calculator-amount {
+        width: 108%
+    }
     
     canvas#myCanvas {
-        margin-left: 40px;
-        width: 90%;
-        margin-top: 160px;
+        width: 41%;
+        position: absolute;
+        top: 30%;
     }
 
     .why_choose_section {
@@ -295,6 +374,14 @@
     footer .row .col-lg-3.col-md-6:nth-child(5) {
         display: none;
     }
+
+    .footer-widget .widget-menu li:not(:last-child) {
+        margin-bottom: 3px;
+    }
+
+    .footer-widget .widget-menu a {
+        display: inline-block;
+    }
     
     .form-subscribe input {
         padding: 8px 14px;
@@ -317,7 +404,7 @@
     }
 
     .card {
-        margin-bottom: 10px;
+        margin-bottom: 10px !important;
     }
 
     
@@ -353,6 +440,15 @@
         padding: 30px 10px !important;
     }
 
+    .contact_info p, .contact_form_text, .contact_info a {
+        font-size: 16px;
+    }
+
+    /* after login page */
+
+    .after_login_body footer .container {
+        width: 100% !important;
+    }
 
 
 }
@@ -399,6 +495,10 @@
 
     .mt60 {
         margin-top: 40px;
+    }
+
+    .card {
+        margin-bottom: 10px !important;
     }
 
     header {
@@ -624,9 +724,9 @@
 
     .amount_monthly1 {
         border: 2px solid #404040;
-        padding: 4px 15px;
+        padding: 4px 15px 4px 15px;
         float: left;
-        width: 62%;
+        width: 70%;
     }
 
     label#amountLabel {
@@ -638,7 +738,7 @@
     }
 
     .amount_check button {
-        padding: 15.5px 16px 10px 16px;
+        padding: 15px 0px 10px 0px;
     }
 
     .why_choose_section {
@@ -691,15 +791,23 @@
         bottom: 0px;
     }
 
+    .footer-widget .widget-menu li:not(:last-child) {
+        margin-bottom: 3px;
+    }
+
+    .footer-widget .widget-menu a {
+        display: inline-block;
+    }
+
     .footer .row>div:nth-child(4) > .footer-widget {
         position: absolute;
         top: 20px;
-        right: 10px;
+        right: 5%;
         width: 40%;
     }
 
     .footer-app-image {
-        margin-top: -320px;
+        margin-top: -310px;
         position: absolute;
         right: 1%;
     }
@@ -734,6 +842,7 @@
     .line-height35 {
         line-height: 25px;
         padding-top: 20px;
+        float: right;
     }
 
     .form-subscribe input {
@@ -797,14 +906,14 @@
     }
 
     .step-button {
-        width: 32px;
-        height: 32px;
+        width: 31px;
+        height: 31px;
         font-size: 14px;
     }
 
     .step-button[aria-expanded="true"] {
-        width: 36px;
-        height: 36px;
+        width: 34px;
+        height: 34px;
     }
 
     label#accept_term-error {
@@ -888,7 +997,7 @@
 
     .address {
         display: flex;
-        gap: 25px;
+        gap: 4%;
     }
 
     /* after login in side bar */
@@ -965,7 +1074,7 @@
         display: inline !important;
     }
 
-    .after_login_body .step_bottom_text p span {
+    .step_bottom_text p span {
         display: inline;
     }
 
@@ -1037,4 +1146,28 @@
         font-size: 18px;
         margin-bottom: 0px;
     }
+}
+
+@media  (max-width:344px)  {
+    .footer-app-image {
+        position: absolute;
+        right: -3%;
+    }
+
+    .step-button {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .openaccount {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .step-button[aria-expanded="true"] {
+        width: 31px;
+        height: 31px;
+    }
+
 }

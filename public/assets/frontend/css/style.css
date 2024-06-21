@@ -1401,7 +1401,11 @@ body .userlogin_box {
 }
 
 
-/* CSS */
+/* new acccount CSS */
+.form-select{
+    padding-left: 0px !important;
+}
+
 .steps {
     display: flex;
     justify-content: space-between;
@@ -1682,10 +1686,16 @@ form#loginForm a:hover {
     padding: 10px;
     margin: 5px 0px;
     background-color: #b67950;
+    height: 37px;
 }
 
 .contact_info {
     margin-bottom: 9px;
+}
+
+.address {
+    display: flex;
+    gap: 3%;
 }
 
 .fa-location-dot {
