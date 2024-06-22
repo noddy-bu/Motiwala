@@ -111,12 +111,12 @@ class AccountController extends Controller
             'users.plan_id',
             'plans.name',
             'plans.installment_period',
-            'redeem.total_paid_amount',
-            'redeem.installment_count'
+            'redemptions.total_paid_amount',
+            'redemptions.installment_count'
         ])
         ->join('plans', 'users.plan_id', '=', 'plans.id')
-        ->join('redeem', 'users.id', '=', 'redeem.user_id')
-        ->where('redeem.status', 1)
+        ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
+        ->where('redemptions.status', 1)
         ->where('users.id',Session::get('user_id'))
         ->get()->first();
         
@@ -1329,7 +1329,7 @@ class AccountController extends Controller
 
         $total_get_Amount = $amount / 1000 * 10750;
 
-        $redeem_id = DB::table('redeem')->insertGetId([
+        $redeem_id = DB::table('redemptions')->insertGetId([
             'user_id' => $temp_user_id,
             'plan_id' => $user_plan_Details,
             'installment_count' => 1,
