@@ -67,23 +67,23 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="/assets/frontend/images/banner-1.webp" class="d-md-block d-none w-100" alt="...">
-      <img src="/assets/frontend/images/banner-5.webp" class="d-md-none d-block w-100" alt="...">
+      <img src="/assets/frontend/images/desktop_banner_one.webp" class="d-md-block d-none w-100" alt="...">
+      <img src="/assets/frontend/images/mobile_banner_one.webp" class="d-md-none d-block w-100" alt="...">
     </div>
 
     <div class="carousel-item "> 
-      <img src="/assets/frontend/images/banner-2.webp" class="d-md-block d-none w-100" alt="...">
-      <img src="/assets/frontend/images/banner-6.webp" class="d-md-none d-block w-100" alt="...">
+      <img src="/assets/frontend/images/desktop_banner_two.webp" class="d-md-block d-none w-100" alt="...">
+      <img src="/assets/frontend/images/mobile_banner_two.webp" class="d-md-none d-block w-100" alt="...">
     </div>
 
     <div class="carousel-item">
-      <img src="/assets/frontend/images/banner-3.webp" class="d-md-block d-none w-100" alt="...">
-      <img src="/assets/frontend/images/banner-7.webp" class="d-md-none d-block w-100" alt="...">
+      <img src="/assets/frontend/images/desktop_banner_three.webp" class="d-md-block d-none w-100" alt="...">
+      <img src="/assets/frontend/images/mobile_banner_three.webp" class="d-md-none d-block w-100" alt="...">
     </div>
 
     <div class="carousel-item">
-      <img src="/assets/frontend/images/banner-4.webp" class="d-md-block d-none w-100" alt="...">
-      <img src="/assets/frontend/images/banner-8.webp" class="d-md-none d-block w-100" alt="...">
+      <img src="/assets/frontend/images/desktop_banner_four.webp" class="d-md-block d-none w-100" alt="...">
+      <img src="/assets/frontend/images/mobile_banner_four.webp" class="d-md-none d-block w-100" alt="...">
     </div>
 
      
@@ -284,7 +284,7 @@
                     <canvas id="myCanvas" width="300" height="300"></canvas>
                 </div>           
                 
-                <div class="col-md-12 text-md-start text-center">
+                <div class="col-md-12 text-md-start text-center widths80">
                     <div class="buttonclass mt-4">
                         <a href="/account/onlineenrollment">Open a New Account <i class="las la-arrow-right"></i>
                         </a>
