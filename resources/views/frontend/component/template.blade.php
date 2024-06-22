@@ -96,7 +96,7 @@
 </div>
  <div style="width:50%; ">
     <div style="width:40%; float:left;"><b>Scheme Duration:</b></div>
-    <div style="width:60%; float:left; border-bottom:1px solid #ccc;">{{ $data['plan']->installment_period }} Months</div>
+    <div style="width:60%; float:left; border-bottom:1px solid #ccc;">{{ (int) $data['plan']->installment_period }} Months</div>
 </div>
 
  <div style="width:50%; clear:both; padding-top:15px;">

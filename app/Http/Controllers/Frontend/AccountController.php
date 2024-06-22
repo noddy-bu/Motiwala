@@ -1050,12 +1050,12 @@ class AccountController extends Controller
 
     public function payment_gateway($request){
 
-        $user = DB::table('users')->where('id', Session::get('temp_user_id'))->first(['name', 'email', 'phone', 'installment_amount']);
+        $user = DB::table('users')->where('id', Session::get('temp_user_id'))->first(['first_name','last_name', 'email', 'phone', 'installment_amount']);
 
         //insert in order
         $txnid = substr(hash('sha256', mt_rand().microtime()), 0, 20);
         $orderId = DB::table('temp_transactions')->insertGetId([
-            'name'             => $user->name,
+            'name'             => $user->first_name.' '.$user->last_name,
             'email'            => $user->email,
             'phone'            => $user->phone,
             'grand_total'      => $user->installment_amount,
