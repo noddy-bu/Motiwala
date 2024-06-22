@@ -106,13 +106,12 @@ class AccountController extends Controller
 
         $info = DB::table('users')
         ->select([
-            'users.account_number',
+            'redemptions.id',
             'users.created_at',
             'users.plan_id',
             'plans.name',
             'plans.installment_period',
-            'redemptions.total_paid_amount',
-            'redemptions.installment_count'
+            'redemptions.total_receivable_amount',
         ])
         ->join('plans', 'users.plan_id', '=', 'plans.id')
         ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
@@ -122,13 +121,15 @@ class AccountController extends Controller
         
         $transactions = DB::table('transactions')->where('user_id',Session::get('user_id'))->get();
 
-        return view('frontend.pages.admin.pay_installments.index', compact('info','transactions'));
+        $redemption_items = DB::table('redemption_items')->where('redemption_id',$info->id)->get();
+
+        return view('frontend.pages.admin.pay_installments.index', compact('info','transactions','redemption_items'));
     }
 
     public function edit_user_profile(){
 
         $user = DB::table('users')->where('id', Session::get('user_id'))
-        ->get(['plan_id','installment_amount','name','email','phone','ulp_id'])->first();
+        ->get(['plan_id','installment_amount','first_name', 'last_name','email','phone','ulp_id'])->first();
 
         $user_detail = DB::table('userdetails')->where('user_id', Session::get('user_id'))
             ->get(['nominee_name','nominee_phone','nominee_dob','nominee_address','nominee_relation','flat_no','street','locality','state','city','pincode','dob','marital_status','spouse_name','spouse_dob','marriage_date'])->first();

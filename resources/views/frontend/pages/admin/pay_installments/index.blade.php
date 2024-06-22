@@ -30,26 +30,30 @@
                     @endphp --}}
 
                     @php
-                        $next_payment_date = $transactions
-                            ->where('installment', $info->installment_count + 1)
-                            ->where('payment_status', 'unpaid')
+                        $next_payment_date = $redemption_items
+                            ->where('status', 'pending')
                             ->first();
 
-                        $last_payment_date = $transactions
-                            ->where('installment', $info->installment_count)
-                            ->where('payment_status', 'paid')
+                        $last_payment_date = $redemption_items
+                            ->where('status', 'paid')
+                            ->sortByDesc('id')
                             ->first();
 
-                        $Maturity_date = $transactions
-                            ->where('installment', (int) $info->installment_period)
-                            ->where('payment_status', 'unpaid')
+                        $Maturity_date = $redemption_items
+                            ->where('installment_no', (int) $info->installment_period)
+                            ->where('status', 'unpaid')
                             ->first();
+
+                        $Installments_paid = $redemption_items
+                            ->where('status', 'paid');
+
+
                     @endphp
                     <div class="col-md-12 mt-md-4 mt-3">                        
                         <div class="">
                             <div class="col-md-12">
                                 <h4>
-                                    {{ ucfirst($info->name) }} - {{ $info->account_number }}
+                                    {{ ucfirst($info->name) }} - {{ account_no($info->id) }}
                                 </h4>
                             </div>
                         </div>
@@ -61,12 +65,12 @@
                                     <div class="card">
                                         <h5 class="card-header">Payment Details</h5>
                                         <div class="card-body">
-                                            <p class="card-text">Total Amount Received : {{ $info->total_paid_amount }}</p>
+                                            <p class="card-text">Total Amount Received : {{ $info->total_receivable_amount }}</p>
                                             <p class="card-text">Next Payment Due :
-                                                {{ date('d-m-Y', strtotime($next_payment_date->date_of_installment)) }}</p>
+                                                {{ date('d-m-Y', strtotime($next_payment_date->due_date_start)) }}</p>
                                             <p class="card-text">Last Payment Due :
-                                                {{ date('d-m-Y', strtotime($last_payment_date->date_of_installment)) }}</p>
-                                            <p class="card-text">No of Installments Paid : {{ $info->installment_count }}</p>
+                                                {{ date('d-m-Y', strtotime($last_payment_date->due_date_start)) }}</p>
+                                            <p class="card-text">No of Installments Paid : {{ count($Installments_paid) }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -75,7 +79,7 @@
                                         <h5 class="card-header">Maturity Details</h5>
                                         <div class="card-body">
                                             <p class="card-text">Enrollment Date : {{ date('d-m-Y', strtotime($info->created_at)) }}</p>
-                                            <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($Maturity_date->date_of_installment)) }}
+                                            <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($Maturity_date->due_date_start)) }}
                                             </p>
                                             <br>
                                             <br>
@@ -102,26 +106,26 @@
                                 </thead>
                                 <tbody>
                                     @php $i = 1; @endphp
-                                    @foreach ($transactions as $row)
-                                        @if( $row->date_of_installment <= date('Y-m-d'))
+                                    @foreach ($redemption_items as $row)
+                                        @if( $row->due_date_start <= date('Y-m-d'))
                                             <tr>
                                                 <td>{{ $i++ }}</td>
                                                 <td>
-                                                    @if ($row->payment_status == 'paid')
-                                                        {{ datetimeFormatter($row->created_at) }}
+                                                    @if ($row->status == 'paid')
+                                                        {{ datetimeFormatter($row->due_date_start) }}
                                                     @else
-                                                        {{ date('d-m-Y', strtotime($row->date_of_installment)) }}
+                                                        {{ date('d-m-Y', strtotime($row->due_date_start)) }}
                                                     @endif
                                                     
                                                 </td>
                                                 <td>
-                                                    {{ $row->installment }}
+                                                    {{ $row->installment_no }}
                                                 </td>
                                                 <td>
-                                                    {{ $row->payment_amount }}
+                                                    {{ $row->installment_amount }}
                                                 </td>
                                                 <td>
-                                                    @if ($row->payment_status == 'paid')
+                                                    @if ($row->status == 'paid')
                                                         Paid
                                                     @else
                                                         <div class="buttonclass1 mt10">

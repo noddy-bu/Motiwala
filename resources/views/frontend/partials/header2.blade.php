@@ -7,7 +7,7 @@
         </div>
         <a href="#" class="align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-            <span class="mx-1 text-dark"><b>{{ ucfirst(auth()->user()->name) }}</b></span>
+            <span class="mx-1 text-dark"><b>{{ ucfirst(auth()->user()->first_name) }}</b></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" style="z-index: 10000;" >
             <li><a class="dropdown-item" href="#">Welcome</a></li>
@@ -20,7 +20,7 @@
 
     <div class="col-6">
         <a href="/" class="d-block p-md-3 p-0 link-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
-            <img class="sidebar_logo" src="/assets/frontend/images/logo.png" >
+            {{-- <img class="sidebar_logo" src="/assets/frontend/images/logo.png" > --}}
         </a>
     </div>
 </header>

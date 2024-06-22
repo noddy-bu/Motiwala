@@ -49,7 +49,7 @@
                                     <div class="form-group mt-4 adhar_field">
                                         <label class="pb-3">Name *</label>
                                         <input type="text" class="form-control" name="name" pattern="[A-Za-z]+" minlength="3"
-                                        maxlength="6" placeholder="Please Enter Your Name" value="{{ $user->name }}" readonly/>
+                                        maxlength="6" placeholder="Please Enter Your Name" value="{{ $user->first_name }} {{ $user->last_name }}" readonly/>
                                     </div>
                                 </div>
 
