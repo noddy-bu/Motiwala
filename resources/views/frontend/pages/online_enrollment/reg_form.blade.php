@@ -521,7 +521,7 @@
                                 <p class="card-text pb-2"><strong>Mobile : </strong>{{ $user->phone }}</p>
                             </div>
                             <div class="col-md-4">
-                                <p class="card-text pb-2"><strong>ULP ID : </strong>NA</p>
+                                <p class="card-text pb-2"><strong>ULP ID (UID): </strong>NA</p>
                             </div>
                             <div class="col-md-4">
                                 <p class="card-text pb-2"><strong>Nominee Name :
@@ -538,17 +538,20 @@
                                     </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}
                                 </p>
                             </div>
-                            <div class="col-md-4">
-                                <p class="card-text pb-2"><strong>Nominee Address :
-                                    </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}
-                                </p>
-                            </div>
-                            <div class="col-md-4">
+
+                             <div class="col-md-4">
                                 <p class="card-text pb-2"><strong>Nominee Relation :
                                     </strong>{{ !empty($user_detail->nominee_relation) ? $user_detail->nominee_relation : 'NA' }}
                                 </p>
                             </div>
-                            <div class="col-md-8">
+
+                            <div class="col-md-6">
+                                <p class="card-text pb-2"><strong>Nominee Address :
+                                    </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}
+                                </p>
+                            </div>
+                           
+                            <div class="col-md-6">
                                 <p class="card-text pb-2"><strong>Address : </strong>
                                     @php
                                         echo $user_detail->flat_no . ",\n";
@@ -969,7 +972,7 @@
                                 <p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>ULP ID : </strong>{{ $user->ulp_id }}</p>
+                                <p class="card-text"><strong>ULP ID (UID) : </strong>{{ $user->ulp_id }}</p>
                             </div>
                             <div class="col-md-4 mb-3">
                                 <p class="card-text"><strong>Nominee Name :
@@ -986,17 +989,21 @@
                                     </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}
                                 </p>
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>Nominee Address :
-                                    </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}
-                                </p>
-                            </div>
+
                             <div class="col-md-4 mb-3">
                                 <p class="card-text"><strong>Nominee Relation :
                                     </strong>{{ !empty($user_detail->nominee_relation) ? $user_detail->nominee_relation : 'NA' }}
                                 </p>
                             </div>
-                            <div class="col-md-8">
+
+
+                            <div class="col-md-6 mb-3">
+                                <p class="card-text"><strong>Nominee Address :
+                                    </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}
+                                </p>
+                            </div>
+                            
+                            <div class="col-md-6">
                                 <p class="card-text"><strong>Address : </strong>
                                     @php
                                         echo $user_detail->flat_no . ",\n";
@@ -1281,7 +1288,7 @@
                                 <p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>ULP ID : </strong>{{ $user->ulp_id }}</p>
+                                <p class="card-text"><strong>ULP ID (UID) : </strong>{{ $user->ulp_id }}</p>
                             </div>
                             <div class="col-md-4 mb-3">
                                 <p class="card-text"><strong>Nominee Name :
@@ -1477,7 +1484,7 @@
                                 <p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>ULP ID : </strong>{{ $user->ulp_id }}</p>
+                                <p class="card-text"><strong>ULP ID (UID) : </strong>{{ $user->ulp_id }}</p>
                             </div>
                             <div class="col-md-4 mb-3">
                                 <p class="card-text"><strong>Nominee Name :
@@ -1494,17 +1501,20 @@
                                     </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}
                                 </p>
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>Nominee Address :
-                                    </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}
-                                </p>
-                            </div>
-                            <div class="col-md-4 mb-3">
+
+                             <div class="col-md-4 mb-3">
                                 <p class="card-text"><strong>Nominee Relation :
                                     </strong>{{ !empty($user_detail->nominee_relation) ? $user_detail->nominee_relation : 'NA' }}
                                 </p>
                             </div>
-                            <div class="col-md-8 mb-3">
+
+                            <div class="col-md-6 mb-3">
+                                <p class="card-text"><strong>Nominee Address :
+                                    </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}
+                                </p>
+                            </div>
+                           
+                            <div class="col-md-6 mb-3">
                                 <p class="card-text"><strong>Address : </strong>
                                     @php
                                         echo $user_detail->flat_no . ",\n";
