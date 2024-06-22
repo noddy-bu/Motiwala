@@ -24,9 +24,9 @@
         'plan' => (object) [
             'installment_period' => '123',
         ],
-    ];--}}
+    ];
 
-@endphp -->
+@endphp--}} -->
 
 <!DOCTYPE html>
 <html lang="en">
