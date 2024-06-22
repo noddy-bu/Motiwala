@@ -127,7 +127,7 @@
             @php
                 $user = DB::table('users')
                     ->where('id', Session::get('temp_user_id'))
-                    ->get(['salutation', 'name', 'email', 'phone'])
+                    ->get(['salutation', 'first_name', 'last_name', 'email', 'phone'])
                     ->first();
                 $user_detail = DB::table('userdetails')
                     ->where('user_id', Session::get('temp_user_id'))
@@ -162,16 +162,16 @@
                 <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">First Name *</label>
-                        <input type="text" class="form-control" name="name" pattern="[A-Za-z]+" minlength="3"
-                            maxlength="20" placeholder="Please Enter Your First Name" value="{{ $user->name }}" required />
+                        <input type="text" class="form-control" name="first_name" pattern="[A-Za-z]+" minlength="3"
+                            maxlength="20" placeholder="Please Enter Your First Name" value="{{ $user->first_name }}" required />
                     </div>
                 </div>
 
                 <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">Last Name *</label>
-                        <input type="text" class="form-control" name="name" pattern="[A-Za-z]+" minlength="3"
-                            maxlength="20" placeholder="Please Enter Your Last Name" value="{{ $user->name }}" required />
+                        <input type="text" class="form-control" name="last_name" pattern="[A-Za-z]+" minlength="1"
+                            maxlength="20" placeholder="Please Enter Your Last Name" value="{{ $user->last_name }}" required />
                     </div>
                 </div>
 
@@ -292,7 +292,7 @@
                 ->first();
             $user_detail = DB::table('userdetails')
                 ->where('user_id', Session::get('temp_user_id'))
-                ->get(['nominee_name', 'nominee_phone', 'nominee_dob', 'nominee_address', 'nominee_relation'])
+                ->get(['nominee_name', 'nominee_phone', 'nominee_dob', 'nominee_address', 'nominee_relation', 'flat_no', 'street', 'locality', 'state', 'city', 'pincode'])
                 ->first();
             $plan = DB::table('plans')
                 ->where('status', 1)
@@ -375,11 +375,23 @@
                             value="{{ $user_detail->nominee_relation }}" />
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" id="nomine_address">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-3">Nominee Address *</label>
                         <textarea class="form-control" row="3" name="nominee_address" style="height: 103px;">{{ $user_detail->nominee_address }}</textarea>
                     </div>
+                </div>
+
+                <div class="col-md-6 d-none" id="residence_address">
+                    <div class="form-group mt-md-5 mt-3 adhar_field">
+                        <label class="pb-3">Nominee Address *</label>
+                        <textarea class="form-control" row="3" name="residence_nominee_address" style="height: 103px;">{{ $user_detail->flat_no }} {{ $user_detail->street }} {{ $user_detail->locality }} {{ $user_detail->state }} {{ $user_detail->city }} {{ $user_detail->pincode }}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group mt-2">
+                    <input class="me-2" type="checkbox" name="residence_address_check" id="residence_address_check" value="1" />
+                    <label for="residence_address_check">As Per Residence address</label>
                 </div>
 
                 <div class="form-group">
@@ -401,6 +413,21 @@
 
     </div>
 
+    <script>
+        document.getElementById('residence_address_check').addEventListener('change', function() {
+            var nomineAddress = document.getElementById('nomine_address');
+            var residenceAddress = document.getElementById('residence_address');
+
+            if (this.checked) {
+                nomineAddress.classList.add('d-none');
+                residenceAddress.classList.remove('d-none');
+            } else {
+                nomineAddress.classList.remove('d-none');
+                residenceAddress.classList.add('d-none');
+            }
+        });
+    </script>
+
     <!--------------------------------------------- plan detail --------------------------------->
 
 @endif
@@ -414,7 +441,7 @@
         @php
             $user = DB::table('users')
                 ->where('id', Session::get('temp_user_id'))
-                ->get(['plan_id', 'installment_amount', 'name', 'email', 'phone'])
+                ->get(['plan_id', 'installment_amount', 'first_name','last_name','email', 'phone'])
                 ->first();
 
             $user_detail = DB::table('userdetails')
@@ -483,7 +510,7 @@
 
                         <div class="row">
                             <div class="col-md-4">
-                                <p class="card-text pb-2"><strong>Name : </strong>{{ $user->name }}</p>
+                                <p class="card-text pb-2"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p>
                             </div>
                             <div class="col-md-4">
                                 <p class="card-text pb-2"><strong>Email : </strong>{{ $user->email }}</p>
@@ -859,7 +886,7 @@
         @php
             $user = DB::table('users')
                 ->where('id', Session::get('temp_user_id'))
-                ->get(['plan_id', 'installment_amount', 'name', 'email', 'phone', 'ulp_id'])
+                ->get(['plan_id', 'installment_amount', 'first_name','last_name', 'email', 'phone', 'ulp_id'])
                 ->first();
 
             $user_detail = DB::table('userdetails')
@@ -931,7 +958,7 @@
 
                         <div class="row">
                             <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>Name : </strong>{{ $user->name }}</p>
+                                <p class="card-text"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p>
                             </div>
 
                             <div class="col-md-4 mb-3">
@@ -1045,7 +1072,7 @@
         @php
             $user = DB::table('users')
                 ->where('id', Session::get('temp_user_id'))
-                ->get(['name', 'email', 'phone'])
+                ->get(['first_name','last_name', 'email', 'phone'])
                 ->first();
         @endphp
 
@@ -1059,10 +1086,10 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group mt-3 adhar_field">
-                            <label class="pb-2">Name *</label>
+                            <label class="pb-2">Full Name *</label>
                             <input type="text" class="form-control" name="name" pattern="[A-Za-z]+"
                                 minlength="3" maxlength="20" placeholder="Please Enter Your Name"
-                                value="{{ $user->name }}" readonly required />
+                                value="{{ $user->first_name }} {{ $user->last_name }}" readonly required />
                         </div>
                     </div>
 
@@ -1157,7 +1184,7 @@
         @php
             $user = DB::table('users')
                 ->where('id', Session::get('temp_user_id'))
-                ->get(['plan_id', 'installment_amount', 'name', 'email', 'phone', 'ulp_id'])
+                ->get(['plan_id', 'installment_amount', 'first_name','last_name', 'email', 'phone', 'ulp_id'])
                 ->first();
 
             $user_detail = DB::table('userdetails')
@@ -1232,7 +1259,7 @@
 
 
                             <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>Name : </strong>{{ $user->name }}</p>
+                                <p class="card-text"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p>
                             </div>
 
                             <div class="col-md-4 mb-3">
@@ -1332,7 +1359,7 @@
 
             $user = DB::table('users')
                 ->where('id', Session::get('temp_user_id'))
-                ->get(['plan_id', 'installment_amount', 'name', 'email', 'phone', 'ulp_id'])
+                ->get(['plan_id', 'installment_amount', 'first_name','last_name', 'email', 'phone', 'ulp_id'])
                 ->first();
 
             $user_detail = DB::table('userdetails')
@@ -1428,7 +1455,7 @@
                         <div class="row">
 
                             <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>Name : </strong>{{ $user->name }}</p>
+                                <p class="card-text"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p>
                             </div>
 
                             <div class="col-md-4 mb-3">

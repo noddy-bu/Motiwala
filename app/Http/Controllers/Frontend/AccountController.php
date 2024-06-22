@@ -614,7 +614,8 @@ class AccountController extends Controller
 
         $validator = Validator::make($request->all(), [
             'title' => 'required',
-            'name' => 'required|min:3',
+            'first_name' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            'last_name' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:1',
             'email' => 'required|email',
             'flat_no' => 'required|min:1',
             'street' => 'required|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:3',
@@ -623,7 +624,14 @@ class AccountController extends Controller
             'city' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
             'pincode' => 'required|regex:/^[\d\s-]+$/|min:6',
             'pan_number' => 'required|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:10|max:10',
-            'dob' => 'required',
+            'dob' => ['required', 'date', function ($attribute, $value, $fail) {
+                $dob = Carbon::parse($value);
+                $age = $dob->diffInYears(Carbon::now());
+        
+                if ($age < 18) {
+                    $fail('You must be at least 18 years old.');
+                }
+            }],
         ]);
 
         if ($validator->fails()) {
@@ -642,11 +650,14 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
+
+
         if(Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))){
 
             DB::table('users')->where('id',Session::get('temp_user_id'))->update([
                 'salutation' => $request->input('title'),
-                'name' => $request->input('name'),
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
                 'email' => strtolower($request->input('email')),
             ]);
 
@@ -712,6 +723,12 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
+        if($request->has('residence_address_check')){
+            $address = $request->input('residence_nominee_address');
+        } else {
+            $address = $request->input('nominee_address');
+        }
+
         if(Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))){
 
             DB::table('users')->where('id',Session::get('temp_user_id'))->update([
@@ -723,7 +740,7 @@ class AccountController extends Controller
                 'nominee_name' => $request->input('nominee_name'),
                 'nominee_phone' => $request->input('nominee_phone'),
                 'nominee_dob' => $request->input('nominee_dob'),
-                'nominee_address' => $request->input('nominee_address'),
+                'nominee_address' => $address,
                 'nominee_relation' => $request->input('nominee_relation'),
             ]);
 
