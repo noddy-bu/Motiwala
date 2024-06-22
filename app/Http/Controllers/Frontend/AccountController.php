@@ -1327,7 +1327,7 @@ class AccountController extends Controller
         $plan_details = DB::table('plans')->where('id', $user_plan_Details)->first(['minimum_installment_amount', 'installment_period']);
 
         // Calculate the number of installments
-        $installments = $plan_details->installment_period;
+        $installments = (int) $plan_details->installment_period;
         // $amount = $plan_details->minimum_installment_amount;
 
         $redemption_id = DB::table('redemptions')->insertGetId([
