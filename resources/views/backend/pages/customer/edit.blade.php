@@ -37,7 +37,7 @@
                             <p class="card-text"><strong>Mobile : </strong>{{ $user->phone ?? '-'  }}</p>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <p class="card-text"><strong>ULP ID : </strong>{{ $user->ulp_id  ?? '-' }}</p>
+                            <p class="card-text"><strong>ULP ID (UID) : </strong>{{ $user->ulp_id  ?? '-' }}</p>
                         </div>
                         <div class="col-md-4 mb-3">
                             <p class="card-text"><strong>Nominee Name :

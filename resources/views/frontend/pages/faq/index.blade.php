@@ -43,7 +43,7 @@
 						ensuring there's something special for everyone's taste and preferences.
 					</p>
 					
-					<p class="mb-0"><b>3. Can I reedem and purchase before 11 months ?</b></p>
+					<p class="mb-0"><b>3. Can I redeem and purchase before 11 months ?</b></p>
 					<p>
 						Enjoy ultimate flexibility with our plan—redeem and purchase before the 11-month period ends. 
 						Find your perfect piece early? Redeem your plan for a convenient purchase anytime. 
@@ -59,7 +59,7 @@
 						Enjoy the benefits of your commitment with this fantastic discount opportunity!
 					</p>
 					
-					<p class="mb-0"><b>5. What other benifits you get? </b></p>
+					<p class="mb-0"><b>5. What other benefits you get? </b></p>
 					<p>
 						Our Golden Treasurer program offers more than just a discount. 
 						Experience personalized assistance from our dedicated team throughout your journey. 
