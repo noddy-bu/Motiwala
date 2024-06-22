@@ -54,18 +54,18 @@
 
 
     <h1 style="text-align:center; font-size:26px; padding-bottom:20px;">Golden Treasure Plan Customer Application</h1>
-    <p><b>Application Number: {{ $data['user']->id }}</b></p>
+    <p><b>Application Number: {{ application_no($data['user']->id) }}</b></p>
 
 
     <div style="width:100%;">
     <div style="width:25%; float:left;"><b>Account Holder Name:</b></div>
-    <div style="width:75%; float:left; border-bottom:1px solid #ccc;">{{ $data['user']->name }}</div>
+    <div style="width:75%; float:left; border-bottom:1px solid #ccc;">{{ $data['user']->first_name }} {{ $data['user']->last_name }}</div>
 </div>
 <br>
 
     <div style="width:50%; clear:both; padding-top:15px;">
     <div style="width:25%; float:left;"><b>Enricle No:</b></div>
-    <div style="width:75%; float:left; border-bottom:1px solid #ccc;">{{ $data['user']->ulp_id }}</div>
+    <div style="width:75%; float:left; border-bottom:1px solid #ccc;">{{ ulp_id($data['user']->id) }}</div>
 </div>
  <div style="width:50%; ">
     <div style="width:20%; float:left;"><b>Email ID:</b></div>

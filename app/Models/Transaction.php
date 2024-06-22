@@ -19,7 +19,7 @@ class Transaction extends Model
         'payment_status',
         'payment_response',
         'date_of_installment',
-        'redeem_id',
+        'redemption_id',
         'installment',
     ];   
      

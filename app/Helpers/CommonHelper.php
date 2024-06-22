@@ -133,3 +133,38 @@ use Illuminate\Support\Facades\Mail;
         }
     }
 
+    if(!function_exists('ulp_id')){
+        function ulp_id($number){
+            
+            // Ensure the length of $ulp_id is exactly 12 digits
+            if (strlen($number) < 7) {
+                $padding_length = 7 - strlen($number);
+                $ulp_number = str_pad($number, 7, '0', STR_PAD_LEFT); // Pad with leading zeros if necessary
+            } elseif (strlen($number) > 7) {
+                $ulp_number = substr($number, 0, 7); // Trim if longer than 12 digits
+            }
+
+            $ulp_number = 'U-'.$ulp_number;
+
+            return $ulp_number;
+
+        }
+    }
+
+    if(!function_exists('application_no')){
+        function ulp_id($number){
+            
+            // Ensure the length of $ulp_id is exactly 12 digits
+            if (strlen($number) < 7) {
+                $padding_length = 7 - strlen($number);
+                $application_no = str_pad($number, 7, '0', STR_PAD_LEFT); // Pad with leading zeros if necessary
+            } elseif (strlen($number) > 7) {
+                $application_no = substr($number, 0, 7); // Trim if longer than 12 digits
+            }
+
+            $application_no = 'A-'.$application_no;
+
+            return $application_no;
+
+        }
+    }

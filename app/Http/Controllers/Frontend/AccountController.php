@@ -1329,7 +1329,7 @@ class AccountController extends Controller
 
         $total_get_Amount = $amount / 1000 * 10750;
 
-        $redeem_id = DB::table('redemptions')->insertGetId([
+        $redemption_id = DB::table('redemptions')->insertGetId([
             'user_id' => $temp_user_id,
             'plan_id' => $user_plan_Details,
             'installment_count' => 1,
@@ -1351,7 +1351,7 @@ class AccountController extends Controller
                 'payment_response' => '[]',
                 'payment_status' => 'unpaid',
                 'date_of_installment' => date('Y-m-d H:i:s', strtotime("+$i month")),
-                'redeem_id' => $redeem_id,
+                'redemption_id' => $redemption_id,
                 'installment' => $i + 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
