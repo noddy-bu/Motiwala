@@ -24,10 +24,10 @@
                                 @php
                                     $user_name = DB::table('users')
                                         ->where('id', $row->user_id)
-                                        ->value('name');
+                                        ->get(['first_name','last_name'])->first();
                                 @endphp
                                 <td>{{ $row->payment_id }}</td>
-                                <td>{{ $user_name }}</td>
+                                <td>{{ $user_name->first_name }} {{ $user_name->last_name }}</td>
 
                                 <td>{{ $row->payment_amount }}</td>
 

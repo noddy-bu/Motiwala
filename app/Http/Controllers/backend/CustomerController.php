@@ -47,7 +47,8 @@ class CustomerController extends Controller
         $query->where('role_id','!=',1);
         if (!empty($searchValue)) {
             $query->where(function($q) use ($searchValue) {
-                $q->where('name', 'like', "%$searchValue%")
+                $q->where('first_name', 'like', "%$searchValue%")
+                    ->orWhere('last_name', 'like', "%$searchValue%")
                     ->orWhere('email', 'like', "%$searchValue%")
                     ->orWhere('phone', 'like', "%$searchValue%");
             });
@@ -56,7 +57,8 @@ class CustomerController extends Controller
         // Filter by additional form parameters
         $name = $request->input('name');
         if (!empty($name)) {
-            $query->where('name', 'like', "%$name%");
+            $query->where('first_name', 'like', "%$name%");
+            $query->orwhere('last_name', 'like', "%$name%");
         }
 
         $email  = $request->input('email');
@@ -98,7 +100,7 @@ class CustomerController extends Controller
 
             $nestedData = [
                 'id' => $i++,
-                'name' => $row->name,
+                'name' => $row->first_name.''.$row->last_name,
                 'email' => $row->email,
                 'phone' => $row->phone,
                 'status' => $row->status ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Inactive</span>',
