@@ -61,14 +61,14 @@
 
                 <div class="row">
 
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div class="form-group mt-4 adhar_field">
                             <label class="pb-2">Mobile Number</label>
                             <input type="text" class="form-control" value="{{ Session::get('phone') }}" disabled />
                         </div>
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div class="form-group mt-4 adhar_field">
                             <label class="pb-2">Verify OTP *</label>
                             <input type="text" class="form-control" name="otp" pattern="[0-9]+" minlength="6"
@@ -76,16 +76,14 @@
                         </div>
                     </div>
 
-                    <div class="col-md-2"></div>
-
                     <div class="col-md-12">
-                        <div class="form-group">
+                        <div class="form-group text-end">
 
                             <div class="buttonclass me-4 mb-3">
                                 <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
                             </div>
 
-                            <div class="buttonclass1 mt60">
+                            <div class="buttonclass1 mt40">
                                 <button type="submit">Submit <i class="las la-arrow-right"></i></button>
                             </div>
                             <a class="ms-4 d-sm-inline d-block" id="resendOTPButton">Resend OTP</a>
@@ -116,7 +114,7 @@
 
     <!--------------------------------------------- customer detail --------------------------------->
 
-    <div id="customer-detail">
+    <div id="customer-detail" class="paddingbtm100">
 
 
         <div class="p-3 mb-2 text-white" style="background-color:#e1aa7a;">
@@ -253,11 +251,11 @@
                 </div>
 
 
-                <div class="form-group">
+                <div class="form-group text-end">
                     <div class="buttonclass me-4">
                         <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
                     </div>
-                    <div class="buttonclass1 mt60">
+                    <div class="buttonclass1 mt40">
                         <button type="submit">Submit <i class="las la-arrow-right"></i></button>
                     </div>
                 </div>
@@ -279,7 +277,7 @@
 
     <!--------------------------------------------- plan detail --------------------------------->
 
-    <div id="plan-detail">
+    <div id="plan-detail" class="paddingbtm100">
 
         <div class="p-3 mb-2 text-white" style="background-color:#e1aa7a;">
             <h5 class="mb-0"> Plan Details </h5>
@@ -375,20 +373,20 @@
                             value="{{ $user_detail->nominee_relation }}" />
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-3">Nominee Address *</label>
-                        <textarea class="form-control" row="3" name="nominee_address" style="height: 103px;">{{ $user_detail->nominee_address }}</textarea>
+                        <textarea class="form-control height50" row="2" name="nominee_address" style="height: 103px;">{{ $user_detail->nominee_address }}</textarea>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group text-end">
 
                     <div class="buttonclass me-4">
                         <a class="text-decoration-none text-white" onclick="back_to_privious();"><i class="las la-arrow-left"></i>Back</a>
                     </div>
 
-                    <div class="buttonclass1 mt60">
+                    <div class="buttonclass1 mt40">
                         <button type="submit">Submit <i class="las la-arrow-right"></i></button>
                     </div>
                 </div>
@@ -611,7 +609,7 @@
                 <div class="buttonclass me-4">
                     <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
                 </div>
-                <div class="buttonclass1 mt60">
+                <div class="buttonclass1 mt40">
                     <button type="submit">Proceed <i class="las la-arrow-right"></i></button>
                 </div>
             </div>
@@ -657,11 +655,11 @@
 
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-md-8 text-end">
                     <div class="buttonclass me-4">
                         <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
                     </div>
-                    <div class="buttonclass1 mt60">
+                    <div class="buttonclass1 mt40">
                         <button type="submit">Verify <i class="las la-arrow-right"></i></button>
                     </div>
                 </div>
@@ -686,20 +684,24 @@
                 action="{{ url(route('account.create', ['param' => 'aadhar-otp-verify'])) }}" method="post">
                 @csrf
 
-                <div class="d-flex">
-                    <div class="form-group mt-4 adhar_field">
+             
+                <div class="row">
+<div class="col-md-6">
+ <div class="form-group mt-4 adhar_field">
                         <label class="pb-2">Verify OTP *</label>
                         <input type="text" class="form-control" name="otp" pattern="[0-9]+" minlength="6"
                             maxlength="6" placeholder="Please Enter OTP" required />
                     </div>
-                </div>
+</div>
 
-                <div class="row">
-                    <div class="form-group col-12">
-                        <div class="buttonclass me-4">
+              <div class="col-md-6"></div> 
+
+
+                    <div class="form-group col-md-6 text-end">
+                        <div id="ReSubmit" class="buttonclass me-4 d-none">
                             <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
                         </div>
-                        <div class="buttonclass1 mt60">
+                        <div class="buttonclass1 mt40">
                             <button type="submit">Submit <i class="las la-arrow-right"></i></button>
                         </div>
                     </div>
@@ -709,11 +711,6 @@
 
             </form>
 
-            <div class="form-group col-md-5 d-none" id="ReSubmit">
-                <div class="buttonclass1 mt40">
-                    <button>ReSubmit <i class="las la-arrow-right"></i></button>
-                </div>
-            </div>
 
         </div>
 
@@ -805,7 +802,7 @@
 
             <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
                 <div class="card-header">
-                    Final KYC Reault
+                    Final KYC Result
                 </div>
 
                 <div class="d-flex justify-content-center">
@@ -999,12 +996,12 @@
         </div>
 
         <div>
-            <div class="steps-title mx-2 my-2">
-                <label style="color: var(--ternary-text); font-size: var(--tertiary-font-size); padding: 5px;"><br />
+            <div class="steps-title pt-2">
+                <p>
                     You are about to be redirected to www.xyz.com, a third party website. The information you provide on
                     the third party website is subject to the terms and conditions, privacy policies and practices of
                     the third party website and we are not responsible for the security and privacy of any information
-                    that you may provide on the third party website. </label><br />
+                    that you may provide on the third party website. </p>
             </div>
         </div>
 
@@ -1022,7 +1019,7 @@
                 <div class="buttonclass me-4">
                     <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
                 </div>
-                <div class="buttonclass1 mt60">
+                <div class="buttonclass1 mt40">
                     <button type="submit">Proceed <i class="las la-arrow-right"></i></button>
                 </div>
             </div>
@@ -1040,7 +1037,7 @@
 @if (Session::has('step') && Session::get('step') == 10)
     <!--------------------------------------------- eSign Aadhar verify --------------------------------->
 
-    <div id="esign">
+    <div id="esign" class="paddingbtm100">
 
         @php
             $user = DB::table('users')
@@ -1084,13 +1081,13 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group text-end">
 
                         <div class="buttonclass me-4">
                             <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
                         </div>
 
-                        <div class="buttonclass1 mt60">
+                        <div class="buttonclass1 mt40">
                             <button type="submit">Verify <i class="las la-arrow-right"></i></button>
                         </div>
                     </div>
@@ -1122,22 +1119,34 @@
                 action="{{ url(route('account.create', ['param' => 'eSign-aadhar-otp-verify'])) }}" method="post">
                 @csrf
 
-                <div class="d-flex">
-                    <div class="form-group mt-3 adhar_field">
+                <div class="row">
+
+                <div class="col-md-6">
+<div class="form-group mt-3 adhar_field">
                         <label class="pb-2">Verify OTP *</label>
                         <input type="text" class="form-control" name="otp" pattern="[0-9]+" minlength="6"
                             maxlength="6" placeholder="Please Enter OTP" required />
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="col-md-6"></div>
+
+                <div class="col-md-6">
+                    <div class="form-group text-end">
                     <div class="buttonclass me-4">
                         <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
                     </div>
-                    <div class="buttonclass1 mt60">
+                    <div class="buttonclass1 mt40">
                         <button type="submit">Submit <i class="las la-arrow-right"></i></button>
                     </div>
                 </div>
+                
+            </div>
+                  
+                </div>
+
+
+                
 
             </form>
 
@@ -1190,7 +1199,6 @@
         <div class="row d-flex">
 
             <div class="col-md-6">
-
                 <div class="card col-md-12 mt-3">
                     <div class="card-header">
                         Plan Details
@@ -1500,7 +1508,7 @@
 
 
         <div class="form-group">
-            <div class="buttonclass1 mt60">
+            <div class="buttonclass1 mt40">
                 <button id="login_page">Proceed to login <i class="las la-arrow-right"></i></button>
             </div>
         </div>

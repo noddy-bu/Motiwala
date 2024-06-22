@@ -576,7 +576,7 @@ footer {
 
 .footer-app-image {
     position: absolute;
-    margin-top: -195px;
+    margin-top: -184px;
 }
 
 .footer-widget .widget-title {
@@ -1058,11 +1058,13 @@ table.table.table-bordered {
     padding-bottom: 160px;
 }
 
-.terms_section, .about_us_section {
+.terms_section,
+.about_us_section {
     padding-bottom: 100px;
 }
 
-.terms_section h4, .about_us_section h5 {
+.terms_section h4,
+.about_us_section h5 {
     font-weight: 600;
 }
 
@@ -1334,12 +1336,13 @@ body .userlogin_box {
     padding: 0px 0px !important;
     border-radius: 20px !important;
     border: 1px solid #c0c0c0 !important;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
     box-shadow: 6px 7px 10px #00000015;
 }
 
 .card-header {
     padding: 15px 16px !important;
+    font-weight: 700;
 }
 
 .card-header h4 {
@@ -1402,7 +1405,7 @@ body .userlogin_box {
 
 
 /* new acccount CSS */
-.form-select{
+.form-select {
     padding-left: 0px !important;
 }
 
@@ -1745,4 +1748,26 @@ form#loginForm a:hover {
 
 .fail_image {
     width: 120px;
+}
+
+.widths80 {
+    width: 82% !important;
+}
+
+.paddingbtm100 {
+    padding-bottom: 100px;
+}
+
+.height50 {
+    height: 50px !important;
+}
+
+.width200 {
+    width: 160px;
+}
+
+@media(max-width:767px) {
+    .widths80 {
+        width: 100% !important;
+    }
 }

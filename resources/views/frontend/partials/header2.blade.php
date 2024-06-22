@@ -20,7 +20,7 @@
 
     <div class="col-6">
         <a href="/" class="d-block p-md-3 p-0 link-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
-            <img class="sidebar_logo" src="/assets/frontend/images/logo.png">
+            <img class="sidebar_logo" src="/assets/frontend/images/logo.png" >
         </a>
     </div>
 </header>
