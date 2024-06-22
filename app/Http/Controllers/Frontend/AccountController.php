@@ -1276,7 +1276,7 @@ class AccountController extends Controller
 
             DB::table('users')->where('id', Session::get('temp_user_id'))->update([
                 // 'account_number' => $account_number,
-                'password' => bcrypt(Session::get('phone')),
+                'password' => bcrypt((string) Session::get('phone')),
                 'status' => 1,
             ]);
 
@@ -1328,13 +1328,16 @@ class AccountController extends Controller
 
         // Calculate the number of installments
         $installments = (int) $plan_details->installment_period;
+
+        $maturity_date_end = date('Y-m-d H:i:s', strtotime("+$installments month"));
+
         // $amount = $plan_details->minimum_installment_amount;
 
         $redemption_id = DB::table('redemptions')->insertGetId([
             'user_id' => $temp_user_id,
             'plan_id' => $user_plan_Details,
             'maturity_date_start' => date('Y-m-d H:i:s'),
-            'maturity_date_end' => date('Y-m-d H:i:s', strtotime("+$installments month")),
+            'maturity_date_end' => $maturity_date_end,
             'total_receivable_amount' => $amount + ($amount * 0.075),
             'status' => '1',
             'created_at' => date('Y-m-d H:i:s'),
@@ -1355,7 +1358,7 @@ class AccountController extends Controller
             'updated_at' => date('Y-m-d H:i:s')
         ]);
 
-        for ($i = 1; $i <= $installments; $i++) {
+        for ($i = 1; $i <= $installments - 1; $i++) {
             $due_date_start = date('Y-m-d H:i:s', strtotime("+$i month"));
             $due_date_end = date('Y-m-d H:i:s', strtotime("$due_date_start +3 days"));
             
@@ -1553,6 +1556,8 @@ class AccountController extends Controller
         return true;
 
     }
+
+
 
 
 

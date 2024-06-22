@@ -208,9 +208,11 @@ Route::get('/redirect-login', function () {
 })->name('redirect-login');
 
 Route::get('/session-setup', function () {
-    Session()->put('step', 12);
+    Session()->put('phone', "8433625599");
+    Session()->put('temp_user_id', 2);
+    Session()->put('payment', 1);
 });
 
 Route::get('/template-design', [IndexController::class, 'pdf'])->name('pdf');
 
-// Route::get('/testing-codeing', [AccountController::class, 'testing'])->name('testing');
+// Route::get('/testing-codeing', [AccountController::class, 'dummy_pass'])->name('testing');
