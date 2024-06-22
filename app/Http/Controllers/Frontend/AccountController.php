@@ -1288,9 +1288,8 @@ class AccountController extends Controller
                 'payment_id' => $txnid,
                 'payment_amount' => $order->grand_total,
                 'payment_response' => json_encode($input),
+                'payment_type' => 'payu',
                 'payment_status' => 'paid',
-                'date_of_installment' => date('Y-m-d H:i:s'),
-                'installment' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
@@ -1327,8 +1326,6 @@ class AccountController extends Controller
         // Retrieve the plan details
         $plan_details = DB::table('plans')->where('id', $user_plan_Details)->first(['minimum_installment_amount', 'installment_period']);
 
-        $total_get_Amount = $amount / 1000 * 10750;
-
         // Calculate the number of installments
         $installments = $plan_details->installment_period;
         // $amount = $plan_details->minimum_installment_amount;
@@ -1338,7 +1335,7 @@ class AccountController extends Controller
             'plan_id' => $user_plan_Details,
             'maturity_date_start' => date('Y-m-d H:i:s'),
             'maturity_date_end' => date('Y-m-d H:i:s', strtotime("+$installments month")),
-            'total_receivable_amount' => $amount,
+            'total_receivable_amount' => $amount + ($amount * 0.075),
             'status' => '1',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
@@ -1368,12 +1365,7 @@ class AccountController extends Controller
             // Insert transaction record
             DB::table('redemption_items')->insert([
                 'redemption_id' => $redemption_id,
-                'user_id' => $temp_user_id,
-                'payment_amount' => $amount,
-                'payment_response' => '[]',
-                'payment_status' => 'unpaid',
-                'date_of_installment' => date('Y-m-d H:i:s', strtotime("+$i month")),
-                'installment_no' => $i,
+                'installment_no' => $i + 1,
                 'due_date_start' => $due_date_start,
                 'due_date_end' => $due_date_end,
                 'installment_amount' => $amount,

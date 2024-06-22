@@ -208,7 +208,7 @@ Route::get('/redirect-login', function () {
 })->name('redirect-login');
 
 Route::get('/session-setup', function () {
-    Session()->put('step', 10);
+    Session()->put('step', 12);
 });
 
 Route::get('/template-design', [IndexController::class, 'pdf'])->name('pdf');
