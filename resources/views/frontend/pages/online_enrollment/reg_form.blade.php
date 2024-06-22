@@ -373,17 +373,17 @@
                             value="{{ $user_detail->nominee_relation }}" />
                     </div>
                 </div>
-                <div class="col-md-6" id="nomine_address">
+                <div class="col-md-12" id="nomine_address">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-3">Nominee Address *</label>
                         <textarea class="form-control height50" row="2" name="nominee_address" style="height: 103px;">{{ $user_detail->nominee_address }}</textarea>
                     </div>
                 </div>
 
-                <div class="col-md-6 d-none" id="residence_address">
+                <div class="col-md-12 d-none" id="residence_address">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-3">Nominee Address *</label>
-                        <textarea class="form-control" row="3" name="residence_nominee_address" style="height: 103px;">{{ $user_detail->flat_no }} {{ $user_detail->street }} {{ $user_detail->locality }} {{ $user_detail->state }} {{ $user_detail->city }} {{ $user_detail->pincode }}</textarea>
+                        <textarea class="form-control height50" row="3" name="residence_nominee_address" style="height: 103px;">{{ $user_detail->flat_no }} {{ $user_detail->street }} {{ $user_detail->locality }} {{ $user_detail->state }} {{ $user_detail->city }} {{ $user_detail->pincode }}</textarea>
                     </div>
                 </div>
 
