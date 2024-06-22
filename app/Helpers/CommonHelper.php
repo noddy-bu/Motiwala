@@ -152,7 +152,7 @@ use Illuminate\Support\Facades\Mail;
     }
 
     if(!function_exists('application_no')){
-        function ulp_id($number){
+        function application_no($number){
             
             // Ensure the length of $ulp_id is exactly 12 digits
             if (strlen($number) < 7) {
