@@ -1,4 +1,4 @@
- <!-- {{--
+ 
 @php
     $data = [
         'user' => (object) [
@@ -27,7 +27,6 @@
     ];
 
 @endphp
---}} -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -97,7 +96,7 @@
 </div>
  <div style="width:50%; ">
     <div style="width:40%; float:left;"><b>Scheme Duration:</b></div>
-    <div style="width:60%; float:left; border-bottom:1px solid #ccc;">{{ $data['plan']->installment_period }}</div>
+    <div style="width:60%; float:left; border-bottom:1px solid #ccc;">{{ $data['plan']->installment_period }} Months</div>
 </div>
 
  <div style="width:50%; clear:both; padding-top:15px;">
@@ -105,8 +104,8 @@
     <div style="width:75%; float:left; border-bottom:1px solid #ccc;">{{ $data['user_detail']->aadhar_number }}</div>
 </div>
  <div style="width:50%; ">
-    <div style="width:18%; float:left;"><b>Pan No:</b></div>
-    <div style="width:82%; float:left; border-bottom:1px solid #ccc;">{{ $data['user_detail']->pan_number }}</div>
+    <div style="width:32%; float:left;"><b>Pan Card No:</b></div>
+    <div style="width:68%; float:left; border-bottom:1px solid #ccc;">{{ $data['user_detail']->pan_number }}</div>
 </div>
 
 
@@ -135,7 +134,7 @@
 </div>
 
  <div style="width:100%; clear:both; margin-bottom:0px;padding-top:40px;">
-    <div style="margin-bottom:0px">I have read, understood and agree to all the Terms & Conditions of the Golden Harvest Scheme and I agree  to abide by the same.</div>
+    <div style="margin-bottom:0px">I have read, understood and agree to all the Terms & Conditions of the Golden Treasure Scheme and I agree  to abide by the same.</div>
 </div>
 
 

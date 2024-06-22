@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg ">
         <div class="container">
             <a class="navbar-brand" href="{{ url(route('index')) }}"><img
-                    src="{{ asset('/assets/frontend/images/logo.png') }}"></a>
+                    src="{{ asset('/assets/frontend/images/logo.png') }}" class="width200"></a>
             <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                 aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
