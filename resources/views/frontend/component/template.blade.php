@@ -1,5 +1,5 @@
  
-@php
+<!-- {{-- @php
     $data = [
         'user' => (object) [
             'id' => '12',
@@ -24,9 +24,9 @@
         'plan' => (object) [
             'installment_period' => '123',
         ],
-    ];
+    ];--}}
 
-@endphp
+@endphp -->
 
 <!DOCTYPE html>
 <html lang="en">
