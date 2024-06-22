@@ -1259,15 +1259,15 @@ class AccountController extends Controller
             $user_id = Session::get('temp_user_id');
             $random = mt_rand(100000, 999999);
         
-            $account_number = $user_id . '' . $random;
+            // $account_number = $user_id . '' . $random;
     
-            // Ensure the length of $ulp_id is exactly 12 digits
-            if (strlen($account_number) < 12) {
-                $padding_length = 12 - strlen($account_number);
-                $account_number = str_pad($account_number, 12, '0', STR_PAD_LEFT); // Pad with leading zeros if necessary
-            } elseif (strlen($account_number) > 12) {
-                $account_number = substr($account_number, 0, 12); // Trim if longer than 12 digits
-            }
+            // // Ensure the length of $ulp_id is exactly 12 digits
+            // if (strlen($account_number) < 12) {
+            //     $padding_length = 12 - strlen($account_number);
+            //     $account_number = str_pad($account_number, 12, '0', STR_PAD_LEFT); // Pad with leading zeros if necessary
+            // } elseif (strlen($account_number) > 12) {
+            //     $account_number = substr($account_number, 0, 12); // Trim if longer than 12 digits
+            // }
 
             Session::put('step', 13);
             Session::put('payment', 1);
@@ -1275,7 +1275,7 @@ class AccountController extends Controller
 
 
             DB::table('users')->where('id', Session::get('temp_user_id'))->update([
-                'account_number' => $account_number,
+                // 'account_number' => $account_number,
                 'password' => bcrypt(Session::get('phone')),
                 'status' => 1,
             ]);
@@ -1283,7 +1283,7 @@ class AccountController extends Controller
             $amount = $order->grand_total;
 
             //update order
-            DB::table('transactions')->insert([
+            $transactions_id = DB::table('transactions')->insertGetId([
                 'user_id' => Session::get('temp_user_id'),
                 'payment_id' => $txnid,
                 'payment_amount' => $order->grand_total,
@@ -1312,14 +1312,14 @@ class AccountController extends Controller
             // delete temp recored
             DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
 
-            $this->auto_add_transactions(Session::get('temp_user_id'),$amount,$account_number);
+            $this->auto_add_transactions(Session::get('temp_user_id'),$amount,$transactions_id);
 
             return redirect()->route('account.new.enrollment.page');
         // }
     }
 
 
-    public function auto_add_transactions($temp_user_id, $amount, $account_number)
+    public function auto_add_transactions($temp_user_id, $amount, $transactions_id)
     {
         // Retrieve the user's plan ID from the session
         $user_plan_Details = DB::table('users')->where('id', $temp_user_id)->value('plan_id');
@@ -1329,32 +1329,57 @@ class AccountController extends Controller
 
         $total_get_Amount = $amount / 1000 * 10750;
 
-        $redemption_id = DB::table('redemptions')->insertGetId([
-            'user_id' => $temp_user_id,
-            'plan_id' => $user_plan_Details,
-            'installment_count' => 1,
-            'total_paid_amount' => $amount,
-            'total_get_amount' => $total_get_Amount,
-            'account_number' => $account_number,
-            'status' => '1',
-        ]);
-
         // Calculate the number of installments
         $installments = $plan_details->installment_period;
         // $amount = $plan_details->minimum_installment_amount;
 
+        $redemption_id = DB::table('redemptions')->insertGetId([
+            'user_id' => $temp_user_id,
+            'plan_id' => $user_plan_Details,
+            'maturity_date_start' => date('Y-m-d H:i:s'),
+            'maturity_date_end' => date('Y-m-d H:i:s', strtotime("+$installments month")),
+            'total_receivable_amount' => $amount,
+            'status' => '1',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('redemption_items')->insert([
+            'redemption_id' => $redemption_id,
+            'transaction_id' => $transactions_id,
+            'installment_no' => 1,
+            'due_date_start' => date('Y-m-d H:i:s'),
+            'due_date_end' => date('Y-m-d H:i:s'),
+            'installment_amount' => $amount,
+            'receivable_amount' => $amount + ($amount * 0.075),
+            'status' => 'paid',
+            'receipt_date' => date('Y-m-d H:i:s'),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+
         for ($i = 1; $i <= $installments; $i++) {
-            // Insert transaction records
-            DB::table('transactions')->insert([
+            $due_date_start = date('Y-m-d H:i:s', strtotime("+$i month"));
+            $due_date_end = date('Y-m-d H:i:s', strtotime("$due_date_start +3 days"));
+            
+            // Determine status based on installment number
+            $status = ($i == 1) ? 'pending' : 'unpaid';
+            
+            // Insert transaction record
+            DB::table('redemption_items')->insert([
+                'redemption_id' => $redemption_id,
                 'user_id' => $temp_user_id,
                 'payment_amount' => $amount,
                 'payment_response' => '[]',
                 'payment_status' => 'unpaid',
                 'date_of_installment' => date('Y-m-d H:i:s', strtotime("+$i month")),
-                'redemption_id' => $redemption_id,
-                'installment' => $i + 1,
+                'installment_no' => $i,
+                'due_date_start' => $due_date_start,
+                'due_date_end' => $due_date_end,
+                'installment_amount' => $amount,
+                'status' => $status,
                 'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'updated_at' => date('Y-m-d H:i:s'),
             ]);
         }
     
