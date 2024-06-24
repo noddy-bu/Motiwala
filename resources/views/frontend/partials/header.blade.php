@@ -27,13 +27,13 @@
                 <ul class="menu">
                   <img src="https://demo.creaadesign.com/bandhan-mutual-fund/images/cross2.svg" alt="" class="img-fluid cross_close">
                   <li>
-                    <a class="nav-link" href="{{ url(route('instantpay')) }}"><i class="las la-hand-holding-usd"></i> Instant Pay</a>
+                    <a class="nav-link" href="#instant-pay" onclick="instant_pay();"><i class="las la-hand-holding-usd"></i> Instant Pay</a>
                   </li>
                   
-                  <li>
+                  {{-- <li>
                     <a class="nav-link" data-bs-toggle="modal" href="#autodebit_modal"><i
                                         class="las la-credit-card"></i> Auto Debit</a>
-                  </li>
+                  </li> --}}
                   <li>
                     <a class="nav-link" href="{{ url(route('information')) }}"><i class="las la-exclamation-circle"></i>
                                     Information (Plan)</a>

@@ -20,6 +20,10 @@ $(document).ready(function () {
     }
 });
 
+function instant_pay() {
+    $("#loginmodal").modal("show");
+}
+
 // calculator
 /*
 ("use strict");

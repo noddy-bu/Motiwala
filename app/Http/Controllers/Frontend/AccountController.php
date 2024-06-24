@@ -146,9 +146,23 @@ class AccountController extends Controller
             'state' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
             'city' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
             'pincode' => 'required|regex:/^[\d\s-]+$/|min:3',
-            'dob' => 'required',
-
-            'nominee_name' => ['nullable', 'string', 'min:3'],
+            'dob' => ['required', 'date', function ($attribute, $value, $fail) {
+                $dob = Carbon::parse($value);
+                $age = $dob->diffInYears(Carbon::now());
+        
+                if ($age < 18) {
+                    $fail('You must be at least 18 years old.');
+                }
+            }],
+            'nominee_dob' => ['required', 'date', function ($attribute, $value, $fail) {
+                $dob = Carbon::parse($value);
+                $age = $dob->diffInYears(Carbon::now());
+        
+                if ($age < 18) {
+                    $fail('Nominee must be at least 18 years old.');
+                }
+            }],
+            'nominee_name' => ['nullable', 'string','regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3'],
             'nominee_phone' => 'nullable|regex:/^\d{10}$/',
             'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3'],
             'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3'],
@@ -694,7 +708,7 @@ class AccountController extends Controller
         $validator = Validator::make($request->all(), [
             'plan_id' => 'required',
             'installment_amount' => 'required|numeric',
-            'nominee_name' => ['nullable', 'string', 'min:3', 'max:250'],
+            'nominee_name' => ['nullable', 'string','regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
             'nominee_phone' => 'nullable|regex:/^\d{10}$/',
             'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
             'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],

@@ -98,6 +98,8 @@
                                 <thead>
                                     <tr>
                                         <th>Sr.no</th>
+                                        <th>Transaction ID</th>
+                                        <th>Receipt Date</th>
                                         <th>Due Date</th>
                                         <th>Installment No</th>
                                         <th>Installment Amount</th>
@@ -107,17 +109,28 @@
                                 <tbody>
                                     @php $i = 1; @endphp
                                     @foreach ($redemption_items as $row)
-                                        @if( $row->due_date_start <= date('Y-m-d'))
+                                        @if ($row->due_date_start <= date('Y-m-d') && in_array($row->status, ['paid', 'pending']))
                                             <tr>
                                                 <td>{{ $i++ }}</td>
                                                 <td>
                                                     @if ($row->status == 'paid')
-                                                        {{ datetimeFormatter($row->due_date_start) }}
+                                                        @php
+                                                            $transaction_id = DB::table('transactions')->where('id', $row->transaction_id)->value('payment_id');
+                                                        @endphp
+                                                        {{ $transaction_id }}
                                                     @else
-                                                        {{ date('d-m-Y', strtotime($row->due_date_start)) }}
+                                                        NA
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($row->status == 'paid')
+                                                        {{ datetimeFormatter($row->receipt_date) }}
+                                                    @else
+                                                        NA
                                                     @endif
                                                     
                                                 </td>
+                                                <td>{{ date('d-m-Y', strtotime($row->due_date_start)) }}</td>
                                                 <td>
                                                     {{ $row->installment_no }}
                                                 </td>

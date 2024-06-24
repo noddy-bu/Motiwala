@@ -886,7 +886,7 @@
         @php
             $user = DB::table('users')
                 ->where('id', Session::get('temp_user_id'))
-                ->get(['plan_id', 'installment_amount', 'first_name','last_name', 'email', 'phone', 'ulp_id'])
+                ->get(['plan_id', 'installment_amount', 'first_name','last_name', 'email', 'phone', 'id'])
                 ->first();
 
             $user_detail = DB::table('userdetails')
@@ -897,6 +897,7 @@
                     'nominee_dob',
                     'nominee_address',
                     'nominee_relation',
+                    'aadhar_number',
                     'flat_no',
                     'street',
                     'locality',
@@ -972,7 +973,12 @@
                                 <p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>ULP ID (UID) : </strong>{{ $user->ulp_id }}</p>
+                                <p class="card-text"><strong>ULP ID (UID) : </strong>{{ ulp_id($user->id) }}</p>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <p class="card-text"><strong>Aadhar No :
+                                    </strong>{{ !empty($user_detail->aadhar_number) ? $user->aadhar_number : 'NA' }}
+                                </p>
                             </div>
                             <div class="col-md-4 mb-3">
                                 <p class="card-text"><strong>Nominee Name :
@@ -984,12 +990,6 @@
                                     </strong>{{ !empty($user_detail->nominee_phone) ? $user_detail->nominee_phone : 'NA' }}
                                 </p>
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>Nominee DOB :
-                                    </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}
-                                </p>
-                            </div>
-
                             <div class="col-md-4 mb-3">
                                 <p class="card-text"><strong>Nominee Relation :
                                     </strong>{{ !empty($user_detail->nominee_relation) ? $user_detail->nominee_relation : 'NA' }}
@@ -1156,7 +1156,7 @@
                 <div class="row">
 
                 <div class="col-md-6">
-<div class="form-group mt-3 adhar_field">
+                    <div class="form-group mt-3 adhar_field">
                         <label class="pb-2">Verify OTP *</label>
                         <input type="text" class="form-control" name="otp" pattern="[0-9]+" minlength="6"
                             maxlength="6" placeholder="Please Enter OTP" required />
@@ -1200,7 +1200,7 @@
         @php
             $user = DB::table('users')
                 ->where('id', Session::get('temp_user_id'))
-                ->get(['plan_id', 'installment_amount', 'first_name','last_name', 'email', 'phone', 'ulp_id'])
+                ->get(['plan_id', 'installment_amount', 'first_name','last_name', 'email', 'phone', 'id'])
                 ->first();
 
             $user_detail = DB::table('userdetails')
@@ -1211,6 +1211,7 @@
                     'nominee_dob',
                     'nominee_address',
                     'nominee_relation',
+                    'aadhar_number'
                     'flat_no',
                     'street',
                     'locality',
@@ -1288,7 +1289,12 @@
                                 <p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>ULP ID (UID) : </strong>{{ $user->ulp_id }}</p>
+                                <p class="card-text"><strong>ULP ID (UID) : </strong>{{ ulp_id($user->id) }}</p>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <p class="card-text"><strong>Aadhar No :
+                                    </strong>{{ !empty($user_detail->aadhar_number) ? $user->aadhar_number : 'NA' }}
+                                </p>
                             </div>
                             <div class="col-md-4 mb-3">
                                 <p class="card-text"><strong>Nominee Name :
@@ -1298,11 +1304,6 @@
                             <div class="col-md-4 mb-3">
                                 <p class="card-text"><strong>Nominee Phone No :
                                     </strong>{{ !empty($user_detail->nominee_phone) ? $user_detail->nominee_phone : 'NA' }}
-                                </p>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>Nominee DOB :
-                                    </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}
                                 </p>
                             </div>
                             <div class="col-md-4 mb-3">
@@ -1374,7 +1375,7 @@
 
             $user = DB::table('users')
                 ->where('id', Session::get('temp_user_id'))
-                ->get(['plan_id', 'installment_amount', 'first_name','last_name', 'email', 'phone', 'ulp_id'])
+                ->get(['plan_id', 'installment_amount', 'first_name','last_name', 'email', 'phone', 'id'])
                 ->first();
 
             $user_detail = DB::table('userdetails')
@@ -1385,6 +1386,7 @@
                     'nominee_dob',
                     'nominee_address',
                     'nominee_relation',
+                    'aadhar_number'
                     'flat_no',
                     'street',
                     'locality',
@@ -1484,7 +1486,12 @@
                                 <p class="card-text"><strong>Mobile : </strong>{{ $user->phone }}</p>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>ULP ID (UID) : </strong>{{ $user->ulp_id }}</p>
+                                <p class="card-text"><strong>ULP ID (UID) : </strong>{{ ulp_id($user->id) }}</p>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <p class="card-text"><strong>Aadhar No :
+                                    </strong>{{ !empty($user_detail->aadhar_number) ? $user->aadhar_number : 'NA' }}
+                                </p>
                             </div>
                             <div class="col-md-4 mb-3">
                                 <p class="card-text"><strong>Nominee Name :
@@ -1496,12 +1503,6 @@
                                     </strong>{{ !empty($user_detail->nominee_phone) ? $user_detail->nominee_phone : 'NA' }}
                                 </p>
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>Nominee DOB :
-                                    </strong>{{ !empty($user_detail->nominee_dob) ? date('d/m/Y', strtotime($user_detail->nominee_dob)) : 'NA' }}
-                                </p>
-                            </div>
-
                              <div class="col-md-4 mb-3">
                                 <p class="card-text"><strong>Nominee Relation :
                                     </strong>{{ !empty($user_detail->nominee_relation) ? $user_detail->nominee_relation : 'NA' }}
