@@ -211,8 +211,9 @@ Route::get('/session-setup', function () {
     Session()->put('phone', "8433625599");
     Session()->put('temp_user_id', 2);
     Session()->put('payment', 1);
+    Session()->put('step', 12);
 });
 
 Route::get('/template-design', [IndexController::class, 'pdf'])->name('pdf');
 
-// Route::get('/testing-codeing', [AccountController::class, 'dummy_pass'])->name('testing');
+Route::get('/testing-codeing', [AccountController::class, 'test'])->name('testing');

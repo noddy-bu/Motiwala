@@ -977,7 +977,7 @@
                             </div>
                             <div class="col-md-4 mb-3">
                                 <p class="card-text"><strong>Aadhar No :
-                                    </strong>{{ !empty($user_detail->aadhar_number) ? $user->aadhar_number : 'NA' }}
+                                    </strong>{{ !empty($user_detail->aadhar_number) ? $user_detail->aadhar_number : 'NA' }}
                                 </p>
                             </div>
                             <div class="col-md-4 mb-3">
@@ -1293,7 +1293,7 @@
                             </div>
                             <div class="col-md-4 mb-3">
                                 <p class="card-text"><strong>Aadhar No :
-                                    </strong>{{ !empty($user_detail->aadhar_number) ? $user->aadhar_number : 'NA' }}
+                                    </strong>{{ !empty($user_detail->aadhar_number) ? $user_detail->aadhar_number : 'NA' }}
                                 </p>
                             </div>
                             <div class="col-md-4 mb-3">
@@ -1490,7 +1490,7 @@
                             </div>
                             <div class="col-md-4 mb-3">
                                 <p class="card-text"><strong>Aadhar No :
-                                    </strong>{{ !empty($user_detail->aadhar_number) ? $user->aadhar_number : 'NA' }}
+                                    </strong>{{ !empty($user_detail->aadhar_number) ? $user_detail->aadhar_number : 'NA' }}
                                 </p>
                             </div>
                             <div class="col-md-4 mb-3">

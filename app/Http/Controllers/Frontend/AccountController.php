@@ -890,28 +890,28 @@ class AccountController extends Controller
                 'aadhar_number' => Session::get('aadhar_no'),
             ]);
 
-            $ulp_id = DB::table('users')->where('id', Session::get('temp_user_id'))->value('ulp_id');
+            // $ulp_id = DB::table('users')->where('id', Session::get('temp_user_id'))->value('ulp_id');
 
-            if(empty($ulp_id)){
+            // if(empty($ulp_id)){
             
-                $random = Session::get('temp_user_id');
-                $DateTime = time();
+            //     $random = Session::get('temp_user_id');
+            //     $DateTime = time();
             
-                $ulp_id = $random . '' . $DateTime;
+            //     $ulp_id = $random . '' . $DateTime;
 
-                // Ensure the length of $ulp_id is exactly 12 digits
-                if (strlen($ulp_id) < 12) {
-                    $padding_length = 12 - strlen($ulp_id);
-                    $ulp_id = str_pad($ulp_id, 12, '0', STR_PAD_LEFT); // Pad with leading zeros if necessary
-                } elseif (strlen($ulp_id) > 12) {
-                    $ulp_id = substr($ulp_id, 0, 12); // Trim if longer than 12 digits
-                }
+            //     // Ensure the length of $ulp_id is exactly 12 digits
+            //     if (strlen($ulp_id) < 12) {
+            //         $padding_length = 12 - strlen($ulp_id);
+            //         $ulp_id = str_pad($ulp_id, 12, '0', STR_PAD_LEFT); // Pad with leading zeros if necessary
+            //     } elseif (strlen($ulp_id) > 12) {
+            //         $ulp_id = substr($ulp_id, 0, 12); // Trim if longer than 12 digits
+            //     }
             
-                DB::table('users')->where('id', Session::get('temp_user_id'))->update([
-                    'ulp_id' => $ulp_id,
-                ]);
+            //     DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+            //         'ulp_id' => $ulp_id,
+            //     ]);
             
-            }
+            // }
 
 
             $profileImage = $verify->data->profile_image;
@@ -1271,8 +1271,8 @@ class AccountController extends Controller
 
             /* ------------ success stuff -----------*/
 
-            $user_id = Session::get('temp_user_id');
-            $random = mt_rand(100000, 999999);
+            // $user_id = Session::get('temp_user_id');
+            // $random = mt_rand(100000, 999999);
         
             // $account_number = $user_id . '' . $random;
     
@@ -1288,10 +1288,12 @@ class AccountController extends Controller
             Session::put('payment', 1);
             Session::put('temp_user_id', $order->temp_user_id);
 
+            $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
 
-            DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+
+            DB::table('users')->where('id', $order->temp_user_id)->update([
                 // 'account_number' => $account_number,
-                'password' => bcrypt((string) Session::get('phone')),
+                'password' => bcrypt($phone),
                 'status' => 1,
             ]);
 
@@ -1473,44 +1475,47 @@ class AccountController extends Controller
             
             /* ------------ success stuff -----------*/
 
-            $user_id = Session::get('temp_user_id');
-            $random = mt_rand(100000, 999999);
+            // $user_id = Session::get('temp_user_id');
+            // $random = mt_rand(100000, 999999);
         
-            $account_number = $user_id . '' . $random;
+            // $account_number = $user_id . '' . $random;
     
             // Ensure the length of $ulp_id is exactly 12 digits
-            if (strlen($account_number) < 12) {
-                $padding_length = 12 - strlen($account_number);
-                $account_number = str_pad($account_number, 12, '0', STR_PAD_LEFT); // Pad with leading zeros if necessary
-            } elseif (strlen($account_number) > 12) {
-                $account_number = substr($account_number, 0, 12); // Trim if longer than 12 digits
-            }
+            // if (strlen($account_number) < 12) {
+            //     $padding_length = 12 - strlen($account_number);
+            //     $account_number = str_pad($account_number, 12, '0', STR_PAD_LEFT); // Pad with leading zeros if necessary
+            // } elseif (strlen($account_number) > 12) {
+            //     $account_number = substr($account_number, 0, 12); // Trim if longer than 12 digits
+            // }
+
+            $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
 
             DB::table('users')->where('id', $order->temp_user_id)->update([
-                'account_number' => $account_number,
-                'password' => bcrypt(Session::get('phone')),
+                // 'account_number' => $account_number,
+                'password' => bcrypt($phone),
                 'status' => 1,
             ]);
 
+            $amount = $order->grand_total;
+
             //update order
-            DB::table('transactions')->insert([
-                'user_id' => $order->temp_user_id,
+            $transactions_id = DB::table('transactions')->insertGetId([
+                'user_id' => Session::get('temp_user_id'),
                 'payment_id' => $txnid,
                 'payment_amount' => $order->grand_total,
-                'payment_response' => $jsonData,
+                'payment_response' => json_encode($fileContent),
+                'payment_type' => 'payu',
                 'payment_status' => 'paid',
-                'comments' => 'webhook',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
     
-            /*------------ success stuff --------------*/
-
             // delete temp recored
             DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
 
-            // Create success
-            // file_put_contents(public_path($txnid.'-success.txt'), $txnid);          
+            $this->auto_add_transactions(Session::get('temp_user_id'),$amount,$transactions_id);
+            /*------------ success stuff --------------*/
+
             Storage::disk('public')->put('webhook/' . $txnid.'-success.txt', $txnid);
         }else{
             return 'false';
