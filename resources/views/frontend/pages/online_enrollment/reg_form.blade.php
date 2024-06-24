@@ -1032,7 +1032,7 @@
         <div>
             <div class="steps-title pt-2">
                 <p>
-                    You are about to be redirected to www.xyz.com, a third party website. The information you provide on
+                    You are about to be redirected to https://surepass.io, a third party website. The information you provide on
                     the third party website is subject to the terms and conditions, privacy policies and practices of
                     the third party website and we are not responsible for the security and privacy of any information
                     that you may provide on the third party website. </p>
@@ -1211,7 +1211,7 @@
                     'nominee_dob',
                     'nominee_address',
                     'nominee_relation',
-                    'aadhar_number'
+                    'aadhar_number',
                     'flat_no',
                     'street',
                     'locality',
@@ -1386,7 +1386,7 @@
                     'nominee_dob',
                     'nominee_address',
                     'nominee_relation',
-                    'aadhar_number'
+                    'aadhar_number',
                     'flat_no',
                     'street',
                     'locality',
