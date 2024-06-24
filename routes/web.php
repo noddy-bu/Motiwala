@@ -216,4 +216,4 @@ Route::get('/session-setup', function () {
 
 Route::get('/template-design', [IndexController::class, 'pdf'])->name('pdf');
 
-Route::get('/testing-codeing', [AccountController::class, 'test'])->name('testing');
+// Route::get('/testing-codeing', [AccountController::class, 'test'])->name('testing');
