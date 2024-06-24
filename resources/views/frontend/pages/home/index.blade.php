@@ -213,7 +213,7 @@
                          we bring over a century of industry</span> <span>expertise right to you.”</span>
                     </p>
                     <div class="buttonclass mt-4">
-                        <a href="/instant-pay">Explore <i class="las la-arrow-right"></i>
+                        <a href="{{ url(route('account.new.enrollment.page')) }}">Explore <i class="las la-arrow-right"></i>
                         </a>
                     </div>
                 </div>
