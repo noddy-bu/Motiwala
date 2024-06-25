@@ -6,6 +6,8 @@ use App\Http\Controllers\Frontend\AccountController;
 
 use App\Http\Controllers\common\EsignAadharController;
 
+use App\Http\Controllers\common\payumoneyController;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -59,15 +61,22 @@ Route::get('/account/onlineenrollment', [AccountController::class, 'online_enrol
 
 Route::any('/create-account/{param}', [AccountController::class, 'create_account'])->name('account.create');
 
+//----------------------------- Payment PayU ----------------------------------------------------//
+
 Route::any('/create_payumoney/{order_id}', [AccountController::class, 'create_payumoney'])->name('create.payumoney');
-
 Route::any('/payment-success', [AccountController::class, 'payment_success'])->name('payumoney.success');
-
 Route::any('/payment-cancel', [AccountController::class, 'payment_cancel'])->name('payumoney.fail');
 
 Route::any('/webhook_pum_success', [AccountController::class, 'webhook_pum_success']);
-
 Route::any('/webhook_pum_fail', [AccountController::class, 'webhook_pum_fail']);
+
+
+Route::any('/create_payumoney_installment/{order_id}', [payumoneyController::class, 'create_payumoney_installment'])->name('create.payumoney.installment');
+Route::any('/payment-success-installment', [payumoneyController::class, 'payment_success_installment'])->name('payumoney.success.installment');
+Route::any('/payment-cancel-installment', [payumoneyController::class, 'payment_cancel_installment'])->name('payumoney.fail.installment');
+
+
+//----------------------------- Payment PayU ----------------------------------------------------//
 
 
 Route::get('/linkaccount', [AccountController::class, 'link_account'])->name('link-account');
@@ -89,6 +98,8 @@ Route::middleware('auth.frontend')->group(function () {
     Route::get('/oldschemeclosure', [IndexController::class, 'old_scheme_closure'])->name('old-scheme-closure');
 
     Route::get('/pay-installments', [AccountController::class, 'pay_installments'])->name('pay-installments');
+
+    Route::post('/installments', [AccountController::class, 'installments'])->name('installments.payment');
     
 });
 
@@ -216,4 +227,4 @@ Route::get('/session-setup', function () {
 
 Route::get('/template-design', [IndexController::class, 'pdf'])->name('pdf');
 
-// Route::get('/testing-codeing', [AccountController::class, 'test'])->name('testing');
+Route::get('/testing-codeing', [payumoneyController::class, 'payment_success_installment'])->name('testing');

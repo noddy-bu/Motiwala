@@ -31,7 +31,7 @@ class AccountController extends Controller
 
 
 
-    /*------------------------------ Login Logout Function -------------------------------------------------*/
+/*------------------------------ Login Logout Function -------------------------------------------------*/
 
     public function customer_login(Request $request){
 
@@ -80,10 +80,10 @@ class AccountController extends Controller
         return redirect()->route('index');
     }
 
-    /*------------------------------ Login Logout Function -------------------------------------------------*/
+/*------------------------------ Login Logout Function -------------------------------------------------*/
 
 
-    /*------------------------------ other inner Function -------------------------------------------------*/
+/*------------------------------ other inner Function -------------------------------------------------*/
 
     
     public function link_account(){
@@ -111,7 +111,6 @@ class AccountController extends Controller
             'users.plan_id',
             'plans.name',
             'plans.installment_period',
-            'redemptions.total_receivable_amount',
         ])
         ->join('plans', 'users.plan_id', '=', 'plans.id')
         ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
@@ -124,6 +123,67 @@ class AccountController extends Controller
         $redemption_items = DB::table('redemption_items')->where('redemption_id',$info->id)->get();
 
         return view('frontend.pages.admin.pay_installments.index', compact('info','transactions','redemption_items'));
+    }
+
+    public function installments(Request $request){
+
+      $redemption_items_id = $request->input('id');
+
+      $redemption_items = DB::table('redemption_items')->where('id',$redemption_items_id)->get()->first();
+
+      if($redemption_items->status == "pending"){
+
+        $redemption = DB::table('redemptions')->where('id',$redemption_items->redemption_id)->where('status',1)->get()->first();
+
+
+        $user = DB::table('users')->where('id', $redemption->user_id)->first(['first_name','last_name', 'email', 'phone']);
+
+        //insert in order
+        $txnid = substr(hash('sha256', mt_rand().microtime()), 0, 20);
+        $orderId = DB::table('temp_transactions')->insertGetId([
+            'name'             => $user->first_name.' '.$user->last_name,
+            'email'            => $user->email,
+            'phone'            => $user->phone,
+            'grand_total'      => $redemption_items->installment_amount,
+            'payment_method'   => 'payu',
+            'payment_status'   => 'created',
+            'payment_id'       => $txnid,
+            'created_at'       => date('Y-m-d H:i:s'),
+            'updated_at'       => date('Y-m-d H:i:s')
+        ]);
+
+        if($orderId){
+
+            $rsp_msg['response'] = 'success';
+            $rsp_msg['message']  = "Please Proceed";
+            $rsp_msg['orderId']  = $orderId;
+
+            return $rsp_msg;
+
+            return response()->json([
+                'status' => true,
+                'orderId' => $orderId,
+                'notification' => 'Please Proceed For '.$redemption_items->installment_no.' Installment'
+            ]);
+
+        } else {
+
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = "Something Went Wrong!, Please try again";
+
+            return $rsp_msg;
+
+        }
+
+      } else {
+
+        return response()->json([
+            'status' => false,
+            'notification' => 'Somthing went wrong'
+        ]);
+
+      }
+        
     }
 
     public function edit_user_profile(){
@@ -260,10 +320,10 @@ class AccountController extends Controller
 
 
 
-    /*------------------------------ other inner Function -------------------------------------------------*/
+/*------------------------------ other inner Function -------------------------------------------------*/
 
 
-    /*------------------------------ Forgot password Function --------------------------------------------*/
+/*------------------------------ Forgot password Function --------------------------------------------*/
 
     public function forgot_password($param, Request $request){
 
@@ -415,11 +475,11 @@ class AccountController extends Controller
     }
 
 
-    /*------------------------------ Forgot password Function -------------------------------------------*/
+/*------------------------------ Forgot password Function -------------------------------------------*/
 
 
 
-    /*------------------------------  Registration user -------------------------------------------------*/
+/*--=================================  Registration user ==================================================---*/
 
     public function online_enrollment(){
         return view('frontend.pages.online_enrollment.index');
@@ -1135,9 +1195,9 @@ class AccountController extends Controller
         */
 
     }
+/*--=================================  Registration user ==================================================---*/
 
-
-/* ------------------------------- Payment gateway ------------------------------------------*/
+/* ------------------------------- Payment gateway -----------------------------------------------------------*/
 
     const TEST_URL = 'https://test.payu.in';
     //const TEST_URL = 'https://sandboxsecure.payu.in';
@@ -1346,16 +1406,19 @@ class AccountController extends Controller
         // Calculate the number of installments
         $installments = (int) $plan_details->installment_period;
 
-        $maturity_date_end = date('Y-m-d H:i:s', strtotime("+$installments month"));
+        $installments = $installments + 1;
+        $maturity_date_start = date('Y-m-d H:i:s', strtotime("+$installments month"));
+        $maturity_date_end = date('Y-m-d H:i:s', strtotime($maturity_date_start . ' +1 month'));
+
 
         // $amount = $plan_details->minimum_installment_amount;
 
         $redemption_id = DB::table('redemptions')->insertGetId([
             'user_id' => $temp_user_id,
             'plan_id' => $user_plan_Details,
-            'maturity_date_start' => date('Y-m-d H:i:s'),
+            'maturity_date_start' => $maturity_date_start,
             'maturity_date_end' => $maturity_date_end,
-            'total_receivable_amount' => $amount + ($amount * 0.075),
+            // 'total_receivable_amount' => $amount + ($amount * 0.075),
             'status' => '1',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),

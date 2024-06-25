@@ -16,6 +16,8 @@ class VerifyCsrfToken extends Middleware
         'forgot-password/verify-forgot-otp',
         'forgot-password/reset-password',
         'payment-cancel',
-        'payment-success'
+        'payment-success',
+        'payment-success-installment',
+        'payment-cancel-installment'
     ];
 }

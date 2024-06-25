@@ -30,6 +30,10 @@
                     @endphp --}}
 
                     @php
+                        $total_receivable_amount = $redemption_items
+                            ->where('status', 'paid')
+                            ->sum('installment_amount');
+
                         $next_payment_date = $redemption_items
                             ->where('status', 'pending')
                             ->first();
@@ -65,7 +69,7 @@
                                     <div class="card">
                                         <h5 class="card-header">Payment Details</h5>
                                         <div class="card-body">
-                                            <p class="card-text">Total Amount Received : {{ $info->total_receivable_amount }}</p>
+                                            <p class="card-text">Total Amount Received : {{ $total_receivable_amount }}</p>
                                             <p class="card-text">Next Payment Due :
                                                 {{ date('d-m-Y', strtotime($next_payment_date->due_date_start)) }}</p>
                                             <p class="card-text">Last Payment Due :
@@ -142,7 +146,9 @@
                                                         Paid
                                                     @else
                                                         <div class="buttonclass1 mt10">
-                                                            <button>Pay</button>
+                                                            <a href="{{ url(route('installments.payment')) }}" id="pay-link" data-id="{{ $row->id }}">
+                                                                Pay
+                                                            </a>
                                                         </div>
                                                     @endif
                                                 </td>
@@ -161,3 +167,74 @@
     <!-- -------------------- privacy content  end   ---------------- -->
 
 @endsection
+
+@section("page.scripts")
+<script>
+    $(document).ready(function() {
+        $('#pay-link').on('click', function(e) {
+            e.preventDefault(); // Prevent the default link behavior
+
+            var rowId = $(this).data('id'); // Get the row ID from the data attribute
+
+            var btn = $(this);
+            var btn_text = $(btn).html();
+            $(btn).html('<i class="fa fa-refresh fa-spin" aria-hidden="true"></i>');
+            $(btn).css('opacity', '0.7');
+            $(btn).css('pointer-events', 'none');
+
+            var action = $(this).attr('href');
+            $.ajax({
+                type: "POST",
+                url: action,
+                dataType: 'json',
+                data: {
+                    id: rowId,
+                    _token: '{{ csrf_token() }}' // Include CSRF token
+                },
+                success: function(response) {
+                    $(btn).html(btn_text);
+                    $(btn).css('opacity', '1');
+                    $(btn).css('pointer-events', 'inherit');
+                    console.log(response.status);
+                    if (response.response == 'success') {
+                        toastr.success(response.message, "Success");
+
+                        var orderId = response.orderId;
+                        var redirectUrl = "{{ url('/create_payumoney_installment') }}/" + orderId;
+
+                        setTimeout(function() {
+                            //location.reload();
+                            window.location.href = redirectUrl;
+                        }, 1000);
+
+                    } else {
+
+                        toastr.error(response.notification, "Alert");
+                        
+                    }
+                },
+                error: function(xhr, status, error) {
+                    $(btn).html(btn_text);
+                    $(btn).css('opacity', '1');
+                    $(btn).css('pointer-events', 'inherit');
+                    toastr.error("An error occurred while processing the payment", "Error");
+                }
+            });
+        });
+    });
+</script>
+
+@if (session('toastr'))
+<script>
+    $(document).ready(function() {
+        var type = "{{ session('toastr.type') }}";
+        var message = "{{ session('toastr.message') }}";
+        var title = "{{ session('toastr.title') }}";
+
+        toastr[type](message, title);
+    });
+</script>
+@endif
+
+@endsection
+

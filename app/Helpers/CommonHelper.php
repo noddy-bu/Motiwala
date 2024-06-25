@@ -180,6 +180,8 @@ use Illuminate\Support\Facades\Mail;
                 $account_no = substr($number, 0, 12); // Trim if longer than 12 digits
             }
 
+            $account_no = 'AC-'.$account_no;
+
             return $account_no;
 
         }
