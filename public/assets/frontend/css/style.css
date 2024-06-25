@@ -1237,6 +1237,10 @@ body .width80:not(.sidebar) {
     padding-right: 20px;
 }
 
+.after_login_body .information_tb .card-body {
+    height: 140px;
+}
+
 .after_login_body .terms_section {
     padding-bottom: 0px;
 }
@@ -1267,7 +1271,7 @@ body .width80:not(.sidebar) {
 }
 
 .inner_sectionpadd {
-    padding-bottom: 220px;
+    padding-bottom: 90px;
 }
 
 body .userlogin_box {

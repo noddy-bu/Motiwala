@@ -20,3 +20,17 @@
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
    color: #fff;
 }
+
+
+.auth-fluid .auth-fluid-form-box {
+    max-width: 350px !important;
+}
+
+.auth-brand .logo-dark img {
+    width: 70% !important;
+}
+
+.auth-brand .logo-dark {
+    display: block;
+    text-align: center;
+}

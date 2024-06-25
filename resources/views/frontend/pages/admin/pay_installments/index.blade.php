@@ -78,7 +78,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 information_tb">
+                                <div class="col-md-6 information_tb mb-3">
                                     <div class="card">
                                         <h5 class="card-header">Maturity Details</h5>
                                         <div class="card-body">
@@ -145,7 +145,7 @@
                                                     @if ($row->status == 'paid')
                                                         Paid
                                                     @else
-                                                        <div class="buttonclass1 mt10">
+                                                        <div class="buttonclass mt10">
                                                             <a href="{{ url(route('installments.payment')) }}" id="pay-link" data-id="{{ $row->id }}">
                                                                 Pay
                                                             </a>
