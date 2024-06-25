@@ -545,13 +545,13 @@
                                 </p>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-12">
                                 <p class="card-text pb-2"><strong>Nominee Address :
                                     </strong>{{ !empty($user_detail->nominee_address) ? $user_detail->nominee_address : 'NA' }}
                                 </p>
                             </div>
                            
-                            <div class="col-md-6">
+                            <div class="col-12">
                                 <p class="card-text pb-2"><strong>Address : </strong>
                                     @php
                                         echo $user_detail->flat_no . ",\n";
