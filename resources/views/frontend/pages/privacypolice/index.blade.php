@@ -28,7 +28,7 @@
                     <div class="col-md-12">
                     <p>
                         We understand that your privacy is important to you, and we respect that.
-                        Motiwala Jewels Gold And Diamonds Pvt Ltd. Company ensures complete confidentiality 
+                        Motiwala Jewels Gold and Diamonds Pvt Ltd Manage by Motiwala & Sons. Company ensures complete confidentiality 
                         of the details you share with us and does not disclose them to any third party. 
                         We may request certain details such as name, date of birth, email address, 
                         residential address, and contact number for registration purposes, feedback, 

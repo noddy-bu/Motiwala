@@ -465,7 +465,7 @@
                 ->value('name');
         @endphp
 
-        <div class="p-3 mb-2 text-white" style="background-color:#e1aa7a;">
+        <div class="p-3 mb-3 text-white" style="background-color:#e1aa7a;">
             <h5 class="mb-0"> Preview Info </h5>
         </div>
 
@@ -583,20 +583,20 @@
 
                 <p><b>Terms and Conditions</b></p>
                 <p>By clicking on proceed button below, you are hereby acknowledging that you are providing your Aadhaar
-                    related details voluntarily to Motiwala & Sons Private Limited to retrieve your Aadhaar
+                    related details voluntarily to Motiwala Jewels Gold and Diamonds Pvt Private Limited to retrieve your Aadhaar
                     Paperless-XML from the UIDAI Portal on your behalf based on the process detailed below. It is not
                     mandatory for you to provide your Aadhaar details. If you do not wish to continue with providing the
-                    same, request you to cancel the transactions. I understand that Motiwala & Sons Private Limited will
+                    same, request you to cancel the transactions. I understand that Motiwala Jewels Gold and Diamonds Pvt Private Limited will
                     be able to access my photograph through XML file being parsed from the database of Unique
                     Identification Authority of India, to further share the same with the service provider. If you do
                     not agree for us to access the same, request you to not click on Proceed.
                 </p>
                 <p>By accepting the Terms & Conditions you are expressly providing your consent to the collection of
-                    your information for the purpose of providing access of the same by Motiwala & Sons to enable
+                    your information for the purpose of providing access of the same by Motiwala Jewels Gold and Diamonds Pvt to enable
                     (“Client”) to initiate your on boarding to avail the Client’s services. The information you provide
                     may be used to help improve and train our products and assist in the development of any technologies
-                    and in addition Motiwala & Sons may use the above information to fulfil any other lawful purpose.
-                    Motiwala & Sons shall be redacting and collecting your Aadhaar number. The first 8 digits of the
+                    and in addition Motiwala Jewels Gold and Diamonds Pvt may use the above information to fulfil any other lawful purpose.
+                    Motiwala Jewels Gold and Diamonds Pvt shall be redacting and collecting your Aadhaar number. The first 8 digits of the
                     Aadhaar number will be blacked out when you insert the same on to the webpage. You shall be prompted
                     to insert the Aadhaar number twice, in order to ensure its correctness and the Aadhaar number will
                     be encrypted and transferred/ accessed.
@@ -913,7 +913,7 @@
                 ->value('name');
         @endphp
 
-        <div class="p-3 mb-2 text-white" style="background-color:#e1aa7a;">
+        <div class="p-3 mb-3 text-white" style="background-color:#e1aa7a;">
             <h5> Preview Info </h5>
         </div>
 

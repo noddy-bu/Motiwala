@@ -66,10 +66,17 @@
 
                     <p>Customers cannot enroll with his/her borrowed money.</p>
 
+<<<<<<< HEAD
                     <p>Enrollment may be through offline mode, i.e., at the Motiwala Jewels Gold and Diamonds Pvt Ltd 
                         store, or online by registering on the Motiwala Jewels Gold and Diamonds Pvt Ltd website 
                         <a href="https://www.motiwalajewels.in">https://www.motiwalajewels.in</a> or 
                         Golden Treasure Jewellery Purchase  Mobile Application.
+=======
+                    <p>Enrolment may be through offline mode, i.e., at the Motiwala Jewels Gold and Diamonds Pvt Ltd
+                        Manage by Motiwala & Sons store, or online by registering on the Motiwala Jewels Gold and 
+                        Diamonds Pvt Ltd website <a href="https://www.motiwalajewels.in">https://www.motiwalajewels.in</a>
+                        or Golden Treasure Jewellery Purchase  Mobile Application.
+>>>>>>> zubair
                     </p>
 
                     <p>The Customer is required to provide a copy of his/her photo identity (Pan Card) and 

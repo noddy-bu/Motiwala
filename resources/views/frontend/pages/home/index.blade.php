@@ -107,7 +107,7 @@
         <!--benefits calculator open-->
 
            <section class="top_step_content">
-            <div class="container">  <h4 class="title_heading text-center black_color pb-3 heading_font">Dreaming of owning that <span class="stunning_necklace"> stunning necklace? </span></h4>
+            <div class="container">  <h4 class="title_heading text-center black_color pb-3 heading_font">Dreaming of owning that <span class="stunning_necklace"> stunning jewellery? </span></h4>
                 <p class="text-center black_color fontsize26">
                     Start your journey by opening a Motiwala Jewels Golden Treasure  account with just ₹2000.
                     <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
@@ -213,14 +213,14 @@
                          we bring over a century of industry</span> <span>expertise right to you.”</span>
                     </p>
                     <div class="buttonclass mt-4">
-                        <a href="{{ url(route('account.new.enrollment.page')) }}">Explore <i class="las la-arrow-right"></i>
+                        <a href="/instant-pay">Explore <i class="las la-arrow-right"></i>
                         </a>
                     </div>
                 </div>
 
             </div>
         </section>
-
+ 
   
 
     <div class="container"> 
@@ -270,7 +270,7 @@
                                 <hr>
                             </div>
                             <div class="col-md-6">
-                                <p class="pt-2">You can Buy Jewellery worth: (in 13th month)</p>
+                                <p class="pt-2">You can Buy Jewellery worth: (in 12th month)</p>
                             </div>
                             <div class="col-md-6">
                                 <div class="total_number_main">
@@ -293,6 +293,20 @@
             </div>
         </div>
     </div>
+
+    <div class="container">
+        <div class="step_bottom_text">
+            <p class="black_color text-center">
+                “Delivering top-notch quality jewellery with the latest designs at prices <span>you can afford,
+                    we bring over a century of industry</span> <span>expertise right to you.”</span>
+            </p>
+            <div class="buttonclass mt-4">
+                <a href="/instant-pay">Explore <i class="las la-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
 
 
         <!--why choose us section start-->
