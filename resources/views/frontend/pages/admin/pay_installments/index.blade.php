@@ -102,7 +102,7 @@
                                 <thead>
                                     <tr>
                                         <th>Sr.no</th>
-                                        <th>Transaction ID</th>
+                                        <th>Receipt ID</th>
                                         <th>Receipt Date</th>
                                         <th>Due Date</th>
                                         <th>Installment No</th>
