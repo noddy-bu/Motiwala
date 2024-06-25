@@ -143,7 +143,7 @@
                         
                         <p>   
                            We extend our heartfelt gratitude for your interest in initiating a new account with
-                            Motiwala Jewels Golden Treasurer Purchase Plan. Your keenness is truly appreciated.
+                            Motiwala Jewels Golden Treasure Purchase Plan. Your keenness is truly appreciated.
                             Kindly proceed with the following steps to help us expedite your request.
                         </p>
                             <p>Thank you once again for considering Motiwala Jewels Gold and Diamonds Pvt Ltd for 

@@ -131,8 +131,8 @@
 
     /* after login */
 
-    .userlogin_box span {
-        display: none;
+    .userlogin_box span b{
+        display: none !important;
     }
 
     .after_login_body footer .container {
@@ -216,6 +216,10 @@
         right: 25px;
         font-size: 36px;
         margin-left: 50px;
+    }
+
+    .userlogin_box span b{
+        display: none !important;
     }
 
     .sidebar a {
@@ -1020,6 +1024,10 @@
         right: 56px;
         top: 9%;
         z-index: 999;
+    }
+
+    .userlogin_box span b{
+        display: none !important;
     }
 
     #nav-bar-icon {

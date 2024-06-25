@@ -31,7 +31,7 @@
 								
 					<h4>Plan</h4>	
 					<p>The Golden Treasure Jewellery Purchase Plan (hereinafter “Golden Treasure” or the “Plan”) 
-						offered by Motiwala Jewels Gold and Diamonds Pvt Ltd (“Company”) facilitates Customers 
+						offered by Motiwala Jewels Gold and Diamonds Pvt Ltd Manage by Motiwala & Sons facilitates Customers 
 						to purchase Gold and Diamonds Jewellery by making payments for the same over a ten month 
 						period and the Customers will be entitled to avail certain discounts subject to these 
 						Terms and Conditions.

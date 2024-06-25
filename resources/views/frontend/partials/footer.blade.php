@@ -107,7 +107,7 @@ $practice_Area = DB::table('practice_areas')->where('parent_id', null)->limit(4)
       <div class="row flex-md-row flex-column-reverse gap-md-0 gap-2">
        
         <div class="col-md-6">
-          <p class="text-md-start text-center mb-1 mb-md-3">Copyright © 2024 Under Motiwala & Sons</p>
+          <p class="text-md-start text-center mb-1 mb-md-3">Copyright © 2024 Under Motiwala Jewels Gold and Diamonds Pvt Ltd</p>
         </div>
         <div class="col-md-6 text-md-end text-center footer_social">
           <ul class="float_right">

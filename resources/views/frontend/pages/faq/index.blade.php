@@ -55,13 +55,13 @@
 					<p class="mb-0"><b>4. If I pay for 10 months, when will I get special discount ?</b></p>
 					<p>
 						Complete 10 monthly payments to qualify for our exclusive discount offer. 
-						Your dedication to our Golden Treasurer program will be rewarded with special savings on your purchase. 
+						Your dedication to our Golden Treasure program will be rewarded with special savings on your purchase. 
 						Enjoy the benefits of your commitment with this fantastic discount opportunity!
 					</p>
 					
 					<p class="mb-0"><b>5. What other benifits you get? </b></p>
 					<p>
-						Our Golden Treasurer program offers more than just a discount. 
+						Our Golden Treasure program offers more than just a discount. 
 						Experience personalized assistance from our dedicated team throughout your journey. 
 						Enjoy top-quality craftsmanship and excellent service standards with every piece. 
 						Our prompt responses to your queries ensure a seamless and satisfying shopping experience. 

@@ -47,7 +47,7 @@
                 </div>
                 
                 <div class="col-md-4 copyright_text d-flex justify-content-center">
-                    <span class="text-center">Copyright © 2024 Under Motiwala & Sons</span>
+                    <span class="text-center">Copyright © 2024 Under Motiwala Jewels Gold and Diamonds Pvt Ltd</span>
                 </div>
                 <div class="col-md-3 d-md-block d-none">
                     <ul class="float_right">
