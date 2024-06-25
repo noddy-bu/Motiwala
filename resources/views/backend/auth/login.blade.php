@@ -23,13 +23,13 @@
 
     <div class="auth-fluid">
         <!--Auth fluid left content -->
-        <div class="auth-fluid-form-box">
+        <div class="auth-fluid-form-box" style="width:350px;">
             <div class="card-body d-flex flex-column h-100">
 
                 <!-- Logo -->
                 <div class="auth-brand text-center text-lg-start">
-                    <a href="/" class="logo-dark"> 
-                        <span><img src="{{ asset('/assets/frontend/images/logo.png') }}" alt="dark logo"></span>
+                    <a href="/" class="logo-dark text-center" > 
+                        <span><img src="{{ asset('/assets/frontend/images/logo.png') }}" alt="dark logo" style="width:70%;"></span>
                     </a>
                     <a href="/" class="logo-light">
                         <span><img src="{{ asset('/assets/frontend/images/logo.png') }}" alt="logo" style="width:200px; height:50px;" ></span>
@@ -103,7 +103,10 @@
         <!-- end auth-fluid-form-box-->
 
         <!-- Auth fluid right content -->
-        <div class="auth-fluid-right text-center">
+        <div class="auth-fluid-right text-center" 
+            style="background-image:url(/assets/frontend/images/calculator_images.JPG);
+                   background-size: cover;
+                   background-position: center center;">
             <!--<div class="auth-user-testimonial">
                 <h2 class="mb-3">I love the color!</h2>
                 <p class="lead"><i class="mdi mdi-format-quote-open"></i> It's a elegent templete. I love it very much! . <i class="mdi mdi-format-quote-close"></i>
