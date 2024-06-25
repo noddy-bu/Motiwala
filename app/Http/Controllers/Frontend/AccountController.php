@@ -189,7 +189,7 @@ class AccountController extends Controller
     public function edit_user_profile(){
 
         $user = DB::table('users')->where('id', Session::get('user_id'))
-        ->get(['plan_id','installment_amount','first_name', 'last_name','email','phone','ulp_id'])->first();
+        ->get(['plan_id','installment_amount','first_name', 'last_name','email','phone'])->first();
 
         $user_detail = DB::table('userdetails')->where('user_id', Session::get('user_id'))
             ->get(['nominee_name','nominee_phone','nominee_dob','nominee_address','nominee_relation','flat_no','street','locality','state','city','pincode','dob','marital_status','spouse_name','spouse_dob','marriage_date'])->first();
