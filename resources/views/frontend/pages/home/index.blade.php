@@ -206,18 +206,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="step_bottom_text">
-                    <p class="black_color text-center">
-                        “Delivering top-notch quality jewellery with the latest designs at prices <span>you can afford,
-                         we bring over a century of industry</span> <span>expertise right to you.”</span>
-                    </p>
-                    <div class="buttonclass mt-4">
-                        <a href="/instant-pay">Explore <i class="las la-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
             </div>
         </section>
  
