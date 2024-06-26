@@ -111,10 +111,15 @@ class AccountController extends Controller
             'users.plan_id',
             'plans.name',
             'plans.installment_period',
+            'redemptions.maturity_date_start',
+            'redemptions.maturity_date_end',
+            'redemptions.status',
+            'redemptions.closing_remark',
+            'redemptions.closing_date',
         ])
         ->join('plans', 'users.plan_id', '=', 'plans.id')
         ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
-        ->where('redemptions.status', 1)
+        // ->where('redemptions.status', 1)
         ->where('users.id',Session::get('user_id'))
         ->get()->first();
         

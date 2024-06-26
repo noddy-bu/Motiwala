@@ -11,6 +11,7 @@ use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
@@ -93,7 +94,7 @@ class CustomerController extends Controller
         foreach ($records as $row) {
 
             if($row->status == 1){
-                $tran = '<a href="javascript:void(0);" class="action-icon" onclick="largeModal(\''.route('Customer.transaction', ['id' => $row->id]).'\', \'Customer Transaction\')"> <i class="ri-wallet-line" title="Transaction"></i></a>';
+                $tran = '<a href="javascript:void(0);" class="action-icon" onclick="largeModal(\''.route('Customer.transaction', ['id' => $row->id]).'\', \'Customer Installment\')"> <i class="ri-wallet-line" title="Installment"></i></a>';
             } else {
                 $tran = null;
             }
@@ -138,8 +139,41 @@ class CustomerController extends Controller
     }
 
     public function transaction($id) {
-        $transaction = Transaction::where('user_id',$id)->where('payment_status','paid')->get();
-        return view('backend.pages.customer.transaction', compact('transaction'));
+        
+        $info = DB::table('users')
+        ->select([
+            'redemptions.id',
+            'users.created_at',
+            'redemptions.user_id',
+            'users.plan_id',
+            'plans.name',
+            'plans.installment_period',
+            'redemptions.maturity_date_start',
+            'redemptions.maturity_date_end',
+            'redemptions.status',
+            'redemptions.closing_remark',
+            'redemptions.closing_date',
+        ])
+        ->join('plans', 'users.plan_id', '=', 'plans.id')
+        ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
+        ->where('users.id',$id)
+        ->get()->first();
+        
+        $transactions = DB::table('transactions')->where('user_id',$id)->where('payment_status','paid')->get();
+
+        $redemption_items = DB::table('redemption_items')->where('redemption_id',$info->id)->get();
+
+        //--closing amout
+        $currentDate = Carbon::now()->format('Y-m-d');
+        
+        if (Carbon::parse($currentDate)->between(Carbon::parse($info->maturity_date_start), Carbon::parse($info->maturity_date_end))) {
+            $total_amount_at_closing = $redemption_items->where('status', 'paid')->sum('receivable_amount');
+        } else {
+            $total_amount_at_closing = $redemption_items->where('status', 'paid')->sum('installment_amount');
+        }
+        //--closing amout
+
+        return view('backend.pages.customer.transaction', compact('info','transactions','redemption_items','total_amount_at_closing'));
     }
 
     
@@ -164,6 +198,34 @@ class CustomerController extends Controller
 
         return redirect(route('Customer.index'))->with('success', 'Status changed successfully!');
     }  
+
+    public function close_plan(Request $request){
+        $validator = Validator::make($request->all(), [
+            'remark' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'notification' => $validator->errors()->all()
+            ], 200);
+        } 
+
+        $id = $request->input('user_id');
+
+        DB::table('redemptions')->where('user_id',$id)->update([
+            'closing_date' => date('Y-m-d'),
+            'closing_remark' => $request->input('remark'),
+            'status' => 0,
+        ]);
+
+        $response = [
+            'status' => true,
+            'notification' => 'Plan Close successfully!',
+        ];
+
+        return response()->json($response);
+    }
     
 
 }

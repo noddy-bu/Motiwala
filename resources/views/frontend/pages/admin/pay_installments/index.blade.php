@@ -65,7 +65,7 @@
 
                         <div class="col-md-12 mt-md-4 mt-3">
                             <div class="row ">
-                                <div class="col-md-6 information_tb">
+                                <div class="col-md-4 information_tb">
                                     <div class="card">
                                         <h5 class="card-header">Payment Details</h5>
                                         <div class="card-body">
@@ -78,7 +78,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 information_tb mb-3">
+                                <div class="col-md-4 information_tb mb-3">
                                     <div class="card">
                                         <h5 class="card-header">Maturity Details</h5>
                                         <div class="card-body">
@@ -90,6 +90,25 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-4 information_tb mb-3">
+                                    <div class="card">
+                                        <h5 class="card-header">Plan Details</h5>
+                                        <div class="card-body">
+                                            <p class="card-text">
+                                                Plan Status : @if($info->status == 1) Active
+                                                @else Close @endif
+                                            </p>
+                                            <hr>
+                                            <p class="card-text">Close Date: {{ $info->closing_date }}</p>
+                                            <p class="card-text">Remark: {{ $info->closing_remark }}</p>
+                                            </p>
+                                            <br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                         
@@ -145,11 +164,15 @@
                                                     @if ($row->status == 'paid')
                                                         Paid
                                                     @else
-                                                        <div class="buttonclass mt10">
-                                                            <a href="{{ url(route('installments.payment')) }}" id="pay-link" data-id="{{ $row->id }}">
-                                                                Pay
-                                                            </a>
-                                                        </div>
+                                                        @if($info->status == 1)
+                                                            <div class="buttonclass mt10">
+                                                                <a href="{{ url(route('installments.payment')) }}" id="pay-link" data-id="{{ $row->id }}">
+                                                                    Pay
+                                                                </a>
+                                                            </div>
+                                                        @else
+                                                            Unpaid
+                                                        @endif
                                                     @endif
                                                 </td>
                                             </tr>
