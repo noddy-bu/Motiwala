@@ -14,7 +14,7 @@ use Auth;
 
 use Illuminate\Http\Request;
 
-class payumoneyController extends Controller
+class PayumoneyController extends Controller
 {
     const TEST_URL = 'https://test.payu.in';
     //const TEST_URL = 'https://sandboxsecure.payu.in';
