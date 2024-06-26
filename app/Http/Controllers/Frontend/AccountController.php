@@ -1411,6 +1411,8 @@ class AccountController extends Controller
         // Calculate the number of installments
         $installments = (int) $plan_details->installment_period;
 
+        $auto_installments = $installments;
+
         $installments = $installments + 1;
         $maturity_date_start = date('Y-m-d H:i:s', strtotime("+$installments month"));
         $maturity_date_end = date('Y-m-d H:i:s', strtotime($maturity_date_start . ' +1 month'));
@@ -1443,7 +1445,7 @@ class AccountController extends Controller
             'updated_at' => date('Y-m-d H:i:s')
         ]);
 
-        for ($i = 1; $i <= $installments - 1; $i++) {
+        for ($i = 1; $i <= $auto_installments - 1; $i++) {
             $due_date_start = date('Y-m-d H:i:s', strtotime("+$i month"));
             $due_date_end = date('Y-m-d H:i:s', strtotime("$due_date_start +3 days"));
             
