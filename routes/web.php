@@ -113,7 +113,7 @@ Route::get('/logout', [AccountController::class, 'customer_logout'])->name('cust
 // Route::get('/esign', [EsignAadharController::class, 'esign_nsdl']);
 
 
-Route::get('/dummy_esign', [AccountController::class, 'dummy_esign']);
+// Route::get('/dummy_esign', [AccountController::class, 'dummy_esign']);
 
 
 Route::get('/clear-cache', function () {

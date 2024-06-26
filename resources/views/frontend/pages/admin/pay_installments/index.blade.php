@@ -99,10 +99,12 @@
                                                 Plan Status : @if($info->status == 1) Active
                                                 @else Close @endif
                                             </p>
-                                            <hr>
-                                            <p class="card-text">Close Date: {{ $info->closing_date }}</p>
-                                            <p class="card-text">Remark: {{ $info->closing_remark }}</p>
-                                            </p>
+                                            @if($info->status != 1)
+                                                <hr>
+                                                <p class="card-text">Close Date: {{ $info->closing_date }}</p>
+                                                <p class="card-text">Remark: {{ $info->closing_remark }}</p>
+                                                </p>
+                                            @endif
                                             <br>
                                             <br>
                                         </div>

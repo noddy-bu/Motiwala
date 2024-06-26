@@ -23,7 +23,7 @@
         <div class="col-md-12">
             <div class="form-group mt-4 adhar_field">
                 <label class="pb-3">Mobile Number *</label>
-                <input type="text" class="form-control" name="phone" pattern="[0-9]+" minlength="10" maxlength="10" placeholder="Please Enter Your Nominee Contact Number" value="" />
+                <input type="text" class="form-control" name="phone" pattern="[0-9]+" minlength="10" maxlength="10" placeholder="Please Enter Your Contact Number" value="" />
             </div>
         </div>
 
