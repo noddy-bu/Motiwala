@@ -255,6 +255,8 @@ class PayumoneyController extends Controller
 
         return view('frontend.payumoney.fail_installment', compact('errorMessage','data','temp_user_id'));
 
+        
+
     }
 
 }
