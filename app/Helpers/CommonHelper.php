@@ -186,3 +186,36 @@ use Illuminate\Support\Facades\Mail;
 
         }
     }
+
+
+    if(!function_exists('custom_date_change')){
+        function custom_date_change($date){
+            
+            // Create a DateTime object
+            $date = new DateTime($date);
+
+            // Get the day, month, and year
+            $day = $date->format('j'); // Day without leading zeros
+            $month = $date->format('M'); // Short month name
+            $year = $date->format('Y'); // Full year
+
+            // Anonymous function to add ordinal suffix to the day
+            $addOrdinalSuffix = function ($num) {
+                $num = intval($num);
+                if (!in_array(($num % 100), [11, 12, 13])) {
+                    switch ($num % 10) {
+                        case 1: return $num . 'st';
+                        case 2: return $num . 'nd';
+                        case 3: return $num . 'rd';
+                    }
+                }
+                return $num . 'th';
+            };
+
+            // Format the date string
+            $formattedDate = $addOrdinalSuffix($day) . ' ' . $month . ' ' . $year;
+
+            return $formattedDate;
+
+        }
+    }

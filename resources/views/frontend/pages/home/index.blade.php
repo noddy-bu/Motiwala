@@ -9,6 +9,12 @@
 
 @section('page.content')
 
+@php
+$plan_min_amount = DB::table('plans')
+    ->where('id', 1)
+    ->value('minimum_installment_amount');
+@endphp
+
     <!--banner start -->
     <!-- <section class="banner_section">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -543,7 +549,7 @@
 
         amountMinusBtn.addEventListener('click', function(event) {
             event.preventDefault();
-            if (currentAmount > 2000) {
+            if (currentAmount > {{ $plan_min_amount }}) {
                 currentAmount -= 1000;
                 updateAmount();
             }

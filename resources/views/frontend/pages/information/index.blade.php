@@ -8,7 +8,10 @@
 
 @section('page.content')
 
-
+@php
+$plan_Details = DB::table('plans')
+    ->get(['minimum_installment_amount', 'plan_start_date', 'plan_end_date']);
+@endphp
 
 <!-- -------------------- career banner start ---------------- -->
 
@@ -128,13 +131,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1st Jan 2023</td>
-                <td>1st Jan 2024</td>
-                <td>4000</td>
-                <td>3000</td>
-              <td>75%</td>
-              </tr>
+              @foreach ($plan_Details as $row)
+                <tr>
+                  <td>{{ custom_date_change($row->plan_start_date) }}</td>
+                  <td>{{ custom_date_change($row->plan_end_date) }}</td>
+                  <td>{{ (int) $row->minimum_installment_amount }}</td>
+                  <td>{{ $row->minimum_installment_amount * 75 / 100 }}</td>
+                <td>75%</td>
+                </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
