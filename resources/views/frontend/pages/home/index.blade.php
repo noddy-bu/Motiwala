@@ -11,7 +11,7 @@
 
 @php
 $plan_min_amount = DB::table('plans')
-    ->where('id', 1)
+    ->where('status', 1)
     ->value('minimum_installment_amount');
 @endphp
 

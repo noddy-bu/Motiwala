@@ -10,6 +10,7 @@
 
 @php
 $plan_Details = DB::table('plans')
+    ->where('status', 1)
     ->get(['minimum_installment_amount', 'plan_start_date', 'plan_end_date']);
 @endphp
 
