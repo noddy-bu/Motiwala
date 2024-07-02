@@ -101,7 +101,7 @@ class CustomerController extends Controller
 
             $nestedData = [
                 'id' => $i++,
-                'name' => $row->first_name.''.$row->last_name,
+                'name' => $row->first_name.' '.$row->last_name,
                 'email' => $row->email,
                 'phone' => $row->phone,
                 'status' => $row->status ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Inactive</span>',
