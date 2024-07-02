@@ -45,7 +45,6 @@
 
                         $Maturity_date = $redemption_items
                             ->where('installment_no', (int) $info->installment_period)
-                            ->where('status', 'unpaid')
                             ->first();
 
                         $Installments_paid = $redemption_items
