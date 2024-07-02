@@ -227,4 +227,4 @@ Route::get('/session-setup', function () {
 
 Route::get('/template-design', [IndexController::class, 'pdf'])->name('pdf');
 
-// Route::get('/testing-codeing', [PayumoneyController::class, 'payment_success_installment'])->name('testing');
+// Route::get('/testing-codeing', [AccountController::class, 'testing'])->name('testing');

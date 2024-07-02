@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\View;
+use App\Http\Controllers\Common\SmsController;
 use Auth;
 
 use Illuminate\Http\Request;
@@ -146,7 +147,7 @@ class PayumoneyController extends Controller
         $redemption = DB::table('redemptions')
             ->where('user_id', $order->temp_user_id)
             ->where('status', 1)
-            ->first(['id']);
+            ->first(['id','plan_id']);
     
         if ($redemption) {
             // Fetch the redemption item
@@ -179,21 +180,39 @@ class PayumoneyController extends Controller
                     ]);
 
                 }
+
+                $installment = $redemption_items->installment_no;
+
+                $plan_period = DB::table('plans')->where('id', $redemption->plan_id)->value('phone');
+
+                $plan_period = (int) $plan_period; 
+
+                if($installment != $plan_period){
+                    // Update the next installment to pending
+                    $next = $redemption_items->installment_no + 1;
+                    DB::table('redemption_items')
+                        ->where('redemption_id', $redemption->id)
+                        ->where('installment_no', $next)
+                        ->update(['status' => 'pending']);
+                }
         
-                // Update the next installment to pending
-                $next = $redemption_items->installment_no + 1;
-                DB::table('redemption_items')
-                    ->where('redemption_id', $redemption->id)
-                    ->where('installment_no', $next)
-                    ->update(['status' => 'pending']);
+
 
 
             } else {
-                echo "not work 2";
+                session()->flash('toastr', [
+                    'type' => 'error',
+                    'message' => 'Somthing went wrong',
+                    'title' => 'error'
+                ]);
             }
 
         } else{
-            echo "not work";
+            session()->flash('toastr', [
+                'type' => 'error',
+                'message' => 'Plan has been Expire',
+                'title' => 'error'
+            ]);
         }
 
         /*------------ success stuff --------------*/
@@ -203,6 +222,21 @@ class PayumoneyController extends Controller
             'message' => 'Installment Paid Successfully',
             'title' => 'Success'
         ]);
+
+        if ($installment == 1) {
+            $installment .= 'st';
+        } elseif ($installment == 2) {
+            $installment .= 'nd';
+        } elseif ($installment == 3) {
+            $installment .= 'rd';
+        } else {
+            $installment .= 'th';
+        }
+
+        $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
+
+    
+        $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
 
         // delete temp recored
         DB::table('temp_transactions')->where('payment_id', $txnid)->delete();

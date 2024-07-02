@@ -18,27 +18,29 @@ class SmsController extends Controller
 
     public function smsgatewayhub_registration_otp($phone, $otp)
     {
-        $msg = rawurlencode("OTP: $otp to Verify your mobile number for registration. Keep it secure and don't share it with anyone. KAAK DPIL");
+        $msg = rawurlencode("Your verification code is $otp. This code is valid for 2 minutes. Please do not share this code with anyone. Motiwala Jewels");
         $phone = '91'.$phone;
-        $result = $this->sms_trigger_smsgatewayhub2($phone, $msg);
-        var_dump($result);
+        $this->sms_trigger_smsgatewayhub2($phone, $msg);
     }
 
     public function smsgatewayhub_reset_pwd_otp($phone, $otp) //reset password
     {
-        $msg = rawurlencode("Reset your password using the OTP: $otp. Keep it confidential and secure. KAAK DPIL");
+        $msg = rawurlencode("To reset your password for User ID: $phone, please use the code $otp. This code is valid for 2 minutes. Do not share this code with anyone. Motiwala Jewels");
+        $phone = '91'.$phone;
         $this->sms_trigger_smsgatewayhub2($phone, $msg);
     }  
     
-    public function smsgatewayhub_customer_card_active($phone) //customer card active
+    public function smsgatewayhub_registration_successful($phone) //customer card active
     {
-        $msg = rawurlencode("Your Maay card is activated. KAAK DPIL");
+        $msg = rawurlencode("Congratulations! You have successfully registered. Your login credentials are: User ID: $phone. Password: $phone. Thank you for joining us. Motiwala Jewels");
+        $phone = '91'.$phone;
         $this->sms_trigger_smsgatewayhub2($phone, $msg);
     } 
     
-    public function smsgatewayhub_customer_card_inactive($phone, $reason) //customer card inactive
+    public function smsgatewayhub_installment_payment_successful($phone, $installment, $amount) //customer card inactive
     {
-        $msg = rawurlencode("Your Maay card is Deactivated due to $reason. Please contact admin for Further clarification. KAAK DPIL");
+        $msg = rawurlencode("Your $installment installment of $amount has been successfully completed. Thank you for choosing Motiwala Jewels");
+        $phone = '91'.$phone;
         $this->sms_trigger_smsgatewayhub2($phone, $msg);
     }  
     

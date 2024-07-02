@@ -359,7 +359,10 @@ class AccountController extends Controller
                 Session::put('otp', $otp);
                 Session::put('otp_timestamp', $timestamp);
                 Session::put('user_forget_id', $user->id);
+
+                $phone = $request->phone;
                 
+                $sms = (new SmsController)->smsgatewayhub_reset_pwd_otp($phone, $otp);
 
                 return response()->json([
                     'status' => 'success',
@@ -593,7 +596,7 @@ class AccountController extends Controller
         Session::put('phone', $request->phone);
 
         //sms integration
-        // $sms = (new SmsController)->smsgatewayhub_registration_otp($request->phone, $otp);
+        $sms = (new SmsController)->smsgatewayhub_registration_otp($request->phone, $otp);
 
         Session::put('step', 2);
         
@@ -679,12 +682,13 @@ class AccountController extends Controller
         $timestamp = Carbon::now();
         Session::put('otp_timestamp', $timestamp);
         
-        $contact = Session::get('phone');
+        $phone = Session::get('phone');
 
-        //sms integration
+        //sms integration  
+        $sms = (new SmsController)->smsgatewayhub_reset_pwd_otp($phone, $otp);
 
         $rsp_msg['response'] = 'success';
-        $rsp_msg['message']  = "OTP has been Resend no this No : $contact ";
+        $rsp_msg['message']  = "OTP has been Resend no this No : $phone ";
 
         return $rsp_msg;
     }
@@ -1395,6 +1399,14 @@ class AccountController extends Controller
 
             $this->auto_add_transactions(Session::get('temp_user_id'),$amount,$transactions_id);
 
+            //sms integration
+
+            $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
+
+            $installment = '1st';
+
+            $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+
             return redirect()->route('account.new.enrollment.page');
         // }
     }
@@ -1648,7 +1660,21 @@ class AccountController extends Controller
     }
 
 
+    // public function testing(){
+    //     $otp = '667788';
+    //     $phone = '8433625599';
+    //     $installment = '1st';
+    //     $amount = '16000 rs';
 
+
+    //     $sms = (new SmsController)->smsgatewayhub_registration_otp($phone, $otp);
+
+    //     $sms = (new SmsController)->smsgatewayhub_reset_pwd_otp($phone, $otp);
+    //     $sms = (new SmsController)->smsgatewayhub_registration_successful($phone, $otp);
+    //     $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+
+    //     var_dump($sms);
+    // }
 
 
 
