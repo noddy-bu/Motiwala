@@ -1,3 +1,8 @@
+@php
+    $this_pop_link = urlencode(full_url());
+    $this_pop_name = 'Customer Installment';
+@endphp
+
 <section class="pt-5 inner_sectionpadd">
     <div class="container">
         <div class="row">
@@ -75,19 +80,21 @@
                                         Plan Status : @if($info->status == 1) Active
                                         @else Close @endif
                                     </p>
-
+                                    
                                     @if($info->status == 1)
                                         <div style="float: right;">
-                                            <button class="btn btn-block btn-danger" id="closebtn">Closing Plan</button>
+                                            <a href="javascript:void(0);" 
+                                            class="btn btn-sm btn-secondary" 
+                                            onclick="largeModal('{{ url(route('Customer.close.form', ['id' => $info->user_id])) }}?previous_popup_link={{ $this_pop_link }}&previous_popup_name={{ $this_pop_name }}', 'Closeing Plan');">
+                                                Close Plan
+                                            </a>
                                         </div>
                                     @else
                                         <hr>
-                
                                         <h3 class="text-center">Plan Has Been Closed</h3>
                                         <p class="card-text">Close Date: {{ $info->closing_date }}</p>
                                         <p class="card-text">Close at Amount: {{ $total_amount_at_closing }}</p>
                                         <p class="card-text">Reason For Close: {{ $info->closing_remark }}</p>
-
                                     @endif
 
 
@@ -101,7 +108,7 @@
                 
             </div>
 
-            @if($info->status == 1)
+            {{-- @if($info->status == 1)
 
                 <div class="col-md-12 d-none" id="closeform">
                     <hr>
@@ -132,7 +139,7 @@
                     </div>
                 </div>
 
-            @endif
+            @endif --}}
 
 
             <div class="col-md-12 information_tb">
@@ -203,17 +210,17 @@
 
 <script>
 
-    document.getElementById('closebtn').addEventListener('click', function() {
-        if (confirm('Are you sure to close?')) {
-            document.getElementById('closebtn').classList.toggle('d-none');
-            document.getElementById('closeform').classList.toggle('d-none');
-        }
-    });
+    // document.getElementById('closebtn').addEventListener('click', function() {
+    //     if (confirm('Are you sure to close?')) {
+    //         document.getElementById('closebtn').classList.toggle('d-none');
+    //         document.getElementById('closeform').classList.toggle('d-none');
+    //     }
+    // });
 
-    document.getElementById('closeformbtn').addEventListener('click', function() {
-        document.getElementById('closebtn').classList.toggle('d-none');
-        document.getElementById('closeform').classList.toggle('d-none');
-    });
+    // document.getElementById('closeformbtn').addEventListener('click', function() {
+    //     document.getElementById('closebtn').classList.toggle('d-none');
+    //     document.getElementById('closeform').classList.toggle('d-none');
+    // });
 
 
     $(document).ready(function() {

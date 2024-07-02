@@ -219,3 +219,19 @@ use Illuminate\Support\Facades\Mail;
 
         }
     }
+
+
+    if (!function_exists('full_url')) {
+        function full_url() {
+            // Determine if the request is secure
+            $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
+    
+            // Get the HTTP or HTTPS part of the URL
+            $protocol = $isSecure ? 'https://' : 'http://';
+    
+            // Build the full URL
+            $url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    
+            return $url;
+        }
+    }
