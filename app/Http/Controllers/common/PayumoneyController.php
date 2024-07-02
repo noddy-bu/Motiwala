@@ -183,9 +183,9 @@ class PayumoneyController extends Controller
 
                 $installment = $redemption_items->installment_no;
 
-                $plan_period = DB::table('plans')->where('id', $redemption->plan_id)->value('phone');
+                $plan_period = DB::table('plans')->where('id', $redemption->plan_id)->value('installment_period');
 
-                $plan_period = (int) $plan_period; 
+                $plan_period = (int) $plan_period;
 
                 if($installment != $plan_period){
                     // Update the next installment to pending
