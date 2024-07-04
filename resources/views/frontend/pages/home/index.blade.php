@@ -117,7 +117,7 @@ $plan_min_amount = DB::table('plans')
                 <p class="text-center black_color fontsize26">
                     Start your journey by opening a Motiwala Jewels Golden Treasure  account with just ₹2000.
                     <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
-                    to 75% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
+                    to 100% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
                 </p>
                 <div class="text-center">
                     <div class="buttonclass mt-4 ">
@@ -191,7 +191,7 @@ $plan_min_amount = DB::table('plans')
                                 </div>
                              <div class="step_content3 pt-lg-4 pt-md-2  pe-lg-3 ps-lg-4">
                                 <p class="black_color text-center" >
-                                    Receive an exclusive discount of up to 75% of the value of your first installment when you redeem your plan.
+                                    Receive an exclusive discount of up to 100% of the value of your first installment when you redeem your plan.
                                 </p>
                             </div>
 
@@ -339,7 +339,7 @@ $plan_min_amount = DB::table('plans')
                             <div class="choose_content">
                                 <h5 class="black_color">Motiwala Treasure</h5>
                                 <p class="black_color"> 
-                                    A unique easy-pay system that gives you a 75% benefit on the value of your first installment when you redeem your plan.
+                                    A unique easy-pay system that gives you a 100% benefit on the value of your first installment when you redeem your plan.
 
                                 </p>
                             </div>
