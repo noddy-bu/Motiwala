@@ -3,6 +3,17 @@
 
     <div id="add-phone">
 
+     <div>
+                        <p>Hello,
+                        
+                        <p>   
+                           Warm greetings from Motiwala Jewels Gold and Diamonds Pvt Ltd! We sincerely appreciate your interest in opening a new account with our Motiwala Jewels Golden Treasure Purchase Plan.
+                        </p>
+                        <p>To help us expedite your request, please proceed with the following steps.</p>
+                    </div>
+
+
+
         @php
             session()->forget('step');
             session()->forget('otp_timestamp');
@@ -307,7 +318,7 @@
                         <label class="pb-2">Select Plan *</label>
                         <select class="form-select" aria-label="---Select----" name="plan_id" id="plan_id"
                             required>
-                            <option data-minium="2000" value="">---Select---</option>
+                            <option data-minium="5000" value="">---Select---</option>
                             {{-- @foreach ($plan as $row)
                             <option data-minium="{{ $row->minimum_installment_amount }}" value="{{ $row->id }}" @if ($user->plan_id == $row->id) selected @endif>
                                 {{ ucfirst($row->name) }}
@@ -332,7 +343,7 @@
                             placeholder="Please Enter Your Installment Amount" required />
 
                         <span id="installmentAmount" style="display: none; color: red;">Minimum Installment Amount :
-                            2000.00</span>
+                            5000.00</span>
 
                     </div>
                 </div>
