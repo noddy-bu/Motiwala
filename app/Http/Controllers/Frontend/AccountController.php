@@ -1418,7 +1418,7 @@ class AccountController extends Controller
         $user_plan_Details = DB::table('users')->where('id', $temp_user_id)->value('plan_id');
 
         // Retrieve the plan details
-        $plan_details = DB::table('plans')->where('id', $user_plan_Details)->first(['minimum_installment_amount', 'installment_period']);
+        $plan_details = DB::table('plans')->where('id', $user_plan_Details)->first(['minimum_installment_amount', 'installment_period','receivable_percentage_on_time']);
 
         // Calculate the number of installments
         $installments = (int) $plan_details->installment_period;
@@ -1443,6 +1443,12 @@ class AccountController extends Controller
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
+
+        $percentage = $plan_details->receivable_percentage_on_time;
+        $additionalAmount = ($amount * $percentage) / 100;
+        $totalAmount = $amount + $additionalAmount;
+
+
         DB::table('redemption_items')->insert([
             'redemption_id' => $redemption_id,
             'transaction_id' => $transactions_id,
@@ -1450,7 +1456,7 @@ class AccountController extends Controller
             'due_date_start' => date('Y-m-d H:i:s'),
             'due_date_end' => date('Y-m-d H:i:s'),
             'installment_amount' => $amount,
-            'receivable_amount' => $amount + ($amount * 0.075),
+            'receivable_amount' => $totalAmount,
             'status' => 'paid',
             'receipt_date' => date('Y-m-d H:i:s'),
             'created_at' => date('Y-m-d H:i:s'),

@@ -54,8 +54,8 @@
                                         <p class="card-text">Installment Payment :
                                             Completed</p>
                                     @endif
-                                    <p class="card-text">Last Payment Due :
-                                        {{ date('d-m-Y', strtotime($last_payment_date->due_date_start)) }}</p>
+                                    {{-- <p class="card-text">Last Payment Due :
+                                        {{ date('d-m-Y', strtotime($last_payment_date->due_date_start)) }}</p> --}}
                                     <p class="card-text">No of Installments Paid : {{ count($Installments_paid) }}</p>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                                 <h5 class="card-header">Maturity Details</h5>
                                 <div class="card-body">
                                     <p class="card-text">Enrollment Date : {{ date('d-m-Y', strtotime($info->created_at)) }}</p>
-                                    <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($Maturity_date->due_date_start)) }}
+                                    {{-- <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($Maturity_date->due_date_start)) }} --}}
                                     </p>
                                     <br>
                                     <br>
@@ -180,7 +180,7 @@
                                             @endif
                                             
                                         </td>
-                                        <td>{{ date('d-m-Y', strtotime($row->due_date_start)) }}</td>
+                                        {{-- <td>{{ date('d-m-Y', strtotime($row->due_date_start)) }}</td> --}}
                                         <td>
                                             {{ $row->installment_no }}
                                         </td>

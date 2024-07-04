@@ -529,12 +529,12 @@ $plan_min_amount = DB::table('plans')
 
 
         function updateAmount() {
-            amountSpan.textContent = '₹ ' + currentAmount.toLocaleString();
-            amount10xSpan.textContent = '₹ ' + (currentAmount * 10).toLocaleString();
-            amount13xSpan.textContent = '₹ ' + (currentAmount / 1000 * 10750).toLocaleString();
+            amountSpan.textContent = '₹ ' + Math.ceil(currentAmount).toLocaleString();
+            amount10xSpan.textContent = '₹ ' +  Math.ceil(currentAmount * 11).toLocaleString();
+            amount13xSpan.textContent = '₹ ' +  Math.ceil((currentAmount * 11) * 1.0909 + 1).toLocaleString();
 
-            total_amount = currentAmount * 10;
-            discount_amount = (currentAmount / 1000 * 10750) - total_amount;
+            total_amount = Math.ceil(currentAmount * 11);
+            discount_amount = Math.ceil((currentAmount * 11) * 1.0909) - total_amount + 1;
 
             updateDataAndRedraw();
         }

@@ -162,9 +162,15 @@ class PayumoneyController extends Controller
                 // Check if the current date lies between due_date_start and due_date_end
                 if (Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
 
+                    $plan_receivable_percentage = DB::table('plans')->where('id', $redemption->plan_id)->value('receivable_percentage_on_time');
+
+                    $percentage = $plan_receivable_percentage;
+                    $additionalAmount = ($amount * $percentage) / 100;
+                    $totalAmount = $amount + $additionalAmount;
+
                     DB::table('redemption_items')->where('id', $redemption_items->id)->update([
                         'transaction_id' => $transactions_id,
-                        'receivable_amount' => $amount + ($amount * 0.075),
+                        'receivable_amount' => $totalAmount,
                         'status' => 'paid',
                         'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
                     ]);
