@@ -20,7 +20,7 @@
                <div class="card rounded-0 shadow-none m-0 border-start border-light">
                   <div class="card-body text-center">
                      <i class="ri-article-line text-muted font-24"></i>
-                     <h3><span>{{(int) $transactions}} Rs</span></h3>
+                     <h3><span>Rs {{(int) $transactions}}</span></h3>
                      <p class="text-muted font-15 mb-0">Total Transaction Amount</p>
                   </div>
                </div>
