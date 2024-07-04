@@ -31,7 +31,7 @@
 								
 					<h4>Plan</h4>	
 					<p>The Golden Treasure Jewellery Purchase Plan (hereinafter “Golden Treasure” or the “Plan”) 
-						offered by Motiwala Jewels Gold and Diamonds Pvt Ltd Manage by Motiwala & Sons facilitates Customers 
+						offered by Motiwala Jewels Gold and Diamonds Pvt Ltd facilitates Customers 
 						to purchase Gold and Diamonds Jewellery by making payments for the same over a ten month 
 						period and the Customers will be entitled to avail certain discounts subject to these 
 						Terms and Conditions.
@@ -59,12 +59,12 @@
 						completion of 400 days from the Enrollment Date.
 					</p>
 
-					<p>The Customers would be eligible for a discount of 75% (Seventy Five percent) of one 
+					<p>The Customers would be eligible for a discount of 100% (Seventy Five percent) of one 
 					   month’s instalment upon redemption, after the completion of 366 days from the Enrollment 
 					   Date subject to the Customers having made the payment of all ten monthly installments.
 					   If a Customer redeems before the completion of 366 (three hundred and sixty six) days 
 					   but after the completion of 300 (Three Hundred) days, the Customer will be eligible 
-					   for a discount ranging between 55% (Fifty Five percent) to 75% (Seventy Five percent) 
+					   for a discount ranging between 55% (Fifty Five percent) to 100% (Seventy Five percent) 
 					   of one month instalment based on the number of days, and subject to the Customers 
 					   having made the payment of all ten monthly installments. For redemption after 
 					   completion of 180 (One Hundred and Eighty) days but before completion of 300 

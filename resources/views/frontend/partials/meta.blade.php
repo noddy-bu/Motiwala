@@ -49,8 +49,8 @@ $url = url()->current();
 <!----------------- twitter ------------------->
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Motiwala and Sons">
-<meta name="twitter:description" content="Motiwala and Sons">
+<meta name="twitter:title" content="Motiwala Jewels Gold and Diamonds Pvt Ltd">
+<meta name="twitter:description" content="Motiwala Jewels Gold and Diamonds Pvt Ltd">
 <meta name="twitter:image" content="{{ asset('assets/frontend/images/logo.png') }}">
 <meta name="twitter:site" content="@ahlawatlaw" />
 <link rel="shortcut icon" href="{{ asset('/assets/frontend/images/logo.png') }}">

@@ -1428,6 +1428,7 @@ body .userlogin_box {
     border: none;
     background-color: var(--prm-gray);
     transition: .4s;
+    color: #333;
 }
 
 .step-button[aria-expanded="true"] {
