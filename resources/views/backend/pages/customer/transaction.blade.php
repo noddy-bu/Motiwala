@@ -154,6 +154,7 @@
                                 <th>Due Date</th>
                                 <th>Installment No</th>
                                 <th>Installment Amount</th>
+                                <th>Payment Type</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -164,10 +165,10 @@
                                         <td>{{ $i++ }}</td>
                                         <td>
                                             @if ($row->status == 'paid')
-                                                @php
+                                                {{-- @php
                                                     $transaction_id = DB::table('transactions')->where('id', $row->transaction_id)->value('payment_id');
-                                                @endphp
-                                                {{ $transaction_id }}
+                                                @endphp --}}
+                                                {{ $row->id }}
                                             @else
                                                 NA
                                             @endif
@@ -188,10 +189,36 @@
                                             {{ $row->installment_amount }}
                                         </td>
                                         <td>
+                                            @php
+                                                $transaction_payment_type = DB::table('transactions')->where('id', $row->transaction_id)->value('payment_type');
+                                            @endphp
+                                            @if($transaction_payment_type == "payu")
+                                                PayU
+                                            @elseif ($transaction_payment_type == "cashpay")
+                                                Cash Pay
+                                            @else
+                                                UPI
+                                            @endif
+                                        </td>
+                                        <td>
                                             @if ($row->status == 'paid')
                                                 Paid
                                             @elseif ($row->status == 'pending')
-                                                pending
+                                                <b>pending</b>
+
+                                                @if ($row->due_date_start <= date('Y-m-d') && in_array($row->status, ['paid', 'pending']))
+
+                                                    <br>
+
+                                                    <a href="javascript:void(0);" 
+                                                    class="btn btn-sm btn-secondary" 
+                                                    onclick="largeModal('{{ url(route('Customer.manual_pay.form', ['id' => $row->id])) }}?previous_popup_link={{ $this_pop_link }}&previous_popup_name={{ $this_pop_name }}', 'Manual Payment');">
+                                                            Manual pay
+                                                    </a>
+
+                                                @endif
+
+
                                             @else
                                                 unpaid
                                             @endif

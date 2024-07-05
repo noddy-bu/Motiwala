@@ -49,6 +49,10 @@ Route::group(['prefix' => 'customer'], function () {
     Route::get('/edit/{id}', [CustomerController::class, 'edit'])->name('Customer.edit');
     Route::get('/transaction/{id}', [CustomerController::class, 'transaction'])->name('Customer.transaction');
 
+    Route::get('/manual-pay-form/{id}', [CustomerController::class, 'manual_pay_form'])->name('Customer.manual_pay.form');
+
+    Route::post('/manual-payment', [CustomerController::class, 'manual_payment'])->name('Customer.manual.payment');
+
     Route::get('/close-plan-form/{id}', [CustomerController::class, 'close_plan_form'])->name('Customer.close.form');
 
     Route::post('/close-plan', [CustomerController::class, 'close_plan'])->name('Customer.close.plan');

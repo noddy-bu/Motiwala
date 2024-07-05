@@ -1,11 +1,4 @@
 <section>
-    {{-- @php
-        echo"<pre>";
-        var_dump($user);
-        var_dump($user_detail);
-        var_dump($plan_name);
-        echo"</pre>";
-    @endphp --}}
 
     <div class="row">
 

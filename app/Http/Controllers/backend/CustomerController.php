@@ -11,6 +11,8 @@ use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
+use App\Http\Controllers\Common\SmsController;
 use Carbon\Carbon;
 
 class CustomerController extends Controller
@@ -258,6 +260,190 @@ class CustomerController extends Controller
         ];
 
         return response()->json($response);
+    }
+
+
+    public function manual_pay_form($id) {
+
+        $redemption_items = DB::table('redemption_items')->where('id',$id)->get()->first();
+
+        $user_id = DB::table('redemptions')->where('id',$redemption_items->redemption_id)->where('status',1)->value('user_id');
+
+        //--closing amout
+        $currentDate = Carbon::now()->format('Y-m-d');
+
+        if (Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
+            $pay_date = custom_date_change($redemption_items->due_date_start)." to ".custom_date_change($redemption_items->due_date_end);
+        } else {
+            $pay_date = custom_date_change($redemption_items->due_date_start)." to ".custom_date_change($redemption_items->due_date_end)." -- Penalty will be charged";
+        }
+
+        return view('backend.pages.customer.manual_pay_form', compact('redemption_items','pay_date','user_id'));
+    }
+
+    public function manual_payment(Request $request){
+        $validator = Validator::make($request->all(), [
+            'payment_method' => 'required',
+            'transaction_id' => [
+                'nullable',
+                Rule::unique('transactions', 'payment_id')
+            ],
+            'transaction_slip' => 'nullable|mimes:png,jpg,jpeg|max:2048', // 2048 KB = 2 MB
+        ], [
+            'payment_method.required' => 'The Payment Method is required.',
+            'transaction_id.unique' => 'The Transaction ID has already been used.',
+            'transaction_slip.mimes' => 'The Transaction Slip must be a file of type: png, jpg, jpeg.',
+            'transaction_slip.max' => 'The Transaction Slip may not be greater than 2 MB.',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'notification' => $validator->errors()->all()
+            ], 200);
+        }
+        
+
+        $amount = $request->amount;
+
+        if($request->hasFile('transaction_slip')) {
+            $file = $request->file('transaction_slip');
+            // Remove spaces from the filename
+            $filename = str_replace(' ', '_', $file->getClientOriginalName());
+            // Store the file and get the path
+            $path = $file->storeAs('transaction_Slip', $filename, 'public');
+        } else {
+            $path = null;
+        }
+        
+        $data = [
+            'user_id' => $request->user_id,
+            'payment_id' => $request->transaction_id,
+            'payment_amount' => $amount,
+            'payment_type' => $request->payment_method,
+            'transaction_Slip' => $path,
+            'created_at' => date('Y-m-d H:i:s'),
+        ];
+
+        //update order
+        $transactions_id = DB::table('transactions')->insertGetId([
+            'user_id' => $request->user_id,
+            'payment_id' => $request->transaction_id,
+            'payment_amount' => $amount,
+            'payment_response' => json_encode($data),
+            'payment_type' => $request->payment_method,
+            'payment_status' => 'paid',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+
+        $redemption = DB::table('redemptions')
+            ->where('user_id', $request->user_id)
+            ->where('status', 1)
+            ->first(['id','plan_id']);
+    
+        if ($redemption) {
+            // Fetch the redemption item
+            $redemption_items = DB::table('redemption_items')
+                ->where('redemption_id', $redemption->id)
+                ->where('status', 'pending')
+                ->first(['id', 'due_date_start', 'due_date_end', 'installment_no']);
+        
+            if ($redemption_items) {
+                $currentDate = Carbon::now()->format('Y-m-d');
+        
+                // Check if the current date lies between due_date_start and due_date_end
+                if (Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
+
+                    $plan_receivable_percentage = DB::table('plans')->where('id', $redemption->plan_id)->value('receivable_percentage_on_time');
+
+                    $percentage = $plan_receivable_percentage;
+                    $additionalAmount = ($amount * $percentage) / 100;
+                    $totalAmount = $amount + $additionalAmount;
+
+                    DB::table('redemption_items')->where('id', $redemption_items->id)->update([
+                        'transaction_id' => $transactions_id,
+                        'receivable_amount' => $totalAmount,
+                        'status' => 'paid',
+                        'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
+                    ]);
+
+                } else {
+
+                    DB::table('redemption_items')->where('id', $redemption_items->id)->update([
+                        'transaction_id' => $transactions_id,
+                        'receivable_amount' => $amount,
+                        'status' => 'paid',
+                        'remarks' => 'penalty for late payment of installment',
+                        'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
+                    ]);
+
+                }
+
+                $installment = $redemption_items->installment_no;
+
+                $plan_period = DB::table('plans')->where('id', $redemption->plan_id)->value('installment_period');
+
+                $plan_period = (int) $plan_period;
+
+                if($installment != $plan_period){
+                    // Update the next installment to pending
+                    $next = $redemption_items->installment_no + 1;
+                    DB::table('redemption_items')
+                        ->where('redemption_id', $redemption->id)
+                        ->where('installment_no', $next)
+                        ->update(['status' => 'pending']);
+                }
+        
+
+
+
+            } else {
+                session()->flash('toastr', [
+                    'type' => 'error',
+                    'message' => 'Somthing went wrong',
+                    'title' => 'error'
+                ]);
+            }
+
+        } else{
+            session()->flash('toastr', [
+                'type' => 'error',
+                'message' => 'Plan has been Expire',
+                'title' => 'error'
+            ]);
+        }
+
+        /*------------ success stuff --------------*/
+
+        session()->flash('toastr', [
+            'type' => 'success',
+            'message' => 'Manual Installment Paid Successfully',
+            'title' => 'Success'
+        ]);
+
+        if ($installment == 1) {
+            $installment .= 'st';
+        } elseif ($installment == 2) {
+            $installment .= 'nd';
+        } elseif ($installment == 3) {
+            $installment .= 'rd';
+        } else {
+            $installment .= 'th';
+        }
+
+        $phone = DB::table('users')->where('id', $request->user_id)->value('phone');
+
+    
+        $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+
+        $response = [
+            'status' => true,
+            'notification' => 'Manual Payment Installment successfully!',
+        ];
+
+        return response()->json($response);
+
     }
     
 

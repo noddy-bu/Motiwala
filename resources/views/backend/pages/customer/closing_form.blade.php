@@ -23,7 +23,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group mb-3 text-end">
                                             <button type="submit" class="btn btn-block btn-primary">Proceed</button>
-                                            <a class="btn btn-block btn-danger" id="closeformbtn">Close</a>
+
                                             @php
                                                 $previousPopupLink = urldecode(request()->input('previous_popup_link'));
                                                 $previousPopupName = request()->input('previous_popup_name');
@@ -68,4 +68,5 @@
     var responseHandler = function(response) {
         location.reload();
     }
+    
 </script>
