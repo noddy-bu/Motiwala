@@ -47,12 +47,14 @@
                                 <div class="card-body">
                                     <p class="card-text">Total Amount Received : {{ $total_receivable_amount }}</p>
 
-                                    @if($next_payment_date != null)
+                                    @if($info->status != 1)
+                                        @if($next_payment_date != null)
                                         <p class="card-text">Next Payment Due :
                                             {{ date('d-m-Y', strtotime($next_payment_date->due_date_start)) }}</p>
-                                    @else
+                                        @else
                                         <p class="card-text">Installment Payment :
                                             Completed</p>
+                                        @endif
                                     @endif
                                     <p class="card-text">Last Payment Due :
                                         {{ date('d-m-Y', strtotime($last_payment_date->due_date_start)) }}</p>
