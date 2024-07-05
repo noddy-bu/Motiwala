@@ -65,7 +65,9 @@
                                 <h5 class="card-header">Maturity Details</h5>
                                 <div class="card-body">
                                     <p class="card-text">Enrollment Date : {{ date('d-m-Y', strtotime($info->created_at)) }}</p>
-                                    <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($Maturity_date->due_date_start)) }}
+                                    {{-- <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($Maturity_date->due_date_start)) }}
+                                    </p> --}}
+                                    <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($info->maturity_date_start)) }}
                                     </p>
                                     <br>
                                     <br>
@@ -196,8 +198,10 @@
                                                 PayU
                                             @elseif ($transaction_payment_type == "cashpay")
                                                 Cash Pay
-                                            @else
+                                            @elseif ($transaction_payment_type == "UPI")
                                                 UPI
+                                            @else
+                                                NA
                                             @endif
                                         </td>
                                         <td>
