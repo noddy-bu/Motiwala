@@ -620,6 +620,7 @@
         font-size: 26px;
         font-weight: 400 !important;
         color: #c1884e;
+        transform: translateY(10px);
     }
 
     .carousel-control-prev-icon:before {

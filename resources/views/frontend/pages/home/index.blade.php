@@ -327,7 +327,7 @@ $plan_min_amount = DB::table('plans')
                             <div class="choose_content">
                                 <h5 class="black_color">Refer and Earn</h5>
                                 <p class="black_color">
-                                   Refer your friend/family and earn 20% of your referral’s order’s Diamond Amount.
+                                   Refer your friend/family and earn Diamonds from your referral’s order.
                                 </p>
                             </div>
                         </div>
