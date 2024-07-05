@@ -515,6 +515,9 @@ $plan_min_amount = DB::table('plans')
         HoverPie.make($("#myCanvas"), data, {});
     }
 
+    function roundToNearestThousand(amount) {
+        return Math.ceil(amount / 1000) * 1000;
+    }
 
 
       document.addEventListener('DOMContentLoaded', function() {
@@ -531,10 +534,10 @@ $plan_min_amount = DB::table('plans')
         function updateAmount() {
             amountSpan.textContent = '₹ ' + Math.ceil(currentAmount).toLocaleString();
             amount10xSpan.textContent = '₹ ' +  Math.ceil(currentAmount * 11).toLocaleString();
-            amount13xSpan.textContent = '₹ ' +  Math.ceil((currentAmount * 11) * 1.0909).toLocaleString();
+            amount13xSpan.textContent = '₹ ' +  roundToNearestThousand((currentAmount * 11) * 1.0909).toLocaleString();
 
             total_amount = Math.ceil(currentAmount * 11);
-            discount_amount = Math.ceil((currentAmount * 11) * 1.0909) - total_amount;
+            discount_amount = roundToNearestThousand((currentAmount * 11) * 1.0909) - total_amount;
 
             updateDataAndRedraw();
         }
