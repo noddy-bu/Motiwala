@@ -1553,29 +1553,14 @@ class AccountController extends Controller
         $postData = $fileContent['postData'];
         $txnid = $postData['merchantTransactionId'];
         
-        //success
+        //--success------
         //order info
         $order = DB::table('temp_transactions')->where('payment_id', $txnid)->first();
         
         //avoid update if payment is paid
         if($order->payment_status != 'paid')
         {
-            
-            /* ------------ success stuff -----------*/
-
-            // $user_id = Session::get('temp_user_id');
-            // $random = mt_rand(100000, 999999);
-        
-            // $account_number = $user_id . '' . $random;
     
-            // Ensure the length of $ulp_id is exactly 12 digits
-            // if (strlen($account_number) < 12) {
-            //     $padding_length = 12 - strlen($account_number);
-            //     $account_number = str_pad($account_number, 12, '0', STR_PAD_LEFT); // Pad with leading zeros if necessary
-            // } elseif (strlen($account_number) > 12) {
-            //     $account_number = substr($account_number, 0, 12); // Trim if longer than 12 digits
-            // }
-
             $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
 
             DB::table('users')->where('id', $order->temp_user_id)->update([
@@ -1588,7 +1573,7 @@ class AccountController extends Controller
 
             //update order
             $transactions_id = DB::table('transactions')->insertGetId([
-                'user_id' => Session::get('temp_user_id'),
+                'user_id' => $order->temp_user_id,
                 'payment_id' => $txnid,
                 'payment_amount' => $order->grand_total,
                 'payment_response' => json_encode($fileContent),
@@ -1602,9 +1587,139 @@ class AccountController extends Controller
             DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
 
             $this->auto_add_transactions(Session::get('temp_user_id'),$amount,$transactions_id);
+
+            //sms integration
+
+            $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
+
+            $installment = '1st';
+
+            $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+
             /*------------ success stuff --------------*/
 
-            Storage::disk('public')->put('webhook/' . $txnid.'-success.txt', $txnid);
+            Storage::disk('public')->put('webhook/success/' . $txnid.'-success.txt', $txnid);
+
+//-------------------------------- Installment ------------------------------------
+        /*
+            $amount = $order->grand_total;
+
+            //update order
+            $transactions_id = DB::table('transactions')->insertGetId([
+                'user_id' => $order->temp_user_id,
+                'payment_id' => $txnid,
+                'payment_amount' => $order->grand_total,
+                'payment_response' => json_encode($input),
+                'payment_type' => 'payu',
+                'payment_status' => 'paid',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+    
+            $redemption = DB::table('redemptions')
+                ->where('user_id', $order->temp_user_id)
+                ->where('status', 1)
+                ->first(['id','plan_id']);
+        
+            if ($redemption) {
+                // Fetch the redemption item
+                $redemption_items = DB::table('redemption_items')
+                    ->where('redemption_id', $redemption->id)
+                    ->where('status', 'pending')
+                    ->first(['id', 'due_date_start', 'due_date_end', 'installment_no']);
+            
+                if ($redemption_items) {
+                    $currentDate = Carbon::now()->format('Y-m-d');
+            
+                    // Check if the current date lies between due_date_start and due_date_end
+                    if (Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
+    
+                        $plan_receivable_percentage = DB::table('plans')->where('id', $redemption->plan_id)->value('receivable_percentage_on_time');
+    
+                        $percentage = $plan_receivable_percentage;
+                        $additionalAmount = ($amount * $percentage) / 100;
+                        $totalAmount = $amount + $additionalAmount;
+    
+                        DB::table('redemption_items')->where('id', $redemption_items->id)->update([
+                            'transaction_id' => $transactions_id,
+                            'receivable_amount' => $totalAmount,
+                            'status' => 'paid',
+                            'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
+                        ]);
+    
+                    } else {
+    
+                        DB::table('redemption_items')->where('id', $redemption_items->id)->update([
+                            'transaction_id' => $transactions_id,
+                            'receivable_amount' => $amount,
+                            'status' => 'paid',
+                            'remarks' => 'penalty for late payment of installment',
+                            'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
+                        ]);
+    
+                    }
+    
+                    $installment = $redemption_items->installment_no;
+    
+                    $plan_period = DB::table('plans')->where('id', $redemption->plan_id)->value('installment_period');
+    
+                    $plan_period = (int) $plan_period;
+    
+                    if($installment != $plan_period){
+                        // Update the next installment to pending
+                        $next = $redemption_items->installment_no + 1;
+                        DB::table('redemption_items')
+                            ->where('redemption_id', $redemption->id)
+                            ->where('installment_no', $next)
+                            ->update(['status' => 'pending']);
+                    }
+            
+    
+    
+    
+                } else {
+                    session()->flash('toastr', [
+                        'type' => 'error',
+                        'message' => 'Somthing went wrong',
+                        'title' => 'error'
+                    ]);
+                }
+    
+            } else{
+
+                session()->flash('toastr', [
+                    'type' => 'error',
+                    'message' => 'Plan has been Expire',
+                    'title' => 'error'
+                ]);
+            }
+    
+            if ($installment == 1) {
+                $installment .= 'st';
+            } elseif ($installment == 2) {
+                $installment .= 'nd';
+            } elseif ($installment == 3) {
+                $installment .= 'rd';
+            } else {
+                $installment .= 'th';
+            }
+    
+            $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
+    
+        
+            $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+    
+            // delete temp recored
+            DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
+
+            Storage::disk('public')->put('webhook/success/' . $txnid.'-success.txt', $txnid);
+        
+        */
+
+            //-------------------------------- Installment ------------------------------------
+         
+
+
         }else{
             return 'false';
         }          
@@ -1617,7 +1732,7 @@ class AccountController extends Controller
         ];        
         
         $filePath = time().'-fail.txt';
-        Storage::disk('public')->put('webhook/' . $filePath, json_encode($fileContent));
+        Storage::disk('public')->put('webhook/fail/' . $filePath, json_encode($fileContent));
 
         // Create the file
         // file_put_contents($filePath, json_encode($fileContent));
