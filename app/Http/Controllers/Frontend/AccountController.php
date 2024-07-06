@@ -1546,12 +1546,15 @@ class AccountController extends Controller
         Storage::disk('public')->put('webhook/' . $filePath, json_encode($fileContent));
         
         // Read the JSON data from the file
-        $jsonData = file_get_contents($filePath); //file_get_contents(public_path('1690456548-success.txt'));
+        $jsonData = file_get_contents(public_path('storage/webhook/1720264141-success.txt'));
+
+        //$jsonData = file_get_contents($filePath); //file_get_contents(public_path('1690456548-success.txt'));
         
         // Decode the JSON data into an array
         $fileContent = json_decode($jsonData, true);  
         $postData = $fileContent['postData'];
         $txnid = $postData['merchantTransactionId'];
+        $udf1 = $postData['udf1'];
         
         //--success------
         //order info
@@ -1560,170 +1563,165 @@ class AccountController extends Controller
         //avoid update if payment is paid
         if($order->payment_status != 'paid')
         {
-    
-            $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
 
-            DB::table('users')->where('id', $order->temp_user_id)->update([
-                // 'account_number' => $account_number,
-                'password' => bcrypt($phone),
-                'status' => 1,
-            ]);
+            if($udf1 != "installment"){
 
-            $amount = $order->grand_total;
+                $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
 
-            //update order
-            $transactions_id = DB::table('transactions')->insertGetId([
-                'user_id' => $order->temp_user_id,
-                'payment_id' => $txnid,
-                'payment_amount' => $order->grand_total,
-                'payment_response' => json_encode($fileContent),
-                'payment_type' => 'payu',
-                'payment_status' => 'paid',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ]);
-    
-            // delete temp recored
-            DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
-
-            $this->auto_add_transactions(Session::get('temp_user_id'),$amount,$transactions_id);
-
-            //sms integration
-
-            $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
-
-            $installment = '1st';
-
-            $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
-
-            /*------------ success stuff --------------*/
-
-            Storage::disk('public')->put('webhook/success/' . $txnid.'-success.txt', $txnid);
-
-//-------------------------------- Installment ------------------------------------
-        /*
-            $amount = $order->grand_total;
-
-            //update order
-            $transactions_id = DB::table('transactions')->insertGetId([
-                'user_id' => $order->temp_user_id,
-                'payment_id' => $txnid,
-                'payment_amount' => $order->grand_total,
-                'payment_response' => json_encode($input),
-                'payment_type' => 'payu',
-                'payment_status' => 'paid',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ]);
-    
-            $redemption = DB::table('redemptions')
-                ->where('user_id', $order->temp_user_id)
-                ->where('status', 1)
-                ->first(['id','plan_id']);
-        
-            if ($redemption) {
-                // Fetch the redemption item
-                $redemption_items = DB::table('redemption_items')
-                    ->where('redemption_id', $redemption->id)
-                    ->where('status', 'pending')
-                    ->first(['id', 'due_date_start', 'due_date_end', 'installment_no']);
-            
-                if ($redemption_items) {
-                    $currentDate = Carbon::now()->format('Y-m-d');
-            
-                    // Check if the current date lies between due_date_start and due_date_end
-                    if (Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
-    
-                        $plan_receivable_percentage = DB::table('plans')->where('id', $redemption->plan_id)->value('receivable_percentage_on_time');
-    
-                        $percentage = $plan_receivable_percentage;
-                        $additionalAmount = ($amount * $percentage) / 100;
-                        $totalAmount = $amount + $additionalAmount;
-    
-                        DB::table('redemption_items')->where('id', $redemption_items->id)->update([
-                            'transaction_id' => $transactions_id,
-                            'receivable_amount' => $totalAmount,
-                            'status' => 'paid',
-                            'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
-                        ]);
-    
-                    } else {
-    
-                        DB::table('redemption_items')->where('id', $redemption_items->id)->update([
-                            'transaction_id' => $transactions_id,
-                            'receivable_amount' => $amount,
-                            'status' => 'paid',
-                            'remarks' => 'penalty for late payment of installment',
-                            'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
-                        ]);
-    
-                    }
-    
-                    $installment = $redemption_items->installment_no;
-    
-                    $plan_period = DB::table('plans')->where('id', $redemption->plan_id)->value('installment_period');
-    
-                    $plan_period = (int) $plan_period;
-    
-                    if($installment != $plan_period){
-                        // Update the next installment to pending
-                        $next = $redemption_items->installment_no + 1;
-                        DB::table('redemption_items')
-                            ->where('redemption_id', $redemption->id)
-                            ->where('installment_no', $next)
-                            ->update(['status' => 'pending']);
-                    }
-            
-    
-    
-    
-                } else {
-                    session()->flash('toastr', [
-                        'type' => 'error',
-                        'message' => 'Somthing went wrong',
-                        'title' => 'error'
-                    ]);
-                }
-    
-            } else{
-
-                session()->flash('toastr', [
-                    'type' => 'error',
-                    'message' => 'Plan has been Expire',
-                    'title' => 'error'
+                DB::table('users')->where('id', $order->temp_user_id)->update([
+                    // 'account_number' => $account_number,
+                    'password' => bcrypt($phone),
+                    'status' => 1,
                 ]);
-            }
     
-            if ($installment == 1) {
-                $installment .= 'st';
-            } elseif ($installment == 2) {
-                $installment .= 'nd';
-            } elseif ($installment == 3) {
-                $installment .= 'rd';
+                $amount = $order->grand_total;
+    
+                //update order
+                $transactions_id = DB::table('transactions')->insertGetId([
+                    'user_id' => $order->temp_user_id,
+                    'payment_id' => $txnid,
+                    'payment_amount' => $order->grand_total,
+                    'payment_response' => json_encode($fileContent),
+                    'payment_type' => 'payu',
+                    'payment_status' => 'paid',
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ]);
+        
+                // delete temp recored
+                DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
+    
+                $this->auto_add_transactions(Session::get('temp_user_id'),$amount,$transactions_id);
+    
+                //sms integration
+    
+                $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
+    
+                $installment = '1st';
+    
+                $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+    
+                /*------------ success stuff --------------*/
+    
+                Storage::disk('public')->put('webhook/success/' . $txnid.'-success.txt', $txnid);
+
             } else {
-                $installment .= 'th';
+
+                $amount = $order->grand_total;
+
+                //update order
+                $transactions_id = DB::table('transactions')->insertGetId([
+                    'user_id' => $order->temp_user_id,
+                    'payment_id' => $txnid,
+                    'payment_amount' => $order->grand_total,
+                    'payment_response' => json_encode($fileContent),
+                    'payment_type' => 'payu',
+                    'payment_status' => 'paid',
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ]);
+        
+                $redemption = DB::table('redemptions')
+                    ->where('user_id', $order->temp_user_id)
+                    ->where('status', 1)
+                    ->first(['id','plan_id']);
+            
+                if ($redemption) {
+                    // Fetch the redemption item
+                    $redemption_items = DB::table('redemption_items')
+                        ->where('redemption_id', $redemption->id)
+                        ->where('status', 'pending')
+                        ->first(['id', 'due_date_start', 'due_date_end', 'installment_no']);
+                
+                    if ($redemption_items) {
+                        $currentDate = Carbon::now()->format('Y-m-d');
+                
+                        // Check if the current date lies between due_date_start and due_date_end
+                        if (Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
+        
+                            $plan_receivable_percentage = DB::table('plans')->where('id', $redemption->plan_id)->value('receivable_percentage_on_time');
+        
+                            $percentage = $plan_receivable_percentage;
+                            $additionalAmount = ($amount * $percentage) / 100;
+                            $totalAmount = $amount + $additionalAmount;
+        
+                            DB::table('redemption_items')->where('id', $redemption_items->id)->update([
+                                'transaction_id' => $transactions_id,
+                                'receivable_amount' => $totalAmount,
+                                'status' => 'paid',
+                                'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
+                            ]);
+        
+                        } else {
+        
+                            DB::table('redemption_items')->where('id', $redemption_items->id)->update([
+                                'transaction_id' => $transactions_id,
+                                'receivable_amount' => $amount,
+                                'status' => 'paid',
+                                'remarks' => 'penalty for late payment of installment',
+                                'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
+                            ]);
+        
+                        }
+        
+                        $installment = $redemption_items->installment_no;
+        
+                        $plan_period = DB::table('plans')->where('id', $redemption->plan_id)->value('installment_period');
+        
+                        $plan_period = (int) $plan_period;
+        
+                        if($installment != $plan_period){
+                            // Update the next installment to pending
+                            $next = $redemption_items->installment_no + 1;
+                            DB::table('redemption_items')
+                                ->where('redemption_id', $redemption->id)
+                                ->where('installment_no', $next)
+                                ->update(['status' => 'pending']);
+                        }
+                
+        
+        
+        
+                    } else {
+                        return 'false';
+                    }
+        
+                } else{
+                    return 'false';
+                }
+        
+                if ($installment == 1) {
+                    $installment .= 'st';
+                } elseif ($installment == 2) {
+                    $installment .= 'nd';
+                } elseif ($installment == 3) {
+                    $installment .= 'rd';
+                } else {
+                    $installment .= 'th';
+                }
+        
+                $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
+        
+            
+                $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+        
+                // delete temp recored
+                DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
+    
+                Storage::disk('public')->put('webhook/success/' . $txnid.'-success.txt', $txnid);
+
+                //-------------------------------- Installment ------------------------------------
+
             }
-    
-            $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
-    
         
-            $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
-    
-            // delete temp recored
-            DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
-
-            Storage::disk('public')->put('webhook/success/' . $txnid.'-success.txt', $txnid);
-        
-        */
-
-            //-------------------------------- Installment ------------------------------------
-         
-
 
         }else{
             return 'false';
         }          
     }
+
+
+
     
     public function webhook_pum_fail(Request $request){
         $fileContent = [
