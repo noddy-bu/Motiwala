@@ -1546,9 +1546,9 @@ class AccountController extends Controller
         Storage::disk('public')->put('webhook/' . $filePath, json_encode($fileContent));
         
         // Read the JSON data from the file
-        $jsonData = file_get_contents(public_path('storage/webhook/1720264141-success.txt'));
+        //$jsonData = file_get_contents(public_path('storage/webhook/1720264141-success.txt'));
 
-        //$jsonData = file_get_contents($filePath); //file_get_contents(public_path('1690456548-success.txt'));
+        $jsonData = file_get_contents($filePath); //file_get_contents(public_path('1690456548-success.txt'));
         
         // Decode the JSON data into an array
         $fileContent = json_decode($jsonData, true);  
