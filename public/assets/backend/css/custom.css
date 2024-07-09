@@ -34,3 +34,37 @@
     display: block;
     text-align: center;
 }
+
+.navbar-custom, .nav-user {
+    background-color: #fff;
+    border-color: #fff;
+}
+
+#search-form .col-md-3 {
+    width: 22%;
+}
+
+#search-form .col-md-2 {
+    width: 11.666667%;
+}
+
+#largeModal .modal-body {
+    background-image: url('/assets/frontend/images/body_bg.png');
+    background-position: right;
+    background-size: cover;
+    background-repeat: repeat;
+    padding: 24px;
+}
+
+#largeModal .card-header {
+    padding: 16px 24px 0px;
+}
+
+#largeModal .card.col-md-12 {
+    height: 11em;
+    margin-bottom: 0px;
+}
+
+.customer_installment_modal .card {
+    height: 11em;
+}

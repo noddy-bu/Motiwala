@@ -1,6 +1,6 @@
 
             <!-- ========== Left Sidebar Start ========== -->
-            <div class="leftside-menu menuitem-active">
+            <div class="leftside-menu menuitem-active mt-3">
 
                 <!-- Brand Logo Light -->
                 <a href="#" class="logo logo-light">
@@ -52,12 +52,12 @@
                                 <i class="uil-home-alt"></i>
                                 <span> Dashboards </span>
                             </a>
-                        </li>
+                        </li> 
 
                         
                         <li class="side-nav-item">
                             <a href="{{ route('Customer.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
-                                <i class="ri-bar-chart-2-line"></i> 
+                                <i class="ri-user-line"></i> 
                                 <span> Customers </span>
                             </a>
                         </li>
@@ -71,7 +71,7 @@
 
                         <li class="side-nav-item">
                             <a href="{{ route('contact.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
-                                <i class="ri-bar-chart-2-line"></i> 
+                                <i class="ri-mail-line"></i> 
                                 <span> Messages </span>
                             </a>
                         </li>

@@ -66,9 +66,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-2">
-                        <div class="form-group mb-3">
-                            <button type="submit" class="btn btn-primary">Search</button>
+                    <div class="col-md-2 d-flex align-items-center">
+                        <div class="form-group pt-1">
+                            <button type="submit" class="btn btn-primary py-1 rounded-3">Search</button>
                         </div>
                     </div>
 
