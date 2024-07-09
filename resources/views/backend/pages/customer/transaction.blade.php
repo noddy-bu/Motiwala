@@ -3,7 +3,7 @@
     $this_pop_name = 'Customer Installment';
 @endphp
 
-<section class="pt-5 inner_sectionpadd">
+<section class="pt-2 inner_sectionpadd customer_installment_modal">
     <div class="container">
         <div class="row">
             @php
@@ -42,9 +42,9 @@
                 <div class="col-md-12 mt-md-4 mt-3">
                     <div class="row ">
                         <div class="col-md-4 information_tb">
-                            <div class="card">
+                            <div class="card rounded-4">
                                 <h5 class="card-header">Payment Details</h5>
-                                <div class="card-body">
+                                <div class="card-body py-2">
                                     <p class="card-text">Total Amount Received : {{ $total_receivable_amount }}</p>
 
                                     @if($info->status != 1)
@@ -63,9 +63,9 @@
                             </div>
                         </div>
                         <div class="col-md-4 information_tb mb-3">
-                            <div class="card">
+                            <div class="card rounded-4">
                                 <h5 class="card-header">Maturity Details</h5>
-                                <div class="card-body">
+                                <div class="card-body py-2">
                                     <p class="card-text">Enrollment Date : {{ date('d-m-Y', strtotime($info->created_at)) }}</p>
                                     {{-- <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($Maturity_date->due_date_start)) }}
                                     </p> --}}
@@ -77,18 +77,18 @@
                             </div>
                         </div>
                         <div class="col-md-4 information_tb mb-3">
-                            <div class="card">
+                            <div class="card rounded-4">
                                 <h5 class="card-header">Plan Details</h5>
-                                <div class="card-body">
+                                <div class="card-body py-2">
                                     <p class="card-text">
                                         Plan Status : @if($info->status == 1) Active
                                         @else Close @endif
                                     </p>
                                     
                                     @if($info->status == 1)
-                                        <div style="float: right;">
+                                        <div class="float-start">
                                             <a href="javascript:void(0);" 
-                                            class="btn btn-sm btn-secondary" 
+                                            class="btn btn-sm btn-primary rounded-3" 
                                             onclick="largeModal('{{ url(route('Customer.close.form', ['id' => $info->user_id])) }}?previous_popup_link={{ $this_pop_link }}&previous_popup_name={{ $this_pop_name }}', 'Closeing Plan');">
                                                 Close Plan
                                             </a>
@@ -102,7 +102,6 @@
                                     @endif
 
 
-                                    <br>
                                     <br>
                                 </div>
                             </div>
