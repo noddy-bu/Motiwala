@@ -1428,6 +1428,7 @@ body .userlogin_box {
     border: none;
     background-color: var(--prm-gray);
     transition: .4s;
+    color: #333;
 }
 
 .step-button[aria-expanded="true"] {
@@ -1732,7 +1733,7 @@ form#loginForm a:hover {
 
 /* 404 page */
 
-.container_404 h1 {
+.container_404 h1, .thank_you h3 {
     background: url(/assets/frontend/images/innwe_imagebanner.png);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1742,6 +1743,14 @@ form#loginForm a:hover {
     background-size: cover;
     text-transform: uppercase;
     font-family: montserrat, sans-serif;
+}
+
+/* thank you page */
+
+.thank_you h3 {
+    font-size: 70px;
+    background-position: right;
+    background-size: 50em;
 }
 
 /* transaction failure page */

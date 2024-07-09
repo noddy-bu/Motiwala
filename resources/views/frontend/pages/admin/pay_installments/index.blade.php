@@ -45,7 +45,6 @@
 
                         $Maturity_date = $redemption_items
                             ->where('installment_no', (int) $info->installment_period)
-                            ->where('status', 'unpaid')
                             ->first();
 
                         $Installments_paid = $redemption_items
@@ -65,31 +64,61 @@
 
                         <div class="col-md-12 mt-md-4 mt-3">
                             <div class="row ">
-                                <div class="col-md-6 information_tb">
+                                <div class="col-md-4 information_tb">
                                     <div class="card">
                                         <h5 class="card-header">Payment Details</h5>
                                         <div class="card-body">
                                             <p class="card-text">Total Amount Received : {{ $total_receivable_amount }}</p>
-                                            <p class="card-text">Next Payment Due :
-                                                {{ date('d-m-Y', strtotime($next_payment_date->due_date_start)) }}</p>
+                                            @if($info->status != 1)
+                                                @if($next_payment_date != null)
+                                                <p class="card-text">Next Payment Due :
+                                                    {{ date('d-m-Y', strtotime($next_payment_date->due_date_start)) }}</p>
+                                                @else
+                                                <p class="card-text">Installment Payment :
+                                                    Completed</p>
+                                                @endif
+                                            @endif
                                             <p class="card-text">Last Payment Due :
                                                 {{ date('d-m-Y', strtotime($last_payment_date->due_date_start)) }}</p>
                                             <p class="card-text">No of Installments Paid : {{ count($Installments_paid) }}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 information_tb mb-3">
+                                <div class="col-md-4 information_tb mb-3">
                                     <div class="card">
                                         <h5 class="card-header">Maturity Details</h5>
                                         <div class="card-body">
                                             <p class="card-text">Enrollment Date : {{ date('d-m-Y', strtotime($info->created_at)) }}</p>
-                                            <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($Maturity_date->due_date_start)) }}
+                                            {{-- <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($Maturity_date->due_date_start)) }}
+                                            </p> --}}
+                                            <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($info->maturity_date_start)) }}
                                             </p>
                                             <br>
                                             <br>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-4 information_tb mb-3">
+                                    <div class="card">
+                                        <h5 class="card-header">Plan Details</h5>
+                                        <div class="card-body">
+                                            <p class="card-text">
+                                                Plan Status : @if($info->status == 1) Active
+                                                @else Close @endif
+                                            </p>
+                                            @if($info->status != 1)
+                                                <hr>
+                                                <p class="card-text">Close Date: {{ $info->closing_date }}</p>
+                                                <p class="card-text">Remark: {{ $info->closing_remark }}</p>
+                                                </p>
+                                            @endif
+                                            <br>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                         
@@ -107,6 +136,7 @@
                                         <th>Due Date</th>
                                         <th>Installment No</th>
                                         <th>Installment Amount</th>
+                                        <th>Payment Type</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -118,10 +148,10 @@
                                                 <td>{{ $i++ }}</td>
                                                 <td>
                                                     @if ($row->status == 'paid')
-                                                        @php
+                                                        {{-- @php
                                                             $transaction_id = DB::table('transactions')->where('id', $row->transaction_id)->value('payment_id');
-                                                        @endphp
-                                                        {{ $transaction_id }}
+                                                        @endphp --}}
+                                                        {{ $row->id }}
                                                     @else
                                                         NA
                                                     @endif
@@ -142,14 +172,32 @@
                                                     {{ $row->installment_amount }}
                                                 </td>
                                                 <td>
+                                                    @php
+                                                        $transaction_payment_type = DB::table('transactions')->where('id', $row->transaction_id)->value('payment_type');
+                                                    @endphp
+                                                    @if($transaction_payment_type == "payu")
+                                                        PayU
+                                                    @elseif ($transaction_payment_type == "cashpay")
+                                                        Cash Pay
+                                                    @elseif ($transaction_payment_type == "UPI")
+                                                        UPI
+                                                    @else
+                                                        NA
+                                                    @endif
+                                                </td>
+                                                <td>
                                                     @if ($row->status == 'paid')
                                                         Paid
                                                     @else
-                                                        <div class="buttonclass mt10">
-                                                            <a href="{{ url(route('installments.payment')) }}" id="pay-link" data-id="{{ $row->id }}">
-                                                                Pay
-                                                            </a>
-                                                        </div>
+                                                        @if($info->status == 1)
+                                                            <div class="buttonclass mt10">
+                                                                <a href="{{ url(route('installments.payment')) }}" id="pay-link" data-id="{{ $row->id }}">
+                                                                    Pay
+                                                                </a>
+                                                            </div>
+                                                        @else
+                                                            Unpaid
+                                                        @endif
                                                     @endif
                                                 </td>
                                             </tr>

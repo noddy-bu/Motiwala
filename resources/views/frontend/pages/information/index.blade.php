@@ -8,7 +8,11 @@
 
 @section('page.content')
 
-
+@php
+$plan_Details = DB::table('plans')
+    ->where('status', 1)
+    ->get(['minimum_installment_amount', 'plan_start_date', 'plan_end_date']);
+@endphp
 
 <!-- -------------------- career banner start ---------------- -->
 
@@ -83,8 +87,8 @@
             </div>
             <div class="choose_content">
               <p class="black_color">
-                Each month, make sure to pay a fixed installment amount by the due date for 10 months. 
-                The minimum instalment value is INR 2000, but you can choose to pay more in multiples 
+                Each month, make sure to pay a fixed installment amount by the due date for 11 months. 
+                The minimum instalment value is INR 5000, but you can choose to pay more in multiples 
                 of INR 1000 if you wish.
               </p>
             </div>
@@ -100,8 +104,8 @@
             </div>
             <div class="choose_content">
               <p class="black_color">
-                Once you've completed 10 months of payments, you'll qualify for a special discount of 
-                up to 75% of your first installment's value. That means more savings for you on the 
+                Once you've completed 11 months of payments, you'll qualify for a special discount of 
+                up to 100% of your first installment's value. That means more savings for you on the 
                 jewellery you desire!
               </p>
             </div>
@@ -128,13 +132,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1st Jan 2023</td>
-                <td>1st Jan 2024</td>
-                <td>4000</td>
-                <td>3000</td>
-              <td>75%</td>
-              </tr>
+              @foreach ($plan_Details as $row)
+                <tr>
+                  <td>{{ custom_date_change($row->plan_start_date) }}</td>
+                  <td>{{ custom_date_change($row->plan_end_date) }}</td>
+                  <td>{{ (int) $row->minimum_installment_amount }}</td>
+                  <td>{{ $row->minimum_installment_amount * 100 / 100 }}</td>
+                <td>100%</td>
+                </tr>
+              @endforeach
             </tbody>
           </table>
         </div>

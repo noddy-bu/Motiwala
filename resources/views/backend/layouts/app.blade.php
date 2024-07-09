@@ -78,6 +78,18 @@
         @yield('page.scripts')   
         @yield('component.scripts')
 
+        @if (session('toastr'))
+            <script>
+                $(document).ready(function() {
+                    var type = "{{ session('toastr.type') }}";
+                    var message = "{{ session('toastr.message') }}";
+                    var title = "{{ session('toastr.title') }}";
+
+                    toastr[type](message, title);
+                });
+            </script>
+        @endif
+
 </body>
 
 </html>

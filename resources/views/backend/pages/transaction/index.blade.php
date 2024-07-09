@@ -60,6 +60,7 @@
                         <th>#</th>
                         <th>Pay ID</th>
                         <th>Name</th>
+                        <th>Installment No</th>
                         <th>Amount</th>
                         <th>Status</th>
                         <th>Date</th>
@@ -98,6 +99,7 @@
                     { data: 'id' },
                     { data: 'pay_id'},
                     { data: 'name'},
+                    { data: 'installment'},
                     { data: 'amount'},
                     { data: 'status'},
                     { data: 'created_at'},

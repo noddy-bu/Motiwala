@@ -6,7 +6,7 @@ use App\Http\Controllers\Frontend\AccountController;
 
 use App\Http\Controllers\common\EsignAadharController;
 
-use App\Http\Controllers\common\payumoneyController;
+use App\Http\Controllers\common\PayumoneyController;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -71,9 +71,9 @@ Route::any('/webhook_pum_success', [AccountController::class, 'webhook_pum_succe
 Route::any('/webhook_pum_fail', [AccountController::class, 'webhook_pum_fail']);
 
 
-Route::any('/create_payumoney_installment/{order_id}', [payumoneyController::class, 'create_payumoney_installment'])->name('create.payumoney.installment');
-Route::any('/payment-success-installment', [payumoneyController::class, 'payment_success_installment'])->name('payumoney.success.installment');
-Route::any('/payment-cancel-installment', [payumoneyController::class, 'payment_cancel_installment'])->name('payumoney.fail.installment');
+Route::any('/create_payumoney_installment/{order_id}', [PayumoneyController::class, 'create_payumoney_installment'])->name('create.payumoney.installment');
+Route::any('/payment-success-installment', [PayumoneyController::class, 'payment_success_installment'])->name('payumoney.success.installment');
+Route::any('/payment-cancel-installment', [PayumoneyController::class, 'payment_cancel_installment'])->name('payumoney.fail.installment');
 
 
 //----------------------------- Payment PayU ----------------------------------------------------//
@@ -113,7 +113,7 @@ Route::get('/logout', [AccountController::class, 'customer_logout'])->name('cust
 // Route::get('/esign', [EsignAadharController::class, 'esign_nsdl']);
 
 
-Route::get('/dummy_esign', [AccountController::class, 'dummy_esign']);
+// Route::get('/dummy_esign', [AccountController::class, 'dummy_esign']);
 
 
 Route::get('/clear-cache', function () {
@@ -227,4 +227,4 @@ Route::get('/session-setup', function () {
 
 Route::get('/template-design', [IndexController::class, 'pdf'])->name('pdf');
 
-// Route::get('/testing-codeing', [payumoneyController::class, 'payment_success_installment'])->name('testing');
+// Route::get('/testing-codeing', [AccountController::class, 'testing'])->name('testing');

@@ -85,12 +85,17 @@ class TransactionController extends Controller
         $i = 1;
         foreach ($records as $row) {
 
-            $user_name = DB::table('users')->where('id', $row->user_id )->value('name');
+            $user_name = DB::table('users')->where('id', $row->user_id )->get(['first_name','last_name'])->first();
+
+            $user_name = $user_name->first_name.' '.$user_name->last_name;
+
+            $installment_no = DB::table('redemption_items')->where('transaction_id',$row->id)->value('installment_no');
 
             $nestedData = [
                 'id' => $i++,
                 'pay_id' => $row->payment_id,
                 'name' => $user_name,
+                'installment' => $installment_no,
                 'amount' => $row->payment_amount,
                 'status' => $row->payment_status,
                 'created_at' => $row->created_at->format('Y-m-d H:i:s'),

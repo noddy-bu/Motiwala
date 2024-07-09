@@ -9,6 +9,12 @@
 
 @section('page.content')
 
+@php
+$plan_min_amount = DB::table('plans')
+    ->where('status', 1)
+    ->value('minimum_installment_amount');
+@endphp
+
     <!--banner start -->
     <!-- <section class="banner_section">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -109,9 +115,9 @@
            <section class="top_step_content">
             <div class="container">  <h4 class="title_heading text-center black_color pb-3 heading_font">Dreaming of owning that <span class="stunning_necklace"> stunning jewellery? </span></h4>
                 <p class="text-center black_color fontsize26">
-                    Start your journey by opening a Motiwala Jewels Golden Treasure  account with just ₹2000.
-                    <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
-                    to 75% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
+                    Start your journey by opening a Motiwala Jewels Golden Treasure  account with just ₹5000.
+                    <span> By making regular fixed payments for 11 months, you'll unlock a fantastic discount of up </span>
+                    to 100% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
                 </p>
                 <div class="text-center">
                     <div class="buttonclass mt-4 ">
@@ -156,8 +162,8 @@
                         <div class="step_box steps2">
                             <div class="step_content2 pb-lg -3 pb-0">
                                 <p class="black_color text-center" >
-                                    You can pay a monthly installment of at least ₹2000, or any higher multiples of ₹1000, 
-                                    for 10 months using cash, online banking via Standing Instructions, Net-Banking, 
+                                    You can pay a monthly installment of at least ₹5000, or any higher multiples of ₹1000, 
+                                    for 11 months using cash, online banking via Standing Instructions, Net-Banking, 
                                     UPI or post-dated cheque facilities.
                                 </p>
                             </div>
@@ -185,7 +191,7 @@
                                 </div>
                              <div class="step_content3 pt-lg-4 pt-md-2  pe-lg-3 ps-lg-4">
                                 <p class="black_color text-center" >
-                                    Receive an exclusive discount of up to 75% of the value of your first installment when you redeem your plan.
+                                    Receive an exclusive discount of up to 100% of the value of your first installment when you redeem your plan.
                                 </p>
                             </div>
 
@@ -216,11 +222,11 @@
             <div class="benefits_bgimage">
                 <img src="/assets/frontend/images/calculator_images.JPG" class="d-block" alt="...">
             </div>
-            <div class="row align-items-center justify-content-center">
+            <div class="row">
                 <div class="col-md-12">
                     <h4 class="title_heading text-left black_color pb-lg-5 pb-md-4 pb-3 heading_font">Benefits Calculator</h4>
                 </div>
-                <div class="col-lg-5 col-md-6">
+                <div class="col-lg-6 col-md-6">
                     <form>
                         <div class="row">
                             <div class="col-md-12">
@@ -249,7 +255,7 @@
                             <div class="col-md-12">
                                 <div class="sip-calculator-amount">
                                     <div class="amount_monthly2">
-                                        <label id="amountLabel"> YOUR TOTAL AMOUNT for 10 months <span id="amount_10x">₹ 1,00,000</span>
+                                        <label id="amountLabel"> YOUR TOTAL AMOUNT for 11 months <span id="amount_10x">₹ 1,00,000</span>
                                         </label>
                                     </div>
                                 </div>
@@ -268,9 +274,9 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-7 col-md-6 col-8">
+                <!-- <div class="col-lg-7 col-md-6 col-8">
                     <canvas id="myCanvas" width="300" height="300"></canvas>
-                </div>           
+                </div>            -->
                 
                 <div class="col-md-12 text-md-start text-center widths80">
                     <div class="buttonclass mt-4">
@@ -321,7 +327,7 @@
                             <div class="choose_content">
                                 <h5 class="black_color">Refer and Earn</h5>
                                 <p class="black_color">
-                                   Refer your friend/family and earn 20% of your referral’s order’s Diamond Amount.
+                                   Refer your friend/family and earn Diamonds from your referral’s order.
                                 </p>
                             </div>
                         </div>
@@ -333,7 +339,7 @@
                             <div class="choose_content">
                                 <h5 class="black_color">Motiwala Treasure</h5>
                                 <p class="black_color"> 
-                                    A unique easy-pay system that gives you a 75% benefit on the value of your first installment when you redeem your plan.
+                                    A unique easy-pay system that gives you a 100% benefit on the value of your first installment when you redeem your plan.
 
                                 </p>
                             </div>
@@ -421,7 +427,7 @@
                         <h2 class="accordion-header" id="headingThree">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> 
-                                    Can I redeem and purchase before 11 months ? 
+                                    Can I redeem and purchase before 12 months ? 
                             </button>
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
@@ -438,12 +444,12 @@
                         <h2 class="accordion-header" id="headingFour">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> 
-                                If I pay for 10 months, when will I get special discount ? </button>
+                                If I pay for 11 months, when will I get special discount ? </button>
                         </h2>
                         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                Complete 10 monthly payments to qualify for our exclusive discount offer. 
+                                Complete 11 monthly payments to qualify for our exclusive discount offer. 
                                 Your dedication to our Golden Treasurer program will be rewarded with special savings on your purchase. 
                                 Enjoy the benefits of your commitment with this fantastic discount opportunity!
                             </div>
@@ -509,6 +515,9 @@
         HoverPie.make($("#myCanvas"), data, {});
     }
 
+    function roundToNearestThousand(amount) {
+        return Math.ceil(amount / 1000) * 1000;
+    }
 
 
       document.addEventListener('DOMContentLoaded', function() {
@@ -523,12 +532,12 @@
 
 
         function updateAmount() {
-            amountSpan.textContent = '₹ ' + currentAmount.toLocaleString();
-            amount10xSpan.textContent = '₹ ' + (currentAmount * 10).toLocaleString();
-            amount13xSpan.textContent = '₹ ' + (currentAmount / 1000 * 10750).toLocaleString();
+            amountSpan.textContent = '₹ ' + Math.ceil(currentAmount).toLocaleString();
+            amount10xSpan.textContent = '₹ ' +  Math.ceil(currentAmount * 11).toLocaleString();
+            amount13xSpan.textContent = '₹ ' +  roundToNearestThousand((currentAmount * 11) * 1.0909).toLocaleString();
 
-            total_amount = currentAmount * 10;
-            discount_amount = (currentAmount / 1000 * 10750) - total_amount;
+            total_amount = Math.ceil(currentAmount * 11);
+            discount_amount = roundToNearestThousand((currentAmount * 11) * 1.0909) - total_amount;
 
             updateDataAndRedraw();
         }
@@ -543,7 +552,7 @@
 
         amountMinusBtn.addEventListener('click', function(event) {
             event.preventDefault();
-            if (currentAmount > 2000) {
+            if (currentAmount > {{ $plan_min_amount }}) {
                 currentAmount -= 1000;
                 updateAmount();
             }

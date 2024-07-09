@@ -10,11 +10,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\View;
+use App\Http\Controllers\Common\SmsController;
 use Auth;
 
 use Illuminate\Http\Request;
 
-class payumoneyController extends Controller
+class PayumoneyController extends Controller
 {
     const TEST_URL = 'https://test.payu.in';
     //const TEST_URL = 'https://sandboxsecure.payu.in';
@@ -146,7 +147,7 @@ class payumoneyController extends Controller
         $redemption = DB::table('redemptions')
             ->where('user_id', $order->temp_user_id)
             ->where('status', 1)
-            ->first(['id']);
+            ->first(['id','plan_id']);
     
         if ($redemption) {
             // Fetch the redemption item
@@ -161,9 +162,15 @@ class payumoneyController extends Controller
                 // Check if the current date lies between due_date_start and due_date_end
                 if (Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
 
+                    $plan_receivable_percentage = DB::table('plans')->where('id', $redemption->plan_id)->value('receivable_percentage_on_time');
+
+                    $percentage = $plan_receivable_percentage;
+                    $additionalAmount = ($amount * $percentage) / 100;
+                    $totalAmount = $amount + $additionalAmount;
+
                     DB::table('redemption_items')->where('id', $redemption_items->id)->update([
                         'transaction_id' => $transactions_id,
-                        'receivable_amount' => $amount + ($amount * 0.075),
+                        'receivable_amount' => $totalAmount,
                         'status' => 'paid',
                         'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
                     ]);
@@ -179,21 +186,39 @@ class payumoneyController extends Controller
                     ]);
 
                 }
+
+                $installment = $redemption_items->installment_no;
+
+                $plan_period = DB::table('plans')->where('id', $redemption->plan_id)->value('installment_period');
+
+                $plan_period = (int) $plan_period;
+
+                if($installment != $plan_period){
+                    // Update the next installment to pending
+                    $next = $redemption_items->installment_no + 1;
+                    DB::table('redemption_items')
+                        ->where('redemption_id', $redemption->id)
+                        ->where('installment_no', $next)
+                        ->update(['status' => 'pending']);
+                }
         
-                // Update the next installment to pending
-                $next = $redemption_items->installment_no + 1;
-                DB::table('redemption_items')
-                    ->where('redemption_id', $redemption->id)
-                    ->where('installment_no', $next)
-                    ->update(['status' => 'pending']);
+
 
 
             } else {
-                echo "not work 2";
+                session()->flash('toastr', [
+                    'type' => 'error',
+                    'message' => 'Somthing went wrong',
+                    'title' => 'error'
+                ]);
             }
 
         } else{
-            echo "not work";
+            session()->flash('toastr', [
+                'type' => 'error',
+                'message' => 'Plan has been Expire',
+                'title' => 'error'
+            ]);
         }
 
         /*------------ success stuff --------------*/
@@ -203,6 +228,21 @@ class payumoneyController extends Controller
             'message' => 'Installment Paid Successfully',
             'title' => 'Success'
         ]);
+
+        if ($installment == 1) {
+            $installment .= 'st';
+        } elseif ($installment == 2) {
+            $installment .= 'nd';
+        } elseif ($installment == 3) {
+            $installment .= 'rd';
+        } else {
+            $installment .= 'th';
+        }
+
+        $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
+
+    
+        $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
 
         // delete temp recored
         DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
@@ -254,6 +294,8 @@ class payumoneyController extends Controller
         $temp_user_id = $temp_user ? $temp_user->temp_user_id : 0;
 
         return view('frontend.payumoney.fail_installment', compact('errorMessage','data','temp_user_id'));
+
+        
 
     }
 

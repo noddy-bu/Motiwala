@@ -4,16 +4,11 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\PracticeArea;
-use App\Models\Blog;
-use App\Models\BlogCategory;
-use App\Models\User;
 
 use App\Models\Faq;
 use App\Models\Contact;
-use App\Models\BlogComment;
 
-use Illuminate\Support\Facades\Mail;
+
 use Illuminate\Support\Facades\Validator;
 
 use Dompdf\Dompdf;
@@ -95,7 +90,7 @@ class IndexController extends Controller
             //'g-recaptcha-response' => 'required|captcha',
         ];
     
-        $validator = Validator::make($request->all(), $rules); // Pass $request->all() as the first argument
+        $validator = Validator::make($request->all(), $rules);
     
         if ($validator->fails()) {
             return response()->json([
@@ -104,82 +99,47 @@ class IndexController extends Controller
             ]);
         }
     
-        if ($request->hasFile('cv')) {
-            $cvPath = $request->file('cv')->store('assets/image/pdf', 'public');
-        } else {
-            $cvPath = null; // Set to null if 'cv' is not provided
-        }
-    
+
         // Create the contact record, including 'cv' if provided
         $contactData = $request->all();
-        $contactData['cv'] = $cvPath;
 
         $name = isset($contactData["name"]) ? $contactData["name"] : ' - ';
         $email = isset($contactData["email"]) ? $contactData["email"] : ' - ';
         $phone = isset($contactData["phone"]) ? $contactData["phone"] : ' - ';
         $services = isset($contactData["services"]) ? $contactData["services"] : ' - ';
         $description = isset($contactData["description"]) ? $contactData["description"] : ' - ';
-        //$ip = isset($contactData["ip"]) ? $contactData["ip"] : ' - ';
-        $section = isset($contactData["section"]) ? $contactData["section"] : ' - ';
+
         $ref_url = isset($contactData["ref_url"]) ? $contactData["ref_url"] : ' - ';
         $url = isset($contactData["url"]) ? $contactData["url"] : ' - ';
-        $qualification = isset($contactData["qualification"]) ? $contactData["qualification"] : ' - ';
+
 
         // Create the contact record
         Contact::create($contactData);
 
         // Send email if $cvPath is not null
 
-        $recipient = 'admin@seedlingassociates.com'; // Replace with the actual recipient email
+        $recipient = 'khanfaisal.makent@gmail.com';
         $subject = 'Lead Enquiry';
 
         $body = '<table>';
         $body .= "<tr><td style='width: 150px;'><strong>From :</strong></td><td>" . $name . ' ' . $email . "</td></tr></br>";
         // $body .= "<tr><td style='width: 150px;'><strong>Form Name :</strong></td><td>" . $section . "</td></tr></br>";
-        $body .= "<tr><td style='width: 150px;'><strong>Page URL :</strong></td><td>" . $url . "</td></tr></br><p></p>";
-        
+ 
         $body .= "<tr><td style='width: 150px;'><strong>Full Name :</strong></td><td>" . $name . "</td></tr></br>";
         $body .= "<tr><td style='width: 150px;'><strong>Email Address :</strong></td><td>" . $email . "</td></tr></br>";
         $body .= "<tr><td style='width: 150px;'><strong>Phone Number :</strong></td><td>" . $phone . "</td></tr></br>";
 
-        if (isset($contactData["description"]) || isset($contactData["services"])) {
-            $body .= "<tr><td style='width: 150px;'><strong>Service Requested :</strong></td><td>" . ($services ?? 'Not provided') . "</td></tr></br>";
-            $body .= "<tr><td style='width: 150px;'><strong>Description :</strong></td><td>" . ($description ?? 'Not provided') . "</td></tr></br><p></p>";
-        } else {
-            $body .= "<tr><td style='width: 150px;'><strong>Description :</strong></td><td>" . ($description ?? 'Not provided') . "</td></tr></br><p></p>";
-        }
-        
-        /*
-        $body .= "<tr><td style='width: 150px;'><strong>Ip :</strong></td><td>" . $ip . "</td></tr></br>";
-        $body .= "<tr><td style='width: 150px;'><strong>User Location :</strong></td><td>" . 
-                    ($user_data['city'] ?? 'null') . ' ' . 
-                    ($user_data['region'] ?? 'null') . ' ' . 
-                    ($user_data['country'] ?? 'null') . 
-                "</td></tr></br>";
-        */
-        $body .= "<tr><td style='width: 150px;'><strong>Referrer URL :</strong></td><td>" . $ref_url . "</td></tr></br>";
+
+        $body .= "<tr><td style='width: 150px;'><strong>Description :</strong></td><td>" . ($description ?? 'Not provided') . "</td></tr></br><p></p>";
+
+        // $body .= "<tr><td style='width: 150px;'><strong>Referrer URL :</strong></td><td>" . $ref_url . "</td></tr></br>";
 
         $body .= "<tr><td style='width: 150px;'><strong>Submitted Data :</strong></td><td>" . date('Y-m-d') . "</td></tr></br>";
         $body .= '</table>';
 
-        if ($cvPath !== null) {
-             // Optional attachments
-            $attachments = [
-                [
-                    'path' => storage_path("app/public/$cvPath"), // Replace with the actual path
-                    'name' => ''.$name.'.pdf', // Replace with the desired attachment name
-                ],
-                // Add more attachments if needed
-            ];
 
-            // Send the email
-            sendEmail($recipient, $subject, $body, $attachments);
+        sendEmail($recipient, $subject, $body);
 
-        } else {
-            sendEmail($recipient, $subject, $body);
-        }
-
-    
         $response = [
             'status' => true,
             'notification' => 'Message added successfully!',
@@ -195,36 +155,36 @@ class IndexController extends Controller
 
     public function search(Request $request){
 
-        $query = $request->input('query');
+        // $query = $request->input('query');
 
-        $blogs = Blog::where(function ($queryBuilder) use ($query) {
-            $queryBuilder->where('title', 'like', "%$query%")
-                ->orWhere('short_description', 'like', "%$query%")
-                ->orWhere('content', 'like', "%$query%");
-        })->where('status', 1)->get();
+        // $blogs = Blog::where(function ($queryBuilder) use ($query) {
+        //     $queryBuilder->where('title', 'like', "%$query%")
+        //         ->orWhere('short_description', 'like', "%$query%")
+        //         ->orWhere('content', 'like', "%$query%");
+        // })->where('status', 1)->get();
         
-        $practiceAreas = PracticeArea::where(function ($queryBuilder) use ($query) {
-            $queryBuilder->where('title', 'like', "%$query%")
-                ->orWhere('short_description', 'like', "%$query%")
-                ->orWhere('content', 'like', "%$query%");
-        })->where('status', 1)->get();
+        // $practiceAreas = PracticeArea::where(function ($queryBuilder) use ($query) {
+        //     $queryBuilder->where('title', 'like', "%$query%")
+        //         ->orWhere('short_description', 'like', "%$query%")
+        //         ->orWhere('content', 'like', "%$query%");
+        // })->where('status', 1)->get();
 
-        return view('frontend.pages.search.index', compact('blogs','practiceAreas'));
+        // return view('frontend.pages.search.index', compact('blogs','practiceAreas'));
     }
 
     public function comment_save(Request $request)
     {
-        $commentData = $request->all();
+        // $commentData = $request->all();
     
-        // Create the contact record
-        BlogComment::create($commentData);
+        // // Create the contact record
+        // BlogComment::create($commentData);
     
-        $response = [
-            'status' => true,
-            'notification' => 'Comment added successfully!',
-        ];
+        // $response = [
+        //     'status' => true,
+        //     'notification' => 'Comment added successfully!',
+        // ];
     
-        return response()->json($response);
+        // return response()->json($response);
     }
 
 // =====================--------------- Privacy Policy -------------====================

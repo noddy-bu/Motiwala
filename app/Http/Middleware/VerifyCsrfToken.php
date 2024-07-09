@@ -18,6 +18,8 @@ class VerifyCsrfToken extends Middleware
         'payment-cancel',
         'payment-success',
         'payment-success-installment',
-        'payment-cancel-installment'
+        'payment-cancel-installment',
+        '/webhook_pum_success',
+        '/webhook_pum_fail'
     ];
 }

@@ -62,19 +62,19 @@
                             </a>
                         </li>
 
-                        {{-- <li class="side-nav-item">
+                        <li class="side-nav-item">
                             <a href="{{ route('transaction.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                                 <i class="ri-wallet-line"></i> 
                                 <span> Transaction </span>
                             </a>
-                        </li> --}}
+                        </li>
 
-                        {{-- <li class="side-nav-item">
+                        <li class="side-nav-item">
                             <a href="{{ route('contact.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                                 <i class="ri-bar-chart-2-line"></i> 
                                 <span> Messages </span>
                             </a>
-                        </li> --}}
+                        </li>
 
                         {{-- <li class="side-nav-item">
                             <a href="{{ route('practicearea.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
