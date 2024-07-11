@@ -43,7 +43,7 @@
 						ensuring there's something special for everyone's taste and preferences.
 					</p>
 					
-					<p class="mb-0"><b>3. Can I redeem and purchase before 11 months ?</b></p>
+					<p class="mb-0"><b>3. Can I redeem and purchase before 10 months ?</b></p>
 					<p>
 						Enjoy ultimate flexibility with our plan—redeem and purchase before the 11-month period ends. 
 						Find your perfect piece early? Redeem your plan for a convenient purchase anytime. 

@@ -116,7 +116,7 @@ $plan_min_amount = DB::table('plans')
             <div class="container">  <h4 class="title_heading text-center black_color pb-3 heading_font">Dreaming of owning that <span class="stunning_necklace"> stunning jewellery? </span></h4>
                 <p class="text-center black_color fontsize26">
                     Start your journey by opening a Motiwala Jewels Golden Treasure  account with just ₹5000.
-                    <span> By making regular fixed payments for 11 months, you'll unlock a fantastic discount of up </span>
+                    <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
                     to 100% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
                 </p>
                 <div class="text-center">
@@ -163,7 +163,7 @@ $plan_min_amount = DB::table('plans')
                             <div class="step_content2 pb-lg -3 pb-0">
                                 <p class="black_color text-center" >
                                     You can pay a monthly installment of at least ₹5000, or any higher multiples of ₹1000, 
-                                    for 11 months using cash, online banking via Standing Instructions, Net-Banking, 
+                                    for 10 months using cash, online banking via Standing Instructions, Net-Banking, 
                                     UPI or post-dated cheque facilities.
                                 </p>
                             </div>
@@ -255,7 +255,7 @@ $plan_min_amount = DB::table('plans')
                             <div class="col-md-12">
                                 <div class="sip-calculator-amount">
                                     <div class="amount_monthly2">
-                                        <label id="amountLabel"> YOUR TOTAL AMOUNT for 11 months <span id="amount_10x">₹ 1,00,000</span>
+                                        <label id="amountLabel"> YOUR TOTAL AMOUNT for 10 months <span id="amount_10x">₹ 1,00,000</span>
                                         </label>
                                     </div>
                                 </div>
@@ -264,7 +264,7 @@ $plan_min_amount = DB::table('plans')
                                 <hr>
                             </div>
                             <div class="col-md-6">
-                                <p class="pt-2">You can Buy Jewellery worth: (in 12th month)</p>
+                                <p class="pt-2">You can Buy Jewellery worth: (in 11th month)</p>
                             </div>
                             <div class="col-md-6">
                                 <div class="total_number_main">
@@ -427,7 +427,7 @@ $plan_min_amount = DB::table('plans')
                         <h2 class="accordion-header" id="headingThree">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> 
-                                    Can I redeem and purchase before 12 months ? 
+                                    Can I redeem and purchase before 11 months ? 
                             </button>
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
@@ -444,12 +444,12 @@ $plan_min_amount = DB::table('plans')
                         <h2 class="accordion-header" id="headingFour">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> 
-                                If I pay for 11 months, when will I get special discount ? </button>
+                                If I pay for 10 months, when will I get special discount ? </button>
                         </h2>
                         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                Complete 11 monthly payments to qualify for our exclusive discount offer. 
+                                Complete 10 monthly payments to qualify for our exclusive discount offer. 
                                 Your dedication to our Golden Treasurer program will be rewarded with special savings on your purchase. 
                                 Enjoy the benefits of your commitment with this fantastic discount opportunity!
                             </div>
@@ -488,7 +488,7 @@ $plan_min_amount = DB::table('plans')
   <script>
 
     let total_amount = 100000;
-    let discount_amount = 7500;
+    let discount_amount = 10000;
     
     // Function to generate data dynamically based on discount_amount and total_amount
     function generateData(discount_amount, total_amount) {
@@ -533,11 +533,11 @@ $plan_min_amount = DB::table('plans')
 
         function updateAmount() {
             amountSpan.textContent = '₹ ' + Math.ceil(currentAmount).toLocaleString();
-            amount10xSpan.textContent = '₹ ' +  Math.ceil(currentAmount * 11).toLocaleString();
-            amount13xSpan.textContent = '₹ ' +  roundToNearestThousand((currentAmount * 11) * 1.0909).toLocaleString();
+            amount10xSpan.textContent = '₹ ' +  Math.ceil(currentAmount * 10).toLocaleString();
+            amount13xSpan.textContent = '₹ ' +  roundToNearestThousand((currentAmount * 10) * 1.0909).toLocaleString();
 
-            total_amount = Math.ceil(currentAmount * 11);
-            discount_amount = roundToNearestThousand((currentAmount * 11) * 1.0909) - total_amount;
+            total_amount = Math.ceil(currentAmount * 10);
+            discount_amount = roundToNearestThousand((currentAmount * 10) * 1.0909) - total_amount;
 
             updateDataAndRedraw();
         }

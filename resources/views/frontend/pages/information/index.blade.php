@@ -87,7 +87,7 @@ $plan_Details = DB::table('plans')
             </div>
             <div class="choose_content">
               <p class="black_color">
-                Each month, make sure to pay a fixed installment amount by the due date for 11 months. 
+                Each month, make sure to pay a fixed installment amount by the due date for 10 months. 
                 The minimum instalment value is INR 5000, but you can choose to pay more in multiples 
                 of INR 1000 if you wish.
               </p>
@@ -104,7 +104,7 @@ $plan_Details = DB::table('plans')
             </div>
             <div class="choose_content">
               <p class="black_color">
-                Once you've completed 11 months of payments, you'll qualify for a special discount of 
+                Once you've completed 10 months of payments, you'll qualify for a special discount of 
                 up to 100% of your first installment's value. That means more savings for you on the 
                 jewellery you desire!
               </p>

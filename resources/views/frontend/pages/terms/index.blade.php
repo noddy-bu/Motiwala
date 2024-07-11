@@ -38,7 +38,7 @@
 					</p>
 
 					<p>Under this Plan, the Customer has to pay 10 (Ten) fixed monthly installments of a 
-						minimum of Rs. 2,000/- (Rupees Two Thousand only) or above (in multiples of one thousand). 
+						minimum of Rs. 5,000/- (Rupees Five Thousand only) or above (in multiples of one thousand). 
 						During the course of the 10 (Ten) months, the Customer has to pay one instalment every month.
 						More than one instalment in a single month will not be accepted.
 					</p>
