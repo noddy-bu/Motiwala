@@ -320,18 +320,7 @@ $plan_min_amount = DB::table('plans')
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="d-flex gap-3 pb-md-4 pb-2">
-                            <img class="choose_img" src="/assets/frontend/images/refer_icons.png" class="d-block w-100"
-                                alt="...">
-                            <div class="choose_content">
-                                <h5 class="black_color">Refer and Earn</h5>
-                                <p class="black_color">
-                                   Refer your friend/family and earn Diamonds from your referral’s order.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                  
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="d-flex gap-3 pb-md-4 pb-2">
                             <img class="choose_img" src="/assets/frontend/images/motiwala_treasure.png" class="d-block w-100"
@@ -385,11 +374,28 @@ $plan_min_amount = DB::table('plans')
                             </div>
                         </div>
                     </div>
+
+                      <div class="col-lg-4 col-md-6 col-12">
+                        <div class="d-flex gap-3 pb-md-4 pb-2">
+                            <img class="choose_img" src="/assets/frontend/images/exchange_icon.png" class="d-block w-100"
+                                alt="...">
+                            <div class="choose_content">
+                                <h5 class="black_color">Expert Craftsmanship</h5>
+                                <p class="black_color">
+                                   Our skilled artisans bring over a century of craftsmanship to each piece, ensuring exceptional quality and attention to detail.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
                     
                 </div>
             </div>
         </section>
         <!--faq start -->
+
+
         <section class="faq_section">
             <div class="container">
                 <h4 class="title_heading text-center black_color pb-2 pt-2 heading_font">Frequently Asked Questions</h4>
@@ -477,6 +483,8 @@ $plan_min_amount = DB::table('plans')
                 </div>
             </div>
         </section>
+
+
     </main>
 
 
