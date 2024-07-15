@@ -1,7 +1,7 @@
 
 <!-- ================== Header Start =========================== -->
             <div class="navbar-custom">
-                <div class="topbar container-fluid">
+                <div class="topbar container-fluid py-1">
                     <div class="d-flex align-items-center gap-lg-2 gap-1">
 
                         <!-- Topbar Brand Logo -->
