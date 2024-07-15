@@ -39,37 +39,37 @@
 
 					<p>Under this Plan, the Customer has to pay 10 (Ten) fixed monthly installments of a 
 						minimum of Rs. 5,000/- (Rupees Five Thousand only) or above (in multiples of one thousand). 
-						During the course of the 10 (Ten) months, the Customer has to pay one instalment every month.
-						More than one instalment in a single month will not be accepted.
+						During the course of the 10 (Ten) months, the Customer has to pay one installments every month.
+						More than one installments in a single month will not be accepted.
 					</p>
 
-					<p>Customer will have to make the payment of the instalment on the Due Date. 
+					<p>Customer will have to make the payment of the installments on the Due Date. 
 						For the purpose of this Plan, the Due Date shall be same date as the Enrollment Date 
 						for the subsequent months. However, the Customer shall be provided with a grace 
-						period of 7 (Seven) days in a month for payment of the instalment. 
-						In the event the Customer fails to pay the instalment within the grace period, 
+						period of 7 (Seven) days in a month for payment of the installments. 
+						In the event the Customer fails to pay the installments within the grace period, 
 						the proportionate discount as offered herein shall be reduced.
 					</p>
 
 					<p>The Plan will mature after 366 (Three Hundred and Sixty Six) days from the Enrollment 
 						Date and the Customers will be eligible to redeem by purchase of Jewellery from the 
 						Company at the  Motiwala Jewels Gold and Diamonds Pvt Ltd store. For the purpose of 
-						this Plan, the date of payment of first instalment shall be deemed as the Enrollment Date. 
+						this Plan, the date of payment of first installments shall be deemed as the Enrollment Date. 
 						The Customer is mandatorily required to redeem his/her account before the 
 						completion of 400 days from the Enrollment Date.
 					</p>
 
 					<p>The Customers would be eligible for a discount of 100% (Seventy Five percent) of one 
-					   month’s instalment upon redemption, after the completion of 366 days from the Enrollment 
+					   month’s installments upon redemption, after the completion of 366 days from the Enrollment 
 					   Date subject to the Customers having made the payment of all ten monthly installments.
 					   If a Customer redeems before the completion of 366 (three hundred and sixty six) days 
 					   but after the completion of 300 (Three Hundred) days, the Customer will be eligible 
 					   for a discount ranging between 55% (Fifty Five percent) to 100% (Seventy Five percent) 
-					   of one month instalment based on the number of days, and subject to the Customers 
+					   of one month installments based on the number of days, and subject to the Customers 
 					   having made the payment of all ten monthly installments. For redemption after 
 					   completion of 180 (One Hundred and Eighty) days but before completion of 300 
 					   (Three Hundred) days, Customer will be eligible for such prorated discount 
-					   calculated based on the one month instalment, the number of days and the number 
+					   calculated based on the one month installments, the number of days and the number 
 					   of monthly installments paid.
 					</p>
 
@@ -89,7 +89,7 @@
 					</p>
 
 					<p>In case the Customer does not redeem within 400 days, he/she will be refunded 
-						with the aggregate instalment amount paid by the Customer until the date of the refund. 
+						with the aggregate installments amount paid by the Customer until the date of the refund. 
 						A discount voucher for the applicable discount amount will be provided which can be 
 						utilized only to purchase jewellery from the Company of a value that is equal to or 
 						greater than the full value of installments paid.
@@ -156,7 +156,7 @@
 					</p>
 					
 					<h4 class="pt-3">Payment</h4>
-					<p>Payment of monthly instalment(s) may be made by cash, credit / debit cards, NEFT/ RTGS, 
+					<p>Payment of monthly installments(s) may be made by cash, credit / debit cards, NEFT/ RTGS, 
 						local cheques in favour of “MOTIWALA JEWELS GOLD AND DIAMONDS PVT LTD ” payable in the 
 						city in where the Motiwala Jewels Gold and Diamonds Pvt Ltd  Store in which the account 
 						was opened is located, Standing Instruction or Automated Clearing House. International 
@@ -194,7 +194,7 @@
 						at the time of purchase.
 					</p>
 
-					<p>The Customer will have to purchase the jewellery for the total instalment amount paid 
+					<p>The Customer will have to purchase the jewellery for the total installments amount paid 
 						and partial purchase is not allowed.
 					</p>
 

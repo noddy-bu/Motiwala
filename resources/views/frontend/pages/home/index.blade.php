@@ -224,21 +224,22 @@ $plan_min_amount = DB::table('plans')
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="title_heading text-left black_color pb-lg-5 pb-md-4 pb-3 heading_font">Benefits Calculator</h4>
+                    <h4 class="title_heading text-left black_color pb-lg-5 pb-md-4 pb-3 heading_font">Golden Treasure Calculator</h4>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <form>
                         <div class="row">
                             <div class="col-md-12">
-                                <p>Slide or enter monthly installment amount</p>
+                                <p>Enter monthly installment amount</p>
                             </div>
                             <div class="col-md-12 mb-4">
                                 <div class="sip-calculator-amount">
                                     <div class="amount_monthly1">
-                                        <label id="amountLabel"> MONTHLY AMOUNT <span id="amount">₹ 10,000</span>
+                                        <label id="amountLabel"> MONTHLY AMOUNT <span id="amount"></span>
                                         </label>
-                                        <span class="WebRupee">₹</span>
-                                        <input type="tel" id="calc" name="calc" class="text-input form-control min-value_1000 multiple-of_100 slider-value" value="10000">
+                                        <span class="WebRupee">₹
+                                            <input type="tel" id="calc" name="calc" class="text-input form-control min-value_1000 multiple-of_100 slider-value" value="10000">
+                                        </span>
                                         <div id="validationMessage" style="color: red; display: none;">Accept only multiples of thousand</div>
                                     </div>
                                     <div class="amount_check">
@@ -318,7 +319,7 @@ $plan_min_amount = DB::table('plans')
                             <div class="choose_content">
                                 <h5 class="black_color">Best Price Guarantee</h5>
                                 <p class="black_color">
-                                We offer the best prices in the Diamond Jewellery Business.
+                                We offer the best prices on Diamond Jewellery Business.
                                 </p>
                             </div>
                         </div>
