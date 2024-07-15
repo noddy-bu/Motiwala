@@ -13,12 +13,14 @@ use Illuminate\Support\Facades\Validator;
 
 use Dompdf\Dompdf;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\DB;
 
 
 class IndexController extends Controller
 {
     public function index(){
-        return view('frontend.pages.home.index');
+        $plan_duration = DB::table('plans')->where('status', 1)->value('installment_period');
+        return view('frontend.pages.home.index', compact('plan_duration'));
     }
 
 
