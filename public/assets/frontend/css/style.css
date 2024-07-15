@@ -263,6 +263,25 @@ section.why_choose_section {
     font-weight: 800;
 }
 
+.amount_monthly1 #amountLabel span {
+    display: none;
+}
+
+input#calc {
+    font-weight: 500;
+    font-size: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+}
+
+span.WebRupee {
+    display: flex;
+    font-size: 20px;
+}
+
 .benefits_calculator .buttonclass {
     margin-left: 110px;
 }
@@ -814,10 +833,16 @@ section.faq_section {
     font-size: 20px;
 }
 
-label#amountLabel {
-    font-size: 16px;
+#amountLabel{
     font-weight: 700;
 }
+
+/* .amount_monthly1 #amountLabel {
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+} */
 
 .total_payment_text {
     width: 70%;
