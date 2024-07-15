@@ -624,7 +624,7 @@ $plan_min_amount = DB::table('plans')
 
         amountMinusBtn.addEventListener('click', function(event) {
             event.preventDefault();
-            if (currentAmount > 0) {
+            if (currentAmount > {{ $plan_min_amount }}) {
                 currentAmount -= 1000;
                 calcInput.value = currentAmount;
                 updateAmount();
