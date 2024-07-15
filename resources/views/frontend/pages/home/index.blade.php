@@ -237,6 +237,9 @@ $plan_min_amount = DB::table('plans')
                                     <div class="amount_monthly1">
                                         <label id="amountLabel"> MONTHLY AMOUNT <span id="amount">₹ 10,000</span>
                                         </label>
+                                        <span class="WebRupee">₹</span>
+                                        <input type="tel" id="calc" name="calc" class="text-input form-control min-value_1000 multiple-of_100 slider-value" value="10000">
+                                        <div id="validationMessage" style="color: red; display: none;">Accept only multiples of thousand</div>
                                     </div>
                                     <div class="amount_check">
                                         <div class="row ">
@@ -495,6 +498,10 @@ $plan_min_amount = DB::table('plans')
 
   <script>
 
+    document.getElementById('calc').addEventListener('input', function (event) {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
     let total_amount = 100000;
     let discount_amount = 10000;
     
@@ -523,51 +530,114 @@ $plan_min_amount = DB::table('plans')
         HoverPie.make($("#myCanvas"), data, {});
     }
 
-    function roundToNearestThousand(amount) {
-        return Math.ceil(amount / 1000) * 1000;
-    }
+    // function roundToNearestThousand(amount) {
+    //     return Math.ceil(amount / 1000) * 1000;
+    // }
 
 
-      document.addEventListener('DOMContentLoaded', function() {
+    //   document.addEventListener('DOMContentLoaded', function() {
+    //     const amountSpan = document.getElementById('amount');
+    //     const amount10xSpan = document.getElementById('amount_10x');
+    //     const amount13xSpan = document.getElementById('amount_13x');
+
+    //     const amountPlusBtn = document.getElementById('amount_plus');
+    //     const amountMinusBtn = document.getElementById('amount_minus');
+
+    //     let currentAmount = 10000;
+
+
+    //     function updateAmount() {
+    //         amountSpan.textContent = '₹ ' + Math.ceil(currentAmount).toLocaleString();
+    //         amount10xSpan.textContent = '₹ ' +  Math.ceil(currentAmount * {{ $plan_duration }}).toLocaleString();
+    //         amount13xSpan.textContent = '₹ ' +  roundToNearestThousand((currentAmount * {{ $plan_duration }}) * 1.0909).toLocaleString();
+
+    //         total_amount = Math.ceil(currentAmount * {{ $plan_duration }});
+    //         discount_amount = roundToNearestThousand((currentAmount * {{ $plan_duration }}) * 1.0909) - total_amount;
+
+    //         updateDataAndRedraw();
+    //     }
+
+        
+
+    //     amountPlusBtn.addEventListener('click', function(event) {
+    //         event.preventDefault();
+    //         currentAmount += 1000;
+    //         updateAmount();
+    //     });
+
+    //     amountMinusBtn.addEventListener('click', function(event) {
+    //         event.preventDefault();
+    //         if (currentAmount > {{ $plan_min_amount }}) {
+    //             currentAmount -= 1000;
+    //             updateAmount();
+    //         }
+    //     });
+
+    //     updateAmount();
+    // });
+
+
+    /* ----- calculate -------- */ 
+
+    document.addEventListener('DOMContentLoaded', function() {
         const amountSpan = document.getElementById('amount');
         const amount10xSpan = document.getElementById('amount_10x');
         const amount13xSpan = document.getElementById('amount_13x');
-
+        const calcInput = document.getElementById('calc');
+        const validationMessage = document.getElementById('validationMessage');
+        
         const amountPlusBtn = document.getElementById('amount_plus');
         const amountMinusBtn = document.getElementById('amount_minus');
 
-        let currentAmount = 10000;
+        let currentAmount = parseInt(calcInput.value, 10);
 
-
-        function updateAmount() {
-            amountSpan.textContent = '₹ ' + Math.ceil(currentAmount).toLocaleString();
-            amount10xSpan.textContent = '₹ ' +  Math.ceil(currentAmount * {{ $plan_duration }}).toLocaleString();
-            amount13xSpan.textContent = '₹ ' +  roundToNearestThousand((currentAmount * {{ $plan_duration }}) * 1.0909).toLocaleString();
-
-            total_amount = Math.ceil(currentAmount * {{ $plan_duration }});
-            discount_amount = roundToNearestThousand((currentAmount * {{ $plan_duration }}) * 1.0909) - total_amount;
-
-            updateDataAndRedraw();
+        function roundToNearestThousand(amount) {
+            return Math.ceil(amount / 1000) * 1000;
         }
 
-        
+        function updateAmount() {
+            if (currentAmount % 1000 !== 0) {
+                validationMessage.style.display = 'block';
+                return;
+            } else {
+                validationMessage.style.display = 'none';
+            }
+
+            amountSpan.textContent = '₹ ' + Math.ceil(currentAmount).toLocaleString();
+            amount10xSpan.textContent = '₹ ' + Math.ceil(currentAmount * {{ $plan_duration }}).toLocaleString();
+            amount13xSpan.textContent = '₹ ' + roundToNearestThousand((currentAmount * {{ $plan_duration }}) * 1.0909).toLocaleString();
+
+            // Perform additional calculations if necessary
+        }
+
+        calcInput.addEventListener('input', function() {
+            currentAmount = parseInt(calcInput.value, {{ $plan_duration }}) || 0;
+            updateAmount();
+        });
 
         amountPlusBtn.addEventListener('click', function(event) {
             event.preventDefault();
             currentAmount += 1000;
+            calcInput.value = currentAmount;
             updateAmount();
         });
 
         amountMinusBtn.addEventListener('click', function(event) {
             event.preventDefault();
-            if (currentAmount > {{ $plan_min_amount }}) {
+            if (currentAmount > 0) {
                 currentAmount -= 1000;
+                calcInput.value = currentAmount;
                 updateAmount();
             }
         });
 
-        updateAmount();
+        updateAmount(); // Initial update
     });
+
+
+    /* ----- calculate -------- */ 
+
+
 
 
     /* canvass graph open */
