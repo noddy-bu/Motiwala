@@ -264,7 +264,7 @@ $plan_min_amount = DB::table('plans')
                                 <hr>
                             </div>
                             <div class="col-md-6">
-                                <p class="pt-2">You can Buy Jewellery worth: (in 11th month)</p>
+                                <p class="pt-2">You can Buy Jewellery worth: (in 12th month)</p>
                             </div>
                             <div class="col-md-6">
                                 <div class="total_number_main">
@@ -315,7 +315,7 @@ $plan_min_amount = DB::table('plans')
                             <div class="choose_content">
                                 <h5 class="black_color">Best Price Guarantee</h5>
                                 <p class="black_color">
-                                We offer the best prices in the online Diamond Jewellery Business.
+                                We offer the best prices in the Diamond Jewellery Business.
                                 </p>
                             </div>
                         </div>
