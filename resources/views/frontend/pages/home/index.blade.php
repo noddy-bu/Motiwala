@@ -604,6 +604,14 @@ $plan_min_amount = DB::table('plans')
                 validationMessage.style.display = 'none';
             }
 
+            if (currentAmount > {{ $plan_min_amount }}) {
+                validationMessage.html('Minimum amount Should be {{ $plan_min_amount }}');
+                validationMessage.style.display = 'block';
+                return;
+            } else {
+                validationMessage.style.display = 'none';
+            }
+
             amountSpan.textContent = '₹ ' + Math.ceil(currentAmount).toLocaleString();
             amount10xSpan.textContent = '₹ ' + Math.ceil(currentAmount * {{ $plan_duration }}).toLocaleString();
             amount13xSpan.textContent = '₹ ' + roundToNearestThousand((currentAmount * {{ $plan_duration }}) * 1.0909).toLocaleString();
@@ -613,6 +621,15 @@ $plan_min_amount = DB::table('plans')
 
         calcInput.addEventListener('input', function() {
             currentAmount = parseInt(calcInput.value, {{ $plan_duration }}) || 0;
+
+            if (currentAmount > {{ $plan_min_amount }}) {
+                validationMessage.html('Minimum amount Should be {{ $plan_min_amount }}');
+                validationMessage.style.display = 'block';
+                return;
+            } else {
+                validationMessage.style.display = 'none';
+            }
+
             updateAmount();
         });
 
