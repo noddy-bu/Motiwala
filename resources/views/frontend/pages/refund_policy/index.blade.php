@@ -42,7 +42,7 @@
                     </p>
 
                     <p>In case the Customer does not redeem within 400 days, he/she will be refunded 
-                        with the aggregate instalment amount paid by the Customer until the date of the refund. 
+                        with the aggregate installments amount paid by the Customer until the date of the refund. 
                         A discount voucher for the applicable discount amount will be provided which can be 
                         utilized only to purchase jewellery from the Company of a value that is equal to or 
                         greater than the full value of installments paid.
