@@ -56,7 +56,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
-                                    <div class="form-group mb-3 text-end">
+                                    <div class="form-group mb-3 text-end d-flex justify-content-end gap-2">
                                         <button type="submit" class="btn btn-block btn-primary">Proceed</button>
 
                                         @php
@@ -64,10 +64,10 @@
                                             $previousPopupName = request()->input('previous_popup_name');
                                         @endphp
                                         
-                                        <a href="javascript:void(0);" class="btn btn-sm btn-secondary btn-block" onclick="largeModal('{{ $previousPopupLink }}', '{{ $previousPopupName }}');">
+                                        <a href="javascript:void(0);" class="btn btn-sm btn-secondary btn-block pt-1" onclick="largeModal('{{ $previousPopupLink }}', '{{ $previousPopupName }}');">
                                                 Back
                                         </a>
-                                    </div>
+                                    </div> 
                                 </div>
                             </div>
                         </form>
