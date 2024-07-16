@@ -13,6 +13,10 @@
 $plan_min_amount = DB::table('plans')
     ->where('status', 1)
     ->value('minimum_installment_amount');
+
+$receivable_percentage_on_time = DB::table('plans')
+    ->where('status', 1)
+    ->value('receivable_percentage_on_time');
 @endphp
 
     <!--banner start -->
@@ -663,7 +667,11 @@ $plan_min_amount = DB::table('plans')
 
             amountSpan.textContent = '₹ ' + Math.ceil(currentAmount).toLocaleString();
             amount10xSpan.textContent = '₹ ' + Math.ceil(currentAmount * {{ $plan_duration }}).toLocaleString();
-            amount13xSpan.textContent = '₹ ' + roundToNearestThousand((currentAmount * {{ $plan_duration }}) * 1.0909).toLocaleString();
+
+            var profit_percantage = (currentAmount * {{ $receivable_percentage_on_time }}) / 100;
+            var profit = {{ $plan_duration }} * profit_percantage;
+
+            amount13xSpan.textContent = '₹ ' + ((currentAmount * {{ $plan_duration }}) + profit).toLocaleString();
         }
 
         calcInput.addEventListener('input', function() {
