@@ -221,13 +221,28 @@ use Illuminate\Support\Facades\Mail;
     }
 
 
+    if (!function_exists('check_localhost')) {
+        function check_localhost() {
+            $url = url()->current();
+            return strpos($url, '127.0.') !== false ? 'local' : 'not';
+        }
+    }
+
+
     if (!function_exists('full_url')) {
         function full_url() {
             // Determine if the request is secure
             $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
     
-            // Get the HTTP or HTTPS part of the URL
-            $protocol = $isSecure ? 'https://' : 'http://';
+            $environment = check_localhost();
+
+            if($environment == 'local'){
+                // Get the HTTP or HTTPS part of the URL
+                $protocol = $isSecure ? 'https://' : 'http://';
+            } else {
+                $protocol = $isSecure ? 'https://' : 'https://';
+            }
+
     
             // Build the full URL
             $url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];

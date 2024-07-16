@@ -60,8 +60,8 @@
                             <label for="status" class="form-label">Status:</label>
                             <select class="form-select" id="status1" name="status">
                                 <option value="">All</option>
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
+                                <option value="1">In Progress</option>
+                                <option value="0">Completed</option>
                             </select>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Mobile No</th>
-                        <th>Status</th>
+                        <th>Plan Status</th>
                         <th>Date</th>
                         <th>Action</th> 
                     </tr>
