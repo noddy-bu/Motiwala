@@ -62,6 +62,7 @@
                         <th>Name</th>
                         <th>Installment No</th>
                         <th>Amount</th>
+                        <th>Payment Mode</th>
                         <th>Status</th>
                         <th>Date</th>
                     </tr>
@@ -101,6 +102,7 @@
                     { data: 'name'},
                     { data: 'installment'},
                     { data: 'amount'},
+                    { data: 'type'},
                     { data: 'status'},
                     { data: 'created_at'},
                 ],

@@ -91,12 +91,22 @@ class TransactionController extends Controller
 
             $installment_no = DB::table('redemption_items')->where('transaction_id',$row->id)->value('installment_no');
 
+
+            if ($row->payment_type == "payu") {
+                $type = 'PayU';
+            } elseif ($row->payment_type == "UPI") {
+                $type = 'UPI';
+            } elseif ($row->payment_type == "cashpay") {
+                $type = 'Cash Pay';
+            }
+
             $nestedData = [
                 'id' => $i++,
                 'pay_id' => $row->payment_id,
                 'name' => $user_name,
                 'installment' => $installment_no,
                 'amount' => $row->payment_amount,
+                'type' => $type,
                 'status' => $row->payment_status,
                 'created_at' => $row->created_at->format('Y-m-d H:i:s'),
             ];
