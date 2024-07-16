@@ -42,8 +42,8 @@
                         </div>
                     </div>
 
-                    <div class="col-md-2">
-                        <div class="form-group mb-3">
+                    <div class="col-md-2 d-flex align-items-center">
+                        <div class="form-group">
                             <button type="submit" class="btn btn-primary">Search</button>
                         </div>
                     </div>
