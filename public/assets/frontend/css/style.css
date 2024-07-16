@@ -275,6 +275,7 @@ input#calc {
     border: 0;
     border-bottom: 1px solid #ccc;
     border-radius: 0;
+    background-color: transparent;
 }
 
 span.WebRupee {
@@ -811,7 +812,7 @@ section.faq_section {
     border-left: 0 !important;
     width: 100%;
     color: #404040 !important;
-    padding: 18.5px 16px 13.5px 16px;
+    padding: 19px 16px 14px 16px;
 }
 
 .amount_check i {
@@ -1755,6 +1756,17 @@ form#loginForm a:hover {
     position: relative;
     top: 1px;
 }
+
+/* online enrollment page */
+
+.adhar_field .uppercase {
+    text-transform: uppercase;
+}
+
+.adhar_field .uppercase::placeholder {
+    text-transform: capitalize;
+}
+
 
 /* 404 page */
 

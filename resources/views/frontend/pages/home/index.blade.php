@@ -239,8 +239,7 @@ $plan_min_amount = DB::table('plans')
                                         </label>
                                         <span class="WebRupee">₹
                                             <input type="tel" id="calc" name="calc" class="text-input form-control min-value_1000 multiple-of_100 slider-value" value="10000">
-                                        </span>
-                                        <div id="validationMessage" style="color: red; display: none;">Accept only multiples of thousand</div>
+                                        </span>                                        
                                     </div>
                                     <div class="amount_check">
                                         <div class="row ">
@@ -254,6 +253,7 @@ $plan_min_amount = DB::table('plans')
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="float-start ps-1 pt-1" id="validationMessage" style="color: red; display: none;">Accept only multiples of thousand</div>
                                 </div>
                             </div>
                             <div class="col-md-12">
