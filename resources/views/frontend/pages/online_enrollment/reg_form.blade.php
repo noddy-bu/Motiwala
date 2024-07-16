@@ -171,7 +171,7 @@
                 <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">First Name *</label>
-                        <input type="text" class="form-control" name="first_name" pattern="[A-Za-z]+" minlength="3"
+                        <input type="text" class="form-control uppercase" name="first_name" pattern="[A-Za-z]+" minlength="3"
                             maxlength="20" placeholder="Please Enter Your First Name" value="{{ $user->first_name }}" required />
                     </div>
                 </div>
@@ -179,7 +179,7 @@
                 <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">Last Name *</label>
-                        <input type="text" class="form-control" name="last_name" pattern="[A-Za-z]+" minlength="1"
+                        <input type="text" class="form-control uppercase" name="last_name" pattern="[A-Za-z]+" minlength="1"
                             maxlength="20" placeholder="Please Enter Your Last Name" value="{{ $user->last_name }}" required />
                     </div>
                 </div>
@@ -351,7 +351,7 @@
                 <div class="col-md-4">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">Nominee Name </label>
-                        <input type="text" class="form-control" name="nominee_name" pattern="[A-Za-z]+"
+                        <input type="text" class="form-control  uppercase" name="nominee_name" pattern="[A-Za-z]+"
                             minlength="3" placeholder="Please Enter Your Nominee Name"
                             value="{{ $user_detail->nominee_name }}" />
                     </div>
@@ -1102,7 +1102,7 @@
                     <div class="col-md-4">
                         <div class="form-group mt-3 adhar_field">
                             <label class="pb-2">Full Name *</label>
-                            <input type="text" class="form-control" name="name" pattern="[A-Za-z]+"
+                            <input type="text" class="form-control uppercase" name="name" pattern="[A-Za-z]+"
                                 minlength="3" maxlength="20" placeholder="Please Enter Your Name"
                                 value="{{ $user->first_name }} {{ $user->last_name }}" readonly required />
                         </div>
