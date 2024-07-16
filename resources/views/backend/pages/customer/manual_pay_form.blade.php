@@ -67,7 +67,7 @@
                                         <a href="javascript:void(0);" class="btn btn-sm btn-secondary btn-block pt-1" onclick="largeModal('{{ $previousPopupLink }}', '{{ $previousPopupName }}');">
                                                 Back
                                         </a>
-                                    </div>
+                                    </div> 
                                 </div>
                             </div>
                         </form>
