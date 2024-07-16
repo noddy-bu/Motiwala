@@ -580,17 +580,73 @@ $plan_min_amount = DB::table('plans')
 
     /* ----- calculate -------- */ 
 
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     const amountSpan = document.getElementById('amount');
+    //     const amount10xSpan = document.getElementById('amount_10x');
+    //     const amount13xSpan = document.getElementById('amount_13x');
+    //     const calcInput = document.getElementById('calc');
+    //     const validationMessage = document.getElementById('validationMessage');
+        
+    //     const amountPlusBtn = document.getElementById('amount_plus');
+    //     const amountMinusBtn = document.getElementById('amount_minus');
+
+    //     let currentAmount = parseInt(calcInput.value, 10);
+
+    //     function roundToNearestThousand(amount) {
+    //         return Math.ceil(amount / 1000) * 1000;
+    //     }
+
+    //     function updateAmount() {
+    //         if (currentAmount % 1000 !== 0) {
+    //             validationMessage.style.display = 'block';
+    //             return;
+    //         } else {
+    //             validationMessage.style.display = 'none';
+    //         }
+
+    //         amountSpan.textContent = '₹ ' + Math.ceil(currentAmount).toLocaleString();
+    //         amount10xSpan.textContent = '₹ ' + Math.ceil(currentAmount * {{ $plan_duration }}).toLocaleString();
+    //         amount13xSpan.textContent = '₹ ' + roundToNearestThousand((currentAmount * {{ $plan_duration }}) * 1.0909).toLocaleString();
+
+    //         // Perform additional calculations if necessary
+    //     }
+
+    //     calcInput.addEventListener('input', function() {
+    //         currentAmount = parseInt(calcInput.value, {{ $plan_duration }}) || 0;
+    //         updateAmount();
+    //     });
+
+    //     amountPlusBtn.addEventListener('click', function(event) {
+    //         event.preventDefault();
+    //         currentAmount += 1000;
+    //         calcInput.value = currentAmount;
+    //         updateAmount();
+    //     });
+
+    //     amountMinusBtn.addEventListener('click', function(event) {
+    //         event.preventDefault();
+    //         if (currentAmount > {{ $plan_min_amount }}) {
+    //             currentAmount -= 1000;
+    //             calcInput.value = currentAmount;
+    //             updateAmount();
+    //         }
+    //     });
+
+    //     updateAmount(); // Initial update
+    // });
+
+
     document.addEventListener('DOMContentLoaded', function() {
         const amountSpan = document.getElementById('amount');
         const amount10xSpan = document.getElementById('amount_10x');
         const amount13xSpan = document.getElementById('amount_13x');
         const calcInput = document.getElementById('calc');
-        const validationMessage = document.getElementById('validationMessage');
-        
+        const validationMessage = $('#validationMessage');
+
         const amountPlusBtn = document.getElementById('amount_plus');
         const amountMinusBtn = document.getElementById('amount_minus');
 
-        let currentAmount = parseInt(calcInput.value, 10);
+        let currentAmount = parseInt(calcInput.value, {{ $plan_duration }});
 
         function roundToNearestThousand(amount) {
             return Math.ceil(amount / 1000) * 1000;
@@ -598,38 +654,27 @@ $plan_min_amount = DB::table('plans')
 
         function updateAmount() {
             if (currentAmount % 1000 !== 0) {
-                validationMessage.style.display = 'block';
+                validationMessage.html('Accept only multiples of thousand');
+                validationMessage.show();
                 return;
             } else {
-                validationMessage.style.display = 'none';
-            }
-
-            if (currentAmount > {{ $plan_min_amount }}) {
-                validationMessage.html('Minimum amount Should be {{ $plan_min_amount }}');
-                validationMessage.style.display = 'block';
-                return;
-            } else {
-                validationMessage.style.display = 'none';
+                validationMessage.hide();
             }
 
             amountSpan.textContent = '₹ ' + Math.ceil(currentAmount).toLocaleString();
             amount10xSpan.textContent = '₹ ' + Math.ceil(currentAmount * {{ $plan_duration }}).toLocaleString();
             amount13xSpan.textContent = '₹ ' + roundToNearestThousand((currentAmount * {{ $plan_duration }}) * 1.0909).toLocaleString();
-
-            // Perform additional calculations if necessary
         }
 
         calcInput.addEventListener('input', function() {
             currentAmount = parseInt(calcInput.value, {{ $plan_duration }}) || 0;
-
-            if (currentAmount > {{ $plan_min_amount }}) {
-                validationMessage.html('Minimum amount Should be {{ $plan_min_amount }}');
-                validationMessage.style.display = 'block';
+            if (currentAmount < {{ $plan_min_amount }}) {
+                validationMessage.html('Minimum amount should be ' +  roundToNearestThousand({{ $plan_min_amount }}));
+                validationMessage.show();
                 return;
             } else {
-                validationMessage.style.display = 'none';
+                validationMessage.hide();
             }
-
             updateAmount();
         });
 
@@ -646,6 +691,9 @@ $plan_min_amount = DB::table('plans')
                 currentAmount -= 1000;
                 calcInput.value = currentAmount;
                 updateAmount();
+            } else {
+                validationMessage.html('Minimum amount should be ' +  roundToNearestThousand({{ $plan_min_amount }}));
+                validationMessage.show();
             }
         });
 
