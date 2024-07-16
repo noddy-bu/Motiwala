@@ -688,9 +688,17 @@ $receivable_percentage_on_time = DB::table('plans')
 
         amountPlusBtn.addEventListener('click', function(event) {
             event.preventDefault();
-            currentAmount += 1000;
-            calcInput.value = currentAmount;
-            updateAmount();
+
+
+            if (currentAmount < {{ $plan_min_amount }}) {
+                validationMessage.html('Minimum amount should be ' +  roundToNearestThousand({{ $plan_min_amount }}));
+                validationMessage.show();
+            } else {
+                currentAmount += 1000;
+                calcInput.value = currentAmount;
+                updateAmount();
+            }
+
         });
 
         amountMinusBtn.addEventListener('click', function(event) {
