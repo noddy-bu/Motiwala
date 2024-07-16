@@ -43,40 +43,43 @@ class CustomerController extends Controller
         $totalRecords = User::count();
     
         // Filtered records
-        $query = User::select('*')->where('role_id', '!=', 1);
+        $query = User::select('users.*','r.status as plan_Status')
+            ->leftJoin('redemptions as r', 'r.user_id', '=', 'users.id')
+            ->where('users.role_id', '!=', 1);
     
         // Filtered records
-        $query = User::select('*');
-        $query->where('role_id','!=',1);
+        $searchValue = $request->input('search.value');
         if (!empty($searchValue)) {
             $query->where(function($q) use ($searchValue) {
-                $q->where('first_name', 'like', "%$searchValue%")
-                    ->orWhere('last_name', 'like', "%$searchValue%")
-                    ->orWhere('email', 'like', "%$searchValue%")
-                    ->orWhere('phone', 'like', "%$searchValue%");
+                $q->where('users.first_name', 'like', "%$searchValue%")
+                    ->orWhere('users.last_name', 'like', "%$searchValue%")
+                    ->orWhere('users.email', 'like', "%$searchValue%")
+                    ->orWhere('users.phone', 'like', "%$searchValue%");
             });
         }
     
         // Filter by additional form parameters
         $name = $request->input('name');
         if (!empty($name)) {
-            $query->where('first_name', 'like', "%$name%");
-            $query->orwhere('last_name', 'like', "%$name%");
+            $query->where(function($q) use ($name) {
+                $q->where('users.first_name', 'like', "%$name%")
+                    ->orWhere('users.last_name', 'like', "%$name%");
+            });
         }
 
-        $email  = $request->input('email');
+        $email = $request->input('email');
         if (!empty($email)) {
-            $query->where('email', 'like', "%$email%");
+            $query->where('users.email', 'like', "%$email%");
         }
-    
+
         $phone = $request->input('phone');
         if (!empty($phone)) {
-            $query->where('phone', 'like', "%$phone%");
+            $query->where('users.phone', 'like', "%$phone%");
         }
-    
+
         $status = $request->input('status');
         if ($status != '') {
-            $query->where('status', $status);
+            $query->where('r.status', $status);
         }
     
         // Get filtered count
@@ -90,6 +93,7 @@ class CustomerController extends Controller
                         ->limit($rowperpage)
                         ->get();
     
+
         // Prepare data
         $data = [];
         $i = 1;
@@ -101,12 +105,21 @@ class CustomerController extends Controller
                 $tran = null;
             }
 
+
+            if($row->plan_Status === 1){
+                $plan_status = '<span class="badge bg-success">In Progress</span>';
+            } elseif ($row->plan_Status === 0) {
+                $plan_status = '<span class="badge bg-primary">Completed</span>';
+            } else {
+                $plan_status = '<span class="badge bg-danger">Inactive</span>';
+            }
+
             $nestedData = [
                 'id' => $i++,
                 'name' => $row->first_name.' '.$row->last_name,
                 'email' => $row->email,
                 'phone' => $row->phone,
-                'status' => $row->status ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Inactive</span>',
+                'status' => $plan_status,
                 'created_at' => $row->created_at->format('Y-m-d H:i:s'),
                 'action' => //'<a href="'.route('Customer.status', ['id' => $row->id, 'status' => $row->status ? 0 : 1]).'" class="action-icon">'.
                 //                 '<i class="'.($row->status ? 'ri-eye-off-fill' : 'ri-eye-fill').'" title="'.($row->status ? 'Inactive' : 'Active').'"></i>'.
