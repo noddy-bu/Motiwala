@@ -48,7 +48,7 @@ b {
 }
 
 header {
-    position: absolute;
+    position: relative;
 }
 
 .nav_right_menu {
@@ -1813,7 +1813,7 @@ form#loginForm a:hover {
 }
 
 .width200 {
-    width: 160px;
+    width: 60%;
 }
 
 @media(max-width:767px) {
