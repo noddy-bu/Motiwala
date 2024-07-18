@@ -134,9 +134,9 @@
             </div>
 
                 </div>
-                    <div class="col-md-12" id="page-heading">
+                    <!-- <div class="col-md-12" id="page-heading">
                         <h4 class="title_heading text-center black_color pb-3 heading_font">Open New Account</h4>
-                    </div>
+                    </div> -->
                     <div class="col-md-12">
 
                         @include('frontend.pages.online_enrollment.reg_form')

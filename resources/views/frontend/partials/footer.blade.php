@@ -2,8 +2,8 @@
 
 <footer class="footer">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-2 col-md-6">
+    <div class="row justify-content-md-center">
+      <div class="col-lg-3 col-md-6">
         <div class="footer-widget">
           <h3 class="widget-title">USEFUL LINKS</h3>
           <ul class="widget-menu">
@@ -31,7 +31,7 @@
       </div>
 
 
-      <div class="col-lg-2 col-md-6">
+      <div class="col-lg-3 col-md-6">
         <div class="footer-widget">
           <h3 class="widget-title">QUICK LINKS</h3>
           <ul class="widget-menu">
@@ -47,7 +47,7 @@
         </div>
       </div>
 
-      <div class="col-lg-2 col-md-6 pt-lg-0 pt-0 pt-md-5">
+      <div class="col-lg-3 col-md-6 pt-lg-0 pt-0 pt-md-5">
         <div class="footer-widget">
           <h3 class="widget-title">CONSUMER POLICY</h3>
           <ul class="widget-menu">
@@ -67,26 +67,35 @@
         </div>
       </div>
 
-
-
-      <div class="col-lg-3 col-md-6 pt-lg-0 pt-0 pt-md-4">
-        <div class="footer-widget">
-          <h3 class="heading_font line-height35">Download <br>Our App </h3>
-          <p class="d-md-block d-none">Shining new app, made just for you! It's Free, Easy & Smart</p>
-        </div>
-      </div>
       <div class="col-lg-3 col-md-6">
-        <div class="footer-app-image">
-          <img src="/assets/frontend/images/app_images.png" class="d-block w-100" alt="...">
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="footer-widget mt-md-5 mt-3">
+        <div class="footer-widget">
+        <h3 class="widget-title">CONTACT DETAILS</h3>
           <p class="pb-0 mb-0"><strong> Contact Us: </strong> <a href="tel:+91 9920077780">+91 9920077780</a></p>
           <p><strong>Email: </strong> <a href="mailto:motiwalajewels786@gmail.com">motiwalajewels786@gmail.com</a></p>
+          <div class="col-md-12 text-md-end text-center footer_social">
+            <ul class="list-group list-group-horizontal list-unstyled">
+              <li>
+                <a target="_blank" href="https://api.whatsapp.com/send?phone=+919920077780&text=Hi%2C+I+am+contacting+you+through+your+website+from+desktop+view+https://motiwalajewels.in/%2F">
+                  <i class="lab la-whatsapp"></i>
+                </a>
+              </li>
+              <li>
+                <a target="_blank" href="https://www.facebook.com/MOTIWALA.JEWELS">
+                  <i class="lab la-facebook-f"></i>
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <i class="lab la-instagram"></i>
+                </a>
+              </li>
+            
+              <li>Let's Get Together</li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="col-lg-5 col-md-6">
+      <div class="col-lg-5 col-md-6 text-center">
         <h6 class="font-alt mt-md-4 mt-2 mb-3 heading_font font-size20">Subscribe to our Newsletter</h6>
         <form class="form-subscribe" action="#">
           <div class="input-group">
@@ -94,7 +103,7 @@
             <span class="input-group-btn">
               <button class="btn btn-success btn-lg" type="submit">Subscribe</button>
             </span>
-          </div>
+          </div> 
         </form>
       </div>
     </div>
@@ -105,28 +114,10 @@
        
         <div class="col-md-6">
           <p class="text-md-start text-center mb-1 mb-md-3">Copyright © 2024 Under Motiwala Jewels Gold and Diamonds Pvt Ltd</p>
-        </div>
-        <div class="col-md-6 text-md-end text-center footer_social">
-          <ul class="float_right">
-            <li>
-              <a target="_blank" href="https://api.whatsapp.com/send?phone=+919920077780&text=Hi%2C+I+am+contacting+you+through+your+website+from+desktop+view+https://motiwalajewels.in/%2F">
-                <i class="lab la-whatsapp"></i>
-              </a>
-            </li>
-            <li>
-              <a target="_blank" href="https://www.facebook.com/MOTIWALA.JEWELS">
-                <i class="lab la-facebook-f"></i>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <i class="lab la-instagram"></i>
-              </a>
-            </li>
-          
-            <li>Let's Get Together</li>
-          </ul>
-        </div>
+        </div>    
+        <div class="col-md-6 design_by_nexgeno">
+          <p class="float-end"> Design By <a class="text-decoration-none text-light fw-bold" href="https://nexgeno.in/">Nexgeno</a></p>
+        </div>    
       </div>
     </div>
   </div>

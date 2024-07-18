@@ -730,13 +730,13 @@ form.form-subscribe button {
     margin: 0;
 }
 
-.copyright_section ul li {
+.footer_social ul li {
     float: left;
     list-style: none;
     margin-right: 10px;
 }
 
-.copyright_section ul li a {
+.footer_social ul li a {
     font-size: 16px;
     text-decoration: none;
     color: #fff;
@@ -746,7 +746,7 @@ form.form-subscribe button {
     font-size: 16px;
 }
 
-.copyright_section ul li i {
+.footer_social ul li i {
     font-size: 20px;
     position: relative;
     top: 3px;

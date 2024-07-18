@@ -323,7 +323,7 @@ $receivable_percentage_on_time = DB::table('plans')
                             <div class="choose_content">
                                 <h5 class="black_color">Best Price Guarantee</h5>
                                 <p class="black_color">
-                                We offer the best prices on Diamond Jewellery Business.
+                                We offer the best prices on Diamond Jewellery.
                                 </p>
                             </div>
                         </div>
@@ -419,7 +419,7 @@ $receivable_percentage_on_time = DB::table('plans')
                             <div class="accordion-body">
                                 You can find our exquisite collection of jewellery at our Store In Byculla Mumbai Maharashtra.
                                 Additionally, you can explore our wide range of designs and make purchases conveniently 
-                                through our secure online store from the comfort of your own home.
+                                through our secure from the comfort of your own home.
                             </div>
                         </div>
                     </div>
@@ -667,11 +667,15 @@ $receivable_percentage_on_time = DB::table('plans')
 
             amountSpan.textContent = '₹ ' + Math.ceil(currentAmount).toLocaleString();
             amount10xSpan.textContent = '₹ ' + Math.ceil(currentAmount * {{ $plan_duration }}).toLocaleString();
+<<<<<<< HEAD
+            amount13xSpan.textContent = '₹ ' + roundToNearestThousand((currentAmount * {{ $plan_duration }}) * 1.0909).toLocaleString();
+=======
 
             var profit_percantage = (currentAmount * {{ $receivable_percentage_on_time }}) / 100;
             var profit = {{ $plan_duration }} * profit_percantage;
 
             amount13xSpan.textContent = '₹ ' + ((currentAmount * {{ $plan_duration }}) + profit).toLocaleString();
+>>>>>>> dae1423a2302a828e885e48f143ab92782859e3f
         }
 
         calcInput.addEventListener('input', function() {
