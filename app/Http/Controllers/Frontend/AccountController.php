@@ -697,7 +697,7 @@ class AccountController extends Controller
     public function create_customer_detail($request){
 
         $validator = Validator::make($request->all(), [
-            'title' => 'required',
+            // 'title' => 'required',
             'first_name' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
             'last_name' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:1',
             'email' => 'required|email',
@@ -708,6 +708,12 @@ class AccountController extends Controller
             'city' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
             'pincode' => 'required|regex:/^[\d\s-]+$/|min:6',
             'pan_number' => 'required|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:10|max:10',
+
+            'nominee_name' => ['nullable', 'string','regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
+            'nominee_phone' => 'nullable|regex:/^\d{10}$/',
+            'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
+            'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
+
             'dob' => ['required', 'date', function ($attribute, $value, $fail) {
                 $dob = Carbon::parse($value);
                 $age = $dob->diffInYears(Carbon::now());
@@ -734,12 +740,16 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
-
+        if($request->has('residence_address_check')){
+            $address = $request->input('residence_nominee_address');
+        } else {
+            $address = $request->input('nominee_address');
+        }
 
         if(Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))){
 
             DB::table('users')->where('id',Session::get('temp_user_id'))->update([
-                'salutation' => $request->input('title'),
+                // 'salutation' => $request->input('title'),
                 'first_name' => $request->input('first_name'),
                 'last_name' => $request->input('last_name'),
                 'email' => strtolower($request->input('email')),
@@ -754,6 +764,12 @@ class AccountController extends Controller
                 'pincode' => $request->input('pincode'),
                 'dob' => $request->input('dob'),
                 'pan_number' => $request->input('pan_number'),
+
+                'nominee_name' => $request->input('nominee_name'),
+                'nominee_phone' => $request->input('nominee_phone'),
+                'nominee_dob' => $request->input('nominee_dob'),
+                'nominee_address' => $address,
+                'nominee_relation' => $request->input('nominee_relation'),
             ]);
 
             Session::put('step', 4);
@@ -777,10 +793,10 @@ class AccountController extends Controller
         $validator = Validator::make($request->all(), [
             'plan_id' => 'required',
             'installment_amount' => 'required|numeric',
-            'nominee_name' => ['nullable', 'string','regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
-            'nominee_phone' => 'nullable|regex:/^\d{10}$/',
-            'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
-            'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
+            // 'nominee_name' => ['nullable', 'string','regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
+            // 'nominee_phone' => 'nullable|regex:/^\d{10}$/',
+            // 'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
+            // 'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
         ]);
 
         if ($validator->fails()) {
@@ -807,11 +823,11 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
-        if($request->has('residence_address_check')){
-            $address = $request->input('residence_nominee_address');
-        } else {
-            $address = $request->input('nominee_address');
-        }
+        // if($request->has('residence_address_check')){
+        //     $address = $request->input('residence_nominee_address');
+        // } else {
+        //     $address = $request->input('nominee_address');
+        // }
 
         if(Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))){
 
@@ -820,13 +836,13 @@ class AccountController extends Controller
                 'installment_amount' => $request->input('installment_amount'),
             ]);
 
-            DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
-                'nominee_name' => $request->input('nominee_name'),
-                'nominee_phone' => $request->input('nominee_phone'),
-                'nominee_dob' => $request->input('nominee_dob'),
-                'nominee_address' => $address,
-                'nominee_relation' => $request->input('nominee_relation'),
-            ]);
+            // DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
+            //     'nominee_name' => $request->input('nominee_name'),
+            //     'nominee_phone' => $request->input('nominee_phone'),
+            //     'nominee_dob' => $request->input('nominee_dob'),
+            //     'nominee_address' => $address,
+            //     'nominee_relation' => $request->input('nominee_relation'),
+            // ]);
 
             Session::put('step', 5);
 

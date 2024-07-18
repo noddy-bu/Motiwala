@@ -140,7 +140,7 @@
                     ->first();
                 $user_detail = DB::table('userdetails')
                     ->where('user_id', Session::get('temp_user_id'))
-                    ->get(['flat_no', 'street', 'locality', 'state', 'city', 'pincode', 'dob', 'pan_number'])
+                    ->get(['flat_no', 'street', 'locality', 'state', 'city', 'pincode', 'dob', 'pan_number','nominee_name', 'nominee_phone', 'nominee_dob', 'nominee_address', 'nominee_relation'])
                     ->first();
             @endphp
         @endif
@@ -152,7 +152,7 @@
             <div class="row d-flex">
 
 
-                <div class="col-md-3">
+                {{-- <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">Title *</label>
                         <select class="form-select" aria-label="---Select----" name="title" required>
@@ -166,7 +166,7 @@
                             <option value="Minor" @if ($user->salutation == 'Minor') selected @endif>Minor</option>
                         </select>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
@@ -256,10 +256,72 @@
                 <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">DOB * ( As per Aadhar )</label>
-                        <input type="date" class="form-control" name="dob" value="{{ $user_detail->dob }}"
-                            required />
+                        <input type="date" class="form-control" name="dob" value="{{ $user_detail->dob }}" max="{{ date('Y-m-d') }}" required />
                     </div>
                 </div>
+
+
+            {{------------------------------------ Nomine ----------------------------------}}    
+
+
+            <div class="col-md-4">
+                <div class="form-group mt-md-5 mt-3 adhar_field">
+                    <label class="pb-2">Nominee Name </label>
+                    <input type="text" class="form-control  uppercase" name="nominee_name" pattern="[A-Za-z]+"
+                        minlength="3" placeholder="Please Enter Your Nominee Name"
+                        value="{{ $user_detail->nominee_name }}" />
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group mt-md-5 mt-3 adhar_field">
+                    <label class="pb-2">Nominee Contact Number </label>
+                    <input type="text" class="form-control" name="nominee_phone" pattern="[0-9]+"
+                        minlength="10" maxlength="10" placeholder="Please Enter Your Nominee Contact Number"
+                        value="{{ $user_detail->nominee_phone }}" />
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group mt-md-5 mt-3 adhar_field">
+                    <label class="pb-2">Nominee Date Of Birth</label>
+                    <input type="date" class="form-control" name="nominee_dob"
+                        value="{{ $user_detail->nominee_dob }}" max="{{ date('Y-m-d') }}" />
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group mt-md-5 mt-3 adhar_field">
+                    <label class="pb-2">Relationship with Account Holder</label>
+                    <input type="text" class="form-control" name="nominee_relation" pattern="[A-Za-z]+"
+                        minlength="3" placeholder="Please Enter Your Relationship with Account Holder"
+                        value="{{ $user_detail->nominee_relation }}" />
+                </div>
+            </div>
+            <div class="col-md-12" id="nomine_address">
+                <div class="form-group mt-md-5 mt-3 adhar_field">
+                    <label class="pb-3">Nominee Address *</label>
+                    <textarea class="form-control height50" row="2" name="nominee_address" style="height: 103px;">{{ $user_detail->nominee_address }}</textarea>
+                </div>
+            </div>
+
+            <div class="col-md-12 d-none" id="residence_address">
+                <div class="form-group mt-md-5 mt-3 adhar_field">
+                    <label class="pb-3">Nominee Address *</label>
+                    <textarea class="form-control height50" row="3" name="residence_nominee_address" style="height: 103px;">update</textarea>
+                </div>
+            </div>
+
+            <div class="form-group mt-2">
+                <input class="me-2" type="checkbox" name="residence_address_check" id="residence_address_check" value="1" />
+                <label for="residence_address_check">As Per Residence address</label>
+            </div>
+
+
+
+            {{------------------------------------ Nomine ----------------------------------}}  
+
+
 
 
                 <div class="form-group text-end">
@@ -281,6 +343,22 @@
 
     <!--------------------------------------------- customer detail --------------------------------->
 
+    
+    <script>
+        document.getElementById('residence_address_check').addEventListener('change', function() {
+            var nomineAddress = document.getElementById('nomine_address');
+            var residenceAddress = document.getElementById('residence_address');
+
+            if (this.checked) {
+                nomineAddress.classList.add('d-none');
+                residenceAddress.classList.remove('d-none');
+            } else {
+                nomineAddress.classList.remove('d-none');
+                residenceAddress.classList.add('d-none');
+            }
+        });
+    </script>
+
 @endif
 
 
@@ -299,10 +377,10 @@
                 ->where('id', Session::get('temp_user_id'))
                 ->get(['plan_id', 'installment_amount'])
                 ->first();
-            $user_detail = DB::table('userdetails')
-                ->where('user_id', Session::get('temp_user_id'))
-                ->get(['nominee_name', 'nominee_phone', 'nominee_dob', 'nominee_address', 'nominee_relation', 'flat_no', 'street', 'locality', 'state', 'city', 'pincode'])
-                ->first();
+            // $user_detail = DB::table('userdetails')
+            //     ->where('user_id', Session::get('temp_user_id'))
+            //     ->get(['nominee_name', 'nominee_phone', 'nominee_dob', 'nominee_address', 'nominee_relation', 'flat_no', 'street', 'locality', 'state', 'city', 'pincode'])
+            //     ->first();
             $plan = DB::table('plans')
                 ->where('status', 1)
                 ->get(['id', 'name', 'minimum_installment_amount']);
@@ -348,7 +426,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                {{-- <div class="col-md-4">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">Nominee Name </label>
                         <input type="text" class="form-control  uppercase" name="nominee_name" pattern="[A-Za-z]+"
@@ -401,7 +479,7 @@
                 <div class="form-group mt-2">
                     <input class="me-2" type="checkbox" name="residence_address_check" id="residence_address_check" value="1" />
                     <label for="residence_address_check">As Per Residence address</label>
-                </div>
+                </div> --}}
 
                 <div class="form-group">
 
@@ -421,7 +499,7 @@
 
 
     </div>
-
+{{-- 
     <script>
         document.getElementById('residence_address_check').addEventListener('change', function() {
             var nomineAddress = document.getElementById('nomine_address');
@@ -435,7 +513,7 @@
                 residenceAddress.classList.add('d-none');
             }
         });
-    </script>
+    </script> --}}
 
     <!--------------------------------------------- plan detail --------------------------------->
 
