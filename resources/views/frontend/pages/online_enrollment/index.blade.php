@@ -503,6 +503,58 @@
 
     /*--------------------- Payment Gateway ------------------*/ 
 
+
+    /*--------------------- API forms ------------------*/
+     
+    $(document).ready(function () {
+        var typingTimer;
+        var typingDelay = 1000; // 1.2 seconds delay
+
+        $('#pincode').on('keyup', function () {
+            clearTimeout(typingTimer);
+            var postalCode = $(this).val();
+
+            if (postalCode.length > 0) {
+                typingTimer = setTimeout(function () {
+                    $.ajax({
+                        url: 'https://secure.geonames.org/postalCodeSearchJSON',
+                        dataType: 'json',
+                        data: {
+                            postalcode: postalCode,
+                            country: 'IN',
+                            username: 'umair.makent'
+                        },
+                        success: function (data) {
+                            if (data.postalCodes.length > 0) {
+                                $('#country_name').val(data.postalCodes[0].countryCode).focus();
+                                $('#city').val(data.postalCodes[0].adminName2).focus();
+                                $('#state').val(data.postalCodes[0].adminName1).focus();
+                                $('#address').focus();
+
+                                // $('#placeName').val(data.postalCodes[0].placeName);
+
+                                // Display response in a pretty format
+                                var responseHtml = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                                $('#response').html(responseHtml);
+                            } else {
+                                alert('Postal code not found');
+                            }
+                        },
+                        error: function () {
+                            alert('Error fetching data');
+                        }
+                    });
+                }, typingDelay);
+            }
+        });
+
+        // Reset form on click of reset button
+        // $('#resetButton').click(function () {
+        //     $('#postalCodeForm')[0].reset();
+        //     $('#response').empty();
+        // });
+    });
+
     
 
     </script>

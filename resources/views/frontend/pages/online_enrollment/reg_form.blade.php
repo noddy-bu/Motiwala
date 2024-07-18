@@ -256,7 +256,7 @@
                 <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">DOB * ( As per Aadhar )</label>
-                        <input type="date" class="form-control" name="dob" value="{{ $user_detail->dob }}" max="{{ date('Y-m-d') }}" required />
+                        <input type="date" class="form-control" name="dob" value="{{ $user_detail->dob }}" max="{{ date('Y-m-d', strtotime('-18 years')) }}" required />
                     </div>
                 </div>
 
