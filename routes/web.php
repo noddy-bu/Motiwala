@@ -176,7 +176,7 @@ Route::get('/clear-data', function () {
 })->name('clear-data');
 
 Route::get('/update-session', function () {
-    Session()->put('step', 9);
+    Session()->put('step', 6);
 })->name('update-session');
 
 

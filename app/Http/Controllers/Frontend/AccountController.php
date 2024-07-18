@@ -694,194 +694,6 @@ class AccountController extends Controller
     }
 
 
-    public function create_customer_detail($request){
-
-        $validator = Validator::make($request->all(), [
-            // 'title' => 'required',
-            'first_name' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
-            'last_name' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:1',
-            'email' => 'required|email',
-            'flat_no' => 'required|min:1',
-            'street' => 'required|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:3',
-            'locality' => 'required|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:3',
-            'state' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
-            'city' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
-            'pincode' => 'required|regex:/^[\d\s-]+$/|min:6',
-            'pan_number' => 'required|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:10|max:10',
-
-            'nominee_name' => ['nullable', 'string','regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
-            'nominee_phone' => 'nullable|regex:/^\d{10}$/',
-            'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
-            'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
-
-            'dob' => ['required', 'date', function ($attribute, $value, $fail) {
-                $dob = Carbon::parse($value);
-                $age = $dob->diffInYears(Carbon::now());
-        
-                if ($age < 18) {
-                    $fail('You must be at least 18 years old.');
-                }
-            }],
-        ]);
-
-        if ($validator->fails()) {
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message']  = $validator->errors()->all();
-
-            return $rsp_msg;
-        }
-        
-        $users_email = DB::table('users')->where('email', $request->input('email'))->where('status', 1)->get();
-
-        if(count($users_email) != 0){
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message']  = 'Email Already Exists';
-
-            return $rsp_msg;
-        }
-
-        if($request->has('residence_address_check')){
-            $address = $request->input('residence_nominee_address');
-        } else {
-            $address = $request->input('nominee_address');
-        }
-
-        if(Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))){
-
-            DB::table('users')->where('id',Session::get('temp_user_id'))->update([
-                // 'salutation' => $request->input('title'),
-                'first_name' => $request->input('first_name'),
-                'last_name' => $request->input('last_name'),
-                'email' => strtolower($request->input('email')),
-            ]);
-
-            DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
-                'flat_no' => $request->input('flat_no'),
-                'street' => $request->input('street'),
-                'locality' => $request->input('locality'),
-                'state' => $request->input('state'),
-                'city' => $request->input('city'),
-                'pincode' => $request->input('pincode'),
-                'dob' => $request->input('dob'),
-                'pan_number' => $request->input('pan_number'),
-
-                'nominee_name' => $request->input('nominee_name'),
-                'nominee_phone' => $request->input('nominee_phone'),
-                'nominee_dob' => $request->input('nominee_dob'),
-                'nominee_address' => $address,
-                'nominee_relation' => $request->input('nominee_relation'),
-            ]);
-
-            Session::put('step', 4);
-
-            $rsp_msg['response'] = 'success';
-            $rsp_msg['message']  = "Customer Detail Added successfully. Please Proceed";
-
-        } else {
-
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message']  = "Something Went Wrong";
-
-        }
-        
-        return $rsp_msg;
-
-    }
-
-    public function update_plan_detail($request){
-
-        $validator = Validator::make($request->all(), [
-            'plan_id' => 'required',
-            'installment_amount' => 'required|numeric',
-            // 'nominee_name' => ['nullable', 'string','regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
-            // 'nominee_phone' => 'nullable|regex:/^\d{10}$/',
-            // 'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
-            // 'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
-        ]);
-
-        if ($validator->fails()) {
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message']  = $validator->errors()->all();
-
-            return $rsp_msg;
-        }
-
-
-        $plan_amount = DB::table('plans')->where('id', $request->input('plan_id'))->value('minimum_installment_amount');
-
-        if ($plan_amount > $request->input('installment_amount')) {
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message'] = "Minimum Installment Amount: $plan_amount";
-
-            return $rsp_msg;
-        }
-
-        if ($request->input('installment_amount') % 1000 !== 0) {
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message'] = "Only Multiple of this Amount: 1000 will Accepted";
-
-            return $rsp_msg;
-        }
-
-        // if($request->has('residence_address_check')){
-        //     $address = $request->input('residence_nominee_address');
-        // } else {
-        //     $address = $request->input('nominee_address');
-        // }
-
-        if(Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))){
-
-            DB::table('users')->where('id',Session::get('temp_user_id'))->update([
-                'plan_id' => $request->input('plan_id'),
-                'installment_amount' => $request->input('installment_amount'),
-            ]);
-
-            // DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
-            //     'nominee_name' => $request->input('nominee_name'),
-            //     'nominee_phone' => $request->input('nominee_phone'),
-            //     'nominee_dob' => $request->input('nominee_dob'),
-            //     'nominee_address' => $address,
-            //     'nominee_relation' => $request->input('nominee_relation'),
-            // ]);
-
-            Session::put('step', 5);
-
-            $rsp_msg['response'] = 'success';
-            $rsp_msg['message']  = "Plan Detail Added successfully. Please Proceed";
-
-        } else {
-
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message']  = "Something Went Wrong";
-
-        }
-        
-        return $rsp_msg;
-
-    }
-
-
-    public function accept_ekyc_term($request){
-
-        $validator = Validator::make($request->all(), [
-            'accept_term' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message']  = $validator->errors()->all();
-
-            return $rsp_msg; 
-        }
-
-        Session::put('step', 6);
-
-        $rsp_msg['response'] = 'success';
-        $rsp_msg['message']  = "Please Proceed for ekyc";
-
-        return $rsp_msg; 
-        
-    }
 
     public function aadhar_verify_request_otp($request){
 
@@ -928,7 +740,7 @@ class AccountController extends Controller
 
             session(['aadhar_no' => $request->aadhar]); 
 
-            Session::put('step', 7);
+            Session::put('step', 4);
 
         }else{
             //do failure stuff
@@ -1019,7 +831,7 @@ class AccountController extends Controller
 
             Session::put('customer_detail', $customer_detail);
 
-            Session::put('step', 8);
+            Session::put('step', 5);
                         
             $rsp_msg['response'] = 'success';
             $rsp_msg['message']  = "Aadhar Number verified successfully!";
@@ -1034,6 +846,202 @@ class AccountController extends Controller
         return $rsp_msg; 
 
     }
+
+
+
+
+    public function create_customer_detail($request){
+
+        $validator = Validator::make($request->all(), [
+            // 'title' => 'required',
+            'first_name' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            'last_name' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:1',
+            'email' => 'required|email',
+            // 'flat_no' => 'required|min:1',
+            // 'street' => 'required|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:3',
+            // 'locality' => 'required|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:3',
+            // 'state' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            // 'city' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            'address' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:350'],
+            // 'pincode' => 'required|regex:/^[\d\s-]+$/|min:6',
+            'pan_number' => 'required|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:10|max:10',
+
+            'nominee_name' => ['nullable', 'string','regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
+            'nominee_phone' => 'nullable|regex:/^\d{10}$/',
+            'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
+            'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:350'],
+
+            'dob' => ['required', 'date', function ($attribute, $value, $fail) {
+                $dob = Carbon::parse($value);
+                $age = $dob->diffInYears(Carbon::now());
+        
+                if ($age < 18) {
+                    $fail('You must be at least 18 years old.');
+                }
+            }],
+        ]);
+
+        if ($validator->fails()) {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = $validator->errors()->all();
+
+            return $rsp_msg;
+        }
+        
+        $users_email = DB::table('users')->where('email', $request->input('email'))->where('status', 1)->get();
+
+        if(count($users_email) != 0){
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = 'Email Already Exists';
+
+            return $rsp_msg;
+        }
+
+        if($request->has('residence_address_check')){
+            $address = $request->input('residence_nominee_address');
+        } else {
+            $address = $request->input('nominee_address');
+        }
+
+        if(Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))){
+
+            DB::table('users')->where('id',Session::get('temp_user_id'))->update([
+                // 'salutation' => $request->input('title'),
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'email' => strtolower($request->input('email')),
+            ]);
+
+            DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
+                // 'flat_no' => $request->input('flat_no'),
+                // 'street' => $request->input('street'),
+                // 'locality' => $request->input('locality'),
+                // 'state' => $request->input('state'),
+                // 'city' => $request->input('city'),
+                // 'pincode' => $request->input('pincode'),
+                'dob' => $request->input('dob'),
+                'pan_number' => $request->input('pan_number'),
+                'address' => $request->input('address'),
+
+                'nominee_name' => $request->input('nominee_name'),
+                'nominee_phone' => $request->input('nominee_phone'),
+                'nominee_dob' => $request->input('nominee_dob'),
+                'nominee_address' => $address,
+                'nominee_relation' => $request->input('nominee_relation'),
+            ]);
+
+            Session::put('step', 7);
+
+            $rsp_msg['response'] = 'success';
+            $rsp_msg['message']  = "Customer Detail Added successfully. Please Proceed";
+
+        } else {
+
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = "Something Went Wrong";
+
+        }
+        
+        return $rsp_msg;
+
+    }
+
+    public function update_plan_detail($request){
+
+        $validator = Validator::make($request->all(), [
+            'plan_id' => 'required',
+            'installment_amount' => 'required|numeric',
+            // 'nominee_name' => ['nullable', 'string','regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
+            // 'nominee_phone' => 'nullable|regex:/^\d{10}$/',
+            // 'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
+            // 'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
+        ]);
+
+        if ($validator->fails()) {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = $validator->errors()->all();
+
+            return $rsp_msg;
+        }
+
+
+        $plan_amount = DB::table('plans')->where('id', $request->input('plan_id'))->value('minimum_installment_amount');
+
+        if ($plan_amount > $request->input('installment_amount')) {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message'] = "Minimum Installment Amount: $plan_amount";
+
+            return $rsp_msg;
+        }
+
+        if ($request->input('installment_amount') % 1000 !== 0) {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message'] = "Only Multiple of this Amount: 1000 will Accepted";
+
+            return $rsp_msg;
+        }
+
+        // if($request->has('residence_address_check')){
+        //     $address = $request->input('residence_nominee_address');
+        // } else {
+        //     $address = $request->input('nominee_address');
+        // }
+
+        if(Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))){
+
+            DB::table('users')->where('id',Session::get('temp_user_id'))->update([
+                'plan_id' => $request->input('plan_id'),
+                'installment_amount' => $request->input('installment_amount'),
+            ]);
+
+            // DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
+            //     'nominee_name' => $request->input('nominee_name'),
+            //     'nominee_phone' => $request->input('nominee_phone'),
+            //     'nominee_dob' => $request->input('nominee_dob'),
+            //     'nominee_address' => $address,
+            //     'nominee_relation' => $request->input('nominee_relation'),
+            // ]);
+
+            Session::put('step', 8);
+
+            $rsp_msg['response'] = 'success';
+            $rsp_msg['message']  = "Plan Detail Added successfully. Please Proceed";
+
+        } else {
+
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = "Something Went Wrong";
+
+        }
+        
+        return $rsp_msg;
+
+    }
+
+
+    // public function accept_ekyc_term($request){
+
+    //     $validator = Validator::make($request->all(), [
+    //         'accept_term' => 'required',
+    //     ]);
+
+    //     if ($validator->fails()) {
+    //         $rsp_msg['response'] = 'error';
+    //         $rsp_msg['message']  = $validator->errors()->all();
+
+    //         return $rsp_msg; 
+    //     }
+
+    //     Session::put('step', 8);
+
+    //     $rsp_msg['response'] = 'success';
+    //     $rsp_msg['message']  = "Please Proceed for ekyc";
+
+    //     return $rsp_msg; 
+        
+    // }
+
+
 
 
 
@@ -1053,7 +1061,7 @@ class AccountController extends Controller
             return $rsp_msg; 
         }
 
-        Session::put('step', 10);
+        Session::put('step', 9);
 
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "Please Proceed for esign";
