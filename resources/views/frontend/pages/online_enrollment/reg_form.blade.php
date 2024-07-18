@@ -7,7 +7,7 @@
                         <p>Hello,
                         
                         <p>   
-                           Warm greetings from Motiwala Jewels Gold and Diamonds Pvt Ltd! We sincerely appreciate your interest in opening a new account with our Motiwala Jewels Golden Treasure Purchase Plan.
+                           We sincerely appreciate your interest in opening a new account with our Motiwala Jewels Golden Treasure Purchase Plan.
                         </p>
                         <p>To help us expedite your request, please proceed with the following steps.</p>
                     </div>
