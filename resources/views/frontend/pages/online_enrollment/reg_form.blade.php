@@ -140,7 +140,7 @@
                     ->first();
                 $user_detail = DB::table('userdetails')
                     ->where('user_id', Session::get('temp_user_id'))
-                    ->get(['flat_no', 'street', 'locality', 'state', 'city', 'pincode', 'dob', 'pan_number','nominee_name', 'nominee_phone', 'nominee_dob', 'nominee_address', 'nominee_relation'])
+                    ->get(['flat_no', 'street', 'locality', 'state', 'city', 'pincode', 'dob', 'pan_number','nominee_name', 'nominee_phone', 'nominee_dob', 'nominee_address', 'nominee_relation','address'])
                     ->first();
             @endphp
         @endif
@@ -200,7 +200,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                {{-- <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">Door No / Flat NO *</label>
                         <input type="text" class="form-control" name="flat_no" pattern="[0-9A-Za-z]+"
@@ -228,7 +228,7 @@
                 <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">Pin Code *</label>
-                        <input type="text" class="form-control" name="pincode" pattern="[0-9]+" minlength="3"
+                        <input type="text" class="form-control" id="pincode" name="pincode" pattern="[0-9]+" minlength="3"
                             placeholder="Please Enter Your Pin Code" value="{{ $user_detail->pincode }}" required />
                     </div>
                 </div>
@@ -236,7 +236,7 @@
                 <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">State *</label>
-                        <input type="text" class="form-control" name="state" pattern="[A-Za-z\s]+"
+                        <input type="text" class="form-control" id="state" name="state" pattern="[A-Za-z\s]+"
                             minlength="3" placeholder="Please Enter Your State" value="{{ $user_detail->state }}"
                             required />
                     </div>
@@ -245,11 +245,11 @@
                 <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">City / Town *</label>
-                        <input type="text" class="form-control" name="city" pattern="[A-Za-z]+"
+                        <input type="text" class="form-control" id="city" name="city" pattern="[A-Za-z]+"
                             minlength="3" placeholder="Please Enter Your City" value="{{ $user_detail->city }}"
                             required />
                     </div>
-                </div>
+                </div> --}}
 
 
 
@@ -257,6 +257,14 @@
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">DOB * ( As per Aadhar )</label>
                         <input type="date" class="form-control" name="dob" value="{{ $user_detail->dob }}" max="{{ date('Y-m-d', strtotime('-18 years')) }}" required />
+                    </div>
+                </div>
+
+
+                <div class="col-md-12" >
+                    <div class="form-group mt-md-5 mt-3 adhar_field">
+                        <label class="pb-3">Address *</label>
+                        <textarea class="form-control height50" row="2" name="address" style="height: 103px;">{{ $user_detail->address }}</textarea>
                     </div>
                 </div>
 

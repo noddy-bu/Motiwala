@@ -526,10 +526,10 @@
                         },
                         success: function (data) {
                             if (data.postalCodes.length > 0) {
-                                $('#country_name').val(data.postalCodes[0].countryCode).focus();
+                                // $('#country_name').val(data.postalCodes[0].countryCode).focus();
                                 $('#city').val(data.postalCodes[0].adminName2).focus();
                                 $('#state').val(data.postalCodes[0].adminName1).focus();
-                                $('#address').focus();
+                                // $('#address').focus();
 
                                 // $('#placeName').val(data.postalCodes[0].placeName);
 
