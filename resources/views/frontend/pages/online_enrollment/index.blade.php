@@ -341,18 +341,18 @@
 
     /*--------------------- minimum amount ---------------*/
 
-    /*--------------------- ekyc verify ------------------*/ 
+    // /*--------------------- ekyc verify ------------------*/ 
 
-    initValidate('#ekyc-verify');
+    // initValidate('#ekyc-verify');
 
-    $('#preview-info form').on('submit', function(event){
+    // $('#preview-info form').on('submit', function(event){
 
-        var form = $(this);
-        ajax_form_submit(event, form);
+    //     var form = $(this);
+    //     ajax_form_submit(event, form);
 
-    });
+    // });
 
-    /*--------------------- ekyc verify ------------------*/
+    // /*--------------------- ekyc verify ------------------*/
 
     /*--------------------- aadhar verify ------------------*/ 
 
@@ -383,7 +383,7 @@
 
     /*--------------------- esign aadhar verify ------------------*/ 
 
-    initValidate('#esign-aadhar-verify-request-otp');
+    initValidate('#ekyc-verify');
 
     $('#esign form').on('submit', function(event){
 
