@@ -803,13 +803,13 @@
     .footer-widget .widget-menu a {
         display: inline-block;
     }
-
+/* 
     .footer .row>div:nth-child(4) > .footer-widget {
         position: absolute;
         top: 20px;
         right: 5%;
         width: 40%;
-    }
+    } */
 
     .footer-app-image {
         margin-top: -310px;
