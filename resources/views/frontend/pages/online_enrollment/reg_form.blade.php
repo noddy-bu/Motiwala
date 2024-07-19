@@ -1341,6 +1341,7 @@
                     'city',
                     'pincode',
                     'dob',
+                    'address'
                 ])
                 ->first();
 
@@ -1441,12 +1442,13 @@
                             <div class="col-md-8 mb-3">
                                 <p class="card-text"><strong>Address : </strong>
                                     @php
-                                        echo $user_detail->flat_no . ",\n";
-                                        echo $user_detail->street . ",\n";
-                                        echo $user_detail->locality . ",\n";
-                                        echo $user_detail->city . ",\n";
-                                        echo $user_detail->state . ",\n";
-                                        echo $user_detail->pincode;
+                                        // echo $user_detail->flat_no . ",\n";
+                                        // echo $user_detail->street . ",\n";
+                                        // echo $user_detail->locality . ",\n";
+                                        // echo $user_detail->city . ",\n";
+                                        // echo $user_detail->state . ",\n";
+                                        // echo $user_detail->pincode;
+                                        echo $user_detail->address;
                                     @endphp
                                 </p>
                             </div>

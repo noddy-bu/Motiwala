@@ -20,6 +20,7 @@
             'pincode' => '1',
             'aadhar_number' => '12345',
             'pan_number' => '123',
+            'address' => 'fkdsjfljsdflj sasdaklfjsdlfjljsadf dsfjadjsf',
         ],
         'plan' => (object) [
             'installment_period' => '123',
@@ -79,9 +80,10 @@
  <div style="width:100%; clear:both; padding-top:15px;">
     <div style="width:22%; float:left;"><b>Customer Address:</b></div>
     <div style="width:78%; float:left; border-bottom:1px solid #ccc;">
-        {{ $data['user_detail']->flat_no }} {{ $data['user_detail']->street }}
+        {{-- {{ $data['user_detail']->flat_no }} {{ $data['user_detail']->street }}
         {{ $data['user_detail']->locality }} {{ $data['user_detail']->city }}
-        {{ $data['user_detail']->state }} {{ $data['user_detail']->pincode }}
+        {{ $data['user_detail']->state }} {{ $data['user_detail']->pincode }} --}}
+        {{ $data['user_detail']->address; }}
     </div>
 </div>
 

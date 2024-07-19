@@ -196,7 +196,7 @@ class EsignAadharController extends Controller
 
         $user_detail = DB::table('userdetails')
         ->where('user_id', Session::get('temp_user_id'))
-        ->get(['pan_number','flat_no','street','locality','state','city','pincode','nominee_name','nominee_phone','nominee_address','nominee_relation','aadhar_number'])
+        ->get(['pan_number','flat_no','street','locality','state','city','pincode','address','nominee_name','nominee_phone','nominee_address','nominee_relation','aadhar_number'])
         ->first();
 
         $plan = DB::table('plans')->where('id', $user->plan_id)->get(['name','installment_period'])->first();
