@@ -824,8 +824,9 @@ class AccountController extends Controller
 
         $validator = Validator::make($request->all(), [
             // 'title' => 'required',
-            'first_name' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
-            'last_name' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:1',
+            // 'first_name' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            // 'last_name' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:1',
+            'fullname' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
             'email' => 'required|email',
             // 'flat_no' => 'required|min:1',
             // 'street' => 'required|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:3',
@@ -877,8 +878,9 @@ class AccountController extends Controller
 
             DB::table('users')->where('id', Session::get('temp_user_id'))->update([
                 // 'salutation' => $request->input('title'),
-                'first_name' => $request->input('first_name'),
-                'last_name' => $request->input('last_name'),
+                // 'first_name' => $request->input('first_name'),
+                // 'last_name' => $request->input('last_name'),
+                'fullname' => $request->input('fullname'),
                 'email' => strtolower($request->input('email')),
             ]);
 
