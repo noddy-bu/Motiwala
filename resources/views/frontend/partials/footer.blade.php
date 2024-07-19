@@ -77,12 +77,12 @@
                 </a>
               </li>
               <li>
-                <a target="_blank" href="https://www.facebook.com/MOTIWALA.JEWELS">
+                <a target="_blank" href="https://www.facebook.com/people/Motiwala-Jewels/pfbid0riS1PDcEineCQ4KxRQnXfZEV6Nhbng4vVqePiuW22nwYp5jxVv5ip9hK9kXEhy2hl/">
                   <i class="lab la-facebook-f"></i>
                 </a>
               </li>
               <li>
-                <a href="">
+                <a href="https://www.instagram.com/motiwalajewelsofficial/">
                   <i class="lab la-instagram"></i>
                 </a>
               </li>
