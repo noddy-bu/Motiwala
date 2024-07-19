@@ -138,7 +138,7 @@
                                 minlength="12" maxlength="12" placeholder="Please Enter Aadhar No" required />
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    {{-- <div class="col-md-4">
 
                         <div class="form-group mt-4 adhar_field">
                             <label class="pb-3">Confirm Aadhaar *</label>
@@ -147,7 +147,7 @@
                         </div>
 
 
-                    </div>
+                    </div> --}}
 
 
                 </div>

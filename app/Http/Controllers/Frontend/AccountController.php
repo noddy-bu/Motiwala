@@ -699,7 +699,7 @@ class AccountController extends Controller
 
         $validator = Validator::make($request->all(), [
             'aadhar' => 'required|digits:12|same:aadhar_conform',
-            'aadhar_conform' => 'required|digits:12',
+            // 'aadhar_conform' => 'required|digits:12',
         ]);
 
         if ($validator->fails()) {
