@@ -164,7 +164,15 @@
                                                     @endif
                                                     
                                                 </td>
-                                                <td>{{ date('d-m-Y', strtotime($row->due_date_start)) }}</td>
+                                                {{-- <td>{{ date('d-m-Y', strtotime($row->due_date_start)) }}</td> --}}
+                                                <td>
+                                                    @if ($row->installment_no == 1)
+                                                        -
+                                                    @else
+                                                        {{ datetimeFormatter($row->receipt_date) }}
+                                                    @endif
+                                                    
+                                                </td>
                                                 <td>
                                                     {{ $row->installment_no }}
                                                 </td>
