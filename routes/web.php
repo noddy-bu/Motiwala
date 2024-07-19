@@ -181,12 +181,12 @@ Route::get('/update-session', function () {
 
 
 Route::get('/custom-session', function () {
-    Session()->put('step', 6);
-    session()->put('temp_user_id', 6);
+    Session()->put('step', 3);
+    // session()->put('temp_user_id', 6);
 });
 
 Route::get('/resubmit-aadhar-otp', function () {
-    Session()->put('step', 5);
+    Session()->put('step', 3);
 })->name('resubmit-aadhar-otp');
 
 Route::get('/redirect-login', function () {
