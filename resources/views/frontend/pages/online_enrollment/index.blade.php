@@ -32,14 +32,18 @@
                 if (Session::has('step') && Session::get('step') == 1) {
                     $value = 0;
                 } elseif (Session::has('step') && Session::get('step') == 3) {
-                    $value = 12;
+                    $value = 20;
+                } elseif (Session::has('step') && Session::get('step') == 4) {
+                    $value = 20;
                 } elseif (Session::has('step') && Session::get('step') == 6) {
-                    $value = 25;
-                } elseif (Session::has('step') && Session::get('step') == 7) {
                     $value = 35;
+                } elseif (Session::has('step') && Session::get('step') == 7) {
+                    $value = 55;
                 } elseif (Session::has('step') && Session::get('step') == 8) {
-                    $value = 45;
+                    $value = 70;
                 } elseif (Session::has('step') && Session::get('step') == 12) {
+                    $value = 85;
+                } elseif (Session::has('payment') && Session::get('payment') == 1) {
                     $value = 100;
                 } else {
                     $value = 0;
