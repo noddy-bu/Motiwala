@@ -383,7 +383,7 @@
 
     /*--------------------- esign aadhar verify ------------------*/ 
 
-    initValidate('#ekyc-verify');
+    initValidate('#esign-aadhar-verify-request-otp');
 
     $('#esign form').on('submit', function(event){
 

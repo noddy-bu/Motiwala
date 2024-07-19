@@ -1161,7 +1161,7 @@
             </div>
         </div>
 
-        <form id="ekyc-verify" action="{{ url(route('account.create', ['param' => 'esign-varification'])) }}"
+        <form id="esign-aadhar-verify-request-otp" action="{{ url(route('account.create', ['param' => 'esign-aadhar-verify-request-otp'])) }}"
             method="post">
             @csrf
 
