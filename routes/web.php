@@ -181,7 +181,7 @@ Route::get('/update-session', function () {
 
 
 Route::get('/custom-session', function () {
-    Session()->put('step', 3);
+    Session()->put('step', 8);
     // session()->put('temp_user_id', 6);
 });
 
