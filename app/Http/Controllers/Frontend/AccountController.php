@@ -698,7 +698,8 @@ class AccountController extends Controller
     public function aadhar_verify_request_otp($request){
 
         $validator = Validator::make($request->all(), [
-            'aadhar' => 'required|digits:12|same:aadhar_conform',
+            //'aadhar' => 'required|digits:12|same:aadhar_conform',
+            'aadhar' => 'required|digits:12',
             // 'aadhar_conform' => 'required|digits:12',
         ]);
 
