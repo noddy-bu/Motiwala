@@ -1534,13 +1534,15 @@
                 ->value('name');
         @endphp
 
-        <div class="p-3 mb-2 text-white" style="background-color:#e1aa7a;">
+{{--
+        <!-- <div class="p-3 mb-2 text-white" style="background-color:#e1aa7a;">
             <h5> Preview Info </h5>
-        </div>
+        </div> -->
+            --}}
 
-        <div class="row">
-
-            <div class="col-md-4">
+        <div class="row justify-content-center">
+            {{--
+            <!-- <div class="col-md-4">
 
                 <div class="card col-md-12 mt-2">
                     <div class="card-header">
@@ -1553,10 +1555,12 @@
                     </div>
                 </div>
 
-            </div>
+            </div> --> 
+            --}}
 
 
-            <div class="col-md-4">
+           
+            {{-- <!-- <div class="col-md-4">
 
                 <div class="col-md-12 mt-2">
 
@@ -1575,24 +1579,22 @@
 
                 </div>
 
-            </div>
+            </div> -->
+            --}}
 
+            <h2 class="success_heading text-center">you have successfully registered your account</h2>
+            <h3 class="login_details text-center">your login details are</h3>
 
-            <div class="col-md-4">
-                <div class="card col-md-12 mt-2">
-                    <div class="card-header">
-                        Login Details
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text"><strong>User ID : </strong>{{ $user->phone }}</p>
-                        <p class="card-text"><strong>Password : </strong>{{ $user->phone }}</p>
+                    <div class="row col-md-6 p-3 px-2 mb-2 text-dark text-center mt-2 rounded-3" style="background-color:#fff;">
+                        <p class="col-md-6 mb-0"><strong>User ID : </strong>{{ $user->phone }}</p>
+                        <p class="col-md-6 mb-0"><strong>Password : </strong>{{ $user->phone }}</p>
                         <input type="hidden" name="phone" id="phone" value="{{ $user->phone }}">
                     </div>
-                </div>
 
-            </div>
 
-            <div class="col-md-12">
+            
+            {{--
+            <!-- <div class="col-md-12">
 
                 <div class="card col-md-12 mt-2">
                     <div class="card-header">
@@ -1604,7 +1606,7 @@
                         <div class="row">
 
                             <div class="col-md-4 mb-3">
-                                {{-- <p class="card-text"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p> --}}
+                                <p class="card-text"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p> 
                                 <p class="card-text"><strong>Name : </strong>{{ $user->fullname }}</p>
                             </div>
 
@@ -1665,20 +1667,23 @@
                 </div>
 
 
-            </div>
+            </div> -->
+            --}}
 
 
         </div>
 
-        <div class="p-3 mb-2 text-white mt-2" style="background-color:#e1aa7a;">
+            {{--
+        <!-- <div class="p-3 mb-2 text-white mt-2" style="background-color:#e1aa7a;">
             <h5> Login </h5>
-        </div>
+        </div> -->
+            --}}
 
         <div>
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group text-center">
             <div class="buttonclass1 mt40">
                 <button id="login_page">Proceed to login <i class="las la-arrow-right"></i></button>
             </div>

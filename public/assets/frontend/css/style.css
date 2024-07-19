@@ -1793,6 +1793,10 @@ form#loginForm a:hover {
     background-size: 50em;
 }
 
+.success_heading, .login_details {
+    text-transform: capitalize;
+}
+
 /* transaction failure page */
 
 .padd70 {
