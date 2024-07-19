@@ -60,7 +60,8 @@
 
     <div style="width:100%;">
     <div style="width:25%; float:left;"><b>Account Holder Name:</b></div>
-    <div style="width:75%; float:left; border-bottom:1px solid #ccc;">{{ $data['user']->first_name }} {{ $data['user']->last_name }}</div>
+    {{-- <div style="width:75%; float:left; border-bottom:1px solid #ccc;">{{ $data['user']->first_name }} {{ $data['user']->last_name }}</div> --}}
+    <div style="width:75%; float:left; border-bottom:1px solid #ccc;">{{ $data['user']->fullname }}</div>
 </div>
 <br>
 

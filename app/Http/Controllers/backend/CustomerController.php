@@ -51,20 +51,25 @@ class CustomerController extends Controller
         $searchValue = $request->input('search.value');
         if (!empty($searchValue)) {
             $query->where(function($q) use ($searchValue) {
-                $q->where('users.first_name', 'like', "%$searchValue%")
-                    ->orWhere('users.last_name', 'like', "%$searchValue%")
+                $q->where('users.fullname', 'like', "%$searchValue%")
+                    // ->orWhere('users.last_name', 'like', "%$searchValue%")
                     ->orWhere('users.email', 'like', "%$searchValue%")
                     ->orWhere('users.phone', 'like', "%$searchValue%");
             });
         }
     
         // Filter by additional form parameters
+        // $name = $request->input('name');
+        // if (!empty($name)) {
+        //     $query->where(function($q) use ($name) {
+        //         $q->where('users.first_name', 'like', "%$name%")
+        //             ->orWhere('users.last_name', 'like', "%$name%");
+        //     });
+        // }
+
         $name = $request->input('name');
         if (!empty($name)) {
-            $query->where(function($q) use ($name) {
-                $q->where('users.first_name', 'like', "%$name%")
-                    ->orWhere('users.last_name', 'like', "%$name%");
-            });
+            $query->where('users.fullname', 'like', "%$name%");
         }
 
         $email = $request->input('email');
@@ -116,7 +121,8 @@ class CustomerController extends Controller
 
             $nestedData = [
                 'id' => $i++,
-                'name' => $row->first_name.' '.$row->last_name,
+                // 'name' => $row->first_name.' '.$row->last_name,
+                'name' => $row->fullname,
                 'email' => $row->email,
                 'phone' => $row->phone,
                 'status' => $plan_status,

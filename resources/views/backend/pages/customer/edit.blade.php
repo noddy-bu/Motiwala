@@ -15,7 +15,8 @@
                     <div class="row">
 
                         <div class="col-md-4 mb-2">
-                            <p class="card-text"><strong>Name : </strong>{{ $user->first_name ?? '-' }} {{ $user->last_name ?? '-' }}</p>
+                            {{-- <p class="card-text"><strong>Name : </strong>{{ $user->first_name ?? '-' }} {{ $user->last_name ?? '-' }}</p> --}}
+                            <p class="card-text"><strong>Name : </strong>{{ $user->fullname ?? '-' }}</p>
                         </div>
 
                         <div class="col-md-4 mb-2">
@@ -61,12 +62,13 @@
                         <div class="col-12 mb-2">
                             <p class="card-text"><strong>Address : </strong>
                                 @php
-                                    echo $user_detail->flat_no . ",\n";
-                                    echo $user_detail->street . ",\n";
-                                    echo $user_detail->locality . ",\n";
-                                    echo $user_detail->city . ",\n";
-                                    echo $user_detail->state . ",\n";
-                                    echo $user_detail->pincode;
+                                    // echo $user_detail->flat_no . ",\n";
+                                    // echo $user_detail->street . ",\n";
+                                    // echo $user_detail->locality . ",\n";
+                                    // echo $user_detail->city . ",\n";
+                                    // echo $user_detail->state . ",\n";
+                                    // echo $user_detail->pincode;
+                                    echo $user_detail->address;
                                 @endphp
                             </p>
                         </div>

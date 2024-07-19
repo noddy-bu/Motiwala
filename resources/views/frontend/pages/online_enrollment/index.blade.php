@@ -33,23 +33,13 @@
                     $value = 0;
                 } elseif (Session::has('step') && Session::get('step') == 3) {
                     $value = 12;
-                } elseif (Session::has('step') && Session::get('step') == 4) {
-                    $value = 25;
-                } elseif (Session::has('step') && Session::get('step') == 5) {
-                    $value = 35;
                 } elseif (Session::has('step') && Session::get('step') == 6) {
-                    $value = 45;
+                    $value = 25;
                 } elseif (Session::has('step') && Session::get('step') == 7) {
-                    $value = 55;
+                    $value = 35;
                 } elseif (Session::has('step') && Session::get('step') == 8) {
-                    $value = 65;
-                } elseif (Session::has('step') && Session::get('step') == 9) {
-                    $value = 75;
-                } elseif (Session::has('step') && Session::get('step') == 10) {
-                    $value = 80;
+                    $value = 45;
                 } elseif (Session::has('step') && Session::get('step') == 12) {
-                    $value = 90;
-                } elseif (Session::has('step') && Session::get('step') == 13) {
                     $value = 100;
                 } else {
                     $value = 0;
@@ -74,40 +64,40 @@
                     </div>
                     <div class="step-item">
                         <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseThree" @if(Session::get('step') > 3) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
+                            data-target="#collapseThree" @if(Session::get('step') > 5) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
                             3
                         </button>
                     </div>
 
                     <div class="step-item">
                         <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseThree" @if(Session::get('step') > 4) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
+                            data-target="#collapseThree" @if(Session::get('step') > 6) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
                             4
                         </button>
                     </div>
 
                     <div class="step-item">
                         <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseThree" @if(Session::get('step') > 5) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
+                            data-target="#collapseThree" @if(Session::get('step') > 7) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
                             5
                         </button>
                     </div>
 
                     <div class="step-item">
                         <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseThree" @if(Session::get('step') > 7) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
+                            data-target="#collapseThree" @if(Session::get('step') > 8) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
                             6
                         </button>
                     </div>
 
                     <div class="step-item">
                         <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseThree" @if(Session::get('step') > 8) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
+                            data-target="#collapseThree" @if(Session::get('step') > 12) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
                             7
                         </button>
                     </div>
 
-                    <div class="step-item">
+                    {{-- <div class="step-item">
                         <button class="step-button text-center collapsed" type="button" data-toggle="collapse"
                             data-target="#collapseThree" @if(Session::get('step') > 9) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
                             8
@@ -126,7 +116,7 @@
                             data-target="#collapseThree" @if(Session::get('step') > 13) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
                             10
                         </button>
-                    </div>
+                    </div> --}}
 
 
                 </div>
@@ -343,14 +333,14 @@
 
     /*--------------------- ekyc verify ------------------*/ 
 
-    initValidate('#ekyc-verify');
+    // initValidate('#ekyc-verify');
 
-    $('#preview-info form').on('submit', function(event){
+    // $('#preview-info form').on('submit', function(event){
 
-        var form = $(this);
-        ajax_form_submit(event, form);
+    //     var form = $(this);
+    //     ajax_form_submit(event, form);
 
-    });
+    // });
 
     /*--------------------- ekyc verify ------------------*/
 

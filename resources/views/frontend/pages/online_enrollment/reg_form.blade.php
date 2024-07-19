@@ -293,6 +293,7 @@
             $mobile = $customer_detail['mobile'];
 
             Session()->put('address', $address);
+            Session()->put('fullname', $fullName);
 
         @endphp
 
@@ -360,7 +361,7 @@
             @php
                 $user = DB::table('users')
                     ->where('id', Session::get('temp_user_id'))
-                    ->get(['salutation', 'first_name', 'last_name', 'email', 'phone'])
+                    ->get(['salutation', 'first_name', 'last_name','fullname','email', 'phone'])
                     ->first();
                 $user_detail = DB::table('userdetails')
                     ->where('user_id', Session::get('temp_user_id'))
@@ -376,7 +377,11 @@
                     $customer_address = '';
                 }
                 
-
+                if(Session::has('fullname')){
+                    $fullname = Session::get('fullname');
+                } else {
+                    $fullname = '';
+                }
 
 
 
@@ -408,19 +413,19 @@
 
                 <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">First Name *</label>
-                        <input type="text" class="form-control uppercase" name="first_name" pattern="[A-Za-z]+" minlength="3"
-                            maxlength="20" placeholder="Please Enter Your First Name" value="{{ $user->first_name }}" required />
+                        <label class="pb-2">Full Name *</label>
+                        <input type="text" class="form-control uppercase" name="fullname" pattern="[A-Za-z]+" minlength="3"
+                            maxlength="30" placeholder="Please Enter Your Full Name" value="{{ $user->first_name ?? $fullname}}" required />
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                {{-- <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">Last Name *</label>
                         <input type="text" class="form-control uppercase" name="last_name" pattern="[A-Za-z]+" minlength="1"
                             maxlength="20" placeholder="Please Enter Your Last Name" value="{{ $user->last_name }}" required />
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
@@ -660,7 +665,7 @@
                         @endforeach --}}
                             @foreach ($plan as $row)
                                 <option data-minium="{{ $row->minimum_installment_amount }}"
-                                    value="{{ $row->id }}">
+                                    value="{{ $row->id }}" @if($row->id == 1) selected @endif>
                                     {{ ucfirst($row->name) }}
                                 </option>
                             @endforeach
@@ -1006,7 +1011,7 @@
         @php
             $user = DB::table('users')
                 ->where('id', Session::get('temp_user_id'))
-                ->get(['plan_id', 'installment_amount', 'first_name','last_name', 'email', 'phone', 'id'])
+                ->get(['plan_id', 'installment_amount', 'first_name','last_name','fullname','email', 'phone', 'id'])
                 ->first();
 
             $user_detail = DB::table('userdetails')
@@ -1080,7 +1085,8 @@
 
                         <div class="row">
                             <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p>
+                                {{-- <p class="card-text"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p> --}}
+                                <p class="card-text"><strong>Name : </strong>{{ $user->fullname }}</p>
                             </div>
 
                             <div class="col-md-4 mb-3">
@@ -1322,7 +1328,7 @@
         @php
             $user = DB::table('users')
                 ->where('id', Session::get('temp_user_id'))
-                ->get(['plan_id', 'installment_amount', 'first_name','last_name', 'email', 'phone', 'id'])
+                ->get(['plan_id', 'installment_amount', 'first_name','last_name','fullname','email', 'phone', 'id'])
                 ->first();
 
             $user_detail = DB::table('userdetails')
@@ -1398,7 +1404,8 @@
 
 
                             <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p>
+                                {{-- <p class="card-text"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p> --}}
+                                <p class="card-text"><strong>Name : </strong>{{ $user->fullname }}</p>
                             </div>
 
                             <div class="col-md-4 mb-3">
@@ -1499,7 +1506,7 @@
 
             $user = DB::table('users')
                 ->where('id', Session::get('temp_user_id'))
-                ->get(['plan_id', 'installment_amount', 'first_name','last_name', 'email', 'phone', 'id'])
+                ->get(['plan_id', 'installment_amount', 'first_name','last_name','fullname','email', 'phone', 'id'])
                 ->first();
 
             $user_detail = DB::table('userdetails')
@@ -1518,6 +1525,7 @@
                     'city',
                     'pincode',
                     'dob',
+                    'address',
                 ])
                 ->first();
 
@@ -1596,7 +1604,8 @@
                         <div class="row">
 
                             <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p>
+                                {{-- <p class="card-text"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p> --}}
+                                <p class="card-text"><strong>Name : </strong>{{ $user->fullname }}</p>
                             </div>
 
                             <div class="col-md-4 mb-3">
@@ -1642,12 +1651,12 @@
                             <div class="col-md-6 mb-3">
                                 <p class="card-text"><strong>Address : </strong>
                                     @php
-                                        echo $user_detail->flat_no . ",\n";
-                                        echo $user_detail->street . ",\n";
-                                        echo $user_detail->locality . ",\n";
-                                        echo $user_detail->city . ",\n";
-                                        echo $user_detail->state . ",\n";
-                                        echo $user_detail->pincode;
+                                        // echo $user_detail->flat_no . ",\n";
+                                        // echo $user_detail->street . ",\n";
+                                        // echo $user_detail->locality . ",\n";
+                                        // echo $user_detail->city . ",\n";
+                                        // echo $user_detail->state . ",\n";
+                                        echo $user_detail->address;
                                     @endphp
                                 </p>
                             </div>

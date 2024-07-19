@@ -31,9 +31,10 @@ class AccountController extends Controller
 
 
 
-/*------------------------------ Login Logout Function -------------------------------------------------*/
+    /*------------------------------ Login Logout Function -------------------------------------------------*/
 
-    public function customer_login(Request $request){
+    public function customer_login(Request $request)
+    {
 
         // Validating the request data
         $validator = Validator::make($request->all(), [
@@ -44,7 +45,7 @@ class AccountController extends Controller
         // Checking if validation fails
         if ($validator->fails()) {
             $errors = $validator->errors()->all();
-        
+
             return response()->json([
                 'status' => 'error',
                 'message' => $errors
@@ -52,8 +53,7 @@ class AccountController extends Controller
         }
 
         $authenticated = Auth::guard('web')->attempt($request->only(['phone', 'password']));
-        if($authenticated)
-        {
+        if ($authenticated) {
             session()->forget(['step', 'otp_timestamp', 'phone', 'temp_user_id', 'otp', 'aadhar_no', 'payment']);
 
             Session::put('user_id', auth()->user()->id);
@@ -62,147 +62,147 @@ class AccountController extends Controller
                 'status' => 'success',
                 'message' => 'Successfully logged in'
             ], 200);
-        }
-        else
-        {
+        } else {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Invalid credentials'
             ], 200);
         }
-
-
     }
 
-    public function customer_logout(){
+    public function customer_logout()
+    {
         Auth::guard('web')->logout();
         Session()->flush();
         return redirect()->route('index');
     }
 
-/*------------------------------ Login Logout Function -------------------------------------------------*/
+    /*------------------------------ Login Logout Function -------------------------------------------------*/
 
 
-/*------------------------------ other inner Function -------------------------------------------------*/
+    /*------------------------------ other inner Function -------------------------------------------------*/
 
-    
-    public function link_account(){
+
+    public function link_account()
+    {
         return view('frontend.pages.admin.link_account.index');
     }
 
-    public function cancel_ach_si(){
+    public function cancel_ach_si()
+    {
         return view('frontend.pages.admin.cancel_ach_si.index');
     }
 
-    public function get_si_account_nos(){
+    public function get_si_account_nos()
+    {
         return view('frontend.pages.admin.get_si_account_nos.index');
     }
 
-    public function my_accounts(){
+    public function my_accounts()
+    {
         return view('frontend.pages.admin.my_accounts.index');
     }
 
-    public function pay_installments(){
+    public function pay_installments()
+    {
 
         $info = DB::table('users')
-        ->select([
-            'redemptions.id',
-            'users.created_at',
-            'users.plan_id',
-            'plans.name',
-            'plans.installment_period',
-            'redemptions.maturity_date_start',
-            'redemptions.maturity_date_end',
-            'redemptions.status',
-            'redemptions.closing_remark',
-            'redemptions.closing_date',
-        ])
-        ->join('plans', 'users.plan_id', '=', 'plans.id')
-        ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
-        // ->where('redemptions.status', 1)
-        ->where('users.id',Session::get('user_id'))
-        ->get()->first();
-        
-        $transactions = DB::table('transactions')->where('user_id',Session::get('user_id'))->get();
+            ->select([
+                'redemptions.id',
+                'users.created_at',
+                'users.plan_id',
+                'plans.name',
+                'plans.installment_period',
+                'redemptions.maturity_date_start',
+                'redemptions.maturity_date_end',
+                'redemptions.status',
+                'redemptions.closing_remark',
+                'redemptions.closing_date',
+            ])
+            ->join('plans', 'users.plan_id', '=', 'plans.id')
+            ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
+            // ->where('redemptions.status', 1)
+            ->where('users.id', Session::get('user_id'))
+            ->get()->first();
 
-        $redemption_items = DB::table('redemption_items')->where('redemption_id',$info->id)->get();
+        $transactions = DB::table('transactions')->where('user_id', Session::get('user_id'))->get();
 
-        return view('frontend.pages.admin.pay_installments.index', compact('info','transactions','redemption_items'));
+        $redemption_items = DB::table('redemption_items')->where('redemption_id', $info->id)->get();
+
+        return view('frontend.pages.admin.pay_installments.index', compact('info', 'transactions', 'redemption_items'));
     }
 
-    public function installments(Request $request){
+    public function installments(Request $request)
+    {
 
-      $redemption_items_id = $request->input('id');
+        $redemption_items_id = $request->input('id');
 
-      $redemption_items = DB::table('redemption_items')->where('id',$redemption_items_id)->get()->first();
+        $redemption_items = DB::table('redemption_items')->where('id', $redemption_items_id)->get()->first();
 
-      if($redemption_items->status == "pending"){
+        if ($redemption_items->status == "pending") {
 
-        $redemption = DB::table('redemptions')->where('id',$redemption_items->redemption_id)->where('status',1)->get()->first();
+            $redemption = DB::table('redemptions')->where('id', $redemption_items->redemption_id)->where('status', 1)->get()->first();
 
 
-        $user = DB::table('users')->where('id', $redemption->user_id)->first(['first_name','last_name', 'email', 'phone']);
+            $user = DB::table('users')->where('id', $redemption->user_id)->first(['first_name', 'last_name', 'fullname',  'fullname', 'email', 'phone']);
 
-        //insert in order
-        $txnid = substr(hash('sha256', mt_rand().microtime()), 0, 20);
-        $orderId = DB::table('temp_transactions')->insertGetId([
-            'name'             => $user->first_name.' '.$user->last_name,
-            'email'            => $user->email,
-            'phone'            => $user->phone,
-            'grand_total'      => $redemption_items->installment_amount,
-            'payment_method'   => 'payu',
-            'payment_status'   => 'created',
-            'payment_id'       => $txnid,
-            'created_at'       => date('Y-m-d H:i:s'),
-            'updated_at'       => date('Y-m-d H:i:s')
-        ]);
-
-        if($orderId){
-
-            $rsp_msg['response'] = 'success';
-            $rsp_msg['message']  = "Please Proceed";
-            $rsp_msg['orderId']  = $orderId;
-
-            return $rsp_msg;
-
-            return response()->json([
-                'status' => true,
-                'orderId' => $orderId,
-                'notification' => 'Please Proceed For '.$redemption_items->installment_no.' Installment'
+            //insert in order
+            $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
+            $orderId = DB::table('temp_transactions')->insertGetId([
+                'name'             => $user->first_name . ' ' . $user->last_name,
+                'email'            => $user->email,
+                'phone'            => $user->phone,
+                'grand_total'      => $redemption_items->installment_amount,
+                'payment_method'   => 'payu',
+                'payment_status'   => 'created',
+                'payment_id'       => $txnid,
+                'created_at'       => date('Y-m-d H:i:s'),
+                'updated_at'       => date('Y-m-d H:i:s')
             ]);
 
+            if ($orderId) {
+
+                $rsp_msg['response'] = 'success';
+                $rsp_msg['message']  = "Please Proceed";
+                $rsp_msg['orderId']  = $orderId;
+
+                return $rsp_msg;
+
+                return response()->json([
+                    'status' => true,
+                    'orderId' => $orderId,
+                    'notification' => 'Please Proceed For ' . $redemption_items->installment_no . ' Installment'
+                ]);
+            } else {
+
+                $rsp_msg['response'] = 'error';
+                $rsp_msg['message']  = "Something Went Wrong!, Please try again";
+
+                return $rsp_msg;
+            }
         } else {
 
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message']  = "Something Went Wrong!, Please try again";
-
-            return $rsp_msg;
-
+            return response()->json([
+                'status' => false,
+                'notification' => 'Somthing went wrong'
+            ]);
         }
-
-      } else {
-
-        return response()->json([
-            'status' => false,
-            'notification' => 'Somthing went wrong'
-        ]);
-
-      }
-        
     }
 
-    public function edit_user_profile(){
+    public function edit_user_profile()
+    {
 
         $user = DB::table('users')->where('id', Session::get('user_id'))
-        ->get(['plan_id','installment_amount','first_name', 'last_name','email','phone'])->first();
+            ->get(['plan_id', 'installment_amount', 'first_name', 'last_name', 'fullname', 'email', 'phone'])->first();
 
         $user_detail = DB::table('userdetails')->where('user_id', Session::get('user_id'))
-            ->get(['nominee_name','nominee_phone','nominee_dob','nominee_address','nominee_relation','flat_no','street','locality','state','city','pincode','dob','marital_status','spouse_name','spouse_dob','marriage_date'])->first();
+            ->get(['nominee_name', 'nominee_phone', 'nominee_dob', 'nominee_address', 'nominee_relation', 'flat_no', 'street', 'locality', 'state', 'city', 'pincode', 'dob', 'marital_status', 'spouse_name', 'spouse_dob', 'marriage_date'])->first();
 
         return view('frontend.pages.admin.manage_user_profile.index', compact('user', 'user_detail'));
     }
 
-    public function account_update_profile(Request $request){
+    public function account_update_profile(Request $request)
+    {
 
         $validator = Validator::make($request->all(), [
             'flat_no' => 'required|min:1',
@@ -214,7 +214,7 @@ class AccountController extends Controller
             'dob' => ['required', 'date', function ($attribute, $value, $fail) {
                 $dob = Carbon::parse($value);
                 $age = $dob->diffInYears(Carbon::now());
-        
+
                 if ($age < 18) {
                     $fail('You must be at least 18 years old.');
                 }
@@ -222,12 +222,12 @@ class AccountController extends Controller
             'nominee_dob' => ['required', 'date', function ($attribute, $value, $fail) {
                 $dob = Carbon::parse($value);
                 $age = $dob->diffInYears(Carbon::now());
-        
+
                 if ($age < 18) {
                     $fail('Nominee must be at least 18 years old.');
                 }
             }],
-            'nominee_name' => ['nullable', 'string','regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3'],
+            'nominee_name' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3'],
             'nominee_phone' => 'nullable|regex:/^\d{10}$/',
             'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3'],
             'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3'],
@@ -240,10 +240,10 @@ class AccountController extends Controller
             $rsp_msg['response'] = 'error';
             $rsp_msg['message']  = $validator->errors()->all();
 
-            return $rsp_msg; 
+            return $rsp_msg;
         }
-        
-        
+
+
         DB::table('users')->where('id', $request->input('id'))->update([
             'email' => $request->input('email'),
         ]);
@@ -274,16 +274,17 @@ class AccountController extends Controller
         $rsp_msg['message']  = "Profile Detail Update successfully.";
 
         return $rsp_msg;
-
     }
 
-    public function reset_password(){
-        $user = DB::table('users')->where('id', Session::get('user_id'))->get(['phone','id'])->first();
+    public function reset_password()
+    {
+        $user = DB::table('users')->where('id', Session::get('user_id'))->get(['phone', 'id'])->first();
 
         return view('frontend.pages.admin.manage_user_profile.reset_password', compact('user'));
     }
 
-    public function reset_password_update(Request $request){
+    public function reset_password_update(Request $request)
+    {
 
         $validator = Validator::make($request->all(), [
             'old_password' => 'required',
@@ -295,7 +296,7 @@ class AccountController extends Controller
             $rsp_msg['response'] = 'error';
             $rsp_msg['message']  = $validator->errors()->all();
 
-            return $rsp_msg; 
+            return $rsp_msg;
         }
 
 
@@ -305,7 +306,7 @@ class AccountController extends Controller
 
 
 
-        if(password_verify($rq_old_password, $old_password)){
+        if (password_verify($rq_old_password, $old_password)) {
 
             DB::table('users')->where('id', $request->input('id'))->update([
                 'password' => bcrypt($request->input('password')),
@@ -313,44 +314,44 @@ class AccountController extends Controller
 
             $rsp_msg['response'] = 'success';
             $rsp_msg['message']  = "Password Update successfully.";
-
         } else {
             $rsp_msg['response'] = 'error';
             $rsp_msg['message']  = "Old Password Dosent Match";
         }
 
-        return $rsp_msg; 
+        return $rsp_msg;
     }
 
 
 
 
-/*------------------------------ other inner Function -------------------------------------------------*/
+    /*------------------------------ other inner Function -------------------------------------------------*/
 
 
-/*------------------------------ Forgot password Function --------------------------------------------*/
+    /*------------------------------ Forgot password Function --------------------------------------------*/
 
-    public function forgot_password($param, Request $request){
+    public function forgot_password($param, Request $request)
+    {
 
 
-        if($param == "verify-number-send-otp"){
+        if ($param == "verify-number-send-otp") {
 
             $validator = Validator::make($request->all(), [
                 'phone' => 'required|regex:/^\d{10}$/',
             ]);
-    
+
             if ($validator->fails()) {
                 $errors = $validator->errors()->all();
-        
+
                 return response()->json([
                     'status' => 'error',
                     'message' => $errors
                 ], 200);
-            } 
-    
-            $user = DB::table('users')->where('phone', $request->phone)->where('status','1')->get(['id'])->first();
-    
-            if($user){
+            }
+
+            $user = DB::table('users')->where('phone', $request->phone)->where('status', '1')->get(['id'])->first();
+
+            if ($user) {
 
                 Session()->flush();
 
@@ -361,42 +362,38 @@ class AccountController extends Controller
                 Session::put('user_forget_id', $user->id);
 
                 $phone = $request->phone;
-                
+
                 $sms = (new SmsController)->smsgatewayhub_reset_pwd_otp($phone, $otp);
 
                 return response()->json([
                     'status' => 'success',
-                    'message' => 'OTP has been Share on this No : '.$request->phone.''
+                    'message' => 'OTP has been Share on this No : ' . $request->phone . ''
                 ], 200);
-
             } else {
 
                 return response()->json([
                     'status' => 'error',
                     'message' => 'User Not exist Please Provide Valid Number',
                 ], 200);
-
             }
-    
-
-        }elseif($param == "verify-forgot-otp"){
+        } elseif ($param == "verify-forgot-otp") {
 
             $validator = Validator::make($request->all(), [
                 'otp' => 'required|digits:6',
             ]);
-    
+
             if ($validator->fails()) {
                 $errors = $validator->errors()->all();
-        
+
                 return response()->json([
                     'status' => 'error',
                     'message' => $errors
                 ], 200);
-            } 
-    
+            }
+
             $otp = Session::get('otp');
             $timestamp = Session::get('otp_timestamp');
-    
+
             // Check if OTP expired (2 minutes)
             if (Carbon::parse($timestamp)->diffInMinutes(Carbon::now()) > 2) {
 
@@ -404,74 +401,62 @@ class AccountController extends Controller
                     'status' => 'error',
                     'message' => 'OTP has expired. Please request a new one',
                 ], 200);
-
             }
-    
+
             if ($request->otp == $otp) {
 
                 return response()->json([
                     'status' => 'success',
                     'message' => 'OTP has been Verify successfully'
                 ], 200);
-
             } else {
 
                 return response()->json([
                     'status' => 'error',
                     'message' => 'Invalid OTP',
                 ], 200);
-
-
             }
-    
-        
-        }elseif($param == "reset-password"){
+        } elseif ($param == "reset-password") {
 
 
             $validator = Validator::make($request->all(), [
                 'password' => 'required|min:8|same:password_conform',
                 'password_conform' => 'required|min:8',
             ]);
-    
+
             if ($validator->fails()) {
                 $errors = $validator->errors()->all();
-        
+
                 return response()->json([
                     'status' => 'error',
                     'message' => $errors
                 ], 200);
             }
-    
-            $user = DB::table('users')->where('id', Session::get('user_forget_id'))->where('status','1')->get(['id'])->first();
 
-            if($user){
+            $user = DB::table('users')->where('id', Session::get('user_forget_id'))->where('status', '1')->get(['id'])->first();
+
+            if ($user) {
                 DB::table('users')->where('id', Session::get('user_forget_id'))->update([
                     'password' => bcrypt($request->input('password')),
                 ]);
-    
+
                 return response()->json([
                     'status' => 'success',
                     'message' => 'New Password Update Successfully',
                 ], 200);
-
             } else {
 
                 return response()->json([
                     'status' => 'error',
                     'message' => 'Something Went Wrong'
                 ], 200);
-
             }
-
-
-
         } else {
 
             return response()->json([
                 'status' => 'error',
-                'message' => 'Something Went Wrong or Invalid parameter: '.$param.''
+                'message' => 'Something Went Wrong or Invalid parameter: ' . $param . ''
             ], 200);
-
         }
 
 
@@ -479,94 +464,84 @@ class AccountController extends Controller
             'status' => 'success',
             'message' => 'Successfully forgot Password'
         ], 200);
-
     }
 
 
-/*------------------------------ Forgot password Function -------------------------------------------*/
+    /*------------------------------ Forgot password Function -------------------------------------------*/
 
 
 
-/*--=================================  Registration user ==================================================---*/
+    /*--=================================  Registration user ==================================================---*/
 
-    public function online_enrollment(){
+    public function online_enrollment()
+    {
         return view('frontend.pages.online_enrollment.index');
     }
 
-    public function create_account($param, Request $request){
+    public function create_account($param, Request $request)
+    {
 
-        if($param == "phone-verification"){
+        if ($param == "phone-verification") {
 
             $rsp_msg = $this->phone_verification($request);
-
-        }elseif($param == "verify-otp"){
+        } elseif ($param == "verify-otp") {
 
             $rsp_msg = $this->verify_otp($request);
-        
-        }elseif($param == "resend-otp"){
+        } elseif ($param == "resend-otp") {
 
             $rsp_msg = $this->resendOtp($request);
-
-        }elseif($param == "customer-info"){
+        } elseif ($param == "customer-info") {
 
             $rsp_msg = $this->create_customer_detail($request);
-
-        }elseif($param == "plan-info"){
+        } elseif ($param == "plan-info") {
 
             $rsp_msg = $this->update_plan_detail($request);
-
-        }elseif($param == "ekyc-varification"){
+        } elseif ($param == "ekyc-varification") {
 
             $rsp_msg = $this->accept_ekyc_term($request);
-
-        }elseif($param == "aadhar-verify-request-otp"){
+        } elseif ($param == "aadhar-verify-request-otp") {
 
             $rsp_msg = $this->aadhar_verify_request_otp($request);
-
-        }elseif($param == "aadhar-otp-verify"){
+        } elseif ($param == "aadhar-otp-verify") {
 
             $rsp_msg = $this->aadhar_otp_verify($request);
-
-        }elseif($param == "esign-varification"){
+        } elseif ($param == "esign-varification") {
 
             $rsp_msg = $this->accept_esign_term($request);
-
-        }elseif($param == "esign-aadhar-verify-request-otp"){
+        } elseif ($param == "esign-aadhar-verify-request-otp") {
 
             $rsp_msg = $this->esign_aadhar_verify_request_otp($request);
+        } elseif ($param == "esign-verify") {
 
-        }elseif($param == "esign-verify"){
-            
             $rsp_msg = $this->esign_verify();
 
-            if($rsp_msg = "true"){
+            if ($rsp_msg = "true") {
                 Session::put('step', 12);
             } else {
                 Session::put('step', 8);
             }
 
             return redirect()->route('account.new.enrollment.page');
-
-        }elseif($param == "payment-gateway"){
+        } elseif ($param == "payment-gateway") {
 
             $rsp_msg = $this->payment_gateway($request);
-
         } else {
             $rsp_msg['response'] = 'error';
             $rsp_msg['message'] = "Invalid parameter: $param";
         }
-        
+
 
         return response()->json(array('response_message' => $rsp_msg));
     }
 
 
 
-/*-------------------------------- function ---------------------------------------------*/
+    /*-------------------------------- function ---------------------------------------------*/
 
 
-    public function phone_verification($request){
-        
+    public function phone_verification($request)
+    {
+
         $validator = Validator::make($request->all(), [
             'accept_term' => 'required',
             'phone' => 'required|regex:/^\d{10}$/',
@@ -576,16 +551,16 @@ class AccountController extends Controller
             $rsp_msg['response'] = 'error';
             $rsp_msg['message']  = $validator->errors()->all();
 
-            return $rsp_msg; 
-        } 
+            return $rsp_msg;
+        }
 
-        $user = DB::table('users')->where('phone', $request->phone)->where('status','1')->get(['id'])->first();
+        $user = DB::table('users')->where('phone', $request->phone)->where('status', '1')->get(['id'])->first();
 
-        if($user){
+        if ($user) {
             $rsp_msg['response'] = 'error';
             $rsp_msg['message']  = "this No : $request->phone Already registered";
 
-            return $rsp_msg; 
+            return $rsp_msg;
         }
 
 
@@ -599,7 +574,7 @@ class AccountController extends Controller
         $sms = (new SmsController)->smsgatewayhub_registration_otp($request->phone, $otp);
 
         Session::put('step', 2);
-        
+
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "OTP has been Share on this No : $request->phone ";
 
@@ -607,8 +582,9 @@ class AccountController extends Controller
     }
 
 
-    public function verify_otp($request){
-        
+    public function verify_otp($request)
+    {
+
         $validator = Validator::make($request->all(), [
             'otp' => 'required|digits:6',
         ]);
@@ -617,8 +593,8 @@ class AccountController extends Controller
             $rsp_msg['response'] = 'error';
             $rsp_msg['message']  = $validator->errors()->all();
 
-            return $rsp_msg; 
-        } 
+            return $rsp_msg;
+        }
 
         $otp = Session::get('otp');
         $timestamp = Session::get('otp_timestamp');
@@ -637,7 +613,7 @@ class AccountController extends Controller
 
             $user = DB::table('users')->where('phone', $phone)->get(['id'])->first();
 
-            if(empty($user)){
+            if (empty($user)) {
 
                 $userId = DB::table('users')->insertGetId([
                     'accept_term' => 1,
@@ -646,7 +622,7 @@ class AccountController extends Controller
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
-            
+
                 DB::table('userdetails')->insert([
                     'user_id' => $userId,
                     'created_at' => now(),
@@ -654,7 +630,6 @@ class AccountController extends Controller
                 ]);
 
                 Session::put('temp_user_id', $userId);
-
             } else {
                 Session::put('temp_user_id', $user->id);
             }
@@ -663,12 +638,11 @@ class AccountController extends Controller
 
             $rsp_msg['response'] = 'success';
             $rsp_msg['message']  = "OTP has been Verified";
-
         } else {
             $rsp_msg['response'] = 'error';
             $rsp_msg['message']  = "Invalid OTP";
         }
-        
+
 
         return $rsp_msg;
     }
@@ -681,7 +655,7 @@ class AccountController extends Controller
 
         $timestamp = Carbon::now();
         Session::put('otp_timestamp', $timestamp);
-        
+
         $phone = Session::get('phone');
 
         //sms integration  
@@ -695,7 +669,8 @@ class AccountController extends Controller
 
 
 
-    public function aadhar_verify_request_otp($request){
+    public function aadhar_verify_request_otp($request)
+    {
 
         $validator = Validator::make($request->all(), [
             //'aadhar' => 'required|digits:12|same:aadhar_conform',
@@ -712,17 +687,16 @@ class AccountController extends Controller
 
         $user_detail = DB::table('userdetails')->where('aadhar_number', $request->aadhar)->get(['user_id'])->first();
 
-        if($user_detail){
+        if ($user_detail) {
 
-            $user = DB::table('users')->where('id', $user_detail->user_id)->where('status','1')->get(['id'])->first();
+            $user = DB::table('users')->where('id', $user_detail->user_id)->where('status', '1')->get(['id'])->first();
 
-            if($user){
+            if ($user) {
                 $rsp_msg['response'] = 'error';
                 $rsp_msg['message']  = "this No : $request->aadhar Already registered";
-    
-                return $rsp_msg; 
-            }
 
+                return $rsp_msg;
+            }
         }
 
 
@@ -730,40 +704,37 @@ class AccountController extends Controller
         $requestOtp = (new AadharController)->requestOtpAadhar($request->aadhar);
         $requestOtp = json_decode($requestOtp);
 
-        if($requestOtp->success) {
+        if ($requestOtp->success) {
             //do success stuff
 
             $rsp_msg['response'] = 'success';
-            $rsp_msg['message']  = "OTP sent to linked Mobile number with ".$request->aadhar." Aadhar number.";
-            
-            //set session of aadhar client ID
-            session(['customer_aadhar_clientId' => $requestOtp->data->client_id]); 
+            $rsp_msg['message']  = "OTP sent to linked Mobile number with " . $request->aadhar . " Aadhar number.";
 
-            session(['aadhar_no' => $request->aadhar]); 
+            //set session of aadhar client ID
+            session(['customer_aadhar_clientId' => $requestOtp->data->client_id]);
+
+            session(['aadhar_no' => $request->aadhar]);
 
             Session::put('step', 4);
-
-        }else{
+        } else {
             //do failure stuff
-            if($requestOtp->status_code == 429) {
-     
+            if ($requestOtp->status_code == 429) {
+
                 $rsp_msg['response'] = 'error';
                 $rsp_msg['message']  = "Wait 60 seconds to generate OTP for same Aadhaar Number.";
-                
-            }else{
-                
+            } else {
+
                 $rsp_msg['response'] = 'error';
-                $rsp_msg['message']  = "Invalid Aadhar number / No mobile number is linked with ".$request->aadhar." Aadhar number!";
-                
+                $rsp_msg['message']  = "Invalid Aadhar number / No mobile number is linked with " . $request->aadhar . " Aadhar number!";
             }
-        }  
+        }
 
         return $rsp_msg;
-
     }
 
 
-    public function aadhar_otp_verify($request){
+    public function aadhar_otp_verify($request)
+    {
 
         $validator = Validator::make($request->all(), [
             'otp' => 'required|digits:6',
@@ -773,17 +744,17 @@ class AccountController extends Controller
             $rsp_msg['response'] = 'error';
             $rsp_msg['message']  = $validator->errors()->all();
 
-            return $rsp_msg; 
+            return $rsp_msg;
         }
 
         $verify = (new AadharController)->validateOtpAadhar($request->otp, session('customer_aadhar_clientId'));
         $verify = json_decode($verify);
 
 
-        if($verify->success) {
+        if ($verify->success) {
 
             //update query here
-            DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
+            DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
                 'ekyc' => json_encode($verify),
                 'aadhar_number' => Session::get('aadhar_no'),
             ]);
@@ -791,10 +762,10 @@ class AccountController extends Controller
             // $ulp_id = DB::table('users')->where('id', Session::get('temp_user_id'))->value('ulp_id');
 
             // if(empty($ulp_id)){
-            
+
             //     $random = Session::get('temp_user_id');
             //     $DateTime = time();
-            
+
             //     $ulp_id = $random . '' . $DateTime;
 
             //     // Ensure the length of $ulp_id is exactly 12 digits
@@ -804,11 +775,11 @@ class AccountController extends Controller
             //     } elseif (strlen($ulp_id) > 12) {
             //         $ulp_id = substr($ulp_id, 0, 12); // Trim if longer than 12 digits
             //     }
-            
+
             //     DB::table('users')->where('id', Session::get('temp_user_id'))->update([
             //         'ulp_id' => $ulp_id,
             //     ]);
-            
+
             // }
 
 
@@ -819,7 +790,7 @@ class AccountController extends Controller
             $dob = $verify->data->dob;
             $care_of = $verify->data->care_of;
             $mobile = $verify->data->mobile_hash;
-            
+
             $customer_detail = [
                 'profileImage' => $profileImage,
                 'name' => $fullName,
@@ -833,25 +804,23 @@ class AccountController extends Controller
             Session::put('customer_detail', $customer_detail);
 
             Session::put('step', 5);
-                        
+
             $rsp_msg['response'] = 'success';
             $rsp_msg['message']  = "Aadhar Number verified successfully!";
-            
-        }else{
-            
+        } else {
+
             $rsp_msg['response'] = 'error';
             $rsp_msg['message']  = "OTP verification failed!";
-            
         }
 
-        return $rsp_msg; 
-
+        return $rsp_msg;
     }
 
 
 
 
-    public function create_customer_detail($request){
+    public function create_customer_detail($request)
+    {
 
         $validator = Validator::make($request->all(), [
             // 'title' => 'required',
@@ -867,7 +836,7 @@ class AccountController extends Controller
             // 'pincode' => 'required|regex:/^[\d\s-]+$/|min:6',
             'pan_number' => 'required|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:10|max:10',
 
-            'nominee_name' => ['nullable', 'string','regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
+            'nominee_name' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
             'nominee_phone' => 'nullable|regex:/^\d{10}$/',
             'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
             'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:350'],
@@ -875,7 +844,7 @@ class AccountController extends Controller
             'dob' => ['required', 'date', function ($attribute, $value, $fail) {
                 $dob = Carbon::parse($value);
                 $age = $dob->diffInYears(Carbon::now());
-        
+
                 if ($age < 18) {
                     $fail('You must be at least 18 years old.');
                 }
@@ -888,32 +857,32 @@ class AccountController extends Controller
 
             return $rsp_msg;
         }
-        
+
         $users_email = DB::table('users')->where('email', $request->input('email'))->where('status', 1)->get();
 
-        if(count($users_email) != 0){
+        if (count($users_email) != 0) {
             $rsp_msg['response'] = 'error';
             $rsp_msg['message']  = 'Email Already Exists';
 
             return $rsp_msg;
         }
 
-        if($request->has('residence_address_check')){
+        if ($request->has('residence_address_check')) {
             $address = $request->input('residence_nominee_address');
         } else {
             $address = $request->input('nominee_address');
         }
 
-        if(Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))){
+        if (Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))) {
 
-            DB::table('users')->where('id',Session::get('temp_user_id'))->update([
+            DB::table('users')->where('id', Session::get('temp_user_id'))->update([
                 // 'salutation' => $request->input('title'),
                 'first_name' => $request->input('first_name'),
                 'last_name' => $request->input('last_name'),
                 'email' => strtolower($request->input('email')),
             ]);
 
-            DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
+            DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
                 // 'flat_no' => $request->input('flat_no'),
                 // 'street' => $request->input('street'),
                 // 'locality' => $request->input('locality'),
@@ -935,19 +904,17 @@ class AccountController extends Controller
 
             $rsp_msg['response'] = 'success';
             $rsp_msg['message']  = "Customer Detail Added successfully. Please Proceed";
-
         } else {
 
             $rsp_msg['response'] = 'error';
             $rsp_msg['message']  = "Something Went Wrong";
-
         }
-        
-        return $rsp_msg;
 
+        return $rsp_msg;
     }
 
-    public function update_plan_detail($request){
+    public function update_plan_detail($request)
+    {
 
         $validator = Validator::make($request->all(), [
             'plan_id' => 'required',
@@ -988,9 +955,9 @@ class AccountController extends Controller
         //     $address = $request->input('nominee_address');
         // }
 
-        if(Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))){
+        if (Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))) {
 
-            DB::table('users')->where('id',Session::get('temp_user_id'))->update([
+            DB::table('users')->where('id', Session::get('temp_user_id'))->update([
                 'plan_id' => $request->input('plan_id'),
                 'installment_amount' => $request->input('installment_amount'),
             ]);
@@ -1007,16 +974,13 @@ class AccountController extends Controller
 
             $rsp_msg['response'] = 'success';
             $rsp_msg['message']  = "Plan Detail Added successfully. Please Proceed";
-
         } else {
 
             $rsp_msg['response'] = 'error';
             $rsp_msg['message']  = "Something Went Wrong";
-
         }
-        
-        return $rsp_msg;
 
+        return $rsp_msg;
     }
 
 
@@ -1039,7 +1003,7 @@ class AccountController extends Controller
     //     $rsp_msg['message']  = "Please Proceed for ekyc";
 
     //     return $rsp_msg; 
-        
+
     // }
 
 
@@ -1105,7 +1069,7 @@ class AccountController extends Controller
     //     }
 
     //     Session::put('client_id', $esign->data->client_id);
-        
+
     //     $rsp_msg['response'] = 'success';
     //     $rsp_msg['message']  = "Verified link generated successfully. Please proceed to E-sign";
     //     $rsp_msg['url']  = $esign->data->url;
@@ -1116,11 +1080,12 @@ class AccountController extends Controller
     //     // $rsp_msg['message']  = "Please Proceed for esign";
 
     //     return $rsp_msg; 
-        
+
     // }
 
 
-    public function esign_aadhar_verify_request_otp($request){
+    public function esign_aadhar_verify_request_otp($request)
+    {
 
         $validator = Validator::make($request->all(), [
             // 'name' => 'required|min:3',
@@ -1137,10 +1102,11 @@ class AccountController extends Controller
         }
 
         $user = DB::table('users')->where('id', Session::get('temp_user_id'))
-                ->get(['first_name','last_name', 'email', 'phone'])
-                ->first();
-        
-        $name =   $user->first_name.' '.$user->last_name;
+            ->get(['first_name', 'last_name', 'fullname', 'email', 'phone'])
+            ->first();
+
+        // $name =   $user->first_name.' '.$user->last_name;
+        $name =   $user->fullname;
 
         $esign = (new EsignAadharController)->esign_nsdl($name, $user->email, $user->phone);
 
@@ -1150,7 +1116,7 @@ class AccountController extends Controller
         if (!$esign) {
             // Handle the error case
             $rsp_msg['response'] = 'error';
-            $rsp_msg['message'] = 'Failed to Verify, please try Again'; 
+            $rsp_msg['message'] = 'Failed to Verify, please try Again';
 
             return $rsp_msg;
         }
@@ -1180,25 +1146,25 @@ class AccountController extends Controller
         }
 
         Session::put('client_id', $esign->data->client_id);
-        
+
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "Verified link generated successfully. Please proceed to E-sign";
         $rsp_msg['url']  = $esign->data->url;
-        
+
 
         return $rsp_msg;
-
     }
 
 
-    public function esign_verify() {
+    public function esign_verify()
+    {
 
         $client_id = Session::get('client_id');
 
         $esign = (new EsignAadharController)->esign_check_status($client_id);
         $esign = json_decode($esign);
 
-        if($esign->success == true){
+        if ($esign->success == true) {
             $download_pdf = (new EsignAadharController)->download_esign($client_id);
 
             // DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
@@ -1214,14 +1180,16 @@ class AccountController extends Controller
     }
 
 
-    public function payment_gateway($request){
+    public function payment_gateway($request)
+    {
 
-        $user = DB::table('users')->where('id', Session::get('temp_user_id'))->first(['first_name','last_name', 'email', 'phone', 'installment_amount']);
+        $user = DB::table('users')->where('id', Session::get('temp_user_id'))->first(['first_name', 'last_name', 'fullname', 'email', 'phone', 'installment_amount']);
 
         //insert in order
-        $txnid = substr(hash('sha256', mt_rand().microtime()), 0, 20);
+        $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
         $orderId = DB::table('temp_transactions')->insertGetId([
-            'name'             => $user->first_name.' '.$user->last_name,
+            // 'name'             => $user->first_name . ' ' . $user->last_name,
+            'name'             => $user->fullname,
             'email'            => $user->email,
             'phone'            => $user->phone,
             'grand_total'      => $user->installment_amount,
@@ -1232,7 +1200,7 @@ class AccountController extends Controller
             'updated_at'       => date('Y-m-d H:i:s')
         ]);
 
-        if($orderId){
+        if ($orderId) {
 
             $rsp_msg['response'] = 'success';
             $rsp_msg['message']  = "Please Proceed";
@@ -1248,7 +1216,6 @@ class AccountController extends Controller
             $rsp_msg['message']  = "Something Went Wrong!, Please try again";
 
             return $rsp_msg;
-
         }
 
 
@@ -1284,11 +1251,10 @@ class AccountController extends Controller
         return $rsp_msg;
 
         */
-
     }
-/*--=================================  Registration user ==================================================---*/
+    /*--=================================  Registration user ==================================================---*/
 
-/* ------------------------------- Payment gateway -----------------------------------------------------------*/
+    /* ------------------------------- Payment gateway -----------------------------------------------------------*/
 
     const TEST_URL = 'https://test.payu.in';
     //const TEST_URL = 'https://sandboxsecure.payu.in';
@@ -1296,25 +1262,23 @@ class AccountController extends Controller
 
     public function create_payumoney(request $request, $order_id)
     {
-        if($order_id)
-        {
+        if ($order_id) {
             $order = DB::table('temp_transactions')->where('id', $order_id)->where('payment_status', 'created')->first();
-            if($order)
-            {
+            if ($order) {
                 $data = $request->all();
                 $MERCHANT_KEY = env('PAYU_MERCHANT_KEY');
                 $SALT = env('PAYU_SALT_KEY');
-        
+
                 $PAYU_BASE_URL = env('PAYU_TEST_MODE') ? self::TEST_URL : self::PRODUCTION_URL;
                 $action = '';
-        
+
                 $posted = array();
                 if (!empty($data)) {
                     foreach ($data as $key => $value) {
                         $posted[$key] = $value;
                     }
                 }
-        
+
                 $formError = 0;
 
                 $txnid = $order->payment_id;
@@ -1343,36 +1307,35 @@ class AccountController extends Controller
                             $hash_string .= isset($posted[$hash_var]) ? $posted[$hash_var] : '';
                             $hash_string .= '|';
                         }
-        
+
                         $hash_string .= $SALT;
-        
-        
+
+
                         $hash = strtolower(hash('sha512', $hash_string));
-                        $action = $PAYU_BASE_URL.'/_payment';
-        
+                        $action = $PAYU_BASE_URL . '/_payment';
                     }
                 } elseif (!empty($posted['hash'])) {
                     $hash = $posted['hash'];
-                    $action = $PAYU_BASE_URL.'/_payment';
-        
+                    $action = $PAYU_BASE_URL . '/_payment';
                 }
-                
+
                 $updateOrder = DB::table('temp_transactions')->where('id', $order->id)->update([
                     'pum_hash' => $hash,
                     'temp_user_id' => Session::get('temp_user_id')
                 ]);
-        
+
                 return view('frontend.payumoney.pay', compact('hash', 'action', 'MERCHANT_KEY', 'formError', 'txnid', 'posted', 'SALT', 'order'));
             }
         }
     }
 
 
-    public function payment_success(Request $request){
+    public function payment_success(Request $request)
+    {
 
         $input = $request->all();
 
-        if(!$input) //redirect if no post
+        if (!$input) //redirect if no post
         {
             return redirect(url(''));
         }
@@ -1390,7 +1353,7 @@ class AccountController extends Controller
         // echo"<pre>";
         // var_dump($posted_hash);
         // echo"</pre>";
-        
+
 
         // if (isset($input["additionalCharges"])) {
         //     $additionalCharges = $input["additionalCharges"];
@@ -1398,7 +1361,7 @@ class AccountController extends Controller
         // } else {
         //     $retHashSeq = $salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;
         // }
-        
+
         // $hash = hash("sha512", $retHashSeq);
 
         // echo"<pre>";
@@ -1412,84 +1375,83 @@ class AccountController extends Controller
 
         // } else {
 
-            $order = DB::table('temp_transactions')->where('payment_id', $txnid)->first();
-            
-            //avoid update if payment is paid
-            if($order->payment_status == 'paid')
-            {
-                return redirect(url(''));
-            }
+        $order = DB::table('temp_transactions')->where('payment_id', $txnid)->first();
 
-            /* ------------ success stuff -----------*/
+        //avoid update if payment is paid
+        if ($order->payment_status == 'paid') {
+            return redirect(url(''));
+        }
 
-            // $user_id = Session::get('temp_user_id');
-            // $random = mt_rand(100000, 999999);
-        
-            // $account_number = $user_id . '' . $random;
-    
-            // // Ensure the length of $ulp_id is exactly 12 digits
-            // if (strlen($account_number) < 12) {
-            //     $padding_length = 12 - strlen($account_number);
-            //     $account_number = str_pad($account_number, 12, '0', STR_PAD_LEFT); // Pad with leading zeros if necessary
-            // } elseif (strlen($account_number) > 12) {
-            //     $account_number = substr($account_number, 0, 12); // Trim if longer than 12 digits
-            // }
+        /* ------------ success stuff -----------*/
 
-            Session::put('step', 13);
-            Session::put('payment', 1);
-            Session::put('temp_user_id', $order->temp_user_id);
+        // $user_id = Session::get('temp_user_id');
+        // $random = mt_rand(100000, 999999);
 
-            $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
+        // $account_number = $user_id . '' . $random;
 
+        // // Ensure the length of $ulp_id is exactly 12 digits
+        // if (strlen($account_number) < 12) {
+        //     $padding_length = 12 - strlen($account_number);
+        //     $account_number = str_pad($account_number, 12, '0', STR_PAD_LEFT); // Pad with leading zeros if necessary
+        // } elseif (strlen($account_number) > 12) {
+        //     $account_number = substr($account_number, 0, 12); // Trim if longer than 12 digits
+        // }
 
-            DB::table('users')->where('id', $order->temp_user_id)->update([
-                // 'account_number' => $account_number,
-                'password' => bcrypt($phone),
-                'status' => 1,
-            ]);
+        Session::put('step', 13);
+        Session::put('payment', 1);
+        Session::put('temp_user_id', $order->temp_user_id);
 
-            $amount = $order->grand_total;
-
-            //update order
-            $transactions_id = DB::table('transactions')->insertGetId([
-                'user_id' => Session::get('temp_user_id'),
-                'payment_id' => $txnid,
-                'payment_amount' => $order->grand_total,
-                'payment_response' => json_encode($input),
-                'payment_type' => 'payu',
-                'payment_status' => 'paid',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ]);
-    
-            
-    
-            session()->forget(['otp_timestamp', 'phone', 'otp', 'aadhar_no', 'customer_detail', 'client_id', 'customer_aadhar_clientId']);
-    
-
-            /*------------ success stuff --------------*/
+        $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
 
 
-            session()->flash('toastr', [
-                'type' => 'success',
-                'message' => 'Account Created Successfully',
-                'title' => 'Success'
-            ]);
+        DB::table('users')->where('id', $order->temp_user_id)->update([
+            // 'account_number' => $account_number,
+            'password' => bcrypt($phone),
+            'status' => 1,
+        ]);
 
-            // delete temp recored
-            DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
+        $amount = $order->grand_total;
 
-            $this->auto_add_transactions(Session::get('temp_user_id'),$amount,$transactions_id);
+        //update order
+        $transactions_id = DB::table('transactions')->insertGetId([
+            'user_id' => Session::get('temp_user_id'),
+            'payment_id' => $txnid,
+            'payment_amount' => $order->grand_total,
+            'payment_response' => json_encode($input),
+            'payment_type' => 'payu',
+            'payment_status' => 'paid',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
 
-            //sms integration
 
-            $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
 
-            $installment = '1st';
+        session()->forget(['otp_timestamp', 'phone', 'otp', 'aadhar_no', 'customer_detail', 'client_id', 'customer_aadhar_clientId']);
 
-            $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
 
-            return redirect()->route('account.new.enrollment.page');
+        /*------------ success stuff --------------*/
+
+
+        session()->flash('toastr', [
+            'type' => 'success',
+            'message' => 'Account Created Successfully',
+            'title' => 'Success'
+        ]);
+
+        // delete temp recored
+        DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
+
+        $this->auto_add_transactions(Session::get('temp_user_id'), $amount, $transactions_id);
+
+        //sms integration
+
+        $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
+
+        $installment = '1st';
+
+        $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+
+        return redirect()->route('account.new.enrollment.page');
         // }
     }
 
@@ -1500,7 +1462,7 @@ class AccountController extends Controller
         $user_plan_Details = DB::table('users')->where('id', $temp_user_id)->value('plan_id');
 
         // Retrieve the plan details
-        $plan_details = DB::table('plans')->where('id', $user_plan_Details)->first(['minimum_installment_amount', 'installment_period','receivable_percentage_on_time']);
+        $plan_details = DB::table('plans')->where('id', $user_plan_Details)->first(['minimum_installment_amount', 'installment_period', 'receivable_percentage_on_time']);
 
         // Calculate the number of installments
         $installments = (int) $plan_details->installment_period;
@@ -1548,10 +1510,10 @@ class AccountController extends Controller
         for ($i = 1; $i <= $auto_installments - 1; $i++) {
             $due_date_start = date('Y-m-d H:i:s', strtotime("+$i month"));
             $due_date_end = date('Y-m-d H:i:s', strtotime("$due_date_start +3 days"));
-            
+
             // Determine status based on installment number
             $status = ($i == 1) ? 'pending' : 'unpaid';
-            
+
             // Insert transaction record
             DB::table('redemption_items')->insert([
                 'redemption_id' => $redemption_id,
@@ -1564,11 +1526,10 @@ class AccountController extends Controller
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);
         }
-    
     }
 
     //-------------- test controller -------------------------
-    
+
     // public function testing()
     // {
     //     $this->auto_add_transactions(2, 2000);
@@ -1576,77 +1537,77 @@ class AccountController extends Controller
 
     //-------------- test controller -------------------------
 
-    public function payment_cancel(Request $request){
+    public function payment_cancel(Request $request)
+    {
 
         $data = $request->all();
 
-        if(!$data) //redirect if no post
+        if (!$data) //redirect if no post
         {
             return redirect(url(''));
-        } 		
-		
+        }
+
         $validHash = true;
-		$txnid = $data["txnid"];
-		
+        $txnid = $data["txnid"];
+
         if (!$validHash) {
             echo "Invalid Transaction. Please try again";
         } else {
             //fail
             //update order
             $updateOrder = DB::table('temp_transactions')
-            ->where('payment_id', $txnid)
-            ->update([
-                'payment_status' => 'unpaid',
-                'payment_response' => json_encode($data),
-                'updated_at' => date('Y-m-d H:i:s')
-            ]);			
+                ->where('payment_id', $txnid)
+                ->update([
+                    'payment_status' => 'unpaid',
+                    'payment_response' => json_encode($data),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ]);
         }
 
         $temp_user = DB::table('temp_transactions')->where('payment_id', $txnid)->first(['temp_user_id']);
 
         //fresh order info
-        $errorMessage = $data['error_Message'];   
+        $errorMessage = $data['error_Message'];
 
         $temp_user_id = $temp_user ? $temp_user->temp_user_id : 0;
 
-        return view('frontend.payumoney.fail', compact('errorMessage','data','temp_user_id'));
-
+        return view('frontend.payumoney.fail', compact('errorMessage', 'data', 'temp_user_id'));
     }
 
 
 
-    public function webhook_pum_success(Request $request) {
-        
+    public function webhook_pum_success(Request $request)
+    {
+
         $fileContent = [
             'headers' => $request->headers->all(),
             'postData' => $request->all(),
-        ];        
-        
-        $filePath = time().'-success.txt';
+        ];
+
+        $filePath = time() . '-success.txt';
 
         // Create the file
         Storage::disk('public')->put('webhook/' . $filePath, json_encode($fileContent));
-        
+
         // Read the JSON data from the file
         //$jsonData = file_get_contents(public_path('storage/webhook/1720264141-success.txt'));
 
         $jsonData = file_get_contents($filePath); //file_get_contents(public_path('1690456548-success.txt'));
-        
+
         // Decode the JSON data into an array
-        $fileContent = json_decode($jsonData, true);  
+        $fileContent = json_decode($jsonData, true);
         $postData = $fileContent['postData'];
         $txnid = $postData['merchantTransactionId'];
         $udf1 = $postData['udf1'];
-        
+
         //--success------
         //order info
         $order = DB::table('temp_transactions')->where('payment_id', $txnid)->first();
-        
-        //avoid update if payment is paid
-        if($order->payment_status != 'paid')
-        {
 
-            if($udf1 != "installment"){
+        //avoid update if payment is paid
+        if ($order->payment_status != 'paid') {
+
+            if ($udf1 != "installment") {
 
                 $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
 
@@ -1655,9 +1616,9 @@ class AccountController extends Controller
                     'password' => bcrypt($phone),
                     'status' => 1,
                 ]);
-    
+
                 $amount = $order->grand_total;
-    
+
                 //update order
                 $transactions_id = DB::table('transactions')->insertGetId([
                     'user_id' => $order->temp_user_id,
@@ -1669,24 +1630,23 @@ class AccountController extends Controller
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
-        
+
                 // delete temp recored
                 DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
-    
-                $this->auto_add_transactions(Session::get('temp_user_id'),$amount,$transactions_id);
-    
-                //sms integration
-    
-                $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
-    
-                $installment = '1st';
-    
-                $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
-    
-                /*------------ success stuff --------------*/
-    
-                Storage::disk('public')->put('webhook/success/' . $txnid.'-success.txt', $txnid);
 
+                $this->auto_add_transactions(Session::get('temp_user_id'), $amount, $transactions_id);
+
+                //sms integration
+
+                $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
+
+                $installment = '1st';
+
+                $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+
+                /*------------ success stuff --------------*/
+
+                Storage::disk('public')->put('webhook/success/' . $txnid . '-success.txt', $txnid);
             } else {
 
                 $amount = $order->grand_total;
@@ -1702,40 +1662,39 @@ class AccountController extends Controller
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
-        
+
                 $redemption = DB::table('redemptions')
                     ->where('user_id', $order->temp_user_id)
                     ->where('status', 1)
-                    ->first(['id','plan_id']);
-            
+                    ->first(['id', 'plan_id']);
+
                 if ($redemption) {
                     // Fetch the redemption item
                     $redemption_items = DB::table('redemption_items')
                         ->where('redemption_id', $redemption->id)
                         ->where('status', 'pending')
                         ->first(['id', 'due_date_start', 'due_date_end', 'installment_no']);
-                
+
                     if ($redemption_items) {
                         $currentDate = Carbon::now()->format('Y-m-d');
-                
+
                         // Check if the current date lies between due_date_start and due_date_end
                         if (Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
-        
+
                             $plan_receivable_percentage = DB::table('plans')->where('id', $redemption->plan_id)->value('receivable_percentage_on_time');
-        
+
                             $percentage = $plan_receivable_percentage;
                             $additionalAmount = ($amount * $percentage) / 100;
                             $totalAmount = $amount + $additionalAmount;
-        
+
                             DB::table('redemption_items')->where('id', $redemption_items->id)->update([
                                 'transaction_id' => $transactions_id,
                                 'receivable_amount' => $totalAmount,
                                 'status' => 'paid',
                                 'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
                             ]);
-        
                         } else {
-        
+
                             DB::table('redemption_items')->where('id', $redemption_items->id)->update([
                                 'transaction_id' => $transactions_id,
                                 'receivable_amount' => $amount,
@@ -1743,16 +1702,15 @@ class AccountController extends Controller
                                 'remarks' => 'penalty for late payment of installment',
                                 'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
                             ]);
-        
                         }
-        
+
                         $installment = $redemption_items->installment_no;
-        
+
                         $plan_period = DB::table('plans')->where('id', $redemption->plan_id)->value('installment_period');
-        
+
                         $plan_period = (int) $plan_period;
-        
-                        if($installment != $plan_period){
+
+                        if ($installment != $plan_period) {
                             // Update the next installment to pending
                             $next = $redemption_items->installment_no + 1;
                             DB::table('redemption_items')
@@ -1760,18 +1718,13 @@ class AccountController extends Controller
                                 ->where('installment_no', $next)
                                 ->update(['status' => 'pending']);
                         }
-                
-        
-        
-        
                     } else {
                         return 'false';
                     }
-        
-                } else{
+                } else {
                     return 'false';
                 }
-        
+
                 if ($installment == 1) {
                     $installment .= 'st';
                 } elseif ($installment == 2) {
@@ -1781,37 +1734,36 @@ class AccountController extends Controller
                 } else {
                     $installment .= 'th';
                 }
-        
+
                 $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
-        
-            
+
+
                 $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
-        
+
                 // delete temp recored
                 DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
-    
-                Storage::disk('public')->put('webhook/success/' . $txnid.'-success.txt', $txnid);
+
+                Storage::disk('public')->put('webhook/success/' . $txnid . '-success.txt', $txnid);
 
                 //-------------------------------- Installment ------------------------------------
 
             }
-        
-
-        }else{
+        } else {
             return 'false';
-        }          
+        }
     }
 
 
 
-    
-    public function webhook_pum_fail(Request $request){
+
+    public function webhook_pum_fail(Request $request)
+    {
         $fileContent = [
             'headers' => $request->headers->all(),
             'postData' => $request->all(),
-        ];        
-        
-        $filePath = time().'-fail.txt';
+        ];
+
+        $filePath = time() . '-fail.txt';
         Storage::disk('public')->put('webhook/fail/' . $filePath, json_encode($fileContent));
 
         // Create the file
@@ -1820,12 +1772,13 @@ class AccountController extends Controller
 
 
 
-/* ----------------------------- testing controller -------------------------------------------- */    
+    /* ----------------------------- testing controller -------------------------------------------- */
 
-    public function dummy_esign(){
-        
+    public function dummy_esign()
+    {
+
         $user = DB::table('users')->where('id', Session::get('temp_user_id'))
-        ->get(['plan_id','installment_amount','name','email','phone'])->first();
+            ->get(['plan_id', 'installment_amount', 'name', 'email', 'phone'])->first();
 
         $plan_name = DB::table('plans')->where('id', $user->plan_id)->value('name');
 
@@ -1857,7 +1810,6 @@ class AccountController extends Controller
         Storage::disk('public')->put('generate_pdf/' . $filename, $output);
 
         return true;
-
     }
 
 
