@@ -367,10 +367,18 @@
                     ->get(['flat_no', 'street', 'locality', 'state', 'city', 'pincode', 'dob', 'pan_number','nominee_name', 'nominee_phone', 'nominee_dob', 'nominee_address', 'nominee_relation','address'])
                     ->first();
 
-                $address = Session::get('address');
+
+                if(Session::has('address')){
+                    $address = Session::get('address');
+
+                    $customer_address = $address->house . ' ' . $address->loc . ' ' . $address->landmark . ' ' . $address->street . ' ' . $address->vtc . ' ' . $address->subdist . ' ' . $address->dist . ' ' . $address->state . ' ' . $address->country;
+                } else {
+                    $customer_address = '';
+                }
+                
 
 
-                $customer_address = $address->house . ' ' . $address->loc . ' ' . $address->landmark . ' ' . $address->street . ' ' . $address->vtc . ' ' . $address->subdist . ' ' . $address->dist . ' ' . $address->state . ' ' . $address->country;
+
 
             @endphp
         @endif
@@ -494,7 +502,7 @@
                 <div class="col-md-9">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-3">Address *</label>
-                        <textarea class="form-control height50" row="2" name="address" style="height: 103px;">{{ $user_detail->address ?? $customer_address }}</textarea>
+                        <textarea class="form-control height50" row="2" name="address" id="address" style="height: 103px;">{{ $user_detail->address ?? $customer_address }}</textarea>
                     </div>
                 </div>
 
@@ -537,11 +545,6 @@
                 </div>
             </div>
 
-            <div class="form-group mt-2">
-                <input class="me-2" type="checkbox" name="residence_address_check" id="residence_address_check" value="1" />
-                <label for="residence_address_check">As Per Residence address</label>
-            </div>
-
             <div class="col-md-12" id="nomine_address">
                 <div class="form-group mt-md-5 mt-3 adhar_field">
                     <label class="pb-3">Nominee Address *</label>
@@ -552,11 +555,15 @@
             <div class="col-md-12 d-none" id="residence_address">
                 <div class="form-group mt-md-5 mt-3 adhar_field">
                     <label class="pb-3">Nominee Address *</label>
-                    <textarea class="form-control height50" row="3" name="residence_nominee_address" style="height: 103px;">update</textarea>
+                    <textarea class="form-control height50" row="3" name="residence_nominee_address" id="residence_nominee_address" style="height: 103px;"></textarea>
                 </div>
             </div>
 
 
+            <div class="form-group mt-2">
+                <input class="me-2" type="checkbox" name="residence_address_check" id="residence_address_check" value="1" />
+                <label for="residence_address_check">As Per Residence address</label>
+            </div>
 
 
 
@@ -586,16 +593,25 @@
 
     
     <script>
-        document.getElementById('residence_address_check').addEventListener('change', function() {
+        document.addEventListener('DOMContentLoaded', function() {
+            var residenceAddressCheck = document.getElementById('residence_address_check');
             var nomineAddress = document.getElementById('nomine_address');
+            var Address = document.getElementById('address');
+            var residence_nominee_address = document.getElementById('residence_nominee_address');
             var residenceAddress = document.getElementById('residence_address');
 
-            if (this.checked) {
-                nomineAddress.classList.add('d-none');
-                residenceAddress.classList.remove('d-none');
-            } else {
-                nomineAddress.classList.remove('d-none');
-                residenceAddress.classList.add('d-none');
+            if (residenceAddressCheck && nomineAddress && Address && residenceAddress) {
+                residenceAddressCheck.addEventListener('change', function() {
+                    if (this.checked) {
+                        nomineAddress.classList.add('d-none');
+                        console.log(Address.value);
+                        residence_nominee_address.value = Address.value;
+                        residenceAddress.classList.remove('d-none');
+                    } else {
+                        nomineAddress.classList.remove('d-none');
+                        residenceAddress.classList.add('d-none');
+                    }
+                });
             }
         });
     </script>

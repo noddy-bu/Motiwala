@@ -181,8 +181,8 @@ Route::get('/update-session', function () {
 
 
 Route::get('/custom-session', function () {
-    Session()->put('step', );
-    session()->put('temp_user_id', 5);
+    Session()->put('step', 6);
+    session()->put('temp_user_id', 6);
 });
 
 Route::get('/resubmit-aadhar-otp', function () {
