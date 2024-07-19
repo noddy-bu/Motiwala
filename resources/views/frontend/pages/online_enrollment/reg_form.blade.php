@@ -604,7 +604,6 @@
                 residenceAddressCheck.addEventListener('change', function() {
                     if (this.checked) {
                         nomineAddress.classList.add('d-none');
-                        console.log(Address.value);
                         residence_nominee_address.value = Address.value;
                         residenceAddress.classList.remove('d-none');
                     } else {
