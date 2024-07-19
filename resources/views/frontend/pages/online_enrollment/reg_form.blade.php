@@ -35,7 +35,7 @@
 
             <div class="d-flex flex-md-row flex-column">
                 <div class="form-group mt-3 adhar_field">
-                    <label class="pb-2">Mobile Number* (As on Aadhaar Card)</label>
+                    <label class="pb-2">Mobile Number* </label>
                     <input type="text" class="form-control" name="phone" placeholder="Please Enter Mobile Number"
                         pattern="[0-9]+" minlength="10" maxlength="10" placeholder="Please Enter Mobile Number"
                         required />
