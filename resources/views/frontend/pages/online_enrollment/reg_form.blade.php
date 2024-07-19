@@ -1175,7 +1175,7 @@
 
 
 
-@if (Session::has('step') && Session::get('step') == 10)
+{{-- @if (Session::has('step') && Session::get('step') == 10)
     <!--------------------------------------------- eSign Aadhar verify --------------------------------->
 
     <div id="esign" class="paddingbtm100">
@@ -1247,10 +1247,10 @@
     </div>
 
     <!--------------------------------------------- eSign Aadhar verify --------------------------------->
-@endif
+@endif --}}
 
 
-@if (Session::has('step') && Session::get('step') == 11)
+{{-- @if (Session::has('step') && Session::get('step') == 11)
     <!--------------------------------------------- eSign Aadhar otp verify --------------------------------->
 
     <div id="ekyc-aadhar-otp-verify">
@@ -1296,7 +1296,7 @@
     </div>
 
     <!--------------------------------------------- eSign Aadhar otp verify --------------------------------->
-@endif
+@endif --}}
 
 
 @if (Session::has('step') && Session::get('step') == 12)

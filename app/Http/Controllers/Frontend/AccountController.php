@@ -542,7 +542,7 @@ class AccountController extends Controller
             if($rsp_msg = "true"){
                 Session::put('step', 12);
             } else {
-                Session::put('step', 10);
+                Session::put('step', 8);
             }
 
             return redirect()->route('account.new.enrollment.page');
@@ -1061,32 +1061,12 @@ class AccountController extends Controller
             return $rsp_msg; 
         }
 
-        Session::put('step', 9);
-
-        $rsp_msg['response'] = 'success';
-        $rsp_msg['message']  = "Please Proceed for esign";
-
-        return $rsp_msg; 
-        
-    }
+        $user = DB::table('users')->where('id', Session::get('temp_user_id'))
+                ->get(['first_name','last_name', 'email', 'phone'])
+                ->first();
 
 
-    public function esign_aadhar_verify_request_otp($request){
-
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|min:3',
-            'email' => 'required|email',
-            'phone' => 'required|regex:/^\d{10}$/',
-        ]);
-
-        if ($validator->fails()) {
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message']  = $validator->errors()->all();
-
-            return $rsp_msg;
-        }
-
-        $esign = (new EsignAadharController)->esign_nsdl($request->name, $request->email, $request->phone);
+                $esign = (new EsignAadharController)->esign_nsdl($request->name, $request->email, $request->phone);
         //$esign = json_decode($esign);
 
         if (!$esign) {
@@ -1126,11 +1106,77 @@ class AccountController extends Controller
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "Verified link generated successfully. Please proceed to E-sign";
         $rsp_msg['url']  = $esign->data->url;
+
+        // Session::put('step', 9);
+
+        // $rsp_msg['response'] = 'success';
+        // $rsp_msg['message']  = "Please Proceed for esign";
+
+        return $rsp_msg; 
+        
+    }
+
+
+    // public function esign_aadhar_verify_request_otp($request){
+
+    //     $validator = Validator::make($request->all(), [
+    //         'name' => 'required|min:3',
+    //         'email' => 'required|email',
+    //         'phone' => 'required|regex:/^\d{10}$/',
+    //     ]);
+
+    //     if ($validator->fails()) {
+    //         $rsp_msg['response'] = 'error';
+    //         $rsp_msg['message']  = $validator->errors()->all();
+
+    //         return $rsp_msg;
+    //     }
+
+    //     $esign = (new EsignAadharController)->esign_nsdl($request->name, $request->email, $request->phone);
+    //     //$esign = json_decode($esign);
+
+    //     if (!$esign) {
+    //         // Handle the error case
+    //         $rsp_msg['response'] = 'error';
+    //         $rsp_msg['message'] = 'Failed to Verify, please try Again'; 
+
+    //         return $rsp_msg;
+    //     }
+
+    //     if ($esign == "error Generating link") {
+    //         // Handle the error case
+    //         $rsp_msg['response'] = 'error';
+    //         $rsp_msg['message'] = 'Failed to Generating Verify link, Please Try Again';
+
+    //         return $rsp_msg;
+    //     }
+
+    //     if ($esign == "error Generating upload link") {
+    //         // Handle the error case
+    //         $rsp_msg['response'] = 'error';
+    //         $rsp_msg['message'] = 'Failed to Generating Upload Term PDF link, Please Try Again';
+
+    //         return $rsp_msg;
+    //     }
+
+    //     if ($esign == "error uploading pdf") {
+    //         // Handle the error case
+    //         $rsp_msg['response'] = 'error';
+    //         $rsp_msg['message'] = 'Failed to Upload PDF, Please Try Again';
+
+    //         return $rsp_msg;
+    //     }
+
+    //     Session::put('client_id', $esign->data->client_id);
+        
+    //     $rsp_msg['response'] = 'success';
+    //     $rsp_msg['message']  = "Verified link generated successfully. Please proceed to E-sign";
+    //     $rsp_msg['url']  = $esign->data->url;
         
 
-        return $rsp_msg;
+    //     return $rsp_msg;
 
-    }
+    // }
 
 
     public function esign_verify() {
