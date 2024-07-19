@@ -1067,7 +1067,9 @@ class AccountController extends Controller
                 ->first();
 
 
-                $esign = (new EsignAadharController)->esign_nsdl($request->name, $request->email, $request->phone);
+        $name =   $user->first_name.' '.$user->last_name;
+
+        $esign = (new EsignAadharController)->esign_nsdl($name, $user->email, $user->phone);
         //$esign = json_decode($esign);
 
         if (!$esign) {
