@@ -192,13 +192,18 @@
 </div>
 
               <div class="col-md-6"></div> 
-
+              
+                 <div class="d-flex gap-2 mt-2" id="countdown_div">
+                    <p>You Can resend OTP After</p>
+                    <div id="countdown"></div>
+                 </div>
+        
 
                     <div class="form-group col-md-12 text-end d-flex flex-row mt-4">
                         <div id="ReSubmit" class="buttonclass me-4 d-none">
                             <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
                         </div>
-                        <div class="buttonclass1 mt40">
+                        <div class="buttonclass1">
                             <button type="submit">Submit <i class="las la-arrow-right"></i></button>
                         </div>
                         <div id="ReSubmitAadhar" class="ms-4 mt-2 d-none">
@@ -224,6 +229,10 @@
             var ReSubmitBtn = document.getElementById("ReSubmit");
             var resendAadharotp = document.getElementById("ReSubmitAadhar");
 
+            var countdown_div = document.getElementById("countdown_div");
+
+            countdown_div.classList.add("d-none");
+
             ReSubmitBtn.classList.remove("d-none"); // Remove the "d-none" class to display the button
             resendAadharotp.classList.remove("d-none"); // Remove the "d-none" class to display the button
 
@@ -244,6 +253,34 @@
             });
 
         }, 60000); // 5000 milliseconds = 5 seconds
+    </script>
+
+    <script>
+        // Set the time we're counting down to (1 minute from now)
+        var countDownDate = new Date().getTime() + 60000; // 60000 milliseconds = 1 minute
+
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for minutes and seconds
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="countdown"
+            document.getElementById("countdown").innerHTML = minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text 
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
     </script>
 
 

@@ -1117,6 +1117,15 @@ label#accept_term-error {
     border-radius: 0px;
 }
 
+.openaccount .buttonclass {
+    background-color: #c1b2b2fc;
+}
+
+#ReSubmitAadhar #resendAadharOTPButton {
+    cursor: pointer;
+}
+
+
 div#preview-info p {
     font-size: 16px;
 }
