@@ -1137,13 +1137,17 @@ div#preview-info p {
 }
 
 .header_after_sign_in {
-    height: 44px;
+    height: 46px;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
 }
 
 div#bg_theme {
     position: fixed;
     top: 0px;
     height: 100%;
+    z-index: 3;
 }
 
 .closebtn {
@@ -1160,14 +1164,15 @@ body .sidebaar_section {
 }
 
 .dropdown-item {
-    width: 7% !important;
-    background-color: #e3c2ab !important;
+    width: 90px !important;
+    background-color: #ffffff !important;
     border-radius: 25px;
-    position: absolute;
-    z-index: 2;
-    right: 11%;
-    top: 13%;
+    position: relative;
+    z-index: 9999999;
+    right: 4px;
     text-align: center !important;
+    float: left;
+    font-weight: 600 !important;
 }
 
 .login_fa_bars {
@@ -1336,6 +1341,7 @@ body .userlogin_box {
     padding: 7px 10px;
     border-radius: 50px 0px 0px 50px;
     z-index: 99;
+    width: max-content;
 }
 
 .after_login_body .dropdown-toggle::after {
@@ -1446,12 +1452,31 @@ body .userlogin_box {
     margin-left: 10px;
 }
 
+#user_profile_detail .card {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 24px !important;
+    width: 98%;
+    margin: 20px 10px;
+}
+
+#user_profile_detail .card div {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.profile_details_heading {
+    background-color: #e3c2ab;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+}
+
 
 
 /* old scheme closure page */
 
-.old_sheme_closure {
-    height: 90vh;
+.old_sheme_closure, .privay_policy, .pay_installments {
+    height: 92vh;
 }
 
 /* coming soon pages */
