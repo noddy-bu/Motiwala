@@ -33,7 +33,7 @@
                 <div class="">
                     <div class="col-md-12">
                         <h4>
-                            {{ ucfirst($info->name) }} - {{ account_no($info->id) }}
+                            {{ ucfirst($info->name) }} - {{ account_no($info->id, date('d-m-Y', strtotime($info->created_at))) }}
                         </h4>
                     </div>
                 </div>

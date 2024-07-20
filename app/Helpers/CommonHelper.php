@@ -170,17 +170,25 @@ use Illuminate\Support\Facades\Mail;
     }
 
     if(!function_exists('account_no')){
-        function account_no($number){
+        function account_no($number,$enrollment_Date){
             
             // Ensure the length of $ulp_id is exactly 12 digits
-            if (strlen($number) < 12) {
-                $padding_length = 12 - strlen($number);
-                $account_no = str_pad($number, 12, '0', STR_PAD_LEFT); // Pad with leading zeros if necessary
-            } elseif (strlen($number) > 12) {
-                $account_no = substr($number, 0, 12); // Trim if longer than 12 digits
+            if (strlen($number) < 4) {
+                $padding_length = 4 - strlen($number);
+                $account_no = str_pad($number, 4, '0', STR_PAD_LEFT); // Pad with leading zeros if necessary
+            } else {
+                $account_no = $number;
             }
+            // } elseif (strlen($number) > 12) {
+            //     $account_no = substr($number, 0, 12); // Trim if longer than 12 digits
+            // }
 
-            $account_no = 'AC-'.$account_no;
+            $now = new \DateTime($enrollment_Date);
+            $date = $now->format('d');
+            $month = $now->format('m');
+            $year = $now->format('Y');
+
+            $account_no = 'AC-'.$year.''.$month.''.$date.''.$account_no;
 
             return $account_no;
 

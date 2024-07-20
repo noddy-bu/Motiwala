@@ -361,6 +361,32 @@
 
     /*--------------------- aadhar verify ------------------*/
 
+        /*--------------------- aadhar Resend-otp------------------*/    
+
+        $(document).ready(function(){
+            $('#resendAadharOTPButton').click(function(e){
+                e.preventDefault();
+
+                var csrfToken = '{{ csrf_token() }}';
+
+                $.ajax({
+                    url: "{{ route('account.create', ['param' =>'resend-aadhar-otp']) }}",
+                    type: "Post",
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    success: function(response) {
+                        toastr.success(response.response_message.message, response.response_message.response);
+                    },
+                    error: function(xhr, status, error) {
+                        toastr.error(response.response_message.message, response.response_message.response);
+                    }
+                });
+            });
+        });
+
+    /*--------------------- aadhar Resend-otp------------------*/  
+
     /*--------------------- aadhar otp verify ------------------*/ 
 
     initValidate('#aadhar-otp-verify');

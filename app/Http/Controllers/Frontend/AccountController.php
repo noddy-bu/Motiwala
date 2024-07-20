@@ -111,6 +111,7 @@ class AccountController extends Controller
                 'redemptions.id',
                 'users.created_at',
                 'users.plan_id',
+                'users.installment_amount',
                 'plans.name',
                 'plans.installment_period',
                 'redemptions.maturity_date_start',
@@ -502,6 +503,11 @@ class AccountController extends Controller
         } elseif ($param == "aadhar-verify-request-otp") {
 
             $rsp_msg = $this->aadhar_verify_request_otp($request);
+
+        } elseif ($param == "resend-aadhar-otp") {
+
+            $rsp_msg = $this->resendAadharOtp($request);
+
         } elseif ($param == "aadhar-otp-verify") {
 
             $rsp_msg = $this->aadhar_otp_verify($request);
@@ -732,6 +738,42 @@ class AccountController extends Controller
         return $rsp_msg;
     }
 
+
+    public function resendAadharOtp($request)
+    {
+
+        $aadhar = Session::get('aadhar_no');
+
+        $requestOtp = (new AadharController)->requestOtpAadhar($aadhar);
+        $requestOtp = json_decode($requestOtp);
+
+        if ($requestOtp->success) {
+            //do success stuff
+
+            $rsp_msg['response'] = 'success';
+            $rsp_msg['message']  = "OTP Resend to linked Mobile number with " . $aadhar . " Aadhar number.";
+
+            //set session of aadhar client ID
+            session(['customer_aadhar_clientId' => $requestOtp->data->client_id]);
+
+            session(['aadhar_no' => $request->aadhar]);
+
+            Session::put('step', 4);
+        } else {
+            //do failure stuff
+            if ($requestOtp->status_code == 429) {
+
+                $rsp_msg['response'] = 'error';
+                $rsp_msg['message']  = "Wait 60 seconds to generate OTP for same Aadhaar Number.";
+            } else {
+
+                $rsp_msg['response'] = 'error';
+                $rsp_msg['message']  = "Invalid Aadhar number / No mobile number is linked with " . $request->aadhar . " Aadhar number!";
+            }
+        }
+
+        return $rsp_msg;
+    }
 
     public function aadhar_otp_verify($request)
     {
@@ -1405,6 +1447,8 @@ class AccountController extends Controller
 
         $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
 
+        $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
+
 
         DB::table('users')->where('id', $order->temp_user_id)->update([
             // 'account_number' => $account_number,
@@ -1431,6 +1475,8 @@ class AccountController extends Controller
         session()->forget(['otp_timestamp', 'phone', 'otp', 'aadhar_no', 'customer_detail', 'client_id', 'customer_aadhar_clientId']);
 
 
+        Session::put('transactions_id', $transactions_id);
+
         /*------------ success stuff --------------*/
 
 
@@ -1449,9 +1495,13 @@ class AccountController extends Controller
 
         $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
 
+        $email = (new SmsController)->email_registration_successful($phone, $email);
+
         $installment = '1st';
 
         $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+
+        $email = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
 
         return redirect()->route('account.new.enrollment.page');
         // }
@@ -1613,6 +1663,9 @@ class AccountController extends Controller
 
                 $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
 
+                $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
+
+
                 DB::table('users')->where('id', $order->temp_user_id)->update([
                     // 'account_number' => $account_number,
                     'password' => bcrypt($phone),
@@ -1642,9 +1695,13 @@ class AccountController extends Controller
 
                 $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
 
+                $email = (new SmsController)->email_registration_successful($phone, $email);
+
                 $installment = '1st';
 
                 $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+
+                $email = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
 
                 /*------------ success stuff --------------*/
 
@@ -1739,8 +1796,13 @@ class AccountController extends Controller
 
                 $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
 
+                $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
+
 
                 $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+
+
+                $email = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
 
                 // delete temp recored
                 DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
@@ -1776,43 +1838,43 @@ class AccountController extends Controller
 
     /* ----------------------------- testing controller -------------------------------------------- */
 
-    public function dummy_esign()
-    {
+    // public function dummy_esign()
+    // {
 
-        $user = DB::table('users')->where('id', Session::get('temp_user_id'))
-            ->get(['plan_id', 'installment_amount', 'name', 'email', 'phone'])->first();
+    //     $user = DB::table('users')->where('id', Session::get('temp_user_id'))
+    //         ->get(['plan_id', 'installment_amount', 'name', 'email', 'phone'])->first();
 
-        $plan_name = DB::table('plans')->where('id', $user->plan_id)->value('name');
+    //     $plan_name = DB::table('plans')->where('id', $user->plan_id)->value('name');
 
-        // Get user details
-        $data = [
-            'user' => $user,
-            'plan_name' => $plan_name
-        ];
+    //     // Get user details
+    //     $data = [
+    //         'user' => $user,
+    //         'plan_name' => $plan_name
+    //     ];
 
-        // Render the HTML view with user details
-        $html = View::make('frontend.component.template', compact('data'))->render();
+    //     // Render the HTML view with user details
+    //     $html = View::make('frontend.component.template', compact('data'))->render();
 
-        // Create a new DOMPDF instance
-        $dompdf = new Dompdf();
+    //     // Create a new DOMPDF instance
+    //     $dompdf = new Dompdf();
 
-        // Load HTML content
-        $dompdf->loadHtml($html);
+    //     // Load HTML content
+    //     $dompdf->loadHtml($html);
 
-        // (Optional) Set paper size and orientation
-        $dompdf->setPaper('A4', 'portrait');
+    //     // (Optional) Set paper size and orientation
+    //     $dompdf->setPaper('A4', 'portrait');
 
-        // Render the HTML as PDF
-        $dompdf->render();
+    //     // Render the HTML as PDF
+    //     $dompdf->render();
 
-        // Generate a unique filename
-        $filename = 'generated_pdf_' . time() . '.pdf';
+    //     // Generate a unique filename
+    //     $filename = 'generated_pdf_' . time() . '.pdf';
 
-        $output = $dompdf->output();
-        Storage::disk('public')->put('generate_pdf/' . $filename, $output);
+    //     $output = $dompdf->output();
+    //     Storage::disk('public')->put('generate_pdf/' . $filename, $output);
 
-        return true;
-    }
+    //     return true;
+    // }
 
 
     // public function testing(){

@@ -201,6 +201,9 @@
                         <div class="buttonclass1 mt40">
                             <button type="submit">Submit <i class="las la-arrow-right"></i></button>
                         </div>
+                        <div id="ReSubmitAadhar" class="buttonclass me-4 d-none">
+                            <a class="ms-4 d-sm-inline d-block" id="resendAadharOTPButton">Resend OTP</a>
+                        </div>
                     </div>
 
 
@@ -219,7 +222,10 @@
         // Reload the page after 5 seconds
         setTimeout(function() {
             var ReSubmitBtn = document.getElementById("ReSubmit");
+            var resendAadharotp = document.getElementById("ReSubmitAadhar");
+
             ReSubmitBtn.classList.remove("d-none"); // Remove the "d-none" class to display the button
+            resendAadharotp.classList.remove("d-none"); // Remove the "d-none" class to display the button
 
             // Add event listener to the button
             ReSubmitBtn.addEventListener("click", function() {
@@ -1532,6 +1538,21 @@
             $plan_name = DB::table('plans')
                 ->where('id', $user->plan_id)
                 ->value('name');
+
+
+            if(Session::has('transactions_id')){
+
+                $transactions_details =  DB::table('transactions')
+                ->where('id', Session::get('transactions_id'))
+                ->get([
+                    'payment_id',
+                    'payment_amount',
+                    'payment_type',
+                ])
+                ->first();
+
+            }
+
         @endphp
 
 {{--
@@ -1581,6 +1602,14 @@
 
             </div> -->
             --}}
+
+
+            <p>Transaction ID : {{ $transactions_details->payment_id ?? '-' }}</p>
+
+            <p>Plan Name : {{ $plan_name ?? '-' }}</p>
+            <p>Installment Amount : {{ $transactions_details->payment_amount ?? '-' }}</p>
+            <p>your 1 installment succefully completed</p>
+
 
             <h2 class="success_heading text-center">you have successfully registered your account</h2>
             <h3 class="login_details text-center">your login details are</h3>
