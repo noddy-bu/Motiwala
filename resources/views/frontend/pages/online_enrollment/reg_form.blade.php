@@ -192,9 +192,9 @@
 </div>
 
               <div class="col-md-6"></div> 
-              
+
                  <div class="d-flex gap-2 mt-2" id="countdown_div">
-                    <p>You Can resend OTP After</p>
+                    <p>Resend OTP After</p>
                     <div id="countdown"></div>
                  </div>
         
