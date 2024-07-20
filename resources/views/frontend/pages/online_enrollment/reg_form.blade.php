@@ -317,7 +317,7 @@
 
 
             location.reload();
-        }, 5000); // 3000 milliseconds = 3 seconds
+        }, 3000); // 3000 milliseconds = 3 seconds
     </script>
 
 
@@ -341,7 +341,7 @@
         @endphp
 
         <div class="row d-flex justify-content-center">
-            <h3>Please wait for proceeding...</h3>
+            <h3 class="text-center">Please wait for proceeding...</h3>
             <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
                 <div class="card-header">
                     Final KYC Result
