@@ -1550,7 +1550,7 @@
 
             $user = DB::table('users')
                 ->where('id', Session::get('temp_user_id'))
-                ->get(['plan_id', 'installment_amount', 'first_name','last_name','fullname','email', 'phone', 'id'])
+                ->get(['plan_id', 'installment_amount', 'first_name','last_name','fullname','email', 'phone', 'id' , 'created_at'])
                 ->first();
 
             $user_detail = DB::table('userdetails')
@@ -1586,10 +1586,13 @@
                     'payment_id',
                     'payment_amount',
                     'payment_type',
+                    'created_at',
                 ])
                 ->first();
 
             }
+
+            $account_no = account_no($user->id, date('d-m-Y', strtotime($user->created_at)));
 
         @endphp
 
@@ -1646,7 +1649,7 @@
 
 
             <h2 class="success_heading text-center">you have successfully registered your account</h2>
-            <h3 class="login_details text-center">your login details are</h3>
+            <h3 class="login_details text-center">your Transaction details are</h3>
 
                     {{-- <div class="row col-md-6 p-3 px-2 mb-2 text-dark text-center mt-2 rounded-3" style="background-color:#fff;">
                         <p class="col-md-6 mb-0"><strong>User ID : </strong>{{ $user->phone }}</p>
@@ -1657,7 +1660,9 @@
                     <input type="hidden" name="phone" id="phone" value="{{ $user->phone }}">
 
                     <div class="card col-md-6 row d-flex flex-row text-center mt-3">
-                        <h4 class="fw-bold text-center py-3">Transaction ID : {{ $transactions_details->payment_id ?? '-' }}</h4>            
+                        <h4 class="fw-bold text-center py-3">Transaction ID : {{ $transactions_details->payment_id ?? '-' }}</h4>
+                        <p class="col-md-12 text-center">{{ datetimeFormatter($transactions_details->created_at) ?? '-' }}</p>
+                        <p class="col-md-12 text-center">Account No : {{ $account_no ?? '-' }}</p>            
                         <p class="col-md-6">Plan Name : {{ $plan_name ?? '-' }}</p>
                         <p class="col-md-6">Installment Amount : {{ $transactions_details->payment_amount ?? '-' }}</p>
                         <p>Your 1st Installment has been Successfully Completed</p>
