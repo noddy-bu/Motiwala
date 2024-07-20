@@ -756,7 +756,7 @@ class AccountController extends Controller
             //set session of aadhar client ID
             session(['customer_aadhar_clientId' => $requestOtp->data->client_id]);
 
-            session(['aadhar_no' => $request->aadhar]);
+            session(['aadhar_no' => $aadhar]);
 
             Session::put('step', 4);
         } else {
@@ -1495,13 +1495,13 @@ class AccountController extends Controller
 
         $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
 
-        // $email = (new SmsController)->email_registration_successful($phone, $email);
+        $email_templet1 = (new SmsController)->email_registration_successful($phone, $email);
 
         $installment = '1st';
 
         $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
 
-        // $email = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
+        $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
 
         return redirect()->route('account.new.enrollment.page');
         // }
@@ -1695,13 +1695,13 @@ class AccountController extends Controller
 
                 $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
 
-                // $email = (new SmsController)->email_registration_successful($phone, $email);
+                $email_templet1 = (new SmsController)->email_registration_successful($phone, $email);
 
                 $installment = '1st';
 
                 $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
 
-                // $email = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
+                $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
 
                 /*------------ success stuff --------------*/
 
@@ -1802,7 +1802,7 @@ class AccountController extends Controller
                 $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
 
 
-                // $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
+                $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
 
                 // delete temp recored
                 DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
