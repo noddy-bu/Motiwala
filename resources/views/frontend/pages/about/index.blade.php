@@ -10,11 +10,6 @@
 
 <!-- -------------------- About Us  start ---------------- -->
 
-<section class="inner_page_banner">
-     <img src="/assets/frontend/images/innwe_imagebanner.png" class="d-block w-100" alt="...">
-</section>
-
-
 <!-- -------------------- about-us content  start ---------------- -->  
 
 <main class="main">

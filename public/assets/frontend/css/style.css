@@ -49,6 +49,9 @@ b {
 
 header {
     position: relative;
+    background-image: url(/assets/frontend/images/innwe_imagebanner.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .nav_right_menu {
@@ -1397,7 +1400,7 @@ body .userlogin_box {
 /* edit user profile page */
 
 .openaccount .col-md-12:nth-child(2) .buttonclass1 {
-    float: right;
+    /* float: right; */
     padding: 2px 0px;
 }
 
@@ -1813,7 +1816,11 @@ form#loginForm a:hover {
 }
 
 .width200 {
-    width: 60%;
+    width: 50%;
+}
+
+section.inner_page_banner {
+    display: none;
 }
 
 @media(max-width:767px) {

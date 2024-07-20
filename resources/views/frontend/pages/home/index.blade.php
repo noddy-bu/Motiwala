@@ -19,6 +19,12 @@ $receivable_percentage_on_time = DB::table('plans')
     ->value('receivable_percentage_on_time');
 @endphp
 
+
+<style>
+    header {
+    background: #fff !important;
+}
+</style>
     <!--banner start -->
     <!-- <section class="banner_section">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
