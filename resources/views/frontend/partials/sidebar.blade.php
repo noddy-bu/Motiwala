@@ -89,7 +89,7 @@
             <li class="nav-item">             
                 <a href="{{ route('customer.logout') }}" class="after_login_sign_out nav-link align-middle px-0">
                     <i class="fas fa-right-from-bracket after_login_sign_out pe-1"></i>
-                    <span class="ms-1 d-sm-inline">Sign out</span>
+                    <span class="ms-1 d-sm-inline after_login_sign_out ">Sign out</span>
                 </a>
             </li>
         </ul>
