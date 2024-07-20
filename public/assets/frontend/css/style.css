@@ -1136,6 +1136,10 @@ div#preview-info p {
     padding-right: 30px;
 }
 
+.header_after_sign_in {
+    height: 44px;
+}
+
 div#bg_theme {
     position: fixed;
     top: 0px;
@@ -1153,6 +1157,17 @@ div#bg_theme {
 
 body .sidebaar_section {
     padding: 0px !important;
+}
+
+.dropdown-item {
+    width: 7% !important;
+    background-color: #e3c2ab !important;
+    border-radius: 25px;
+    position: absolute;
+    z-index: 2;
+    right: 11%;
+    top: 13%;
+    text-align: center !important;
 }
 
 .login_fa_bars {
@@ -1186,7 +1201,7 @@ body .sidebaar_section {
 }
 
 .bg_theme img {
-    width: 140px;
+    width: 90%;
 }
 
 .width80 .banner_section .carousel-caption {
@@ -1241,7 +1256,13 @@ body .width80:not(.sidebar) {
 }
 
 .after_login_body .benefits_bgimage img {
-    width: 80%;
+    width: 65%;
+}
+
+.after_login_body .benefits_bgimage img {
+    height: 655px;
+    right: -11.7em;
+    top: 0px;
 }
 
 .after_login_body .benefits_bgimage {
@@ -1253,6 +1274,10 @@ body .width80:not(.sidebar) {
 .after_login_body .copyright_section {
     border-top: 0px solid #343434;
     margin-top: 0;
+}
+
+.after_login_body .copyright_section .footer_2_social li {
+    margin-right: 5px;
 }
 
 .after_login_body .copyright_section ul li a {
@@ -1419,6 +1444,14 @@ body .userlogin_box {
     /*  for nominee details heading alignment */
     width: 98%;
     margin-left: 10px;
+}
+
+
+
+/* old scheme closure page */
+
+.old_sheme_closure {
+    height: 90vh;
 }
 
 /* coming soon pages */

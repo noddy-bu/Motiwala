@@ -450,6 +450,13 @@
 
     /* after login page */
 
+    
+    .dropdown-item {
+        width: 27% !important;
+        right: 11%;
+        left: 3%;
+    }
+
     .after_login_body footer .container {
         width: 100% !important;
     }
@@ -1016,6 +1023,14 @@
 
     /* after login in side bar */
 
+    
+    .dropdown-item {
+        width: 27% !important;
+        right: 11%;
+        left: 3%;
+        text-align: center !important;
+    }
+
     .sidebaar_section {
         padding: 0px !important;
     }
@@ -1047,8 +1062,8 @@
 
     img.sidebar_logo {
         width: 55%;
-        padding: 10px 0px 10px 10px;
-        margin-left: 15px;
+        padding: 18px 0px 10px 10px;
+        margin-left: 0px;
     }
     
     body .userlogin_box {
@@ -1077,7 +1092,7 @@
     }
 
     .bg_theme img {
-        width: 120px;
+        width: 75%;
     }
 
     .nav-pills .nav-link {
@@ -1120,7 +1135,7 @@
     .sidebar .closebtn {
         position: absolute;
         top: 0;
-        right: 25px;
+        right: 0px;
         font-size: 36px !important;
         margin-left: 50px;
     }

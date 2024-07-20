@@ -1,21 +1,15 @@
 <header class="header_after_sign_in">
+    <a class="dropdown-item" href="{{ route('customer.logout') }}">Sign out</a>
     <div class="col-6 dropdown userlogin_box">
         <div class="login_fa_bars">
             <button id="nav-bar-icon" onclick="openNav()">
                 <span class="fa fa-bars"></span>
             </button>
         </div>
-        <a href="#" class="align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        <a href="#" class="align-items-center text-white text-decoration-none">
             <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
             <span class="mx-1 text-dark"><b>{{ ucfirst(auth()->user()->first_name) }}</b></span>
         </a>
-        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" style="z-index: 10000;" >
-            <li><a class="dropdown-item" href="#">Welcome</a></li>
-            <li>
-                <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="{{ route('customer.logout') }}">Sign out</a></li>
-        </ul>
     </div>
 
     <div class="col-6">
