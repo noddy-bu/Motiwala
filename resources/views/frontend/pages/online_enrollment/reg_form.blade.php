@@ -193,13 +193,21 @@
 
               <div class="col-md-6"></div> 
 
+                 <div class="d-flex gap-2 mt-2" id="countdown_div">
+                    <p>Resend OTP After</p>
+                    <div id="countdown"></div>
+                 </div>
+        
 
-                    <div class="form-group col-md-6 text-end">
+                    <div class="form-group col-md-12 text-end d-flex flex-row mt-4">
                         <div id="ReSubmit" class="buttonclass me-4 d-none">
                             <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
                         </div>
-                        <div class="buttonclass1 mt40">
+                        <div class="buttonclass1">
                             <button type="submit">Submit <i class="las la-arrow-right"></i></button>
+                        </div>
+                        <div id="ReSubmitAadhar" class="ms-4 mt-2 d-none">
+                            <a class="d-sm-inline d-block" id="resendAadharOTPButton">Resend OTP</a>
                         </div>
                     </div>
 
@@ -219,7 +227,14 @@
         // Reload the page after 5 seconds
         setTimeout(function() {
             var ReSubmitBtn = document.getElementById("ReSubmit");
+            var resendAadharotp = document.getElementById("ReSubmitAadhar");
+
+            var countdown_div = document.getElementById("countdown_div");
+
+            countdown_div.classList.add("d-none");
+
             ReSubmitBtn.classList.remove("d-none"); // Remove the "d-none" class to display the button
+            resendAadharotp.classList.remove("d-none"); // Remove the "d-none" class to display the button
 
             // Add event listener to the button
             ReSubmitBtn.addEventListener("click", function() {
@@ -238,6 +253,34 @@
             });
 
         }, 60000); // 5000 milliseconds = 5 seconds
+    </script>
+
+    <script>
+        // Set the time we're counting down to (1 minute from now)
+        var countDownDate = new Date().getTime() + 60000; // 60000 milliseconds = 1 minute
+
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for minutes and seconds
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="countdown"
+            document.getElementById("countdown").innerHTML = minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text 
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
     </script>
 
 
@@ -274,7 +317,7 @@
 
 
             location.reload();
-        }, 5000); // 3000 milliseconds = 3 seconds
+        }, 3000); // 3000 milliseconds = 3 seconds
     </script>
 
 
@@ -298,7 +341,7 @@
         @endphp
 
         <div class="row d-flex justify-content-center">
-
+            <h3 class="text-center">Please wait for proceeding...</h3>
             <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
                 <div class="card-header">
                     Final KYC Result
@@ -411,7 +454,7 @@
                     </div>
                 </div> --}}
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">Full Name *</label>
                         <input type="text" class="form-control uppercase" name="fullname" pattern="[A-Za-z]+" minlength="3"
@@ -427,7 +470,7 @@
                     </div>
                 </div> --}}
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">Email *</label>
                         <input type="eamil" class="form-control" name="email"
@@ -435,7 +478,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">Pan Card Number *</label>
                         <input type="text" class="form-control" name="pan_number"
@@ -496,28 +539,30 @@
 
 
 
-                <div class="col-md-3">
+                <div class="col-md-8">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">DOB * ( As per Aadhar )</label>
-                        <input type="date" class="form-control" name="dob" value="{{ $user_detail->dob }}" max="{{ date('Y-m-d', strtotime('-18 years')) }}" required />
+                        <label class="pb-3">Address *</label>
+                        <textarea class="form-control height15" row="2" name="address" id="address" style="height: 103px;">{{ $user_detail->address ?? $customer_address }}</textarea>
                     </div>
                 </div>
 
-
-                <div class="col-md-9">
+                <div class="col-md-4">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-3">Address *</label>
-                        <textarea class="form-control height50" row="2" name="address" id="address" style="height: 103px;">{{ $user_detail->address ?? $customer_address }}</textarea>
+                        <label class="pb-3">DOB * ( As per Aadhar )</label>
+                        <input type="date" class="form-control" name="dob" value="{{ $user_detail->dob }}" max="{{ date('Y-m-d', strtotime('-18 years')) }}" required />
                     </div>
                 </div>
 
 
             {{------------------------------------ Nomine ----------------------------------}}    
 
+            <div class="p-3 ps-4 mb-2 text-white nominee_details mt-5" style="background-color:#e1aa7a;">
+                <h5 class="mb-0"> Nominee Details</h5>
+            </div>
 
             <div class="col-md-4">
                 <div class="form-group mt-md-5 mt-3 adhar_field">
-                    <label class="pb-2">Nominee Name </label>
+                    <label class="pb-2">Name </label>
                     <input type="text" class="form-control  uppercase" name="nominee_name" pattern="[A-Za-z]+"
                         minlength="3" placeholder="Please Enter Your Nominee Name"
                         value="{{ $user_detail->nominee_name }}" />
@@ -526,7 +571,7 @@
 
             <div class="col-md-4">
                 <div class="form-group mt-md-5 mt-3 adhar_field">
-                    <label class="pb-2">Nominee Contact Number </label>
+                    <label class="pb-2">Contact Number </label>
                     <input type="text" class="form-control" name="nominee_phone" pattern="[0-9]+"
                         minlength="10" maxlength="10" placeholder="Please Enter Your Nominee Contact Number"
                         value="{{ $user_detail->nominee_phone }}" />
@@ -535,9 +580,23 @@
 
             <div class="col-md-4">
                 <div class="form-group mt-md-5 mt-3 adhar_field">
-                    <label class="pb-2">Nominee Date Of Birth</label>
+                    <label class="pb-2">Date Of Birth</label>
                     <input type="date" class="form-control" name="nominee_dob"
                         value="{{ $user_detail->nominee_dob }}" max="{{ date('Y-m-d') }}" />
+                </div>
+            </div>
+
+            <div class="col-md-8" id="nomine_address">
+                <div class="form-group mt-md-5 mt-3 adhar_field">
+                    <label class="pb-3">Address *</label>
+                    <textarea class="form-control height15" row="2" name="nominee_address" style="height: 103px;">{{ $user_detail->nominee_address }}</textarea>
+                </div>
+            </div>
+
+            <div class="col-md-8 d-none" id="residence_address">
+                <div class="form-group mt-md-5 mt-3 adhar_field">
+                    <label class="pb-3">Address *</label>
+                    <textarea class="form-control height15" row="3" name="residence_nominee_address" id="residence_nominee_address" style="height: 103px;"></textarea>
                 </div>
             </div>
 
@@ -549,21 +608,6 @@
                         value="{{ $user_detail->nominee_relation }}" />
                 </div>
             </div>
-
-            <div class="col-md-12" id="nomine_address">
-                <div class="form-group mt-md-5 mt-3 adhar_field">
-                    <label class="pb-3">Nominee Address *</label>
-                    <textarea class="form-control height50" row="2" name="nominee_address" style="height: 103px;">{{ $user_detail->nominee_address }}</textarea>
-                </div>
-            </div>
-
-            <div class="col-md-12 d-none" id="residence_address">
-                <div class="form-group mt-md-5 mt-3 adhar_field">
-                    <label class="pb-3">Nominee Address *</label>
-                    <textarea class="form-control height50" row="3" name="residence_nominee_address" id="residence_nominee_address" style="height: 103px;"></textarea>
-                </div>
-            </div>
-
 
             <div class="form-group mt-2">
                 <input class="me-2" type="checkbox" name="residence_address_check" id="residence_address_check" value="1" />
@@ -577,7 +621,7 @@
 
 
 
-                <div class="form-group text-end">
+                <div class="form-group text-end pe-md-5">
                     <div class="buttonclass me-4">
                         <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
                     </div>
@@ -1506,7 +1550,7 @@
 
             $user = DB::table('users')
                 ->where('id', Session::get('temp_user_id'))
-                ->get(['plan_id', 'installment_amount', 'first_name','last_name','fullname','email', 'phone', 'id'])
+                ->get(['plan_id', 'installment_amount', 'first_name','last_name','fullname','email', 'phone', 'id' , 'created_at'])
                 ->first();
 
             $user_detail = DB::table('userdetails')
@@ -1532,6 +1576,24 @@
             $plan_name = DB::table('plans')
                 ->where('id', $user->plan_id)
                 ->value('name');
+
+
+            if(Session::has('transactions_id')){
+
+                $transactions_details =  DB::table('transactions')
+                ->where('id', Session::get('transactions_id'))
+                ->get([
+                    'payment_id',
+                    'payment_amount',
+                    'payment_type',
+                    'created_at',
+                ])
+                ->first();
+
+            }
+
+            $account_no = account_no($user->id, date('d-m-Y', strtotime($user->created_at)));
+
         @endphp
 
 {{--
@@ -1582,13 +1644,28 @@
             </div> -->
             --}}
 
-            <h2 class="success_heading text-center">you have successfully registered your account</h2>
-            <h3 class="login_details text-center">your login details are</h3>
 
-                    <div class="row col-md-6 p-3 px-2 mb-2 text-dark text-center mt-2 rounded-3" style="background-color:#fff;">
+            
+
+
+            <h2 class="success_heading text-center">you have successfully registered your account</h2>
+            <h3 class="login_details text-center">your Transaction details are</h3>
+
+                    {{-- <div class="row col-md-6 p-3 px-2 mb-2 text-dark text-center mt-2 rounded-3" style="background-color:#fff;">
                         <p class="col-md-6 mb-0"><strong>User ID : </strong>{{ $user->phone }}</p>
                         <p class="col-md-6 mb-0"><strong>Password : </strong>{{ $user->phone }}</p>
-                        <input type="hidden" name="phone" id="phone" value="{{ $user->phone }}">
+                        <input type="hidden" name="phone" id="phone" value="{{ $user->phone }}"> 
+                    </div>--}}
+
+                    <input type="hidden" name="phone" id="phone" value="{{ $user->phone }}">
+
+                    <div class="card col-md-6 row d-flex flex-row text-center mt-3">
+                        <h4 class="fw-bold text-center py-3">Transaction ID : {{ $transactions_details->payment_id ?? '-' }}</h4>
+                        <p class="col-md-12 text-center">{{ datetimeFormatter($transactions_details->created_at) ?? '-' }}</p>
+                        <p class="col-md-12 text-center">Account No : {{ $account_no ?? '-' }}</p>            
+                        <p class="col-md-6">Plan Name : {{ $plan_name ?? '-' }}</p>
+                        <p class="col-md-6">Installment Amount : {{ $transactions_details->payment_amount ?? '-' }}</p>
+                        <p>Your 1st Installment has been Successfully Completed</p>
                     </div>
 
 
@@ -1721,12 +1798,12 @@
                     var response = xhr.responseText.trim();
                     if (response === 'true') {
                         // Redirect to success page or perform other actions
-                        window.location.href = '{{ url(route('information')) }}';
+                        window.location.href = "{{ route('pay-installments') }}";
                     } else {
-                        window.location.href = "{{ url(route('index')) }}/#sign";
+                        window.location.href = "{{ route('pay-installments') }}";
                     }
                 } else {
-                    window.location.href = "{{ url(route('index')) }}/#sign";
+                    window.location.href = "{{ route('pay-installments') }}";
                 }
             };
 

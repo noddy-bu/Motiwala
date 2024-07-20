@@ -54,9 +54,10 @@
                     @endphp
                     <div class="col-md-12 mt-md-4 mt-3">                        
                         <div class="">
+
                             <div class="col-md-12 text-center">
                                 <h4 class="account_number">
-                                    {{ ucfirst($info->name) }} - {{ account_no($info->id) }}
+                                    {{ ucfirst($info->name) }} - {{ account_no($info->id, date('d-m-Y', strtotime($info->created_at))) }}
                                 </h4>
                             </div>
                         </div>
@@ -91,6 +92,7 @@
                                             <p class="card-text">Enrollment Date : {{ date('d-m-Y', strtotime($info->created_at)) }}</p>
                                             {{-- <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($Maturity_date->due_date_start)) }}
                                             </p> --}}
+                                            
                                             <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($info->maturity_date_start)) }}
                                             </p>
                                             <br>
@@ -103,6 +105,12 @@
                                     <div class="card">
                                         <h5 class="card-header">Plan Details</h5>
                                         <div class="card-body">
+                                            <p class="card-text">
+                                                Plan Name : {{ $info->name }}
+                                            </p>
+                                            <p class="card-text">
+                                                Installment Amount : {{ $info->installment_amount }}
+                                            </p>
                                             <p class="card-text">
                                                 Plan Status : @if($info->status == 1) Active
                                                 @else Close @endif
@@ -143,7 +151,7 @@
                                 <tbody>
                                     @php $i = 1; @endphp
                                     @foreach ($redemption_items as $row)
-                                        @if ($row->due_date_start <= date('Y-m-d') && in_array($row->status, ['paid', 'pending']))
+                                        {{-- @if ($row->due_date_start <= date('Y-m-d') && in_array($row->status, ['paid', 'pending'])) --}}
                                             <tr>
                                                 <td>{{ $i++ }}</td>
                                                 <td>
@@ -158,7 +166,7 @@
                                                 </td>
                                                 <td>
                                                     @if ($row->status == 'paid')
-                                                        {{ datetimeFormatter($row->receipt_date) }}
+                                                        {{ custom_date_change($row->receipt_date) }}
                                                     @else
                                                         NA
                                                     @endif
@@ -169,7 +177,7 @@
                                                     @if ($row->installment_no == 1)
                                                         -
                                                     @else
-                                                        {{ datetimeFormatter($row->receipt_date) }}
+                                                        {{ custom_date_change($row->due_date_start) }}
                                                     @endif
                                                     
                                                 </td>
@@ -197,19 +205,34 @@
                                                     @if ($row->status == 'paid')
                                                         Paid
                                                     @else
-                                                        @if($info->status == 1)
-                                                            <div class="buttonclass mt10">
-                                                                <a href="{{ url(route('installments.payment')) }}" id="pay-link" data-id="{{ $row->id }}">
-                                                                    Pay
-                                                                </a>
-                                                            </div>
-                                                        @else
-                                                            Unpaid
+                                                        @if ($row->due_date_start <= date('Y-m-d') && in_array($row->status, ['paid', 'pending']))
+
+                                                            @if($info->status == 1)
+                                                                <div class="buttonclass mt10">
+                                                                    <a href="{{ url(route('installments.payment')) }}" id="pay-link" data-id="{{ $row->id }}">
+                                                                        Pay
+                                                                    </a>
+                                                                </div>
+                                                            @else
+                                                                Unpaid
+                                                            @endif
+                                                        @else 
+
+                                                            @if($info->status == 1)
+                                                                <div class="buttonclass greybg mt10">
+                                                                    <a style="opacity: 0.5;pointer-events: none;">
+                                                                        Pay
+                                                                    </a>
+                                                                </div>
+                                                            @else
+                                                                Unpaid
+                                                            @endif
                                                         @endif
+
                                                     @endif
                                                 </td>
                                             </tr>
-                                        @endif
+                                        {{-- @endif --}}
                                     @endforeach
                                 </tbody>
                             </table>

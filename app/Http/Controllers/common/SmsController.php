@@ -61,4 +61,26 @@ class SmsController extends Controller
     }
 
 
+
+    public function email_registration_successful($phone, $email){
+
+        $recipient = $email;
+        $subject = 'Congratulations! You have successfully registered at Motiwala Jewels';
+
+        $body = "Congratulations! You have successfully registered. Your login credentials are: User ID: $phone. Password: $phone. Thank you for joining us. Motiwala Jewels";
+
+        sendEmail($recipient, $subject, $body);
+    }
+
+    public function email_installment_payment_successful($email ,$installment, $amount){
+
+        $recipient = $email;
+        $subject = "Your $installment installment of $amount has been successfully completed";
+
+        $body = "Your $installment installment of $amount has been successfully completed. Thank you for choosing Motiwala Jewels";
+
+        sendEmail($recipient, $subject, $body);
+    }
+
+
 }

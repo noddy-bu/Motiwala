@@ -27,7 +27,7 @@
                 <div class="col-md-12">
 
 
-            @php
+            {{-- @php
                 
                 if (Session::has('step') && Session::get('step') == 1) {
                     $value = 0;
@@ -49,9 +49,9 @@
                     $value = 0;
                 }
 
-            @endphp
+            @endphp --}}
 
-            <div class="accordion" id="accordionExample">
+            {{-- <div class="accordion" id="accordionExample">
                 <div class="steps">
                     <progress id="progress" value={{ $value }} max=100 ></progress>
                     <div class="step-item">
@@ -120,12 +120,12 @@
                             data-target="#collapseThree" @if(Session::get('step') > 13) aria-expanded="true" @else faria-expanded="alse "@endif aria-controls="collapseThree">
                             10
                         </button>
-                    </div> --}}
+                    </div>
 
 
                 </div>
 
-            </div>
+            </div> --}}
 
                 </div>
                     <!-- <div class="col-md-12" id="page-heading">
@@ -360,6 +360,32 @@
     });
 
     /*--------------------- aadhar verify ------------------*/
+
+        /*--------------------- aadhar Resend-otp------------------*/    
+
+        $(document).ready(function(){
+            $('#resendAadharOTPButton').click(function(e){
+                e.preventDefault();
+
+                var csrfToken = '{{ csrf_token() }}';
+
+                $.ajax({
+                    url: "{{ route('account.create', ['param' =>'resend-aadhar-otp']) }}",
+                    type: "Post",
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    success: function(response) {
+                        toastr.success(response.response_message.message, response.response_message.response);
+                    },
+                    error: function(xhr, status, error) {
+                        toastr.error(response.response_message.message, response.response_message.response);
+                    }
+                });
+            });
+        });
+
+    /*--------------------- aadhar Resend-otp------------------*/  
 
     /*--------------------- aadhar otp verify ------------------*/ 
 
