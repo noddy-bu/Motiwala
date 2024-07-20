@@ -78,8 +78,11 @@
                     <i class="las la-clipboard-list"></i>
                     <span class="ms-1 d-sm-inline">Refund Policy</span>
                 </a>
-            </li>
-            <hr>
+            </li>            
+            <div class="text-sm-start my-2">
+                <i class="fa fa-pen"></i>
+                <a href="{{ url(route('customer.reset_password')) }}" class="text-decoration-none mb-2 text-dark">Reset Password</a>
+            </div>
         </ul>
     </div>
 </div>
