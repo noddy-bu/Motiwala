@@ -1793,7 +1793,7 @@
                     var response = xhr.responseText.trim();
                     if (response === 'true') {
                         // Redirect to success page or perform other actions
-                        window.location.href = '{{ url(route('pay-installments')) }}';
+                        window.location.href = "{{ route('pay-installments') }}";
                     } else {
                         window.location.href = "{{ url(route('index')) }}/#sign";
                     }
