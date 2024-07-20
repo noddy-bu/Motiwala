@@ -194,15 +194,15 @@
               <div class="col-md-6"></div> 
 
 
-                    <div class="form-group col-md-6 text-end">
+                    <div class="form-group col-md-12 text-end d-flex flex-row mt-4">
                         <div id="ReSubmit" class="buttonclass me-4 d-none">
                             <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
                         </div>
                         <div class="buttonclass1 mt40">
                             <button type="submit">Submit <i class="las la-arrow-right"></i></button>
                         </div>
-                        <div id="ReSubmitAadhar" class="buttonclass me-4 d-none">
-                            <a class="ms-4 d-sm-inline d-block" id="resendAadharOTPButton">Resend OTP</a>
+                        <div id="ReSubmitAadhar" class="ms-4 mt-2 d-none">
+                            <a class="d-sm-inline d-block" id="resendAadharOTPButton">Resend OTP</a>
                         </div>
                     </div>
 
@@ -417,7 +417,7 @@
                     </div>
                 </div> --}}
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">Full Name *</label>
                         <input type="text" class="form-control uppercase" name="fullname" pattern="[A-Za-z]+" minlength="3"
@@ -433,7 +433,7 @@
                     </div>
                 </div> --}}
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">Email *</label>
                         <input type="eamil" class="form-control" name="email"
@@ -441,7 +441,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">Pan Card Number *</label>
                         <input type="text" class="form-control" name="pan_number"
@@ -502,28 +502,30 @@
 
 
 
-                <div class="col-md-3">
+                <div class="col-md-8">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">DOB * ( As per Aadhar )</label>
-                        <input type="date" class="form-control" name="dob" value="{{ $user_detail->dob }}" max="{{ date('Y-m-d', strtotime('-18 years')) }}" required />
+                        <label class="pb-3">Address *</label>
+                        <textarea class="form-control height15" row="2" name="address" id="address" style="height: 103px;">{{ $user_detail->address ?? $customer_address }}</textarea>
                     </div>
                 </div>
 
-
-                <div class="col-md-9">
+                <div class="col-md-4">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-3">Address *</label>
-                        <textarea class="form-control height50" row="2" name="address" id="address" style="height: 103px;">{{ $user_detail->address ?? $customer_address }}</textarea>
+                        <label class="pb-3">DOB * ( As per Aadhar )</label>
+                        <input type="date" class="form-control" name="dob" value="{{ $user_detail->dob }}" max="{{ date('Y-m-d', strtotime('-18 years')) }}" required />
                     </div>
                 </div>
 
 
             {{------------------------------------ Nomine ----------------------------------}}    
 
+            <div class="p-3 ps-4 mb-2 text-white nominee_details mt-5" style="background-color:#e1aa7a;">
+                <h5 class="mb-0"> Nominee Details</h5>
+            </div>
 
             <div class="col-md-4">
                 <div class="form-group mt-md-5 mt-3 adhar_field">
-                    <label class="pb-2">Nominee Name </label>
+                    <label class="pb-2">Name </label>
                     <input type="text" class="form-control  uppercase" name="nominee_name" pattern="[A-Za-z]+"
                         minlength="3" placeholder="Please Enter Your Nominee Name"
                         value="{{ $user_detail->nominee_name }}" />
@@ -532,7 +534,7 @@
 
             <div class="col-md-4">
                 <div class="form-group mt-md-5 mt-3 adhar_field">
-                    <label class="pb-2">Nominee Contact Number </label>
+                    <label class="pb-2">Contact Number </label>
                     <input type="text" class="form-control" name="nominee_phone" pattern="[0-9]+"
                         minlength="10" maxlength="10" placeholder="Please Enter Your Nominee Contact Number"
                         value="{{ $user_detail->nominee_phone }}" />
@@ -541,9 +543,23 @@
 
             <div class="col-md-4">
                 <div class="form-group mt-md-5 mt-3 adhar_field">
-                    <label class="pb-2">Nominee Date Of Birth</label>
+                    <label class="pb-2">Date Of Birth</label>
                     <input type="date" class="form-control" name="nominee_dob"
                         value="{{ $user_detail->nominee_dob }}" max="{{ date('Y-m-d') }}" />
+                </div>
+            </div>
+
+            <div class="col-md-8" id="nomine_address">
+                <div class="form-group mt-md-5 mt-3 adhar_field">
+                    <label class="pb-3">Address *</label>
+                    <textarea class="form-control height15" row="2" name="nominee_address" style="height: 103px;">{{ $user_detail->nominee_address }}</textarea>
+                </div>
+            </div>
+
+            <div class="col-md-8 d-none" id="residence_address">
+                <div class="form-group mt-md-5 mt-3 adhar_field">
+                    <label class="pb-3">Address *</label>
+                    <textarea class="form-control height15" row="3" name="residence_nominee_address" id="residence_nominee_address" style="height: 103px;"></textarea>
                 </div>
             </div>
 
@@ -555,21 +571,6 @@
                         value="{{ $user_detail->nominee_relation }}" />
                 </div>
             </div>
-
-            <div class="col-md-12" id="nomine_address">
-                <div class="form-group mt-md-5 mt-3 adhar_field">
-                    <label class="pb-3">Nominee Address *</label>
-                    <textarea class="form-control height50" row="2" name="nominee_address" style="height: 103px;">{{ $user_detail->nominee_address }}</textarea>
-                </div>
-            </div>
-
-            <div class="col-md-12 d-none" id="residence_address">
-                <div class="form-group mt-md-5 mt-3 adhar_field">
-                    <label class="pb-3">Nominee Address *</label>
-                    <textarea class="form-control height50" row="3" name="residence_nominee_address" id="residence_nominee_address" style="height: 103px;"></textarea>
-                </div>
-            </div>
-
 
             <div class="form-group mt-2">
                 <input class="me-2" type="checkbox" name="residence_address_check" id="residence_address_check" value="1" />

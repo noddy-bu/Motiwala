@@ -1,12 +1,12 @@
 <div id="bg_theme" class="col-md-3 col-7 width20 bg-light bg_theme">
     <div id="sidebar" class="d-flex sidebar width80">
-        <a href="/" class="d-md-block p-md-3 ps-md-2 p-0 link-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+        <a href="/" class="d-md-block p-md-3 ps-md-3 p-0 link-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
             <img class="sidebar_logo" src="/assets/frontend/images/header_logo.svg">
         </a>
         <a class="closebtn" onclick="closeNav()">
             <i class="fa fa-xmark"></i>
         </a>
-        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start px-2 pt-md-3 pt-3" id="menu">
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start px-2 ps-md-3 pt-md-3 pt-3" id="menu">
             <li class="nav-item">
                 <a href="{{ url(route('information')) }}" class="nav-link align-middle px-0">
                     <i class="las la-exclamation-circle"></i>

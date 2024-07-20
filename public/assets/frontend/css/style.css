@@ -1134,6 +1134,7 @@ div#preview-info p {
 .after_login_body .container:not(footer .container) {
     padding-left: 30px;
     padding-right: 30px;
+    padding-top: 45px;
 }
 
 .header_after_sign_in {
@@ -1877,6 +1878,11 @@ form#loginForm a:hover {
     height: 50px !important;
 }
 
+.height15 {
+    height: 15px !important;
+}
+
+
 .width200 {
     width: 50%;
 }
@@ -1889,4 +1895,12 @@ section.inner_page_banner {
     .widths80 {
         width: 100% !important;
     }
+}
+
+#resendAadharOTPButton {
+    text-decoration: none;
+    font-size: 20px;
+}
+form#customer-info {
+    overflow: hidden;
 }
