@@ -81,7 +81,7 @@
                     <div class="col-12">
                         <div class="form-group mb-3 position-relative">
                             <input class="input-box form-control w-100" placeholder="Amount *" type="text" name="amount"
-                                   value="1"> {{--(float)$order->grand_total--}}
+                                   value="{{ (float)$order->grand_total }}"> {{--(float)$order->grand_total--}}
                             <div class="icon-group-append">
                                 <i class="fas fa-tag"></i>
                             </div>

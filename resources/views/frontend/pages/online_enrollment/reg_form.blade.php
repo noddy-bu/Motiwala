@@ -1661,7 +1661,7 @@
 
                     <div class="card col-md-6 row d-flex flex-row text-center mt-3">
                         <h4 class="fw-bold text-center py-3">Transaction ID : {{ $transactions_details->payment_id ?? '-' }}</h4>
-                        {{-- <p class="col-md-12 text-center">{{ datetimeFormatter($transactions_details->created_at) ?? '-' }}</p> --}}
+                        <p class="col-md-12 text-center">{{ datetimeFormatter($transactions_details->created_at) ?? '-' }}</p>
                         <p class="col-md-12 text-center">Account No : {{ $account_no ?? '-' }}</p>            
                         <p class="col-md-6">Plan Name : {{ $plan_name ?? '-' }}</p>
                         <p class="col-md-6">Installment Amount : {{ $transactions_details->payment_amount ?? '-' }}</p>
