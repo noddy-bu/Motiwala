@@ -18,7 +18,7 @@
 
 
     <main class="main">
-        <section class="openaccount pt-5 pb-5">
+        <section class="openaccount pt-5 pb-5 reset_pass">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12" id="page-heading">

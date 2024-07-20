@@ -1205,6 +1205,19 @@ body .sidebaar_section {
     float: right;
 }
 
+
+.after_login_sign_out {
+    color: #9c1515;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.after_login_sign_out:hover {
+    color: #9c1515;
+    text-decoration: underline;
+}
+
+
 .bg_theme img {
     width: 90%;
 }
@@ -1475,8 +1488,18 @@ body .userlogin_box {
 
 /* old scheme closure page */
 
-.old_sheme_closure, .privay_policy, .pay_installments {
-    height: 92vh;
+.old_sheme_closure, .privay_policy, .faq_section, .reset_pass{
+    height: 100vh;
+}
+
+.old_sheme_closure .container, .privay_policy .container, .pay_installments .container, .faq_section .container,
+.reset_pass .container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.information_section .container, .faq_section .container {
+    padding-top: 30px ;
 }
 
 /* coming soon pages */
@@ -1888,5 +1911,11 @@ section.inner_page_banner {
 @media(max-width:767px) {
     .widths80 {
         width: 100% !important;
+    }
+}
+
+@media (min-width:2001px){
+    .old_sheme_closure, .privay_policy, .faq_section, .reset_pass, .information_section, .pay_installments{ 
+        height: 100vh;
     }
 }
