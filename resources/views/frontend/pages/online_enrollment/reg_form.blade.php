@@ -1660,7 +1660,7 @@
                         <h4 class="fw-bold text-center py-3">Transaction ID : {{ $transactions_details->payment_id ?? '-' }}</h4>            
                         <p class="col-md-6">Plan Name : {{ $plan_name ?? '-' }}</p>
                         <p class="col-md-6">Installment Amount : {{ $transactions_details->payment_amount ?? '-' }}</p>
-                        <p>Your 1 Installment has been Successfully Completed</p>
+                        <p>Your 1st Installment has been Successfully Completed</p>
                     </div>
 
 
