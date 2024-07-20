@@ -11,6 +11,8 @@ use App\Http\Controllers\common\PayumoneyController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
+use App\Http\Controllers\Common\SmsController;
+
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
@@ -237,10 +239,10 @@ Route::get('/redirect-login', function () {
 })->name('redirect-login');
 
 Route::get('/session-setup', function () {
-    Session()->put('phone', "8433625599");
-    Session()->put('temp_user_id', 2);
-    Session()->put('payment', 1);
-    Session()->put('step', 12);
+    $email = "khanfaisal.makent@gmail.com";
+    $installment = "1st"; 
+    $amount = "5000";
+    $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
 });
 
 Route::get('/template-design', [IndexController::class, 'pdf'])->name('pdf');
