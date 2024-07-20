@@ -27,7 +27,7 @@
                 <div class="col-md-12">
 
 
-            @php
+            {{-- @php
                 
                 if (Session::has('step') && Session::get('step') == 1) {
                     $value = 0;
@@ -49,9 +49,9 @@
                     $value = 0;
                 }
 
-            @endphp
+            @endphp --}}
 
-            <div class="accordion" id="accordionExample">
+            {{-- <div class="accordion" id="accordionExample">
                 <div class="steps">
                     <progress id="progress" value={{ $value }} max=100 ></progress>
                     <div class="step-item">
@@ -125,7 +125,7 @@
 
                 </div>
 
-            </div>
+            </div> --}}
 
                 </div>
                     <!-- <div class="col-md-12" id="page-heading">
