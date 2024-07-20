@@ -1800,10 +1800,10 @@
                         // Redirect to success page or perform other actions
                         window.location.href = "{{ route('pay-installments') }}";
                     } else {
-                        window.location.href = "{{ url(route('index')) }}/#sign";
+                        window.location.href = "{{ route('pay-installments') }}";
                     }
                 } else {
-                    window.location.href = "{{ url(route('index')) }}/#sign";
+                    window.location.href = "{{ route('pay-installments') }}";
                 }
             };
 
