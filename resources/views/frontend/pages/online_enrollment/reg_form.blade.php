@@ -1604,20 +1604,23 @@
             --}}
 
 
-            <p>Transaction ID : {{ $transactions_details->payment_id ?? '-' }}</p>
-
-            <p>Plan Name : {{ $plan_name ?? '-' }}</p>
-            <p>Installment Amount : {{ $transactions_details->payment_amount ?? '-' }}</p>
-            <p>your 1 installment succefully completed</p>
+            
 
 
             <h2 class="success_heading text-center">you have successfully registered your account</h2>
             <h3 class="login_details text-center">your login details are</h3>
 
-                    <div class="row col-md-6 p-3 px-2 mb-2 text-dark text-center mt-2 rounded-3" style="background-color:#fff;">
+                    {{-- <div class="row col-md-6 p-3 px-2 mb-2 text-dark text-center mt-2 rounded-3" style="background-color:#fff;">
                         <p class="col-md-6 mb-0"><strong>User ID : </strong>{{ $user->phone }}</p>
                         <p class="col-md-6 mb-0"><strong>Password : </strong>{{ $user->phone }}</p>
-                        <input type="hidden" name="phone" id="phone" value="{{ $user->phone }}">
+                        <input type="hidden" name="phone" id="phone" value="{{ $user->phone }}"> 
+                    </div>--}}
+
+                    <div class="card col-md-6 row d-flex flex-row text-center mt-3">
+                        <h4 class="fw-bold text-center py-3">Transaction ID : {{ $transactions_details->payment_id ?? '-' }}</h4>            
+                        <p class="col-md-6">Plan Name : {{ $plan_name ?? '-' }}</p>
+                        <p class="col-md-6">Installment Amount : {{ $transactions_details->payment_amount ?? '-' }}</p>
+                        <p>Your 1 Installment has been Succefully Completed</p>
                     </div>
 
 
