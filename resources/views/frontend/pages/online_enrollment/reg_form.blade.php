@@ -621,7 +621,7 @@
 
 
 
-                <div class="form-group text-end">
+                <div class="form-group text-end pe-md-5">
                     <div class="buttonclass me-4">
                         <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
                     </div>
