@@ -54,8 +54,9 @@
                     @endphp
                     <div class="col-md-12 mt-md-4 mt-3">                        
                         <div class="">
-                            <div class="col-md-12">
-                                <h4>
+
+                            <div class="col-md-12 text-center">
+                                <h4 class="account_number">
                                     {{ ucfirst($info->name) }} - {{ account_no($info->id, date('d-m-Y', strtotime($info->created_at))) }}
                                 </h4>
                             </div>

@@ -55,7 +55,7 @@
                                         </div>
                                     </div> --}}
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 col-12">
                                         <div class="form-group mt-4 adhar_field">
                                             <label class="pb-3">Name *</label>
                                             <input type="text" class="form-control" name="name" pattern="[A-Za-z]+" minlength="3"
@@ -63,14 +63,14 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 col-12">
                                         <div class="form-group mt-4 adhar_field">
                                             <label class="pb-3">Mobile Number (Username) </label>
                                             <input type="text" class="form-control" name="nominee_phone" pattern="[0-9]+" minlength="10" maxlength="10" placeholder="Please Enter Your Mobile Number" value="{{ $user->phone }}"  readonly/>
                                         </div>
                                     </div>
                 
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 col-12">
                                         <div class="form-group mt-4 adhar_field">
                                             <label class="pb-3">Email *</label>
                                             <input type="eamil" class="form-control" name="email" placeholder="Please Enter Your Email Id" 
@@ -124,14 +124,14 @@
                                         </div>
                                     </div> --}}
 
-                                    <div class="col-md-8">
+                                    <div class="col-md-8 col-12">
                                         <div class="form-group mt-4 adhar_field">
                                             <label class="pb-3">Address *</label>
                                             <textarea class="form-control" name="address" required style="max-height: 54px;">{{ $user_detail->address }}</textarea>
                                         </div>
                                     </div>
                 
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 col-12">
                                         <div class="form-group mt-4 adhar_field">
                                             <label class="pb-3">Date of Birth * (As per Aadhar)</label>
                                             <input type="date" class="form-control" name="dob" value="{{ $user_detail->dob }}" required style="max-height: 54px;"/>
@@ -139,7 +139,7 @@
                                     </div>
 
                                     <!------- marital status ---------------------->
-                                    <div class="col-md-8 row ms-3 pt-4">
+                                    <div class="col-md-8 col-12 row ms-3 pt-4">
 
                                         <div class="col-md-3">
                                             <div class="form-check">
@@ -164,7 +164,7 @@
                                     <div id="marital_info">
                                         <div class="row">
                                             
-                                            <div class="col-md-4">
+                                            <div class="col-md-4 col-12">
                                                 <div class="form-group mt-4 adhar_field">
                                                     <label class="pb-3">Spouse Name </label>
                                                     <input type="text" class="form-control" name="spouse_name" pattern="[A-Za-z]+" minlength="3" placeholder="Please Enter Your Spouse Name"
@@ -172,14 +172,14 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4">
+                                            <div class="col-md-4 col-12">
                                                 <div class="form-group mt-4 adhar_field">
                                                     <label class="pb-3">Spouse Date Of Birth</label>
                                                     <input type="date" class="form-control" name="spouse_dob" value="{{ $user_detail->spouse_dob }}" />
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4">
+                                            <div class="col-md-4 col-12">
                                                 <div class="form-group mt-4 adhar_field">
                                                     <label class="pb-3">Marriage Date</label>
                                                     <input type="date" class="form-control" name="marriage_date" value="{{ $user_detail->marriage_date }}" />
@@ -197,11 +197,11 @@
 
                                 <div class="card">
 
-                                    <div class="col-md-12 p-3 text-black profile_details_heading nominee_details">
+                                    <div class="col-12 p-3 text-black profile_details_heading nominee_details">
                                         <h5 class="mb-0"> Nominee Details </h5>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 col-12">
                                         <div class="form-group mt-4 adhar_field">
                                             <label class="pb-3">Nominee Name </label>
                                             <input type="text" class="form-control" name="nominee_name" pattern="[A-Za-z]+" minlength="3" placeholder="Please Enter Your Nominee Name"
@@ -209,21 +209,21 @@
                                         </div>
                                     </div>
                         
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 col-12">
                                         <div class="form-group mt-4 adhar_field">
                                             <label class="pb-3">Nominee Contact Number </label>
                                             <input type="text" class="form-control" name="nominee_phone" pattern="[0-9]+" minlength="10" maxlength="10" placeholder="Please Enter Your Nominee Contact Number" value="{{ $user_detail->nominee_phone }}" />
                                         </div>
                                     </div>
                         
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 col-12">
                                         <div class="form-group mt-4 adhar_field">
                                             <label class="pb-3">Nominee Date Of Birth</label>
                                             <input type="date" class="form-control" name="nominee_dob" value="{{ $user_detail->nominee_dob }}" />
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 col-12">
                                         <div class="form-group mt-4 adhar_field">
                                             <label class="pb-3">Relationship with Account Holder</label>
                                             <input type="text" class="form-control" name="nominee_relation" pattern="[A-Za-z]+" minlength="3"
@@ -232,7 +232,7 @@
                                         </div>
                                     </div>
                         
-                                    <div class="col-md-8">
+                                    <div class="col-md-8 col-12">
                                         <div class="form-group mt-4 adhar_field">
                                             <label class="pb-3">Nominee Address *</label>
                                             <textarea class="form-control" name="nominee_address" style="height: 0px;">{{ $user_detail->nominee_address }}</textarea>

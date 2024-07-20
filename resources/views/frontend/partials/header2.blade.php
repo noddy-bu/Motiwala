@@ -1,7 +1,5 @@
-<header class="header_after_sign_in">
+    <div class="col-6 dropdown userlogin_box d-md-none d-block">
     
-    <div class="col-6 dropdown userlogin_box">
-    <a class="dropdown-item" href="{{ route('customer.logout') }}">Sign out</a>
         <div class="login_fa_bars">
             <button id="nav-bar-icon" onclick="openNav()">
                 <span class="fa fa-bars"></span>
@@ -14,13 +12,17 @@
         --}}
         </a>
     </div>
+{{-- 
+<header class="header_after_sign_in">
+    
+    
 
     <div class="col-6">
         <a href="/" class="d-block p-md-3 p-0 link-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
-            {{-- <img class="sidebar_logo" src="/assets/frontend/images/logo.png" > --}}
+           <img class="sidebar_logo" src="/assets/frontend/images/logo.png" > 
         </a>
     </div>
-</header>
+</header> --}}
 
 <script>
     function openNav() {
