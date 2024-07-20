@@ -218,7 +218,7 @@
                                                         @else 
 
                                                             @if($info->status == 1)
-                                                                <div class="buttonclass mt10">
+                                                                <div class="buttonclass greybg mt10">
                                                                     <a style="opacity: 0.5;pointer-events: none;">
                                                                         Pay
                                                                     </a>

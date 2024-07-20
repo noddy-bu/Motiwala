@@ -1121,6 +1121,10 @@ label#accept_term-error {
     background-color: #c1b2b2fc;
 }
 
+.greybg {
+    background-color: #c1b2b2fc;
+}
+
 #ReSubmitAadhar #resendAadharOTPButton {
     cursor: pointer;
 }
@@ -1485,7 +1489,7 @@ body .userlogin_box {
 
 /* old scheme closure page */
 
-.old_sheme_closure, .privay_policy, .pay_installments {
+.old_sheme_closure, .privay_policy{
     height: 92vh;
 }
 
