@@ -1136,10 +1136,18 @@ div#preview-info p {
     padding-right: 30px;
 }
 
+.header_after_sign_in {
+    height: 46px;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+}
+
 div#bg_theme {
     position: fixed;
     top: 0px;
     height: 100%;
+    z-index: 3;
 }
 
 .closebtn {
@@ -1153,6 +1161,18 @@ div#bg_theme {
 
 body .sidebaar_section {
     padding: 0px !important;
+}
+
+.dropdown-item {
+    width: 90px !important;
+    background-color: #ffffff !important;
+    border-radius: 25px;
+    position: relative;
+    z-index: 9999999;
+    right: 4px;
+    text-align: center !important;
+    float: left;
+    font-weight: 600 !important;
 }
 
 .login_fa_bars {
@@ -1186,7 +1206,7 @@ body .sidebaar_section {
 }
 
 .bg_theme img {
-    width: 140px;
+    width: 90%;
 }
 
 .width80 .banner_section .carousel-caption {
@@ -1231,8 +1251,8 @@ body .width80:not(.sidebar) {
 
 .after_login_body section.faq_section {
     padding: 60px 0px 60px 0px;
-}
-
+} 
+ 
 .after_login_body footer {
     padding: 0px 0 0px 0px;
     position: absolute;
@@ -1241,7 +1261,13 @@ body .width80:not(.sidebar) {
 }
 
 .after_login_body .benefits_bgimage img {
-    width: 80%;
+    width: 65%;
+}
+
+.after_login_body .benefits_bgimage img {
+    height: 655px;
+    right: -11.7em;
+    top: 0px;
 }
 
 .after_login_body .benefits_bgimage {
@@ -1253,6 +1279,10 @@ body .width80:not(.sidebar) {
 .after_login_body .copyright_section {
     border-top: 0px solid #343434;
     margin-top: 0;
+}
+
+.after_login_body .copyright_section .footer_2_social li {
+    margin-right: 5px;
 }
 
 .after_login_body .copyright_section ul li a {
@@ -1311,6 +1341,7 @@ body .userlogin_box {
     padding: 7px 10px;
     border-radius: 50px 0px 0px 50px;
     z-index: 99;
+    width: max-content;
 }
 
 .after_login_body .dropdown-toggle::after {
@@ -1419,6 +1450,33 @@ body .userlogin_box {
     /*  for nominee details heading alignment */
     width: 98%;
     margin-left: 10px;
+}
+
+#user_profile_detail .card {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 24px !important;
+    width: 98%;
+    margin: 20px 10px;
+}
+
+#user_profile_detail .card div {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.profile_details_heading {
+    background-color: #e3c2ab;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+}
+
+
+
+/* old scheme closure page */
+
+.old_sheme_closure, .privay_policy, .pay_installments {
+    height: 92vh;
 }
 
 /* coming soon pages */
@@ -1791,6 +1849,10 @@ form#loginForm a:hover {
     font-size: 70px;
     background-position: right;
     background-size: 50em;
+}
+
+.success_heading, .login_details {
+    text-transform: capitalize;
 }
 
 /* transaction failure page */

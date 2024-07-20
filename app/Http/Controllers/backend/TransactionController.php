@@ -85,9 +85,10 @@ class TransactionController extends Controller
         $i = 1;
         foreach ($records as $row) {
 
-            $user_name = DB::table('users')->where('id', $row->user_id )->get(['first_name','last_name'])->first();
+            $user_name = DB::table('users')->where('id', $row->user_id )->get(['first_name','last_name', 'fullname'])->first();
 
-            $user_name = $user_name->first_name.' '.$user_name->last_name;
+            // $user_name = $user_name->first_name.' '.$user_name->last_name;
+            $user_name = $user_name->fullname;
 
             $installment_no = DB::table('redemption_items')->where('transaction_id',$row->id)->value('installment_no');
 

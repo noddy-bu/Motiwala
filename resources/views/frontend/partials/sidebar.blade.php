@@ -1,12 +1,12 @@
 <div id="bg_theme" class="col-md-3 col-7 width20 bg-light bg_theme">
     <div id="sidebar" class="d-flex sidebar width80">
-        <a href="/" class="d-md-block d-none p-md-3 p-0 link-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
-            <img class="sidebar_logo" src="/assets/frontend/images/logo.png">
+        <a href="/" class="d-md-block p-md-3 ps-md-2 p-0 link-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+            <img class="sidebar_logo" src="/assets/frontend/images/header_logo.svg">
         </a>
         <a class="closebtn" onclick="closeNav()">
             <i class="fa fa-xmark"></i>
         </a>
-        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start px-2 pt-md-3 pt-5" id="menu">
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start px-2 pt-md-3 pt-3" id="menu">
             <li class="nav-item">
                 <a href="{{ url(route('information')) }}" class="nav-link align-middle px-0">
                     <i class="las la-exclamation-circle"></i>
@@ -56,18 +56,33 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="{{ url(route('faq')) }}" class="nav-link align-middle px-0">
+                    <i class="las la-question-circle"></i>
+                    <span class="ms-1 d-sm-inline">FAQ</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="/terms-conditions" class="nav-link align-middle px-0">
                     <i class="las la-clipboard-list"></i>
                     <span class="ms-1 d-sm-inline">Terms and Conditions</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ url(route('faq')) }}" class="nav-link align-middle px-0">
-                    <i class="las la-question-circle"></i>
-                    <span class="ms-1 d-sm-inline">FAQ</span>
+                <a href="{{ url(route('privacy-policy')) }}" class="nav-link align-middle px-0">
+                    <i class="las la-clipboard-list"></i>
+                    <span class="ms-1 d-sm-inline">Privay Policy</span>
                 </a>
             </li>
-            <hr>
+            <li class="nav-item">
+                <a href="{{ url(route('refund-policy')) }}" class="nav-link align-middle px-0">
+                    <i class="las la-clipboard-list"></i>
+                    <span class="ms-1 d-sm-inline">Refund Policy</span>
+                </a>
+            </li>            
+            <div class="text-sm-start my-2">
+                <i class="fa fa-pen"></i>
+                <a href="{{ url(route('customer.reset_password')) }}" class="text-decoration-none mb-2 text-dark">Reset Password</a>
+            </div>
         </ul>
     </div>
 </div>

@@ -673,15 +673,11 @@ $receivable_percentage_on_time = DB::table('plans')
 
             amountSpan.textContent = '₹ ' + Math.ceil(currentAmount).toLocaleString();
             amount10xSpan.textContent = '₹ ' + Math.ceil(currentAmount * {{ $plan_duration }}).toLocaleString();
-<<<<<<< HEAD
-            amount13xSpan.textContent = '₹ ' + roundToNearestThousand((currentAmount * {{ $plan_duration }}) * 1.0909).toLocaleString();
-=======
 
             var profit_percantage = (currentAmount * {{ $receivable_percentage_on_time }}) / 100;
             var profit = {{ $plan_duration }} * profit_percantage;
 
             amount13xSpan.textContent = '₹ ' + ((currentAmount * {{ $plan_duration }}) + profit).toLocaleString();
->>>>>>> dae1423a2302a828e885e48f143ab92782859e3f
         }
 
         calcInput.addEventListener('input', function() {

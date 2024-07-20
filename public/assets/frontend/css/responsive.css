@@ -450,6 +450,13 @@
 
     /* after login page */
 
+    
+    .dropdown-item {
+        width: 27% !important;
+        right: 11%;
+        left: 3%;
+    }
+
     .after_login_body footer .container {
         width: 100% !important;
     }
@@ -552,8 +559,12 @@
     }
 
     .navbar-brand {
-        width: 29% !important;
+        width: 40% !important;
         margin-right: 0px !important;
+    }
+
+    .nav_right_menu li i {
+        font-size: 20px;
     }
 
     .navbar-brand img {
@@ -590,7 +601,7 @@
     body nav .nav_right_menu li a {
         color: #000 !important;
         padding: 0px 0px 8px 0px !important;
-        font-size: 14px !important;
+        font-size: 12px !important;
     }
 
     .modal_popup_cls .modal-content {
@@ -803,13 +814,13 @@
     .footer-widget .widget-menu a {
         display: inline-block;
     }
-
+/* 
     .footer .row>div:nth-child(4) > .footer-widget {
         position: absolute;
         top: 20px;
         right: 5%;
         width: 40%;
-    }
+    } */
 
     .footer-app-image {
         margin-top: -310px;
@@ -836,7 +847,7 @@
 
     .footer_social ul {
         display: flex;
-        justify-content: center;
+        /* justify-content: center; */
         align-items: center;
     }
 
@@ -870,6 +881,11 @@
         padding-top: 10px;
         margin-top: 30px;
         padding-bottom: 10px;
+    }
+
+    .design_by_nexgeno {
+        display: flex;
+        justify-content: center;
     }
 
     ul.float_right li:nth-child(4) {
@@ -1007,6 +1023,14 @@
 
     /* after login in side bar */
 
+    
+    .dropdown-item {
+        width: 27% !important;
+        right: 11%;
+        left: 3%;
+        text-align: center !important;
+    }
+
     .sidebaar_section {
         padding: 0px !important;
     }
@@ -1038,8 +1062,8 @@
 
     img.sidebar_logo {
         width: 55%;
-        padding: 10px 0px 10px 10px;
-        margin-left: 15px;
+        padding: 18px 0px 10px 10px;
+        margin-left: 0px;
     }
     
     body .userlogin_box {
@@ -1068,7 +1092,7 @@
     }
 
     .bg_theme img {
-        width: 120px;
+        width: 75%;
     }
 
     .nav-pills .nav-link {
@@ -1111,7 +1135,7 @@
     .sidebar .closebtn {
         position: absolute;
         top: 0;
-        right: 25px;
+        right: 0px;
         font-size: 36px !important;
         margin-left: 50px;
     }

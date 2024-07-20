@@ -35,7 +35,7 @@
 
             <div class="d-flex flex-md-row flex-column">
                 <div class="form-group mt-3 adhar_field">
-                    <label class="pb-2">Mobile Number* (As on Aadhaar Card)</label>
+                    <label class="pb-2">Mobile Number* </label>
                     <input type="text" class="form-control" name="phone" placeholder="Please Enter Mobile Number"
                         pattern="[0-9]+" minlength="10" maxlength="10" placeholder="Please Enter Mobile Number"
                         required />
@@ -120,8 +120,239 @@
 
 
 
-
 @if (Session::has('step') && Session::get('step') == 3)
+    <!--------------------------------------------- ekyc Aadhar verify --------------------------------->
+
+    <div id="ekyc">
+
+        <div class="row">
+            <form class="col-md-12" id="aadhar-verify-request-otp"
+                action="{{ url(route('account.create', ['param' => 'aadhar-verify-request-otp'])) }}" method="post">
+                @csrf
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group mt-4 adhar_field">
+                            <label class="pb-3">Aadhaar *</label>
+                            <input type="text" class="form-control" name="aadhar" pattern="[0-9]+"
+                                minlength="12" maxlength="12" placeholder="Please Enter Aadhar No" required />
+                        </div>
+                    </div>
+                    {{-- <div class="col-md-4">
+
+                        <div class="form-group mt-4 adhar_field">
+                            <label class="pb-3">Confirm Aadhaar *</label>
+                            <input type="text" class="form-control" name="aadhar_conform" pattern="[0-9]+"
+                                minlength="12" maxlength="12" placeholder="Please Enter Aadhar No" required />
+                        </div>
+
+
+                    </div> --}}
+
+
+                </div>
+
+                <div class="form-group col-md-8 text-end">
+                    <div class="buttonclass me-4">
+                        <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
+                    </div>
+                    <div class="buttonclass1 mt40">
+                        <button type="submit">Verify <i class="las la-arrow-right"></i></button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!--------------------------------------------- ekyc Aadhar verify --------------------------------->
+@endif
+
+
+@if (Session::has('step') && Session::get('step') == 4)
+    <!--------------------------------------------- ekyc Aadhar verify --------------------------------->
+
+    <div id="ekyc-aadhar-otp-verify">
+
+        <div class="row">
+            <form class="col-md-7" id="aadhar-otp-verify"
+                action="{{ url(route('account.create', ['param' => 'aadhar-otp-verify'])) }}" method="post">
+                @csrf
+
+             
+                <div class="row">
+<div class="col-md-6">
+ <div class="form-group mt-4 adhar_field">
+                        <label class="pb-2">Verify OTP *</label>
+                        <input type="text" class="form-control" name="otp" pattern="[0-9]+" minlength="6"
+                            maxlength="6" placeholder="Please Enter OTP" required />
+                    </div>
+</div>
+
+              <div class="col-md-6"></div> 
+
+
+                    <div class="form-group col-md-6 text-end">
+                        <div id="ReSubmit" class="buttonclass me-4 d-none">
+                            <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
+                        </div>
+                        <div class="buttonclass1 mt40">
+                            <button type="submit">Submit <i class="las la-arrow-right"></i></button>
+                        </div>
+                        <div id="ReSubmitAadhar" class="buttonclass me-4 d-none">
+                            <a class="ms-4 d-sm-inline d-block" id="resendAadharOTPButton">Resend OTP</a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+        // Reload the page after 5 seconds
+        setTimeout(function() {
+            var ReSubmitBtn = document.getElementById("ReSubmit");
+            var resendAadharotp = document.getElementById("ReSubmitAadhar");
+
+            ReSubmitBtn.classList.remove("d-none"); // Remove the "d-none" class to display the button
+            resendAadharotp.classList.remove("d-none"); // Remove the "d-none" class to display the button
+
+            // Add event listener to the button
+            ReSubmitBtn.addEventListener("click", function() {
+                // Create an XMLHttpRequest object
+                var xhr = new XMLHttpRequest();
+
+                // Specify the URL to hit using the route name
+                var url = '{{ route('resubmit-aadhar-otp') }}';
+
+                // Send a GET request to the URL asynchronously
+                xhr.open('GET', url, true);
+                xhr.send();
+
+                // Reload the page after hitting the route
+                location.reload();
+            });
+
+        }, 60000); // 5000 milliseconds = 5 seconds
+    </script>
+
+
+    <!--------------------------------------------- ekyc Aadhar verify --------------------------------->
+@endif
+
+
+@if (Session::has('step') && Session::get('step') == 5)
+    <!--------------------------------------------- ekyc Aadhar verify --------------------------------->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get the elements by their IDs
+            var pageHeading = document.getElementById("page-heading");
+            var pageContain = document.getElementById("page-contain");
+
+            // Set the display style to 'block' to make them visible
+            pageHeading.style.display = "none";
+            pageContain.style.display = "none";
+        });
+
+
+        // Reload the page after 3 seconds
+        setTimeout(function() {
+
+            // Create an XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Specify the URL to hit using the route name
+            var url = '{{ route('update-session') }}';
+
+            // Send a GET request to the URL asynchronously
+            xhr.open('GET', url, true);
+            xhr.send();
+
+
+            location.reload();
+        }, 5000); // 3000 milliseconds = 3 seconds
+    </script>
+
+
+    <div id="aadhar-preview">
+
+        @php
+
+            $customer_detail = Session::get('customer_detail');
+
+            $profileImage = $customer_detail['profileImage'];
+            $fullName = $customer_detail['name'];
+            $address = $customer_detail['address'];
+            $zip = $customer_detail['zip'];
+            $dob = $customer_detail['dob'];
+            $care_of = $customer_detail['care_of'];
+            $mobile = $customer_detail['mobile'];
+
+            Session()->put('address', $address);
+            Session()->put('fullname', $fullName);
+
+        @endphp
+
+        <div class="row d-flex justify-content-center">
+
+            <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
+                <div class="card-header">
+                    Final KYC Result
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <img src="data:image/png;base64,{{ $profileImage }}" class="card-img-top thum"
+                        alt="profile-image" style="width: 250px;">
+                </div>
+
+                <div class="card-body">
+                    <p class="card-text"><strong>Name : </strong>{{ $fullName }}</p>
+                    <p class="card-text"><strong>DOB : </strong>{{ $dob }}</p>
+                    <p class="card-text"><strong>Mobile : </strong>{{ $mobile }}</p>
+                    <p class="card-text"><strong>Address : </strong>
+                        {{ $care_of }}
+                        @php
+                            echo $address->house . ",\n";
+                            echo $address->loc . ",\n";
+                            echo $address->landmark . ",\n";
+                            echo $address->street . ",\n";
+                            echo $address->vtc . ",\n";
+                            echo $address->subdist . ",\n";
+                            echo $address->dist . ",\n";
+                            echo $address->state . ",\n";
+                            echo $address->country;
+                        @endphp
+                        {{ $zip }}
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        
+            {{-- <div class="buttonclass me-4">
+                <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
+            </div> --}}
+
+    </div>
+
+    <!--------------------------------------------- ekyc Aadhar verify --------------------------------->
+
+@endif
+
+
+
+@if (Session::has('step') && Session::get('step') == 6)
 
     <!--------------------------------------------- customer detail --------------------------------->
 
@@ -136,12 +367,30 @@
             @php
                 $user = DB::table('users')
                     ->where('id', Session::get('temp_user_id'))
-                    ->get(['salutation', 'first_name', 'last_name', 'email', 'phone'])
+                    ->get(['salutation', 'first_name', 'last_name','fullname','email', 'phone'])
                     ->first();
                 $user_detail = DB::table('userdetails')
                     ->where('user_id', Session::get('temp_user_id'))
                     ->get(['flat_no', 'street', 'locality', 'state', 'city', 'pincode', 'dob', 'pan_number','nominee_name', 'nominee_phone', 'nominee_dob', 'nominee_address', 'nominee_relation','address'])
                     ->first();
+
+
+                if(Session::has('address')){
+                    $address = Session::get('address');
+
+                    $customer_address = $address->house . ' ' . $address->loc . ' ' . $address->landmark . ' ' . $address->street . ' ' . $address->vtc . ' ' . $address->subdist . ' ' . $address->dist . ' ' . $address->state . ' ' . $address->country;
+                } else {
+                    $customer_address = '';
+                }
+                
+                if(Session::has('fullname')){
+                    $fullname = Session::get('fullname');
+                } else {
+                    $fullname = '';
+                }
+
+
+
             @endphp
         @endif
 
@@ -170,19 +419,19 @@
 
                 <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">First Name *</label>
-                        <input type="text" class="form-control uppercase" name="first_name" pattern="[A-Za-z]+" minlength="3"
-                            maxlength="20" placeholder="Please Enter Your First Name" value="{{ $user->first_name }}" required />
+                        <label class="pb-2">Full Name *</label>
+                        <input type="text" class="form-control uppercase" name="fullname" pattern="[A-Za-z]+" minlength="3"
+                            maxlength="50" placeholder="Please Enter Your Full Name" value="{{ $user->first_name ?? $fullname}}" required />
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                {{-- <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">Last Name *</label>
                         <input type="text" class="form-control uppercase" name="last_name" pattern="[A-Za-z]+" minlength="1"
                             maxlength="20" placeholder="Please Enter Your Last Name" value="{{ $user->last_name }}" required />
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="col-md-3">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
@@ -261,10 +510,10 @@
                 </div>
 
 
-                <div class="col-md-12" >
+                <div class="col-md-9">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-3">Address *</label>
-                        <textarea class="form-control height50" row="2" name="address" style="height: 103px;">{{ $user_detail->address }}</textarea>
+                        <textarea class="form-control height50" row="2" name="address" id="address" style="height: 103px;">{{ $user_detail->address ?? $customer_address }}</textarea>
                     </div>
                 </div>
 
@@ -306,6 +555,7 @@
                         value="{{ $user_detail->nominee_relation }}" />
                 </div>
             </div>
+
             <div class="col-md-12" id="nomine_address">
                 <div class="form-group mt-md-5 mt-3 adhar_field">
                     <label class="pb-3">Nominee Address *</label>
@@ -316,9 +566,10 @@
             <div class="col-md-12 d-none" id="residence_address">
                 <div class="form-group mt-md-5 mt-3 adhar_field">
                     <label class="pb-3">Nominee Address *</label>
-                    <textarea class="form-control height50" row="3" name="residence_nominee_address" style="height: 103px;">update</textarea>
+                    <textarea class="form-control height50" row="3" name="residence_nominee_address" id="residence_nominee_address" style="height: 103px;"></textarea>
                 </div>
             </div>
+
 
             <div class="form-group mt-2">
                 <input class="me-2" type="checkbox" name="residence_address_check" id="residence_address_check" value="1" />
@@ -353,16 +604,24 @@
 
     
     <script>
-        document.getElementById('residence_address_check').addEventListener('change', function() {
+        document.addEventListener('DOMContentLoaded', function() {
+            var residenceAddressCheck = document.getElementById('residence_address_check');
             var nomineAddress = document.getElementById('nomine_address');
+            var Address = document.getElementById('address');
+            var residence_nominee_address = document.getElementById('residence_nominee_address');
             var residenceAddress = document.getElementById('residence_address');
 
-            if (this.checked) {
-                nomineAddress.classList.add('d-none');
-                residenceAddress.classList.remove('d-none');
-            } else {
-                nomineAddress.classList.remove('d-none');
-                residenceAddress.classList.add('d-none');
+            if (residenceAddressCheck && nomineAddress && Address && residenceAddress) {
+                residenceAddressCheck.addEventListener('change', function() {
+                    if (this.checked) {
+                        nomineAddress.classList.add('d-none');
+                        residence_nominee_address.value = Address.value;
+                        residenceAddress.classList.remove('d-none');
+                    } else {
+                        nomineAddress.classList.remove('d-none');
+                        residenceAddress.classList.add('d-none');
+                    }
+                });
             }
         });
     </script>
@@ -370,7 +629,7 @@
 @endif
 
 
-@if (Session::has('step') && Session::get('step') == 4)
+@if (Session::has('step') && Session::get('step') == 7)
 
     <!--------------------------------------------- plan detail --------------------------------->
 
@@ -412,7 +671,7 @@
                         @endforeach --}}
                             @foreach ($plan as $row)
                                 <option data-minium="{{ $row->minimum_installment_amount }}"
-                                    value="{{ $row->id }}">
+                                    value="{{ $row->id }}" @if($row->id == 1) selected @endif>
                                     {{ ucfirst($row->name) }}
                                 </option>
                             @endforeach
@@ -527,8 +786,8 @@
 
 @endif
 
-
-@if (Session::has('step') && Session::get('step') == 5)
+{{-- 
+@if (Session::has('step') && Session::get('step') == 8)
     <!--------------------------------------------- preview info --------------------------------->
 
     <div id="preview-info">
@@ -746,236 +1005,11 @@
     </div>
 
     <!--------------------------------------------- preview info --------------------------------->
-@endif
-
-
-
-@if (Session::has('step') && Session::get('step') == 6)
-    <!--------------------------------------------- ekyc Aadhar verify --------------------------------->
-
-    <div id="ekyc">
-
-        <div class="row">
-            <form class="col-md-12" id="aadhar-verify-request-otp"
-                action="{{ url(route('account.create', ['param' => 'aadhar-verify-request-otp'])) }}" method="post">
-                @csrf
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group mt-4 adhar_field">
-                            <label class="pb-3">Aadhaar *</label>
-                            <input type="text" class="form-control" name="aadhar" pattern="[0-9]+"
-                                minlength="12" maxlength="12" placeholder="Please Enter Aadhar No" required />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-
-                        <div class="form-group mt-4 adhar_field">
-                            <label class="pb-3">Confirm Aadhaar *</label>
-                            <input type="text" class="form-control" name="aadhar_conform" pattern="[0-9]+"
-                                minlength="12" maxlength="12" placeholder="Please Enter Aadhar No" required />
-                        </div>
-
-
-                    </div>
-
-
-                </div>
-
-                <div class="form-group col-md-8 text-end">
-                    <div class="buttonclass me-4">
-                        <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
-                    </div>
-                    <div class="buttonclass1 mt40">
-                        <button type="submit">Verify <i class="las la-arrow-right"></i></button>
-                    </div>
-                </div>
-
-            </form>
-
-        </div>
-
-    </div>
-
-    <!--------------------------------------------- ekyc Aadhar verify --------------------------------->
-@endif
-
-
-@if (Session::has('step') && Session::get('step') == 7)
-    <!--------------------------------------------- ekyc Aadhar verify --------------------------------->
-
-    <div id="ekyc-aadhar-otp-verify">
-
-        <div class="row">
-            <form class="col-md-7" id="aadhar-otp-verify"
-                action="{{ url(route('account.create', ['param' => 'aadhar-otp-verify'])) }}" method="post">
-                @csrf
-
-             
-                <div class="row">
-<div class="col-md-6">
- <div class="form-group mt-4 adhar_field">
-                        <label class="pb-2">Verify OTP *</label>
-                        <input type="text" class="form-control" name="otp" pattern="[0-9]+" minlength="6"
-                            maxlength="6" placeholder="Please Enter OTP" required />
-                    </div>
-</div>
-
-              <div class="col-md-6"></div> 
-
-
-                    <div class="form-group col-md-6 text-end">
-                        <div id="ReSubmit" class="buttonclass me-4 d-none">
-                            <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
-                        </div>
-                        <div class="buttonclass1 mt40">
-                            <button type="submit">Submit <i class="las la-arrow-right"></i></button>
-                        </div>
-                    </div>
-
-
-                </div>
-
-            </form>
-
-
-        </div>
-
-    </div>
-
-
-
-    <script>
-        // Reload the page after 5 seconds
-        setTimeout(function() {
-            var ReSubmitBtn = document.getElementById("ReSubmit");
-            ReSubmitBtn.classList.remove("d-none"); // Remove the "d-none" class to display the button
-
-            // Add event listener to the button
-            ReSubmitBtn.addEventListener("click", function() {
-                // Create an XMLHttpRequest object
-                var xhr = new XMLHttpRequest();
-
-                // Specify the URL to hit using the route name
-                var url = '{{ route('resubmit-aadhar-otp') }}';
-
-                // Send a GET request to the URL asynchronously
-                xhr.open('GET', url, true);
-                xhr.send();
-
-                // Reload the page after hitting the route
-                location.reload();
-            });
-
-        }, 60000); // 5000 milliseconds = 5 seconds
-    </script>
-
-
-    <!--------------------------------------------- ekyc Aadhar verify --------------------------------->
-@endif
+@endif --}}
 
 
 
 @if (Session::has('step') && Session::get('step') == 8)
-    <!--------------------------------------------- ekyc Aadhar verify --------------------------------->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Get the elements by their IDs
-            var pageHeading = document.getElementById("page-heading");
-            var pageContain = document.getElementById("page-contain");
-
-            // Set the display style to 'block' to make them visible
-            pageHeading.style.display = "none";
-            pageContain.style.display = "none";
-        });
-
-
-        // Reload the page after 3 seconds
-        setTimeout(function() {
-
-            // Create an XMLHttpRequest object
-            var xhr = new XMLHttpRequest();
-
-            // Specify the URL to hit using the route name
-            var url = '{{ route('update-session') }}';
-
-            // Send a GET request to the URL asynchronously
-            xhr.open('GET', url, true);
-            xhr.send();
-
-
-            location.reload();
-        }, 5000); // 3000 milliseconds = 3 seconds
-    </script>
-
-
-    <div id="aadhar-preview">
-
-        @php
-
-            $customer_detail = Session::get('customer_detail');
-
-            $profileImage = $customer_detail['profileImage'];
-            $fullName = $customer_detail['name'];
-            $address = $customer_detail['address'];
-            $zip = $customer_detail['zip'];
-            $dob = $customer_detail['dob'];
-            $care_of = $customer_detail['care_of'];
-            $mobile = $customer_detail['mobile'];
-
-        @endphp
-
-        <div class="row d-flex justify-content-center">
-
-            <div class="card col-md-12 my-5 mx-2" style="width: 40rem;">
-                <div class="card-header">
-                    Final KYC Result
-                </div>
-
-                <div class="d-flex justify-content-center">
-                    <img src="data:image/png;base64,{{ $profileImage }}" class="card-img-top thum"
-                        alt="profile-image" style="width: 250px;">
-                </div>
-
-                <div class="card-body">
-                    <p class="card-text"><strong>Name : </strong>{{ $fullName }}</p>
-                    <p class="card-text"><strong>DOB : </strong>{{ $dob }}</p>
-                    <p class="card-text"><strong>Mobile : </strong>{{ $mobile }}</p>
-                    <p class="card-text"><strong>Address : </strong>
-                        {{ $care_of }}
-                        @php
-                            echo $address->house . ",\n";
-                            echo $address->loc . ",\n";
-                            echo $address->landmark . ",\n";
-                            echo $address->street . ",\n";
-                            echo $address->vtc . ",\n";
-                            echo $address->subdist . ",\n";
-                            echo $address->dist . ",\n";
-                            echo $address->state . ",\n";
-                            echo $address->country;
-                        @endphp
-                        {{ $zip }}
-                    </p>
-                </div>
-            </div>
-
-        </div>
-
-        
-            <div class="buttonclass me-4">
-                <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
-            </div>
-
-    </div>
-
-    <!--------------------------------------------- ekyc Aadhar verify --------------------------------->
-
-    {{-- @php Session()->put('step', 9); @endphp --}}
-@endif
-
-
-
-@if (Session::has('step') && Session::get('step') == 9)
     <!--------------------------------------------- After aadhar preview info --------------------------------->
 
     <div id="preview-info">
@@ -983,7 +1017,7 @@
         @php
             $user = DB::table('users')
                 ->where('id', Session::get('temp_user_id'))
-                ->get(['plan_id', 'installment_amount', 'first_name','last_name', 'email', 'phone', 'id'])
+                ->get(['plan_id', 'installment_amount', 'first_name','last_name','fullname','email', 'phone', 'id'])
                 ->first();
 
             $user_detail = DB::table('userdetails')
@@ -1002,6 +1036,7 @@
                     'city',
                     'pincode',
                     'dob',
+                    'address',
                 ])
                 ->first();
 
@@ -1056,7 +1091,8 @@
 
                         <div class="row">
                             <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p>
+                                {{-- <p class="card-text"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p> --}}
+                                <p class="card-text"><strong>Name : </strong>{{ $user->fullname }}</p>
                             </div>
 
                             <div class="col-md-4 mb-3">
@@ -1103,12 +1139,13 @@
                             <div class="col-md-6">
                                 <p class="card-text"><strong>Address : </strong>
                                     @php
-                                        echo $user_detail->flat_no . ",\n";
-                                        echo $user_detail->street . ",\n";
-                                        echo $user_detail->locality . ",\n";
-                                        echo $user_detail->city . ",\n";
-                                        echo $user_detail->state . ",\n";
-                                        echo $user_detail->pincode;
+                                        // echo $user_detail->flat_no . ",\n";
+                                        // echo $user_detail->street . ",\n";
+                                        // echo $user_detail->locality . ",\n";
+                                        // echo $user_detail->city . ",\n";
+                                        // echo $user_detail->state . ",\n";
+                                        // echo $user_detail->pincode;
+                                        echo $user_detail->address;
                                     @endphp
                                 </p>
                             </div>
@@ -1136,7 +1173,7 @@
             </div>
         </div>
 
-        <form id="ekyc-verify" action="{{ url(route('account.create', ['param' => 'esign-varification'])) }}"
+        <form id="esign-aadhar-verify-request-otp" action="{{ url(route('account.create', ['param' => 'esign-aadhar-verify-request-otp'])) }}"
             method="post">
             @csrf
 
@@ -1165,7 +1202,7 @@
 
 
 
-@if (Session::has('step') && Session::get('step') == 10)
+{{-- @if (Session::has('step') && Session::get('step') == 10)
     <!--------------------------------------------- eSign Aadhar verify --------------------------------->
 
     <div id="esign" class="paddingbtm100">
@@ -1237,10 +1274,10 @@
     </div>
 
     <!--------------------------------------------- eSign Aadhar verify --------------------------------->
-@endif
+@endif --}}
 
 
-@if (Session::has('step') && Session::get('step') == 11)
+{{-- @if (Session::has('step') && Session::get('step') == 11)
     <!--------------------------------------------- eSign Aadhar otp verify --------------------------------->
 
     <div id="ekyc-aadhar-otp-verify">
@@ -1286,7 +1323,7 @@
     </div>
 
     <!--------------------------------------------- eSign Aadhar otp verify --------------------------------->
-@endif
+@endif --}}
 
 
 @if (Session::has('step') && Session::get('step') == 12)
@@ -1297,7 +1334,7 @@
         @php
             $user = DB::table('users')
                 ->where('id', Session::get('temp_user_id'))
-                ->get(['plan_id', 'installment_amount', 'first_name','last_name', 'email', 'phone', 'id'])
+                ->get(['plan_id', 'installment_amount', 'first_name','last_name','fullname','email', 'phone', 'id'])
                 ->first();
 
             $user_detail = DB::table('userdetails')
@@ -1316,6 +1353,7 @@
                     'city',
                     'pincode',
                     'dob',
+                    'address'
                 ])
                 ->first();
 
@@ -1372,7 +1410,8 @@
 
 
                             <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p>
+                                {{-- <p class="card-text"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p> --}}
+                                <p class="card-text"><strong>Name : </strong>{{ $user->fullname }}</p>
                             </div>
 
                             <div class="col-md-4 mb-3">
@@ -1416,12 +1455,13 @@
                             <div class="col-md-8 mb-3">
                                 <p class="card-text"><strong>Address : </strong>
                                     @php
-                                        echo $user_detail->flat_no . ",\n";
-                                        echo $user_detail->street . ",\n";
-                                        echo $user_detail->locality . ",\n";
-                                        echo $user_detail->city . ",\n";
-                                        echo $user_detail->state . ",\n";
-                                        echo $user_detail->pincode;
+                                        // echo $user_detail->flat_no . ",\n";
+                                        // echo $user_detail->street . ",\n";
+                                        // echo $user_detail->locality . ",\n";
+                                        // echo $user_detail->city . ",\n";
+                                        // echo $user_detail->state . ",\n";
+                                        // echo $user_detail->pincode;
+                                        echo $user_detail->address;
                                     @endphp
                                 </p>
                             </div>
@@ -1472,7 +1512,7 @@
 
             $user = DB::table('users')
                 ->where('id', Session::get('temp_user_id'))
-                ->get(['plan_id', 'installment_amount', 'first_name','last_name', 'email', 'phone', 'id'])
+                ->get(['plan_id', 'installment_amount', 'first_name','last_name','fullname','email', 'phone', 'id'])
                 ->first();
 
             $user_detail = DB::table('userdetails')
@@ -1491,21 +1531,39 @@
                     'city',
                     'pincode',
                     'dob',
+                    'address',
                 ])
                 ->first();
 
             $plan_name = DB::table('plans')
                 ->where('id', $user->plan_id)
                 ->value('name');
+
+
+            if(Session::has('transactions_id')){
+
+                $transactions_details =  DB::table('transactions')
+                ->where('id', Session::get('transactions_id'))
+                ->get([
+                    'payment_id',
+                    'payment_amount',
+                    'payment_type',
+                ])
+                ->first();
+
+            }
+
         @endphp
 
-        <div class="p-3 mb-2 text-white" style="background-color:#e1aa7a;">
+{{--
+        <!-- <div class="p-3 mb-2 text-white" style="background-color:#e1aa7a;">
             <h5> Preview Info </h5>
-        </div>
+        </div> -->
+            --}}
 
-        <div class="row">
-
-            <div class="col-md-4">
+        <div class="row justify-content-center">
+            {{--
+            <!-- <div class="col-md-4">
 
                 <div class="card col-md-12 mt-2">
                     <div class="card-header">
@@ -1518,10 +1576,12 @@
                     </div>
                 </div>
 
-            </div>
+            </div> --> 
+            --}}
 
 
-            <div class="col-md-4">
+           
+            {{-- <!-- <div class="col-md-4">
 
                 <div class="col-md-12 mt-2">
 
@@ -1540,24 +1600,30 @@
 
                 </div>
 
-            </div>
+            </div> -->
+            --}}
 
 
-            <div class="col-md-4">
-                <div class="card col-md-12 mt-2">
-                    <div class="card-header">
-                        Login Details
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text"><strong>User ID : </strong>{{ $user->phone }}</p>
-                        <p class="card-text"><strong>Password : </strong>{{ $user->phone }}</p>
+            <p>Transaction ID : {{ $transactions_details->payment_id ?? '-' }}</p>
+
+            <p>Plan Name : {{ $plan_name ?? '-' }}</p>
+            <p>Installment Amount : {{ $transactions_details->payment_amount ?? '-' }}</p>
+            <p>your 1 installment succefully completed</p>
+
+
+            <h2 class="success_heading text-center">you have successfully registered your account</h2>
+            <h3 class="login_details text-center">your login details are</h3>
+
+                    <div class="row col-md-6 p-3 px-2 mb-2 text-dark text-center mt-2 rounded-3" style="background-color:#fff;">
+                        <p class="col-md-6 mb-0"><strong>User ID : </strong>{{ $user->phone }}</p>
+                        <p class="col-md-6 mb-0"><strong>Password : </strong>{{ $user->phone }}</p>
                         <input type="hidden" name="phone" id="phone" value="{{ $user->phone }}">
                     </div>
-                </div>
 
-            </div>
 
-            <div class="col-md-12">
+            
+            {{--
+            <!-- <div class="col-md-12">
 
                 <div class="card col-md-12 mt-2">
                     <div class="card-header">
@@ -1569,7 +1635,8 @@
                         <div class="row">
 
                             <div class="col-md-4 mb-3">
-                                <p class="card-text"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p>
+                                <p class="card-text"><strong>Name : </strong>{{ $user->first_name }} {{ $user->last_name }}</p> 
+                                <p class="card-text"><strong>Name : </strong>{{ $user->fullname }}</p>
                             </div>
 
                             <div class="col-md-4 mb-3">
@@ -1615,12 +1682,12 @@
                             <div class="col-md-6 mb-3">
                                 <p class="card-text"><strong>Address : </strong>
                                     @php
-                                        echo $user_detail->flat_no . ",\n";
-                                        echo $user_detail->street . ",\n";
-                                        echo $user_detail->locality . ",\n";
-                                        echo $user_detail->city . ",\n";
-                                        echo $user_detail->state . ",\n";
-                                        echo $user_detail->pincode;
+                                        // echo $user_detail->flat_no . ",\n";
+                                        // echo $user_detail->street . ",\n";
+                                        // echo $user_detail->locality . ",\n";
+                                        // echo $user_detail->city . ",\n";
+                                        // echo $user_detail->state . ",\n";
+                                        echo $user_detail->address;
                                     @endphp
                                 </p>
                             </div>
@@ -1629,20 +1696,23 @@
                 </div>
 
 
-            </div>
+            </div> -->
+            --}}
 
 
         </div>
 
-        <div class="p-3 mb-2 text-white mt-2" style="background-color:#e1aa7a;">
+            {{--
+        <!-- <div class="p-3 mb-2 text-white mt-2" style="background-color:#e1aa7a;">
             <h5> Login </h5>
-        </div>
+        </div> -->
+            --}}
 
         <div>
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group text-center">
             <div class="buttonclass1 mt40">
                 <button id="login_page">Proceed to login <i class="las la-arrow-right"></i></button>
             </div>

@@ -176,17 +176,35 @@ Route::get('/clear-data', function () {
 })->name('clear-data');
 
 Route::get('/update-session', function () {
-    Session()->put('step', 9);
+    Session()->put('step', 6);
 })->name('update-session');
 
 
+
+
+
+
+
+
+
+
 Route::get('/custom-session', function () {
-    Session()->put('step', 12);
-    session()->put('temp_user_id', 5);
+    Session()->put('step', 13);
+    Session()->put('payment', 1);
+    session()->put('temp_user_id', 6);
 });
 
+
+
+
+
+
+
+
+
+
 Route::get('/resubmit-aadhar-otp', function () {
-    Session()->put('step', 5);
+    Session()->put('step', 3);
 })->name('resubmit-aadhar-otp');
 
 Route::get('/redirect-login', function () {

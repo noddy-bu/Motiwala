@@ -192,11 +192,11 @@ class EsignAadharController extends Controller
     function generate_pdf($client_id){
 
         $user = DB::table('users')->where('id', Session::get('temp_user_id'))
-        ->get(['id','plan_id','installment_amount','first_name','last_name','email','phone'])->first();
+        ->get(['id','plan_id','installment_amount','first_name','last_name', 'fullname', 'email','phone'])->first();
 
         $user_detail = DB::table('userdetails')
         ->where('user_id', Session::get('temp_user_id'))
-        ->get(['pan_number','flat_no','street','locality','state','city','pincode','nominee_name','nominee_phone','nominee_address','nominee_relation','aadhar_number'])
+        ->get(['pan_number','flat_no','street','locality','state','city','pincode','address','nominee_name','nominee_phone','nominee_address','nominee_relation','aadhar_number'])
         ->first();
 
         $plan = DB::table('plans')->where('id', $user->plan_id)->get(['name','installment_period'])->first();
