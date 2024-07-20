@@ -161,7 +161,7 @@
 
                                     </div>
 
-                                    <div id="marital_info">
+                                    <div id="marital_info" class="col-12">
                                         <div class="row">
                                             
                                             <div class="col-md-4 col-12">
