@@ -1935,7 +1935,7 @@ section.inner_page_banner {
 }
 
 
-@media (min-width:2001px){
+@media (min-width:1700px){
     .old_sheme_closure, .privay_policy, .faq_section, .reset_pass, .information_section, .pay_installments{ 
         height: 100vh;
     }
