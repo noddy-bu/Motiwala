@@ -8,7 +8,7 @@
         </div>
         <a href="#" class="align-items-center text-white text-decoration-none">
             <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-            <span class="mx-1 text-dark"><b>{{ ucfirst(auth()->user()->first_name) }}</b></span>
+            <span class="mx-1 text-dark"><b>{{ ucfirst(auth()->user()->fullname) }}</b></span>
         </a>
     </div>
 

@@ -45,11 +45,19 @@
             
                             <div class="row d-flex">
                                 
-                                <div class="col-md-4">
+                                {{-- <div class="col-md-4">
                                     <div class="form-group mt-4 adhar_field">
                                         <label class="pb-3">Name *</label>
                                         <input type="text" class="form-control" name="name" pattern="[A-Za-z]+" minlength="3"
                                         maxlength="25" placeholder="Please Enter Your Name" value="{{ $user->first_name }} {{ $user->last_name }}" readonly/>
+                                    </div>
+                                </div> --}}
+
+                                <div class="col-md-4">
+                                    <div class="form-group mt-4 adhar_field">
+                                        <label class="pb-3">Name *</label>
+                                        <input type="text" class="form-control" name="name" pattern="[A-Za-z]+" minlength="3"
+                                        maxlength="25" placeholder="Please Enter Your Name" value="{{ $user->fullname }}" readonly/>
                                     </div>
                                 </div>
 
@@ -68,7 +76,7 @@
                                     </div>
                                 </div>
             
-                                <div class="col-md-4">
+                                {{-- <div class="col-md-4">
                                     <div class="form-group mt-4 adhar_field">
                                         <label class="pb-3">Door No / Flat NO *</label>
                                         <input type="text" class="form-control" name="flat_no" pattern="[0-9A-Za-z]+" placeholder="Please Enter Your Door No / Flat No" 
@@ -111,6 +119,13 @@
                                         <label class="pb-3">Pin Code *</label>
                                         <input type="text" class="form-control" name="pincode" pattern="[0-9]+" minlength="3"
                                         placeholder="Please Enter Your Pin Code" value="{{ $user_detail->pincode }}" required/>
+                                    </div>
+                                </div> --}}
+
+                                <div class="col-md-8">
+                                    <div class="form-group mt-4 adhar_field">
+                                        <label class="pb-3">Address *</label>
+                                        <textarea class="form-control" name="address" required style="height: 0px;">{{ $user_detail->address }}</textarea>
                                     </div>
                                 </div>
             

@@ -196,7 +196,7 @@ class AccountController extends Controller
             ->get(['plan_id', 'installment_amount', 'first_name', 'last_name', 'fullname', 'email', 'phone'])->first();
 
         $user_detail = DB::table('userdetails')->where('user_id', Session::get('user_id'))
-            ->get(['nominee_name', 'nominee_phone', 'nominee_dob', 'nominee_address', 'nominee_relation', 'flat_no', 'street', 'locality', 'state', 'city', 'pincode', 'dob', 'marital_status', 'spouse_name', 'spouse_dob', 'marriage_date'])->first();
+            ->get(['nominee_name', 'nominee_phone', 'nominee_dob', 'nominee_address', 'nominee_relation', 'flat_no', 'street', 'locality', 'state', 'city', 'pincode', 'address', 'dob', 'marital_status', 'spouse_name', 'spouse_dob', 'marriage_date'])->first();
 
         return view('frontend.pages.admin.manage_user_profile.index', compact('user', 'user_detail'));
     }
