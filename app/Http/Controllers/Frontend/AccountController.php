@@ -231,12 +231,13 @@ class AccountController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'flat_no' => 'required|min:1',
-            'street' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
-            'locality' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
-            'state' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
-            'city' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
-            'pincode' => 'required|regex:/^[\d\s-]+$/|min:3',
+            // 'flat_no' => 'required|min:1',
+            // 'street' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            // 'locality' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            // 'state' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            // 'city' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            // 'pincode' => 'required|regex:/^[\d\s-]+$/|min:3',
+            'address' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:350'],
             'dob' => ['required', 'date', function ($attribute, $value, $fail) {
                 $dob = Carbon::parse($value);
                 $age = $dob->diffInYears(Carbon::now());
@@ -275,12 +276,13 @@ class AccountController extends Controller
         ]);
 
         DB::table('userdetails')->where('user_id', $request->input('id'))->update([
-            'flat_no' => $request->input('flat_no'),
-            'street' => $request->input('street'),
-            'locality' => $request->input('locality'),
-            'state' => $request->input('state'),
-            'city' => $request->input('city'),
-            'pincode' => $request->input('pincode'),
+            // 'flat_no' => $request->input('flat_no'),
+            // 'street' => $request->input('street'),
+            // 'locality' => $request->input('locality'),
+            // 'state' => $request->input('state'),
+            // 'city' => $request->input('city'),
+            // 'pincode' => $request->input('pincode'),
+            'address' => $request->input('address'),
             'dob' => $request->input('dob'),
 
             'nominee_name' => $request->input('nominee_name'),
@@ -936,7 +938,7 @@ class AccountController extends Controller
             // 'city' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
             'address' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:350'],
             // 'pincode' => 'required|regex:/^[\d\s-]+$/|min:6',
-            'pan_number' => 'required|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:10|max:10',
+            'pan_number' => 'nullable|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:10|max:10',
 
             'nominee_name' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
             'nominee_phone' => 'nullable|regex:/^\d{10}$/',
@@ -997,7 +999,7 @@ class AccountController extends Controller
                 // 'city' => $request->input('city'),
                 // 'pincode' => $request->input('pincode'),
                 'dob' => $request->input('dob'),
-                'pan_number' => $request->input('pan_number'),
+                'pan_number' => strtoupper($request->input('pan_number')),
                 'address' => $request->input('address'),
 
                 'nominee_name' => $request->input('nominee_name'),

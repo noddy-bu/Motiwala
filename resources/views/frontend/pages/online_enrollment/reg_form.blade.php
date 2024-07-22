@@ -480,9 +480,9 @@
 
                 <div class="col-md-4">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2">Pan Card Number *</label>
+                        <label class="pb-2 text-uppercase">Pan Card Number </label>
                         <input type="text" class="form-control" name="pan_number"
-                            placeholder="Please Enter Your Pan Card Number" pattern="[0-9A-Za-z]+" value="{{ $user_detail->pan_number }}" minlength="10" maxlength="10" required />
+                            placeholder="Please Enter Your Pan Card Number" pattern="[0-9A-Za-z]+" value="{{ $user_detail->pan_number }}" minlength="10" maxlength="10" />
                     </div>
                 </div>
 
@@ -595,7 +595,7 @@
 
             <div class="col-md-8 d-none" id="residence_address">
                 <div class="form-group mt-md-5 mt-3 adhar_field">
-                    <label class="pb-3">Address *</label>
+                    <label class="pb-3">Address </label>
                     <textarea class="form-control height15" row="3" name="residence_nominee_address" id="residence_nominee_address" style="height: 103px;"></textarea>
                 </div>
             </div>
