@@ -480,8 +480,8 @@
 
                 <div class="col-md-4">
                     <div class="form-group mt-md-5 mt-3 adhar_field">
-                        <label class="pb-2 text-uppercase">Pan Card Number </label>
-                        <input type="text" class="form-control" name="pan_number"
+                        <label class="pb-2">Pan Card Number </label>
+                        <input type="text" class="form-control text-uppercase" name="pan_number"
                             placeholder="Please Enter Your Pan Card Number" pattern="[0-9A-Za-z]+" value="{{ $user_detail->pan_number }}" minlength="10" maxlength="10" />
                     </div>
                 </div>
