@@ -35,10 +35,10 @@
 						to purchase Gold and Diamonds Jewellery by making payments for the same over a ten month 
 						period and the Customers will be entitled to avail certain discounts subject to these 
 						Terms and Conditions.
-					</p>
+					</p> 
 
 					<p>Under this Plan, the Customer has to pay 10 (Ten) fixed monthly installments of a 
-						minimum of Rs. 5,000/- (Rupees Five Thousand only) or above (in multiples of one thousand). 
+						minimum of Rs. 3,000/- (Rupees Three Thousand only) or above (in multiples of one thousand). 
 						During the course of the 10 (Ten) months, the Customer has to pay one installments every month.
 						More than one installments in a single month will not be accepted.
 					</p>
