@@ -8,21 +8,21 @@
           <h3 class="widget-title">USEFUL LINKS</h3>
           <ul class="widget-menu">
             <li>
-              <a href="http://127.0.0.1:8000/about-us">
+              <a href="{{ url(route('about_us')) }}">
                 <i class="las la-angle-right"></i> About Us </a>
             </li>
 
             <li>
-              <a href="http://127.0.0.1:8000/faq">
+              <a href="{{ url(route('faq')) }}">
                 <i class="las la-angle-right"></i> FAQ </a>
             </li>
 
              <li>
-              <a href="http://127.0.0.1:8000/information">
+              <a href="{{ url(route('information')) }}">
                 <i class="las la-angle-right"></i> Information </a>
             </li>
              <li>
-              <a href="contact-us">
+              <a href="{{ url(route('contact_us')) }}">
                 <i class="las la-angle-right"></i> Contact Us </a>
             </li>
             
@@ -37,13 +37,13 @@
           <ul class="widget-menu">
 
           <li>
-              <a href="terms-conditions"> <i class="las la-angle-right"></i> Terms Conditions</a>
+              <a href="{{ url(route('terms')) }}"> <i class="las la-angle-right"></i> Terms Conditions</a>
             </li>
             <li>
-              <a href="http://127.0.0.1:8000/privacy-policy"> <i class="las la-angle-right"></i> Privacy Policy</a>
+              <a href="{{ url(route('privacy-policy')) }}"> <i class="las la-angle-right"></i> Privacy Policy</a>
             </li>
 <li>
-              <a href="refund-policy"> <i class="las la-angle-right"></i> Refund Policy</a>
+              <a href="{{ url(route('refund-policy')) }}"> <i class="las la-angle-right"></i> Refund Policy</a>
             </li>
             
            
@@ -54,12 +54,12 @@
           <h3 class="widget-title">QUICK LINKS</h3>
           <ul class="widget-menu">
             <li>
-              <a href="http://127.0.0.1:8000/account/onlineenrollment">
+              <a href="{{ url(route('account.new.enrollment.page')) }}">
                 <i class="las la-angle-right"></i> New Account </a>
             </li>           
            
              <li>
-              <a href="http://127.0.0.1:8000/feedback"> <i class="las la-angle-right"></i> Give Us Feedback</a>
+              <a href="{{ url(route('feedback')) }}"> <i class="las la-angle-right"></i> Give Us Feedback</a>
             </li>
           </ul>
         </div>

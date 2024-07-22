@@ -64,7 +64,7 @@
 					   Date subject to the Customers having made the payment of all ten monthly installments.
 					   If a Customer redeems before the completion of 366 (three hundred and sixty six) days 
 					   but after the completion of 300 (Three Hundred) days, the Customer will be eligible 
-					   for a discount ranging between 55% (Fifty Five percent) to 100% (Seventy Five percent) 
+					   for a discount ranging between 55% (Fifty Five percent) to 100% (Hundred percent) 
 					   of one month installments based on the number of days, and subject to the Customers 
 					   having made the payment of all ten monthly installments. For redemption after 
 					   completion of 180 (One Hundred and Eighty) days but before completion of 300 
