@@ -88,7 +88,7 @@ $plan_Details = DB::table('plans')
             <div class="choose_content">
               <p class="black_color">
                 Each month, make sure to pay a fixed installment amount by the due date for 10 months. 
-                The minimum installment value is INR 5000, but you can choose to pay more in multiples 
+                The minimum installment value is INR 3000, but you can choose to pay more in multiples 
                 of INR 1000 if you wish.
               </p>
             </div>

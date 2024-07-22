@@ -125,7 +125,7 @@ $receivable_percentage_on_time = DB::table('plans')
            <section class="top_step_content">
             <div class="container">  <h4 class="title_heading text-center black_color pb-3 heading_font">Dreaming of owning that <span class="stunning_necklace"> stunning jewellery? </span></h4>
                 <p class="text-center black_color fontsize26">
-                    Start your journey by opening a Motiwala Jewels Golden Treasure  account with just ₹5000.
+                    Start your journey by opening a Motiwala Jewels Golden Treasure  account with just ₹3000.
                     <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
                     to 100% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
                 </p>
@@ -172,7 +172,7 @@ $receivable_percentage_on_time = DB::table('plans')
                         <div class="step_box steps2">
                             <div class="step_content2 pb-lg -3 pb-0">
                                 <p class="black_color text-center" >
-                                    You can pay a monthly installment of at least ₹5000, or any higher multiples of ₹1000, 
+                                    You can pay a monthly installment of at least ₹3000, or any higher multiples of ₹1000, 
                                     for 10 months using cash, online banking via Standing Instructions, Net-Banking, 
                                     UPI or post-dated cheque facilities.
                                 </p>
