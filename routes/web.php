@@ -241,7 +241,7 @@ Route::get('/redirect-login', function () {
 // Route::get('/session-setup', function () {
 //     $email = "khanfaisal.makent@gmail.com";
 //     $installment = "1st"; 
-//     $amount = "5000";
+//     $amount = "3000";
 //     $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
 // });
 
