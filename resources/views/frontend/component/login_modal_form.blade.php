@@ -69,6 +69,11 @@
                             }
                               
                           }, 1000);
+                      } else if (response.status === 'incomplete') {
+                        toastr.success(response.message, 'error');
+                          setTimeout(function() {
+                              window.location.href = "{{ route('account.new.enrollment.page') }}"; 
+                          }, 1000);
                       } else {
                           toastr.error(response.message, 'Error');
                       }

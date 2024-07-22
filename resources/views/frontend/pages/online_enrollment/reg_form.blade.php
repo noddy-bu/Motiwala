@@ -458,7 +458,7 @@
                     <div class="form-group mt-md-5 mt-3 adhar_field">
                         <label class="pb-2">Full Name *</label>
                         <input type="text" class="form-control uppercase" name="fullname" pattern="[A-Za-z]+" minlength="3"
-                            maxlength="50" placeholder="Please Enter Your Full Name" value="{{ $user->first_name ?? $fullname}}" required />
+                            maxlength="50" placeholder="Please Enter Your Full Name" value="{{ $user->fullname ?? $fullname}}" required />
                     </div>
                 </div>
 

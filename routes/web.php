@@ -152,7 +152,12 @@ Route::get('/send-test-email', function () {
 
 Route::any('/get-privious-page', function () {
     $step = Session()->get('step');
-    $step = $step - 1;
+    if($step == 12){
+        $step = 8;
+    } else {
+        $step = $step - 1;
+    }
+    
     Session()->put('step', $step);
 })->name('get-privious-page');
 
@@ -190,11 +195,11 @@ Route::get('/update-session', function () {
 
 
 
-Route::get('/custom-session', function () {
-    Session()->put('step', 12);
-    // Session()->put('payment', 1);
-    session()->put('temp_user_id', 4);
-});
+// Route::get('/custom-session', function () {
+//     Session()->put('step', 12);
+//     // Session()->put('payment', 1);
+//     session()->put('temp_user_id', 4);
+// });
 
 
 
@@ -241,7 +246,7 @@ Route::get('/redirect-login', function () {
 // Route::get('/session-setup', function () {
 //     $email = "khanfaisal.makent@gmail.com";
 //     $installment = "1st"; 
-//     $amount = "3000";
+//     $amount = "5000";
 //     $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
 // });
 

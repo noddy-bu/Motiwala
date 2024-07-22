@@ -52,10 +52,35 @@ class AccountController extends Controller
             ], 200);
         }
 
+
+
         $authenticated = Auth::guard('web')->attempt($request->only(['phone', 'password']));
         if ($authenticated) {
             session()->forget(['step', 'otp_timestamp', 'phone', 'temp_user_id', 'otp', 'aadhar_no', 'payment']);
 
+
+            $user = DB::table('users')->where('phone', $request->input('phone'))->first();
+
+            if ($user) {
+                if (is_null($user->status)) {
+                    Session::flush();
+
+                    if($user->step == 8){
+                        $step = 12;
+                    } else {
+                        $step = $user->step + 1;
+                    }
+            
+                    Session::put('temp_user_id', $user->id);
+                    Session::put('step', $step);
+            
+                    return response()->json([
+                        'status' => 'incomplete',
+                        'message' => 'Please Fill ALL Forms'
+                    ], 200);
+                }
+            }
+    
             Session::put('user_id', auth()->user()->id);
 
             return response()->json([
@@ -350,7 +375,13 @@ class AccountController extends Controller
                 ], 200);
             }
 
-            $user = DB::table('users')->where('phone', $request->phone)->where('status', '1')->get(['id'])->first();
+            $user = DB::table('users')->where('phone', $request->phone)
+                    ->where(function ($query) {
+                        $query->where('status', '1')
+                            ->orWhereNotNull('password');
+                    })
+                    ->select('id')
+                    ->first();
 
             if ($user) {
 
@@ -434,7 +465,12 @@ class AccountController extends Controller
                 ], 200);
             }
 
-            $user = DB::table('users')->where('id', Session::get('user_forget_id'))->where('status', '1')->get(['id'])->first();
+            $user = DB::table('users')->where('id', Session::get('user_forget_id'))
+                    ->where(function ($query) {
+                        $query->where('status', '1')
+                            ->orWhereNotNull('password');
+                    })
+                    ->get(['id'])->first();
 
             if ($user) {
                 DB::table('users')->where('id', Session::get('user_forget_id'))->update([
@@ -616,6 +652,29 @@ class AccountController extends Controller
         if ($request->otp == $otp) {
 
             $phone = Session::get('phone');
+
+            $user_data = DB::table('users')->where('phone', $phone)->first();
+
+            if ($user_data) {
+                if (is_null($user_data->status) && !is_null($user_data->step)) {
+                    Session::flush();
+
+                    if($user_data->step == 8){
+                        $step = 12;
+                    } else {
+                        $step = $user_data->step + 1;
+                    }
+            
+                    Session::put('temp_user_id', $user_data->id);
+                    Session::put('step', $step);
+
+                    $rsp_msg['response'] = 'success';
+                    $rsp_msg['message']  = "OTP has been Verified";
+
+                    return $rsp_msg;
+                }
+            }
+
 
             $user = DB::table('users')->where('phone', $phone)->get(['id'])->first();
 
@@ -918,12 +977,16 @@ class AccountController extends Controller
 
         if (Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))) {
 
+            $phone = DB::table('users')->where('id', Session::get('temp_user_id'))->value('phone');
+
             DB::table('users')->where('id', Session::get('temp_user_id'))->update([
                 // 'salutation' => $request->input('title'),
                 // 'first_name' => $request->input('first_name'),
                 // 'last_name' => $request->input('last_name'),
                 'fullname' => $request->input('fullname'),
                 'email' => strtolower($request->input('email')),
+                'password' => bcrypt($phone),
+                'step' => 6,
             ]);
 
             DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
@@ -943,6 +1006,14 @@ class AccountController extends Controller
                 'nominee_address' => $address,
                 'nominee_relation' => $request->input('nominee_relation'),
             ]);
+
+            
+            $email = strtolower($request->input('email'));
+        
+            $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
+
+            $email_templet1 = (new SmsController)->email_registration_successful($phone, $email);
+
 
             Session::put('step', 7);
 
@@ -1004,6 +1075,7 @@ class AccountController extends Controller
             DB::table('users')->where('id', Session::get('temp_user_id'))->update([
                 'plan_id' => $request->input('plan_id'),
                 'installment_amount' => $request->input('installment_amount'),
+                'step' => 7,
             ]);
 
             // DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
@@ -1211,9 +1283,9 @@ class AccountController extends Controller
         if ($esign->success == true) {
             $download_pdf = (new EsignAadharController)->download_esign($client_id);
 
-            // DB::table('userdetails')->where('user_id',Session::get('temp_user_id'))->update([
-            //     'esign' => 1,
-            // ]);
+            DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+                'step' => 8,
+            ]);
 
             $result = "true";
         } else {
@@ -1452,7 +1524,7 @@ class AccountController extends Controller
 
         DB::table('users')->where('id', $order->temp_user_id)->update([
             // 'account_number' => $account_number,
-            'password' => bcrypt($phone),
+            // 'password' => bcrypt($phone),
             'status' => 1,
         ]);
 
@@ -1493,9 +1565,9 @@ class AccountController extends Controller
 
         //sms integration
 
-        $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
+        // $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
 
-        $email_templet1 = (new SmsController)->email_registration_successful($phone, $email);
+        // $email_templet1 = (new SmsController)->email_registration_successful($phone, $email);
 
         $installment = '1st';
 
@@ -1666,11 +1738,11 @@ class AccountController extends Controller
                 $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
 
 
-                DB::table('users')->where('id', $order->temp_user_id)->update([
-                    // 'account_number' => $account_number,
-                    'password' => bcrypt($phone),
-                    'status' => 1,
-                ]);
+                // DB::table('users')->where('id', $order->temp_user_id)->update([
+                //     // 'account_number' => $account_number,
+                //     'password' => bcrypt($phone),
+                //     'status' => 1,
+                // ]);
 
                 $amount = $order->grand_total;
 
@@ -1693,9 +1765,9 @@ class AccountController extends Controller
 
                 //sms integration
 
-                $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
+                // $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
 
-                $email_templet1 = (new SmsController)->email_registration_successful($phone, $email);
+                // $email_templet1 = (new SmsController)->email_registration_successful($phone, $email);
 
                 $installment = '1st';
 
