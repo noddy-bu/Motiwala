@@ -758,18 +758,18 @@ form.form-subscribe button {
 
 /*-- accordion section open--*/
 
-section.faq_section {
+section.faq_section_main {
     padding: 70px 0px 120px 0px;
 }
 
-.faq_section .accordion-item {
+.faq_section_main .accordion-item {
     background-color: #ffffff5c !important;
     border: 0;
-    margin-bottom: 17px;
+    margin-bottom: 10px;
     border-radius: 15px !important;
 }
 
-.faq_section .accordion-button.collapsed {
+.faq_section_main .accordion-button.collapsed {
     background-color: #ffffff5c;
     border: 0;
     box-shadow: none !important;
@@ -777,7 +777,7 @@ section.faq_section {
     padding: 20px 20px;
 }
 
-.faq_section .accordion-button {
+.faq_section_main .accordion-button {
     background: transparent !important;
     border: 0 !important;
     box-shadow: inset 0 -1px 0 rgb(0 0 0 / 4%) !important;
@@ -786,7 +786,7 @@ section.faq_section {
     font-weight: 700;
 }
 
-.faq_section .accordion-body {
+.faq_section_main .accordion-body {
     padding: 20px 20px;
 }
 
@@ -1095,6 +1095,10 @@ table.table.table-bordered {
 .terms_section h4,
 .about_us_section h5 {
     font-weight: 600;
+}
+
+.faq_section_main h4 {
+    font-weight: 700;
 }
 
 label#accept_term-error {
