@@ -199,12 +199,24 @@ button.carousel-control-next {
     background: #E3C2AB;
     padding: 9px 0px 10px 0px;
     display: inline-block;
+    transition: 0.5s all;
+}
+
+.buttonclass:hover {
+    background-color: #cd9f72b8;
+    transition: 0.5s all;
 }
 
 .buttonclass1 {
     background: #E3C2AB;
     padding: 0px 0px 0px 0px;
     display: inline-block;
+    transition: 0.5s all;
+}
+
+.buttonclass1:hover {
+    background-color: #cd9f72b8;
+    transition: 0.5s all;
 }
 
 /* .buttonclass a:hover {
