@@ -291,7 +291,10 @@ class CustomerController extends Controller
         //--closing amout
         $currentDate = Carbon::now()->format('Y-m-d');
 
-        if (Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
+        $dueDateStart = Carbon::parse($redemption_items->due_date_start);
+        
+
+        if ($currentDate < $dueDateStart->format('Y-m-d') || Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
             $pay_date = custom_date_change($redemption_items->due_date_start)." to ".custom_date_change($redemption_items->due_date_end);
         } else {
             $pay_date = custom_date_change($redemption_items->due_date_start)." to ".custom_date_change($redemption_items->due_date_end)." -- Penalty will be charged";
