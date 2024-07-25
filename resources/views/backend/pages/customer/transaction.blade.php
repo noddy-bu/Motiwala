@@ -211,7 +211,9 @@
                                             @elseif ($row->status == 'pending')
                                                 <b>pending</b>
 
-                                                @if ($row->due_date_start <= date('Y-m-d') && in_array($row->status, ['paid', 'pending']))
+                                                {{-- @if ($row->due_date_start <= date('Y-m-d') && in_array($row->status, ['paid', 'pending'])) --}}
+
+                                                @if (in_array($row->status, ['paid', 'pending']))
 
                                                     <br>
 

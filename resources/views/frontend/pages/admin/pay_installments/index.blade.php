@@ -205,7 +205,8 @@
                                                     @if ($row->status == 'paid')
                                                         Paid
                                                     @else
-                                                        @if ($row->due_date_start <= date('Y-m-d') && in_array($row->status, ['paid', 'pending']))
+                                                        {{-- @if ($row->due_date_start <= date('Y-m-d') && in_array($row->status, ['paid', 'pending'])) --}}
+                                                        @if (in_array($row->status, ['paid', 'pending']))
 
                                                             @if($info->status == 1)
                                                                 <div class="buttonclass mt10">
@@ -227,6 +228,7 @@
                                                             @else
                                                                 Unpaid
                                                             @endif
+
                                                         @endif
 
                                                     @endif

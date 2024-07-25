@@ -157,26 +157,61 @@ class PayumoneyController extends Controller
                 ->first(['id', 'due_date_start', 'due_date_end', 'installment_no']);
         
             if ($redemption_items) {
-                $currentDate = Carbon::now()->format('Y-m-d');
+                // $currentDate = Carbon::now()->format('Y-m-d');
         
-                // Check if the current date lies between due_date_start and due_date_end
-                if (Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
+                // // Check if the current date lies between due_date_start and due_date_end
+                // if (Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
 
-                    $plan_receivable_percentage = DB::table('plans')->where('id', $redemption->plan_id)->value('receivable_percentage_on_time');
+                //     $plan_receivable_percentage = DB::table('plans')->where('id', $redemption->plan_id)->value('receivable_percentage_on_time');
 
-                    $percentage = $plan_receivable_percentage;
-                    $additionalAmount = ($amount * $percentage) / 100;
+                //     $percentage = $plan_receivable_percentage;
+                //     $additionalAmount = ($amount * $percentage) / 100;
+                //     $totalAmount = $amount + $additionalAmount;
+
+                //     DB::table('redemption_items')->where('id', $redemption_items->id)->update([
+                //         'transaction_id' => $transactions_id,
+                //         'receivable_amount' => $totalAmount,
+                //         'status' => 'paid',
+                //         'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
+                //     ]);
+
+                // } else {
+
+                //     DB::table('redemption_items')->where('id', $redemption_items->id)->update([
+                //         'transaction_id' => $transactions_id,
+                //         'receivable_amount' => $amount,
+                //         'status' => 'paid',
+                //         'remarks' => 'penalty for late payment of installment',
+                //         'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
+                //     ]);
+
+                // }
+
+                // Get the current date
+                $currentDate = Carbon::now()->format('Y-m-d');
+
+                // Parse the due date start and end
+                $dueDateStart = Carbon::parse($redemption_items->due_date_start);
+                $dueDateEnd = Carbon::parse($redemption_items->due_date_end);
+
+                // Check if the current date is less than the due date start or between the due date start and end
+                if ($currentDate < $dueDateStart->format('Y-m-d') || Carbon::parse($currentDate)->between($dueDateStart, $dueDateEnd)) {
+                    // Get the receivable percentage on time from the plans table
+                    $planReceivablePercentage = DB::table('plans')->where('id', $redemption->plan_id)->value('receivable_percentage_on_time');
+                    
+                    // Calculate the additional amount
+                    $additionalAmount = ($amount * $planReceivablePercentage) / 100;
                     $totalAmount = $amount + $additionalAmount;
 
+                    // Update the redemption items table
                     DB::table('redemption_items')->where('id', $redemption_items->id)->update([
                         'transaction_id' => $transactions_id,
                         'receivable_amount' => $totalAmount,
                         'status' => 'paid',
                         'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
                     ]);
-
                 } else {
-
+                    // Update the redemption items table with penalty remarks
                     DB::table('redemption_items')->where('id', $redemption_items->id)->update([
                         'transaction_id' => $transactions_id,
                         'receivable_amount' => $amount,
@@ -184,7 +219,6 @@ class PayumoneyController extends Controller
                         'remarks' => 'penalty for late payment of installment',
                         'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
                     ]);
-
                 }
 
                 $installment = $redemption_items->installment_no;
@@ -243,6 +277,8 @@ class PayumoneyController extends Controller
 
     
         $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+
+        $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
 
         // delete temp recored
         DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
