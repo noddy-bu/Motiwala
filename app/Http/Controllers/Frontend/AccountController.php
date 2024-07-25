@@ -175,7 +175,7 @@ class AccountController extends Controller
             //insert in order
             $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
             $orderId = DB::table('temp_transactions')->insertGetId([
-                'name'             => $user->first_name . ' ' . $user->last_name,
+                'name'             => $user->fullname,
                 'email'            => $user->email,
                 'phone'            => $user->phone,
                 'grand_total'      => $redemption_items->installment_amount,
