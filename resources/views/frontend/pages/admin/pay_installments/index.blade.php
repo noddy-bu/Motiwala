@@ -50,7 +50,7 @@
                         $Installments_paid = $redemption_items
                             ->where('status', 'paid');
 
-                        if($info->status != 1)
+                        if($info->status != 1){
                             $close_plan_name = DB::table('plans')->where('id', $info->close_planid)->value('name');
                         }
 
