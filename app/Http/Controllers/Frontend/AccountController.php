@@ -969,7 +969,14 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
-        $users_email = DB::table('users')->where('email', $request->input('email'))->where('status', 1)->get();
+        // $users_email = DB::table('users')->where('email', $request->input('email'))->where('status', 1)->get();
+        $users_email = DB::table('users')
+            ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
+            ->where('users.email',$request->input('email'))
+            // ->where('users.status', '1')
+            ->where('redemptions.status', '0')
+            ->select('users.id')
+            ->first();
 
         if (count($users_email) != 0) {
             $rsp_msg['response'] = 'error';
