@@ -301,6 +301,7 @@ class CustomerController extends Controller
         }
 
         return view('backend.pages.customer.manual_pay_form', compact('redemption_items','pay_date','user_id'));
+        
     }
 
     public function manual_payment(Request $request){
