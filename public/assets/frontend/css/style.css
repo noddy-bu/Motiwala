@@ -1343,9 +1343,9 @@ body .width80:not(.sidebar) {
     padding-right: 20px;
 }
 
-.after_login_body .information_tb .card-body {
+/* .after_login_body .information_tb .card-body {
     height: 140px;
-}
+} */
 
 .after_login_body .terms_section {
     padding-bottom: 0px;
@@ -1955,7 +1955,7 @@ section.inner_page_banner {
 
 
 @media (min-width:1700px){
-    .old_sheme_closure, .privay_policy, .faq_section, .reset_pass, .information_section, .pay_installments{ 
+    /* .old_sheme_closure, .privay_policy, .faq_section, .reset_pass, .information_section, .pay_installments{ 
         height: 100vh;
-    }
+    } */
 }
