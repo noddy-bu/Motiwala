@@ -37,7 +37,7 @@
                 <div class="">
                     <div class="col-md-12">
                         <h4>
-                            @if($info->status == 1) {{ ucfirst($info->name) }} @else {{ ucfirst($info->close_plan_name) }} @endif - {{ account_no($info->id, date('d-m-Y', strtotime($info->created_at))) }}
+                            @if($info->status == 1) {{ ucfirst($info->name) }} @else {{ ucfirst($close_plan_name) }} @endif - {{ account_no($info->id, date('d-m-Y', strtotime($info->created_at))) }}
                         </h4>
                     </div>
                 </div>

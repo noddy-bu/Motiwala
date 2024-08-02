@@ -60,7 +60,7 @@
 
                             <div class="col-md-12 text-center">
                                 <h4 class="account_number">
-                                    @if($info->status == 1) {{ ucfirst($info->name) }} @else {{ ucfirst($info->close_plan_name) }} @endif - {{ account_no($info->id, date('d-m-Y', strtotime($info->created_at))) }}
+                                    @if($info->status == 1) {{ ucfirst($info->name) }} @else {{ ucfirst($close_plan_name) }} @endif - {{ account_no($info->id, date('d-m-Y', strtotime($info->created_at))) }}
                                 </h4>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                                         <h5 class="card-header">Plan Details</h5>
                                         <div class="card-body">
                                             <p class="card-text">
-                                                Plan Name : @if($info->status == 1) {{ ucfirst($info->name) }} @else {{ ucfirst($info->close_plan_name) }} @endif
+                                                Plan Name : @if($info->status == 1) {{ ucfirst($info->name) }} @else {{ ucfirst($close_plan_name) }} @endif
                                             </p>
                                             <p class="card-text">
                                                 Installment Amount : {{ $info->installment_amount }}
