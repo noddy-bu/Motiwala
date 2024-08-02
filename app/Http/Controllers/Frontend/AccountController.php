@@ -1627,6 +1627,7 @@ class AccountController extends Controller
             'due_date_end' => date('Y-m-d H:i:s'),
             'installment_amount' => $amount,
             'receivable_amount' => $totalAmount,
+            'receivable_gold' => gold_amount($totalAmount),
             'status' => 'paid',
             'receipt_date' => date('Y-m-d H:i:s'),
             'created_at' => date('Y-m-d H:i:s'),
@@ -1857,6 +1858,7 @@ class AccountController extends Controller
                             DB::table('redemption_items')->where('id', $redemption_items->id)->update([
                                 'transaction_id' => $transactions_id,
                                 'receivable_amount' => $totalAmount,
+                                'receivable_gold' => gold_amount($totalAmount),
                                 'status' => 'paid',
                                 'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
                             ]);
@@ -1865,6 +1867,7 @@ class AccountController extends Controller
                             DB::table('redemption_items')->where('id', $redemption_items->id)->update([
                                 'transaction_id' => $transactions_id,
                                 'receivable_amount' => $amount,
+                                'receivable_gold' => gold_amount($amount),
                                 'status' => 'paid',
                                 'remarks' => 'penalty for late payment of installment',
                                 'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),

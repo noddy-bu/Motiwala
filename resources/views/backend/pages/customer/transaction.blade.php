@@ -157,6 +157,8 @@
                                 <th>Due Date</th>
                                 <th>Installment No</th>
                                 <th>Installment Amount</th>
+                                <th>Profit Amount</th>
+                                <th>Reserve Gold</th>
                                 <th>Payment Type</th>
                                 <th>Status</th>
                             </tr>
@@ -192,6 +194,12 @@
                                             {{ $row->installment_amount }}
                                         </td>
                                         <td>
+                                            {{ $row->receivable_amount ?? "-" }}
+                                        </td>
+                                        <td>
+                                            {{ $row->receivable_gold ?? "-" }}
+                                        </td>
+                                        <td>
                                             @php
                                                 $transaction_payment_type = DB::table('transactions')->where('id', $row->transaction_id)->value('payment_type');
                                             @endphp
@@ -214,14 +222,15 @@
                                                 {{-- @if ($row->due_date_start <= date('Y-m-d') && in_array($row->status, ['paid', 'pending'])) --}}
 
                                                 @if (in_array($row->status, ['paid', 'pending']))
+                                                    @if($info->status == 1) 
+                                                        <br>
 
-                                                    <br>
-
-                                                    <a href="javascript:void(0);" 
-                                                    class="btn btn-sm btn-secondary" 
-                                                    onclick="largeModal('{{ url(route('Customer.manual_pay.form', ['id' => $row->id])) }}?previous_popup_link={{ $this_pop_link }}&previous_popup_name={{ $this_pop_name }}', 'Manual Payment');">
-                                                            Manual pay
-                                                    </a>
+                                                        <a href="javascript:void(0);" 
+                                                        class="btn btn-sm btn-secondary" 
+                                                        onclick="largeModal('{{ url(route('Customer.manual_pay.form', ['id' => $row->id])) }}?previous_popup_link={{ $this_pop_link }}&previous_popup_name={{ $this_pop_name }}', 'Manual Payment');">
+                                                                Manual pay
+                                                        </a>
+                                                    @endif
 
                                                 @endif
 

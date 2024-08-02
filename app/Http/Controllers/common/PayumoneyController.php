@@ -203,10 +203,13 @@ class PayumoneyController extends Controller
                     $additionalAmount = ($amount * $planReceivablePercentage) / 100;
                     $totalAmount = $amount + $additionalAmount;
 
+        
+
                     // Update the redemption items table
                     DB::table('redemption_items')->where('id', $redemption_items->id)->update([
                         'transaction_id' => $transactions_id,
                         'receivable_amount' => $totalAmount,
+                        'receivable_gold' => gold_amount($totalAmount),
                         'status' => 'paid',
                         'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
                     ]);
@@ -215,6 +218,7 @@ class PayumoneyController extends Controller
                     DB::table('redemption_items')->where('id', $redemption_items->id)->update([
                         'transaction_id' => $transactions_id,
                         'receivable_amount' => $amount,
+                        'receivable_gold' => gold_amount($amount),
                         'status' => 'paid',
                         'remarks' => 'penalty for late payment of installment',
                         'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),

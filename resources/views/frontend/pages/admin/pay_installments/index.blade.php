@@ -144,6 +144,7 @@
                                         <th>Due Date</th>
                                         <th>Installment No</th>
                                         <th>Installment Amount</th>
+                                        <th>Reserve Gold</th>
                                         <th>Payment Type</th>
                                         <th>Status</th>
                                     </tr>
@@ -186,6 +187,9 @@
                                                 </td>
                                                 <td>
                                                     {{ $row->installment_amount }}
+                                                </td>
+                                                <td>
+                                                    {{ $row->receivable_gold ?? "-" }}
                                                 </td>
                                                 <td>
                                                     @php

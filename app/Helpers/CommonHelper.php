@@ -36,6 +36,7 @@ use Illuminate\Support\Facades\Mail;
         
             // If not in the cache, retrieve the value from the database
             $businessSetting = BusinessSetting::where('type', $type)->first();
+            $value = $businessSetting->value;
         
             if ($businessSetting) {
                 $value = $businessSetting->value;
@@ -50,6 +51,21 @@ use Illuminate\Support\Facades\Mail;
             return null; // or any default value or error handling you prefer
         }
     }
+
+    if (!function_exists('gold_amount')) {
+        function gold_amount($amount)
+        {
+
+            $businessSetting = BusinessSetting::where('type', 'gold_rate_in_1gram_per_day')->first();
+            $gold_1_gram_price = $businessSetting->value;
+
+
+            $grams_of_gold = ($amount / $gold_1_gram_price);
+
+            return $grams_of_gold;
+        }
+    }
+
 
     if (!function_exists('get_contactpage')) {
         function get_contactpage($type)
