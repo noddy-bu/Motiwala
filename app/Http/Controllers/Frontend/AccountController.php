@@ -978,7 +978,7 @@ class AccountController extends Controller
             ->select('users.id')
             ->first();
 
-        if (count($users_email) != 0) {
+        if ($users_email) {
             $rsp_msg['response'] = 'error';
             $rsp_msg['message']  = 'Email Already Exists';
 
