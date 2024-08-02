@@ -141,6 +141,7 @@ class AccountController extends Controller
                 'plans.installment_period',
                 'redemptions.maturity_date_start',
                 'redemptions.maturity_date_end',
+                'redemptions.plan_id as close_planid',
                 'redemptions.status',
                 'redemptions.closing_remark',
                 'redemptions.closing_date',
