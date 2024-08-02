@@ -119,10 +119,7 @@
                                                 <hr>
                                                 <p class="card-text">Close Date: {{ $info->closing_date }}</p>
                                                 <p class="card-text">Remark: {{ $info->closing_remark }}</p>
-                                                </p>
                                             @endif
-                                            <br>
-                                            <br>
                                         </div>
                                     </div>
                                 </div>
