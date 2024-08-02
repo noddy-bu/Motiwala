@@ -603,7 +603,7 @@ class AccountController extends Controller
             ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
             ->where('users.phone', $request->phone)
             // ->where('users.status', '1')
-            ->where('redemptions.dataus', '1')
+            ->where('redemptions.status', '1')
             ->select('users.id')
             ->first();
 
