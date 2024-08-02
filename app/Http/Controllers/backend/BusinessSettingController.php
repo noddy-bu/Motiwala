@@ -13,16 +13,20 @@ class BusinessSettingController extends Controller
         return view('backend.pages.setting.index');
     }
 
-    public function privacy_policy() {
-        return view('backend.pages.privacy.index');
-    }
+    // public function privacy_policy() {
+    //     return view('backend.pages.privacy.index');
+    // }
 
-    public function terms() {
-        return view('backend.pages.terms.index');
-    }
+    // public function terms() {
+    //     return view('backend.pages.terms.index');
+    // }
 
-    public function refund_policy() {
-        return view('backend.pages.refund_policy.index');
+    // public function refund_policy() {
+    //     return view('backend.pages.refund_policy.index');
+    // }
+
+    public function set_receivable_gold_rate_page() {
+        return view('backend.pages.reserved_gold.index');
     }
       
     public function update(Request $request) {
@@ -53,7 +57,7 @@ class BusinessSettingController extends Controller
 
         $response = [
             'status' => true,
-            'notification' => 'Blog updated successfully!',
+            'notification' => 'Gold Price updated successfully!',
         ];
 
         return response()->json($response);

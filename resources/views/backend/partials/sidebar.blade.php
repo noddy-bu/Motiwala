@@ -76,6 +76,22 @@
                             </a>
                         </li>
 
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="{{ url('#sidebarEmail') }}" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
+                                <i class="ri-article-line"></i>
+                                <span> Setting </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebarEmail">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{{ route('setting.receivable_gold_page') }}">Gold Rate</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        
+
                         {{-- <li class="side-nav-item">
                             <a href="{{ route('practicearea.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                                 <i class="ri-suitcase-line"></i> 
