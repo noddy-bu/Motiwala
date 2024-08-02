@@ -26,7 +26,7 @@
                                     </div>                          -->
                                     <div class="col-md-3">
                                         <div class="form-group mb-3">
-                                            <label>Gold 1 Gram Price *</label>
+                                            <label>Gold Price (Per Gram) *</label>
                                             <input type="text" class="form-control" name="gold_rate_in_1gram_per_day" value="{{ get_settings('gold_rate_in_1gram_per_day') }}">
                                         </div>
                                     </div>
