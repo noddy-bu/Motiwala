@@ -186,6 +186,9 @@
                                                 <td>
                                                     {{ $row->installment_no }}
                                                 </td>
+                                                <td>
+                                                    {{ $row->installment_amount }}
+                                                </td>
                                                 @if($info->plan_id == 2)
                                                     <td>
                                                         {{ gold_prifix($row->receivable_gold) ?? "-" }}
