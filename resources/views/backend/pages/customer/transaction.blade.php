@@ -161,7 +161,7 @@
                                 <th>Due Date</th>
                                 <th>Installment No</th>
                                 <th>Installment Amount</th>
-                                @if($info->plan_id == 1)
+                                @if($info->close_planid == 1)
                                     <th>Profit Amount</th>
                                 @else
                                     <th>Reserve Gold</th>
@@ -200,7 +200,7 @@
                                         <td>
                                             {{ $row->installment_amount }}
                                         </td>
-                                        @if($info->plan_id == 1)
+                                        @if($info->close_planid == 1)
                                             <td>
                                                 {{ $row->receivable_amount ?? "-" }}
                                             </td>
