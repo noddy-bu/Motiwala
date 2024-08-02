@@ -96,7 +96,6 @@
                                             <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($info->maturity_date_start)) }}
                                             </p>
                                             <br>
-                                            <br>
                                         </div>
                                     </div>
                                 </div>
