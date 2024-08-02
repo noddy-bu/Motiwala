@@ -275,3 +275,15 @@ use Illuminate\Support\Facades\Mail;
             return $url;
         }
     }
+
+    if(!function_exists('gold_prifix')){
+        function gold_prifix($amount){
+            if(!empty($amount)){
+                $account_gold_prifix = $amount . 'gm';
+            } else {
+                $account_gold_prifix = '-';
+            }
+
+            return $account_gold_prifix;
+        }
+    }

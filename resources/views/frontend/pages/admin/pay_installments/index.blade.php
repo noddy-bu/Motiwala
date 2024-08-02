@@ -96,7 +96,9 @@
                                             <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($info->maturity_date_start)) }}
                                             </p>
                                             <br>
-                                            <br>
+                                            @if($info->status == 0)
+                                                <br>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -144,7 +146,9 @@
                                         <th>Due Date</th>
                                         <th>Installment No</th>
                                         <th>Installment Amount</th>
-                                        <th>Reserve Gold</th>
+                                        @if($info->plan_id == 2)
+                                            <th>Reserve Gold</th>
+                                        @endif
                                         <th>Payment Type</th>
                                         <th>Status</th>
                                     </tr>
@@ -185,12 +189,11 @@
                                                 <td>
                                                     {{ $row->installment_no }}
                                                 </td>
-                                                <td>
-                                                    {{ $row->installment_amount }}
-                                                </td>
-                                                <td>
-                                                    {{ $row->receivable_gold ?? "-" }}
-                                                </td>
+                                                @if($info->plan_id == 2)
+                                                    <td>
+                                                        {{ gold_prifix($row->receivable_gold) ?? "-" }}
+                                                    </td>
+                                                @endif
                                                 <td>
                                                     @php
                                                         $transaction_payment_type = DB::table('transactions')->where('id', $row->transaction_id)->value('payment_type');

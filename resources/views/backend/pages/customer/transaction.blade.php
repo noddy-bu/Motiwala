@@ -157,8 +157,11 @@
                                 <th>Due Date</th>
                                 <th>Installment No</th>
                                 <th>Installment Amount</th>
-                                <th>Profit Amount</th>
-                                <th>Reserve Gold</th>
+                                @if($info->plan_id == 1)
+                                    <th>Profit Amount</th>
+                                @else
+                                    <th>Reserve Gold</th>
+                                @endif
                                 <th>Payment Type</th>
                                 <th>Status</th>
                             </tr>
@@ -193,12 +196,15 @@
                                         <td>
                                             {{ $row->installment_amount }}
                                         </td>
-                                        <td>
-                                            {{ $row->receivable_amount ?? "-" }}
-                                        </td>
-                                        <td>
-                                            {{ $row->receivable_gold ?? "-" }}
-                                        </td>
+                                        @if($info->plan_id == 1)
+                                            <td>
+                                                {{ $row->receivable_amount ?? "-" }}
+                                            </td>
+                                        @else
+                                            <td>
+                                                {{ gold_prifix($row->receivable_gold) ?? "-" }}
+                                            </td>
+                                        @endif
                                         <td>
                                             @php
                                                 $transaction_payment_type = DB::table('transactions')->where('id', $row->transaction_id)->value('payment_type');

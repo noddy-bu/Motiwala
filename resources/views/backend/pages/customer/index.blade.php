@@ -62,6 +62,7 @@
                                 <option value="">All</option>
                                 <option value="1">In Progress</option>
                                 <option value="0">Completed</option>
+                                <option value="null">Inactive</option>
                             </select>
                         </div>
                     </div>
@@ -85,6 +86,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Mobile No</th>
+                        <th>Plan</th>
                         <th>Plan Status</th>
                         <th>Date</th>
                         <th>Action</th> 
@@ -125,6 +127,7 @@
                     { data: 'name'},
                     { data: 'email'},
                     { data: 'phone'},
+                    { data: 'plan'},
                     { data: 'status'},
                     { data: 'created_at'},
                     { data: 'action', name: 'action', orderable: false, searchable: false },

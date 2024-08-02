@@ -84,7 +84,11 @@ class CustomerController extends Controller
 
         $status = $request->input('status');
         if ($status != '') {
-            $query->where('r.status', $status);
+            if ($status !== 'null') { // Check if $status is not the string 'null'
+                $query->where('r.status', $status);
+            } else {
+                $query->whereNull('users.status'); // Use whereNull to check for NULL in the 'users.status' column
+            }
         }
     
         // Get filtered count
@@ -110,11 +114,13 @@ class CustomerController extends Controller
                 $tran = null;
             }
 
+            $plan_name = DB::table('plans')->where('id',$row->plan_id)->value('name');
+
 
             if($row->plan_Status === 1){
-                $plan_status = '<span class="badge bg-success">In Progress</span>';
+                $plan_status = '<span class="badge bg-primary">In Progress</span>';
             } elseif ($row->plan_Status === 0) {
-                $plan_status = '<span class="badge bg-primary">Completed</span>';
+                $plan_status = '<span class="badge bg-success">Completed</span>';
             } else {
                 $plan_status = '<span class="badge bg-danger">Inactive</span>';
             }
@@ -125,6 +131,7 @@ class CustomerController extends Controller
                 'name' => $row->fullname,
                 'email' => $row->email,
                 'phone' => $row->phone,
+                'plan'  => ucfirst($plan_name),
                 'status' => $plan_status,
                 'created_at' => $row->created_at->format('Y-m-d H:i:s'),
                 'action' => //'<a href="'.route('Customer.status', ['id' => $row->id, 'status' => $row->status ? 0 : 1]).'" class="action-icon">'.

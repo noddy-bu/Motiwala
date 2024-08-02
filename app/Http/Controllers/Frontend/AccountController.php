@@ -598,7 +598,14 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
-        $user = DB::table('users')->where('phone', $request->phone)->where('status', '1')->get(['id'])->first();
+        // $user = DB::table('users')->where('phone', $request->phone)->where('status', '1')->get(['id'])->first();
+        $user = DB::table('users')
+            ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
+            ->where('users.phone', $request->phone)
+            // ->where('users.status', '1')
+            ->where('redemptions.dataus', '1')
+            ->select('users.id')
+            ->first();
 
         if ($user) {
             $rsp_msg['response'] = 'error';
