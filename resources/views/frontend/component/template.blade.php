@@ -54,7 +54,7 @@
 
 
 
-    <h1 style="text-align:center; font-size:26px; padding-bottom:20px;">Golden Treasure Plan Customer Application</h1>
+    <h1 style="text-align:center; font-size:26px; padding-bottom:20px;">{{ ucfirst($data['plan']->name) }} Plan Customer Application</h1>
     <p><b>Application Number: {{ application_no($data['user']->id) }}</b></p>
 
 
