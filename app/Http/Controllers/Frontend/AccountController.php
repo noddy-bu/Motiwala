@@ -59,14 +59,26 @@ class AccountController extends Controller
             session()->forget(['step', 'otp_timestamp', 'phone', 'temp_user_id', 'otp', 'aadhar_no', 'payment']);
 
 
-            $user = DB::table('users')->where('phone', $request->input('phone'))->first();
+            // $user = DB::table('users')->where('phone', $request->input('phone'))->first();
+
+            $user = DB::table('users')
+                ->join('userdetails', 'userdetails.user_id', '=', 'users.id')
+                ->where('users.phone', $request->input('phone'))
+                ->select('users.*', 'userdetails.esign')
+                ->first();
 
             if ($user) {
                 if (is_null($user->status)) {
                     Session::flush();
 
                     if($user->step == 8){
-                        $step = 12;
+                        
+                        if(!is_null($user->esign))
+                            $step = 12;
+                        } else {
+                            $step = 8;
+                        }
+
                     } else {
                         $step = $user->step + 1;
                     }
@@ -666,14 +678,24 @@ class AccountController extends Controller
 
             $phone = Session::get('phone');
 
-            $user_data = DB::table('users')->where('phone', $phone)->first();
+            // $user_data = DB::table('users')->where('phone', $phone)->first();
+
+            $user_data = DB::table('users')
+                ->join('userdetails', 'userdetails.user_id', '=', 'users.id')
+                ->where('users.phone', $phone)
+                ->select('users.*', 'userdetails.esign')
+                ->first();
 
             if ($user_data) {
                 if (is_null($user_data->status) && !is_null($user_data->step)) {
                     Session::flush();
 
                     if($user_data->step == 8){
-                        $step = 12;
+                        if(!is_null($user_data->esign))
+                            $step = 12;
+                        } else {
+                            $step = 8;
+                        }
                     } else {
                         $step = $user_data->step + 1;
                     }
