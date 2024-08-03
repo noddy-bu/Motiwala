@@ -767,7 +767,16 @@ class AccountController extends Controller
 
         if ($user_detail) {
 
-            $user = DB::table('users')->where('id', $user_detail->user_id)->where('status', '1')->get(['id'])->first();
+            // $user = DB::table('users')->where('id', $user_detail->user_id)->where('status', '1')->get(['id'])->first();
+
+            $user = DB::table('users')
+                ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
+                ->where('users.id', $user_detail->user_id)
+                // ->where('users.status', '1')
+                ->where('redemptions.status', '1')
+                ->select('users.id')
+                ->first();
+            
 
             if ($user) {
                 $rsp_msg['response'] = 'error';
