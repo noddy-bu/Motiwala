@@ -70,7 +70,7 @@
                             <div class="card rounded-4">
                                 <h5 class="card-header">Maturity Details</h5>
                                 <div class="card-body py-2">
-                                    <p class="card-text">Enrollment Date : {{ date('d-m-Y', strtotime($info->created_at)) }}</p>
+                                    <p class="card-text">Enrollment Date : {{ date('d-m-Y', strtotime($info->redemptions_created_at)) }}</p>
                                     {{-- <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($Maturity_date->due_date_start)) }}
                                     </p> --}}
                                     <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($info->maturity_date_start)) }}
