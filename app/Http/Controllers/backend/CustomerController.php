@@ -182,10 +182,13 @@ class CustomerController extends Controller
             'redemptions.status',
             'redemptions.closing_remark',
             'redemptions.closing_date',
+            'redemptions.created_at as redemptions_created_at',
+            'redemptions.id as redemptions_id',
         ])
         ->join('plans', 'users.plan_id', '=', 'plans.id')
         ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
         ->where('users.id',$id)
+        ->orderBy('redemptions.id', 'desc')
         ->get()->first();
         
         $transactions = DB::table('transactions')->where('user_id',$id)->where('payment_status','paid')->get();
