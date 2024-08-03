@@ -1577,6 +1577,11 @@
                 ->where('id', $user->plan_id)
                 ->value('name');
 
+            $redemptions = DB::table('redemptions')
+                ->where('user_id', $user->id)
+                ->get(['id', 'created_at'])
+                ->first();
+
 
             if(Session::has('transactions_id')){
 
@@ -1592,7 +1597,7 @@
 
             }
 
-            $account_no = account_no($user->id, date('d-m-Y', strtotime($user->created_at)));
+            $account_no = account_no($redemptions->id, date('d-m-Y', strtotime($redemptions->created_at)));
 
         @endphp
 
