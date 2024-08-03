@@ -44,7 +44,7 @@ class CustomerController extends Controller
     
         // Filtered records
         $query = User::select('users.*','r.status as plan_Status')
-            ->leftJoin('redemptions as r', 'r.user_id', '=', 'users.id')
+            ->leftJoin(DB::raw('(SELECT * FROM redemptions WHERE id IN (SELECT MAX(id) FROM redemptions GROUP BY user_id)) as r'), 'r.user_id', '=', 'users.id')
             ->where('users.role_id', '!=', 1);
     
         // Filtered records
