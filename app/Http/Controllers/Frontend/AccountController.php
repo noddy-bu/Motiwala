@@ -73,7 +73,7 @@ class AccountController extends Controller
 
                     if($user->step == 8){
                         
-                        if(!is_null($user->esign))
+                        if(!is_null($user->esign)){
                             $step = 12;
                         } else {
                             $step = 8;
