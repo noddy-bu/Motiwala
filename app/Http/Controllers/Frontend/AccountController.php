@@ -1038,10 +1038,12 @@ class AccountController extends Controller
 
             
             $email = strtolower($request->input('email'));
-        
-            $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
 
-            $email_templet1 = (new SmsController)->email_registration_successful($phone, $email);
+            if (!$users_email) {
+                $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
+
+                $email_templet1 = (new SmsController)->email_registration_successful($phone, $email);
+            }
 
 
             Session::put('step', 7);
