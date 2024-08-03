@@ -73,11 +73,7 @@ class AccountController extends Controller
 
                     if($user->step == 8){
                         
-                        if(!is_null($user->esign)){
-                            $step = 12;
-                        } else {
-                            $step = 8;
-                        }
+                        $step = !is_null($user->esign) ? 12 : 8;
 
                     } else {
                         $step = $user->step + 1;
@@ -691,11 +687,9 @@ class AccountController extends Controller
                     Session::flush();
 
                     if($user_data->step == 8){
-                        if(!is_null($user_data->esign))
-                            $step = 12;
-                        } else {
-                            $step = 8;
-                        }
+
+                        $step = !is_null($user_data->esign) ? 12 : 8;
+                        
                     } else {
                         $step = $user_data->step + 1;
                     }
