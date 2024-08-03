@@ -1579,6 +1579,7 @@
 
             $redemptions = DB::table('redemptions')
                 ->where('user_id', $user->id)
+                ->where('status', 1)
                 ->get(['id', 'created_at'])
                 ->first();
 
