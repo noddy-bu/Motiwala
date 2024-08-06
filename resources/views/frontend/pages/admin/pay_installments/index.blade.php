@@ -147,7 +147,7 @@
                                         <th>Installment No</th>
                                         <th>Installment Amount</th>
                                         @if($info->close_planid == 2)
-                                            <th>Reserve Gold</th>
+                                            <th>Reserved Gold</th>
                                         @endif
                                         <th>Payment Type</th>
                                         <th>Status</th>
