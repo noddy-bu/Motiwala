@@ -2,6 +2,7 @@
 <html lang="en" data-layout-mode="detached" data-topbar-color="dark" data-menu-color="light" data-sidenav-user="true">
 
 <head>
+    <meta name="robots" content="noindex">
     <meta charset="utf-8" />
     <title>Login Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
