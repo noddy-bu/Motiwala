@@ -181,6 +181,7 @@ class CustomerController extends Controller
             'redemptions.plan_id as close_planid',
             'redemptions.status',
             'redemptions.closing_remark',
+            'redemptions.closing_amount',
             'redemptions.closing_date',
             'redemptions.created_at as redemptions_created_at',
             'redemptions.id as redemptions_id',

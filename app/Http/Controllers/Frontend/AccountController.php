@@ -143,13 +143,14 @@ class AccountController extends Controller
             ->select([
                 'redemptions.id',
                 'users.created_at',
-                'users.plan_id',
+                'redemptions.plan_id',
                 'users.installment_amount',
                 'plans.name',
                 'plans.installment_period',
                 'redemptions.maturity_date_start',
                 'redemptions.maturity_date_end',
                 'redemptions.plan_id as close_planid',
+
                 'redemptions.status',
                 'redemptions.closing_remark',
                 'redemptions.closing_date',
