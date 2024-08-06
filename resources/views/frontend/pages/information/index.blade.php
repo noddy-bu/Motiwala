@@ -136,7 +136,7 @@ $plan_Details = DB::table('plans')
                 <tr>
                   <td>{{ custom_date_change($row->plan_start_date) }}</td>
                   <td>{{ custom_date_change($row->plan_end_date) }}</td>
-                  <td>{{ (int) $row->minimum_installment_amount }}</td>
+                  <td>{{ $row->id != 2 ? (int) $row->minimum_installment_amount : '-' }}</td>
                   <td>{{ $row->minimum_installment_amount * 100 / 100 }}</td>
                 <td>100%</td>
                 </tr>
