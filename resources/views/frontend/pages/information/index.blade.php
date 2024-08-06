@@ -11,7 +11,7 @@
 @php
 $plan_Details = DB::table('plans')
     ->where('status', 1)
-    ->get(['minimum_installment_amount', 'plan_start_date', 'plan_end_date']);
+    ->get(['minimum_installment_amount', 'plan_start_date', 'plan_end_date', 'id']);
 @endphp
 
 <!-- -------------------- career banner start ---------------- -->
@@ -137,7 +137,7 @@ $plan_Details = DB::table('plans')
                   <td>{{ custom_date_change($row->plan_start_date) }}</td>
                   <td>{{ custom_date_change($row->plan_end_date) }}</td>
                   <td>{{ (int) $row->minimum_installment_amount }}</td>
-                  <td>{{ $row->minimum_installment_amount * 100 / 100 }}</td>
+                  <td>{{  $row->minimum_installment_amount * 100 / 100 }}</td>
                 <td>100%</td>
                 </tr>
               @endforeach

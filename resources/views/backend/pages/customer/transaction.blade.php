@@ -210,15 +210,19 @@
                                             </td>
                                         @endif
                                         <td>
-                                            @php
-                                                $transaction_payment_type = DB::table('transactions')->where('id', $row->transaction_id)->value('payment_type');
-                                            @endphp
-                                            @if($transaction_payment_type == "payu")
-                                                PayU
-                                            @elseif ($transaction_payment_type == "cashpay")
-                                                Cash Pay
-                                            @elseif ($transaction_payment_type == "UPI")
-                                                UPI
+                                            @if (in_array($row->status, ['paid']))
+                                                @php
+                                                    $transaction_payment_type = DB::table('transactions')->where('id', $row->transaction_id)->value('payment_type');
+                                                @endphp
+                                                @if($transaction_payment_type == "payu")
+                                                    PayU
+                                                @elseif ($transaction_payment_type == "cashpay")
+                                                    Cash Pay
+                                                @elseif ($transaction_payment_type == "UPI")
+                                                    UPI
+                                                @else
+                                                    NA
+                                                @endif
                                             @else
                                                 NA
                                             @endif

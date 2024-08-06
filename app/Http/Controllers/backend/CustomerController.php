@@ -114,7 +114,12 @@ class CustomerController extends Controller
                 $tran = null;
             }
 
-            $plan_name = DB::table('plans')->where('id',$row->plan_id)->value('name');
+            if(!is_null($row->plan_id) && !empty($row->plan_id)){
+                $plan_name = DB::table('plans')->where('id',$row->plan_id)->value('name');
+            } else {
+                $plan_name = null;
+            }
+            
 
 
             if($row->plan_Status === 1){
