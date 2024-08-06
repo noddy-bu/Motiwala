@@ -59,14 +59,22 @@ class AccountController extends Controller
             session()->forget(['step', 'otp_timestamp', 'phone', 'temp_user_id', 'otp', 'aadhar_no', 'payment']);
 
 
-            $user = DB::table('users')->where('phone', $request->input('phone'))->first();
+            // $user = DB::table('users')->where('phone', $request->input('phone'))->first();
+
+            $user = DB::table('users')
+                ->join('userdetails', 'userdetails.user_id', '=', 'users.id')
+                ->where('users.phone', $request->input('phone'))
+                ->select('users.*', 'userdetails.esign')
+                ->first();
 
             if ($user) {
                 if (is_null($user->status)) {
                     Session::flush();
 
                     if($user->step == 8){
-                        $step = 12;
+                        
+                        $step = !is_null($user->esign) ? 12 : 8;
+
                     } else {
                         $step = $user->step + 1;
                     }
@@ -135,20 +143,25 @@ class AccountController extends Controller
             ->select([
                 'redemptions.id',
                 'users.created_at',
-                'users.plan_id',
+                'redemptions.plan_id',
                 'users.installment_amount',
                 'plans.name',
                 'plans.installment_period',
                 'redemptions.maturity_date_start',
                 'redemptions.maturity_date_end',
+                'redemptions.plan_id as close_planid',
+
                 'redemptions.status',
                 'redemptions.closing_remark',
                 'redemptions.closing_date',
+                'redemptions.created_at as redemptions_created_at',
+                'redemptions.id as redemptions_id',
             ])
             ->join('plans', 'users.plan_id', '=', 'plans.id')
             ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
             // ->where('redemptions.status', 1)
             ->where('users.id', Session::get('user_id'))
+            ->orderBy('redemptions.id', 'desc')
             ->get()->first();
 
         $transactions = DB::table('transactions')->where('user_id', Session::get('user_id'))->get();
@@ -175,7 +188,7 @@ class AccountController extends Controller
             //insert in order
             $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
             $orderId = DB::table('temp_transactions')->insertGetId([
-                'name'             => $user->first_name . ' ' . $user->last_name,
+                'name'             => $user->fullname,
                 'email'            => $user->email,
                 'phone'            => $user->phone,
                 'grand_total'      => $redemption_items->installment_amount,
@@ -598,7 +611,14 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
-        $user = DB::table('users')->where('phone', $request->phone)->where('status', '1')->get(['id'])->first();
+        // $user = DB::table('users')->where('phone', $request->phone)->where('status', '1')->get(['id'])->first();
+        $user = DB::table('users')
+            ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
+            ->where('users.phone', $request->phone)
+            // ->where('users.status', '1')
+            ->where('redemptions.status', '1')
+            ->select('users.id')
+            ->first();
 
         if ($user) {
             $rsp_msg['response'] = 'error';
@@ -655,14 +675,22 @@ class AccountController extends Controller
 
             $phone = Session::get('phone');
 
-            $user_data = DB::table('users')->where('phone', $phone)->first();
+            // $user_data = DB::table('users')->where('phone', $phone)->first();
+
+            $user_data = DB::table('users')
+                ->join('userdetails', 'userdetails.user_id', '=', 'users.id')
+                ->where('users.phone', $phone)
+                ->select('users.*', 'userdetails.esign')
+                ->first();
 
             if ($user_data) {
                 if (is_null($user_data->status) && !is_null($user_data->step)) {
                     Session::flush();
 
                     if($user_data->step == 8){
-                        $step = 12;
+
+                        $step = !is_null($user_data->esign) ? 12 : 8;
+                        
                     } else {
                         $step = $user_data->step + 1;
                     }
@@ -756,7 +784,16 @@ class AccountController extends Controller
 
         if ($user_detail) {
 
-            $user = DB::table('users')->where('id', $user_detail->user_id)->where('status', '1')->get(['id'])->first();
+            // $user = DB::table('users')->where('id', $user_detail->user_id)->where('status', '1')->get(['id'])->first();
+
+            $user = DB::table('users')
+                ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
+                ->where('users.id', $user_detail->user_id)
+                // ->where('users.status', '1')
+                ->where('redemptions.status', '1')
+                ->select('users.id')
+                ->first();
+            
 
             if ($user) {
                 $rsp_msg['response'] = 'error';
@@ -962,9 +999,16 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
-        $users_email = DB::table('users')->where('email', $request->input('email'))->where('status', 1)->get();
+        // $users_email = DB::table('users')->where('email', $request->input('email'))->where('status', 1)->get();
+        $users_email = DB::table('users')
+            ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
+            ->where('users.email',$request->input('email'))
+            // ->where('users.status', '1')
+            ->where('redemptions.status', '1')
+            ->select('users.id')
+            ->first();
 
-        if (count($users_email) != 0) {
+        if ($users_email) {
             $rsp_msg['response'] = 'error';
             $rsp_msg['message']  = 'Email Already Exists';
 
@@ -1011,10 +1055,12 @@ class AccountController extends Controller
 
             
             $email = strtolower($request->input('email'));
-        
-            $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
 
-            $email_templet1 = (new SmsController)->email_registration_successful($phone, $email);
+            if (!$users_email) {
+                $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
+
+                $email_templet1 = (new SmsController)->email_registration_successful($phone, $email);
+            }
 
 
             Session::put('step', 7);
@@ -1627,6 +1673,7 @@ class AccountController extends Controller
             'due_date_end' => date('Y-m-d H:i:s'),
             'installment_amount' => $amount,
             'receivable_amount' => $totalAmount,
+            'receivable_gold' => gold_amount($totalAmount),
             'status' => 'paid',
             'receipt_date' => date('Y-m-d H:i:s'),
             'created_at' => date('Y-m-d H:i:s'),
@@ -1809,28 +1856,64 @@ class AccountController extends Controller
                         ->first(['id', 'due_date_start', 'due_date_end', 'installment_no']);
 
                     if ($redemption_items) {
+                        // $currentDate = Carbon::now()->format('Y-m-d');
+
+                        // // Check if the current date lies between due_date_start and due_date_end
+                        // if (Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
+
+                        //     $plan_receivable_percentage = DB::table('plans')->where('id', $redemption->plan_id)->value('receivable_percentage_on_time');
+
+                        //     $percentage = $plan_receivable_percentage;
+                        //     $additionalAmount = ($amount * $percentage) / 100;
+                        //     $totalAmount = $amount + $additionalAmount;
+
+                        //     DB::table('redemption_items')->where('id', $redemption_items->id)->update([
+                        //         'transaction_id' => $transactions_id,
+                        //         'receivable_amount' => $totalAmount,
+                        //         'status' => 'paid',
+                        //         'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
+                        //     ]);
+                        // } else {
+
+                        //     DB::table('redemption_items')->where('id', $redemption_items->id)->update([
+                        //         'transaction_id' => $transactions_id,
+                        //         'receivable_amount' => $amount,
+                        //         'status' => 'paid',
+                        //         'remarks' => 'penalty for late payment of installment',
+                        //         'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
+                        //     ]);
+                        // }
+
+                        // Get the current date
                         $currentDate = Carbon::now()->format('Y-m-d');
 
-                        // Check if the current date lies between due_date_start and due_date_end
-                        if (Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
+                        // Parse the due date start and end
+                        $dueDateStart = Carbon::parse($redemption_items->due_date_start);
+                        $dueDateEnd = Carbon::parse($redemption_items->due_date_end);
 
-                            $plan_receivable_percentage = DB::table('plans')->where('id', $redemption->plan_id)->value('receivable_percentage_on_time');
-
-                            $percentage = $plan_receivable_percentage;
-                            $additionalAmount = ($amount * $percentage) / 100;
+                        // Check if the current date is less than the due date start or between the due date start and end
+                        if ($currentDate < $dueDateStart->format('Y-m-d') || Carbon::parse($currentDate)->between($dueDateStart, $dueDateEnd)) {
+                            // Get the receivable percentage on time from the plans table
+                            $planReceivablePercentage = DB::table('plans')->where('id', $redemption->plan_id)->value('receivable_percentage_on_time');
+                            
+                            // Calculate the additional amount
+                            $additionalAmount = ($amount * $planReceivablePercentage) / 100;
                             $totalAmount = $amount + $additionalAmount;
 
+                            // Update the redemption items table
                             DB::table('redemption_items')->where('id', $redemption_items->id)->update([
                                 'transaction_id' => $transactions_id,
                                 'receivable_amount' => $totalAmount,
+                                'receivable_gold' => gold_amount($totalAmount),
                                 'status' => 'paid',
                                 'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
                             ]);
                         } else {
-
+                            // Update the redemption items table with penalty remarks
                             DB::table('redemption_items')->where('id', $redemption_items->id)->update([
                                 'transaction_id' => $transactions_id,
                                 'receivable_amount' => $amount,
+                                'receivable_gold' => gold_amount($amount),
                                 'status' => 'paid',
                                 'remarks' => 'penalty for late payment of installment',
                                 'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),

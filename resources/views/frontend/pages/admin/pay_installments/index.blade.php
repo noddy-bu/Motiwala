@@ -50,6 +50,9 @@
                         $Installments_paid = $redemption_items
                             ->where('status', 'paid');
 
+                        if($info->status != 1){
+                            $close_plan_name = DB::table('plans')->where('id', $info->close_planid)->value('name');
+                        }
 
                     @endphp
                     <div class="col-md-12 mt-md-4 mt-3">                        
@@ -57,7 +60,7 @@
 
                             <div class="col-md-12 text-center">
                                 <h4 class="account_number">
-                                    {{ ucfirst($info->name) }} - {{ account_no($info->id, date('d-m-Y', strtotime($info->created_at))) }}
+                                    @if($info->status == 1) {{ ucfirst($info->name) }} @else {{ ucfirst($close_plan_name) }} @endif - {{ account_no($info->redemptions_id, date('d-m-Y', strtotime($info->redemptions_created_at))) }}
                                 </h4>
                             </div>
                         </div>
@@ -89,13 +92,16 @@
                                     <div class="card">
                                         <h5 class="card-header">Maturity Details</h5>
                                         <div class="card-body">
-                                            <p class="card-text">Enrollment Date : {{ date('d-m-Y', strtotime($info->created_at)) }}</p>
+                                            <p class="card-text">Enrollment Date : {{ date('d-m-Y', strtotime($info->redemptions_created_at)) }}</p>
                                             {{-- <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($Maturity_date->due_date_start)) }}
                                             </p> --}}
                                             
                                             <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($info->maturity_date_start)) }}
                                             </p>
                                             <br>
+                                            @if($info->status == 0)
+                                                <br>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -105,7 +111,7 @@
                                         <h5 class="card-header">Plan Details</h5>
                                         <div class="card-body">
                                             <p class="card-text">
-                                                Plan Name : {{ $info->name }}
+                                                Plan Name : @if($info->status == 1) {{ ucfirst($info->name) }} @else {{ ucfirst($close_plan_name) }} @endif
                                             </p>
                                             <p class="card-text">
                                                 Installment Amount : {{ $info->installment_amount }}
@@ -140,6 +146,9 @@
                                         <th>Due Date</th>
                                         <th>Installment No</th>
                                         <th>Installment Amount</th>
+                                        @if($info->close_planid == 2)
+                                            <th>Reserve Gold</th>
+                                        @endif
                                         <th>Payment Type</th>
                                         <th>Status</th>
                                     </tr>
@@ -183,6 +192,11 @@
                                                 <td>
                                                     {{ $row->installment_amount }}
                                                 </td>
+                                                @if($info->close_planid == 2)
+                                                    <td>
+                                                        {{ gold_prifix($row->receivable_gold) ?? "-" }}
+                                                    </td>
+                                                @endif
                                                 <td>
                                                     @php
                                                         $transaction_payment_type = DB::table('transactions')->where('id', $row->transaction_id)->value('payment_type');
@@ -201,7 +215,8 @@
                                                     @if ($row->status == 'paid')
                                                         Paid
                                                     @else
-                                                        @if ($row->due_date_start <= date('Y-m-d') && in_array($row->status, ['paid', 'pending']))
+                                                        {{-- @if ($row->due_date_start <= date('Y-m-d') && in_array($row->status, ['paid', 'pending'])) --}}
+                                                        @if (in_array($row->status, ['paid', 'pending']))
 
                                                             @if($info->status == 1)
                                                                 <div class="buttonclass mt10">
@@ -223,6 +238,7 @@
                                                             @else
                                                                 Unpaid
                                                             @endif
+
                                                         @endif
 
                                                     @endif

@@ -27,29 +27,46 @@ use Illuminate\Support\Facades\Mail;
     if (!function_exists('get_settings')) {
         function get_settings($type)
         {
-            $cacheKey = "business_setting_{$type}";
+            // $cacheKey = "business_setting_{$type}";
         
-            // Check if the value is already in the cache
-            if (Cache::has($cacheKey)) {
-                return Cache::get($cacheKey);
-            }
+            // // Check if the value is already in the cache
+            // if (Cache::has($cacheKey)) {
+            //     return Cache::get($cacheKey);
+            // }
         
             // If not in the cache, retrieve the value from the database
             $businessSetting = BusinessSetting::where('type', $type)->first();
+            $value = $businessSetting->value;
         
-            if ($businessSetting) {
-                $value = $businessSetting->value;
+            // if ($businessSetting) {
+            //     $value = $businessSetting->value;
         
-                // Store the value in the cache with a specific lifetime (e.g., 60 minutes)
-                Cache::put($cacheKey, $value, now()->addMinutes(60));
+            //     // Store the value in the cache with a specific lifetime (e.g., 60 minutes)
+            //     Cache::put($cacheKey, $value, now()->addMinutes(60));
         
-                return $value;
-            }
+            //     return $value;
+            // }
         
             // Handle the case where no record is found
-            return null; // or any default value or error handling you prefer
+            // return null; // or any default value or error handling you prefer
+            return $value;
         }
     }
+
+    if (!function_exists('gold_amount')) {
+        function gold_amount($amount)
+        {
+
+            $businessSetting = BusinessSetting::where('type', 'gold_rate_in_1gram_per_day')->first();
+            $gold_1_gram_price = $businessSetting->value;
+
+
+            $grams_of_gold = ($amount / $gold_1_gram_price);
+
+            return $grams_of_gold;
+        }
+    }
+
 
     if (!function_exists('get_contactpage')) {
         function get_contactpage($type)
@@ -256,5 +273,17 @@ use Illuminate\Support\Facades\Mail;
             $url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     
             return $url;
+        }
+    }
+
+    if(!function_exists('gold_prifix')){
+        function gold_prifix($amount){
+            if(!empty($amount)){
+                $account_gold_prifix = $amount . ' gm';
+            } else {
+                $account_gold_prifix = '-';
+            }
+
+            return $account_gold_prifix;
         }
     }

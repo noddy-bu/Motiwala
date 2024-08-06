@@ -26,6 +26,10 @@
 
                 $Installments_paid = $redemption_items
                     ->where('status', 'paid');
+                
+                if($info->status != 1){
+                    $close_plan_name = DB::table('plans')->where('id', $info->close_planid)->value('name');
+                }
 
 
             @endphp
@@ -33,7 +37,7 @@
                 <div class="">
                     <div class="col-md-12">
                         <h4>
-                            {{ ucfirst($info->name) }} - {{ account_no($info->id, date('d-m-Y', strtotime($info->created_at))) }}
+                            @if($info->status == 1) {{ ucfirst($info->name) }} @else {{ ucfirst($close_plan_name) }} @endif - {{ account_no($info->redemptions_id, date('d-m-Y', strtotime($info->redemptions_created_at))) }}
                         </h4>
                     </div>
                 </div>
@@ -66,7 +70,7 @@
                             <div class="card rounded-4">
                                 <h5 class="card-header">Maturity Details</h5>
                                 <div class="card-body py-2">
-                                    <p class="card-text">Enrollment Date : {{ date('d-m-Y', strtotime($info->created_at)) }}</p>
+                                    <p class="card-text">Enrollment Date : {{ date('d-m-Y', strtotime($info->redemptions_created_at)) }}</p>
                                     {{-- <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($Maturity_date->due_date_start)) }}
                                     </p> --}}
                                     <p class="card-text">Maturity Date : {{ date('d-m-Y', strtotime($info->maturity_date_start)) }}
@@ -97,7 +101,7 @@
                                         <hr>
                                         <h3 class="text-start">Plan Has Been Closed</h3>
                                         <p class="card-text">Close Date: {{ $info->closing_date }}</p>
-                                        <p class="card-text">Close at Amount: {{ $total_amount_at_closing }}</p>
+                                        <p class="card-text">Close at Amount: {{ $info->plan_id != 2 ?  $total_amount_at_closing  : $info->closing_amount }} </p> 
                                         <p class="card-text">Reason For Close: {{ $info->closing_remark }}</p>
                                     @endif
 
@@ -157,6 +161,11 @@
                                 <th>Due Date</th>
                                 <th>Installment No</th>
                                 <th>Installment Amount</th>
+                                @if($info->close_planid == 1)
+                                    <th>Profit Amount</th>
+                                @else
+                                    <th>Reserve Gold</th>
+                                @endif
                                 <th>Payment Type</th>
                                 <th>Status</th>
                             </tr>
@@ -191,6 +200,15 @@
                                         <td>
                                             {{ $row->installment_amount }}
                                         </td>
+                                        @if($info->close_planid == 1)
+                                            <td>
+                                                {{ $row->receivable_amount ?? "-" }}
+                                            </td>
+                                        @else
+                                            <td>
+                                                {{ gold_prifix($row->receivable_gold) ?? "-" }}
+                                            </td>
+                                        @endif
                                         <td>
                                             @php
                                                 $transaction_payment_type = DB::table('transactions')->where('id', $row->transaction_id)->value('payment_type');
@@ -211,15 +229,18 @@
                                             @elseif ($row->status == 'pending')
                                                 <b>pending</b>
 
-                                                @if ($row->due_date_start <= date('Y-m-d') && in_array($row->status, ['paid', 'pending']))
+                                                {{-- @if ($row->due_date_start <= date('Y-m-d') && in_array($row->status, ['paid', 'pending'])) --}}
 
-                                                    <br>
+                                                @if (in_array($row->status, ['paid', 'pending']))
+                                                    @if($info->status == 1) 
+                                                        <br>
 
-                                                    <a href="javascript:void(0);" 
-                                                    class="btn btn-sm btn-secondary" 
-                                                    onclick="largeModal('{{ url(route('Customer.manual_pay.form', ['id' => $row->id])) }}?previous_popup_link={{ $this_pop_link }}&previous_popup_name={{ $this_pop_name }}', 'Manual Payment');">
-                                                            Manual pay
-                                                    </a>
+                                                        <a href="javascript:void(0);" 
+                                                        class="btn btn-sm btn-secondary" 
+                                                        onclick="largeModal('{{ url(route('Customer.manual_pay.form', ['id' => $row->id])) }}?previous_popup_link={{ $this_pop_link }}&previous_popup_name={{ $this_pop_name }}', 'Manual Payment');">
+                                                                Manual pay
+                                                        </a>
+                                                    @endif
 
                                                 @endif
 

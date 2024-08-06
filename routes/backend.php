@@ -94,11 +94,13 @@ Route::group(['prefix' => 'contact'], function () {
 
 //setting
 Route::group(['prefix' => 'setting'], function () {
-    Route::get('/index', [BusinessSettingController::class, 'index'])->name('setting.index');
+    // Route::get('/index', [BusinessSettingController::class, 'index'])->name('setting.index');
+
+    Route::get('/set-receivable-gold-rate', [BusinessSettingController::class, 'set_receivable_gold_rate_page'])->name('setting.receivable_gold_page');
     
-    Route::get('/privacy-policy', [BusinessSettingController::class, 'privacy_policy'])->name('setting.privacy');
-    Route::get('/terms', [BusinessSettingController::class, 'terms'])->name('setting.terms');
-    Route::get('/refund-policy', [BusinessSettingController::class, 'refund_policy'])->name('setting.refund_policy');
+    // Route::get('/privacy-policy', [BusinessSettingController::class, 'privacy_policy'])->name('setting.privacy');
+    // Route::get('/terms', [BusinessSettingController::class, 'terms'])->name('setting.terms');
+    // Route::get('/refund-policy', [BusinessSettingController::class, 'refund_policy'])->name('setting.refund_policy');
 
     Route::post('/update', [BusinessSettingController::class, 'update'])->name('setting.update');
 });

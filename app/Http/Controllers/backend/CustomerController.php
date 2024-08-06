@@ -44,7 +44,7 @@ class CustomerController extends Controller
     
         // Filtered records
         $query = User::select('users.*','r.status as plan_Status')
-            ->leftJoin('redemptions as r', 'r.user_id', '=', 'users.id')
+            ->leftJoin(DB::raw('(SELECT * FROM redemptions WHERE id IN (SELECT MAX(id) FROM redemptions GROUP BY user_id)) as r'), 'r.user_id', '=', 'users.id')
             ->where('users.role_id', '!=', 1);
     
         // Filtered records
@@ -84,7 +84,11 @@ class CustomerController extends Controller
 
         $status = $request->input('status');
         if ($status != '') {
-            $query->where('r.status', $status);
+            if ($status !== 'null') { // Check if $status is not the string 'null'
+                $query->where('r.status', $status);
+            } else {
+                $query->whereNull('users.status'); // Use whereNull to check for NULL in the 'users.status' column
+            }
         }
     
         // Get filtered count
@@ -110,11 +114,13 @@ class CustomerController extends Controller
                 $tran = null;
             }
 
+            $plan_name = DB::table('plans')->where('id',$row->plan_id)->value('name');
+
 
             if($row->plan_Status === 1){
-                $plan_status = '<span class="badge bg-success">In Progress</span>';
+                $plan_status = '<span class="badge bg-primary">In Progress</span>';
             } elseif ($row->plan_Status === 0) {
-                $plan_status = '<span class="badge bg-primary">Completed</span>';
+                $plan_status = '<span class="badge bg-success">Completed</span>';
             } else {
                 $plan_status = '<span class="badge bg-danger">Inactive</span>';
             }
@@ -125,6 +131,7 @@ class CustomerController extends Controller
                 'name' => $row->fullname,
                 'email' => $row->email,
                 'phone' => $row->phone,
+                'plan'  => ucfirst($plan_name),
                 'status' => $plan_status,
                 'created_at' => $row->created_at->format('Y-m-d H:i:s'),
                 'action' => //'<a href="'.route('Customer.status', ['id' => $row->id, 'status' => $row->status ? 0 : 1]).'" class="action-icon">'.
@@ -171,13 +178,18 @@ class CustomerController extends Controller
             'plans.installment_period',
             'redemptions.maturity_date_start',
             'redemptions.maturity_date_end',
+            'redemptions.plan_id as close_planid',
             'redemptions.status',
             'redemptions.closing_remark',
+            'redemptions.closing_amount',
             'redemptions.closing_date',
+            'redemptions.created_at as redemptions_created_at',
+            'redemptions.id as redemptions_id',
         ])
         ->join('plans', 'users.plan_id', '=', 'plans.id')
         ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
         ->where('users.id',$id)
+        ->orderBy('redemptions.id', 'desc')
         ->get()->first();
         
         $transactions = DB::table('transactions')->where('user_id',$id)->where('payment_status','paid')->get();
@@ -225,7 +237,7 @@ class CustomerController extends Controller
         ->select([
             'redemptions.id',
             'redemptions.user_id',
-            'users.plan_id',
+            'redemptions.plan_id',
             'redemptions.maturity_date_start',
             'redemptions.maturity_date_end',
             'redemptions.status',
@@ -235,6 +247,7 @@ class CustomerController extends Controller
         ->join('plans', 'users.plan_id', '=', 'plans.id')
         ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
         ->where('users.id',$id)
+        ->where('redemptions.status', 1)
         ->get()->first();
         
 
@@ -248,6 +261,7 @@ class CustomerController extends Controller
         } else {
             $total_amount_at_closing = $redemption_items->where('status', 'paid')->sum('installment_amount');
         }
+
         //--closing amout
         return view('backend.pages.customer.closing_form', compact('info','redemption_items','total_amount_at_closing'));
     }
@@ -291,13 +305,17 @@ class CustomerController extends Controller
         //--closing amout
         $currentDate = Carbon::now()->format('Y-m-d');
 
-        if (Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
+        $dueDateStart = Carbon::parse($redemption_items->due_date_start);
+        
+
+        if ($currentDate < $dueDateStart->format('Y-m-d') || Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
             $pay_date = custom_date_change($redemption_items->due_date_start)." to ".custom_date_change($redemption_items->due_date_end);
         } else {
             $pay_date = custom_date_change($redemption_items->due_date_start)." to ".custom_date_change($redemption_items->due_date_end)." -- Penalty will be charged";
         }
 
         return view('backend.pages.customer.manual_pay_form', compact('redemption_items','pay_date','user_id'));
+        
     }
 
     public function manual_payment(Request $request){
@@ -369,34 +387,75 @@ class CustomerController extends Controller
                 ->first(['id', 'due_date_start', 'due_date_end', 'installment_no']);
         
             if ($redemption_items) {
-                $currentDate = Carbon::now()->format('Y-m-d');
+                // $currentDate = Carbon::now()->format('Y-m-d');
+
+                // $dueDateStart = Carbon::parse($redemption_items->due_date_start);
         
-                // Check if the current date lies between due_date_start and due_date_end
-                if (Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
+                // // Check if the current date lies between due_date_start and due_date_end
+                // // if (Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
 
-                    $plan_receivable_percentage = DB::table('plans')->where('id', $redemption->plan_id)->value('receivable_percentage_on_time');
+                // if ( $currentDate < $dueDateStart->format('Y-m-d') || Carbon::parse($currentDate)->between(Carbon::parse($redemption_items->due_date_start), Carbon::parse($redemption_items->due_date_end))) {
 
-                    $percentage = $plan_receivable_percentage;
-                    $additionalAmount = ($amount * $percentage) / 100;
+                //     $plan_receivable_percentage = DB::table('plans')->where('id', $redemption->plan_id)->value('receivable_percentage_on_time');
+
+                //     $percentage = $plan_receivable_percentage;
+                //     $additionalAmount = ($amount * $percentage) / 100;
+                //     $totalAmount = $amount + $additionalAmount;
+
+                //     DB::table('redemption_items')->where('id', $redemption_items->id)->update([
+                //         'transaction_id' => $transactions_id,
+                //         'receivable_amount' => $totalAmount,
+                //         'status' => 'paid',
+                //         'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
+                //     ]);
+
+                // } else {
+
+                //     DB::table('redemption_items')->where('id', $redemption_items->id)->update([
+                //         'transaction_id' => $transactions_id,
+                //         'receivable_amount' => $amount,
+                //         'status' => 'paid',
+                //         'remarks' => 'penalty for late payment of installment',
+                //         'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
+                //     ]);
+
+                // }
+
+
+                // Get the current date
+                $currentDate = Carbon::now()->format('Y-m-d');
+
+                // Parse the due date start and end
+                $dueDateStart = Carbon::parse($redemption_items->due_date_start);
+                $dueDateEnd = Carbon::parse($redemption_items->due_date_end);
+
+                // Check if the current date is less than the due date start or between the due date start and end
+                if ($currentDate < $dueDateStart->format('Y-m-d') || Carbon::parse($currentDate)->between($dueDateStart, $dueDateEnd)) {
+                    // Get the receivable percentage on time from the plans table
+                    $planReceivablePercentage = DB::table('plans')->where('id', $redemption->plan_id)->value('receivable_percentage_on_time');
+                    
+                    // Calculate the additional amount
+                    $additionalAmount = ($amount * $planReceivablePercentage) / 100;
                     $totalAmount = $amount + $additionalAmount;
 
+                    // Update the redemption items table
                     DB::table('redemption_items')->where('id', $redemption_items->id)->update([
                         'transaction_id' => $transactions_id,
                         'receivable_amount' => $totalAmount,
+                        'receivable_gold' => gold_amount($totalAmount),
                         'status' => 'paid',
                         'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
                     ]);
-
                 } else {
-
+                    // Update the redemption items table with penalty remarks
                     DB::table('redemption_items')->where('id', $redemption_items->id)->update([
                         'transaction_id' => $transactions_id,
                         'receivable_amount' => $amount,
+                        'receivable_gold' => gold_amount($amount),
                         'status' => 'paid',
                         'remarks' => 'penalty for late payment of installment',
                         'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
                     ]);
-
                 }
 
                 $installment = $redemption_items->installment_no;
@@ -453,8 +512,13 @@ class CustomerController extends Controller
 
         $phone = DB::table('users')->where('id', $request->user_id)->value('phone');
 
+        $email = DB::table('users')->where('id', $request->user_id)->value('email');
+
     
         $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+
+
+        $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
 
         $response = [
             'status' => true,
