@@ -236,7 +236,7 @@ class CustomerController extends Controller
         ->select([
             'redemptions.id',
             'redemptions.user_id',
-            'users.plan_id',
+            'redemptions.plan_id',
             'redemptions.maturity_date_start',
             'redemptions.maturity_date_end',
             'redemptions.status',
@@ -246,6 +246,7 @@ class CustomerController extends Controller
         ->join('plans', 'users.plan_id', '=', 'plans.id')
         ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
         ->where('users.id',$id)
+        ->where('redemptions.status', 1)
         ->get()->first();
         
 
@@ -259,6 +260,7 @@ class CustomerController extends Controller
         } else {
             $total_amount_at_closing = $redemption_items->where('status', 'paid')->sum('installment_amount');
         }
+
         //--closing amout
         return view('backend.pages.customer.closing_form', compact('info','redemption_items','total_amount_at_closing'));
     }
