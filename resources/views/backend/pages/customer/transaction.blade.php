@@ -101,7 +101,7 @@
                                         <hr>
                                         <h3 class="text-start">Plan Has Been Closed</h3>
                                         <p class="card-text">Close Date: {{ $info->closing_date }}</p>
-                                        <p class="card-text">Close at Amount: ($info->plan_id != 2) ? {{ $total_amount_at_closing }} : {{ $info->closing_amount }} </p> 
+                                        <p class="card-text">Close at Amount: {{ $info->plan_id != 2 ?  $total_amount_at_closing  : $info->closing_amount }} </p> 
                                         <p class="card-text">Reason For Close: {{ $info->closing_remark }}</p>
                                     @endif
 
