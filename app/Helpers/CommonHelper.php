@@ -279,7 +279,7 @@ use Illuminate\Support\Facades\Mail;
     if(!function_exists('gold_prifix')){
         function gold_prifix($amount){
             if(!empty($amount)){
-                $account_gold_prifix = $amount . 'gm';
+                $account_gold_prifix = $amount . ' gm';
             } else {
                 $account_gold_prifix = '-';
             }

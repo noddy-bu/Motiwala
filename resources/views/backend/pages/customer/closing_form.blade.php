@@ -16,14 +16,14 @@
                                             <p class="card-text">Amount Received at Closing : {{ $total_amount_at_closing }} 
                                             </p>
                                         @else
-                                            <p class="card-text">Received Gold at Closing : {{ $redemption_items->where('status', 'paid')->sum('receivable_gold'); }}  at this Paid Amount : {{ $total_amount_at_closing }}
+                                            <p class="card-text">Received Gold at Closing : {{ $redemption_items->where('status', 'paid')->sum('receivable_gold'); }} gm  at this Paid Amount : {{ $total_amount_at_closing }}
                                             </p>
                                         @endif
 
                                         @php
                                             $closing_amount = $info->plan_id != 2 
                                                 ? $total_amount_at_closing 
-                                                : 'Gold ' . $redemption_items->where('status', 'paid')->sum('receivable_gold') . ' at This Amount ' . $total_amount_at_closing;
+                                                : 'Gold ' . $redemption_items->where('status', 'paid')->sum('receivable_gold') . ' gm at This Amount ' . $total_amount_at_closing;
                                         @endphp
 
                                         <input type="hidden" value="{{ $closing_amount }}" name="closing_amount">
