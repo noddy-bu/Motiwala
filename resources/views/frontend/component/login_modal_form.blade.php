@@ -62,11 +62,7 @@
                           setTimeout(function() {
                             let fragment = window.location.hash;
                             // Check if the fragment is "#instant-pay"
-                            if (fragment === "#instant-pay") {
-                              window.location.href = "{{ route('pay-installments') }}";
-                            } else {
-                              window.location.href = "{{ route('information') }}";
-                            }
+
                               
                           }, 1000);
                       } else if (response.status === 'incomplete') {
