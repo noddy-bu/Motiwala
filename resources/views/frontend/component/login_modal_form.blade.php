@@ -41,58 +41,56 @@
 
       }
 
+      $(document).ready(function(){
 
-      if (shouldExecute) {
-        $(document).ready(function(){
+        var shouldExecute = $('#loginForm').is(':visible');
 
-          var shouldExecute = $('#loginForm').is(':visible');
+          if (shouldExecute) {
+              $('#loginForm').submit(function(e){
+                  e.preventDefault();
 
-            if (shouldExecute) {
-                $('#loginForm').submit(function(e){
-                    e.preventDefault();
+                  var formData = $(this).serialize();
+                  var csrfToken = '{{ csrf_token() }}';
 
-                    var formData = $(this).serialize();
-                    var csrfToken = '{{ csrf_token() }}';
-
-                    $.ajax({
-                        url: "{{ route('customer.login') }}",
-                        type: "POST",
-                        headers: {
-                            'X-CSRF-TOKEN': csrfToken
-                        },
-                        data: formData,
-                        dataType: 'json',
-                        success: function(response) {
-                            if (response.status === 'success') {
-                                toastr.success(response.message, 'Success');
-                                setTimeout(function() {
-                                  let fragment = window.location.hash;
-                                  // Check if the fragment is "#instant-pay"
-                                  if (fragment === "#instant-pay") {
-                                    window.location.href = "{{ route('pay-installments') }}";
-                                  } else {
-                                    window.location.href = "{{ route('information') }}";
-                                  }
-                                    
-                                }, 1000);
-                            } else if (response.status === 'incomplete') {
-                              toastr.success(response.message, 'error');
-                                setTimeout(function() {
-                                    window.location.href = "{{ route('account.new.enrollment.page') }}"; 
-                                }, 1000);
-                            } else {
-                                toastr.error(response.message, 'Error');
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            toastr.error('Something went wrong please try again', 'Error');
-                        }
-                    });
-                });
-            }
+                  $.ajax({
+                      url: "{{ route('customer.login') }}",
+                      type: "POST",
+                      headers: {
+                          'X-CSRF-TOKEN': csrfToken
+                      },
+                      data: formData,
+                      dataType: 'json',
+                      success: function(response) {
+                          if (response.status === 'success') {
+                              toastr.success(response.message, 'Success');
+                              setTimeout(function() {
+                                let fragment = window.location.hash;
+                                // Check if the fragment is "#instant-pay"
+                                if (fragment === "#instant-pay") {
+                                  window.location.href = "{{ route('pay-installments') }}";
+                                } else {
+                                  window.location.href = "{{ route('information') }}";
+                                }
+                                  
+                              }, 1000);
+                          } else if (response.status === 'incomplete') {
+                            toastr.success(response.message, 'error');
+                              setTimeout(function() {
+                                  window.location.href = "{{ route('account.new.enrollment.page') }}"; 
+                              }, 1000);
+                          } else {
+                              toastr.error(response.message, 'Error');
+                          }
+                      },
+                      error: function(xhr, status, error) {
+                          toastr.error('Something went wrong please try again', 'Error');
+                      }
+                  });
+              });
+          }
 
 
-        });
+      });
     
     </script>
   @endsection
