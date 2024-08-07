@@ -45,6 +45,10 @@
           $('#loginForm').submit(function(e){
               e.preventDefault();
 
+              let pay_installments =  "{{ route('pay-installments') }}";
+              let information = "{{ route('information') }}";
+              let enrollment_page = "{{ route('account.new.enrollment.page') }}";
+
               var formData = $(this).serialize();
               var csrfToken = '{{ csrf_token() }}';
 
@@ -63,16 +67,16 @@
                             let fragment = window.location.hash;
                             // Check if the fragment is "#instant-pay"
                             if (fragment === "#instant-pay") {
-                              window.location.href = "/pay-installments";
+                              window.location.href = pay_installments;
                             } else {
-                              window.location.href = "/information";
+                              window.location.href = information;
                             }
                               
                           }, 1000);
                       } else if (response.status === 'incomplete') {
                         toastr.success(response.message, 'error');
                           setTimeout(function() {
-                              window.location.href = "/account/onlineenrollment"; 
+                              window.location.href = enrollment_page;
                           }, 1000);
                       } else {
                           toastr.error(response.message, 'Error');
