@@ -328,16 +328,6 @@ span.WebRupee {
     top: -3px;
 }
 
-#nav-sip-calculator-tab a {
-    border: 0;
-    border-radius: 20px 20px 0px 0px;
-    background-color: #fff;
-}
-
-#nav-sip-calculator-tab a.active {
-    background-color: #d9baa4;
-}
-
 .sip-calculator {
     padding: 4em 3em 4em 3em;
     background-color: #ffffff5c;
