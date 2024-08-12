@@ -47,6 +47,8 @@ Route::get('/about-us', [IndexController::class, 'about_us'])->name('about_us');
 
 Route::get('/contact-us', [IndexController::class, 'contact_us'])->name('contact_us');
 
+Route::get('/plans', [IndexController::class, 'plans'])->name('plans');
+
 
 
 Route::get('/404', [IndexController::class, 'not_found'])->name('error_page');
