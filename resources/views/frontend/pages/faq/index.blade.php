@@ -52,7 +52,7 @@
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                No. Our Golden Treasure 10+1 Plan is a savings plan, where you first save for 10 months 
+                                No. Our Golden Treasure 10+1 Plan is a savings plan, where you first save for 11 months 
                                 and we pay 1 month installment On Behalf  then you can make a purchase of  
                                 Jewellery after completion of the plan. 
                             </div>

@@ -173,7 +173,7 @@ $receivable_percentage_on_time = DB::table('plans')
                             <div class="step_content2 pb-lg -3 pb-0">
                                 <p class="black_color text-center" >
                                     You can pay a monthly installment of at least ₹3000, or any higher multiples of ₹1000, 
-                                    for 10 months using cash, online banking via Standing Instructions, Net-Banking, 
+                                    for 11 months using cash, online banking via Standing Instructions, Net-Banking, 
                                     UPI or post-dated cheque facilities.
                                 </p>
                             </div>
@@ -269,7 +269,7 @@ $receivable_percentage_on_time = DB::table('plans')
                             <div class="col-md-12">
                                 <div class="sip-calculator-amount">
                                     <div class="amount_monthly2">
-                                        <label id="amountLabel"> YOUR TOTAL AMOUNT for 10 months <span id="amount_10x">₹ 1,00,000</span>
+                                        <label id="amountLabel"> YOUR TOTAL AMOUNT for 11 months <span id="amount_10x">₹ 1,00,000</span>
                                         </label>
                                     </div>
                                 </div>
@@ -464,12 +464,12 @@ $receivable_percentage_on_time = DB::table('plans')
                         <h2 class="accordion-header" id="headingFour">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> 
-                                If I pay for 10 months, when will I get special discount ? </button>
+                                If I pay for 11 months, when will I get special discount ? </button>
                         </h2>
                         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                Complete 10 monthly payments to qualify for our exclusive discount offer. 
+                                Complete 11 monthly payments to qualify for our exclusive discount offer. 
                                 Your dedication to our Golden Treasurer program will be rewarded with special savings on your purchase. 
                                 Enjoy the benefits of your commitment with this fantastic discount opportunity!
                             </div>
