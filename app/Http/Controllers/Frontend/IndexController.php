@@ -19,8 +19,14 @@ use Illuminate\Support\Facades\DB;
 class IndexController extends Controller
 {
     public function index(){
-        $plan_duration = DB::table('plans')->where('status', 1)->value('installment_period');
-        return view('frontend.pages.home.index', compact('plan_duration'));
+        $plan_duration = DB::table('plans')->where('status', 1)->select(['id', 'installment_period'])->get();
+        // Filter the collection to get the installment_period for the plan with id = 1
+        $plan1_duration = $plan_duration->firstWhere('id', 1)?->installment_period;
+
+        // Filter the collection to get the installment_period for the plan with id = 2
+        $plan2_duration = $plan_duration->firstWhere('id', 2)?->installment_period;
+
+        return view('frontend.pages.home.index', compact('plan1_duration','plan2_duration'));
     }
 
 
