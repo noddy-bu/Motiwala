@@ -148,12 +148,12 @@
                         class="stunning_necklace"> stunning jewellery? </span></h4>
                 <p class="text-center black_color fontsize26">
                     Start your journey by opening a Motiwala Jewels Golden Treasure account with just ₹3000.
-                    <span> By making regular fixed payments for 10 months, you'll unlock a fantastic discount of up </span>
+                    <span> By making regular fixed payments for {{ env('PLAN_1') }}, you'll unlock a fantastic discount of up </span>
                     to 100% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
                 </p>
                 <div class="text-center">
                     <div class="buttonclass mt-4 ">
-                        <a href="/account/onlineenrollment">Start Now <i class="las la-arrow-right"></i>
+                        <a href="{{ url(route('account.new.enrollment.page')) }}">Start Now <i class="las la-arrow-right"></i>
                         </a>
                     </div>
                 </div>
@@ -196,7 +196,7 @@
                             <div class="step_content2 pb-lg -3 pb-0">
                                 <p class="black_color text-center" >
                                     You can pay a monthly installment of at least ₹3000, or any higher multiples of ₹1000, 
-                                    for 11 months using cash, online banking via Standing Instructions, Net-Banking, 
+                                    for {{ env('PLAN_1') }} using cash, online banking via Standing Instructions, Net-Banking, 
                                     UPI or post-dated cheque facilities.
                                 </p>
                             </div>
@@ -256,10 +256,9 @@
             <nav class="nav nav-tabs ps-md-5 border-0 gap-3" id="nav-sip-calculator-tab" role="tablist">
                 <a class="nav-link active text-dark text-decoration-none" id="nav-sip-calculator1-tab"
                     data-bs-toggle="tab" href="#sip-calculator1" role="tab" aria-controls="nav-home"
-                    aria-selected="true">Golden Treasue</a>
+                    aria-selected="true">{{ env('PLAN_1_NAME') }}</a>
                 <a class="nav-link text-dark text-decoration-none" id="nav-sip-calculator2-tab" data-bs-toggle="tab"
-                    href="#sip-calculator2" role="tab" aria-controls="nav-profile" aria-selected="false">Golden
-                    Fortune</a>
+                    href="#sip-calculator2" role="tab" aria-controls="nav-profile" aria-selected="false">{{ env('PLAN_2_NAME') }}</a>
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="sip-calculator1" role="tabpanel"
@@ -270,8 +269,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h4 class="title_heading text-left black_color pb-lg-5 pb-md-4 pb-3 heading_font">Golden
-                                    Treasure Calculator</h4>
+                                <h4 class="title_heading text-left black_color pb-lg-5 pb-md-4 pb-3 heading_font">{{ env('PLAN_1_NAME') }} Calculator</h4>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <form>
@@ -286,7 +284,7 @@
                                                     </label>
                                                     <span class="WebRupee">₹
                                                         <input type="tel" id="calc" name="calc"
-                                                            class="text-input form-control min-value_1000 multiple-of_100 slider-value"
+                                                            class="text-input form-control min-value_1000 multiple-of_100 slider-value calc"
                                                             value="10000">
                                                     </span>
                                                 </div>
@@ -310,7 +308,7 @@
                                         <div class="col-md-12">
                                             <div class="sip-calculator-amount">
                                                 <div class="amount_monthly2">
-                                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for 10 months <span
+                                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for {{ env('PLAN_1') }}  <span
                                                             id="amount_10x">₹ 1,00,000</span>
                                                     </label>
                                                 </div>
@@ -330,25 +328,6 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-md-12">
-                                <div class="sip-calculator-amount">
-                                    <div class="amount_monthly2">
-                                        <label id="amountLabel"> YOUR TOTAL AMOUNT for 11 months <span id="amount_10x">₹ 1,00,000</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <hr>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="pt-2">You can Buy Jewellery worth: (in 12th month)</p>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="total_number_main">
-                                    <p id="amount_13x">₹ 1,07,500</p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -361,8 +340,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h4 class="title_heading text-left black_color pb-lg-5 pb-md-4 pb-3 heading_font">Golden
-                                    Fortune Calculator</h4>
+                                <h4 class="title_heading text-left black_color pb-lg-5 pb-md-4 pb-3 heading_font">{{ env('PLAN_2_NAME') }} Calculator</h4>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <form>
@@ -377,7 +355,7 @@
                                                     </label>
                                                     <span class="WebRupee">₹
                                                         <input type="tel" id="calc_plan2" name="calc"
-                                                            class="text-input form-control min-value_1000 multiple-of_100 slider-value"
+                                                            class="text-input form-control min-value_1000 multiple-of_100 slider-value calc"
                                                             value="10000">
                                                     </span>
                                                 </div>
@@ -401,7 +379,7 @@
                                         <div class="col-md-12">
                                             <div class="sip-calculator-amount">
                                                 <div class="amount_monthly2">
-                                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for 10 months <span
+                                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for {{ env('PLAN_2') }} <span
                                                             id="amount_10x_plan2">₹ 1,00,000</span>
                                                     </label>
                                                 </div>
@@ -411,7 +389,7 @@
                                             <hr>
                                         </div>
                                         <div class="col-md-6">
-                                            <p class="pt-2">You can Buy Jewellery worth: (in 11th month)</p>
+                                            <p class="pt-2">You can Get Gold worth: <br class="d-none d-md-block"> (in {{ env('PLAN_2') }} )</p>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="total_number_main">
@@ -427,7 +405,7 @@
 
                             <div class="col-md-12 text-md-start text-center widths80">
                                 <div class="buttonclass mt-4">
-                                    <a href="/account/onlineenrollment">Open a New Account <i
+                                    <a href="{{ url(route('account.new.enrollment.page')) }}">Open a New Account <i
                                             class="las la-arrow-right"></i>
                                     </a>
                                 </div>
@@ -444,7 +422,7 @@
                             we bring over a century of industry</span> <span>expertise right to you.”</span>
                     </p>
                     <div class="buttonclass mt-4">
-                        <a href="/instant-pay">Explore <i class="las la-arrow-right"></i>
+                        <a href="{{ url(route('instantpay')) }}">Explore <i class="las la-arrow-right"></i>
                         </a>
                     </div>
                 </div>
@@ -592,7 +570,7 @@
                             <h2 class="accordion-header" id="headingThree">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    Can I redeem and purchase before 11 months ?
+                                    Can I redeem and purchase before {{ env('PLAN_1') }} ?
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
@@ -611,7 +589,7 @@
                         <h2 class="accordion-header" id="headingFour">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> 
-                                If I pay for 11 months, when will I get special discount ? </button>
+                                If I pay for {{ env('PLAN_1') }}, when will I get special discount ? </button>
                         </h2>
                         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                             data-bs-parent="#accordionExample">
@@ -621,25 +599,25 @@
                                 Enjoy the benefits of your commitment with this fantastic discount opportunity!
                             </div>
                         </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                What other benefits you get? </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Our Golden Treasurer program offers more than just a discount.
+                                Experience personalized assistance from our dedicated team throughout your journey.
+                                Enjoy top-quality craftsmanship and excellent service standards with every piece.
+                                Our prompt responses to your queries ensure a seamless and satisfying shopping
+                                experience.
 
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingFive">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                    What other benefits you get? </button>
-                            </h2>
-                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                                data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    Our Golden Treasurer program offers more than just a discount.
-                                    Experience personalized assistance from our dedicated team throughout your journey.
-                                    Enjoy top-quality craftsmanship and excellent service standards with every piece.
-                                    Our prompt responses to your queries ensure a seamless and satisfying shopping
-                                    experience.
-
-                                </div>
                             </div>
                         </div>
+                    </div>
 
                     </div>
                 </div>

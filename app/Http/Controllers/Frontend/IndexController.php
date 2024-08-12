@@ -205,6 +205,10 @@ class IndexController extends Controller
         return view('frontend.pages.refund_policy.index');
     }
 
+    public function plans(){
+        return view('frontend.pages.plans.index');
+    }
+
     public function pdf(){
 
         // Render the HTML view with user details

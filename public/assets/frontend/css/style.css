@@ -286,7 +286,7 @@ section.why_choose_section {
     display: none;
 }
 
-input#calc {
+input.calc {
     font-weight: 500;
     font-size: 20px;
     padding-top: 0px;
@@ -896,6 +896,14 @@ section.faq_section_main {
     padding-top: 20px;
 }
 
+/* plan page css open */
+
+.golden_list_diff .list-group-item, .golden_list_diff .card {
+    border: none !important;
+    border-radius: 18px !important;
+}
+
+/* plan page css open */
 
 /*-- open accounts page css---*/
 

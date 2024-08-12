@@ -52,7 +52,7 @@
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                No. Our Golden Treasure 10+1 Plan is a savings plan, where you first save for 11 months 
+                                No. Our Golden Treasure 10+1 Plan is a savings plan, where you first save for {{ env('PLAN_1') }} 
                                 and we pay 1 month installment On Behalf  then you can make a purchase of  
                                 Jewellery after completion of the plan. 
                             </div>
@@ -197,7 +197,7 @@
                         <h2 class="accordion-header" id="headingEleven">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven"> 
-                                Can I continue my Golden Treasure 10+1 Plan after 11 months?
+                                Can I continue my Golden Treasure 10+1 Plan after {{ env('PLAN_1') }}?
                             </button>
                         </h2>
                         <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven"
@@ -423,13 +423,13 @@
                         <h2 class="accordion-header" id="headingTwentyFive">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwentyFive" aria-expanded="false" aria-controls="collapseTwentyFive">                                  
-                                Can I redeem my plan and purchase before 11 months?         
+                                Can I redeem my plan and purchase before {{ env('PLAN_1') }}?         
                             </button>
                         </h2>
                         <div id="collapseTwentyFive" class="accordion-collapse collapse" aria-labelledby="headingTwentyFive"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                Yes, you can redeem your plan before 11 months.However, you will not be eligible 
+                                Yes, you can redeem your plan before {{ env('PLAN_1') }}.However, you will not be eligible 
                                 for discounts.                
                             </div>
                         </div>

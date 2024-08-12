@@ -73,6 +73,7 @@
 					   of monthly installments paid.
 					</p>
 
+					<p><strong>Note: </strong>Gold Reserved as per 22 Karat</p>
 					<h4 class="pt-3">Pre-Close & Refund</h4>
 
 					<p>The Customer will have the option to pre-close the Plan only if the Customer has paid 
@@ -155,6 +156,7 @@
 						as the case may be, accepting these terms and conditions.
 					</p>
 					
+					<p><strong>Note: </strong>Gold Reserved as per 22 Karat</p>
 					<h4 class="pt-3">Payment</h4>
 					<p>Payment of monthly installments(s) may be made by cash, credit / debit cards, NEFT/ RTGS, 
 						local cheques in favour of “MOTIWALA JEWELS GOLD AND DIAMONDS PVT LTD ” payable in the 
@@ -249,6 +251,7 @@
 						the Plan suitable to the change of law and necessary requirements as per the same have 
 						to be complied with by the account holder.
 					</p>
+					<p><strong>Note: </strong>Gold Reserved as per 22 Karat</p>
 					<br>
   	
                 </div>
