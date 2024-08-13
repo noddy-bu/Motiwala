@@ -9,20 +9,21 @@
 @section('page.content')
 
     @php
-        $plan_min_amount = DB::table('plans')
+        $plan_details = DB::table('plans')
             ->where('status', 1)
-            ->select(['id', 'minimum_installment_amount'])
+            ->select(['id', 'minimum_installment_amount','receivable_percentage_on_time'])
             ->get();
 
-        $plan_min_amount_plan_1 = $plan_min_amount->firstWhere('id', 1)?->minimum_installment_amount;
-        $plan_min_amount_plan_2 = $plan_min_amount->firstWhere('id', 2)?->minimum_installment_amount;
+        $plan_min_amount_plan_1 = $plan_details->firstWhere('id', 1)?->minimum_installment_amount;
+        $plan_min_amount_plan_2 = $plan_details->firstWhere('id', 2)?->minimum_installment_amount;
 
-        $receivable_percentage_on_time = DB::table('plans')
-            ->where('status', 1)
-            ->select(['id', 'receivable_percentage_on_time'])
-            ->get();
-        $receivable_percentage_on_time_plan_1 = $receivable_percentage_on_time->firstWhere('id', 1)?->receivable_percentage_on_time;
-        $receivable_percentage_on_time_plan_2 = $receivable_percentage_on_time->firstWhere('id', 2)?->receivable_percentage_on_time;
+        // $receivable_percentage_on_time = DB::table('plans')
+        //     ->where('status', 1)
+        //     ->select(['id', 'receivable_percentage_on_time'])
+        //     ->get();
+
+        $receivable_percentage_on_time_plan_1 = $plan_details->firstWhere('id', 1)?->receivable_percentage_on_time;
+        $receivable_percentage_on_time_plan_2 = $plan_details->firstWhere('id', 2)?->receivable_percentage_on_time;
 
     @endphp
 
