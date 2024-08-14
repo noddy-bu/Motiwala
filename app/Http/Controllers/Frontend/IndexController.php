@@ -25,8 +25,10 @@ class IndexController extends Controller
 
         // Filter the collection to get the installment_period for the plan with id = 2
         $plan2_duration = $plan_duration->firstWhere('id', 2)?->installment_period;
+        
+        $gold_price = DB::table('business_settings')->where('type', 'gold_rate_in_1gram_per_day')->value('value');
 
-        return view('frontend.pages.home.index', compact('plan1_duration','plan2_duration'));
+        return view('frontend.pages.home.index', compact('plan1_duration','plan2_duration','gold_price'));
     }
 
 

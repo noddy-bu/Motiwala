@@ -367,6 +367,9 @@ class CustomerController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
         ];
 
+        $ip = ip_info();
+        $ip_data = json_decode($ip, true); 
+
         //update order
         $transactions_id = DB::table('transactions')->insertGetId([
             'user_id' => $request->user_id,
@@ -375,6 +378,9 @@ class CustomerController extends Controller
             'payment_response' => json_encode($data),
             'payment_type' => $request->payment_method,
             'payment_status' => 'paid',
+            'ip_data'        => $ip,
+            'location'       => $ip_data['city'] ?? '-',
+            'user_behalf'    => auth()->user()->id,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);

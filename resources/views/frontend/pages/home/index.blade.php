@@ -9,20 +9,22 @@
 @section('page.content')
 
     @php
-        $plan_min_amount = DB::table('plans')
+        $plan_details = DB::table('plans')
             ->where('status', 1)
-            ->select(['id', 'minimum_installment_amount'])
+            ->select(['id', 'minimum_installment_amount','receivable_percentage_on_time'])
             ->get();
 
-        $plan_min_amount_plan_1 = $plan_min_amount->firstWhere('id', 1)?->minimum_installment_amount;
-        $plan_min_amount_plan_2 = $plan_min_amount->firstWhere('id', 2)?->minimum_installment_amount;
+        $plan_min_amount_plan_1 = $plan_details->firstWhere('id', 1)?->minimum_installment_amount;
+        $plan_min_amount_plan_2 = $plan_details->firstWhere('id', 2)?->minimum_installment_amount;
 
-        $receivable_percentage_on_time = DB::table('plans')
-            ->where('status', 1)
-            ->select(['id', 'receivable_percentage_on_time'])
-            ->get();
-        $receivable_percentage_on_time_plan_1 = $receivable_percentage_on_time->firstWhere('id', 1)?->receivable_percentage_on_time;
-        $receivable_percentage_on_time_plan_2 = $receivable_percentage_on_time->firstWhere('id', 2)?->receivable_percentage_on_time;
+        // $receivable_percentage_on_time = DB::table('plans')
+        //     ->where('status', 1)
+        //     ->select(['id', 'receivable_percentage_on_time'])
+        //     ->get();
+
+        $receivable_percentage_on_time_plan_1 = $plan_details->firstWhere('id', 1)?->receivable_percentage_on_time;
+        $receivable_percentage_on_time_plan_2 = $plan_details->firstWhere('id', 2)?->receivable_percentage_on_time;
+
     @endphp
 
 
@@ -322,7 +324,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="total_number_main">
-                                                <p id="amount_13x">₹ 1,07,500</p>
+                                                <p id="amount_13x" class="amount_13x">₹ 1,07,500</p>
                                             </div>
                                         </div>
                                     </div>
@@ -390,10 +392,11 @@
                                         </div>
                                         <div class="col-md-6">
                                             <p class="pt-2">You can Get Gold worth: <br class="d-none d-md-block"> (in {{ env('PLAN_2') }} )</p>
+                                            <p><small>Note : The rate calculation is based on the gold price for 22 karat on the purchase date.</small></p>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="total_number_main">
-                                                <p id="amount_13x_plan2">100 gm</p>
+                                                <p id="amount_13x_plan2" class="amount_13x">100 gm</p>
                                             </div>
                                         </div>
                                     </div>
@@ -896,8 +899,16 @@
                 var profit_percantage = (currentAmount_plan2 * {{ $receivable_percentage_on_time_plan_2 }}) / 100;
                 var profit = {{ $plan2_duration }} * profit_percantage;
 
-                amount13xSpan_plan2.textContent = '₹ ' + ((currentAmount_plan2 * {{ $plan2_duration }}) + profit)
-                    .toLocaleString();
+                var total_amt_for_gold = ((currentAmount_plan2 * {{ $plan2_duration }}) + profit);
+                var gold_rate = ({{ $gold_price }} * 10);
+
+                console.log(gold_rate);
+
+                var grams_of_gold = ((total_amt_for_gold / gold_rate) * 10);
+
+                console.log(grams_of_gold);
+
+                amount13xSpan_plan2.textContent = (grams_of_gold).toLocaleString() + ' Gram (22 karat)';
             }
 
             calcInput_plan2.addEventListener('input', function() {

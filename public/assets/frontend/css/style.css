@@ -1639,7 +1639,7 @@ canvas#myCanvas {
     margin-left: 40px;
 }
 
-p#amount_13x {
+p.amount_13x {
     color: #b6927a;
     font-size: 28px;
 }

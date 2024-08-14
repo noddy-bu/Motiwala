@@ -185,6 +185,9 @@ class AccountController extends Controller
 
             $user = DB::table('users')->where('id', $redemption->user_id)->first(['first_name', 'last_name', 'fullname',  'fullname', 'email', 'phone']);
 
+            $ip = ip_info();
+            $ip_data = json_decode($ip, true); 
+
             //insert in order
             $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
             $orderId = DB::table('temp_transactions')->insertGetId([
@@ -195,6 +198,8 @@ class AccountController extends Controller
                 'payment_method'   => 'payu',
                 'payment_status'   => 'created',
                 'payment_id'       => $txnid,
+                'ip_data'          => $ip,
+                'location'         => $ip_data['city'],
                 'created_at'       => date('Y-m-d H:i:s'),
                 'updated_at'       => date('Y-m-d H:i:s')
             ]);
@@ -1349,6 +1354,9 @@ class AccountController extends Controller
 
         $user = DB::table('users')->where('id', Session::get('temp_user_id'))->first(['first_name', 'last_name', 'fullname', 'email', 'phone', 'installment_amount']);
 
+        $ip = ip_info();
+        $ip_data = json_decode($ip, true); 
+
         //insert in order
         $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
         $orderId = DB::table('temp_transactions')->insertGetId([
@@ -1360,6 +1368,8 @@ class AccountController extends Controller
             'payment_method'   => 'payu',
             'payment_status'   => 'created',
             'payment_id'       => $txnid,
+            'ip_data'          => $ip,
+            'location'         => $ip_data['city'] ?? '-',
             'created_at'       => date('Y-m-d H:i:s'),
             'updated_at'       => date('Y-m-d H:i:s')
         ]);
@@ -1586,6 +1596,8 @@ class AccountController extends Controller
             'payment_response' => json_encode($input),
             'payment_type' => 'payu',
             'payment_status' => 'paid',
+            'ip_data' => $order->ip,
+            'location' => $order->location,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
@@ -1803,6 +1815,8 @@ class AccountController extends Controller
                     'payment_response' => json_encode($fileContent),
                     'payment_type' => 'payu',
                     'payment_status' => 'paid',
+                    'ip_data'        => $order->ip_data,
+                    'location'       => $order->location,
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
@@ -1839,6 +1853,8 @@ class AccountController extends Controller
                     'payment_response' => json_encode($fileContent),
                     'payment_type' => 'payu',
                     'payment_status' => 'paid',
+                    'ip_data'        => $order->ip_data,
+                    'location'       => $order->location,
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
