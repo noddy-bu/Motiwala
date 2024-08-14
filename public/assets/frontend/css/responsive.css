@@ -556,7 +556,8 @@
     body .nav_right_menu {
         margin-right: 0px !important;
         align-items: center;  
-        padding-right: 0px; 
+        padding-right: 5px;
+        padding-left: 3px;
     }
 
     .navbar-brand {
@@ -1191,6 +1192,11 @@
     .account_number {
         font-size: 19px;
     }
+    
+    section.plans_section {
+        padding: 20px 0px 20px 0px;
+    }
+
 }
 
 @media  (max-width:346px)  {
@@ -1219,6 +1225,12 @@
 
      .account_number {
         font-size: 18px;
+    }
+
+    /* plans page */
+
+    section.plans_section {
+        padding: 20px 0px 20px 0px;
     }
 
 }
