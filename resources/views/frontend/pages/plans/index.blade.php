@@ -32,7 +32,7 @@
                             <li class="list-group-item">Get Gold in {{ env('PLAN_1') }}</li>
                             <li class="list-group-item">Get Installlment on {{ env('PLAN_1_NAME') }}</li>
                             <li class="list-group-item"><strong>Note:</strong> Gold Reserved as per 22 Karat</li>
-                            <div class="col-md-4 buttonclass mt-4 mb-3 ms-3">
+                            <div class="col-md-3 col-5  buttonclass mt-4 mb-3 ms-3">
                                 <a href="{{ url(route('account.new.enrollment.page')) }}">Sign Up <i class="las la-arrow-right"></i>
                                 </a>
                             </div>
@@ -49,7 +49,7 @@
                             <li class="list-group-item">Get Gold Jewellery on Gold reserved</li>
                             <li class="list-group-item"><strong>Note:</strong> Gold Reserved as per 22 Karat</li>
                         </ul>
-                        <div class="col-md-4 buttonclass mt-4 mb-3 ms-3">
+                        <div class="col-md-3 col-5  buttonclass mt-4 mb-3 ms-3">
                             <a href="{{ url(route('account.new.enrollment.page')) }}">Sign Up <i class="las la-arrow-right"></i>
                             </a>
                         </div>

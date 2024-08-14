@@ -1956,6 +1956,9 @@ form#loginForm a:hover {
     height: 15px !important;
 }
 
+.vh100 {
+    height: 100vh;
+}
 
 .width200 {
     width: 50%;
