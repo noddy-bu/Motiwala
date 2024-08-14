@@ -1192,6 +1192,11 @@
     .account_number {
         font-size: 19px;
     }
+    
+    section.plans_section {
+        padding: 20px 0px 20px 0px;
+    }
+
 }
 
 @media  (max-width:346px)  {
