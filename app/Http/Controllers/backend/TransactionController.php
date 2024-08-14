@@ -41,6 +41,7 @@ class TransactionController extends Controller
         // Filtered records
         $query = Transaction::select('*');
         $query->where('payment_status','paid');
+
         if (!empty($searchValue)) {
             $query->where(function($q) use ($searchValue) {
                 $q->where('payment_id', 'like', "%$searchValue%")
@@ -72,14 +73,15 @@ class TransactionController extends Controller
         // Get filtered count
         $totalFiltered = $query->count();
     
-        // Order
-        $query->orderBy($columns[$order], $dir);
+        // // Order
+        // $query->orderBy($columns[$order], $dir);
     
         // Get records with pagination
-        $records = $query->offset($start)
-                        ->limit($rowperpage)
-                        ->get();
-    
+        $records = $query->orderBy('created_at', 'DESC') // Order by id in descending order
+                    ->offset($start)
+                    ->limit($rowperpage)
+                    ->get();
+                
         // Prepare data
         $data = [];
         $i = 1;
