@@ -7,7 +7,7 @@
     </section>
 
 
-    <main class="main">
+    <main class="main vh100" id="fail_installment_page">
 
     <section class="mt-10">
     	<div class="success_page padd70">
