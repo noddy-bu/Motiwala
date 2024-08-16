@@ -35,16 +35,39 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group mb-3">
                             <label for="pay_amount" class="form-label">Pay Amount:</label>
                             <input type="text" class="form-control" id="pay_amount" name="pay_amount">
                         </div>
                     </div>
 
-                    <div class="col-md-2 d-flex align-items-center">
+                    <div class="col-md-2">
+                        <div class="form-group mb-3">
+                            <label for="location" class="form-label">Location:</label>
+                            <input type="text" class="form-control" id="location" name="location">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        @php 
+                            $admin = DB::table('users')->where('role_id', '!=', 2)->get(['first_name','id']); 
+                        @endphp
+                        <div class="form-group mb-3">
+                            <label for="user_behalf" class="form-label">By Admin / Staff:</label>
+                            <select class="form-select" id="user_behalf" name="user_behalf">
+                                <option value="">- Select Staff / Admin -</option>
+                                @foreach ($admin as $row)
+                                    <option value="{{ $row->id }}">{{ ucfirst($row->first_name) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 d-flex align-items-center">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Search</button>
+                            <button type="btn" id="reset-button" class="btn btn-danger mx-2">Reset</button>
                         </div>
                     </div>
 
@@ -64,6 +87,8 @@
                         <th>Amount</th>
                         <th>Payment Mode</th>
                         <th>Status</th>
+                        <th>Location</th>
+                        <th> By Admin / Staff</th>
                         <th>Date</th>
                     </tr>
                 </thead>
@@ -94,17 +119,21 @@
                         d.name = $('#name').val();
                         d.pay_id = $('#pay_id').val();
                         d.pay_amount = $('#pay_amount').val();
+                        d.location = $('#location').val();
+                        d.user_behalf = $('#user_behalf').val();
                     }
                 },
                 columns: [
-                    { data: 'id' },
-                    { data: 'pay_id'},
-                    { data: 'name'},
-                    { data: 'installment'},
-                    { data: 'amount'},
-                    { data: 'type'},
-                    { data: 'status'},
-                    { data: 'created_at'},
+                    { data: 'id', orderable: false},
+                    { data: 'pay_id', orderable: false},
+                    { data: 'name', orderable: false},
+                    { data: 'installment', orderable: false},
+                    { data: 'amount', orderable: false},
+                    { data: 'type', orderable: false},
+                    { data: 'status', orderable: false},
+                    { data: 'location', orderable: false},
+                    { data: 'user_behalf', orderable: false},
+                    { data: 'created_at', orderable: false},
                 ],
                 dom: '<"row"<"col-md-6"l><"col-md-6"f>><"row"<"col-md-12"i>>tip',
             });
@@ -119,6 +148,27 @@
         });
 
         initializeDataTable();
+
+
+        // Reset function to clear inputs and redraw the DataTable
+        function reset() {
+            $('#name').val(''); // Clear the name input as well
+            $('#pay_id').val('');
+            $('#pay_amount').val('');
+            $('#user_behalf').val(''); // Reset the dropdown to the default "Select" option
+            
+            if ($.fn.DataTable.isDataTable('#basic-datatable1')) {
+                dataTable.destroy();
+            }
+            initializeDataTable();
+        }
+
+        // Attach reset function to the reset button or form
+        $('#reset-button').click(function() {
+            reset();
+        });
+
+
     });
 
 </script>

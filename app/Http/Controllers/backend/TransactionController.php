@@ -64,6 +64,16 @@ class TransactionController extends Controller
         if (!empty($pay_amount)) {
             $query->where('payment_amount', 'like', "%$pay_amount%");
         }
+
+        $location = $request->input('location');
+        if (!empty($location)) {
+            $query->where('location', 'like', "%$location%");
+        }
+
+        $user_behalf = $request->input('user_behalf');
+        if (!empty($user_behalf)) {
+            $query->where('user_behalf', $user_behalf);
+        }
     
         // $status = $request->input('status');
         // if ($status != '') {
@@ -94,6 +104,8 @@ class TransactionController extends Controller
 
             $installment_no = DB::table('redemption_items')->where('transaction_id',$row->id)->value('installment_no');
 
+            $user_behalf = DB::table('users')->where('id', $row->user_behalf)->where('role_id', '!=', 2)->value('first_name');
+  
 
             if ($row->payment_type == "payu") {
                 $type = 'PayU';
@@ -111,6 +123,8 @@ class TransactionController extends Controller
                 'amount' => $row->payment_amount,
                 'type' => $type,
                 'status' => $row->payment_status,
+                'location' => $row->location ?? '-',
+                'user_behalf' => $user_behalf ?? '-',
                 'created_at' => $row->created_at->format('Y-m-d H:i:s'),
             ];
     
