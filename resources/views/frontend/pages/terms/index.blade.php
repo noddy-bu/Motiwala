@@ -23,12 +23,29 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h4 class="title_heading text-center black_color pb-0 heading_font">TERMS AND CONDITIONS</h4>
-				   <h5 class="black_color text-center pb-md-4 pb-3">GOLDEN TREASURE JEWELLERY PURCHASE PLAN</h5>
+				    <ul>
+						<li><p><strong>Purpose:</strong> Both plans facilitate the purchase of gold and/or diamond jewellery by making payments over a specified period and offer certain discounts.</p></li>
+						<li><p><strong>Eligibility:</strong> Both plans are available only to Indian citizens who have attained the age of majority. Enrollment is not permitted for entities like companies, partnership firms, trusts, Hindu Undivided Families (HUF), or NRIs.</p></li>
+						<li><p><strong>Payment Methods:</strong> Payments for both plans can be made through cash, credit/debit cards, NEFT/RTGS, or local cheques. International cards/transfers are not accepted.</p></li>
+						<li><p><strong>Enrolment Requirements:</strong> Customers must provide photo ID (e.g., PAN card) and address proof (e.g., Aadhaar card, driving license) at the time of enrollment. Enrollment can be done either offline at the store or online through the respective websites/apps.</p></li>
+						<li><p><strong>Redemption:</strong> Both plans require the customer to make a purchase or take delivery of the jewellery within a certain period after the completion of the payment term. Golden Fortune requires redemption within 365 days, while Golden Treasure requires redemption before 400 days.</p></li>
+						<li><p><strong>No Cash Refunds:</strong> Neither plan offers cash refunds. Refunds, if any, are provided via cheque or online transfer.</p></li>
+						<li><p><strong>Discounts and Offers:</strong> Discounts are available based on the completion of the payment term. Both plans provide discounts on making charges or offer vouchers that can be utilized for jewelry purchases.</p></li>
+						<li><p><strong>Partial Purchases:</strong> Both plans mandate that the customer must purchase jewellery for the total amount accumulated. Partial purchases are not allowed.</p></li>
+						<li><p><strong>Nomination:</strong> Customers can appoint a nominee at the time of enrollment. In the event of the account holder’s death, benefits are extended to the nominee or legal heirs subject to specific documentation.</p></li>
+						<li><p><strong>Customer Responsibility:</strong> Customers are responsible for keeping their contact and address details updated and ensuring the accuracy of their payment details.</p></li>
+						<li><p><strong>Suspension and Modifications:</strong> Both plans reserve the right to suspend, modify, or discontinue the plan without prior notice. Any changes due to regulatory requirements will be communicated accordingly.</p></li>
+						<li><p><strong>Dispute Resolution:</strong> Disputes arising from the plans are subject to specific jurisdiction: Mumbai for Golden Fortune and Bangalore for Golden Treasure.</p></li>
+					</ul>
+				<br>
+				<br>
+
+					
                 </div>
 
 				<div class="col-md-12">
 				    {{--@php echo html_entity_decode(get_settings('terms_content')) @endphp--}}	
-								
+					<h4 class="text-center">GOLDEN TREASURE JEWELLERY PURCHASE PLAN</h4>
 					<h4>Plan</h4>	
 					<p>The Golden Treasure Jewellery Purchase Plan (hereinafter “Golden Treasure” or the “Plan”) 
 						offered by Motiwala Jewels Gold and Diamonds Pvt Ltd facilitates Customers 
@@ -255,6 +272,185 @@
 					<br>
   	
                 </div>
+
+				<div class="row">
+					<div class="col-md-12">						
+						<h4 class="text-center">GOLDEN FORTUNE PLAN</h4>
+						<br>
+					</div>
+
+					<div class="col-md-12">
+						{{--@php echo html_entity_decode(get_settings('terms_content')) @endphp--}}	
+						<p> The Motiwala Jewels Golden Fortune Plan offered by Motiwala jewels Gold and Diamonds
+							Pvt Ltd facilitates customers to purchase Motiwala Jewels by making monthly payments
+							over a elventh-month period and avail certain special discounts on making charges subject
+							to these Terms and Conditions:
+						</p> 
+
+						<ol>
+							<li><p>The monthly payment amount is not subject to change once it has been fixed at the time of enrolment, and the customer shall make the payment of the same amount as the monthly amount, every month for a period of eleven months from the enrolment date.</p></li>
+							
+							<strong> <li><p>No payments shall be accepted beyond the completion of 365 days from the enrollment date.</p></li></strong>
+							
+							<li><p>The payment of the monthly amount must be made within fifteen (15) days from the due date.</p></li>
+							
+							<li><p>In the event of any default in making the payments as mentioned herein, the customer shall not be eligible to pay the same at a later date or club with any other payments for subsequent months. It shall be considered as a missed monthly payment.</p></li>
+							
+							<li><p>Against each monthly payment made, Motiwala Jewels will reserve/accumulate the equivalent grams of gold for future purchase by the customer as per the prevailing store gold rate of the day for 22 Karat gold on which the monthly payment is made.</p></li>
+							
+							<li><p>Under this Plan, the customer will be eligible for the purchase of 22 Karat gold jewellery for the equivalent grams accumulated during the tenure of the Plan and also be eligible for discount on making charges on purchase of jewellery in accordance with the number of monthly payments made, as per the illustrative table below:</p></li>
+							<strong>Key Benefits of Rivaah Golden Advantage:</strong>
+								<ul style="list-style-type: disc;">
+								<li>Grammage savings plan from Motiwala</li>
+								<li>Protects you from Gold rate fluctuations - Flexible Installment payment</li>
+								<li>Attractive Discounts on Making charges on Plain Gold Group jewellery</li>
+								<li>On additional purchase, any running Offer at the stores shall be applicable on differential weight</li>
+							</ul>
+							<br>
+							<h4 class="text-center">Monthly Savings: Rs. 10,000/- and above</h4>
+								<table class="table table-bordered">
+								<tr class="table-light">
+										<th class="col-md-2">Gold Rate</th>
+										<th class="col-md-2">Month</th>
+										<th class="col-md-2">Monthly Payment (in INR)</th>
+										<th class="col-md-2">Equivalent gold in grams accumulated</th>
+										<th></th>
+										<th></th>
+									</tr>
+									<tr class="table-light" >
+										<td>5200</td>
+										<td>1</td>
+										<td>10,000</td>
+										<td>1.92</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="table-light" >
+										<td>5250</td>
+										<td>2</td>
+										<td>10,000</td>
+										<td>1.90</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="table-light" >
+										<td>5300</td>
+										<td>3</td>
+										<td>10,000</td>
+										<td>1.89</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="table-light" >
+										<td>5450</td>
+										<td>4</td>
+										<td>10,000</td>
+										<td>1.83</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="table-light" >
+										<td>5500</td>
+										<td>5</td>
+										<td>10,000</td>
+										<td>1.82</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="table-light" >
+										<td>5350</td>
+										<td>6</td>
+										<td>10,000</td>
+										<td>1.87</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="table-light" >
+										<td>5200</td>
+										<td>7</td>
+										<td>10,000</td>
+										<td>1.92</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="table-light" >
+										<td>5350</td>
+										<td>8</td>
+										<td>10,000</td>
+										<td>1.87</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="table-light" >
+										<td>5250</td>
+										<td>9</td>
+										<td>10,000</td>
+										<td>1.90</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr class="table-light" >
+										<td>5300</td>
+										<td>10</td>
+										<td>10,000</td>
+										<td>1.89</td>
+										<td></td>
+										<td></td>
+									</tr>
+								</table>
+							<br>
+							<p> <Strong> Illustration:- </Strong>If a customer pays Rs. 10.000/- every month for 11 months with gold rate as per
+								the illustrative table given above, the customer accumulates a total equivalent weight of 18.82
+								grams of gold as per the gold rate on the date of payment. At the time of purchase. The
+								customer can buy jewellery of minimum 18.82 grams of gold accumulated and be eligible for
+								discount on Making Charges of the selected product For the additional grammage in case of
+								purchase over and above 18.82 gram, ' store offer shall be applicable.
+							</p>
+							<li><p>The customers are <strong> mandatorily </strong> required to make the purchase and take delivery of the jewellery against the equivalent grams of gold accumulated within the completion of <strong> 365 days </strong> from the enrolment date. In the event the customer  <strong> does not conclude the purchase </strong> and take delivery of jewellery within the said time, the customer will be <strong>invoiced 22 Karat gold coin(s) equivalent to the nearest lower round figure </strong> (e.g., 16.06 grams will be taken as 16 grams or 18.82 grams will be taken as 18 grams) of equivalent grams of gold accumulated during the tenure and the equivalent value of fractional grams of gold on the date of redemption will be refunded to the bank account provided at the time of enrolment. Accordingly, the account under this Plan shall stand closed. Motiwala Jewels will deliver the Gold coin to the address provided by the customer in the enrollment form. In the event the product is returned to Motiwala Jewels undelivered, Titan will keep the custody of the said gold coin(s) for a period of Six (6) months from the end of the 365th day for the customer to collect it. Thereafter, the customer will have no claims whatsoever in this regard.</p></li>
+							
+							<li><p><strong>The customer will have to purchase the jewellery for the total quantity of the equivalent grams of gold accumulated and partial purchase is not allowed. </strong> The customer shall be eligible for availing the applicable discount on making charges only on the value of the equivalent grams of gold accumulated. <strong>In cases of additional purchase, any running offer at the stores shall be applicable on the differential weight.</strong> </p></li>
+							
+							<li><p>The customer who wishes to discontinue this Plan prior to the completion of 6 months from the enrolment date will have the option to purchase jewellery for the equivalent weight accumulated during the tenure of the Plan. However, the customer will not be eligible for any discount.</p></li>
+							
+							<li><p> <strong> No cash refunds </strong>will be provided under this Plan under any circumstance.</p></li>
+							
+							<li><p>The special discount availed pursuant to the Plan cannot be linked or clubbed with any existing offers or any other plans offered by the Company and is not transferable under any circumstance.</p></li>
+							
+							<strong> <li><p>This Plan cannot be redeemed against advance booking and customer orders.</p></li></strong>
+							
+							<h4> Additional Terms and Conditions</h4>
+							<li><p>Only Indian citizens who have attained the age of majority and are competent to contract shall be eligible under this Plan, and NRIs and other entities like companies, partnership firms or proprietorship concerns or Trusts or Hindu Undivided Family (HUF) cannot participate in the same.</p></li>
+							
+							<li><p>The customer will be required to fill an enrolment form and submit necessary documents at the time of enrolment. Bank Account details and PAN card (for monthly payment value greater than Rs 18000/-) are mandatory for enrolment under this Plan.</p></li>
+							
+							<li><p>At the time of enrolment, the customer should ensure that the enrolment form is signed in the space provided, physically or electronically, as the case may be, accepting these Terms and Conditions. Notwithstanding the foregoing, as soon as the customer effects the first transaction under this Plan, it shall be deemed that the customer has accepted these Terms and Conditions.</p></li>
+							
+							<li><p>The payments under this Plan may be made only by cash, credit/debit cards, NEFT/RTGS. International card/transfers for online payment will not be accepted. Payments can be made at the Motiwala Jewels stores or through the App as may be applicable.</p></li>
+							
+							<li><p>Motiwala Jewels shall not be responsible for any online payment failure and money being debited from the customer's account. Customers are requested to check with their banks or other service providers for such payment failures.</p></li>
+							
+							<li><p>Motiwala will not be responsible or liable to send reminders for payments.</p></li>
+							
+							<li><p>Motiwala Jewels reserves the right to verify the identity of the customer by means of SMS and/or OTP generation or by any other means at any time, including at the time of enrolment and at the time of concluding purchase and taking the delivery of the jewellery. Titan also reserves the right to verify the authenticity of the documents provided by the customer.</p></li>
+							
+							<li><p>The customer may appoint a nominee at the time of enrolment upon submission of relevant documentation. In the event of the death of the customer where no nomination has been made, Motiwala Jewels may extend the benefits of the Plan only to the legal heirs of the customer, subject to such legal heirs submitting the required documentation and satisfying Motiwala of their heirship. The decision of Motiwala Jewels shall be final on the sufficiency of any document in all such cases and the same shall be binding upon the claimants.</p></li>
+							
+							<li><p>In case of any change in contact or address details or any other details that the customer may have furnished, the customer shall immediately contact us on 9920077780 for effecting the changes. Such modifications made shall be subject to the satisfaction and discretion of Motiwala.</p></li>
+							
+							<li><p>All jewellery purchased under this Plan will be subject to labor/making charges/wastage, goods and services tax, surcharges, gold/stone charges, and any other charges as may be applicable.</p></li>
+							
+							<li><p>In case of any change in existing laws, rules, notifications, etc. by any regulatory authority, Motiwala reserves the right to make such modifications/changes/suspend/discontinue the Plan suitable to the change in law and necessary requirements as per the same must be complied with by the customer. Motiwala also reserves the right to alter, amend, add, or delete part or whole of the privileges of the Plan without prior notice to the customer.</p></li>
+							
+							<li><p>Motiwala reserves the right to suspend this Plan at any time.</p></li>
+							
+							<li><p>Any conditions which are not explicitly covered above would be at the discretion of Motiwala at the time of transaction. The decision of Motiwala in this regard would be deemed as irrevocable and final.</p></li>
+							
+							<li><p>Disputes, if any, shall be subject to the exclusive jurisdiction of the courts in Mumbai.</p></li>
+						</ol>
+
+					</div>
+
+				</div>
 
 		
 		
