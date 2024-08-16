@@ -95,19 +95,77 @@ use Illuminate\Support\Facades\Mail;
         }
     }
 
-    if(!function_exists('sendEmail')){
-        function sendEmail($to, $subject, $body, $attachments = [])
-        {
-            return \Illuminate\Support\Facades\Mail::raw($body, function ($message) use ($to, $subject, $attachments) {
-                $message->to($to)
-                //$message->to('khanfaisal.makent@gmail.com')
-                        ->subject($subject);
+    // if(!function_exists('sendEmail')){
+    //     function sendEmail($to, $subject, $body, $attachments = [])
+    //     {
+    //         return \Illuminate\Support\Facades\Mail::raw($body, function ($message) use ($to, $subject, $attachments) {
+    //             $message->to($to)
+    //             //$message->to('khanfaisal.makent@gmail.com')
+    //                     ->subject($subject);
         
-                // Attachments
-                foreach ($attachments as $attachment) {
-                    $message->attach($attachment['path'], ['as' => $attachment['name']]);
-                }
-            });
+    //             // Attachments
+    //             foreach ($attachments as $attachment) {
+    //                 $message->attach($attachment['path'], ['as' => $attachment['name']]);
+    //             }
+    //         });
+    //     }  
+    // }
+
+
+    if(!function_exists('sendEmail')){
+        function sendEmail($to, $subject, $body, $replyTo = null)
+        {
+            // API endpoint
+            $url = 'https://api.brevo.com/v3/smtp/email';
+            
+            // API key
+            $apiKey = env('SMTP_API');
+            
+            // Data to be sent
+            $data = array(
+                "sender" => array(
+                    "name" => env('COMPANY_NAME'),
+                    "email" => "info@motiwalajewels.in"
+                ),
+                "to" => array(
+                    array(
+                        "email" => $to,
+                        "name" => env('COMPANY_NAME'),
+                    )
+                ),
+                "subject" => $subject,
+                "htmlContent" => $body
+            );
+            
+            // Check if a reply-to address is provided
+            if ($replyTo) {
+                $data['replyTo'] = array(
+                    "email" => $replyTo,
+                );
+            }
+            
+            // Convert data to JSON format
+            $postData = json_encode($data);
+            
+            // Initialize cURL session
+            $ch = curl_init($url);
+            
+            // Set cURL options
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'accept: application/json',
+                'api-key: ' . $apiKey,
+                'content-type: application/json'
+            ));
+            
+            // Execute cURL session
+            $response = curl_exec($ch);
+            
+            // Close cURL session
+            curl_close($ch);
+        
         }  
     }
 

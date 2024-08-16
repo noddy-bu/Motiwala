@@ -155,6 +155,7 @@
             $('#name').val(''); // Clear the name input as well
             $('#pay_id').val('');
             $('#pay_amount').val('');
+            $('#location').val('');
             $('#user_behalf').val(''); // Reset the dropdown to the default "Select" option
             
             if ($.fn.DataTable.isDataTable('#basic-datatable1')) {

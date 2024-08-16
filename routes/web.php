@@ -113,6 +113,8 @@ Route::any('/forgot-password/{param}', [AccountController::class, 'forgot_passwo
 
 Route::get('/logout', [AccountController::class, 'customer_logout'])->name('customer.logout');
 
+Route::get('/cron_due_msg', [SmsController::class, 'due_msg']);
+
 
 // Route::get('/esign', [EsignAadharController::class, 'esign_nsdl']);
 
