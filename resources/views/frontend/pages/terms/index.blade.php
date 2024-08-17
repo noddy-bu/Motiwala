@@ -32,7 +32,7 @@
 						<li><p><strong>No Cash Refunds:</strong> Neither plan offers cash refunds. Refunds, if any, are provided via cheque or online transfer.</p></li>
 						<li><p><strong>Discounts and Offers:</strong> Discounts are available based on the completion of the payment term. Both plans provide discounts on making charges or offer vouchers that can be utilized for jewelry purchases.</p></li>
 						<li><p><strong>Partial Purchases:</strong> Both plans mandate that the customer must purchase jewellery for the total amount accumulated. Partial purchases are not allowed.</p></li>
-						<li><p>All jewellery purchased under the Golden Treasure Jewellery Purchase Plan will be subject to applicable charges, including making charges, wastage, material charges, gold and stone charges, Goods and Services Tax (GST), and any other surcharges or levies prevailing at the time of purchase</p></li>
+						<li><p><strong>Applicable Charges:</strong> All jewellery purchased under the Golden Treasure Jewellery Purchase Plan will be subject to applicable charges, including making charges, wastage, material charges, gold and stone charges, Goods and Services Tax (GST), and any other surcharges or levies prevailing at the time of purchase</p></li>
 						<li>
 							<p>
 								<strong>Nomination:</strong> The Customer may appoint a nominee at the time of Enrollment upon submission of relevant documentation.
