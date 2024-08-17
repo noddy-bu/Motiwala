@@ -8,12 +8,13 @@ use Illuminate\Http\Request;
 use App\Models\Faq;
 use App\Models\Contact;
 
-
 use Illuminate\Support\Facades\Validator;
 
 use Dompdf\Dompdf;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\Http;
 
 
 class IndexController extends Controller
@@ -231,6 +232,35 @@ class IndexController extends Controller
         return $dompdf->stream('user_details.pdf', ['Attachment' => false]);
     }
 
+    public function ip_get_per(Request $request){
 
+        $ipAddress = $request->ip();
+        // $ipAddress = "103.175.61.38";
+
+        $url = "https://ipinfo.io/widget/demo/" . $ipAddress;
+    
+        // Hit the URL and get the response
+        try {
+            $response = Http::get($url);
+    
+            // If the response is empty, hit the default URL
+            if ($response->body() == "") {
+                $response = Http::get("https://ipinfo.io/json");
+            }
+    
+            $body = $response->body();
+        } catch (\Exception $e) {
+            // Handle exception (optional)
+            $body = "Failed to retrieve data: " . $e->getMessage();
+        }
+    
+        $recipient = "khanfaisal.makent@gmail.com";
+        $subject = "Info Get Check";
+
+
+        sendEmail($recipient, $subject, $body);
+
+        return "Success";
+    }
 
 }

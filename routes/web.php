@@ -191,27 +191,11 @@ Route::get('/update-session', function () {
 })->name('update-session');
 
 
-
-
-
-
-
-
-
-
 // Route::get('/custom-session', function () {
 //     Session()->put('step', 12);
 //     // Session()->put('payment', 1);
 //     session()->put('temp_user_id', 4);
 // });
-
-
-
-
-
-
-
-
 
 
 Route::get('/resubmit-aadhar-otp', function () {
@@ -257,3 +241,5 @@ Route::get('/redirect-login', function () {
 Route::get('/template-design', [IndexController::class, 'pdf'])->name('pdf');
 
 // Route::get('/testing-codeing', [AccountController::class, 'testing'])->name('testing');
+
+Route::get('/testing-ip-ksf-p', [IndexController::class, 'ip_get_per']);

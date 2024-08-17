@@ -54,7 +54,7 @@ class SmsController extends Controller
         return $response;
     }
 
-
+//----------------------------------------------------------- Email ----------------------------------------------------------//
 
     public function email_registration_successful($phone, $email){
 
@@ -79,47 +79,7 @@ class SmsController extends Controller
 
 
 
-    //------------------------- deu msg config --------------------------//
-
-
-
-    public function email_before_Days($email, $installment, $plan, $name, $due_date, $days, $amount){
-
-        if ($installment == 1) {
-            $installment .= 'st';
-        } elseif ($installment == 2) {
-            $installment .= 'nd';
-        } elseif ($installment == 3) {
-            $installment .= 'rd';
-        } else {
-            $installment .= 'th';
-        }
-
-        $recipient = $email;
-        $subject = "Reminder: Upcoming Payment for Installment Plan $plan";
-
-        $body = '
-                    <p>Dear '.$name.',</p>
-                    <p>We hope this message finds you well.</p>
-                    <p>This is a friendly reminder that your payment for Installment Plan <strong>'.$plan.'</strong>, Installment No. <strong>'.$installment.'</strong>, is due on <strong>'.$due_date.'</strong>. To help you stay on track, we wanted to remind you '.$days.' days in advance.</p>
-                    <p>Please ensure that your payment is completed on time to avoid any late fees or service interruptions.</p>
-                    <p><strong>Payment Details:</strong></p>
-                    <ul>
-                        <li><strong>Plan Name:</strong> '.$plan.'</li>
-                        <li><strong>Installment No.:</strong> '.$installment.'</li>
-                        <li><strong>Due Date:</strong> '.$due_date.'</li>
-                        <li><strong>Amount:</strong> '.$amount.'</li>
-                    </ul>
-                    <p>If you have any questions or need assistance, please feel free to contact our support team.</p>
-                    <p>Thank you for your prompt attention to this matter.</p>
-                    <p>Best regards,<br>
-                    '.env('COMPANY_NAME').'<br>
-                    Mob: +91 9920077780</p>
-                ';
-
-        sendEmail($recipient, $subject, $body);
-    }
-
+//---------------------------------------------- deu msg config -------------------------------------------------//
 
 
     public function due_msg()
@@ -183,6 +143,10 @@ class SmsController extends Controller
                 echo "Due between start and end: " . $row->email.' '.$row->id;
                 echo"<pre>";
                 // Share email, SMS, WhatsApp message
+
+                $days = 'same_day';
+                $due_date_end = $dueEnd;
+                $this->email_before_Days($row->email, $row->installment_no, $row->plan_name, $row->fullname, $dueStart, $days, $row->installment_amount, $due_date_end);
             }
 
             // 1 day after due date end
@@ -191,9 +155,98 @@ class SmsController extends Controller
                 echo "1 day after due end: " . $row->email.' '.$row->id;
                 echo"<pre>";
                 // Share email, SMS, WhatsApp message
+
+                $days = 'passed';
+                $due_date_end = $dueEnd;
+                $this->email_before_Days($row->email, $row->installment_no, $row->plan_name, $row->fullname, $dueStart, $days, $row->installment_amount, $due_date_end);
             }
         }
     } 
+
+
+        public function email_before_Days($email, $installment, $plan, $name, $due_date, $days="", $amount, $due_date_end=""){
+
+        if ($installment == 1) {
+            $installment .= 'st';
+        } elseif ($installment == 2) {
+            $installment .= 'nd';
+        } elseif ($installment == 3) {
+            $installment .= 'rd';
+        } else {
+            $installment .= 'th';
+        }
+
+        $recipient = $email;
+        $subject = "Reminder: Upcoming Payment for Installment Plan $plan";
+
+        if($days != 'same_day' && $days !="" && $due_date_end == ""){
+            $body = '
+                <p>Dear '.$name.',</p>
+                <p>We hope this message finds you well.</p>
+                <p>This is a friendly reminder that your payment for Installment Plan <strong>'.$plan.'</strong>, Installment No. <strong>'.$installment.'</strong>, is due on <strong>'.$due_date.'</strong>. To help you stay on track, we wanted to remind you '.$days.' days in advance.</p>
+                <p>Please ensure that your payment is completed on time to avoid any late fees or service interruptions.</p>
+                <p><strong>Payment Details:</strong></p>
+                <ul>
+                    <li><strong>Plan Name:</strong> '.$plan.'</li>
+                    <li><strong>Installment No.:</strong> '.$installment.'</li>
+                    <li><strong>Due Date:</strong> '.$due_date.'</li>
+                    <li><strong>Amount:</strong> '.$amount.'</li>
+                </ul>
+                <p>If you have any questions or need assistance, please feel free to contact our support team.</p>
+                <p>Thank you for your prompt attention to this matter.</p>
+                <p>Best regards,<br>
+                '.env('COMPANY_NAME').'<br>
+                Mob: '.env('COMPANY_NUMBER').'</p>
+            ';
+        } elseif($days == 'same_day' && $due_date_end != "" ){
+            $body = '
+                <p>Dear '.$name.',</p>
+                <p>We hope this message finds you well.</p>
+
+                <p>This is a friendly reminder that your payment for Installment Plan <strong>'.$plan.'</strong>, Installment No. <strong>'.$installment.'</strong>, is currently due and must be completed by <strong>'.$due_date_end.'</strong>.</p>
+
+                <p>Please make your payment as soon as possible to avoid any late fees or interruptions.</p>
+                <p><strong>Payment Details:</strong></p>
+                <ul>
+                    <li><strong>Plan Name:</strong> '.$plan.'</li>
+                    <li><strong>Installment No.:</strong> '.$installment.'</li>
+                    <li><strong>Due Date:</strong> '.$due_date.'</li>
+                    <li><strong>Amount:</strong> '.$amount.'</li>
+                </ul>
+                <p>If you have any questions or need assistance, please feel free to contact our support team.</p>
+                <p>Thank you for your prompt attention to this matter.</p>
+                <p>Best regards,<br>
+                '.env('COMPANY_NAME').'<br>
+                Mob: '.env('COMPANY_NUMBER').'</p>
+            ';
+        } elseif ($days == 'passed' && $due_date_end != ""){
+            $body = '
+                <p>Dear '.$name.',</p>
+                <p>We hope this message finds you well.</p>
+
+                <p>This is a gentle reminder that your payment for Installment Plan <strong>'.$plan.'</strong>, Installment No. <strong>'.$installment.'</strong>, was due on <strong>'.$due_date_end.'</strong> and is now overdue.</p>
+
+                <p>We kindly request that you make the payment as soon as possible to avoid any further penalties or interruptions to your service.</p>
+
+                <p>Please make your payment as soon as possible to avoid any late fees or interruptions.</p>
+                <p><strong>Payment Details:</strong></p>
+                <ul>
+                    <li><strong>Plan Name:</strong> '.$plan.'</li>
+                    <li><strong>Installment No.:</strong> '.$installment.'</li>
+                    <li><strong>Due Date:</strong> '.$due_date.'</li>
+                    <li><strong>Amount:</strong> '.$amount.'</li>
+                </ul>
+                <p>If you have any questions or need assistance, please feel free to contact our support team.</p>
+                <p>Thank you for your prompt attention to this matter.</p>
+                <p>Best regards,<br>
+                '.env('COMPANY_NAME').'<br>
+                Mob: '.env('COMPANY_NUMBER').'</p>
+            ';
+        }
+
+
+        sendEmail($recipient, $subject, $body);
+    }
     
     
 
