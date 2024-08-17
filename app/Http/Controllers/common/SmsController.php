@@ -82,9 +82,13 @@ class SmsController extends Controller
 //---------------------------------------------- deu msg config -------------------------------------------------//
 
 
-    public function due_msg()
-    {
-        $info = DB::table('redemption_items')
+    public function due_msg(){
+
+        $currentDate = Carbon::now()->format('Y-m-d');
+        echo $currentDate;
+        echo "<pre>";
+
+        DB::table('redemption_items')
             ->select([
                 'redemption_items.id',
                 'redemption_items.due_date_start as due_start',
@@ -106,65 +110,54 @@ class SmsController extends Controller
             ->join('plans', 'redemptions.plan_id', '=', 'plans.id')
             ->where('redemption_items.status', 'pending')
             ->where('redemptions.status', '!=', 0)
-            ->get();
-    
-        $currentDate = Carbon::now()->format('Y-m-d');
+            ->orderBy('redemption_items.id')
+            ->chunk(2, function ($info) use ($currentDate) {
+                foreach ($info as $row) {
+                    $dueStart = Carbon::parse($row->due_start);
+                    $dueEnd = Carbon::parse($row->due_end);
 
-        echo $currentDate;
-        echo"<pre>";
-    
-        foreach ($info as $row) {
-            $dueStart = Carbon::parse($row->due_start);
-            $dueEnd = Carbon::parse($row->due_end);
-    
-            // 7 days before due date start
-            $before7Days = $dueStart->copy()->subDays(7)->format('Y-m-d');
-            if ($currentDate == $before7Days) {
-                echo "7 days reminder: " . $row->email .' '.$row->id;
-                echo"<pre>";
-                // Share email, SMS, WhatsApp message
-                $days = 7;
-                $this->email_before_Days($row->email, $row->installment_no, $row->plan_name, $row->fullname, $dueStart, $days, $row->installment_amount);
-            }
+                    // 7 days before due date start
+                    $before7Days = $dueStart->copy()->subDays(7)->format('Y-m-d');
+                    if ($currentDate == $before7Days) {
+                        echo "7 days reminder: " . $row->email . ' ' . $row->id;
+                        echo "<pre>";
+                        $days = 7;
+                        $this->email_before_Days($row->email, $row->installment_no, $row->plan_name, $row->fullname, $dueStart, $days, $row->installment_amount);
+                    }
 
-            // 3 days before due date start
-            $before3Days = $dueStart->copy()->subDays(3)->format('Y-m-d'); // Add back 4 days (3 + 1 for previous subDays)
-            if ($currentDate == $before3Days) {
-                echo "3 days reminder: " . $row->email.' '.$row->id;
-                echo"<pre>";
-                // Share email, SMS, WhatsApp message
+                    // 3 days before due date start
+                    $before3Days = $dueStart->copy()->subDays(3)->format('Y-m-d');
+                    if ($currentDate == $before3Days) {
+                        echo "3 days reminder: " . $row->email . ' ' . $row->id;
+                        echo "<pre>";
+                        $days = 3;
+                        $this->email_before_Days($row->email, $row->installment_no, $row->plan_name, $row->fullname, $dueStart, $days, $row->installment_amount);
+                    }
 
-                $days = 3;
-                $this->email_before_Days($row->email, $row->installment_no, $row->plan_name, $row->fullname, $dueStart, $days, $row->installment_amount);
-            }
+                    // Between due date start and end
+                    if (Carbon::parse($currentDate)->between($dueStart, $dueEnd)) {
+                        echo "Due between start and end: " . $row->email . ' ' . $row->id;
+                        echo "<pre>";
+                        $days = 'same_day';
+                        $due_date_end = $dueEnd;
+                        $this->email_before_Days($row->email, $row->installment_no, $row->plan_name, $row->fullname, $dueStart, $days, $row->installment_amount, $due_date_end);
+                    }
 
-            // Between due date start and end
-            if (Carbon::parse($currentDate)->between($dueStart, $dueEnd)) {
-                echo "Due between start and end: " . $row->email.' '.$row->id;
-                echo"<pre>";
-                // Share email, SMS, WhatsApp message
-
-                $days = 'same_day';
-                $due_date_end = $dueEnd;
-                $this->email_before_Days($row->email, $row->installment_no, $row->plan_name, $row->fullname, $dueStart, $days, $row->installment_amount, $due_date_end);
-            }
-
-            // 1 day after due date end
-            $afterDueEnd = $dueEnd->copy()->addDay()->format('Y-m-d');
-            if ($currentDate == $afterDueEnd) {
-                echo "1 day after due end: " . $row->email.' '.$row->id;
-                echo"<pre>";
-                // Share email, SMS, WhatsApp message
-
-                $days = 'passed';
-                $due_date_end = $dueEnd;
-                $this->email_before_Days($row->email, $row->installment_no, $row->plan_name, $row->fullname, $dueStart, $days, $row->installment_amount, $due_date_end);
-            }
-        }
-    } 
+                    // 1 day after due date end
+                    $afterDueEnd = $dueEnd->copy()->addDay()->format('Y-m-d');
+                    if ($currentDate == $afterDueEnd) {
+                        echo "1 day after due end: " . $row->email . ' ' . $row->id;
+                        echo "<pre>";
+                        $days = 'passed';
+                        $due_date_end = $dueEnd;
+                        $this->email_before_Days($row->email, $row->installment_no, $row->plan_name, $row->fullname, $dueStart, $days, $row->installment_amount, $due_date_end);
+                    }
+                }
+            });
+    }
 
 
-        public function email_before_Days($email, $installment, $plan, $name, $due_date, $days="", $amount, $due_date_end=""){
+    public function email_before_Days($email, $installment, $plan, $name, $due_date, $days="", $amount, $due_date_end=""){
 
         if ($installment == 1) {
             $installment .= 'st';
