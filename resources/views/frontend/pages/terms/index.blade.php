@@ -57,7 +57,7 @@
 					<p>Under this Plan, the Customer has to pay 10 (Ten) fixed monthly installments of a 
 						minimum of Rs. 3,000/- (Rupees Three Thousand only) or above (in multiples of one thousand). 
 						During the course of the 10 (Ten) months, the Customer has to pay one installments every month.
-						More than one installments in a single month will not be accepted.
+						More than one installments is also accept.
 					</p>
 
 					<p>Customer will have to make the payment of the installments on the Due Date. 
@@ -76,7 +76,7 @@
 						completion of 400 days from the Enrollment Date.
 					</p>
 
-					<p>The Customers would be eligible for a discount of 100% (Seventy Five percent) of one 
+					<p>The Customers would be eligible for a discount of 100% (Hundred percent) of one 
 					   month’s installments upon redemption, after the completion of 366 days from the Enrollment 
 					   Date subject to the Customers having made the payment of all ten monthly installments.
 					   If a Customer redeems before the completion of 366 (three hundred and sixty six) days 
@@ -140,9 +140,7 @@
 					</p>
 
 					<p>The Customer is required to provide a copy of his/her photo identity (Pan Card) and 
-						address proof documents like Aadhaar Card/Driving License/Voter ID/ Passport /Ration 
-						Card any other document issued by the Government, bank account details, etc. 
-						at the time of enrollment.
+						address proof document like Aadhaar Card at the time of enrollment.
 					</p>
 
 					<p>The Customer is required to register at 
@@ -194,7 +192,7 @@
 					<p>Receipt for payment made by Automated Clearing House (“ACH”) or Standing Instruction (“SI”) 
 						will be made only after clearance of payment. In case of ACH/SI enabled accounts, 
 						the Plan cannot be closed prior to maturity date unless the account holder has 
-						cancelled the ACH/SI by submitting the required forms to Titan. 
+						cancelled the ACH/SI by submitting the required forms to Motiwala Jewels. 
 						The Customer may ask for a computerized receipt, from any Motiwala Jewels Gold and 
 						Diamonds Pvt Ltd Store.
 					</p>
@@ -229,7 +227,7 @@
 							<li>Death certificate of the deceased.</li>
 							<li>Succession Certificate.</li>
 							<li>NOC from other surviving legal heir for redemption.</li>
-							<li>Indemnity undertaking to indemnify Titan from claims.</li>
+							<li>Indemnity undertaking to indemnify Motiwala Jewels from claims.</li>
 							<li>Will (if any)</li>
 							<li>Along with all other supporting documents and clarifications</li>
 						</Ol>
@@ -292,14 +290,14 @@
 							
 							<strong> <li><p>No payments shall be accepted beyond the completion of 365 days from the enrollment date.</p></li></strong>
 							
-							<li><p>The payment of the monthly amount must be made within fifteen (15) days from the due date.</p></li>
+							<li><p>The payment of the monthly amount must be made within three (03) days from the due date.</p></li>
 							
 							<li><p>In the event of any default in making the payments as mentioned herein, the customer shall not be eligible to pay the same at a later date or club with any other payments for subsequent months. It shall be considered as a missed monthly payment.</p></li>
 							
 							<li><p>Against each monthly payment made, Motiwala Jewels will reserve/accumulate the equivalent grams of gold for future purchase by the customer as per the prevailing store gold rate of the day for 22 Karat gold on which the monthly payment is made.</p></li>
 							
 							<li><p>Under this Plan, the customer will be eligible for the purchase of 22 Karat gold jewellery for the equivalent grams accumulated during the tenure of the Plan and also be eligible for discount on making charges on purchase of jewellery in accordance with the number of monthly payments made, as per the illustrative table below:</p></li>
-							<strong>Key Benefits of Rivaah Golden Advantage:</strong>
+							<strong>Key Benefits of Golden Fortune:</strong>
 								<ul style="list-style-type: disc;">
 								<li>Grammage savings plan from Motiwala</li>
 								<li>Protects you from Gold rate fluctuations - Flexible Installment payment</li>
@@ -406,13 +404,13 @@
 								discount on Making Charges of the selected product For the additional grammage in case of
 								purchase over and above 18.82 gram, ' store offer shall be applicable.
 							</p>
-							<li><p>The customers are <strong> mandatorily </strong> required to make the purchase and take delivery of the jewellery against the equivalent grams of gold accumulated within the completion of <strong> 365 days </strong> from the enrolment date. In the event the customer  <strong> does not conclude the purchase </strong> and take delivery of jewellery within the said time, the customer will be <strong>invoiced 22 Karat gold coin(s) equivalent to the nearest lower round figure </strong> (e.g., 16.06 grams will be taken as 16 grams or 18.82 grams will be taken as 18 grams) of equivalent grams of gold accumulated during the tenure and the equivalent value of fractional grams of gold on the date of redemption will be refunded to the bank account provided at the time of enrolment. Accordingly, the account under this Plan shall stand closed. Motiwala Jewels will deliver the Gold coin to the address provided by the customer in the enrollment form. In the event the product is returned to Motiwala Jewels undelivered, Titan will keep the custody of the said gold coin(s) for a period of Six (6) months from the end of the 365th day for the customer to collect it. Thereafter, the customer will have no claims whatsoever in this regard.</p></li>
+							<li><p>The customers are <strong> mandatorily </strong> required to make the purchase and take delivery of the jewellery against the equivalent grams of gold accumulated within the completion of <strong> 365 days </strong> from the enrolment date. In the event the customer  <strong> does not conclude the purchase </strong> and take delivery of jewellery within the said time, the customer will be <strong>invoiced 22 Karat gold coin(s) equivalent to the nearest lower round figure </strong> (e.g., 16.06 grams will be taken as 16 grams or 18.82 grams will be taken as 18 grams) of equivalent grams of gold accumulated during the tenure and the equivalent value of fractional grams of gold on the date of redemption will be refunded to the bank account provided at the time of enrolment. Accordingly, the account under this Plan shall stand closed. Motiwala Jewels will deliver the Gold coin to the address provided by the customer in the enrollment form. In the event the product is returned to Motiwala Jewels undelivered, Motiwala Jewels will keep the custody of the said gold coin(s) for a period of Six (6) months from the end of the 365th day for the customer to collect it. Thereafter, the customer will have no claims whatsoever in this regard.</p></li>
 							
 							<li><p><strong>The customer will have to purchase the jewellery for the total quantity of the equivalent grams of gold accumulated and partial purchase is not allowed. </strong> The customer shall be eligible for availing the applicable discount on making charges only on the value of the equivalent grams of gold accumulated. <strong>In cases of additional purchase, any running offer at the stores shall be applicable on the differential weight.</strong> </p></li>
 							
 							<li><p>The customer who wishes to discontinue this Plan prior to the completion of 6 months from the enrolment date will have the option to purchase jewellery for the equivalent weight accumulated during the tenure of the Plan. However, the customer will not be eligible for any discount.</p></li>
 							
-							<li><p> <strong> No cash refunds </strong>will be provided under this Plan under any circumstance.</p></li>
+							<!-- <li><p> <strong> No cash refunds </strong>will be provided under this Plan under any circumstance.</p></li> -->
 							
 							<li><p>The special discount availed pursuant to the Plan cannot be linked or clubbed with any existing offers or any other plans offered by the Company and is not transferable under any circumstance.</p></li>
 							
@@ -421,7 +419,7 @@
 							<h4> Additional Terms and Conditions</h4>
 							<li><p>Only Indian citizens who have attained the age of majority and are competent to contract shall be eligible under this Plan, and NRIs and other entities like companies, partnership firms or proprietorship concerns or Trusts or Hindu Undivided Family (HUF) cannot participate in the same.</p></li>
 							
-							<li><p>The customer will be required to fill an enrolment form and submit necessary documents at the time of enrolment. Bank Account details and PAN card (for monthly payment value greater than Rs 18000/-) are mandatory for enrolment under this Plan.</p></li>
+							<li><p>The customer will be required to fill an enrolment form and submit necessary documents at the time of enrolment. Bank Account details and PAN card (for monthly payment value greater than Rs 10000/-) are mandatory for enrolment under this Plan.</p></li>
 							
 							<li><p>At the time of enrolment, the customer should ensure that the enrolment form is signed in the space provided, physically or electronically, as the case may be, accepting these Terms and Conditions. Notwithstanding the foregoing, as soon as the customer effects the first transaction under this Plan, it shall be deemed that the customer has accepted these Terms and Conditions.</p></li>
 							
@@ -431,7 +429,7 @@
 							
 							<li><p>Motiwala will not be responsible or liable to send reminders for payments.</p></li>
 							
-							<li><p>Motiwala Jewels reserves the right to verify the identity of the customer by means of SMS and/or OTP generation or by any other means at any time, including at the time of enrolment and at the time of concluding purchase and taking the delivery of the jewellery. Titan also reserves the right to verify the authenticity of the documents provided by the customer.</p></li>
+							<li><p>Motiwala Jewels reserves the right to verify the identity of the customer by means of SMS and/or OTP generation or by any other means at any time, including at the time of enrolment and at the time of concluding purchase and taking the delivery of the jewellery. Motiwala Jewels also reserves the right to verify the authenticity of the documents provided by the customer.</p></li>
 							
 							<li><p>The customer may appoint a nominee at the time of enrolment upon submission of relevant documentation. In the event of the death of the customer where no nomination has been made, Motiwala Jewels may extend the benefits of the Plan only to the legal heirs of the customer, subject to such legal heirs submitting the required documentation and satisfying Motiwala of their heirship. The decision of Motiwala Jewels shall be final on the sufficiency of any document in all such cases and the same shall be binding upon the claimants.</p></li>
 							
@@ -445,7 +443,7 @@
 							
 							<li><p>Any conditions which are not explicitly covered above would be at the discretion of Motiwala at the time of transaction. The decision of Motiwala in this regard would be deemed as irrevocable and final.</p></li>
 							
-							<li><p>Disputes, if any, shall be subject to the exclusive jurisdiction of the courts in Mumbai.</p></li>
+							<!-- <li><p>Disputes, if any, shall be subject to the exclusive jurisdiction of the courts in Mumbai.</p></li> -->
 						</ol>
 
 					</div>
