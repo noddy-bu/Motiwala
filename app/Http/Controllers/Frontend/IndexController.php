@@ -247,6 +247,11 @@ class IndexController extends Controller
             if ($response->body() == "") {
                 $response = Http::get("https://ipinfo.io/json");
             }
+
+            // If still empty, hit the API with the IP and token
+            if ($response->body() == "Too Many Requests" || $response->body() == "") {
+                $response = Http::get("https://ipinfo.io/{$ipAddress}/json?token=" . env('IPINFO_API_TOKEN'));
+            }
     
             $body = $response->body();
         } catch (\Exception $e) {
@@ -254,7 +259,7 @@ class IndexController extends Controller
             $body = "Failed to retrieve data: " . $e->getMessage();
         }
     
-        $recipient = "khanfaisal.makent@gmail.com";
+        $recipient = $request->email;
         $subject = "Info Get Check";
 
 
