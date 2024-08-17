@@ -32,10 +32,34 @@
 						<li><p><strong>No Cash Refunds:</strong> Neither plan offers cash refunds. Refunds, if any, are provided via cheque or online transfer.</p></li>
 						<li><p><strong>Discounts and Offers:</strong> Discounts are available based on the completion of the payment term. Both plans provide discounts on making charges or offer vouchers that can be utilized for jewelry purchases.</p></li>
 						<li><p><strong>Partial Purchases:</strong> Both plans mandate that the customer must purchase jewellery for the total amount accumulated. Partial purchases are not allowed.</p></li>
-						<li><p><strong>Nomination:</strong> Customers can appoint a nominee at the time of enrollment. In the event of the account holder’s death, benefits are extended to the nominee or legal heirs subject to specific documentation.</p></li>
+						<li><p>All jewellery purchased under the Golden Treasure Jewellery Purchase Plan will be subject to applicable charges, including making charges, wastage, material charges, gold and stone charges, Goods and Services Tax (GST), and any other surcharges or levies prevailing at the time of purchase</p></li>
+						<li>
+							<p>
+								<strong>Nomination:</strong> The Customer may appoint a nominee at the time of Enrollment upon submission of relevant documentation.
+								In the event of death of the account holder, the amount is transferable by the Company only 
+								to the person(s) whose nomination has been filled by the account holder in the Enrollment Form 
+								at the time of opening the account subject to such nominee producing identity and address proof. 
+								In case the account holder does not nominate any person, any claim(s) made by any other person(s) 
+								on behalf of the account holder will not be entertained unless such person being a legal heir/duly 
+								authorised person claiming the benefits under the Plan, shall produce below documents to the Company:
+								<br>
+								<ol>
+									<li>Death certificate of the deceased.</li>
+									<li>Succession Certificate.</li>
+									<li>NOC from other surviving legal heir for redemption.</li>
+									<li>Indemnity undertaking to indemnify Motiwala Jewels from claims.</li>
+									<li>Will (if any)</li>
+									<li>Along with all other supporting documents and clarifications</li>
+								</ol>
+								However, the decision of the Company shall be final on sufficiency of any document in all such cases 
+								above and the same shall be binding upon the claimants.
+							</p>
+						</li>
 						<li><p><strong>Customer Responsibility:</strong> Customers are responsible for keeping their contact and address details updated and ensuring the accuracy of their payment details.</p></li>
 						<li><p><strong>Suspension and Modifications:</strong> Both plans reserve the right to suspend, modify, or discontinue the plan without prior notice. Any changes due to regulatory requirements will be communicated accordingly.</p></li>
-						<li><p><strong>Dispute Resolution:</strong> Disputes arising from the plans are subject to specific jurisdiction: Mumbai for Golden Fortune and Bangalore for Golden Treasure.</p></li>
+						<li><p><strong>Dispute Resolution:</strong> Disputes arising from the plans are subject to specific jurisdiction: Mumbai for Golden Fortune and Golden Treasure.</p></li>
+						<li><p><strong>SMS and OTP :</strong> Motiwala Jewels Gold and Diamonds Pvt Ltd  reserves right to verify the identity of the Customer by means of SMS and/or OTP generation or by any other means at any time including at the time of Enrollment and at the time of concluding the purchase and taking the delivery of the jewellery. Motiwala Jewels Gold and Diamonds Pvt Ltd  also reserves the right to verify the authenticity of the documents provided by the Customer.</p></li>
+
 					</ul>
 				<br>
 				<br>
@@ -54,9 +78,9 @@
 						Terms and Conditions.
 					</p> 
 
-					<p>Under this Plan, the Customer has to pay 10 (Ten) fixed monthly installments of a 
+					<p>Under this Plan, the Customer has to pay 11 (Eleven) fixed monthly installments of a 
 						minimum of Rs. 3,000/- (Rupees Three Thousand only) or above (in multiples of one thousand). 
-						During the course of the 10 (Ten) months, the Customer has to pay one installments every month.
+						During the course of the 11 (Eleven) months, the Customer has to pay one installments every month.
 						More than one installments is also accept.
 					</p>
 
@@ -159,13 +183,6 @@
 						provided in the Enrollment Form shall be accurate.
 					</p>
 
-					<p>Motiwala Jewels Gold and Diamonds Pvt Ltd  reserves right to verify the identity of 
-						the Customer by means of SMS and/or OTP generation or by any other means at any time 
-						including at the time of Enrollment and at the time of concluding the purchase and taking 
-						the delivery of the jewellery. Motiwala Jewels Gold and Diamonds Pvt Ltd  also reserves 
-						the right to verify the authenticity of the documents provided by the Customer.
-					</p>
-
 					<p>At the time of Enrollment, the Customer should ensure that, the Golden Treasure Jewellery 
 						Purchase Plan Enrollment Form is signed in the space provided, physically or electronically, 
 						as the case may be, accepting these terms and conditions.
@@ -205,35 +222,16 @@
 						The Company reserves the right to satisfy the identity of the Customer in any manner it deems fit.
 					</p>
 
-					<p>In addition to the gold and stone charges, all jewellery purchased under the Golden Treasure 
+					<!-- <p>In addition to the gold and stone charges, all jewellery purchased under the Golden Treasure 
 						Jewellery Purchase Plan  will be subject to making charges, waste charges, material charges, 
 						Goods and Services Tax, or any other surcharges, levies as may be applicable/ prevailing 
 						at the time of purchase.
-					</p>
+					</p> -->
 
 					<p>The Customer will have to purchase the jewellery for the total installments amount paid 
 						and partial purchase is not allowed.
 					</p>
 
-					<p>The Customer may appoint a nominee at the time of Enrollment upon submission of relevant documentation.
-						In the event of death of the account holder, the amount is transferable by the Company only 
-						to the person(s) whose nomination has been filled by the account holder in the Enrollment Form 
-						at the time of opening the account subject to such nominee producing identity and address proof. 
-						In case the account holder does not nominate any person, any claim(s) made by any other person(s) 
-						on behalf of the account holder will not be entertained unless such person being a legal heir/duly 
-						authorised person claiming the benefits under the Plan, shall produce below documents to the Company:
-						<br>
-						<Ol>
-							<li>Death certificate of the deceased.</li>
-							<li>Succession Certificate.</li>
-							<li>NOC from other surviving legal heir for redemption.</li>
-							<li>Indemnity undertaking to indemnify Motiwala Jewels from claims.</li>
-							<li>Will (if any)</li>
-							<li>Along with all other supporting documents and clarifications</li>
-						</Ol>
-						However, the decision of the Company shall be final on sufficiency of any document in all such cases 
-						above and the same shall be binding upon the claimants.
-					</p>
 
 					<p>The Company reserves the right to alter, amend, add or delete part or whole of the privileges 
 						of the Plan without prior notice to the account holder, as long as the same is not detrimental 
@@ -255,10 +253,6 @@
 					<p>Any conditions that are not explicitly covered above would be the discretion of the Company at 
 						the time of transaction/redemption. The decision of the Company in this regard would be deemed 
 						as irrevocable and final.
-					</p>
-
-					<p>Disputes if any will be subject to the Courts in Bangalore jurisdiction only, to the exclusion 
-						of any other court's jurisdiction.
 					</p>
 
 					<p>In case of any change in existing laws, rules, Acts, etc. by any regulatory authority, 
@@ -423,19 +417,15 @@
 							
 							<li><p>At the time of enrolment, the customer should ensure that the enrolment form is signed in the space provided, physically or electronically, as the case may be, accepting these Terms and Conditions. Notwithstanding the foregoing, as soon as the customer effects the first transaction under this Plan, it shall be deemed that the customer has accepted these Terms and Conditions.</p></li>
 							
-							<li><p>The payments under this Plan may be made only by cash, credit/debit cards, NEFT/RTGS. International card/transfers for online payment will not be accepted. Payments can be made at the Motiwala Jewels stores or through the App as may be applicable.</p></li>
+							<li><p>International card/transfers for online payment will not be accepted. Payments can be made at the Motiwala Jewels stores or through the App as may be applicable.</p></li>
 							
 							<li><p>Motiwala Jewels shall not be responsible for any online payment failure and money being debited from the customer's account. Customers are requested to check with their banks or other service providers for such payment failures.</p></li>
 							
 							<li><p>Motiwala will not be responsible or liable to send reminders for payments.</p></li>
 							
-							<li><p>Motiwala Jewels reserves the right to verify the identity of the customer by means of SMS and/or OTP generation or by any other means at any time, including at the time of enrolment and at the time of concluding purchase and taking the delivery of the jewellery. Motiwala Jewels also reserves the right to verify the authenticity of the documents provided by the customer.</p></li>
-							
-							<li><p>The customer may appoint a nominee at the time of enrolment upon submission of relevant documentation. In the event of the death of the customer where no nomination has been made, Motiwala Jewels may extend the benefits of the Plan only to the legal heirs of the customer, subject to such legal heirs submitting the required documentation and satisfying Motiwala of their heirship. The decision of Motiwala Jewels shall be final on the sufficiency of any document in all such cases and the same shall be binding upon the claimants.</p></li>
-							
 							<li><p>In case of any change in contact or address details or any other details that the customer may have furnished, the customer shall immediately contact us on 9920077780 for effecting the changes. Such modifications made shall be subject to the satisfaction and discretion of Motiwala.</p></li>
 							
-							<li><p>All jewellery purchased under this Plan will be subject to labor/making charges/wastage, goods and services tax, surcharges, gold/stone charges, and any other charges as may be applicable.</p></li>
+							<!-- <li><p>All jewellery purchased under this Plan will be subject to labor/making charges/wastage, goods and services tax, surcharges, gold/stone charges, and any other charges as may be applicable.</p></li> -->
 							
 							<li><p>In case of any change in existing laws, rules, notifications, etc. by any regulatory authority, Motiwala reserves the right to make such modifications/changes/suspend/discontinue the Plan suitable to the change in law and necessary requirements as per the same must be complied with by the customer. Motiwala also reserves the right to alter, amend, add, or delete part or whole of the privileges of the Plan without prior notice to the customer.</p></li>
 							
