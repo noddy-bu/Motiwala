@@ -7,15 +7,17 @@
    <div class="card widget-inline">
       <div class="card-body p-0">
          <div class="row g-0">
-            <div class="col-sm-6 col-lg-6">
-               <div class="card rounded-0 shadow-none m-0">
-                  <div class="card-body text-center">
-                     <i class="ri-suitcase-line text-muted font-24"></i>
-                     <h3><span>{{$user_reg_Count}}</span></h3>
-                     <p class="text-muted font-15 mb-0">Completed Registeration Customer</p>
+            @if(in_array(auth()->user()->role_id, [1]))
+               <div class="col-sm-6 col-lg-6">
+                  <div class="card rounded-0 shadow-none m-0">
+                     <div class="card-body text-center">
+                        <i class="ri-suitcase-line text-muted font-24"></i>
+                        <h3><span>{{$user_reg_Count}}</span></h3>
+                        <p class="text-muted font-15 mb-0">Completed Registeration Customer</p>
+                     </div>
                   </div>
                </div>
-            </div>
+            @endif
             <div class="col-sm-6 col-lg-6">
                <div class="card rounded-0 shadow-none m-0 border-start border-light">
                   <div class="card-body text-center">

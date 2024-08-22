@@ -49,20 +49,23 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3">
-                        @php 
-                            $admin = DB::table('users')->where('role_id', '!=', 2)->get(['first_name','id']); 
-                        @endphp
-                        <div class="form-group mb-3">
-                            <label for="user_behalf" class="form-label">By Admin / Staff:</label>
-                            <select class="form-select" id="user_behalf" name="user_behalf">
-                                <option value="">- Select Staff / Admin -</option>
-                                @foreach ($admin as $row)
-                                    <option value="{{ $row->id }}">{{ ucfirst($row->first_name) }}</option>
-                                @endforeach
-                            </select>
+                    @if(auth()->user()->role_id != 2)
+                        <div class="col-md-3">
+                            @php 
+                                $admin = DB::table('users')->where('role_id', '!=', 2)->get(['first_name','id']); 
+                            @endphp
+                            <div class="form-group mb-3">
+                                <label for="user_behalf" class="form-label">By Admin / Staff:</label>
+                                <select class="form-select" id="user_behalf" name="user_behalf">
+                                    <option value="">- Select Staff / Admin -</option>
+                                    @foreach ($admin as $row)
+                                        <option value="{{ $row->id }}">{{ ucfirst($row->first_name) }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                    </div>
+                    @endif
+
 
                     <div class="col-md-3 d-flex align-items-center">
                         <div class="form-group">

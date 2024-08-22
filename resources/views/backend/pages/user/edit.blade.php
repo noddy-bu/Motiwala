@@ -5,7 +5,7 @@
         <input type="hidden" name="id" value="{{ $author->id }}">
             <div class="form-group mb-3">
                 <label>Username <span class="red">*</span></label>
-                <input type="text" class="form-control" name="name" value="{{ $author->name }}" required>
+                <input type="text" class="form-control" name="fullname" value="{{ $author->fullname }}" required>
             </div>
         </div>        
         <div class="col-sm-12">
@@ -14,12 +14,6 @@
                 <input type="email" class="form-control" name="email" value="{{ $author->email }}" required>
             </div>
         </div>
-        <div class="col-sm-12">
-            <div class="form-group mb-3">
-                <label>Designation <span class="red">*</span></label>
-                <input type="text" class="form-control" name="designation" value="{{ $author->designation }}">
-            </div>
-        </div>  
         <div class="col-sm-12">
             <div class="form-group mb-3 text-end">
                 <button type="submit" class="btn btn-block btn-primary">Update</button>

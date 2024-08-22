@@ -19,7 +19,7 @@ class UserController extends Controller
 
         // Validate form data
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:blog_categories,slug,'. $request->input('id'),
+            'fullname' => 'required',
         ]);
 
         if ($validator->fails()) {

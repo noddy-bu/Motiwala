@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class AuthorController extends Controller
 {
     public function index() {
-        $author = User::orderBy('id', 'desc')->get();
+        $author = User::whereNotIn('role_id', ['1', '0'])->orderBy('id', 'desc')->get(['id','fullname','email','phone','role_id']);
         return view('backend.pages.author.index', compact('author'));
     }
 

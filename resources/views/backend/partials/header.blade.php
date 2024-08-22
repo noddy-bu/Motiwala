@@ -407,13 +407,10 @@
                                     <i class="mdi mdi-square-edit-outline"></i>
                                     <span>Profile</span>
                                 </a>
-                                @if(in_array(auth()->user()->role_id, [1, 2]))
                                 <a onclick="smallModal('{{ url(route('user.password',['id' => auth()->user()->id])) }}', 'Reset Password')" class="dropdown-item">
                                     <i class="mdi mdi-square-edit-outline"></i>
                                     <span>Reset Password</span>
                                 </a>
-                                @endif
-
                                 <a href="{{ route('backend.logout') }}" class="dropdown-item">
                                     <i class="mdi mdi-logout me-1"></i>
                                     <span>Logout</span>

@@ -36,7 +36,10 @@ class TransactionController extends Controller
         );
     
         // Total records
-        $totalRecords = Transaction::count();
+        $totalRecords = Transaction::when(auth()->user()->role_id == 2, function ($query) {
+            return $query->where('user_behalf', auth()->user()->id);
+        })
+        ->count();
     
         // Filtered records
         $query = Transaction::select('*');
@@ -79,6 +82,10 @@ class TransactionController extends Controller
         // if ($status != '') {
         //     $query->where('status', $status);
         // }
+
+        if(auth()->user()->role_id === 2){
+            $query->where('user_behalf', auth()->user()->id);
+        }
     
         // Get filtered count
         $totalFiltered = $query->count();

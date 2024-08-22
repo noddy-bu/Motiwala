@@ -718,7 +718,7 @@ class AccountController extends Controller
                 $userId = DB::table('users')->insertGetId([
                     'accept_term' => 1,
                     'phone' => $phone,
-                    'role_id' => 2,
+                    'role_id' => 0,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
