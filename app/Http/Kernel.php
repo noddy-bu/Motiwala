@@ -72,5 +72,6 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         // Other middleware...
         'auth.frontend' => \App\Http\Middleware\FrontendAuthenticate::class,
+        'role' => \App\Http\Middleware\RoleMiddleware::class,
     ];
 }

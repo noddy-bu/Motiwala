@@ -105,11 +105,11 @@ Route::group(['prefix' => 'setting'], function () {
     Route::post('/update', [BusinessSettingController::class, 'update'])->name('setting.update');
 });
 
-//Contact Page setting
-Route::group(['prefix' => 'contact/page'], function () {
-    Route::get('/index', [ContactSettingController::class, 'index'])->name('contactpage.index');
-    Route::post('/update', [ContactSettingController::class, 'update'])->name('contactpage.update');
-});
+// //Contact Page setting
+// Route::group(['prefix' => 'contact/page'], function () {
+//     Route::get('/index', [ContactSettingController::class, 'index'])->name('contactpage.index');
+//     Route::post('/update', [ContactSettingController::class, 'update'])->name('contactpage.update');
+// });
 
 //clear cache
 Route::get('/clear-cache', function () {
@@ -134,7 +134,7 @@ Route::group(['prefix' => 'author'], function () {
 });
 
 //User
-Route::group(['prefix' => 'profile'], function () {
+Route::group(['prefix' => 'profile', 'middleware' => ['auth', 'role:1']], function () {
     Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::get('/reset/{id}', [UserController::class, 'password'])->name('user.password');
     Route::post('/update', [UserController::class, 'update'])->name('user.update');
