@@ -368,8 +368,16 @@
                                     <img src="/assets/images/avatar-1.jpg" alt="user-image" width="32" class="rounded-circle">
                                 </span>
                                 <span class="d-lg-flex flex-column gap-1 d-none">
-                                    <h5 class="my-0">{{ auth()->user()->name }}</h5>
-                                    <h6 class="my-0 fw-normal">Superadmin</h6>
+                                    <h5 class="my-0">{{ auth()->user()->fullname }}</h5>
+                                    <h6 class="my-0 fw-normal">
+                                        @if(auth()->user()->role_id == 1)
+                                            Superadmin
+                                        @elseif(auth()->user()->role_id == 2)
+                                            Admin
+                                        @else
+                                            Staff
+                                        @endif
+                                    </h6>
                                 </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated profile-dropdown">

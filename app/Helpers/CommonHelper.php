@@ -1,19 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Cache;
-//use App\Models\Award;
-//use App\Models\Blog;
-//use App\Models\BlogCategory;
-//use App\Models\BlogComment;
 use App\Models\BusinessSetting;
-use App\Models\ContactSetting;
+
 //use App\Models\Contact;
-//use App\Models\Faq;
-//use App\Models\MediaCoverage;
-//use App\Models\PracticeArea;
-//use App\Models\Publication;
-//use App\Models\Team;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Http;
 
 
     if (!function_exists('datetimeFormatter')) {
@@ -68,32 +60,32 @@ use Illuminate\Support\Facades\Mail;
     }
 
 
-    if (!function_exists('get_contactpage')) {
-        function get_contactpage($type)
-        {
-            $cacheKey = "contact_page_setting_{$type}";
+    // if (!function_exists('get_contactpage')) {
+    //     function get_contactpage($type)
+    //     {
+    //         $cacheKey = "contact_page_setting_{$type}";
         
-            // Check if the value is already in the cache
-            if (Cache::has($cacheKey)) {
-                return Cache::get($cacheKey);
-            }
+    //         // Check if the value is already in the cache
+    //         if (Cache::has($cacheKey)) {
+    //             return Cache::get($cacheKey);
+    //         }
         
-            // If not in the cache, retrieve the value from the database
-            $ContactSetting = ContactSetting::where('type', $type)->first();
+    //         // If not in the cache, retrieve the value from the database
+    //         $ContactSetting = ContactSetting::where('type', $type)->first();
         
-            if ($ContactSetting) {
-                $value = $ContactSetting->value;
+    //         if ($ContactSetting) {
+    //             $value = $ContactSetting->value;
         
-                // Store the value in the cache with a specific lifetime (e.g., 60 minutes)
-                Cache::put($cacheKey, $value, now()->addMinutes(60));
+    //             // Store the value in the cache with a specific lifetime (e.g., 60 minutes)
+    //             Cache::put($cacheKey, $value, now()->addMinutes(60));
         
-                return $value;
-            }
+    //             return $value;
+    //         }
         
-            // Handle the case where no record is found
-            return null; // or any default value or error handling you prefer
-        }
-    }
+    //         // Handle the case where no record is found
+    //         return null; // or any default value or error handling you prefer
+    //     }
+    // }
 
     // if(!function_exists('sendEmail')){
     //     function sendEmail($to, $subject, $body, $attachments = [])
@@ -345,3 +337,41 @@ use Illuminate\Support\Facades\Mail;
             return $account_gold_prifix;
         }
     }
+
+
+    if(!function_exists('send_Whatsapp_Notification')){
+        function send_Whatsapp_Notification($phoneNumber, $template_name, $dynmice = []) {
+
+            $dynmice = json_encode($dynmice);
+
+            $api_endpoin  = env('WATI_END_POINT');
+            $access_token = env('WATI_TOKEN');
+
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://live-mt-server.wati.io/$api_endpoin/api/v1/sendTemplateMessage?whatsappNumber=91$phoneNumber",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS =>'
+            {
+                "broadcast_name": "'.$template_name.'",
+                "template_name":  "'.$template_name.'",
+                "parameters": '.$dynmice.'
+            }
+            ',
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: '.$access_token.'',
+                'Content-Type: text/json'
+            ),
+            ));
+            $response = curl_exec($curl);
+            curl_close($curl); 
+
+            return $response;
+        }
+    }     

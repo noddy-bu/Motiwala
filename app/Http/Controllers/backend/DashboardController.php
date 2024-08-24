@@ -15,10 +15,10 @@ class DashboardController extends Controller
         $user_not_reg_Count = User::where('status', 0)->count(); 
 
         $transactions = Transaction::where('payment_status', 'paid')
-        ->when(auth()->user()->role_id == 2, function ($query) {
+        ->when(in_array(auth()->user()->role_id, [2, 3]), function ($query) {
             return $query->where('user_behalf', auth()->user()->id);
         })
-        ->sum('payment_amount');    
+        ->sum('payment_amount');
         
         $contactCount = Contact::count();
         return view('backend.pages.dashboard.index', compact('user_reg_Count', 'user_not_reg_Count','contactCount','transactions'));

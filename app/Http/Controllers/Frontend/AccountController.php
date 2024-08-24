@@ -1065,6 +1065,8 @@ class AccountController extends Controller
                 $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
 
                 $email_templet1 = (new SmsController)->email_registration_successful($phone, $email);
+
+                $wati_registration_success = (new SmsController)->wati_registration_success($phone);
             }
 
 
@@ -1575,9 +1577,11 @@ class AccountController extends Controller
         Session::put('payment', 1);
         Session::put('temp_user_id', $order->temp_user_id);
 
-        $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
+        // $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
 
-        $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
+        // $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
+
+        $phone_email = DB::table('users')->where('id', $request->user_id)->select('phone', 'email', 'fullname')->first();
 
 
         DB::table('users')->where('id', $order->temp_user_id)->update([
@@ -1631,9 +1635,11 @@ class AccountController extends Controller
 
         $installment = '1st';
 
-        $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+        $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone_email->phone, $installment, $amount);
 
-        $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
+        $email_templet = (new SmsController)->email_installment_payment_successful($phone_email->email, $installment, $amount);
+
+        $wati_payment_success = (new SmsController)->wati_payment_success($phone_email->phone, $phone_email->fullname, $installment, $amount);
 
         return redirect()->route('account.new.enrollment.page');
         // }
@@ -1794,9 +1800,11 @@ class AccountController extends Controller
 
             if ($udf1 != "installment") {
 
-                $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
+                // $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
 
-                $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
+                // $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
+
+                $phone_email = DB::table('users')->where('id', $request->user_id)->select('phone', 'email', 'fullname')->first();
 
 
                 // DB::table('users')->where('id', $order->temp_user_id)->update([
@@ -1834,9 +1842,11 @@ class AccountController extends Controller
 
                 $installment = '1st';
 
-                $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+                $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone_email->phone, $installment, $amount);
 
-                $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
+                $email_templet = (new SmsController)->email_installment_payment_successful($phone_email->email, $installment, $amount);
+
+                $wati_payment_success = (new SmsController)->wati_payment_success($phone_email->phone, $phone_email->fullname, $installment, $amount);
 
                 /*------------ success stuff --------------*/
 
@@ -1967,15 +1977,13 @@ class AccountController extends Controller
                     $installment .= 'th';
                 }
 
-                $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
+                $phone_email = DB::table('users')->where('id', $request->user_id)->select('phone', 'email', 'fullname')->first();
 
-                $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
+                $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone_email->phone, $installment, $amount);
 
+                $email_templet = (new SmsController)->email_installment_payment_successful($phone_email->email, $installment, $amount);
 
-                $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
-
-
-                $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
+                $wati_payment_success = (new SmsController)->wati_payment_success($phone_email->phone, $phone_email->fullname, $installment, $amount);
 
                 // delete temp recored
                 DB::table('temp_transactions')->where('payment_id', $txnid)->delete();

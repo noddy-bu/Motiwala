@@ -208,6 +208,8 @@
                                                             Cash Pay
                                                         @elseif ($transaction_payment_type == "UPI")
                                                             UPI
+                                                        @elseif ($transaction_payment_type == "checkpay")
+                                                            Check Pay
                                                         @else
                                                             NA
                                                         @endif

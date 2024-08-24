@@ -69,7 +69,7 @@
                             </a>
                         </li>
 
-                        @if(in_array(auth()->user()->role_id, [1]))
+                        @if(in_array(auth()->user()->role_id, [1,2]))
                             <li class="side-nav-item">
                                 <a href="{{ route('contact.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                                     <i class="ri-mail-line"></i> 
@@ -78,7 +78,7 @@
                             </li>
                         @endif
 
-                        @if(in_array(auth()->user()->role_id, [1]))
+                        @if(in_array(auth()->user()->role_id, [1,2]))
                             <li class="side-nav-item">
                                 <a href="{{ route('author.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                                     <i class="ri-user-add-line"></i> 
@@ -87,7 +87,7 @@
                             </li>
                         @endif
 
-                        @if(in_array(auth()->user()->role_id, [1]))
+                        @if(in_array(auth()->user()->role_id, [1,2]))
                             <li class="side-nav-item">
                                 <a data-bs-toggle="collapse" href="{{ url('#sidebarEmail') }}" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
                                     <i class="ri-article-line"></i>

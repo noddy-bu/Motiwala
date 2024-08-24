@@ -1,7 +1,7 @@
 <form id="add_author_form" action="{{url(route('author.create'))}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
-    <div class="col-sm-12">
+        <div class="col-sm-12">
             <div class="form-group mb-3">
                 <label>Name <span class="red">*</span></label>
                 <input type="text" class="form-control" name="name" value="" required>
@@ -15,11 +15,26 @@
         </div>
         <div class="col-sm-12">
             <div class="form-group mb-3">
-                <label>Designation <span class="red">*</span></label>
-                <input type="text" class="form-control" name="designation" value="">
+                <label>Phone <span class="red">*</span></label>
+                <input type="text" class="form-control" name="phone" value="" required>
+            </div>
+        </div> 
+        <div class="col-sm-12">
+            <div class="form-group mb-3">
+                <label>Password <span class="red">*</span></label>
+                <input type="password" class="form-control" name="password" value="" required>
             </div>
         </div>
-        <input type="hidden" class="form-control" name="role_id" value="0">    
+        <div class="col-sm-12">
+            <div class="form-group mb-3">
+                <label>Designation <span class="red">*</span></label>
+                <select class="form-select" name="role_id" required>
+                    <option value="">---Select---</option>
+                    <option value="2">Admin</option>
+                    <option value="3">Staff</option>
+                </select>
+            </div>
+        </div>
         <div class="col-sm-12">
             <div class="form-group mb-3 text-end">
                 <button type="submit" class="btn btn-block btn-primary">Create</button>

@@ -77,7 +77,110 @@ class SmsController extends Controller
     }
 
 
+// ------------------------------------------------ WATI MSG ----------------------------------------------------//
 
+    public function wati_due_reminder($phone=null, $name=null, $installment_no=null, $plan_name=null, $amount=null, $due_date=null){
+        $phone = $phone;
+        $template_name = 'reminder';
+        $dynmice = [
+            [
+                'name' => 'name',
+                'value' => $name
+            ],
+            [
+                'name' => 'allowbroadcast',
+                'value' => $installment_no
+            ],
+            [
+                'name' => 'attribute_1',
+                'value' => $amount
+            ],
+            [
+                'name' => 'attribute_2',
+                'value' => date('d-m-y', strtotime($due_date))
+            ]
+        ];
+
+        $result = send_Whatsapp_Notification($phone,$template_name,$dynmice);
+    }
+
+
+    public function wati_over_due($phone=null, $name=null, $installment_no=null, $plan_name=null, $amount=null, $due_date=null){
+        $phone = $phone;
+        $template_name = 'overdue';
+        $dynmice = [
+            [
+                'name' => 'name',
+                'value' => $name
+            ],
+            [
+                'name' => 'allowbroadcast',
+                'value' => $installment_no
+            ],
+            [
+                'name' => 'attribute_1',
+                'value' => $amount
+            ],
+            [
+                'name' => 'attribute_2',
+                'value' => date('d-m-y', strtotime($due_date))
+            ]
+        ];
+
+        $result = send_Whatsapp_Notification($phone,$template_name,$dynmice);
+    }
+
+
+    public function wati_payment_success($phone=null, $name=null, $installment_no=null, $amount=null){
+        $phone = $phone;
+        $template_name = 'payment_success';
+        $dynmice = [
+            [
+                'name' => 'name',
+                'value' => $name
+            ],
+            [
+                'name' => 'attribute_1',
+                'value' => $installment_no
+            ],
+            [
+                'name' => 'attribute_2',
+                'value' => $amount
+            ]
+        ];
+
+        $result = send_Whatsapp_Notification($phone,$template_name,$dynmice);
+    }
+
+    public function wati_registration_success($phone=null){
+        $phone = $phone;
+        $template_name = 'successful_registration';
+        $dynmice = [
+            [
+                'name' => 'attribute_1',
+                'value' => $phone
+            ],
+            [
+                'name' => 'attribute_2',
+                'value' => $phone
+            ]
+        ];
+
+        $result = send_Whatsapp_Notification($phone,$template_name,$dynmice);
+    }
+
+    public function wati_incomplete_registration($phone="8433625599", $name="Nexgeno"){
+        $phone = $phone;
+        $template_name = 'incomplete_registration';
+        $dynmice = [
+            [
+                'name' => 'name',
+                'value' => $name
+            ]
+        ];
+
+        $result = send_Whatsapp_Notification($phone,$template_name,$dynmice);
+    }
 
 //---------------------------------------------- deu msg config -------------------------------------------------//
 
@@ -123,6 +226,8 @@ class SmsController extends Controller
                         echo "<pre>";
                         $days = 7;
                         $this->email_before_Days($row->email, $row->installment_no, $row->plan_name, $row->fullname, $dueStart, $days, $row->installment_amount);
+
+                        $this->wati_due_reminder($row->phone, $row->fullname, $row->installment_no, $row->plan_name, $row->installment_amount, $dueStart);
                     }
 
                     // 3 days before due date start
@@ -132,6 +237,8 @@ class SmsController extends Controller
                         echo "<pre>";
                         $days = 3;
                         $this->email_before_Days($row->email, $row->installment_no, $row->plan_name, $row->fullname, $dueStart, $days, $row->installment_amount);
+
+                        $this->wati_due_reminder($row->phone, $row->fullname, $row->installment_no, $row->plan_name, $row->installment_amount, $dueStart);
                     }
 
                     // Between due date start and end
@@ -141,6 +248,8 @@ class SmsController extends Controller
                         $days = 'same_day';
                         $due_date_end = $dueEnd;
                         $this->email_before_Days($row->email, $row->installment_no, $row->plan_name, $row->fullname, $dueStart, $days, $row->installment_amount, $due_date_end);
+
+                        $this->wati_due_reminder($row->phone, $row->fullname, $row->installment_no, $row->plan_name, $row->installment_amount, $due_date_end);
                     }
 
                     // 1 day after due date end
@@ -150,7 +259,10 @@ class SmsController extends Controller
                         echo "<pre>";
                         $days = 'passed';
                         $due_date_end = $dueEnd;
+
                         $this->email_before_Days($row->email, $row->installment_no, $row->plan_name, $row->fullname, $dueStart, $days, $row->installment_amount, $due_date_end);
+
+                        $this->wati_over_due($row->phone, $row->fullname, $row->installment_no, $row->plan_name, $row->installment_amount, $due_date_end);
                     }
                 }
             });

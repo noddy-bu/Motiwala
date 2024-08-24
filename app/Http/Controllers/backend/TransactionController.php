@@ -83,7 +83,7 @@ class TransactionController extends Controller
         //     $query->where('status', $status);
         // }
 
-        if(auth()->user()->role_id === 2){
+        if (in_array(auth()->user()->role_id, [2, 3])) {
             $query->where('user_behalf', auth()->user()->id);
         }
     
@@ -120,6 +120,8 @@ class TransactionController extends Controller
                 $type = 'UPI';
             } elseif ($row->payment_type == "cashpay") {
                 $type = 'Cash Pay';
+            } elseif ($row->payment_type == "checkpay") {
+                $type = 'Check Pay';
             }
 
             $nestedData = [
