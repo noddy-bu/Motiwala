@@ -2019,43 +2019,93 @@ class AccountController extends Controller
 
     /* ----------------------------- testing controller -------------------------------------------- */
 
-    // public function dummy_esign()
-    // {
+    public function dummy_esign()
+    {
 
-    //     $user = DB::table('users')->where('id', Session::get('temp_user_id'))
-    //         ->get(['plan_id', 'installment_amount', 'name', 'email', 'phone'])->first();
+        $user = DB::table('users')->where('id', 20)
+        ->get(['id','plan_id','installment_amount','first_name','last_name', 'fullname', 'email','phone'])->first();
 
-    //     $plan_name = DB::table('plans')->where('id', $user->plan_id)->value('name');
+        $user_detail = DB::table('userdetails')
+        ->where('user_id', Session::get('temp_user_id'))
+        ->get(['pan_number','flat_no','street','locality','state','city','pincode','address','nominee_name','nominee_phone','nominee_address','nominee_relation','aadhar_number'])
+        ->first();
 
-    //     // Get user details
-    //     $data = [
-    //         'user' => $user,
-    //         'plan_name' => $plan_name
-    //     ];
+        $plan = DB::table('plans')->where('id', $user->plan_id)->get(['name','installment_period'])->first();
 
-    //     // Render the HTML view with user details
-    //     $html = View::make('frontend.component.template', compact('data'))->render();
+        // Get user details
+        $data = [
+            'user' => $user,
+            'plan' => $plan,
+            'user_detail' => $user_detail
+        ];
 
-    //     // Create a new DOMPDF instance
-    //     $dompdf = new Dompdf();
+        // Render the HTML view with user details
+        $html = View::make('frontend.component.template', compact('data'))->render();
 
-    //     // Load HTML content
-    //     $dompdf->loadHtml($html);
+        // Create a new DOMPDF instance
+        $dompdf = new Dompdf();
 
-    //     // (Optional) Set paper size and orientation
-    //     $dompdf->setPaper('A4', 'portrait');
+        // Load HTML content
+        $dompdf->loadHtml($html);
 
-    //     // Render the HTML as PDF
-    //     $dompdf->render();
+        // (Optional) Set paper size and orientation
+        $dompdf->setPaper('A4', 'portrait');
 
-    //     // Generate a unique filename
-    //     $filename = 'generated_pdf_' . time() . '.pdf';
+        // Render the HTML as PDF
+        $dompdf->render();
 
-    //     $output = $dompdf->output();
-    //     Storage::disk('public')->put('generate_pdf/' . $filename, $output);
+        // Generate a unique filename
+        $filename = 'generated_pdf_' . time() . '.pdf';
 
-    //     return true;
-    // }
+        $output = $dompdf->output();
+        $path = Storage::disk('public')->put('generate_pdf/' . $filename, $output);
+
+        return $dompdf->stream($path, ['Attachment' => false]);
+    }
+
+    public function dummy_esign2()
+    {
+
+        $user = DB::table('users')->where('id', 20)
+        ->get(['id','plan_id','installment_amount','first_name','last_name', 'fullname', 'email','phone'])->first();
+
+        $user_detail = DB::table('userdetails')
+        ->where('user_id', Session::get('temp_user_id'))
+        ->get(['pan_number','flat_no','street','locality','state','city','pincode','address','nominee_name','nominee_phone','nominee_address','nominee_relation','aadhar_number'])
+        ->first();
+
+        $plan = DB::table('plans')->where('id', $user->plan_id)->get(['name','installment_period'])->first();
+
+        // Get user details
+        $data = [
+            'user' => $user,
+            'plan' => $plan,
+            'user_detail' => $user_detail
+        ];
+
+        // Render the HTML view with user details
+        $html = View::make('frontend.component.template_plan2', compact('data'))->render();
+
+        // Create a new DOMPDF instance
+        $dompdf = new Dompdf();
+
+        // Load HTML content
+        $dompdf->loadHtml($html);
+
+        // (Optional) Set paper size and orientation
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Generate a unique filename
+        $filename = 'generated_pdf_' . time() . '.pdf';
+
+        $output = $dompdf->output();
+        $path = Storage::disk('public')->put('generate_pdf/' . $filename, $output);
+
+        return $dompdf->stream($path, ['Attachment' => false]);
+    }
 
 
     // public function testing(){
