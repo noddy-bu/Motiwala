@@ -129,7 +129,7 @@ class IndexController extends Controller
 
         // Send email if $cvPath is not null
 
-        $recipient = 'khanfaisal.makent@gmail.com';
+        $recipient = 'motiwalajewels786@gmail.com';
         $subject = 'Lead Enquiry';
 
         $body = '<table>';
