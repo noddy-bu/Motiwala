@@ -209,8 +209,12 @@ class EsignAadharController extends Controller
         ];
 
         // Render the HTML view with user details
-        $html = View::make('frontend.component.template', compact('data'))->render();
-
+        if($user->plan_id == 2){
+            $html = View::make('frontend.component.template_plan2', compact('data'))->render();
+        } else {
+            $html = View::make('frontend.component.template', compact('data'))->render();
+        }
+        
         // Create a new DOMPDF instance
         $dompdf = new Dompdf();
 

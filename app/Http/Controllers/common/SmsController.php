@@ -26,7 +26,7 @@ class SmsController extends Controller
     
     public function smsgatewayhub_registration_successful($phone) //customer card active
     {
-        $msg = rawurlencode("Congratulations! You have successfully registered. Your login credentials are: User ID: $phone. Password: $phone. Thank you for joining us. Motiwala Jewels");
+        $msg = rawurlencode("Congratulations! You have successfully registered. Your login credentials are: User ID: $phone. Password: $phone. Thank you for joining us. Motiwala Jewels Gold & Diamonds Pvt Ltd.");
         $phone = '91'.$phone;
         $this->sms_trigger_smsgatewayhub2($phone, $msg);
     } 
@@ -56,7 +56,7 @@ class SmsController extends Controller
 
 //----------------------------------------------------------- Email ----------------------------------------------------------//
 
-    public function email_registration_successful($phone, $email){
+    public function email_registration_successful($phone, $email=""){
 
         $recipient = $email;
         $subject = 'Congratulations! You have successfully registered at Motiwala Jewels';
@@ -72,6 +72,26 @@ class SmsController extends Controller
         $subject = "Your $installment installment of $amount has been successfully completed";
 
         $body = "Your $installment installment of $amount has been successfully completed. Thank you for choosing Motiwala Jewels";
+
+        sendEmail($recipient, $subject, $body);
+    }
+
+    public function email_registration_not_completed($name="", $email){
+
+        $recipient = $email;
+        $subject = 'Complete Your Registration to Access All Features at Motiwala Jewels';
+
+        $body = '<p>Dear '.$name.',</p>
+
+            <p>We noticed that your registration is still incomplete. To fully access all the features and benefits, please take a moment to complete the registration process.</p>
+
+            <p>If you need any assistance or have any questions, feel free to contact us.</p>
+
+            <p>Thank you for choosing us!</p>
+
+            <p>Best regards,<br>
+            Motiwala</p>
+            <p>Mob: +91 9920077780</p>';
 
         sendEmail($recipient, $subject, $body);
     }
@@ -169,7 +189,7 @@ class SmsController extends Controller
         $result = send_Whatsapp_Notification($phone,$template_name,$dynmice);
     }
 
-    public function wati_incomplete_registration($phone="8433625599", $name="Nexgeno"){
+    public function wati_incomplete_registration($phone=null, $name=""){
         $phone = $phone;
         $template_name = 'incomplete_registration';
         $dynmice = [
@@ -181,6 +201,65 @@ class SmsController extends Controller
 
         $result = send_Whatsapp_Notification($phone,$template_name,$dynmice);
     }
+
+//----------------------------------------- incompleted registration config --------------------------------------//
+
+
+public function incomplete_registration_msg()
+{
+    // Get the current date and time
+    $currentDateTime = Carbon::now()->format('Y-m-d H');
+    echo $currentDateTime;
+    echo "<pre>";
+
+    DB::table('users')
+        ->select([
+            'id',
+            'fullname',
+            'email',
+            'phone',
+            'updated_at'
+        ])
+        ->whereNull('status')
+        ->whereNotNull('email')
+        ->whereNotNull('phone')
+        ->where('role_id', 0)
+        ->orderBy('id', 'desc')
+        ->chunk(5, function ($users) use ($currentDateTime) {
+            foreach ($users as $user) {
+
+                // 2 hours before the current time
+                $after2Hr = Carbon::now()->subHours(2)->format('Y-m-d H');
+                // echo $after2Hr;
+                // echo "<pre>";
+                // echo Carbon::parse($user->updated_at)->format('Y-m-d H');
+                // echo "<pre>";
+                // echo $user->id;
+                // echo "<pre>";
+
+                if ($after2Hr == Carbon::parse($user->updated_at)->format('Y-m-d H')) {
+                    echo "2 hours after: " . $user->email . ' ' . $user->id;
+                    echo "<pre>";
+
+
+                    $this->email_registration_not_completed($user->fullname, $user->email);
+                    $this->wati_incomplete_registration($user->phone, $user->fullname);
+                }
+
+                // 1 day before the current time
+                $after1Day = Carbon::now()->subDay(1)->format('Y-m-d H');
+
+                if ($after1Day == Carbon::parse($user->updated_at)->format('Y-m-d H')) {
+                    echo "After 1 day reminder: " . $user->email . ' ' . $user->id;
+                    echo "<pre>";
+
+                    $this->email_registration_not_completed($user->fullname, $user->email);
+                    $this->wati_incomplete_registration($user->phone, $user->fullname);
+                }
+            }
+        });
+}
+
 
 //---------------------------------------------- deu msg config -------------------------------------------------//
 
@@ -214,7 +293,7 @@ class SmsController extends Controller
             ->where('redemption_items.status', 'pending')
             ->where('redemptions.status', '!=', 0)
             ->orderBy('redemption_items.id')
-            ->chunk(2, function ($info) use ($currentDate) {
+            ->chunk(5, function ($info) use ($currentDate) {
                 foreach ($info as $row) {
                     $dueStart = Carbon::parse($row->due_start);
                     $dueEnd = Carbon::parse($row->due_end);

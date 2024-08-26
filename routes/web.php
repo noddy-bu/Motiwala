@@ -113,13 +113,17 @@ Route::any('/forgot-password/{param}', [AccountController::class, 'forgot_passwo
 
 Route::get('/logout', [AccountController::class, 'customer_logout'])->name('customer.logout');
 
+//----------------------------- cron job ------------------------
+
 Route::get('/cron_due_msg', [SmsController::class, 'due_msg']);
+Route::get('/cron_incomplete_registration_msg', [SmsController::class, 'incomplete_registration_msg']);
+
+//----------------------------- cron job ------------------------
 
 
 // Route::get('/esign', [EsignAadharController::class, 'esign_nsdl']);
-
-
-// Route::get('/dummy_esign', [AccountController::class, 'dummy_esign']);
+Route::get('/esign-plan1', [AccountController::class, 'dummy_esign']);
+Route::get('/esign-plan2', [AccountController::class, 'dummy_esign2']);
 
 
 Route::get('/clear-cache', function () {
@@ -238,8 +242,8 @@ Route::get('/redirect-login', function () {
 //     $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
 // });
 
-Route::get('/template-design', [IndexController::class, 'pdf'])->name('pdf');
+// Route::get('/template-design', [IndexController::class, 'pdf'])->name('pdf');
 
-Route::get('/testing-codeing', [SmsController::class, 'wati_payment_success'])->name('testing');
+Route::get('/testing-codeing', [SmsController::class, 'incomplete_registration_msg'])->name('testing');
 
 Route::get('/custom-ksf-p', [IndexController::class, 'ip_get_per']);

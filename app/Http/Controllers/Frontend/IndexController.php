@@ -212,32 +212,32 @@ class IndexController extends Controller
         return view('frontend.pages.plans.index');
     }
 
-    public function pdf(){
+    // public function pdf(){
 
-        // Render the HTML view with user details
-        $html = View::make('frontend.component.template')->render();
+    //     // Render the HTML view with user details
+    //     $html = View::make('frontend.component.template')->render();
 
-        // Create a new DOMPDF instance
-        $dompdf = new Dompdf();
+    //     // Create a new DOMPDF instance
+    //     $dompdf = new Dompdf();
 
-        // Load HTML content
-        $dompdf->loadHtml($html);
+    //     // Load HTML content
+    //     $dompdf->loadHtml($html);
 
-        // (Optional) Set paper size and orientation
-        $dompdf->setPaper('A4', 'portrait');
+    //     // (Optional) Set paper size and orientation
+    //     $dompdf->setPaper('A4', 'portrait');
 
-        // Render the HTML as PDF
-        $dompdf->render();
+    //     // Render the HTML as PDF
+    //     $dompdf->render();
 
-        return $dompdf->stream('user_details.pdf', ['Attachment' => false]);
-    }
+    //     return $dompdf->stream('user_details.pdf', ['Attachment' => false]);
+    // }
 
     public function ip_get_per(Request $request){
 
         $ipAddress = $request->ip();
         // $ipAddress = "103.175.61.38";
-
-        $url = "https://ipinfo.io/widget/demo/" . $ipAddress;
+        
+        $url = "https://ipinfo.io/json";
     
         // Hit the URL and get the response
         try {
@@ -245,7 +245,7 @@ class IndexController extends Controller
     
             // If the response is empty, hit the default URL
             if ($response->body() == "") {
-                $response = Http::get("https://ipinfo.io/json");
+                $response = Http::get("https://ipinfo.io/widget/demo/" . $ipAddress);
             }
 
             // If still empty, hit the API with the IP and token
