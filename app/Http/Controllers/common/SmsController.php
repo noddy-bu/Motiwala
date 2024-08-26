@@ -26,7 +26,7 @@ class SmsController extends Controller
     
     public function smsgatewayhub_registration_successful($phone) //customer card active
     {
-        $msg = rawurlencode("Congratulations! You have successfully registered. Your login credentials are: User ID: $phone. Password: $phone. Thank you for joining us. Motiwala Jewels");
+        $msg = rawurlencode("Congratulations! You have successfully registered. Your login credentials are: User ID: $phone. Password: $phone. Thank you for joining us. Motiwala Jewels Gold & Diamonds Pvt Ltd.");
         $phone = '91'.$phone;
         $this->sms_trigger_smsgatewayhub2($phone, $msg);
     } 

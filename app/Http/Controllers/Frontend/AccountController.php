@@ -759,7 +759,7 @@ class AccountController extends Controller
         $phone = Session::get('phone');
 
         //sms integration  
-        $sms = (new SmsController)->smsgatewayhub_reset_pwd_otp($phone, $otp);
+        $sms = (new SmsController)->smsgatewayhub_registration_otp($phone, $otp);
 
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "OTP has been Resend no this No : $phone ";
