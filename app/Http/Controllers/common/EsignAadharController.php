@@ -30,15 +30,15 @@ class EsignAadharController extends Controller
         if($plan_id == 1){
             $total_pages = 3;
         } elseif ($plan_id == 2) {
-            $total_pages = 4;
+            $total_pages = 5;
         } else {
             $total_pages = 3;
         }
           // Replace this with the actual number of pages
 
         // Coordinates where the signature should be placed on each page
-        $x = 450;
-        $y = 40;
+        $x = 400;
+        $y = 25;
         
         // Generate the positions array dynamically
         $positions = [];
