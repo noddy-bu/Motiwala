@@ -49,7 +49,7 @@
                         </div>
                     </div>
 
-                    @if(auth()->user()->role_id != 2)
+                    @if(auth()->user()->role_id != 3)
                         <div class="col-md-3">
                             @php 
                                 $admin = DB::table('users')->where('role_id', '!=', 2)->get(['first_name','id']); 
