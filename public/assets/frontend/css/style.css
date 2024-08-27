@@ -313,7 +313,7 @@ span.WebRupee {
 
 .benefits_bgimage img {
     width: 335px;
-    height: 653px;
+    height: 730px;
     object-fit: cover;
     right: -26px;
     top: 3px;
@@ -517,19 +517,19 @@ input[type=number]:focus {
 .step_box_icon:hover .step_box_img {
     top: 0;
     left: 0;
-    border: 2px solid #e3c2ab;
+    border: 1px solid #404040;
 }
 
 .step_box_img {
     width: 124px;
     height: 124px;
-    border: 2px solid #404040;
+    border: 1px solid #e3c2ab ;
     border-radius: 100px;
     line-height: 120px;
     text-align: center;
     position: relative;
-    top: -10px;
-    left: 10px;
+    top: 0px;
+    left: 0px;
     transition: 0.3s all;
 }
 
@@ -785,7 +785,7 @@ form.form-subscribe button {
 /*-- accordion section open--*/
 
 section.faq_section_main {
-    padding: 70px 0px 120px 0px;
+    padding: 10px 0px 20px 0px;
 }
 
 .faq_section_main .accordion-item {
@@ -893,7 +893,7 @@ section.faq_section_main {
     text-align: right;
     font-size: 28px;
     font-weight: 600;
-    padding-top: 20px;
+    padding-top: 0px;
 }
 
 /* plan page css open */
@@ -1038,7 +1038,7 @@ section.faq_section_main {
 .information_box .step_box_icon:hover .step_box_img {
     top: 0;
     left: 0;
-    border: 2px solid #e3c2ab;
+    border: 1px solid #404040;
 }
 
 .information_box .step_box_icon img {
@@ -1053,13 +1053,13 @@ section.faq_section_main {
 .information_box .step_box_img {
     width: 75px;
     height: 75px;
-    border: 1px solid #404040;
+    border: 1px solid #e3c2ab;
     border-radius: 100px;
     line-height: 55px;
     text-align: center;
     position: relative;
-    top: -7px;
-    left: 6px;
+    top: 0px;
+    left: 0px;
     transition: 0.3s all;
 }
 

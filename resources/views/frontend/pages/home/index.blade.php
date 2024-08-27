@@ -344,7 +344,7 @@
                             <div class="col-md-12">
                                 <h4 class="title_heading text-left black_color pb-lg-5 pb-md-4 pb-3 heading_font">{{ env('PLAN_2_NAME') }} Calculator</h4>
                             </div>
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-7 col-md-7">
                                 <form>
                                     <div class="row">
                                         <div class="col-md-12">
@@ -391,14 +391,14 @@
                                             <hr>
                                         </div>
                                         <div class="col-md-6">
-                                            <p class="pt-2">You can Get Gold worth: <br class="d-none d-md-block"> (in {{ env('PLAN_2') }} )</p>
-                                            <p><small>Note : The rate calculation is based on the gold price for 22 karat on the purchase date.</small></p>
+                                            <p class="pt-2">You can Get Gold worth: <br class="d-none d-md-block"> (in {{ env('PLAN_2') }} )</p>                                            
                                         </div>
                                         <div class="col-md-6">
                                             <div class="total_number_main">
                                                 <p id="amount_13x_plan2" class="amount_13x">100 gm</p>
                                             </div>
                                         </div>
+                                        <p><small>Note : The rate calculation is based on the gold price for 22 karat on the purchase date.</small></p>
                                     </div>
                                 </form>
                             </div>
@@ -436,7 +436,7 @@
             <!--why choose us section start-->
             <section class="why_choose_section">
                 <div class="container">
-                    <h4 class="title_heading text-center black_color pb-md-4 pb-2  heading_font">Why Choose Us ?</h4>
+                    <h4 class="title_heading text-center black_color pb-md-4 pb-3  heading_font">Why Choose Us ?</h4>
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="d-flex gap-3">
