@@ -237,7 +237,7 @@ public function incomplete_registration_msg()
                 // echo $user->id;
                 // echo "<pre>";
 
-                if ($after2Hr == Carbon::parse($user->updated_at)->format('Y-m-d H')) {
+                if ($after2Hr == Carbon::parse($user->updated_at)->addHours(2)->format('Y-m-d H')) {
                     echo "2 hours after: " . $user->email . ' ' . $user->id;
                     echo "<pre>";
 
