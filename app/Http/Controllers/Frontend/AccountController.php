@@ -1593,7 +1593,7 @@ class AccountController extends Controller
 
         // $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
 
-        $phone_email = DB::table('users')->where('id', $request->user_id)->select('phone', 'email', 'fullname')->first();
+        $phone_email = DB::table('users')->where('id', $order->temp_user_id)->select('phone', 'email', 'fullname')->first();
 
 
         DB::table('users')->where('id', $order->temp_user_id)->update([
@@ -1816,7 +1816,7 @@ class AccountController extends Controller
 
                 // $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
 
-                $phone_email = DB::table('users')->where('id', $request->user_id)->select('phone', 'email', 'fullname')->first();
+                $phone_email = DB::table('users')->where('id', $order->temp_user_id)->select('phone', 'email', 'fullname')->first();
 
 
                 // DB::table('users')->where('id', $order->temp_user_id)->update([
@@ -1989,7 +1989,7 @@ class AccountController extends Controller
                     $installment .= 'th';
                 }
 
-                $phone_email = DB::table('users')->where('id', $request->user_id)->select('phone', 'email', 'fullname')->first();
+                $phone_email = DB::table('users')->where('id', $order->temp_user_id)->select('phone', 'email', 'fullname')->first();
 
                 $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone_email->phone, $installment, $amount);
 
