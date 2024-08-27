@@ -1708,7 +1708,7 @@ class AccountController extends Controller
 
         for ($i = 1; $i <= $auto_installments - 1; $i++) {
             $due_date_start = date('Y-m-d H:i:s', strtotime("+$i month"));
-            $due_date_end = date('Y-m-d H:i:s', strtotime("$due_date_start +3 days"));
+            $due_date_end = date('Y-m-d H:i:s', strtotime("$due_date_start +7 days"));
 
             // Determine status based on installment number
             $status = ($i == 1) ? 'pending' : 'unpaid';
