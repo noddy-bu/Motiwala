@@ -39,7 +39,7 @@
     }
 
     section.why_choose_section {
-        padding-top: 40px;
+        padding-top: 50px;
     }
 
     .after_login_body section.faq_section {
@@ -671,8 +671,16 @@
         width: 75px;
         height: 75px;
         position: relative;
-        top: -7px;
-        left: 7px;
+        top: 0px;
+        left: 0px;
+    }
+
+    .why_choose_section .col-lg-4 {
+        padding: 0px;
+    }
+
+    .faq_section_main .container {
+        padding: 0px;
     }
 
     .step_box_icon {
