@@ -38,7 +38,7 @@ class EsignAadharController extends Controller
 
         // Coordinates where the signature should be placed on each page
         $x = 400;
-        $y = 25;
+        $y = 20;
         
         // Generate the positions array dynamically
         $positions = [];
