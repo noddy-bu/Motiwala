@@ -582,7 +582,7 @@ class AccountController extends Controller
                 $userdetails = DB::table('userdetails')->where('id', Session::get('temp_user_id'))
                 ->value('esign');
 
-
+                var_dump($userdetails);
 
     
                 if(is_null($userdetails)){
