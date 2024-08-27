@@ -578,7 +578,19 @@ class AccountController extends Controller
             $rsp_msg = $this->esign_verify();
 
             if ($rsp_msg = "true") {
+
+                $userdetails = DB::table('userdetails')->where('id', Session::get('temp_user_id'))
+                ->value('esign');
+    
+                if(is_null($userdetails)){
+
+                    Session::put('step', 8);
+                    
+                    return redirect()->route('account.new.enrollment.page');;
+                }
+
                 Session::put('step', 12);
+
             } else {
                 Session::put('step', 8);
             }
@@ -1337,14 +1349,6 @@ class AccountController extends Controller
 
         if ($esign->success == true) {
             $download_pdf = (new EsignAadharController)->download_esign($client_id);
-
-            $userdetails = DB::table('userdetails')->where('id', Session::get('temp_user_id'))
-            ->value('esign');
-
-            if(is_null($userdetails)){
-                $result = "false";
-                return $result;
-            }
 
             DB::table('users')->where('id', Session::get('temp_user_id'))->update([
                 'step' => 8,
