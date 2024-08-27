@@ -46,6 +46,7 @@
 
          body {
             font-family: 'Quicksand', sans-serif;
+    padding-bottom: 80px;
         }
 
         .text_fonts div
@@ -313,7 +314,7 @@ governed by the provisions of the Arbitration and Conciliation Act, 1996.</li>
     </ul>
     </div>
 
-     <div class="text_fonts" style="width:100%; clear:both; margin-bottom:0px;padding-top:30px;">
+     <div class="text_fonts" style="width:100%; clear:both; margin-bottom:0px;padding-top:10px;">
     <div style="margin-bottom:0px">I have read, understood and agree to all the Terms & Conditions of the Golden Treasure Scheme and I agree  to abide by the same.</div>
 </div>
 
