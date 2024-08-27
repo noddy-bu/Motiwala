@@ -36,11 +36,15 @@ class TransactionController extends Controller
         );
     
         // Total records
-        $totalRecords = Transaction::count();
+        $totalRecords = Transaction::when(auth()->user()->role_id == 2, function ($query) {
+            return $query->where('user_behalf', auth()->user()->id);
+        })
+        ->count();
     
         // Filtered records
         $query = Transaction::select('*');
         $query->where('payment_status','paid');
+
         if (!empty($searchValue)) {
             $query->where(function($q) use ($searchValue) {
                 $q->where('payment_id', 'like', "%$searchValue%")
@@ -63,23 +67,38 @@ class TransactionController extends Controller
         if (!empty($pay_amount)) {
             $query->where('payment_amount', 'like', "%$pay_amount%");
         }
+
+        $location = $request->input('location');
+        if (!empty($location)) {
+            $query->where('location', 'like', "%$location%");
+        }
+
+        $user_behalf = $request->input('user_behalf');
+        if (!empty($user_behalf)) {
+            $query->where('user_behalf', $user_behalf);
+        }
     
         // $status = $request->input('status');
         // if ($status != '') {
         //     $query->where('status', $status);
         // }
+
+        if (in_array(auth()->user()->role_id, [2, 3])) {
+            $query->where('user_behalf', auth()->user()->id);
+        }
     
         // Get filtered count
         $totalFiltered = $query->count();
     
-        // Order
-        $query->orderBy($columns[$order], $dir);
+        // // Order
+        // $query->orderBy($columns[$order], $dir);
     
         // Get records with pagination
-        $records = $query->offset($start)
-                        ->limit($rowperpage)
-                        ->get();
-    
+        $records = $query->orderBy('created_at', 'DESC') // Order by id in descending order
+                    ->offset($start)
+                    ->limit($rowperpage)
+                    ->get();
+                
         // Prepare data
         $data = [];
         $i = 1;
@@ -92,13 +111,17 @@ class TransactionController extends Controller
 
             $installment_no = DB::table('redemption_items')->where('transaction_id',$row->id)->value('installment_no');
 
+            $user_behalf = DB::table('users')->where('id', $row->user_behalf)->where('role_id', '!=', 2)->value('first_name');
+  
 
             if ($row->payment_type == "payu") {
                 $type = 'PayU';
-            } elseif ($row->payment_type == "UPI") {
+            } elseif ($row->payment_type == "upipay") {
                 $type = 'UPI';
             } elseif ($row->payment_type == "cashpay") {
                 $type = 'Cash Pay';
+            } elseif ($row->payment_type == "checkpay") {
+                $type = 'Check Pay';
             }
 
             $nestedData = [
@@ -109,6 +132,8 @@ class TransactionController extends Controller
                 'amount' => $row->payment_amount,
                 'type' => $type,
                 'status' => $row->payment_status,
+                'location' => $row->location ?? '-',
+                'user_behalf' => $user_behalf ?? '-',
                 'created_at' => $row->created_at->format('Y-m-d H:i:s'),
             ];
     

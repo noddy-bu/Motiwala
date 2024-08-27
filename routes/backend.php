@@ -41,7 +41,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('backend.d
 
 
 //Customer
-Route::group(['prefix' => 'customer'], function () {
+Route::group(['prefix' => 'customer', 'middleware' => ['auth', 'role:1,2,3']], function () {
     Route::get('/index', [CustomerController::class, 'index'])->name('Customer.index');
 
     Route::get('Customer-data', [CustomerController::class, 'getData'])->name('Customer.data');
@@ -61,22 +61,22 @@ Route::group(['prefix' => 'customer'], function () {
     Route::get('/status/{id}/{status}', [CustomerController::class, 'status'])->name('Customer.status');
 });
 
-Route::group(['prefix' => 'transaction'], function () {
+Route::group(['prefix' => 'transaction', 'middleware' => ['auth', 'role:1,2,3']], function () {
     Route::get('/index', [TransactionController::class, 'index'])->name('transaction.index');
     Route::get('Customer-data', [TransactionController::class, 'getData'])->name('transaction.data');
 });
 
 
-//faq
-Route::group(['prefix' => 'faq'], function () {
-    Route::get('/index', [FaqController::class, 'index'])->name('faq.index');
-    Route::get('/add', [FaqController::class, 'add'])->name('faq.add');
-    Route::get('/edit/{id}', [FaqController::class, 'edit'])->name('faq.edit');
-    Route::post('/create', [FaqController::class, 'create'])->name('faq.create');
-    Route::post('/update', [FaqController::class, 'update'])->name('faq.update');
-    Route::post('/delete/{id}', [FaqController::class, 'delete'])->name('faq.delete');
-    Route::get('/status/{id}/{status}', [FaqController::class, 'status'])->name('faq.status');
-});
+// //faq
+// Route::group(['prefix' => 'faq'], function () {
+//     Route::get('/index', [FaqController::class, 'index'])->name('faq.index');
+//     Route::get('/add', [FaqController::class, 'add'])->name('faq.add');
+//     Route::get('/edit/{id}', [FaqController::class, 'edit'])->name('faq.edit');
+//     Route::post('/create', [FaqController::class, 'create'])->name('faq.create');
+//     Route::post('/update', [FaqController::class, 'update'])->name('faq.update');
+//     Route::post('/delete/{id}', [FaqController::class, 'delete'])->name('faq.delete');
+//     Route::get('/status/{id}/{status}', [FaqController::class, 'status'])->name('faq.status');
+// });
 
 //trumbowyg
 Route::group(['prefix' => 'trumbowyg'], function () {
@@ -86,14 +86,14 @@ Route::group(['prefix' => 'trumbowyg'], function () {
 
 
 //Contact
-Route::group(['prefix' => 'contact'], function () {
+Route::group(['prefix' => 'contact', 'middleware' => ['auth', 'role:1,2']], function () {
     Route::get('/index', [ContactController::class, 'index'])->name('contact.index');
     Route::get('/view/{id}', [ContactController::class, 'view'])->name('contact.view');
     Route::post('/delete/{id}', [ContactController::class, 'delete'])->name('contact.delete');
 });
 
 //setting
-Route::group(['prefix' => 'setting'], function () {
+Route::group(['prefix' => 'setting', 'middleware' => ['auth', 'role:1,2']], function () {
     // Route::get('/index', [BusinessSettingController::class, 'index'])->name('setting.index');
 
     Route::get('/set-receivable-gold-rate', [BusinessSettingController::class, 'set_receivable_gold_rate_page'])->name('setting.receivable_gold_page');
@@ -105,11 +105,11 @@ Route::group(['prefix' => 'setting'], function () {
     Route::post('/update', [BusinessSettingController::class, 'update'])->name('setting.update');
 });
 
-//Contact Page setting
-Route::group(['prefix' => 'contact/page'], function () {
-    Route::get('/index', [ContactSettingController::class, 'index'])->name('contactpage.index');
-    Route::post('/update', [ContactSettingController::class, 'update'])->name('contactpage.update');
-});
+// //Contact Page setting
+// Route::group(['prefix' => 'contact/page'], function () {
+//     Route::get('/index', [ContactSettingController::class, 'index'])->name('contactpage.index');
+//     Route::post('/update', [ContactSettingController::class, 'update'])->name('contactpage.update');
+// });
 
 //clear cache
 Route::get('/clear-cache', function () {
@@ -123,18 +123,18 @@ Route::get('/clear-cache', function () {
 
 
 //Author
-Route::group(['prefix' => 'author'], function () {
+Route::group(['prefix' => 'manage-staff', 'middleware' => ['auth', 'role:1,2']], function () {
     Route::get('/index', [AuthorController::class, 'index'])->name('author.index');
     Route::get('/add', [AuthorController::class, 'add'])->name('author.add');
     Route::get('/edit/{id}', [AuthorController::class, 'edit'])->name('author.edit');
     Route::post('/create', [AuthorController::class, 'create'])->name('author.create');
     Route::post('/update', [AuthorController::class, 'update'])->name('author.update');
     Route::post('/delete/{id}', [AuthorController::class, 'delete'])->name('author.delete');
-    //Route::get('/status/{id}/{status}', [AuthorController::class, 'status'])->name('author.status');
+    Route::get('/status/{id}/{status}', [AuthorController::class, 'status'])->name('author.status');
 });
 
 //User
-Route::group(['prefix' => 'profile'], function () {
+Route::group(['prefix' => 'profile', 'middleware' => ['auth', 'role:1,2,3']], function () {
     Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::get('/reset/{id}', [UserController::class, 'password'])->name('user.password');
     Route::post('/update', [UserController::class, 'update'])->name('user.update');

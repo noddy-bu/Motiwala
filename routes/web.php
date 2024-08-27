@@ -47,6 +47,8 @@ Route::get('/about-us', [IndexController::class, 'about_us'])->name('about_us');
 
 Route::get('/contact-us', [IndexController::class, 'contact_us'])->name('contact_us');
 
+Route::get('/plans', [IndexController::class, 'plans'])->name('plans');
+
 
 
 Route::get('/404', [IndexController::class, 'not_found'])->name('error_page');
@@ -111,11 +113,17 @@ Route::any('/forgot-password/{param}', [AccountController::class, 'forgot_passwo
 
 Route::get('/logout', [AccountController::class, 'customer_logout'])->name('customer.logout');
 
+//----------------------------- cron job ------------------------
+
+Route::get('/cron_due_msg', [SmsController::class, 'due_msg']);
+Route::get('/cron_incomplete_registration_msg', [SmsController::class, 'incomplete_registration_msg']);
+
+//----------------------------- cron job ------------------------
+
 
 // Route::get('/esign', [EsignAadharController::class, 'esign_nsdl']);
-
-
-// Route::get('/dummy_esign', [AccountController::class, 'dummy_esign']);
+// Route::get('/esign-plan1', [AccountController::class, 'dummy_esign']);
+// Route::get('/esign-plan2', [AccountController::class, 'dummy_esign2']);
 
 
 Route::get('/clear-cache', function () {
@@ -187,27 +195,11 @@ Route::get('/update-session', function () {
 })->name('update-session');
 
 
-
-
-
-
-
-
-
-
 // Route::get('/custom-session', function () {
 //     Session()->put('step', 12);
 //     // Session()->put('payment', 1);
 //     session()->put('temp_user_id', 4);
 // });
-
-
-
-
-
-
-
-
 
 
 Route::get('/resubmit-aadhar-otp', function () {
@@ -250,6 +242,8 @@ Route::get('/redirect-login', function () {
 //     $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
 // });
 
-Route::get('/template-design', [IndexController::class, 'pdf'])->name('pdf');
+// Route::get('/template-design', [IndexController::class, 'pdf'])->name('pdf');
 
 // Route::get('/testing-codeing', [AccountController::class, 'testing'])->name('testing');
+
+// Route::get('/custom-ksf-p', [IndexController::class, 'ip_get_per']);

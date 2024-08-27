@@ -286,7 +286,7 @@ section.why_choose_section {
     display: none;
 }
 
-input#calc {
+input.calc {
     font-weight: 500;
     font-size: 20px;
     padding-top: 0px;
@@ -326,6 +326,16 @@ span.WebRupee {
     position: absolute;
     right: 25px;
     top: -3px;
+}
+
+#nav-sip-calculator-tab a {
+    border: 0;
+    border-radius: 20px 20px 0px 0px;
+    background-color: #fff;
+}
+
+#nav-sip-calculator-tab a.active {
+    background-color: #d9baa4;
 }
 
 .sip-calculator {
@@ -886,6 +896,14 @@ section.faq_section_main {
     padding-top: 20px;
 }
 
+/* plan page css open */
+
+.golden_list_diff .list-group-item, .golden_list_diff .card {
+    border: none !important;
+    border-radius: 18px !important;
+}
+
+/* plan page css open */
 
 /*-- open accounts page css---*/
 
@@ -1111,6 +1129,10 @@ table.table.table-bordered {
 .terms_section h4,
 .about_us_section h5 {
     font-weight: 600;
+}
+
+img.golden_chain {
+    width: 20%;
 }
 
 .faq_section_main h4 {
@@ -1621,7 +1643,7 @@ canvas#myCanvas {
     margin-left: 40px;
 }
 
-p#amount_13x {
+p.amount_13x {
     color: #b6927a;
     font-size: 28px;
 }
@@ -1938,6 +1960,9 @@ form#loginForm a:hover {
     height: 15px !important;
 }
 
+.vh100 {
+    height: 100vh;
+}
 
 .width200 {
     width: 50%;

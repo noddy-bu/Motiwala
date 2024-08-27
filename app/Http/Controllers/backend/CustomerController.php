@@ -45,7 +45,7 @@ class CustomerController extends Controller
         // Filtered records
         $query = User::select('users.*','r.status as plan_Status')
             ->leftJoin(DB::raw('(SELECT * FROM redemptions WHERE id IN (SELECT MAX(id) FROM redemptions GROUP BY user_id)) as r'), 'r.user_id', '=', 'users.id')
-            ->where('users.role_id', '!=', 1);
+            ->whereNotIn('users.role_id', ['1', '2', '3']);
     
         // Filtered records
         $searchValue = $request->input('search.value');
@@ -367,6 +367,9 @@ class CustomerController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
         ];
 
+        $ip = ip_info();
+        $ip_data = json_decode($ip, true); 
+
         //update order
         $transactions_id = DB::table('transactions')->insertGetId([
             'user_id' => $request->user_id,
@@ -375,6 +378,9 @@ class CustomerController extends Controller
             'payment_response' => json_encode($data),
             'payment_type' => $request->payment_method,
             'payment_status' => 'paid',
+            'ip_data'        => $ip,
+            'location'       => $ip_data['city'] ?? '-',
+            'user_behalf'    => auth()->user()->id,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
@@ -515,15 +521,13 @@ class CustomerController extends Controller
             $installment .= 'th';
         }
 
-        $phone = DB::table('users')->where('id', $request->user_id)->value('phone');
-
-        $email = DB::table('users')->where('id', $request->user_id)->value('email');
-
+        $phone_email = DB::table('users')->where('id', $request->user_id)->select('phone', 'email', 'fullname')->first();
     
-        $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+        $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone_email->phone, $installment, $amount);
 
+        $email_templet = (new SmsController)->email_installment_payment_successful($phone_email->email, $installment, $amount);
 
-        $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
+        $wati_payment_success = (new SmsController)->wati_payment_success($phone_email->phone, $phone_email->fullname, $installment, $amount);
 
         $response = [
             'status' => true,

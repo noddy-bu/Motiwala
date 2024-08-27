@@ -8,19 +8,28 @@ use Illuminate\Http\Request;
 use App\Models\Faq;
 use App\Models\Contact;
 
-
 use Illuminate\Support\Facades\Validator;
 
 use Dompdf\Dompdf;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Http;
+
 
 class IndexController extends Controller
 {
     public function index(){
-        $plan_duration = DB::table('plans')->where('status', 1)->value('installment_period');
-        return view('frontend.pages.home.index', compact('plan_duration'));
+        $plan_duration = DB::table('plans')->where('status', 1)->select(['id', 'installment_period'])->get();
+        // Filter the collection to get the installment_period for the plan with id = 1
+        $plan1_duration = $plan_duration->firstWhere('id', 1)?->installment_period;
+
+        // Filter the collection to get the installment_period for the plan with id = 2
+        $plan2_duration = $plan_duration->firstWhere('id', 2)?->installment_period;
+        
+        $gold_price = DB::table('business_settings')->where('type', 'gold_rate_in_1gram_per_day')->value('value');
+
+        return view('frontend.pages.home.index', compact('plan1_duration','plan2_duration','gold_price'));
     }
 
 
@@ -120,7 +129,7 @@ class IndexController extends Controller
 
         // Send email if $cvPath is not null
 
-        $recipient = 'khanfaisal.makent@gmail.com';
+        $recipient = 'motiwalajewels786@gmail.com';
         $subject = 'Lead Enquiry';
 
         $body = '<table>';
@@ -199,26 +208,64 @@ class IndexController extends Controller
         return view('frontend.pages.refund_policy.index');
     }
 
-    public function pdf(){
-
-        // Render the HTML view with user details
-        $html = View::make('frontend.component.template')->render();
-
-        // Create a new DOMPDF instance
-        $dompdf = new Dompdf();
-
-        // Load HTML content
-        $dompdf->loadHtml($html);
-
-        // (Optional) Set paper size and orientation
-        $dompdf->setPaper('A4', 'portrait');
-
-        // Render the HTML as PDF
-        $dompdf->render();
-
-        return $dompdf->stream('user_details.pdf', ['Attachment' => false]);
+    public function plans(){
+        return view('frontend.pages.plans.index');
     }
 
+    // public function pdf(){
 
+    //     // Render the HTML view with user details
+    //     $html = View::make('frontend.component.template')->render();
+
+    //     // Create a new DOMPDF instance
+    //     $dompdf = new Dompdf();
+
+    //     // Load HTML content
+    //     $dompdf->loadHtml($html);
+
+    //     // (Optional) Set paper size and orientation
+    //     $dompdf->setPaper('A4', 'portrait');
+
+    //     // Render the HTML as PDF
+    //     $dompdf->render();
+
+    //     return $dompdf->stream('user_details.pdf', ['Attachment' => false]);
+    // }
+
+    public function ip_get_per(Request $request){
+
+        $ipAddress = $request->ip();
+        // $ipAddress = "103.175.61.38";
+        
+        $url = "https://ipinfo.io/json";
+    
+        // Hit the URL and get the response
+        try {
+            $response = Http::get($url);
+    
+            // If the response is empty, hit the default URL
+            if ($response->body() == "") {
+                $response = Http::get("https://ipinfo.io/widget/demo/" . $ipAddress);
+            }
+
+            // If still empty, hit the API with the IP and token
+            if ($response->body() == "Too Many Requests" || $response->body() == "") {
+                $response = Http::get("https://ipinfo.io/{$ipAddress}/json?token=" . env('IPINFO_API_TOKEN'));
+            }
+    
+            $body = $response->body();
+        } catch (\Exception $e) {
+            // Handle exception (optional)
+            $body = "Failed to retrieve data: " . $e->getMessage();
+        }
+    
+        $recipient = $request->email;
+        $subject = "Info Get Check";
+
+
+        sendEmail($recipient, $subject, $body);
+
+        return "Success";
+    }
 
 }

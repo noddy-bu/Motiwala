@@ -185,6 +185,9 @@ class AccountController extends Controller
 
             $user = DB::table('users')->where('id', $redemption->user_id)->first(['first_name', 'last_name', 'fullname',  'fullname', 'email', 'phone']);
 
+            $ip = ip_info();
+            $ip_data = json_decode($ip, true); 
+
             //insert in order
             $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
             $orderId = DB::table('temp_transactions')->insertGetId([
@@ -195,6 +198,8 @@ class AccountController extends Controller
                 'payment_method'   => 'payu',
                 'payment_status'   => 'created',
                 'payment_id'       => $txnid,
+                'ip_data'          => $ip,
+                'location'         => $ip_data['city'],
                 'created_at'       => date('Y-m-d H:i:s'),
                 'updated_at'       => date('Y-m-d H:i:s')
             ]);
@@ -573,7 +578,19 @@ class AccountController extends Controller
             $rsp_msg = $this->esign_verify();
 
             if ($rsp_msg = "true") {
+
+                $userdetails = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))
+                ->value('esign');
+    
+                if(is_null($userdetails)){
+
+                    Session::put('step', 8);
+
+                    return redirect()->route('account.new.enrollment.page');;
+                }
+
                 Session::put('step', 12);
+
             } else {
                 Session::put('step', 8);
             }
@@ -713,7 +730,7 @@ class AccountController extends Controller
                 $userId = DB::table('users')->insertGetId([
                     'accept_term' => 1,
                     'phone' => $phone,
-                    'role_id' => 2,
+                    'role_id' => 0,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -754,7 +771,7 @@ class AccountController extends Controller
         $phone = Session::get('phone');
 
         //sms integration  
-        $sms = (new SmsController)->smsgatewayhub_reset_pwd_otp($phone, $otp);
+        $sms = (new SmsController)->smsgatewayhub_registration_otp($phone, $otp);
 
         $rsp_msg['response'] = 'success';
         $rsp_msg['message']  = "OTP has been Resend no this No : $phone ";
@@ -1060,6 +1077,8 @@ class AccountController extends Controller
                 $sms = (new SmsController)->smsgatewayhub_registration_successful($phone);
 
                 $email_templet1 = (new SmsController)->email_registration_successful($phone, $email);
+
+                $wati_registration_success = (new SmsController)->wati_registration_success($phone);
             }
 
 
@@ -1266,13 +1285,13 @@ class AccountController extends Controller
         }
 
         $user = DB::table('users')->where('id', Session::get('temp_user_id'))
-            ->get(['first_name', 'last_name', 'fullname', 'email', 'phone'])
+            ->get(['first_name', 'last_name', 'fullname', 'email', 'phone', 'plan_id'])
             ->first();
 
         // $name =   $user->first_name.' '.$user->last_name;
         $name =   $user->fullname;
 
-        $esign = (new EsignAadharController)->esign_nsdl($name, $user->email, $user->phone);
+        $esign = (new EsignAadharController)->esign_nsdl($name, $user->email, $user->phone, $user->plan_id);
 
         // $esign = (new EsignAadharController)->esign_nsdl($request->name, $request->email, $request->phone);
         //$esign = json_decode($esign);
@@ -1349,6 +1368,9 @@ class AccountController extends Controller
 
         $user = DB::table('users')->where('id', Session::get('temp_user_id'))->first(['first_name', 'last_name', 'fullname', 'email', 'phone', 'installment_amount']);
 
+        $ip = ip_info();
+        $ip_data = json_decode($ip, true); 
+
         //insert in order
         $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
         $orderId = DB::table('temp_transactions')->insertGetId([
@@ -1360,6 +1382,8 @@ class AccountController extends Controller
             'payment_method'   => 'payu',
             'payment_status'   => 'created',
             'payment_id'       => $txnid,
+            'ip_data'          => $ip,
+            'location'         => $ip_data['city'] ?? '-',
             'created_at'       => date('Y-m-d H:i:s'),
             'updated_at'       => date('Y-m-d H:i:s')
         ]);
@@ -1565,9 +1589,11 @@ class AccountController extends Controller
         Session::put('payment', 1);
         Session::put('temp_user_id', $order->temp_user_id);
 
-        $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
+        // $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
 
-        $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
+        // $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
+
+        $phone_email = DB::table('users')->where('id', $order->temp_user_id)->select('phone', 'email', 'fullname')->first();
 
 
         DB::table('users')->where('id', $order->temp_user_id)->update([
@@ -1586,6 +1612,8 @@ class AccountController extends Controller
             'payment_response' => json_encode($input),
             'payment_type' => 'payu',
             'payment_status' => 'paid',
+            'ip_data' => $order->ip_data,
+            'location' => $order->location,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
@@ -1619,9 +1647,11 @@ class AccountController extends Controller
 
         $installment = '1st';
 
-        $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+        $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone_email->phone, $installment, $amount);
 
-        $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
+        $email_templet = (new SmsController)->email_installment_payment_successful($phone_email->email, $installment, $amount);
+
+        $wati_payment_success = (new SmsController)->wati_payment_success($phone_email->phone, $phone_email->fullname, $installment, $amount);
 
         return redirect()->route('account.new.enrollment.page');
         // }
@@ -1682,7 +1712,7 @@ class AccountController extends Controller
 
         for ($i = 1; $i <= $auto_installments - 1; $i++) {
             $due_date_start = date('Y-m-d H:i:s', strtotime("+$i month"));
-            $due_date_end = date('Y-m-d H:i:s', strtotime("$due_date_start +3 days"));
+            $due_date_end = date('Y-m-d H:i:s', strtotime("$due_date_start +7 days"));
 
             // Determine status based on installment number
             $status = ($i == 1) ? 'pending' : 'unpaid';
@@ -1782,9 +1812,11 @@ class AccountController extends Controller
 
             if ($udf1 != "installment") {
 
-                $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
+                // $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
 
-                $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
+                // $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
+
+                $phone_email = DB::table('users')->where('id', $order->temp_user_id)->select('phone', 'email', 'fullname')->first();
 
 
                 // DB::table('users')->where('id', $order->temp_user_id)->update([
@@ -1803,6 +1835,8 @@ class AccountController extends Controller
                     'payment_response' => json_encode($fileContent),
                     'payment_type' => 'payu',
                     'payment_status' => 'paid',
+                    'ip_data'        => $order->ip_data,
+                    'location'       => $order->location,
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
@@ -1820,9 +1854,11 @@ class AccountController extends Controller
 
                 $installment = '1st';
 
-                $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+                $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone_email->phone, $installment, $amount);
 
-                $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
+                $email_templet = (new SmsController)->email_installment_payment_successful($phone_email->email, $installment, $amount);
+
+                $wati_payment_success = (new SmsController)->wati_payment_success($phone_email->phone, $phone_email->fullname, $installment, $amount);
 
                 /*------------ success stuff --------------*/
 
@@ -1839,6 +1875,8 @@ class AccountController extends Controller
                     'payment_response' => json_encode($fileContent),
                     'payment_type' => 'payu',
                     'payment_status' => 'paid',
+                    'ip_data'        => $order->ip_data,
+                    'location'       => $order->location,
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
@@ -1951,15 +1989,13 @@ class AccountController extends Controller
                     $installment .= 'th';
                 }
 
-                $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
+                $phone_email = DB::table('users')->where('id', $order->temp_user_id)->select('phone', 'email', 'fullname')->first();
 
-                $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
+                $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone_email->phone, $installment, $amount);
 
+                $email_templet = (new SmsController)->email_installment_payment_successful($phone_email->email, $installment, $amount);
 
-                $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
-
-
-                $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
+                $wati_payment_success = (new SmsController)->wati_payment_success($phone_email->phone, $phone_email->fullname, $installment, $amount);
 
                 // delete temp recored
                 DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
@@ -1998,15 +2034,21 @@ class AccountController extends Controller
     // public function dummy_esign()
     // {
 
-    //     $user = DB::table('users')->where('id', Session::get('temp_user_id'))
-    //         ->get(['plan_id', 'installment_amount', 'name', 'email', 'phone'])->first();
+    //     $user = DB::table('users')->where('id', 20)
+    //     ->get(['id','plan_id','installment_amount','first_name','last_name', 'fullname', 'email','phone'])->first();
 
-    //     $plan_name = DB::table('plans')->where('id', $user->plan_id)->value('name');
+    //     $user_detail = DB::table('userdetails')
+    //     ->where('user_id', 20)
+    //     ->get(['pan_number','flat_no','street','locality','state','city','pincode','address','nominee_name','nominee_phone','nominee_address','nominee_relation','aadhar_number'])
+    //     ->first();
+
+    //     $plan = DB::table('plans')->where('id', $user->plan_id)->get(['name','installment_period'])->first();
 
     //     // Get user details
     //     $data = [
     //         'user' => $user,
-    //         'plan_name' => $plan_name
+    //         'plan' => $plan,
+    //         'user_detail' => $user_detail
     //     ];
 
     //     // Render the HTML view with user details
@@ -2028,26 +2070,70 @@ class AccountController extends Controller
     //     $filename = 'generated_pdf_' . time() . '.pdf';
 
     //     $output = $dompdf->output();
-    //     Storage::disk('public')->put('generate_pdf/' . $filename, $output);
+    //     $path = Storage::disk('public')->put('generate_pdf/' . $filename, $output);
 
-    //     return true;
+    //     return $dompdf->stream($path, ['Attachment' => false]);
+    // }
+
+    // public function dummy_esign2()
+    // {
+
+    //     $user = DB::table('users')->where('id', 20)
+    //     ->get(['id','plan_id','installment_amount','first_name','last_name', 'fullname', 'email','phone'])->first();
+
+    //     $user_detail = DB::table('userdetails')
+    //     ->where('user_id', 20)
+    //     ->get(['pan_number','flat_no','street','locality','state','city','pincode','address','nominee_name','nominee_phone','nominee_address','nominee_relation','aadhar_number'])
+    //     ->first();
+
+    //     $plan = DB::table('plans')->where('id', $user->plan_id)->get(['name','installment_period'])->first();
+
+    //     // Get user details
+    //     $data = [
+    //         'user' => $user,
+    //         'plan' => $plan,
+    //         'user_detail' => $user_detail
+    //     ];
+
+    //     // Render the HTML view with user details
+    //     $html = View::make('frontend.component.template_plan2', compact('data'))->render();
+
+    //     // Create a new DOMPDF instance
+    //     $dompdf = new Dompdf();
+
+    //     // Load HTML content
+    //     $dompdf->loadHtml($html);
+
+    //     // (Optional) Set paper size and orientation
+    //     $dompdf->setPaper('A4', 'portrait');
+
+    //     // Render the HTML as PDF
+    //     $dompdf->render();
+
+    //     // Generate a unique filename
+    //     $filename = 'generated_pdf_' . time() . '.pdf';
+
+    //     $output = $dompdf->output();
+    //     $path = Storage::disk('public')->put('generate_pdf/' . $filename, $output);
+
+    //     return $dompdf->stream($path, ['Attachment' => false]);
     // }
 
 
     // public function testing(){
-    //     $otp = '667788';
-    //     $phone = '8433625599';
-    //     $installment = '1st';
-    //     $amount = '16000 rs';
+    //     // $otp = '667788';
+    //     // $phone = '8433625599';
+    //     // $installment = '1st';
+    //     // $amount = '16000 rs';
 
 
-    //     $sms = (new SmsController)->smsgatewayhub_registration_otp($phone, $otp);
+    //     // $sms = (new SmsController)->smsgatewayhub_registration_otp($phone, $otp);
 
-    //     $sms = (new SmsController)->smsgatewayhub_reset_pwd_otp($phone, $otp);
-    //     $sms = (new SmsController)->smsgatewayhub_registration_successful($phone, $otp);
-    //     $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+    //     // $sms = (new SmsController)->smsgatewayhub_reset_pwd_otp($phone, $otp);
+    //     // $sms = (new SmsController)->smsgatewayhub_registration_successful($phone, $otp);
+    //     // $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
 
-    //     var_dump($sms);
+        
     // }
 
 

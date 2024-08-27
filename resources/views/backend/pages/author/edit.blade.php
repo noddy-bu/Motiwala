@@ -5,7 +5,7 @@
         <input type="hidden" name="id" value="{{ $author->id }}">
             <div class="form-group mb-3">
                 <label>Name <span class="red">*</span></label>
-                <input type="text" class="form-control" name="name" value="{{ $author->name }}" required>
+                <input type="text" class="form-control" name="fullname" value="{{ $author->fullname }}" required>
             </div>
         </div>        
         <div class="col-sm-12">
@@ -16,11 +16,26 @@
         </div>
         <div class="col-sm-12">
             <div class="form-group mb-3">
-                <label>Designation <span class="red">*</span></label>
-                <input type="text" class="form-control" name="designation" value="{{ $author->designation }}">
+                <label>Phone <span class="red">*</span></label>
+                <input type="text" class="form-control" name="phone" value="{{ $author->phone }}" required>
             </div>
         </div>
-        <input type="hidden" class="form-control" name="role_id" value="0">   
+        <div class="col-sm-12">
+            <div class="form-group mb-3">
+                <label>Password <span class="red">*</span></label>
+                <input type="password" class="form-control" name="password" value="">
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="form-group mb-3">
+                <label>Designation <span class="red">*</span></label>
+                <select class="form-select" name="role_id" required>
+                    <option value="">---Select---</option>
+                    <option value="2" @if($author->role_id == 2) selected @endif>Admin</option>
+                    <option value="3" @if($author->role_id == 3) selected @endif>Staff</option>
+                </select>
+            </div>
+        </div>
         <div class="col-sm-12">
             <div class="form-group mb-3 text-end">
                 <button type="submit" class="btn btn-block btn-primary">Update</button>

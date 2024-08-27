@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\Validator;
 class AuthorController extends Controller
 {
     public function index() {
-        $author = User::orderBy('id', 'desc')->get();
+        $author = User::whereNotIn('role_id', ['0'])
+        ->join('roles', 'users.role_id', '=', 'roles.id')
+        ->orderBy('users.id', 'desc')
+        ->get(['users.id', 'users.fullname', 'users.email', 'users.phone', 'users.status', 'users.created_at', 'roles.name as role_name']);
         return view('backend.pages.author.index', compact('author'));
     }
 
@@ -22,7 +25,9 @@ class AuthorController extends Controller
 
         // Validate form data
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:blog_categories',
+            'name' => 'required',
+            'email' => 'required|unique:users,email',
+            'phone' => 'required|unique:users,phone',
         ]);
 
         if ($validator->fails()) {
@@ -33,16 +38,16 @@ class AuthorController extends Controller
         } 
 
         $author = User::create([
-            'name' => $request->input('name'),
+            'fullname' => $request->input('name'),
             'email' => $request->input('email'),
-            'designation' => $request->input('designation'),
-            'password' => bcrypt('Seedling@2051'),
+            'phone' =>  $request->input('phone'),
+            'password' => bcrypt($request->input('password')),
             'role_id' => $request->input('role_id'),
         ]);
 
         $response = [
             'status' => true,
-            'notification' => 'Author added successfully!',
+            'notification' => 'User added successfully!',
         ];
         
         return response()->json($response);
@@ -85,7 +90,9 @@ class AuthorController extends Controller
 
         // Validate form data
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:blog_categories,slug,'. $request->input('id'),
+            'fullname' => 'required',
+            'email' => 'required|unique:Users,email,'. $request->input('id'),
+            'phone' => 'required|unique:users,phone,'. $request->input('id'),
         ]);
 
         if ($validator->fails()) {
@@ -97,11 +104,21 @@ class AuthorController extends Controller
 
         $id = $request->input('id');
         $author = User::find($id);
-        $author->update($request->all());
+
+        $author->fullname = $request->input('fullname');
+        $author->email = $request->input('email');
+        $author->phone = $request->input('phone');
+        $author->role_id = $request->input('role_id');
+
+        if($request->has('password') && !empty($request->input('password')) && $request->input('password') != ""){
+            $author->password = bcrypt($request->input('password'));
+        }
+    
+        $author->save();
 
         $response = [
             'status' => true,
-            'notification' => 'Author Update successfully!',
+            'notification' => 'User Update successfully!',
         ];
 
         return response()->json($response);

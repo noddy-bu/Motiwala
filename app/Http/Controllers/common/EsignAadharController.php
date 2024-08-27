@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 class EsignAadharController extends Controller
 {
 
-    function esign_nsdl($name, $email, $phone){
+    function esign_nsdl($name, $email, $phone, $plan_id){
 
         $local_url = url('');
 
@@ -26,6 +26,27 @@ class EsignAadharController extends Controller
             $redirect_url = url(route('account.create', ['param' =>'esign-verify']));
         }
         
+
+        if($plan_id == 1){
+            $total_pages = 3;
+        } elseif ($plan_id == 2) {
+            $total_pages = 5;
+        } else {
+            $total_pages = 3;
+        }
+          // Replace this with the actual number of pages
+
+        // Coordinates where the signature should be placed on each page
+        $x = 400;
+        $y = 20;
+        
+        // Generate the positions array dynamically
+        $positions = [];
+        for ($i = 1; $i <= $total_pages; $i++) {
+            $positions[$i] = [["x" => $x, "y" => $y]];
+        }
+
+        $positions = json_encode($positions);
 
         // var_dump($redirect_url);
 
@@ -55,15 +76,7 @@ class EsignAadharController extends Controller
                     "track_location": true,
                     "auth_mode": "1",
                     "reason": "Contract",
-                    "positions": {
-                        "1": [
-                            {
-                                "x": 450,
-                                "y": 40
-                            }
-                        ]
-                        
-                    }
+                    "positions": '.$positions.'
                 },
                 "prefill_options": {
                     "full_name": "'.$name.'",
@@ -209,8 +222,12 @@ class EsignAadharController extends Controller
         ];
 
         // Render the HTML view with user details
-        $html = View::make('frontend.component.template', compact('data'))->render();
-
+        if($user->plan_id == 2){
+            $html = View::make('frontend.component.template_plan2', compact('data'))->render();
+        } else {
+            $html = View::make('frontend.component.template', compact('data'))->render();
+        }
+        
         // Create a new DOMPDF instance
         $dompdf = new Dompdf();
 
