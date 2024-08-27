@@ -116,7 +116,7 @@ class TransactionController extends Controller
 
             if ($row->payment_type == "payu") {
                 $type = 'PayU';
-            } elseif ($row->payment_type == "UPI") {
+            } elseif ($row->payment_type == "upipay") {
                 $type = 'UPI';
             } elseif ($row->payment_type == "cashpay") {
                 $type = 'Cash Pay';
