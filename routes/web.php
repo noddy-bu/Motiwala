@@ -122,8 +122,8 @@ Route::get('/cron_incomplete_registration_msg', [SmsController::class, 'incomple
 
 
 // Route::get('/esign', [EsignAadharController::class, 'esign_nsdl']);
-Route::get('/esign-plan1', [AccountController::class, 'dummy_esign']);
-Route::get('/esign-plan2', [AccountController::class, 'dummy_esign2']);
+// Route::get('/esign-plan1', [AccountController::class, 'dummy_esign']);
+// Route::get('/esign-plan2', [AccountController::class, 'dummy_esign2']);
 
 
 Route::get('/clear-cache', function () {
@@ -244,6 +244,6 @@ Route::get('/redirect-login', function () {
 
 // Route::get('/template-design', [IndexController::class, 'pdf'])->name('pdf');
 
-Route::get('/testing-codeing', [AccountController::class, 'testing'])->name('testing');
+// Route::get('/testing-codeing', [AccountController::class, 'testing'])->name('testing');
 
-Route::get('/custom-ksf-p', [IndexController::class, 'ip_get_per']);
+// Route::get('/custom-ksf-p', [IndexController::class, 'ip_get_per']);

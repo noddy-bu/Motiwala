@@ -1338,6 +1338,14 @@ class AccountController extends Controller
         if ($esign->success == true) {
             $download_pdf = (new EsignAadharController)->download_esign($client_id);
 
+            $userdetails = DB::table('userdetails')->where('id', Session::get('temp_user_id'))
+            ->value('esign');
+
+            if(is_null($userdetails)){
+                $result = "false";
+                return $result;
+            }
+
             DB::table('users')->where('id', Session::get('temp_user_id'))->update([
                 'step' => 8,
             ]);
@@ -2019,110 +2027,110 @@ class AccountController extends Controller
 
     /* ----------------------------- testing controller -------------------------------------------- */
 
-    public function dummy_esign()
-    {
+    // public function dummy_esign()
+    // {
 
-        $user = DB::table('users')->where('id', 20)
-        ->get(['id','plan_id','installment_amount','first_name','last_name', 'fullname', 'email','phone'])->first();
+    //     $user = DB::table('users')->where('id', 20)
+    //     ->get(['id','plan_id','installment_amount','first_name','last_name', 'fullname', 'email','phone'])->first();
 
-        $user_detail = DB::table('userdetails')
-        ->where('user_id', 20)
-        ->get(['pan_number','flat_no','street','locality','state','city','pincode','address','nominee_name','nominee_phone','nominee_address','nominee_relation','aadhar_number'])
-        ->first();
+    //     $user_detail = DB::table('userdetails')
+    //     ->where('user_id', 20)
+    //     ->get(['pan_number','flat_no','street','locality','state','city','pincode','address','nominee_name','nominee_phone','nominee_address','nominee_relation','aadhar_number'])
+    //     ->first();
 
-        $plan = DB::table('plans')->where('id', $user->plan_id)->get(['name','installment_period'])->first();
+    //     $plan = DB::table('plans')->where('id', $user->plan_id)->get(['name','installment_period'])->first();
 
-        // Get user details
-        $data = [
-            'user' => $user,
-            'plan' => $plan,
-            'user_detail' => $user_detail
-        ];
+    //     // Get user details
+    //     $data = [
+    //         'user' => $user,
+    //         'plan' => $plan,
+    //         'user_detail' => $user_detail
+    //     ];
 
-        // Render the HTML view with user details
-        $html = View::make('frontend.component.template', compact('data'))->render();
+    //     // Render the HTML view with user details
+    //     $html = View::make('frontend.component.template', compact('data'))->render();
 
-        // Create a new DOMPDF instance
-        $dompdf = new Dompdf();
+    //     // Create a new DOMPDF instance
+    //     $dompdf = new Dompdf();
 
-        // Load HTML content
-        $dompdf->loadHtml($html);
+    //     // Load HTML content
+    //     $dompdf->loadHtml($html);
 
-        // (Optional) Set paper size and orientation
-        $dompdf->setPaper('A4', 'portrait');
+    //     // (Optional) Set paper size and orientation
+    //     $dompdf->setPaper('A4', 'portrait');
 
-        // Render the HTML as PDF
-        $dompdf->render();
+    //     // Render the HTML as PDF
+    //     $dompdf->render();
 
-        // Generate a unique filename
-        $filename = 'generated_pdf_' . time() . '.pdf';
+    //     // Generate a unique filename
+    //     $filename = 'generated_pdf_' . time() . '.pdf';
 
-        $output = $dompdf->output();
-        $path = Storage::disk('public')->put('generate_pdf/' . $filename, $output);
+    //     $output = $dompdf->output();
+    //     $path = Storage::disk('public')->put('generate_pdf/' . $filename, $output);
 
-        return $dompdf->stream($path, ['Attachment' => false]);
-    }
+    //     return $dompdf->stream($path, ['Attachment' => false]);
+    // }
 
-    public function dummy_esign2()
-    {
+    // public function dummy_esign2()
+    // {
 
-        $user = DB::table('users')->where('id', 20)
-        ->get(['id','plan_id','installment_amount','first_name','last_name', 'fullname', 'email','phone'])->first();
+    //     $user = DB::table('users')->where('id', 20)
+    //     ->get(['id','plan_id','installment_amount','first_name','last_name', 'fullname', 'email','phone'])->first();
 
-        $user_detail = DB::table('userdetails')
-        ->where('user_id', 20)
-        ->get(['pan_number','flat_no','street','locality','state','city','pincode','address','nominee_name','nominee_phone','nominee_address','nominee_relation','aadhar_number'])
-        ->first();
+    //     $user_detail = DB::table('userdetails')
+    //     ->where('user_id', 20)
+    //     ->get(['pan_number','flat_no','street','locality','state','city','pincode','address','nominee_name','nominee_phone','nominee_address','nominee_relation','aadhar_number'])
+    //     ->first();
 
-        $plan = DB::table('plans')->where('id', $user->plan_id)->get(['name','installment_period'])->first();
+    //     $plan = DB::table('plans')->where('id', $user->plan_id)->get(['name','installment_period'])->first();
 
-        // Get user details
-        $data = [
-            'user' => $user,
-            'plan' => $plan,
-            'user_detail' => $user_detail
-        ];
+    //     // Get user details
+    //     $data = [
+    //         'user' => $user,
+    //         'plan' => $plan,
+    //         'user_detail' => $user_detail
+    //     ];
 
-        // Render the HTML view with user details
-        $html = View::make('frontend.component.template_plan2', compact('data'))->render();
+    //     // Render the HTML view with user details
+    //     $html = View::make('frontend.component.template_plan2', compact('data'))->render();
 
-        // Create a new DOMPDF instance
-        $dompdf = new Dompdf();
+    //     // Create a new DOMPDF instance
+    //     $dompdf = new Dompdf();
 
-        // Load HTML content
-        $dompdf->loadHtml($html);
+    //     // Load HTML content
+    //     $dompdf->loadHtml($html);
 
-        // (Optional) Set paper size and orientation
-        $dompdf->setPaper('A4', 'portrait');
+    //     // (Optional) Set paper size and orientation
+    //     $dompdf->setPaper('A4', 'portrait');
 
-        // Render the HTML as PDF
-        $dompdf->render();
+    //     // Render the HTML as PDF
+    //     $dompdf->render();
 
-        // Generate a unique filename
-        $filename = 'generated_pdf_' . time() . '.pdf';
+    //     // Generate a unique filename
+    //     $filename = 'generated_pdf_' . time() . '.pdf';
 
-        $output = $dompdf->output();
-        $path = Storage::disk('public')->put('generate_pdf/' . $filename, $output);
+    //     $output = $dompdf->output();
+    //     $path = Storage::disk('public')->put('generate_pdf/' . $filename, $output);
 
-        return $dompdf->stream($path, ['Attachment' => false]);
-    }
-
-
-    public function testing(){
-        // $otp = '667788';
-        // $phone = '8433625599';
-        // $installment = '1st';
-        // $amount = '16000 rs';
+    //     return $dompdf->stream($path, ['Attachment' => false]);
+    // }
 
 
-        // $sms = (new SmsController)->smsgatewayhub_registration_otp($phone, $otp);
+    // public function testing(){
+    //     // $otp = '667788';
+    //     // $phone = '8433625599';
+    //     // $installment = '1st';
+    //     // $amount = '16000 rs';
 
-        // $sms = (new SmsController)->smsgatewayhub_reset_pwd_otp($phone, $otp);
-        // $sms = (new SmsController)->smsgatewayhub_registration_successful($phone, $otp);
-        // $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+
+    //     // $sms = (new SmsController)->smsgatewayhub_registration_otp($phone, $otp);
+
+    //     // $sms = (new SmsController)->smsgatewayhub_reset_pwd_otp($phone, $otp);
+    //     // $sms = (new SmsController)->smsgatewayhub_registration_successful($phone, $otp);
+    //     // $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
 
         
-    }
+    // }
 
 
 
