@@ -1273,13 +1273,13 @@ class AccountController extends Controller
         }
 
         $user = DB::table('users')->where('id', Session::get('temp_user_id'))
-            ->get(['first_name', 'last_name', 'fullname', 'email', 'phone'])
+            ->get(['first_name', 'last_name', 'fullname', 'email', 'phone', 'plan_id'])
             ->first();
 
         // $name =   $user->first_name.' '.$user->last_name;
         $name =   $user->fullname;
 
-        $esign = (new EsignAadharController)->esign_nsdl($name, $user->email, $user->phone);
+        $esign = (new EsignAadharController)->esign_nsdl($name, $user->email, $user->phone, $user->plan_id);
 
         // $esign = (new EsignAadharController)->esign_nsdl($request->name, $request->email, $request->phone);
         //$esign = json_decode($esign);
@@ -2108,21 +2108,21 @@ class AccountController extends Controller
     }
 
 
-    // public function testing(){
-    //     $otp = '667788';
-    //     $phone = '8433625599';
-    //     $installment = '1st';
-    //     $amount = '16000 rs';
+    public function testing(){
+        // $otp = '667788';
+        // $phone = '8433625599';
+        // $installment = '1st';
+        // $amount = '16000 rs';
 
 
-    //     $sms = (new SmsController)->smsgatewayhub_registration_otp($phone, $otp);
+        // $sms = (new SmsController)->smsgatewayhub_registration_otp($phone, $otp);
 
-    //     $sms = (new SmsController)->smsgatewayhub_reset_pwd_otp($phone, $otp);
-    //     $sms = (new SmsController)->smsgatewayhub_registration_successful($phone, $otp);
-    //     $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
+        // $sms = (new SmsController)->smsgatewayhub_reset_pwd_otp($phone, $otp);
+        // $sms = (new SmsController)->smsgatewayhub_registration_successful($phone, $otp);
+        // $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
 
-    //     var_dump($sms);
-    // }
+        
+    }
 
 
 
