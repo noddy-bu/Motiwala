@@ -581,11 +581,17 @@ class AccountController extends Controller
 
                 $userdetails = DB::table('userdetails')->where('id', Session::get('temp_user_id'))
                 ->value('esign');
+
+
+
     
                 if(is_null($userdetails)){
 
+                    echo true;
+                    exit();
+
                     Session::put('step', 8);
-                    
+
                     return redirect()->route('account.new.enrollment.page');;
                 }
 
