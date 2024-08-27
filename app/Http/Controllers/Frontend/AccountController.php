@@ -579,16 +579,10 @@ class AccountController extends Controller
 
             if ($rsp_msg = "true") {
 
-                $userdetails = DB::table('userdetails')->where('id', Session::get('temp_user_id'))
+                $userdetails = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))
                 ->value('esign');
-
-                var_dump($userdetails);
-
     
                 if(is_null($userdetails)){
-
-                    echo true;
-                    exit();
 
                     Session::put('step', 8);
 
