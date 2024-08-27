@@ -11,7 +11,7 @@ use App\Models\Contact;
 class DashboardController extends Controller
 {
     public function index(){
-        $user_reg_Count = User::where('status', 1)->count();
+        $user_reg_Count = User::where('status', 1)->where('role_id', 0)->count();
         $user_not_reg_Count = User::where('status', 0)->count(); 
 
         $transactions = Transaction::where('payment_status', 'paid')
