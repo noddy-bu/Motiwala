@@ -113,7 +113,7 @@ class SmsController extends Controller
             ],
             [
                 'name' => 'attribute_1',
-                'value' => $amount
+                'value' => $amount . ' Rs'
             ],
             [
                 'name' => 'attribute_2',
@@ -139,7 +139,7 @@ class SmsController extends Controller
             ],
             [
                 'name' => 'attribute_1',
-                'value' => $amount
+                'value' => $amount . ' Rs'
             ],
             [
                 'name' => 'attribute_2',
@@ -165,7 +165,7 @@ class SmsController extends Controller
             ],
             [
                 'name' => 'attribute_2',
-                'value' => $amount
+                'value' => $amount . ' Rs'
             ]
         ];
 

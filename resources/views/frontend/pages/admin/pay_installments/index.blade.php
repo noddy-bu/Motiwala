@@ -206,7 +206,7 @@
                                                             PayU
                                                         @elseif ($transaction_payment_type == "cashpay")
                                                             Cash Pay
-                                                        @elseif ($transaction_payment_type == "UPI")
+                                                        @elseif ($transaction_payment_type == "upipay")
                                                             UPI
                                                         @elseif ($transaction_payment_type == "checkpay")
                                                             Check Pay
