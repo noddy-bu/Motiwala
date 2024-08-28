@@ -95,30 +95,30 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="/assets/frontend/images/desktop_banner_one.webp" class="d-md-block d-none w-100"
+                    <img src="/assets/frontend/images/1.jpg" class="d-md-block d-none w-100"
                         alt="...">
-                    <img src="/assets/frontend/images/mobile_banner_one.webp" class="d-md-none d-block w-100"
+                    <img src="/assets/frontend/images/5.jpg" class="d-md-none d-block w-100"
                         alt="...">
                 </div>
 
                 <div class="carousel-item ">
-                    <img src="/assets/frontend/images/desktop_banner_two.webp" class="d-md-block d-none w-100"
+                    <img src="/assets/frontend/images/2.jpg" class="d-md-block d-none w-100"
                         alt="...">
-                    <img src="/assets/frontend/images/mobile_banner_two.webp" class="d-md-none d-block w-100"
-                        alt="...">
-                </div>
-
-                <div class="carousel-item">
-                    <img src="/assets/frontend/images/desktop_banner_three.webp" class="d-md-block d-none w-100"
-                        alt="...">
-                    <img src="/assets/frontend/images/mobile_banner_three.webp" class="d-md-none d-block w-100"
+                    <img src="/assets/frontend/images/6.jpg" class="d-md-none d-block w-100"
                         alt="...">
                 </div>
 
                 <div class="carousel-item">
-                    <img src="/assets/frontend/images/desktop_banner_four.webp" class="d-md-block d-none w-100"
+                    <img src="/assets/frontend/images/3.jpg" class="d-md-block d-none w-100"
                         alt="...">
-                    <img src="/assets/frontend/images/mobile_banner_four.webp" class="d-md-none d-block w-100"
+                    <img src="/assets/frontend/images/7.jpg" class="d-md-none d-block w-100"
+                        alt="...">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="/assets/frontend/images/4.jpg" class="d-md-block d-none w-100"
+                        alt="...">
+                    <img src="/assets/frontend/images/8.jpg" class="d-md-none d-block w-100"
                         alt="...">
                 </div>
 
