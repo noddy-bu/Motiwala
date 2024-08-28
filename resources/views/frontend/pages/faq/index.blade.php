@@ -17,7 +17,7 @@
 </section>
 
 
-<main class="main">
+<main class="main" id="faq_page">
 
 
 

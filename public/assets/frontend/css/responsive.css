@@ -168,6 +168,10 @@
         font-weight: 500;
     }
 
+    section.faq_section_main {
+        padding: 10px 0px 20px 0px;
+    }
+
     body .nav_right_menu {
         margin-right: 0px !important;
     }
@@ -216,6 +220,10 @@
         right: 25px;
         font-size: 36px;
         margin-left: 50px;
+    }
+
+    .nav_right_menu {
+        background: transparent;
     }
 
     .userlogin_box span b{
@@ -499,7 +507,7 @@
     }
 
     .title_heading {
-        font-size: 22px !important;
+        font-size: 26px !important;
         font-weight: 500;
         z-index: 1;
         position: relative;
@@ -521,6 +529,14 @@
         padding: 0px !important;
     }
 
+    .nav_right_menu {
+        background: transparent;
+    }
+
+    section.faq_section_main {
+        padding: 10px 0px 20px 0px;
+    }
+
     .total_number_main {
         padding-top: 0px;
         text-align: center;
@@ -530,7 +546,6 @@
         padding: 0px !important;
     }
 
-    
     .carousel-indicators {
         display: none !important;
     }
@@ -679,8 +694,24 @@
         padding: 0px;
     }
 
-    .faq_section_main .container {
+    #nav-sip-calculator-tab a { 
+        padding: 8px 10px;
+    }
+
+    nav#nav-sip-calculator-tab {
+        justify-content: center;
+    }
+
+    #home_page .faq_section_main>div {
         padding: 0px;
+    }
+
+    .faq_section_main .accordion-button.collapsed { 
+        padding: 20px 15px;
+    }
+
+    #faq_page section.faq_section_main {
+        padding: 20px 0px 20px 0px;
     }
 
     .step_box_icon {
@@ -712,7 +743,7 @@
     }  
 
     .step_bottom_text {
-        padding-top: 10px;
+        padding-top: 30px;
         text-align: center;
     }
 
@@ -721,7 +752,11 @@
     }
 
     .sip-calculator {
-        padding: 2em 1em 2em 1em;;
+        padding: 2em 1em 1em 1em;;
+    }
+
+    .amount_check button, .amount_monthly2 {
+        border: 1px solid #404040 !important;
     }
 
     .sip-calculator-amount, .sip-calculator-year, .sip-calculator-roi {
@@ -749,7 +784,7 @@
     }
 
     .amount_monthly1 {
-        border: 2px solid #404040;
+        border: 1px solid #404040;
         padding: 4px 15px 4px 15px;
         float: left;
         width: 70%;
@@ -969,6 +1004,11 @@
 
     input::placeholder {
         font-size: 14px !important;
+    }
+
+    
+    .about_us_section h4:nth-child(2) {
+        font-size: 20px;
     }
 
     /* information page */

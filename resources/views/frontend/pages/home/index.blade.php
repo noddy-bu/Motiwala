@@ -141,7 +141,7 @@
 
 
     <!--banner close -->
-    <main class="main">
+    <main class="main" id="home_page">
         <!--benefits calculator open-->
 
         <section class="top_step_content">
@@ -407,7 +407,7 @@
                             </div>            -->
 
                             <div class="col-md-12 text-md-start text-center widths80">
-                                <div class="buttonclass mt-4">
+                                <div class="buttonclass mt-md-4 mb-md-0 mb-3">
                                     <a href="{{ url(route('account.new.enrollment.page')) }}">Open a New Account <i
                                             class="las la-arrow-right"></i>
                                     </a>
@@ -424,7 +424,7 @@
                         “Delivering top-notch quality jewellery with the latest designs at prices <span>you can afford,
                             we bring over a century of industry</span> <span>expertise right to you.”</span>
                     </p>
-                    <div class="buttonclass mt-4">
+                    <div class="buttonclass mt-md-4">
                         <a href="{{ url(route('instantpay')) }}">Explore <i class="las la-arrow-right"></i>
                         </a>
                     </div>

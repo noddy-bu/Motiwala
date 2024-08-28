@@ -22,11 +22,11 @@ $plan_Details = DB::table('plans')
 
 
 <main class="main">
-	<section class="pt-md-5 pt-4 information_section">
+	<section class="py-md-5 py-4 information_section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h4 class="title_heading text-left black_color py-2 pb-0 heading_font">Information</h4>
+					<h4 class="title_heading text-left black_color pb-0 heading_font">Information</h4>
 				</div>
 
 				<div class="col-md-12">					
@@ -40,12 +40,12 @@ $plan_Details = DB::table('plans')
 				</div>
 
         <div class="col-md-12">
-					<h5 class="black_color py-lg-4 py-3 pt-1"><b>Golden Treasure  - </b></h5>
+					<h5 class="black_color py-lg-3 py-3 pt-1"><b>Golden Treasure  - </b></h5>
 				</div>
 				
 				
         <div class="col-md-3">
-          <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-1 information_box">
+          <div class="d-flex gap-lg-3 gap-2 pb-md-2 pb-1 information_box">
             <div class="step_box_icon">
               <div class="step_box_img">
                 <img src="/assets/frontend/images/user_icon.png" class="d-block" alt="...">
@@ -62,7 +62,7 @@ $plan_Details = DB::table('plans')
         </div>
 		
 		    <div class="col-md-3">
-          <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-1 information_box">
+          <div class="d-flex gap-lg-3 gap-2 pb-md-2 pb-1 information_box">
             <div class="step_box_icon">
               <div class="step_box_img">
                 <img src="/assets/frontend/images/information_card.svg" class="d-block" alt="...">
@@ -79,7 +79,7 @@ $plan_Details = DB::table('plans')
         </div>
 		
 		    <div class="col-md-3">
-          <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-1 information_box">
+          <div class="d-flex gap-lg-3 gap-2 pb-md-2 pb-1 information_box">
             <div class="step_box_icon">
               <div class="step_box_img">
                 <img src="/assets/frontend/images/information_calender.svg" class="d-block" alt="...">
@@ -96,7 +96,7 @@ $plan_Details = DB::table('plans')
         </div>
 		
 		    <div class="col-md-3">
-          <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-1 information_box">
+          <div class="d-flex gap-lg-3 gap-2 pb-md-2 pb-1 information_box">
             <div class="step_box_icon">
               <div class="step_box_img">
                 <img src="/assets/frontend/images/percent_icon.png" class="d-block" alt="...">
@@ -158,12 +158,12 @@ $plan_Details = DB::table('plans')
 
 
         <div class="col-md-12">
-					<h5 class="black_color py-lg-4 py-3 pt-lg-5 pt-1"><b>Golden Fortune  - </b></h5>
+					<h5 class="black_color py-lg-3 py-3 pt-lg-5 pt-1"><b>Golden Fortune  - </b></h5>
 				</div>
 				
 				
         <div class="col-md-3">
-          <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-1 information_box">
+          <div class="d-flex gap-lg-3 gap-2 pb-md-2 pb-1 information_box">
             <div class="step_box_icon">
               <div class="step_box_img">
                 <img src="/assets/frontend/images/user_icon.png" class="d-block" alt="...">
@@ -180,7 +180,7 @@ $plan_Details = DB::table('plans')
         </div>
 		
 		    <div class="col-md-3">
-          <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-1 information_box">
+          <div class="d-flex gap-lg-3 gap-2 pb-md-2 pb-1 information_box">
             <div class="step_box_icon">
               <div class="step_box_img">
                 <img src="/assets/frontend/images/information_card.svg" class="d-block" alt="...">
@@ -197,7 +197,7 @@ $plan_Details = DB::table('plans')
         </div>
 		
 		    <div class="col-md-3">
-          <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-1 information_box">
+          <div class="d-flex gap-lg-3 gap-2 pb-md-2 pb-1 information_box">
             <div class="step_box_icon">
               <div class="step_box_img">
                 <img src="/assets/frontend/images/information_calender.svg" class="d-block" alt="...">
@@ -214,7 +214,7 @@ $plan_Details = DB::table('plans')
         </div>
 		
 		    <div class="col-md-3">
-          <div class="d-flex gap-lg-3 gap-2 pb-md-4 pb-1 information_box">
+          <div class="d-flex gap-lg-3 gap-2 pb-md-2 pb-1 information_box">
             <div class="step_box_icon">
               <div class="step_box_img">
                 <img src="/assets/frontend/images/percent_icon.png" class="d-block" alt="...">
