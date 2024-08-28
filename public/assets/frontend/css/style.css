@@ -785,7 +785,7 @@ form.form-subscribe button {
 /*-- accordion section open--*/
 
 section.faq_section_main {
-    padding: 10px 0px 20px 0px;
+    padding: 10px 0px 50px 0px;
 }
 
 .faq_section_main .accordion-item {
@@ -1115,15 +1115,9 @@ table.table.table-bordered {
     padding: 15px 0px 15px 15px !important;
 }
 
-.information_section {
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-bottom: 160px;
-}
-
 .terms_section,
 .about_us_section {
-    padding-bottom: 100px;
+    padding-bottom: 40px;
 }
 
 .terms_section h4,
@@ -1133,6 +1127,10 @@ table.table.table-bordered {
 
 img.golden_chain {
     width: 20%;
+}
+
+#faq_page section.faq_section_main {
+    padding: 50px 0px 50px 0px;
 }
 
 .faq_section_main h4 {
@@ -1544,19 +1542,19 @@ body .userlogin_box {
 /* old scheme closure page */
 
 
-.old_sheme_closure, .privay_policy, .faq_section, .reset_pass{
-    height: 100vh;
-}
+/* .old_sheme_closure, .privay_policy, .faq_section, .reset_pass{
+    height: 100vh; 
+} */
 
-.old_sheme_closure .container, .privay_policy .container, .pay_installments .container, .faq_section .container,
+/* .old_sheme_closure .container, .privay_policy .container, .pay_installments .container, .faq_section .container,
 .reset_pass .container {
     padding-top: 30px;
     padding-bottom: 30px;
-}
+} */
 
-.information_section .container, .faq_section .container {
+/* .information_section .container, .faq_section .container {
     padding-top: 30px ;
-}
+} */
 
 /* coming soon pages */
 
@@ -1980,7 +1978,7 @@ section.inner_page_banner {
 
 
 @media (min-width:1700px){
-    /* .old_sheme_closure, .privay_policy, .faq_section, .reset_pass, .information_section, .pay_installments{ 
+    .old_sheme_closure, .privay_policy, .faq_section, .reset_pass, .information_section, .pay_installments{ 
         height: 100vh;
-    } */
+    }
 }
