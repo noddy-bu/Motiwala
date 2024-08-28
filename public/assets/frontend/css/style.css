@@ -1186,8 +1186,7 @@ div#preview-info p {
 
 .after_login_body .container:not(footer .container) {
     padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 45px;
+    padding-right: 30px; 
 }
 
 .header_after_sign_in {
@@ -1542,9 +1541,10 @@ body .userlogin_box {
 /* old scheme closure page */
 
 
-/* .old_sheme_closure, .privay_policy, .faq_section, .reset_pass{
-    height: 100vh; 
-} */
+.after_login_body .old_sheme_closure, .after_login_body .privay_policy, .after_login_body .faq_section,
+.after_login_body .reset_pass{
+    height: 90vh; 
+}
 
 /* .old_sheme_closure .container, .privay_policy .container, .pay_installments .container, .faq_section .container,
 .reset_pass .container {
@@ -1978,7 +1978,7 @@ section.inner_page_banner {
 
 
 @media (min-width:1700px){
-    .old_sheme_closure, .privay_policy, .faq_section, .reset_pass, .information_section, .pay_installments{ 
+    .old_sheme_closure, .privay_policy, .faq_section, .reset_pass, .pay_installments{ 
         height: 100vh;
     }
 }
