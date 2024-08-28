@@ -498,7 +498,6 @@
     .after_login_body .container:not(footer .container) {
         padding-left: 20px;
         padding-right: 20px;
-        padding-top: 40px;
     }
     
     p.fontsize26 {
@@ -1039,7 +1038,7 @@
     }
 
     .terms_section h4, .terms_section h5 {
-        font-size: 18px !important;
+        font-size: 18px ;
     }
 
     /* gives feedback page */
