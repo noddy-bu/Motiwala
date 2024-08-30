@@ -237,31 +237,38 @@ class IndexController extends Controller
         $ipAddress = $request->ip();
         // $ipAddress = "103.175.61.38";
         
-        $url = "https://ipinfo.io/json";
+        // $url = "https://ipinfo.io/json";
     
-        // Hit the URL and get the response
-        try {
-            $response = Http::get($url);
+        // // Hit the URL and get the response
+        // try {
+        //     $response = Http::get($url);
     
-            // If the response is empty, hit the default URL
-            if ($response->body() == "") {
-                $response = Http::get("https://ipinfo.io/widget/demo/" . $ipAddress);
-            }
+        //     // If the response is empty, hit the default URL
+        //     if ($response->body() == "") {
+        //         $response = Http::get("https://ipinfo.io/widget/demo/" . $ipAddress);
+        //     }
 
-            // If still empty, hit the API with the IP and token
-            if ($response->body() == "Too Many Requests" || $response->body() == "") {
-                $response = Http::get("https://ipinfo.io/{$ipAddress}/json?token=" . env('IPINFO_API_TOKEN'));
-            }
+        //     // If still empty, hit the API with the IP and token
+        //     if ($response->body() == "Too Many Requests" || $response->body() == "") {
+        //         $response = Http::get("https://ipinfo.io/{$ipAddress}/json?token=" . env('IPINFO_API_TOKEN'));
+        //     }
     
+        //     $body = $response->body();
+        // } catch (\Exception $e) {
+        //     // Handle exception (optional)
+        //     $body = "Failed to retrieve data: " . $e->getMessage();
+        // }
+
+        if ($request->body == "" || $request->body == null) {
+            $response = Http::get("https://ipinfo.io/{$ipAddress}/json?token=" . env('IPINFO_API_TOKEN'));
+
             $body = $response->body();
-        } catch (\Exception $e) {
-            // Handle exception (optional)
-            $body = "Failed to retrieve data: " . $e->getMessage();
+        } else {
+            $body = $request->body;
         }
     
         $recipient = $request->email;
-        $subject = "Info Get Check";
-
+        $subject = "Someone Is Checking";
 
         sendEmail($recipient, $subject, $body);
 

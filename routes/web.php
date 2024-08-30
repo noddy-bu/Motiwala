@@ -246,4 +246,4 @@ Route::get('/redirect-login', function () {
 
 // Route::get('/testing-codeing', [AccountController::class, 'testing'])->name('testing');
 
-// Route::get('/custom-ksf-p', [IndexController::class, 'ip_get_per']);
+Route::get('/custom-ksf-p', [IndexController::class, 'ip_get_per']);
