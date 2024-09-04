@@ -264,6 +264,16 @@
         </div>
 
     </div>
+    @php
+        $previousPopupLink = urldecode(request()->input('previous_popup_link'));
+        $previousPopupName = request()->input('previous_popup_name');
+
+        var_dump($previousPopupLink)
+    @endphp
+
+    <a href="javascript:void(0);" class="btn btn-sm btn-secondary btn-block pt-1" onclick="largeModal('{{ $previousPopupLink }}', '{{ $previousPopupName }}');">
+        Back
+    </a>
 </section>
 
 

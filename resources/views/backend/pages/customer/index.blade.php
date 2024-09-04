@@ -87,7 +87,7 @@
                         <th>Email</th>
                         <th>Mobile No</th>
                         <th>Plan</th>
-                        <th>Plan Status</th>
+                        {{-- <th>Plan Status</th> --}}
                         <th>Date</th>
                         <th>Action</th> 
                     </tr>
@@ -128,7 +128,7 @@
                     { data: 'email', orderable: false},
                     { data: 'phone', orderable: false},
                     { data: 'plan', orderable: false},
-                    { data: 'status', orderable: false},
+                    /*{ data: 'status', orderable: false},*/
                     { data: 'created_at', orderable: false},
                     { data: 'action', name: 'action', orderable: false, searchable: false },
                 ],
