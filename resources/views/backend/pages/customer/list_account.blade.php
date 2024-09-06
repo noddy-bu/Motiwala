@@ -62,13 +62,13 @@
                                     @if($view == 1)
                                         <a href="javascript:void(0);" 
                                         class="btn btn-sm btn-primary rounded-3" 
-                                        onclick="largeModal('{{ url(route('Customer.edit', ['id' => $row->user_id, 'transaction_id' => $row->id])) }}?previous_popup_link={{ $this_pop_link }}&previous_popup_name={{ $this_pop_name }}', 'Preview Customer');">
+                                        onclick="largeModal('{{ url(route('Customer.edit', ['id' => $row->user_id, 'transaction_id' => $row->id,'previous_popup_link' => $this_pop_link,'previous_popup_name' => $this_pop_name])) }}', 'Preview Customer');">
                                             View details
                                         </a>
                                     @else
                                         <a href="javascript:void(0);" 
                                         class="btn btn-sm btn-primary rounded-3" 
-                                        onclick="largeModal('{{ url(route('Customer.transaction', ['id' => $row->user_id, 'transaction_id' => $row->id])) }}?previous_popup_link={{ $this_pop_link }}&previous_popup_name={{ $this_pop_name }}', 'Customer Installment');">
+                                        onclick="largeModal('{{ url(route('Customer.transaction', ['id' => $row->user_id, 'transaction_id' => $row->id,'previous_popup_link' => $this_pop_link,'previous_popup_name' => $this_pop_name ])) }}', 'Customer Installment');">
                                             Customer Installment
                                         </a>
                                     @endif

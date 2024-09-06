@@ -392,11 +392,11 @@ class CustomerController extends Controller
             // Fetch the plan_id associated with the given transaction ID
             $redemption = DB::table('redemptions')
                 ->where('id', $transactionId)
-                ->select('user_id')
+                ->select('plan_id')
                 ->first();
     
             if ($redemption) {
-                $id = $redemption->user_id;
+                $plan_id = $redemption->plan_id;
             }
         }
         
@@ -421,7 +421,8 @@ class CustomerController extends Controller
         ->join('plans', 'users.plan_id', '=', 'plans.id')
         ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
         ->where('users.id',$id)
-        ->orderBy('redemptions.id', 'desc')
+        ->where('redemptions.plan_id', $plan_id)
+        // ->orderBy('redemptions.id', 'desc')
         ->get()->first();
         
         $transactions = DB::table('transactions')->where('user_id',$id)->where('payment_status','paid')->get();
