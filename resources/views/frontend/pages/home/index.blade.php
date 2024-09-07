@@ -320,7 +320,7 @@
                                             <hr>
                                         </div>
                                         <div class="col-md-6">
-                                            <p class="pt-2">You can Buy Jewellery worth: (in 11th month)</p>
+                                            <p class="pt-2">You can Buy Jewellery worth: (in 12th month)</p>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="total_number_main">
@@ -797,7 +797,7 @@
             const amountPlusBtn = document.getElementById('amount_plus');
             const amountMinusBtn = document.getElementById('amount_minus');
 
-            let currentAmount = parseInt(calcInput.value, {{ $plan1_duration }});
+            let currentAmount = parseInt(calcInput.value);
 
 
 
