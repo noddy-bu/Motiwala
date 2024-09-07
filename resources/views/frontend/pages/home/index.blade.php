@@ -310,8 +310,8 @@
                                         <div class="col-md-12">
                                             <div class="sip-calculator-amount">
                                                 <div class="amount_monthly2">
-                                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for {{ env('PLAN_1') }}  <span
-                                                            id="amount_10x">₹ 1,00,000</span>
+                                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for {{ env('PLAN_1') }}th month  <span
+                                                            id="amount_10x">₹ 110,000</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -320,11 +320,11 @@
                                             <hr>
                                         </div>
                                         <div class="col-md-6">
-                                            <p class="pt-2">You can Buy Jewellery worth: (in 11th month)</p>
+                                            <p class="pt-2">You can Buy Jewellery worth: (in {{ env('PLAN_1_freeze') }}th month)</p>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="total_number_main">
-                                                <p id="amount_13x" class="amount_13x">₹ 1,07,500</p>
+                                                <p id="amount_13x" class="amount_13x">₹ 1,20,000</p>
                                             </div>
                                         </div>
                                     </div>
@@ -381,7 +381,7 @@
                                         <div class="col-md-12">
                                             <div class="sip-calculator-amount">
                                                 <div class="amount_monthly2">
-                                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for {{ env('PLAN_2') }} <span
+                                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for {{ env('PLAN_2') }}th months <span
                                                             id="amount_10x_plan2">₹ 1,00,000</span>
                                                     </label>
                                                 </div>
@@ -391,7 +391,7 @@
                                             <hr>
                                         </div>
                                         <div class="col-md-6">
-                                            <p class="pt-2">You can Get Gold worth: <br class="d-none d-md-block"> (in {{ env('PLAN_2') }} )</p>                                            
+                                            <p class="pt-2">You can Get Gold worth: <br class="d-none d-md-block"> (in {{ env('PLAN_2_freeze') }}th months )</p>                                            
                                         </div>
                                         <div class="col-md-6">
                                             <div class="total_number_main">
@@ -797,9 +797,7 @@
             const amountPlusBtn = document.getElementById('amount_plus');
             const amountMinusBtn = document.getElementById('amount_minus');
 
-            let currentAmount = parseInt(calcInput.value, {{ $plan1_duration }});
-
-
+            let currentAmount = parseInt(calcInput.value);
 
             function updateAmount() {
                 if (currentAmount % 1000 !== 0) {

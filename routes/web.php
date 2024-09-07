@@ -102,6 +102,7 @@ Route::middleware('auth.frontend')->group(function () {
     Route::get('/oldschemeclosure', [IndexController::class, 'old_scheme_closure'])->name('old-scheme-closure');
 
     Route::get('/pay-installments', [AccountController::class, 'pay_installments'])->name('pay-installments');
+    Route::get('/pay-installment/{id}', [AccountController::class, 'pay_installment'])->name('pay-installment-details');
 
     Route::post('/installments', [AccountController::class, 'installments'])->name('installments.payment');
     

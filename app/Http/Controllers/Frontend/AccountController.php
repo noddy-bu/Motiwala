@@ -136,7 +136,19 @@ class AccountController extends Controller
         return view('frontend.pages.admin.my_accounts.index');
     }
 
-    public function pay_installments()
+    public function pay_installments(){
+
+        $info = DB::table('redemptions')
+        ->select('redemptions.id','redemptions.plan_id','redemptions.created_at','redemptions.maturity_date_start','redemptions.status','plans.name as plan_name')
+        ->leftJoin('plans', 'redemptions.plan_id', '=', 'plans.id')
+        ->where('redemptions.user_id', Session::get('user_id'))
+        ->orderBy('redemptions.id', 'desc')
+        ->get();
+
+        return view('frontend.pages.admin.pay_installments_list.index', compact('info'));
+    }
+
+    public function pay_installment($id)
     {
 
         $info = DB::table('users')
@@ -161,14 +173,15 @@ class AccountController extends Controller
             ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
             // ->where('redemptions.status', 1)
             ->where('users.id', Session::get('user_id'))
-            ->orderBy('redemptions.id', 'desc')
+            ->where('redemptions.id', $id)
+            // ->orderBy('redemptions.id', 'desc')
             ->get()->first();
 
         $transactions = DB::table('transactions')->where('user_id', Session::get('user_id'))->get();
 
         $redemption_items = DB::table('redemption_items')->where('redemption_id', $info->id)->get();
 
-        return view('frontend.pages.admin.pay_installments.index', compact('info', 'transactions', 'redemption_items'));
+        return view('frontend.pages.admin.pay_installment.index', compact('info', 'transactions', 'redemption_items'));
     }
 
     public function installments(Request $request)
@@ -1678,6 +1691,8 @@ class AccountController extends Controller
 
         // $amount = $plan_details->minimum_installment_amount;
 
+        $esign = DB::table('userdetails')->where('user_id', $temp_user_id)->value('esign');
+
         $redemption_id = DB::table('redemptions')->insertGetId([
             'user_id' => $temp_user_id,
             'plan_id' => $user_plan_Details,
@@ -1685,10 +1700,12 @@ class AccountController extends Controller
             'maturity_date_end' => $maturity_date_end,
             // 'total_receivable_amount' => $amount + ($amount * 0.075),
             'status' => '1',
+            'esign' => $esign,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
+        DB::table('userdetails')->where('user_id', $temp_user_id)->update(['esign' => null]);
 
         $percentage = $plan_details->receivable_percentage_on_time;
         $additionalAmount = ($amount * $percentage) / 100;

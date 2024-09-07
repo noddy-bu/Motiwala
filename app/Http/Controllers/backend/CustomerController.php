@@ -359,6 +359,9 @@ class CustomerController extends Controller
         // Fetch user based on the given ID
         $user = User::find($id);
         $plan_id = $user->plan_id;
+
+        $installment_amount = null;
+        $esign = null;
     
         // Check if a transaction ID is passed in the request
         $transactionId = $request->query('transaction_id');
@@ -367,11 +370,18 @@ class CustomerController extends Controller
             // Fetch the plan_id associated with the given transaction ID
             $redemption = DB::table('redemptions')
                 ->where('id', $transactionId)
-                ->select('plan_id')
+                ->select('plan_id','esign')
+                ->first();
+
+            $redemption_items = DB::table('redemption_items')
+                ->where('redemption_id', $transactionId)
+                ->select('installment_amount')
                 ->first();
     
             if ($redemption) {
                 $plan_id = $redemption->plan_id;
+                $installment_amount = $redemption_items->installment_amount;
+                $esign = $redemption->esign;
             }
         }
     
@@ -380,7 +390,7 @@ class CustomerController extends Controller
         $plan_name = DB::table('plans')->where('id', $plan_id)->value('name');
     
         // Return the view with the fetched data
-        return view('backend.pages.customer.edit', compact('user', 'user_detail', 'plan_name'));
+        return view('backend.pages.customer.edit', compact('user', 'user_detail', 'plan_name','installment_amount','esign'));
     }
     
 
@@ -551,12 +561,14 @@ class CustomerController extends Controller
         
     }
 
+
     public function manual_payment(Request $request){
         $validator = Validator::make($request->all(), [
             'payment_method' => 'required',
             'transaction_id' => [
                 'nullable',
-                Rule::unique('transactions', 'payment_id')
+                Rule::unique('transactions', 'payment_id'),
+                Rule::unique('approve_payment', 'payment_id')
             ],
             'transaction_slip' => 'nullable|mimes:png,jpg,jpeg|max:2048', // 2048 KB = 2 MB
         ], [
@@ -572,6 +584,79 @@ class CustomerController extends Controller
                 'notification' => $validator->errors()->all()
             ], 200);
         }
+        
+
+        $amount = $request->amount;
+
+        if($request->hasFile('transaction_slip')) {
+            $file = $request->file('transaction_slip');
+            // Remove spaces from the filename
+            $filename = str_replace(' ', '_', $file->getClientOriginalName());
+            // Store the file and get the path
+            $path = $file->storeAs('transaction_Slip', $filename, 'public');
+        } else {
+            $path = null;
+        }
+
+        $ip = ip_info();
+        $ip_data = json_decode($ip, true); 
+        
+        $data = [
+            'user_id' => $request->user_id,
+            'payment_id' => $request->transaction_id,
+            'payment_amount' => $amount,
+            'payment_type' => $request->payment_method,
+            'transaction_Slip' => $path,
+            'ip_data'        => $ip,
+            'location'       => $ip_data['city'] ?? '-',
+            'user_behalf'    => auth()->user()->id,
+            'created_at' => date('Y-m-d H:i:s'),
+        ];
+
+        $approve_payment = DB::table('approve_payment')->insert([
+            'user_id' => $request->user_id,
+            'payment_id' => $request->transaction_id,
+            'payment_amount' => $amount,
+            'payment_type' => $request->payment_method,
+            'ip_data'        => $ip,
+            'location'       => $ip_data['city'] ?? '-',
+            'user_behalf'    => auth()->user()->id,
+            'status' => 'pending',
+            'data' => json_encode($data),
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
+
+
+        $response = [
+            'status' => true,
+            'notification' => 'Manual Installment Payment Under Review Successfully!',
+        ];
+
+        return response()->json($response);
+
+    }
+
+    public function manual_payment_conformation(Request $request){
+        // $validator = Validator::make($request->all(), [
+        //     'payment_method' => 'required',
+        //     'transaction_id' => [{}
+        //         'nullable',
+        //         Rule::unique('transactions', 'payment_id')
+        //     ],
+        //     'transaction_slip' => 'nullable|mimes:png,jpg,jpeg|max:2048', // 2048 KB = 2 MB
+        // ], [
+        //     'payment_method.required' => 'The Payment Method is required.',
+        //     'transaction_id.unique' => 'The Transaction ID has already been used.',
+        //     'transaction_slip.mimes' => 'The Transaction Slip must be a file of type: png, jpg, jpeg.',
+        //     'transaction_slip.max' => 'The Transaction Slip may not be greater than 2 MB.',
+        // ]);
+
+        // if ($validator->fails()) {
+        //     return response()->json([
+        //         'status' => false,
+        //         'notification' => $validator->errors()->all()
+        //     ], 200);
+        // }
         
 
         $amount = $request->amount;

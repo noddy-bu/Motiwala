@@ -95,7 +95,7 @@
                 <div class="card-body py-2 pt-1">
                     <p class="card-text"><strong>Plan Type : </strong>{{ $plan_name }}</p>
                     <p class="card-text"><strong>Installment Amount (in Rs) :
-                        </strong>{{ $user->installment_amount }}</p>
+                        </strong>{{ $installment_amount ??  $user->installment_amount }}</p>
                 </div>
             </div>
 
@@ -111,19 +111,21 @@
                 <hr>
                 <div class="card-body py-2 pt-1">
                     <div class="row">
-                        <p class="col-md-6 card-text"><strong>eKYC Status : </strong>@if(!empty($user_detail->ekyc)) Completed @else Not Completed @endif</p>
-                        <p class="col-md-6 card-text"><strong>eSign Status : </strong>@if(!empty($user_detail->esign)) Completed
-                        @else Not Completed @endif</p>
+                        <p class="col-md-6 card-text"><strong>eKYC Status : </strong>
+                            {{ !empty($user_detail->ekyc) ? 'Completed' : 'Not Completed' }}
+                        </p>
+                        <p class="col-md-6 card-text"><strong>eSign Status : </strong>
+                            {{ !empty($user_detail->esign) || !empty($esign) ? 'Completed' : 'Not Completed' }}
+                        </p>
                         <div class="esign_document col-md-6">
-                            @if(!empty($user_detail->esign))
+                            @if(!empty($esign) || !empty($user_detail->esign))
                                 <label>Esign Document</label>
-                                <a target="_blank" href="{{ asset('storage/esign_pdf/' . $user_detail->esign) }}">
+                                <a target="_blank" href="{{ asset('storage/esign_pdf/' . ($esign ?? $user_detail->esign)) }}">
                                     View
                                 </a>
                             @endif
                         </div>
                         <p class="col-md-6 card-text"><strong>Payment Status : </strong>@if($user->status == 1) Completed @else Not Completed @endif</p>
-
                     </div>
 
                 </div>
@@ -149,6 +151,17 @@
 
 
     </div>
+
+    @php
+        $previousPopupLink = urldecode(request()->input('previous_popup_link'));
+        $previousPopupName = request()->input('previous_popup_name');
+    @endphp
+
+    @if(!empty($previousPopupLink))
+        <a href="javascript:void(0);" class="btn btn-sm btn-secondary btn-block pt-1" onclick="largeModal('{{ $previousPopupLink }}', '{{ $previousPopupName }}');">
+            Back
+        </a>
+    @endif
 
 
 </section>
