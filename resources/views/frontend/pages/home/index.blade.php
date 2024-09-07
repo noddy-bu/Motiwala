@@ -381,7 +381,7 @@
                                         <div class="col-md-12">
                                             <div class="sip-calculator-amount">
                                                 <div class="amount_monthly2">
-                                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for {{ env('PLAN_2') }} <span
+                                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for 11th months <span
                                                             id="amount_10x_plan2">₹ 1,00,000</span>
                                                     </label>
                                                 </div>
