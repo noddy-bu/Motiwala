@@ -71,6 +71,15 @@
 
                         @if(in_array(auth()->user()->role_id, [1,2]))
                             <li class="side-nav-item">
+                                <a href="{{ route('approvaltransaction.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                                    <i class="ri-wallet-line"></i> 
+                                    <span> Approval Transaction </span>
+                                </a>
+                            </li>
+                        @endif
+
+                        @if(in_array(auth()->user()->role_id, [1,2]))
+                            <li class="side-nav-item">
                                 <a href="{{ route('contact.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                                     <i class="ri-mail-line"></i> 
                                     <span> Messages </span>

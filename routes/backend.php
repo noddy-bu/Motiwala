@@ -16,6 +16,7 @@ use App\Http\Controllers\backend\AuthorController;
 use App\Http\Controllers\backend\UserController;
 
 use App\Http\Controllers\backend\TransactionController;
+use App\Http\Controllers\backend\TransactionApprovalController;
 
 use App\Http\Controllers\backend\ContactSettingController;
 
@@ -68,6 +69,13 @@ Route::group(['prefix' => 'customer', 'middleware' => ['auth', 'role:1,2,3']], f
 Route::group(['prefix' => 'transaction', 'middleware' => ['auth', 'role:1,2,3']], function () {
     Route::get('/index', [TransactionController::class, 'index'])->name('transaction.index');
     Route::get('Customer-data', [TransactionController::class, 'getData'])->name('transaction.data');
+});
+
+Route::group(['prefix' => 'approval-transaction', 'middleware' => ['auth', 'role:1,2']], function () {
+    Route::get('/index', [TransactionApprovalController::class, 'index'])->name('approvaltransaction.index');
+    Route::get('Customer-data', [TransactionApprovalController::class, 'getData'])->name('approvaltransaction.data');
+
+    Route::post('/approved/{id}', [TransactionApprovalController::class, 'approved'])->name('approvaltransaction.conform');
 });
 
 

@@ -567,8 +567,7 @@ class CustomerController extends Controller
             'payment_method' => 'required',
             'transaction_id' => [
                 'nullable',
-                Rule::unique('transactions', 'payment_id'),
-                Rule::unique('approve_payment', 'payment_id')
+                Rule::unique('transactions', 'payment_id')
             ],
             'transaction_slip' => 'nullable|mimes:png,jpg,jpeg|max:2048', // 2048 KB = 2 MB
         ], [
@@ -584,79 +583,6 @@ class CustomerController extends Controller
                 'notification' => $validator->errors()->all()
             ], 200);
         }
-        
-
-        $amount = $request->amount;
-
-        if($request->hasFile('transaction_slip')) {
-            $file = $request->file('transaction_slip');
-            // Remove spaces from the filename
-            $filename = str_replace(' ', '_', $file->getClientOriginalName());
-            // Store the file and get the path
-            $path = $file->storeAs('transaction_Slip', $filename, 'public');
-        } else {
-            $path = null;
-        }
-
-        $ip = ip_info();
-        $ip_data = json_decode($ip, true); 
-        
-        $data = [
-            'user_id' => $request->user_id,
-            'payment_id' => $request->transaction_id,
-            'payment_amount' => $amount,
-            'payment_type' => $request->payment_method,
-            'transaction_Slip' => $path,
-            'ip_data'        => $ip,
-            'location'       => $ip_data['city'] ?? '-',
-            'user_behalf'    => auth()->user()->id,
-            'created_at' => date('Y-m-d H:i:s'),
-        ];
-
-        $approve_payment = DB::table('approve_payment')->insert([
-            'user_id' => $request->user_id,
-            'payment_id' => $request->transaction_id,
-            'payment_amount' => $amount,
-            'payment_type' => $request->payment_method,
-            'ip_data'        => $ip,
-            'location'       => $ip_data['city'] ?? '-',
-            'user_behalf'    => auth()->user()->id,
-            'status' => 'pending',
-            'data' => json_encode($data),
-            'created_at' => date('Y-m-d H:i:s')
-        ]);
-
-
-        $response = [
-            'status' => true,
-            'notification' => 'Manual Installment Payment Under Review Successfully!',
-        ];
-
-        return response()->json($response);
-
-    }
-
-    public function manual_payment_conformation(Request $request){
-        // $validator = Validator::make($request->all(), [
-        //     'payment_method' => 'required',
-        //     'transaction_id' => [{}
-        //         'nullable',
-        //         Rule::unique('transactions', 'payment_id')
-        //     ],
-        //     'transaction_slip' => 'nullable|mimes:png,jpg,jpeg|max:2048', // 2048 KB = 2 MB
-        // ], [
-        //     'payment_method.required' => 'The Payment Method is required.',
-        //     'transaction_id.unique' => 'The Transaction ID has already been used.',
-        //     'transaction_slip.mimes' => 'The Transaction Slip must be a file of type: png, jpg, jpeg.',
-        //     'transaction_slip.max' => 'The Transaction Slip may not be greater than 2 MB.',
-        // ]);
-
-        // if ($validator->fails()) {
-        //     return response()->json([
-        //         'status' => false,
-        //         'notification' => $validator->errors()->all()
-        //     ], 200);
-        // }
         
 
         $amount = $request->amount;
@@ -705,8 +631,13 @@ class CustomerController extends Controller
     
         if ($redemption) {
             // Fetch the redemption item
+            // $redemption_items = DB::table('redemption_items')
+            //     ->where('redemption_id', $redemption->id)
+            //     ->where('status', 'pending')
+            //     ->first(['id', 'due_date_start', 'due_date_end', 'installment_no']);
+
             $redemption_items = DB::table('redemption_items')
-                ->where('redemption_id', $redemption->id)
+                ->where('id', $request->redemption_items_id)
                 ->where('status', 'pending')
                 ->first(['id', 'due_date_start', 'due_date_end', 'installment_no']);
         
@@ -767,7 +698,7 @@ class CustomerController extends Controller
                         'transaction_id' => $transactions_id,
                         'receivable_amount' => $totalAmount,
                         'receivable_gold' => gold_amount($totalAmount),
-                        'status' => 'paid',
+                        'status' => auth()->user()->id == 1 ? 'paid' : 'request_approval', // Use a ternary operator for condition
                         'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
                     ]);
                 } else {
@@ -776,7 +707,7 @@ class CustomerController extends Controller
                         'transaction_id' => $transactions_id,
                         'receivable_amount' => $amount,
                         'receivable_gold' => gold_amount($amount),
-                        'status' => 'paid',
+                        'status' => auth()->user()->id == 1 ? 'paid' : 'request_approval', // Use a ternary operator for condition
                         'remarks' => 'penalty for late payment of installment',
                         'receipt_date' => Carbon::now()->format('Y-m-d H:i:s'),
                     ]);

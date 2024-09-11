@@ -232,6 +232,8 @@
                                         <td>
                                             @if ($row->status == 'paid')
                                                 Paid
+                                            @elseif ($row->status == 'request_approval')
+                                                <span class="badge bg-danger">Paid</span>
                                             @elseif ($row->status == 'pending')
                                                 <b>pending</b>
 

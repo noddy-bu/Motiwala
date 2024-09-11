@@ -86,6 +86,8 @@
                         <th>#</th>
                         <th>Pay ID</th>
                         <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
                         <th>Installment No</th>
                         <th>Amount</th>
                         <th>Transaction Slip</th>
@@ -94,6 +96,7 @@
                         <th>Location</th>
                         <th> By Admin / Staff</th>
                         <th>Date</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
             </table>
@@ -118,7 +121,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "{{ route('transaction.data') }}",
+                    url: "{{ route('approvaltransaction.data') }}",
                     data: function (d) {
                         d.name = $('#name').val();
                         d.pay_id = $('#pay_id').val();
@@ -131,6 +134,8 @@
                     { data: 'id', orderable: false},
                     { data: 'pay_id', orderable: false},
                     { data: 'name', orderable: false},
+                    { data: 'email', orderable: false},
+                    { data: 'phone', orderable: false},
                     { data: 'installment', orderable: false},
                     { data: 'amount', orderable: false},
                     { data: 'transactionSlip', orderable: false},
@@ -139,6 +144,7 @@
                     { data: 'location', orderable: false},
                     { data: 'user_behalf', orderable: false},
                     { data: 'created_at', orderable: false},
+                    { data: 'action', orderable: false},
                 ],
                 dom: '<"row"<"col-md-6"l><"col-md-6"f>><"row"<"col-md-12"i>>tip',
             });

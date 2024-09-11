@@ -218,7 +218,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if ($row->status == 'paid')
+                                                    @if (in_array($row->status, ['paid','request_approval']))
                                                         Paid
                                                     @else
                                                         {{-- @if ($row->due_date_start <= date('Y-m-d') && in_array($row->status, ['paid', 'pending'])) --}}
