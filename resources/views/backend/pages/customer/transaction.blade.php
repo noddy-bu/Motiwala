@@ -186,7 +186,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($row->status == 'paid')
+                                            @if (in_array($row->status, ['paid','request_approval']))
                                                 {{ datetimeFormatter($row->receipt_date) }}
                                             @else
                                                 NA
@@ -210,7 +210,7 @@
                                             </td>
                                         @endif
                                         <td>
-                                            @if (in_array($row->status, ['paid']))
+                                            @if (in_array($row->status, ['paid','request_approval']))
                                                 @php
                                                     $transaction_payment_type = DB::table('transactions')->where('id', $row->transaction_id)->value('payment_type');
                                                 @endphp

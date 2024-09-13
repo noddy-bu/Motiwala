@@ -87,14 +87,14 @@
                             </li>
                         @endif
 
-                        {{-- @if(in_array(auth()->user()->role_id, [1,2]))
+                        @if(in_array(auth()->user()->role_id, [1,2]))
                             <li class="side-nav-item">
                                 <a href="{{ route('author.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
                                     <i class="ri-user-add-line"></i> 
                                     <span> Manage Staffs </span>
                                 </a>
                             </li>
-                        @endif --}}
+                        @endif
 
                         @if(in_array(auth()->user()->role_id, [1,2]))
                             <li class="side-nav-item">
