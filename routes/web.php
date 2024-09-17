@@ -105,6 +105,8 @@ Route::middleware('auth.frontend')->group(function () {
     Route::get('/pay-installment/{id}', [AccountController::class, 'pay_installment'])->name('pay-installment-details');
 
     Route::post('/installments', [AccountController::class, 'installments'])->name('installments.payment');
+
+    Route::get('/account/new-plan-purchase', [AccountController::class, 'new_plan_purchase'])->name('account.new.plan.page');
     
 });
 

@@ -110,10 +110,10 @@ class AccountController extends Controller
         return redirect()->route('index');
     }
 
-    /*------------------------------ Login Logout Function -------------------------------------------------*/
+/*------------------------------ Login Logout Function -------------------------------------------------*/
 
 
-    /*------------------------------ other inner Function -------------------------------------------------*/
+/*------------------------------ other inner Function -------------------------------------------------*/
 
 
     public function link_account()
@@ -134,6 +134,11 @@ class AccountController extends Controller
     public function my_accounts()
     {
         return view('frontend.pages.admin.my_accounts.index');
+    }
+
+    public function new_plan_purchase()
+    {
+        return view('frontend.pages.admin.new_plan_purchase.index');
     }
 
     public function pay_installments(){
@@ -384,10 +389,10 @@ class AccountController extends Controller
 
 
 
-    /*------------------------------ other inner Function -------------------------------------------------*/
+/*------------------------------ other inner Function -------------------------------------------------*/
 
 
-    /*------------------------------ Forgot password Function --------------------------------------------*/
+/*------------------------------ Forgot password Function --------------------------------------------*/
 
     public function forgot_password($param, Request $request)
     {
@@ -537,11 +542,11 @@ class AccountController extends Controller
     }
 
 
-    /*------------------------------ Forgot password Function -------------------------------------------*/
+/*------------------------------ Forgot password Function -------------------------------------------*/
 
 
 
-    /*--=================================  Registration user ==================================================---*/
+ /*--=================================  Registration user ==================================================---*/
 
     public function online_enrollment()
     {
@@ -1127,6 +1132,23 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
+        $userId = Session::get('temp_user_id') ?? auth()->user()->id;
+
+        $exist_plan = DB::table('users')
+            ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
+            ->where('users.id', $userId)
+            ->where('redemptions.plan_id',$request->input('plan_id'))
+            ->where('redemptions.status', '1')
+            ->select('users.id')
+            ->first();
+
+        if ($exist_plan) {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = 'Plan Already Active';
+
+            return $rsp_msg;
+        }
+
 
         $plan_amount = DB::table('plans')->where('id', $request->input('plan_id'))->value('minimum_installment_amount');
 
@@ -1144,15 +1166,21 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
+
+
+
+
         // if($request->has('residence_address_check')){
         //     $address = $request->input('residence_nominee_address');
         // } else {
         //     $address = $request->input('nominee_address');
         // }
 
-        if (Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))) {
+        // if (Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))) {
 
-            DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+        if (!empty($userId)) {
+
+            DB::table('users')->where('id', $userId)->update([
                 'plan_id' => $request->input('plan_id'),
                 'installment_amount' => $request->input('installment_amount'),
                 'step' => 7,
@@ -1297,7 +1325,9 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
-        $user = DB::table('users')->where('id', Session::get('temp_user_id'))
+        $userId = Session::get('temp_user_id') ?? auth()->user()->id;
+
+        $user = DB::table('users')->where('id', $userId)
             ->get(['first_name', 'last_name', 'fullname', 'email', 'phone', 'plan_id'])
             ->first();
 
@@ -1379,7 +1409,9 @@ class AccountController extends Controller
     public function payment_gateway($request)
     {
 
-        $user = DB::table('users')->where('id', Session::get('temp_user_id'))->first(['first_name', 'last_name', 'fullname', 'email', 'phone', 'installment_amount']);
+        $userId = Session::get('temp_user_id') ?? auth()->user()->id;
+
+        $user = DB::table('users')->where('id', $userId)->first(['first_name', 'last_name', 'fullname', 'email', 'phone', 'installment_amount']);
 
         $ip = ip_info();
         $ip_data = json_decode($ip, true); 
