@@ -111,7 +111,7 @@ class TransactionController extends Controller
 
             $installment_no = DB::table('redemption_items')->where('transaction_id',$row->id)->value('installment_no');
 
-            $user_behalf = DB::table('users')->where('id', $row->user_behalf)->value('first_name');
+            $user_behalf = DB::table('users')->where('id', $row->user_behalf)->value('fullname');
             
             $paymentResponse = json_decode($row->payment_response, true); 
 
