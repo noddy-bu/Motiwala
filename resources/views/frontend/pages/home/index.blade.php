@@ -820,7 +820,8 @@
             }
 
             calcInput.addEventListener('input', function() {
-                currentAmount = parseInt(calcInput.value, {{ $plan1_duration }}) || 0;
+                currentAmount = parseInt(calcInput.value) || 0;
+
                 if (currentAmount < {{ $plan_min_amount_plan_1 }}) {
                     validationMessage.html('Minimum amount should be ' + roundToNearestThousand(
                         {{ $plan_min_amount_plan_1 }}));
@@ -910,7 +911,7 @@
             }
 
             calcInput_plan2.addEventListener('input', function() {
-                currentAmount_plan2 = parseInt(calcInput_plan2.value, {{ $plan2_duration }}) || 0;
+                currentAmount_plan2 = parseInt(calcInput_plan2.value) || 0;
                 if (currentAmount_plan2 < {{ $plan_min_amount_plan_2 }}) {
                     validationMessage_plan2.html('Minimum amount should be ' + roundToNearestThousand(
                         {{ $plan_min_amount_plan_2 }}));
