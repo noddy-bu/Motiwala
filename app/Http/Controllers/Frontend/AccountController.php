@@ -597,14 +597,21 @@ class AccountController extends Controller
 
             if ($rsp_msg = "true") {
 
-                $userdetails = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))
+                $userId = Session::get('temp_user_id') ?? auth()->user()->id;
+
+                $userdetails = DB::table('userdetails')->where('user_id', $userId)
                 ->value('esign');
     
                 if(is_null($userdetails)){
 
                     Session::put('step', 8);
 
-                    return redirect()->route('account.new.enrollment.page');;
+                    if(Session::has('temp_user_id')){
+                        return redirect()->route('account.new.enrollment.page');
+                    } else {
+                        return redirect()->route('account.new.plan.page');
+                    }
+                    
                 }
 
                 Session::put('step', 12);
@@ -613,7 +620,14 @@ class AccountController extends Controller
                 Session::put('step', 8);
             }
 
-            return redirect()->route('account.new.enrollment.page');
+            // return redirect()->route('account.new.enrollment.page');
+
+            if(Session::has('temp_user_id')){
+                return redirect()->route('account.new.enrollment.page');
+            } else {
+                return redirect()->route('account.new.plan.page');
+            }
+
         } elseif ($param == "payment-gateway") {
 
             $rsp_msg = $this->payment_gateway($request);
