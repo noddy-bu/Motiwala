@@ -52,12 +52,12 @@
                     @if(auth()->user()->role_id != 3)
                         <div class="col-md-3">
                             @php 
-                                $admin = DB::table('users')->where('role_id', '!=', 0)->get(['fullname','id']); 
+                                $admin = DB::table('users')->where('role_id', '==', 3)->get(['fullname','id']);
                             @endphp
                             <div class="form-group mb-3">
-                                <label for="user_behalf" class="form-label">By Admin / Staff:</label>
+                                <label for="user_behalf" class="form-label">By Staff:</label>
                                 <select class="form-select" id="user_behalf" name="user_behalf">
-                                    <option value="">- Select Staff / Admin -</option>
+                                    <option value="">- Select Staff -</option>
                                     @foreach ($admin as $row)
                                         <option value="{{ $row->id }}">{{ ucfirst($row->fullname) }}</option>
                                     @endforeach
