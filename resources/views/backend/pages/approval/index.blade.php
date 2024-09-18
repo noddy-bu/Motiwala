@@ -52,7 +52,7 @@
                     @if(auth()->user()->role_id != 3)
                         <div class="col-md-3">
                             @php 
-                                $admin = DB::table('users')->where('role_id', '==', 3)->get(['fullname','id']);
+                                $admin = DB::table('users')->where('role_id', 3)->get(['fullname','id']);
                             @endphp
                             <div class="form-group mb-3">
                                 <label for="user_behalf" class="form-label">By Staff:</label>
