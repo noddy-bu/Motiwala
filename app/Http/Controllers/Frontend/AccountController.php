@@ -1566,9 +1566,11 @@ class AccountController extends Controller
                     $action = $PAYU_BASE_URL . '/_payment';
                 }
 
+                $userId = Session::get('temp_user_id') ?? auth()->user()->id;
+
                 $updateOrder = DB::table('temp_transactions')->where('id', $order->id)->update([
                     'pum_hash' => $hash,
-                    'temp_user_id' => Session::get('temp_user_id')
+                    'temp_user_id' => $userId
                 ]);
 
                 return view('frontend.payumoney.pay', compact('hash', 'action', 'MERCHANT_KEY', 'formError', 'txnid', 'posted', 'SALT', 'order'));
@@ -1820,6 +1822,20 @@ class AccountController extends Controller
             echo "Invalid Transaction. Please try again";
         } else {
             //fail
+
+            $user_exist = DB::table('temp_transactions as tt')
+                ->select('tt.temp_user_id','us.id')
+                ->leftJoin('users as us', 'tt.user_id', '=', 'us.id') // Assuming you want to join on user_id
+                ->where('tt.payment_id', $txnid)
+                ->where('us.status', 1)
+                ->first();
+            
+            if($user_exist){
+                Auth::guard('web')->loginUsingId($user_exist->id);
+                Session::put('user_id', $user_exist->id);
+                Session::put('step', 12);
+            }
+
             //update order
             $updateOrder = DB::table('temp_transactions')
                 ->where('payment_id', $txnid)
@@ -1837,7 +1853,13 @@ class AccountController extends Controller
 
         $temp_user_id = $temp_user ? $temp_user->temp_user_id : 0;
 
-        return view('frontend.payumoney.fail', compact('errorMessage', 'data', 'temp_user_id'));
+        if($user_exist){
+            return view('frontend.payumoney.fail_installment', compact('errorMessage','data','temp_user_id'));
+        } else {
+            return view('frontend.payumoney.fail', compact('errorMessage', 'data', 'temp_user_id'));
+        }
+
+        
     }
 
 
