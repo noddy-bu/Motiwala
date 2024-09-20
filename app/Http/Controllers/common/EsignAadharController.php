@@ -365,7 +365,9 @@ class EsignAadharController extends Controller
 
             $temp_user_id = $userId;
 
-            $PDFName = 'ESIGN-' . $temp_user_id . '.pdf';
+            $currentDateTime = date('Ymd_His');
+
+            $PDFName = 'ESIGN-' . $temp_user_id . '-' . $currentDateTime . '.pdf';
 
             $user_detail = DB::table('userdetails')->where('user_id', $temp_user_id)->first(['esign']);
 

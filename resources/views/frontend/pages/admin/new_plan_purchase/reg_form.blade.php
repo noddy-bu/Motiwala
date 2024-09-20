@@ -67,9 +67,9 @@
 
                 <div class="form-group">
 
-                    <div class="buttonclass me-4">
+                    {{-- <div class="buttonclass me-4">
                         <a class="text-decoration-none text-white" onclick="back_to_privious();"><i class="las la-arrow-left"></i>Back</a>
-                    </div>
+                    </div> --}}
 
                     <div class="buttonclass1 mt40">
                         <button type="submit">Submit <i class="las la-arrow-right"></i></button>
