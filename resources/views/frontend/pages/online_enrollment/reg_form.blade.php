@@ -1769,7 +1769,7 @@
         
         <div class="form-group text-center">
             <div class="buttonclass1 mt40">
-                <button id="login_page">{ $account_count > 1 ? 'Continue' : 'Proceed to login' }} <i class="las la-arrow-right"></i></button>
+                <button id="login_page">{{ $account_count > 1 ? 'Continue' : 'Proceed to login' }} <i class="las la-arrow-right"></i></button>
             </div>
         </div>
 
