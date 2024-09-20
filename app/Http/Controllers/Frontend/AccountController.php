@@ -1825,7 +1825,7 @@ class AccountController extends Controller
 
             $user_exist = DB::table('temp_transactions as tt')
                 ->select('tt.temp_user_id','us.id')
-                ->leftJoin('users as us', 'tt.user_id', '=', 'us.id') // Assuming you want to join on user_id
+                ->leftJoin('users as us', 'tt.temp_user_id', '=', 'us.id') // Assuming you want to join on user_id
                 ->where('tt.payment_id', $txnid)
                 ->where('us.status', 1)
                 ->first();
@@ -1858,7 +1858,6 @@ class AccountController extends Controller
         } else {
             return view('frontend.payumoney.fail', compact('errorMessage', 'data', 'temp_user_id'));
         }
-
         
     }
 
