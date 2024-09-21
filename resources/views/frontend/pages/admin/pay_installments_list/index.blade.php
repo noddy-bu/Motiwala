@@ -17,7 +17,7 @@
 
     <!-- -------------------- privacy content  start ---------------- -->
 
-    <main class="main">
+    <main class="main h_100_vh">
         <section class="pt-5 inner_sectionpadd pay_installments">
             <div class="container">
                 <div class="row">

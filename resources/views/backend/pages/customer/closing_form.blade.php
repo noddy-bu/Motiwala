@@ -10,6 +10,7 @@
                             <form id="plan_close_form" action="{{url(route('Customer.close.plan'))}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" value="{{ $info->user_id }}" name="user_id">
+                                <input type="hidden" value="{{ $info->id }}" name="redemptionsid">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         @if($info->plan_id != 2)

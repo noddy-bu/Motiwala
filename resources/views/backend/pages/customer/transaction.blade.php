@@ -92,10 +92,11 @@
                                     @if($info->status == 1)
                                         <div class="float-start">
                                             <a href="javascript:void(0);" 
-                                            class="btn btn-sm btn-primary rounded-3" 
-                                            onclick="largeModal('{{ url(route('Customer.close.form', ['id' => $info->user_id])) }}?previous_popup_link={{ $this_pop_link }}&previous_popup_name={{ $this_pop_name }}', 'Closeing Plan');">
+                                            class="btn btn-sm btn-primary rounded-3"
+                                            onclick="largeModal('{{ url(route('Customer.close.form', ['id' => $info->user_id, 'redemptions_id' => $info->id,'previous_popup_link' => $this_pop_link,'previous_popup_name' => $this_pop_name])) }}', 'Closeing Plan');">
                                                 Close Plan
                                             </a>
+
                                         </div>
                                     @else
                                         <hr>

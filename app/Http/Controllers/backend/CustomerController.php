@@ -475,7 +475,11 @@ class CustomerController extends Controller
         return redirect(route('Customer.index'))->with('success', 'Status changed successfully!');
     } 
     
-    public function close_plan_form($id) {
+    public function close_plan_form($id, Request $request) {
+
+        $redemptionsId = $request->query('redemptions_id');
+    
+
         $info = DB::table('users')
         ->select([
             'redemptions.id',
@@ -490,6 +494,7 @@ class CustomerController extends Controller
         ->join('plans', 'users.plan_id', '=', 'plans.id')
         ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
         ->where('users.id',$id)
+        ->where('redemptions.id', $redemptionsId)
         ->where('redemptions.status', 1)
         ->get()->first();
         
@@ -522,8 +527,9 @@ class CustomerController extends Controller
         } 
 
         $id = $request->input('user_id');
+        $redemptionsid = $request->input('redemptionsid');
 
-        DB::table('redemptions')->where('user_id',$id)->update([
+        DB::table('redemptions')->where('user_id',$id)->where('id',$redemptionsid)->update([
             'closing_date' => date('Y-m-d'),
             'closing_remark' => $request->input('remark'),
             'closing_amount' => $request->input('closing_amount'),
