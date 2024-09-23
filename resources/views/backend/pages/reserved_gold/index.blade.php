@@ -24,9 +24,9 @@
                                         <h4 class="header-title"><b>General</b></h4>
                                         <hr>
                                     </div>                          -->
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group mb-3">
-                                            <label>Gold Price (Per Gram) *</label>
+                                            <label>22 karat Gold Price  (Per Gram) *</label>
                                             <input type="text" class="form-control" name="gold_rate_in_1gram_per_day" value="{{ get_settings('gold_rate_in_1gram_per_day') }}">
                                         </div>
                                     </div>

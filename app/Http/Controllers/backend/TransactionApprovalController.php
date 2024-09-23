@@ -51,7 +51,7 @@ class TransactionApprovalController extends Controller
         ->leftJoin('transactions as t', 'rt.transaction_id', '=', 't.id')
         ->leftJoin('users as u', 'r.user_id', '=', 'u.id') // Changed 'user.id' to 'u.id'
         ->leftJoin('users as ub', 't.user_behalf', '=', 'ub.id') 
-        ->select('rt.id', 'rt.installment_no','t.payment_amount', 'rt.status as payment_status', 't.payment_id', 't.payment_type', 't.payment_response', 't.location', 't.created_at', 'ub.fullname as user_behalf_fullname', 'u.fullname', 'u.email', 'u.phone')
+        ->select('rt.id', 'rt.installment_no','t.payment_amount', 'rt.status as payment_status', 't.payment_id', 't.payment_type', 't.payment_response', 't.location', 't.created_at', 't.user_behalf', 'ub.fullname as user_behalf_fullname', 'u.fullname', 'u.email', 'u.phone')
         ->where('rt.status', '=', 'request_approval');
     
     
@@ -87,26 +87,17 @@ class TransactionApprovalController extends Controller
     
         $pay_amount = $request->input('pay_amount');
         if (!empty($pay_amount)) {
-            $query->where('payment_amount', 'like', "%$pay_amount%");
+            $query->where('t.payment_amount', 'like', "%$pay_amount%");
         }
 
         $location = $request->input('location');
         if (!empty($location)) {
-            $query->where('location', 'like', "%$location%");
+            $query->where('t.location', 'like', "%$location%");
         }
 
         $user_behalf = $request->input('user_behalf');
         if (!empty($user_behalf)) {
-            $query->where('user_behalf', $user_behalf);
-        }
-    
-        $status = $request->input('status');
-        if ($status != '') {
-            if ($status !== 'null') { // Check if $status is not the string 'null'
-                $query->where('redemptions.status', $status);
-            } else {
-                $query->whereNull('u.status'); // Use whereNull to check for NULL in the 'users.status' column
-            }
+            $query->where('t.user_behalf', $user_behalf);
         }
     
         // Order

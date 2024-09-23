@@ -21,12 +21,26 @@
 
             <form id="search-form">
                 <div class="row">
-                    {{-- <div class="col-md-3">
+                    <div class="col-md-3">
                         <div class="form-group mb-3">
                             <label for="name" class="form-label">Name:</label>
                             <input type="text" class="form-control" id="name" name="name">
                         </div>
-                    </div> --}}
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label">Phone:</label>
+                            <input type="text" class="form-control" id="phone" name="phone">
+                        </div>
+                    </div>
 
                     <div class="col-md-3">
                         <div class="form-group mb-3">
@@ -96,7 +110,7 @@
                         <th>Location</th>
                         <th> By Admin / Staff</th>
                         <th>Date</th>
-                        <th>Action</th>
+                        <th>Approval</th>
                     </tr>
                 </thead>
             </table>
@@ -124,6 +138,8 @@
                     url: "{{ route('approvaltransaction.data') }}",
                     data: function (d) {
                         d.name = $('#name').val();
+                        d.email = $('#email').val();
+                        d.phone = $('#phone').val();
                         d.pay_id = $('#pay_id').val();
                         d.pay_amount = $('#pay_amount').val();
                         d.location = $('#location').val();

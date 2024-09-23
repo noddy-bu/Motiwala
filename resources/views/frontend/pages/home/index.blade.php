@@ -398,6 +398,7 @@
                                                 <p id="amount_13x_plan2" class="amount_13x">100 gm</p>
                                             </div>
                                         </div>
+                                        <p>Today Gold Rate 22 kt As Per 1 gram : Rs {{ $gold_price }}</p>
                                         <p><small>Note : The rate calculation is based on the gold price for 22 karat on the purchase date.</small></p>
                                     </div>
                                 </form>
