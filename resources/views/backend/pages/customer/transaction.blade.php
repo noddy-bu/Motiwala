@@ -92,10 +92,11 @@
                                     @if($info->status == 1)
                                         <div class="float-start">
                                             <a href="javascript:void(0);" 
-                                            class="btn btn-sm btn-primary rounded-3" 
-                                            onclick="largeModal('{{ url(route('Customer.close.form', ['id' => $info->user_id])) }}?previous_popup_link={{ $this_pop_link }}&previous_popup_name={{ $this_pop_name }}', 'Closeing Plan');">
+                                            class="btn btn-sm btn-primary rounded-3"
+                                            onclick="largeModal('{{ url(route('Customer.close.form', ['id' => $info->user_id, 'redemptions_id' => $info->id,'previous_popup_link' => $this_pop_link,'previous_popup_name' => $this_pop_name])) }}', 'Closeing Plan');">
                                                 Close Plan
                                             </a>
+
                                         </div>
                                     @else
                                         <hr>
@@ -164,7 +165,7 @@
                                 @if($info->close_planid == 1)
                                     <th>Profit Amount</th>
                                 @else
-                                    <th>Reserved Gold</th>
+                                    <th>Reserved Gold 22 karat</th>
                                 @endif
                                 <th>Payment Type</th>
                                 <th>Status</th>
@@ -186,7 +187,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($row->status == 'paid')
+                                            @if (in_array($row->status, ['paid','request_approval']))
                                                 {{ datetimeFormatter($row->receipt_date) }}
                                             @else
                                                 NA
@@ -210,7 +211,7 @@
                                             </td>
                                         @endif
                                         <td>
-                                            @if (in_array($row->status, ['paid']))
+                                            @if (in_array($row->status, ['paid','request_approval']))
                                                 @php
                                                     $transaction_payment_type = DB::table('transactions')->where('id', $row->transaction_id)->value('payment_type');
                                                 @endphp
@@ -232,6 +233,8 @@
                                         <td>
                                             @if ($row->status == 'paid')
                                                 Paid
+                                            @elseif ($row->status == 'request_approval')
+                                                <span class="badge bg-danger">Paid</span>
                                             @elseif ($row->status == 'pending')
                                                 <b>pending</b>
 
@@ -263,6 +266,16 @@
             </div>
         </div>
 
+    </div>
+    @php
+        $previousPopupLink = urldecode(request()->input('previous_popup_link'));
+        $previousPopupName = request()->input('previous_popup_name');
+    @endphp
+
+    <div class="text-end">
+    <a href="javascript:void(0);" class="btn btn-sm btn-secondary btn-block pt-1" onclick="largeModal('{{ $previousPopupLink }}', '{{ $previousPopupName }}');">
+        Back
+    </a>
     </div>
 </section>
 

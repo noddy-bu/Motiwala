@@ -55,8 +55,9 @@
                                 <i class="ri-eye-fill" title="Active"></i>
                             @endif
                         </a>
+                        <a href="javascript:void(0);" class="action-icon" onclick="smallModal('{{ url(route('author.edit',['id' => $row->id])) }}', 'Edit Staff')"> <i class="mdi mdi-square-edit-outline" title="Edit"></i></a>
                     @endif
-                    <a href="javascript:void(0);" class="action-icon" onclick="smallModal('{{ url(route('author.edit',['id' => $row->id])) }}', 'Edit Staff')"> <i class="mdi mdi-square-edit-outline" title="Edit"></i></a>
+
                     {{-- <a href="javascript:void(0);" class="action-icon" onclick="confirmModal('{{ url(route('author.delete', $row->id)) }}', responseHandler)"><i class="mdi mdi-delete" title="Delete"></i></a> --}}
                 </td>
             </tr>

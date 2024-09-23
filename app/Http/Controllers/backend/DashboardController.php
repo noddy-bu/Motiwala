@@ -12,7 +12,7 @@ class DashboardController extends Controller
 {
     public function index(){
         $user_reg_Count = User::where('status', 1)->where('role_id', 0)->count();
-        $user_not_reg_Count = User::where('status', 0)->count(); 
+        $user_not_reg_Count = User::where('status', null)->count(); 
 
         $transactions = Transaction::where('payment_status', 'paid')
         ->when(in_array(auth()->user()->role_id, [2, 3]), function ($query) {

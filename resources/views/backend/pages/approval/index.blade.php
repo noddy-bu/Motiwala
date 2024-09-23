@@ -21,12 +21,26 @@
 
             <form id="search-form">
                 <div class="row">
-                    {{-- <div class="col-md-3">
+                    <div class="col-md-3">
                         <div class="form-group mb-3">
                             <label for="name" class="form-label">Name:</label>
                             <input type="text" class="form-control" id="name" name="name">
                         </div>
-                    </div> --}}
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label">Phone:</label>
+                            <input type="text" class="form-control" id="phone" name="phone">
+                        </div>
+                    </div>
 
                     <div class="col-md-3">
                         <div class="form-group mb-3">
@@ -52,12 +66,12 @@
                     @if(auth()->user()->role_id != 3)
                         <div class="col-md-3">
                             @php 
-                                $admin = DB::table('users')->where('role_id', '!=', 0)->get(['fullname','id']); 
+                                $admin = DB::table('users')->where('role_id', 3)->get(['fullname','id']);
                             @endphp
                             <div class="form-group mb-3">
-                                <label for="user_behalf" class="form-label">By Admin / Staff:</label>
+                                <label for="user_behalf" class="form-label">By Staff:</label>
                                 <select class="form-select" id="user_behalf" name="user_behalf">
-                                    <option value="">- Select Staff / Admin -</option>
+                                    <option value="">- Select Staff -</option>
                                     @foreach ($admin as $row)
                                         <option value="{{ $row->id }}">{{ ucfirst($row->fullname) }}</option>
                                     @endforeach
@@ -86,6 +100,8 @@
                         <th>#</th>
                         <th>Pay ID</th>
                         <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
                         <th>Installment No</th>
                         <th>Amount</th>
                         <th>Transaction Slip</th>
@@ -94,6 +110,7 @@
                         <th>Location</th>
                         <th> By Admin / Staff</th>
                         <th>Date</th>
+                        <th>Approval</th>
                     </tr>
                 </thead>
             </table>
@@ -118,9 +135,11 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "{{ route('transaction.data') }}",
+                    url: "{{ route('approvaltransaction.data') }}",
                     data: function (d) {
                         d.name = $('#name').val();
+                        d.email = $('#email').val();
+                        d.phone = $('#phone').val();
                         d.pay_id = $('#pay_id').val();
                         d.pay_amount = $('#pay_amount').val();
                         d.location = $('#location').val();
@@ -131,6 +150,8 @@
                     { data: 'id', orderable: false},
                     { data: 'pay_id', orderable: false},
                     { data: 'name', orderable: false},
+                    { data: 'email', orderable: false},
+                    { data: 'phone', orderable: false},
                     { data: 'installment', orderable: false},
                     { data: 'amount', orderable: false},
                     { data: 'transactionSlip', orderable: false},
@@ -139,6 +160,7 @@
                     { data: 'location', orderable: false},
                     { data: 'user_behalf', orderable: false},
                     { data: 'created_at', orderable: false},
+                    { data: 'action', orderable: false},
                 ],
                 dom: '<"row"<"col-md-6"l><"col-md-6"f>><"row"<"col-md-12"i>>tip',
             });

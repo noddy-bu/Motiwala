@@ -111,8 +111,15 @@ class TransactionController extends Controller
 
             $installment_no = DB::table('redemption_items')->where('transaction_id',$row->id)->value('installment_no');
 
-            $user_behalf = DB::table('users')->where('id', $row->user_behalf)->where('role_id', '!=', 2)->value('first_name');
-  
+            $user_behalf = DB::table('users')->where('id', $row->user_behalf)->value('fullname');
+            
+            $paymentResponse = json_decode($row->payment_response, true); 
+
+            if (isset($paymentResponse['transaction_Slip'])) {
+                $transactionSlip = $paymentResponse['transaction_Slip']; // Extract the transaction_Slip value
+            } else {
+                $transactionSlip = null; // Handle the case where transaction_Slip is not set
+            }
 
             if ($row->payment_type == "payu") {
                 $type = 'PayU';
@@ -130,6 +137,7 @@ class TransactionController extends Controller
                 'name' => $user_name,
                 'installment' => $installment_no,
                 'amount' => $row->payment_amount,
+                'transactionSlip' => ($transactionSlip != null) ? '<a href="' . asset('storage/' .$transactionSlip) . '" target="_blank">view</a>' : '-',
                 'type' => $type,
                 'status' => $row->payment_status,
                 'location' => $row->location ?? '-',

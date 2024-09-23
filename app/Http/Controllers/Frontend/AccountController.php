@@ -110,10 +110,10 @@ class AccountController extends Controller
         return redirect()->route('index');
     }
 
-    /*------------------------------ Login Logout Function -------------------------------------------------*/
+/*------------------------------ Login Logout Function -------------------------------------------------*/
 
 
-    /*------------------------------ other inner Function -------------------------------------------------*/
+/*------------------------------ other inner Function -------------------------------------------------*/
 
 
     public function link_account()
@@ -136,7 +136,24 @@ class AccountController extends Controller
         return view('frontend.pages.admin.my_accounts.index');
     }
 
-    public function pay_installments()
+    public function new_plan_purchase()
+    {
+        return view('frontend.pages.admin.new_plan_purchase.index');
+    }
+
+    public function pay_installments(){
+
+        $info = DB::table('redemptions')
+        ->select('redemptions.id','redemptions.plan_id','redemptions.created_at','redemptions.maturity_date_start','redemptions.status','plans.name as plan_name')
+        ->leftJoin('plans', 'redemptions.plan_id', '=', 'plans.id')
+        ->where('redemptions.user_id', Session::get('user_id'))
+        ->orderBy('redemptions.id', 'desc')
+        ->get();
+
+        return view('frontend.pages.admin.pay_installments_list.index', compact('info'));
+    }
+
+    public function pay_installment($id)
     {
 
         $info = DB::table('users')
@@ -161,14 +178,15 @@ class AccountController extends Controller
             ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
             // ->where('redemptions.status', 1)
             ->where('users.id', Session::get('user_id'))
-            ->orderBy('redemptions.id', 'desc')
+            ->where('redemptions.id', $id)
+            // ->orderBy('redemptions.id', 'desc')
             ->get()->first();
 
         $transactions = DB::table('transactions')->where('user_id', Session::get('user_id'))->get();
 
         $redemption_items = DB::table('redemption_items')->where('redemption_id', $info->id)->get();
 
-        return view('frontend.pages.admin.pay_installments.index', compact('info', 'transactions', 'redemption_items'));
+        return view('frontend.pages.admin.pay_installment.index', compact('info', 'transactions', 'redemption_items'));
     }
 
     public function installments(Request $request)
@@ -371,10 +389,10 @@ class AccountController extends Controller
 
 
 
-    /*------------------------------ other inner Function -------------------------------------------------*/
+/*------------------------------ other inner Function -------------------------------------------------*/
 
 
-    /*------------------------------ Forgot password Function --------------------------------------------*/
+/*------------------------------ Forgot password Function --------------------------------------------*/
 
     public function forgot_password($param, Request $request)
     {
@@ -524,11 +542,11 @@ class AccountController extends Controller
     }
 
 
-    /*------------------------------ Forgot password Function -------------------------------------------*/
+/*------------------------------ Forgot password Function -------------------------------------------*/
 
 
 
-    /*--=================================  Registration user ==================================================---*/
+ /*--=================================  Registration user ==================================================---*/
 
     public function online_enrollment()
     {
@@ -579,14 +597,21 @@ class AccountController extends Controller
 
             if ($rsp_msg = "true") {
 
-                $userdetails = DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))
+                $userId = Session::get('temp_user_id') ?? auth()->user()->id;
+
+                $userdetails = DB::table('userdetails')->where('user_id', $userId)
                 ->value('esign');
     
                 if(is_null($userdetails)){
 
                     Session::put('step', 8);
 
-                    return redirect()->route('account.new.enrollment.page');;
+                    if(Session::has('temp_user_id')){
+                        return redirect()->route('account.new.enrollment.page');
+                    } else {
+                        return redirect()->route('account.new.plan.page');
+                    }
+                    
                 }
 
                 Session::put('step', 12);
@@ -595,7 +620,14 @@ class AccountController extends Controller
                 Session::put('step', 8);
             }
 
-            return redirect()->route('account.new.enrollment.page');
+            // return redirect()->route('account.new.enrollment.page');
+
+            if(Session::has('temp_user_id')){
+                return redirect()->route('account.new.enrollment.page');
+            } else {
+                return redirect()->route('account.new.plan.page');
+            }
+
         } elseif ($param == "payment-gateway") {
 
             $rsp_msg = $this->payment_gateway($request);
@@ -1114,6 +1146,23 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
+        $userId = Session::get('temp_user_id') ?? auth()->user()->id;
+
+        $exist_plan = DB::table('users')
+            ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
+            ->where('users.id', $userId)
+            ->where('redemptions.plan_id',$request->input('plan_id'))
+            ->where('redemptions.status', '1')
+            ->select('users.id')
+            ->first();
+
+        if ($exist_plan) {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = 'Plan Already Active';
+
+            return $rsp_msg;
+        }
+
 
         $plan_amount = DB::table('plans')->where('id', $request->input('plan_id'))->value('minimum_installment_amount');
 
@@ -1131,15 +1180,21 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
+
+
+
+
         // if($request->has('residence_address_check')){
         //     $address = $request->input('residence_nominee_address');
         // } else {
         //     $address = $request->input('nominee_address');
         // }
 
-        if (Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))) {
+        // if (Session::has('temp_user_id') && !empty(Session::get('temp_user_id'))) {
 
-            DB::table('users')->where('id', Session::get('temp_user_id'))->update([
+        if (!empty($userId)) {
+
+            DB::table('users')->where('id', $userId)->update([
                 'plan_id' => $request->input('plan_id'),
                 'installment_amount' => $request->input('installment_amount'),
                 'step' => 7,
@@ -1284,7 +1339,9 @@ class AccountController extends Controller
             return $rsp_msg;
         }
 
-        $user = DB::table('users')->where('id', Session::get('temp_user_id'))
+        $userId = Session::get('temp_user_id') ?? auth()->user()->id;
+
+        $user = DB::table('users')->where('id', $userId)
             ->get(['first_name', 'last_name', 'fullname', 'email', 'phone', 'plan_id'])
             ->first();
 
@@ -1366,7 +1423,9 @@ class AccountController extends Controller
     public function payment_gateway($request)
     {
 
-        $user = DB::table('users')->where('id', Session::get('temp_user_id'))->first(['first_name', 'last_name', 'fullname', 'email', 'phone', 'installment_amount']);
+        $userId = Session::get('temp_user_id') ?? auth()->user()->id;
+
+        $user = DB::table('users')->where('id', $userId)->first(['first_name', 'last_name', 'fullname', 'email', 'phone', 'installment_amount']);
 
         $ip = ip_info();
         $ip_data = json_decode($ip, true); 
@@ -1507,9 +1566,11 @@ class AccountController extends Controller
                     $action = $PAYU_BASE_URL . '/_payment';
                 }
 
+                $userId = Session::get('temp_user_id') ?? auth()->user()->id;
+
                 $updateOrder = DB::table('temp_transactions')->where('id', $order->id)->update([
                     'pum_hash' => $hash,
-                    'temp_user_id' => Session::get('temp_user_id')
+                    'temp_user_id' => $userId
                 ]);
 
                 return view('frontend.payumoney.pay', compact('hash', 'action', 'MERCHANT_KEY', 'formError', 'txnid', 'posted', 'SALT', 'order'));
@@ -1678,6 +1739,8 @@ class AccountController extends Controller
 
         // $amount = $plan_details->minimum_installment_amount;
 
+        $esign = DB::table('userdetails')->where('user_id', $temp_user_id)->value('esign');
+
         $redemption_id = DB::table('redemptions')->insertGetId([
             'user_id' => $temp_user_id,
             'plan_id' => $user_plan_Details,
@@ -1685,10 +1748,12 @@ class AccountController extends Controller
             'maturity_date_end' => $maturity_date_end,
             // 'total_receivable_amount' => $amount + ($amount * 0.075),
             'status' => '1',
+            'esign' => $esign,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
+        DB::table('userdetails')->where('user_id', $temp_user_id)->update(['esign' => null]);
 
         $percentage = $plan_details->receivable_percentage_on_time;
         $additionalAmount = ($amount * $percentage) / 100;
@@ -1757,6 +1822,20 @@ class AccountController extends Controller
             echo "Invalid Transaction. Please try again";
         } else {
             //fail
+
+            $user_exist = DB::table('temp_transactions as tt')
+                ->select('tt.temp_user_id','us.id')
+                ->leftJoin('users as us', 'tt.temp_user_id', '=', 'us.id') // Assuming you want to join on user_id
+                ->where('tt.payment_id', $txnid)
+                ->where('us.status', 1)
+                ->first();
+            
+            if($user_exist){
+                Auth::guard('web')->loginUsingId($user_exist->id);
+                Session::put('user_id', $user_exist->id);
+                Session::put('step', 12);
+            }
+
             //update order
             $updateOrder = DB::table('temp_transactions')
                 ->where('payment_id', $txnid)
@@ -1774,7 +1853,12 @@ class AccountController extends Controller
 
         $temp_user_id = $temp_user ? $temp_user->temp_user_id : 0;
 
-        return view('frontend.payumoney.fail', compact('errorMessage', 'data', 'temp_user_id'));
+        if($user_exist){
+            return view('frontend.payumoney.fail_installment', compact('errorMessage','data','temp_user_id'));
+        } else {
+            return view('frontend.payumoney.fail', compact('errorMessage', 'data', 'temp_user_id'));
+        }
+        
     }
 
 

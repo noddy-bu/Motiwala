@@ -42,6 +42,10 @@ div#add-phone a {
     background-size: cover;
 }
 
+.h_100_vh {
+    height: 100vh !important;
+}
+
 .black_color,
 b {
     color: #404040;

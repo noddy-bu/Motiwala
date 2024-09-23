@@ -19,6 +19,12 @@
                     <span class="ms-1 d-sm-inline">Pay Installments</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ url(route('account.new.plan.page')) }}" class="nav-link align-middle px-0">
+                    <i class="las la-file-alt"></i>
+                    <span class="ms-1 d-sm-inline">New Plans Purchase</span>
+                </a>
+            </li>
             {{-- <li class="nav-item">
                 <a href="{{ url(route('customer.myaccounts')) }}" class="nav-link align-middle px-0">
                     <i class="las la-user-plus"></i>

@@ -97,28 +97,28 @@
                 <div class="carousel-item active">
                     <img src="/assets/frontend/images/1.jpg" class="d-md-block d-none w-100"
                         alt="...">
-                    <img src="/assets/frontend/images/5.jpg" class="d-md-none d-block w-100"
+                    <img src="/assets/frontend/images/5-new.jpg" class="d-md-none d-block w-100"
                         alt="...">
                 </div>
 
                 <div class="carousel-item ">
                     <img src="/assets/frontend/images/2.jpg" class="d-md-block d-none w-100"
                         alt="...">
-                    <img src="/assets/frontend/images/6.jpg" class="d-md-none d-block w-100"
+                    <img src="/assets/frontend/images/6-new.jpg" class="d-md-none d-block w-100"
                         alt="...">
                 </div>
 
                 <div class="carousel-item">
                     <img src="/assets/frontend/images/3.jpg" class="d-md-block d-none w-100"
                         alt="...">
-                    <img src="/assets/frontend/images/7.jpg" class="d-md-none d-block w-100"
+                    <img src="/assets/frontend/images/7-new.jpg" class="d-md-none d-block w-100"
                         alt="...">
                 </div>
 
                 <div class="carousel-item">
                     <img src="/assets/frontend/images/4.jpg" class="d-md-block d-none w-100"
                         alt="...">
-                    <img src="/assets/frontend/images/8.jpg" class="d-md-none d-block w-100"
+                    <img src="/assets/frontend/images/8-new.jpg" class="d-md-none d-block w-100"
                         alt="...">
                 </div>
 
@@ -310,8 +310,8 @@
                                         <div class="col-md-12">
                                             <div class="sip-calculator-amount">
                                                 <div class="amount_monthly2">
-                                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for {{ env('PLAN_1') }}  <span
-                                                            id="amount_10x">₹ 1,00,000</span>
+                                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for {{ env('PLAN_1') }}th month  <span
+                                                            id="amount_10x">₹ 110,000</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -324,7 +324,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="total_number_main">
-                                                <p id="amount_13x" class="amount_13x">₹ 1,07,500</p>
+                                                <p id="amount_13x" class="amount_13x">₹ 1,20,000</p>
                                             </div>
                                         </div>
                                     </div>
@@ -381,7 +381,7 @@
                                         <div class="col-md-12">
                                             <div class="sip-calculator-amount">
                                                 <div class="amount_monthly2">
-                                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for 11th months <span
+                                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for {{ env('PLAN_2') }} <span
                                                             id="amount_10x_plan2">₹ 1,00,000</span>
                                                     </label>
                                                 </div>
@@ -391,14 +391,16 @@
                                             <hr>
                                         </div>
                                         <div class="col-md-6">
-                                            <p class="pt-2">You can Get Gold worth: <br class="d-none d-md-block"> (in {{ env('PLAN_2') }} )</p>                                            
+                                            <p class="pt-2">You can Get Gold worth: <br class="d-none d-md-block"> (in {{ env('PLAN_2_freeze') }}th months )</p>                                            
                                         </div>
                                         <div class="col-md-6">
                                             <div class="total_number_main">
                                                 <p id="amount_13x_plan2" class="amount_13x">100 gm</p>
                                             </div>
                                         </div>
-                                        <p><small>Note : The rate calculation is based on the gold price for 22 karat on the purchase date.</small></p>
+                                        <p></p>
+                                        <p>Note : The rate calculation is based on the gold price for 22 karat on the purchase date. <span style="    font-size: 14px;
+    color: #c1884e;">(Today Gold Rate 22 kt As Per 1 gram : Rs {{ $gold_price }})</span></p>
                                     </div>
                                 </form>
                             </div>
@@ -797,7 +799,7 @@
             const amountPlusBtn = document.getElementById('amount_plus');
             const amountMinusBtn = document.getElementById('amount_minus');
 
-            let currentAmount = parseInt(calcInput.value);
+            let currentAmount = parseInt(calcInput.value, {{ $plan1_duration }});
 
 
 
@@ -822,7 +824,8 @@
             }
 
             calcInput.addEventListener('input', function() {
-                currentAmount = parseInt(calcInput.value, {{ $plan1_duration }}) || 0;
+                currentAmount = parseInt(calcInput.value) || 0;
+
                 if (currentAmount < {{ $plan_min_amount_plan_1 }}) {
                     validationMessage.html('Minimum amount should be ' + roundToNearestThousand(
                         {{ $plan_min_amount_plan_1 }}));
@@ -912,7 +915,7 @@
             }
 
             calcInput_plan2.addEventListener('input', function() {
-                currentAmount_plan2 = parseInt(calcInput_plan2.value, {{ $plan2_duration }}) || 0;
+                currentAmount_plan2 = parseInt(calcInput_plan2.value) || 0;
                 if (currentAmount_plan2 < {{ $plan_min_amount_plan_2 }}) {
                     validationMessage_plan2.html('Minimum amount should be ' + roundToNearestThousand(
                         {{ $plan_min_amount_plan_2 }}));
