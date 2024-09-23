@@ -17,7 +17,7 @@
     </section>
 
 
-    <main class="main h_100_vh" >
+    <main class="main" >
         <section class="openaccount pt-md-5 pt-3 pb-md-5 pb-5">
             <div class="container">
                 <div class="row">
