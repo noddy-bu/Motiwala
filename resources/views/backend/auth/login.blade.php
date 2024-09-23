@@ -30,7 +30,7 @@
                 <!-- Logo -->
                 <div class="auth-brand text-center text-lg-start">
                     <a href="/" class="logo-dark text-center" > 
-                        <span><img src="{{ asset('/assets/frontend/images/logo.png') }}" alt="dark logo" style="width:70%;"></span>
+                        <span><img src="{{ asset('/assets/frontend/images/logo.png') }}" alt="dark logo" style="width:42%;"></span>
                     </a>
                     <a href="/" class="logo-light">
                         <span><img src="{{ asset('/assets/frontend/images/logo.png') }}" alt="logo" style="width:200px; height:50px;" ></span>

@@ -158,9 +158,11 @@
     @endphp
 
     @if(!empty($previousPopupLink))
-        <a href="javascript:void(0);" class="btn btn-sm btn-secondary btn-block pt-1" onclick="largeModal('{{ $previousPopupLink }}', '{{ $previousPopupName }}');">
+    <div class="text-end">
+        <a href="javascript:void(0);" class="btn btn-sm btn-secondary btn-block pt-1 mt-2" onclick="largeModal('{{ $previousPopupLink }}', '{{ $previousPopupName }}');">
             Back
         </a>
+        </div>
     @endif
 
 
