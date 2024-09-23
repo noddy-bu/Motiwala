@@ -320,7 +320,7 @@
                                             <hr>
                                         </div>
                                         <div class="col-md-6">
-                                            <p class="pt-2">You can Buy Jewellery worth: (in 11th month)</p>
+                                            <p class="pt-2">You can Buy Jewellery worth: (in 12th month)</p>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="total_number_main">
@@ -391,7 +391,7 @@
                                             <hr>
                                         </div>
                                         <div class="col-md-6">
-                                            <p class="pt-2">You can Get Gold worth: <br class="d-none d-md-block"> (in {{ env('PLAN_2_freeze') }} the months )</p>                                            
+                                            <p class="pt-2">You can Get Gold worth: <br class="d-none d-md-block"> (in {{ env('PLAN_2_freeze') }}th months )</p>                                            
                                         </div>
                                         <div class="col-md-6">
                                             <div class="total_number_main">
