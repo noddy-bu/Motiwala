@@ -313,7 +313,7 @@ class CustomerController extends Controller
     
             $plan_details = !empty($combinedPlans)
                 ? implode(', ', $combinedPlans)
-                : '<span class="badge bg-danger">Inactive</span>';
+                : '<span class="badge bg-danger">Incomplete</span>';
             
             $nestedData = [
                 'id' => $serialNumber,

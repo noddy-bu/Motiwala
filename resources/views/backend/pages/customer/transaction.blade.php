@@ -165,7 +165,7 @@
                                 @if($info->close_planid == 1)
                                     <th>Profit Amount</th>
                                 @else
-                                    <th>Reserved Gold</th>
+                                    <th>Reserved Gold 22 karat</th>
                                 @endif
                                 <th>Payment Type</th>
                                 <th>Status</th>

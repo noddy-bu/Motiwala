@@ -62,7 +62,7 @@
                                 <option value="">All</option>
                                 <option value="1">In Progress</option>
                                 <option value="0">Completed</option>
-                                <option value="null">Inactive</option>
+                                <option value="null">Incomplete</option>
                             </select>
                         </div>
                     </div>

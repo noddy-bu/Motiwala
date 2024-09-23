@@ -61,7 +61,7 @@
                                                     @if ($row->status == '1')
                                                         <span class="badge bg-primary">In Progress</span>
                                                     @elseif ($row->status == '0')
-                                                        <span class="badge bg-danger">Close</span>
+                                                        <span class="badge bg-danger">Closed</span>
                                                     @else
                                                         -
                                                     @endif
