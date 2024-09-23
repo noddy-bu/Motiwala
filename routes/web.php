@@ -198,11 +198,11 @@ Route::get('/update-session', function () {
 })->name('update-session');
 
 
-Route::get('/custom-session', function () {
-    Session()->put('step', 8);
-    // Session()->put('payment', 1);
-    // session()->put('temp_user_id', 4);
-});
+// Route::get('/custom-session', function () {
+//     Session()->put('step', 8);
+//     // Session()->put('payment', 1);
+//     // session()->put('temp_user_id', 4);
+// });
 
 
 Route::get('/resubmit-aadhar-otp', function () {
