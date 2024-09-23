@@ -391,15 +391,16 @@
                                             <hr>
                                         </div>
                                         <div class="col-md-6">
-                                            <p class="pt-2">You can Get Gold worth: <br class="d-none d-md-block"> (in {{ env('PLAN_2_freeze') }}th months )</p>                                            
+                                            <p class="pt-2">You can Get Gold worth: <br class="d-none d-md-block"> (in {{ env('PLAN_2_freeze') }} the months )</p>                                            
                                         </div>
                                         <div class="col-md-6">
                                             <div class="total_number_main">
                                                 <p id="amount_13x_plan2" class="amount_13x">100 gm</p>
                                             </div>
                                         </div>
-                                        <p>Today Gold Rate 22 kt As Per 1 gram : Rs {{ $gold_price }}</p>
-                                        <p><small>Note : The rate calculation is based on the gold price for 22 karat on the purchase date.</small></p>
+                                        <p></p>
+                                        <p>Note : The rate calculation is based on the gold price for 22 karat on the purchase date. <span style="    font-size: 14px;
+    color: #c1884e;">(Today Gold Rate 22 kt As Per 1 gram : Rs {{ $gold_price }})</span></p>
                                     </div>
                                 </form>
                             </div>
