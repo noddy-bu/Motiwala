@@ -320,7 +320,7 @@
                                             <hr>
                                         </div>
                                         <div class="col-md-6">
-                                            <p class="pt-2">You can Buy Jewellery worth: (in {{ env('PLAN_1_freeze') }}th month)</p>
+                                            <p class="pt-2">You can Buy Jewellery worth: (in 11th month)</p>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="total_number_main">
@@ -381,7 +381,7 @@
                                         <div class="col-md-12">
                                             <div class="sip-calculator-amount">
                                                 <div class="amount_monthly2">
-                                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for {{ env('PLAN_2') }}th months <span
+                                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for {{ env('PLAN_2') }} <span
                                                             id="amount_10x_plan2">₹ 1,00,000</span>
                                                     </label>
                                                 </div>
@@ -797,7 +797,9 @@
             const amountPlusBtn = document.getElementById('amount_plus');
             const amountMinusBtn = document.getElementById('amount_minus');
 
-            let currentAmount = parseInt(calcInput.value);
+            let currentAmount = parseInt(calcInput.value, {{ $plan1_duration }});
+
+
 
             function updateAmount() {
                 if (currentAmount % 1000 !== 0) {
