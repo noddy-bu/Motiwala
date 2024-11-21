@@ -763,6 +763,34 @@ form.form-subscribe button {
     margin: 0;
 }
 
+section.trusted_jeweller_main {
+    padding: 0px 0px 60px 0px;
+}
+
+.trusted_jeweller_div li {
+    padding-bottom: 5px;
+}
+
+.trusted_jeweller_heading {
+    font-weight: 700;
+    font-size: 20px;
+    color: #404040;
+}
+
+.byculla_heading {
+    font-size: 24px !important;
+}
+
+.trusted_jeweller_div p,
+.trusted_jeweller_div a,
+.trusted_jeweller_div li {
+    color: #454545;
+}
+
+.trusted_jeweller_div {
+    padding-bottom: 15px;
+}
+
 .footer_social ul li {
     float: left;
     list-style: none;
