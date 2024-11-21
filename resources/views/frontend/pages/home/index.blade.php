@@ -1,8 +1,8 @@
 @extends(Session::has('user_id') ? 'frontend.layouts.app2' : 'frontend.layouts.app')
 
-@section('page.title', 'Motiwala Jewels Gold & Diamond Private Limited')
+@section('page.title', 'Motiwala Jewels | Shop luxury jewelry | Get Pure Gold at Best Price')
 
-@section('page.description', ' ')
+@section('page.description', 'Discover the elegance of Motiwala Jewels, your destination for exquisite gold and diamond jewellery. Explore our stunning diamond jewellery collection and the exclusive Motiwala Jewels Golden Treasure, featuring timeless designs crafted to perfection Shop luxury jewelry today')
 
 @section('page.type', 'website')
 
@@ -624,6 +624,77 @@
                         </div>
                     </div>
 
+                    </div>
+                </div>
+            </section>
+
+            <!--faq end -->
+
+            <section class="trusted_jeweller_main">
+                <div class="container">
+                    <div class="trusted_jeweller_div trusted_jeweller_div_1">
+                        <h1 class="trusted_jeweller_heading byculla_heading">
+                            Motiwala Jewels Gold and Diamond Jewellery - Your Trusted Jeweller Byculla Mumbai
+                        </h1>
+                        <p class="trusted_jeweller_p1">
+                            At Motiwala Jewels, we pride ourselves on being Mumbai's premier destination for 
+                            exquisite gold and diamond jewellery. Our extensive collection offers something for everyone, 
+                            whether you’re searching for a stunning piece for a special occasion or a timeless treasure 
+                            to add to your collection. With our commitment to quality and craftsmanship, we ensure that 
+                            every piece meets the highest standards.
+                        </p>
+                    </div>
+                    <div class="trusted_jeweller_div trusted_jeweller_div_2">
+                        <h2 class="trusted_jeweller_heading get_pure_gold_heading">Get Pure Gold Best Price at Motiwala Jewels</h2>
+                        <p class="trusted_jeweller_p2">
+                            At <a href="https://motiwalajewels.in/" class="trusted_jeweller_link"> Motiwala Jewels</a>, 
+                            we believe in providing our customers with the best value for their investments. 
+                            Here’s why our pure gold jewellery stands out:
+                        </p>
+                        <ul class="get_pure_gold_list">
+                            <li>
+                                <strong>High Purity Levels:</strong> We guarantee that all our gold jewellery is crafted from 22K gold, ensuring unmatched purity.
+                            </li>
+                            <li>
+                                <strong>Competitive Pricing:</strong> Our transparent pricing model ensures you get the best rates without hidden costs.
+                            </li>
+                            <li>
+                                <strong>Customization Options:</strong> Choose from our extensive range of designs or collaborate with our artisans to create a unique piece tailored to your taste.
+                            </li>
+                            <li>
+                                <strong>Quality Assurance:</strong> Each piece is meticulously inspected for quality, ensuring durability and elegance.
+                            </li>
+                            <li>
+                                <strong>Ethical Sourcing:</strong> We are committed to ethical sourcing practices, ensuring that our gold comes from conflict-free origins.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="trusted_jeweller_div trusted_jeweller_div_3">
+                        <h3 class="trusted_jeweller_heading golden_culture">
+                            Golden Culture: Diamond Jewellers at Motiwala Jewels
+                        </h3>
+                        <p class="trusted_jeweller_p2">
+                            Motiwala Jewels is not just about gold; we also specialize in stunning diamond 
+                            jewellery that adds elegance to any attire. Here’s what makes our diamond collection 
+                            special:
+                        </p>
+                        <ul class="golden_culture_list">
+                            <li>
+                                <strong>Certified Diamonds:</strong> Our diamonds come with certification, ensuring their quality and authenticity.
+                            </li>
+                            <li>
+                                <strong>Variety of Designs:</strong> From classic solitaires to 0intricate designs, we offer a wide range to suit every style.
+                            </li>
+                            <li>
+                                <strong>Expert Craftsmanship:</strong> Our skilled artisans use advanced techniques to enhance the beauty of each piece.
+                            </li>
+                            <li>
+                                <strong>Personalized Service:</strong> We provide personalized consultations to help you choose the perfect piece for any occasion.
+                            </li>
+                            <li>
+                                <strong>Timely Delivery:</strong> Enjoy quick and reliable delivery services, ensuring you receive your jewellery when you need it.
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </section>
