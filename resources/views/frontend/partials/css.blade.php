@@ -2,6 +2,9 @@
 
 <!------------------- motiwala ---------------->
 
+<!-- chonical tag -->
+<link rel="canonical" href="https://motiwalajewels.in" />
+
 <link rel="shortcut icon" href="{{ asset('/assets/frontend/images/favicon.png') }}">
 
 <!------------------- motiwala ---------------->
