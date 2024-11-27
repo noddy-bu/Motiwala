@@ -870,7 +870,7 @@
             const amountPlusBtn = document.getElementById('amount_plus');
             const amountMinusBtn = document.getElementById('amount_minus');
 
-            let currentAmount = parseInt(calcInput.value, {{ $plan1_duration }});
+            let currentAmount = parseInt(calcInput.value);
 
 
 
