@@ -1,9 +1,0 @@
-User-agent: *
-Disallow: 
-Disallow: /cgi-bin/
-Disallow: /*.php$
-Disallow: /login
-Disallow: /forgot-password/
-Disallow: /create_payumoney/
-Disallow: /feedback
-Disallow: /account/*
