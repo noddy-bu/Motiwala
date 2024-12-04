@@ -1,6 +1,6 @@
 @extends(Session::has('user_id') ? 'frontend.layouts.app2' : 'frontend.layouts.app')
 
-@section('page.title', 'Motiwala Jewels | Shop luxury jewelry | Get Pure Gold at Best Price')
+@section('page.title', 'Motiwala Jewels | Shop luxury jewellery | Get Pure Gold at Best Price')
 
 @section('page.description', 'Discover the elegance of Motiwala Jewels, your destination for exquisite gold and diamond jewellery. Explore our stunning diamond jewellery collection and the exclusive Motiwala Jewels Golden Treasure, featuring timeless designs crafted to perfection Shop luxury jewelry today')
 
