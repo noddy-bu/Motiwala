@@ -92,7 +92,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-5 col-md-6 text-center">
+      <!-- <div class="col-lg-5 col-md-6 text-center">
         <h6 class="font-alt mt-md-4 mt-2 mb-3 heading_font font-size20">Subscribe to our Newsletter</h6>
         <form class="form-subscribe" action="#">
           <div class="input-group">
@@ -102,7 +102,7 @@
             </span>
           </div> 
         </form>
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="copyright_section">

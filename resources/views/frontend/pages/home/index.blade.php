@@ -550,7 +550,7 @@
                                     You can find our exquisite collection of jewellery at our Store In Byculla Mumbai
                                     Maharashtra.
                                     Additionally, you can explore our wide range of designs and make purchases conveniently
-                                    through our secure from the comfort of your own home.
+                                    through our whatsapp from the comfort of your own home.
                                 </div>
                             </div>
                         </div>
