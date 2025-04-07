@@ -22,7 +22,7 @@ $plan_Details = DB::table('plans')
 
 
 <main class="main">
-	<section class="py-md-5 py-4 information_section">
+	<section id="golden_treasure" class="py-md-5 py-4 information_section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -40,9 +40,11 @@ $plan_Details = DB::table('plans')
 				</div>
 
         <div class="col-md-12">
-					<h5 class="black_color py-lg-3 py-3 pt-1"><b>Golden Treasure  - </b></h5>
+					<h3 class="black_color py-lg-3 py-3 pt-1"><b>Golden Treasure  - </b></h3>
 				</div>
 				
+
+        
 				
         <div class="col-md-3">
           <div class="d-flex gap-lg-3 gap-2 pb-md-2 pb-1 information_box">
@@ -143,8 +145,8 @@ $plan_Details = DB::table('plans')
                 </tr>
               @endforeach--}}
               <tr>
-                <td>1st Jan 2024</td>
                 <td>1st Jan 2025</td>
+                <td>1st Jan 2026</td>
                 <td>3000</td>
                 <td>3000</td>
                 <td>100%</td>
@@ -152,13 +154,25 @@ $plan_Details = DB::table('plans')
             </tbody>
           </table>
         </div>
+        <div class="col-md-12">
+          <div class="buttonclass float_rights mt-md-4 mt-3">
+              <a href="/account/onlineenrollment">Start Your Plan Now<i class="las la-arrow-right"></i>
+              </a>
+          </div>
+        </div>
 		  </div>
 		
 		</div>
+		  </div>
+		</div>
+	</section>
 
 
+  <section id="golden_fortune" class="py-md-5 py-4 information_section bg-white">
+		<div class="container">
+			<div class="row">
         <div class="col-md-12">
-					<h5 class="black_color py-lg-3 py-3 pt-lg-5 pt-1"><b>Golden Fortune  - </b></h5>
+					<h3 class="black_color black_color pb-lg-3 pb-3 pt-1"><b>Golden Fortune  - </b></h3>
 				</div>
 				
 				
@@ -258,14 +272,21 @@ $plan_Details = DB::table('plans')
                 </tr>
               @endforeach --}}
               <tr>
-                <td>1st Jan 2024</td>
                 <td>1st Jan 2025</td>
+                <td>1st Jan 2026</td>
                 <td>3000</td>
                 <td>100%</td>
               </tr>
             </tbody>
           </table>
         </div>
+         <div class="col-md-12">
+          <div class="buttonclass float_rights mt-md-4 mt-3">
+              <a href="/account/onlineenrollment">Start Your Plan Now<i class="las la-arrow-right"></i>
+              </a>
+          </div>
+        </div>
+
 		  </div>
 		
 		</div>
@@ -274,5 +295,7 @@ $plan_Details = DB::table('plans')
 		  </div>
 		</div>
 	</section>
+
+
 </main>
 @endsection

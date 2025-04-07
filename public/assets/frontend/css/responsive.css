@@ -1,5 +1,5 @@
 /* for laptop 1024 view */
-@media (min-width:1021px) and (max-width:1220px){
+@media (min-width:1021px) and (max-width:1220px) {
 
     .fontsize26 {
         font-size: 18px !important;
@@ -105,15 +105,15 @@
         gap: 4%;
     }
 
-    
+
 }
 
-@media (min-width:992px) and (max-width:1020px){
+@media (min-width:992px) and (max-width:1020px) {
 
     .benefits_bgimage {
         display: none;
     }
-    
+
     canvas#myCanvas {
         width: 41%;
         position: absolute;
@@ -131,7 +131,7 @@
 
     /* after login */
 
-    .userlogin_box span b{
+    .userlogin_box span b {
         display: none !important;
     }
 
@@ -141,8 +141,8 @@
 }
 
 /* for tablet view */
-@media (min-width:768px) and (max-width:991px){
-    
+@media (min-width:768px) and (max-width:991px) {
+
     html {
         overflow-x: hidden !important;
     }
@@ -179,7 +179,7 @@
     body .width80:not(.sidebar) {
         width: 100% !important;
     }
-    
+
     .width20 {
         width: 35% !important;
     }
@@ -226,7 +226,7 @@
         background: transparent;
     }
 
-    .userlogin_box span b{
+    .userlogin_box span b {
         display: none !important;
     }
 
@@ -279,7 +279,7 @@
     }
 
     .steps_section {
-        padding: 30px 0px 30px 0px !important ;
+        padding: 30px 0px 30px 0px !important;
     }
 
     .steps_section p {
@@ -325,7 +325,7 @@
     .benefits_bgimage img {
         width: 80%;
     }
-    
+
     .top_step_content p span {
         display: inline;
     }
@@ -334,11 +334,11 @@
         padding-bottom: 30px;
     }
 
-    
+
     .benefits_calculator .buttonclass {
         margin-left: 10px;
     }
-        
+
     .sip-calculator {
         padding: 2em 2em 3em 2em;
     }
@@ -355,7 +355,7 @@
     .col-md-12 .sip-calculator-amount {
         width: 108%
     }
-    
+
     canvas#myCanvas {
         width: 41%;
         position: absolute;
@@ -394,7 +394,7 @@
     .footer-widget .widget-menu a {
         display: inline-block;
     }
-    
+
     .form-subscribe input {
         padding: 8px 14px;
         font-size: 14px;
@@ -403,8 +403,9 @@
     ul.float_right li:nth-child(5) {
         font-size: 16px;
     }
+
     /* new account page */
- 
+
     .step-button {
         width: 40px;
         height: 40px;
@@ -419,13 +420,13 @@
         margin-bottom: 10px !important;
     }
 
-    
+
     /* instant pay page*/
 
     .instant_pay {
         width: 100%;
     }
-    
+
 
     /* information page */
 
@@ -452,13 +453,15 @@
         padding: 30px 10px !important;
     }
 
-    .contact_info p, .contact_form_text, .contact_info a {
+    .contact_info p,
+    .contact_form_text,
+    .contact_info a {
         font-size: 16px;
     }
 
     /* after login page */
 
-    
+
     .dropdown-item {
         width: 73% !important;
         right: 11%;
@@ -491,7 +494,8 @@
         overflow-x: hidden;
     }
 
-    p, a {
+    p,
+    a {
         font-size: 16px !important;
     }
 
@@ -499,10 +503,10 @@
         padding-left: 20px;
         padding-right: 20px;
     }
-    
+
     p.fontsize26 {
         font-size: 16px !important;
-        margin-bottom: 0px; 
+        margin-bottom: 0px;
     }
 
     .title_heading {
@@ -569,7 +573,7 @@
 
     body .nav_right_menu {
         margin-right: 0px !important;
-        align-items: center;  
+        align-items: center;
         padding-right: 5px;
         padding-left: 3px;
     }
@@ -590,7 +594,7 @@
     a#nav-icon img {
         width: 30px;
     }
-    
+
     .nav_right_menu li {
         padding-left: 0px !important;
         padding-right: 10px;
@@ -621,13 +625,15 @@
     }
 
     .modal_popup_cls .modal-content {
-        padding: 20px 10px ;                  /* sign up modal popup */
+        padding: 20px 10px;
+        /* sign up modal popup */
     }
 
-    
+
 
     .openaccount {
-        padding-left: 10px;                /* sign up modal popup */
+        padding-left: 10px;
+        /* sign up modal popup */
         padding-right: 10px;
     }
 
@@ -641,7 +647,7 @@
         top: 0px;
     }
 
-    .carousel-control-next-icon, 
+    .carousel-control-next-icon,
     .carousel-control-prev-icon {
         background-image: none !important;
         font-size: 26px;
@@ -655,6 +661,7 @@
         font-family: fontawesome;
         margin-left: 15px;
     }
+
     .carousel-control-next-icon:after {
         content: "\f105";
         font-family: fontawesome;
@@ -670,7 +677,7 @@
     .stunning_necklace {
         display: inline;
     }
-    
+
     .top_step_content {
         padding-top: 30px !important;
         background: #e3c2ab8a;
@@ -693,7 +700,7 @@
         padding: 0px;
     }
 
-    #nav-sip-calculator-tab a { 
+    #nav-sip-calculator-tab a {
         padding: 8px 10px;
     }
 
@@ -705,7 +712,7 @@
         padding: 0px;
     }
 
-    .faq_section_main .accordion-button.collapsed { 
+    .faq_section_main .accordion-button.collapsed {
         padding: 20px 15px;
     }
 
@@ -728,7 +735,8 @@
         padding-top: 10px;
     }
 
-    .step_box.steps2, .step_box.steps4 {
+    .step_box.steps2,
+    .step_box.steps4 {
         display: flex;
         flex-direction: column-reverse;
     }
@@ -737,9 +745,12 @@
         display: none !important;
     }
 
-    .step_content1,.step_content2 ,.step_content3 ,.step_content4 {
+    .step_content1,
+    .step_content2,
+    .step_content3,
+    .step_content4 {
         padding-top: 7px;
-    }  
+    }
 
     .step_bottom_text {
         padding-top: 30px;
@@ -751,14 +762,18 @@
     }
 
     .sip-calculator {
-        padding: 2em 1em 1em 1em;;
+        padding: 2em 1em 1em 1em;
+        ;
     }
 
-    .amount_check button, .amount_monthly2 {
+    .amount_check button,
+    .amount_monthly2 {
         border: 1px solid #404040 !important;
     }
 
-    .sip-calculator-amount, .sip-calculator-year, .sip-calculator-roi {
+    .sip-calculator-amount,
+    .sip-calculator-year,
+    .sip-calculator-roi {
         margin-bottom: 0.2em;
     }
 
@@ -803,6 +818,11 @@
 
     .why_choose_section {
         padding-top: 40px !important;
+        padding-bottom: 0px !important;
+    }
+
+    section.trusted_jeweller_main {
+        padding: 0px 0px 0px 0px;
     }
 
     .choose_img {
@@ -825,7 +845,7 @@
     }
 
     .faq_section {
-        padding: 10px 0px 20px 0px !important; 
+        padding: 10px 0px 20px 0px !important;
     }
 
     .faq_section .accordion-body {
@@ -842,7 +862,7 @@
     .faq_section .accordion-item {
         margin-bottom: 9px;
     }
-    
+
 
     footer {
         padding: 20px 0 0px 0px;
@@ -858,7 +878,8 @@
     .footer-widget .widget-menu a {
         display: inline-block;
     }
-/* 
+
+    /* 
     .footer .row>div:nth-child(4) > .footer-widget {
         position: absolute;
         top: 20px;
@@ -959,7 +980,7 @@
     .inner_page_banner {
         display: none;
     }
-    
+
     /* new account page */
 
     .openaccount label {
@@ -1005,7 +1026,7 @@
         font-size: 14px !important;
     }
 
-    
+
     .about_us_section h4:nth-child(2) {
         font-size: 20px;
     }
@@ -1018,12 +1039,13 @@
         padding-bottom: 30px !important;
     }
 
-    .information_tb thead tr th:last-of-type, 
+    .information_tb thead tr th:last-of-type,
     .information_tb tbody tr td:last-of-type {
         padding-right: 15px !important;
     }
 
-    .information_tb th, .information_tb td {
+    .information_tb th,
+    .information_tb td {
         font-size: 13px;
         border: 0 !important;
         text-align: start;
@@ -1037,8 +1059,9 @@
         padding-bottom: 0px;
     }
 
-    .terms_section h4, .terms_section h5 {
-        font-size: 18px ;
+    .terms_section h4,
+    .terms_section h5 {
+        font-size: 18px;
     }
 
     /* gives feedback page */
@@ -1047,7 +1070,7 @@
         padding: 1px 10px 30px !important;
         margin-top: 0px !important;
     }
-    
+
     /* contact-us page  */
 
     /* .contact_form_section {
@@ -1072,7 +1095,7 @@
 
     /* after login in side bar */
 
-    
+
     .dropdown-item {
         width: 73% !important;
         right: 11%;
@@ -1100,7 +1123,7 @@
         left: 10px;
     }
 
-    .userlogin_box span b{
+    .userlogin_box span b {
         display: none !important;
     }
 
@@ -1114,7 +1137,7 @@
         padding: 18px 0px 10px 10px;
         margin-left: 0px;
     }
-    
+
     body .userlogin_box {
         width: 3em !important;
         padding: 7px 4px 7px 10px !important;
@@ -1136,7 +1159,7 @@
         height: 100%;
         /* transform: translateX(-100%); */
         transition: transform 0.3s ease-in;
-        margin-left:-320px;
+        margin-left: -320px;
         width: 0;
     }
 
@@ -1153,7 +1176,7 @@
         color: #000 !important;
     }
 
-     .stunning_necklace {
+    .stunning_necklace {
         display: inline;
     }
 
@@ -1174,18 +1197,22 @@
         width: 0;
         transition: 0.5s;
     }
+
     .sidebar a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
         display: block;
         transition: 0.3s;
     }
+
     .sidebar a {
         color: #c1884e;
     }
+
     .sidebar a:hover {
         color: #c1884e !important;
     }
+
     .sidebar .closebtn {
         position: absolute;
         top: 0;
@@ -1193,16 +1220,18 @@
         font-size: 36px !important;
         margin-left: 50px;
     }
+
     #nav-bar-icon {
         margin-top: 4px;
         cursor: pointer;
     }
+
     #bg_theme {
         transition: margin-left .5s;
         padding: 6px;
         position: fixed;
         top: 0px;
-        margin-left: -600px; 
+        margin-left: -600px;
     }
 
     .after_login_body .copyright_section .col-md-5 ul {
@@ -1214,7 +1243,8 @@
         font-size: 14px;
     }
 
-    .p-3.mt-5.mb-3.text-black {       /*  for nominee details heading alignment */
+    .p-3.mt-5.mb-3.text-black {
+        /*  for nominee details heading alignment */
         width: 95%;
         margin-left: 10px;
     }
@@ -1222,7 +1252,7 @@
     .after_login_body section:last-child {
         margin-bottom: 40px;
     }
-    
+
     .inner_sectionpadd {
         padding-bottom: 30px;
     }
@@ -1239,14 +1269,14 @@
     .account_number {
         font-size: 19px;
     }
-    
+
     section.plans_section {
         padding: 20px 0px 20px 0px;
     }
 
 }
 
-@media  (max-width:346px)  {
+@media (max-width:346px) {
     .footer-app-image {
         position: absolute;
         right: -3%;
@@ -1268,9 +1298,9 @@
         height: 31px;
     }
 
-     /* pay installment page */
+    /* pay installment page */
 
-     .account_number {
+    .account_number {
         font-size: 18px;
     }
 

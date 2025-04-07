@@ -23,7 +23,7 @@
 
 	<section class="faq_section_main">
             <div class="container">
-                <h4 class="title_heading text-center black_color pb-2 pt-2 heading_font">Frequently Asked Questions</h4>
+                <h4 class="title_heading text-center black_color pb-3 pt-2 heading_font">Frequently Asked Questions</h4>
                 
                 <h4 class="enrollment_heading black_color mt-4 mb-3">Enrollment</h4>
 
