@@ -85,6 +85,12 @@ class IndexController extends Controller
     public function about_us(){
         return view('frontend.pages.about.index');
     }
+    public function golden_fortune(){
+        return view('frontend.pages.goldenfortune.index');
+    }
+    public function golden_treasure(){
+        return view('frontend.pages.goldentreasure.index');
+    }
 
     public function old_scheme_closure(){
         return view('frontend.pages.admin.old_scheme_closure.index');

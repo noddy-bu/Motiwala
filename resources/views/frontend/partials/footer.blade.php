@@ -17,11 +17,23 @@
                 <i class="las la-angle-right"></i> FAQ </a>
             </li>
 
-             <li>
+             <!-- <li>
               <a href="{{ url(route('information')) }}">
                 <i class="las la-angle-right"></i> Information </a>
+            </li> -->
+
+              <li>
+              <a href="/golden-treasure">
+                <i class="las la-angle-right"></i> Golden Treasure </a>
             </li>
-             <li>
+
+              <li>
+              <a href="/golden-treasure">
+                <i class="las la-angle-right"></i> Golden Fortune </a>
+            </li>
+
+
+          
               <a href="{{ url(route('contact_us')) }}">
                 <i class="las la-angle-right"></i> Contact Us </a>
             </li>

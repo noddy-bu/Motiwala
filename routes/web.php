@@ -44,6 +44,8 @@ Route::get('/termsofuse', [IndexController::class, 'terms_of_use'])->name('terms
 Route::get('/feedback', [IndexController::class, 'feedback'])->name('feedback');
 
 Route::get('/about-us', [IndexController::class, 'about_us'])->name('about_us');
+Route::get('/golden-fortune', [IndexController::class, 'golden_fortune'])->name('golden_fortune');
+Route::get('/golden-treasure', [IndexController::class, 'golden_treasure'])->name('golden_treasure');
 
 Route::get('/contact-us', [IndexController::class, 'contact_us'])->name('contact_us');
 

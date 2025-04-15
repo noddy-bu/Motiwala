@@ -34,9 +34,19 @@
                     <a class="nav-link" data-bs-toggle="modal" href="#autodebit_modal"><i
                                         class="las la-credit-card"></i> Auto Debit</a>
                   </li> --}}
-                  <li>
+                  <!-- <li>
                     <a class="nav-link" href="{{ url(route('information')) }}"><i class="las la-exclamation-circle"></i>
                                     Information (Plan)</a>
+                  </li> -->
+
+                   <li>
+                    <a class="nav-link" href="/golden-treasure"><i class="las la-coins"></i>
+                                    Golden Treasure (Plan)</a>
+                  </li>
+
+                   <li>
+                    <a class="nav-link" href="/golden-fortune"><i class="las la-exclamation-circle"></i>
+                                    Golden Fortune (Plan)</a>
                   </li>
 
                   <li>
