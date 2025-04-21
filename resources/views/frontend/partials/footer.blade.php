@@ -28,7 +28,7 @@
             </li>
 
               <li>
-              <a href="/golden-treasure">
+              <a href="/golden-fortune">
                 <i class="las la-angle-right"></i> Golden Fortune </a>
             </li>
 
