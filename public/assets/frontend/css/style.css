@@ -66,19 +66,20 @@ header {
 }
 
 .nav_right_menu li {
-    padding-left: 5px !important;
-    padding-right: 5px;
+    padding-left: 0px !important;
+    padding-right: 0px;
 }
 
 .nav_right_menu li a {
     color: #404040;
     font-weight: 500;
     font-size: 15px;
+    text-align: center;
 }
 
 body nav .nav_right_menu li a {
     color: #000 !important;
-    padding: 0px 10px 8px 10px !important;
+    padding: 0px 0px 0px 0px !important;
 }
 
 .nav_right_menu li a:hover {
@@ -87,9 +88,11 @@ body nav .nav_right_menu li a {
 
 .nav_right_menu li i {
     color: #bb8042;
-    font-size: 26px;
+    font-size: 30px;
     position: relative;
-    top: 4px;
+    top: 0px;
+    width: 100%;
+    text-align: center;
 }
 
 #nav-icon .fa-bars,
@@ -308,9 +311,7 @@ span.WebRupee {
     font-size: 20px;
 }
 
-.benefits_calculator .buttonclass {
-    margin-left: 110px;
-}
+
 
 .amount_price_view {
     padding-top: 10px;

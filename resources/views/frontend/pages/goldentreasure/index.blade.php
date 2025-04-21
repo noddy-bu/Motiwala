@@ -31,7 +31,7 @@ $plan_Details = DB::table('plans')
 
 				<div class="col-md-12">					
 					<p>
-            Introducing Motiwala Jewels Golden Treasure Purchase Plan – your smart, secure, 
+            Introducing Motiwala Jewels Golden Treasure Purchase Plan  – your smart, secure, 
             and easy way to own the stunning Motiwala Jewels Gold and Diamonds jewellery you love. 
             With this plan, you can get more jewellery for your money! How? Because when your plan matures, 
             Motiwala Jewels Gold and Diamonds will give you an extra discount as a special bonus. 
@@ -85,9 +85,9 @@ $plan_Details = DB::table('plans')
             </div>
             <div class="choose_content">
               <p class="black_color">
-                Each month, make sure to pay a fixed installment amount by the due date for {{ env('PLAN_1') }} . 
-                The minimum installment value is INR 3000, but you can choose to pay more in multiples 
-                of INR 1000 if you wish.
+                Start with just ₹3,000 a month for 11 months, and here’s the magic – we’ll add your 12th month’s installment absolutely FREE! That means your ₹33,000 savings becomes ₹36,000 to splurge on gorgeous gold jewellery in the 13th month.
+ More than you give. More than you expect. Just +3% tax at the time of purchase.
+Start today, and watch your small steps turn into shining rewards!
               </p>
             </div>
           </div>

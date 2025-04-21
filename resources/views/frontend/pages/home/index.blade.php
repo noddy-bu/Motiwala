@@ -149,7 +149,7 @@
                 <h4 class="title_heading text-center black_color pb-3 heading_font">Dreaming of owning that <span
                         class="stunning_necklace"> stunning jewellery? </span></h4>
                 <p class="text-center black_color fontsize26">
-                    Start your journey by opening a Motiwala Jewels Golden Treasure account with just ₹3000.
+                    Start your journey by opening a Motiwala Jewels Golden Treasure our Basic Monthly Saving Plan account with just ₹3000.
                     <span> By making regular fixed payments for {{ env('PLAN_1') }}, you'll unlock a fantastic discount of up </span>
                     to 100% off the value of your first installment. Get ready to adorn yourself with the perfect necklace!
                 </p>
@@ -271,7 +271,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h4 class="title_heading text-left black_color pb-lg-5 pb-md-4 pb-3 heading_font">{{ env('PLAN_1_NAME') }} Calculator</h4>
+                                <h4 class="title_heading text-left black_color pb-lg-4 pb-md-4 pb-3 heading_font">{{ env('PLAN_1_NAME') }} Calculator</h4>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <form>
@@ -342,74 +342,65 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h4 class="title_heading text-left black_color pb-lg-5 pb-md-4 pb-3 heading_font">{{ env('PLAN_2_NAME') }} Calculator</h4>
+                                <h4 class="title_heading text-left black_color pb-lg-4 pb-md-4 pb-3 heading_font">{{ env('PLAN_2_NAME') }} Plan</h4>
                             </div>
-                            <div class="col-lg-7 col-md-7">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p>Enter monthly installment amount</p>
-                                        </div>
-                                        <div class="col-md-12 mb-4">
-                                            <div class="sip-calculator-amount">
-                                                <div class="amount_monthly1">
-                                                    <label id="amountLabel"> MONTHLY AMOUNT <span id="amount_plan2"></span>
-                                                    </label>
-                                                    <span class="WebRupee">₹
-                                                        <input type="tel" id="calc_plan2" name="calc"
-                                                            class="text-input form-control min-value_1000 multiple-of_100 slider-value calc"
-                                                            value="10000">
-                                                    </span>
-                                                </div>
-                                                <div class="amount_check">
-                                                    <div class="row ">
-                                                        <div class="col-md-12 d-flex">
-                                                            <button id="amount_plus_plan2" class="btn btn-block btn-primary">
-                                                                <i class="las la-plus"></i>
-                                                            </button>
-                                                            <button id="amount_minus_plan2" class="btn btn-block btn-primary">
-                                                                <i class="las la-minus"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="float-start ps-1 pt-1" id="validationMessage_plan2"
-                                                    style="color: red; display: none;">Accept only multiples of thousand
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="sip-calculator-amount">
-                                                <div class="amount_monthly2">
-                                                    <label id="amountLabel"> YOUR TOTAL AMOUNT for {{ env('PLAN_2') }} <span
-                                                            id="amount_10x_plan2">₹ 1,00,000</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <hr>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p class="pt-2">You can Get Gold worth: <br class="d-none d-md-block"> (in {{ env('PLAN_2_freeze') }}th months )</p>                                            
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="total_number_main">
-                                                <p id="amount_13x_plan2" class="amount_13x">100 gm</p>
-                                            </div>
-                                        </div>
-                                        <p></p>
-                                        <p>Note : The rate calculation is based on the gold price for 22 karat on the purchase date. <span style="    font-size: 14px;
+                            <div class="col-lg-8 col-md-8">
+
+                             <table class="table table-bordered">
+								<tbody><tr class="table-light">
+										<th class="col-md-1">Gold Rate</th>
+										<th class="col-md-1">Month</th>
+										<th class="col-md-3">Monthly Payment (in INR)</th>
+										<th class="col-md-3">Equivalent gold in grams accumulated</th>
+								
+									</tr>
+									<tr class="table-light">
+										<td>6580</td>
+										<td>1</td>
+										<td>10,000</td>
+										<td>1.519</td>
+									</tr>
+									<tr class="table-light">
+										<td>6633</td>
+										<td>2</td>
+										<td>10,000</td>
+										<td>1.507</td>
+									</tr>
+									<tr class="table-light">
+										<td>6638</td>
+										<td>3</td>
+										<td>10,000</td>
+										<td>1.506</td>
+									</tr>
+									<tr class="table-light">
+										<td>6740</td>
+										<td>4</td>
+										<td>10,000</td>
+										<td>1.483</td>
+									</tr>
+									<tr class="table-light">
+										<td>6465</td>
+										<td>5</td>
+										<td>10,000</td>
+										<td>1.546</td>
+									</tr>
+									
+								</tbody></table>
+
+
+                                <p class="fs-14 pt-4 pb-2">For more details click here - <a href="/terms-conditions" style="color:#bb8042;">Terms & Conditions</a></p>
+
+                                <p>Note : The rate calculation is based on the gold price for 22 karat on the purchase date. <span style="    font-size: 14px;
     color: #c1884e;">(Today Gold Rate 22 kt As Per 1 gram : Rs {{ $gold_price }})</span></p>
-                                    </div>
-                                </form>
+
+
                             </div>
                             <!-- <div class="col-lg-7 col-md-6 col-8">
                                 <canvas id="myCanvas" width="300" height="300"></canvas>
                             </div>            -->
 
                             <div class="col-md-12 text-md-start text-center widths80">
-                                <div class="buttonclass mt-md-4 mb-md-0 mb-3">
+                                <div class="buttonclass mt-md-3 mb-md-0 mb-3">
                                     <a href="{{ url(route('account.new.enrollment.page')) }}">Open a New Account <i
                                             class="las la-arrow-right"></i>
                                     </a>

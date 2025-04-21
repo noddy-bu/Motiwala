@@ -73,9 +73,7 @@ $plan_Details = DB::table('plans')
             </div>
             <div class="choose_content">
               <p class="black_color">
-                Each month, make sure to pay a fixed installment amount by the due date for {{ env('PLAN_2') }} . 
-                The minimum installment value is INR 3000, but you can choose to pay more in multiples 
-                of INR 1000 if you wish.
+               Your golden journey starts here! Contribute for just 12 months with a minimum of ₹10,000. Want to invest more? Add in multiples of ₹1,000 anytime! Each payment locks in gold at the 22K rate of that day. And the cherry on top? Enjoy 0% making charges on your accumulated gold at the end of the plan. Start today and let your fortune shine!
               </p>
             </div>
           </div>
@@ -107,32 +105,50 @@ $plan_Details = DB::table('plans')
         
 		  <div class="information_tb">
         <div class="table-responsive">
+         
+
           <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th scope="col">Enrolment Date</th>
-                <th scope="col">Maturity Date</th>
-                <th scope="col">Installments per month (in ₹)</th>
-                <th scope="col">Gold Reserved</th>              
-              </tr>
-            </thead>
-            <tbody>
-              {{-- @foreach ($plan_Details as $row)
-                <tr>
-                  <td>{{ custom_date_change($row->plan_start_date) }}</td>
-                  <td>{{ custom_date_change($row->plan_end_date) }}</td>
-                  <td>{{ (int) $row->minimum_installment_amount }}</td>
-                  <td>{{  $row->minimum_installment_amount * 100 / 100 }}</td>
-                </tr>
-              @endforeach --}}
-              <tr>
-                <td>1st Jan 2025</td>
-                <td>1st Jan 2026</td>
-                <td>3000</td>
-                <td>100%</td>
-              </tr>
-            </tbody>
-          </table>
+								<tbody><tr class="table-light">
+										<th class="col-md-2">Gold Rate</th>
+										<th class="col-md-2">Month</th>
+										<th class="col-md-2">Monthly Payment (in INR)</th>
+										<th class="col-md-2">Equivalent gold in grams accumulated</th>
+								
+									</tr>
+									<tr class="table-light">
+										<td>6580</td>
+										<td>1</td>
+										<td>10,000</td>
+										<td>1.519</td>
+									</tr>
+									<tr class="table-light">
+										<td>6633</td>
+										<td>2</td>
+										<td>10,000</td>
+										<td>1.507</td>
+									</tr>
+									<tr class="table-light">
+										<td>6638</td>
+										<td>3</td>
+										<td>10,000</td>
+										<td>1.506</td>
+									</tr>
+									<tr class="table-light">
+										<td>6740</td>
+										<td>4</td>
+										<td>10,000</td>
+										<td>1.483</td>
+									</tr>
+									<tr class="table-light">
+										<td>6465</td>
+										<td>5</td>
+										<td>10,000</td>
+										<td>1.546</td>
+									</tr>
+									
+								</tbody></table>
+
+
         </div>
          <div class="col-md-12">
           <div class="buttonclass float_rights mt-md-4 mt-3">

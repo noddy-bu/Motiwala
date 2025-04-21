@@ -335,10 +335,6 @@
     }
 
 
-    .benefits_calculator .buttonclass {
-        margin-left: 10px;
-    }
-
     .sip-calculator {
         padding: 2em 2em 3em 2em;
     }
@@ -597,7 +593,7 @@
 
     .nav_right_menu li {
         padding-left: 0px !important;
-        padding-right: 10px;
+        padding-right: 0px;
     }
 
     .bars {
@@ -793,9 +789,6 @@
         display: none;
     }
 
-    .benefits_calculator .buttonclass {
-        margin-left: 10px;
-    }
 
     .amount_monthly1 {
         border: 1px solid #404040;

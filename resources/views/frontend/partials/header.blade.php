@@ -10,21 +10,47 @@
             <div class="d-flex align-items-center" id="navbarScroll">
                 <ul class="d-flex navbar-nav ms-md-auto my-md-2 my-lg-0 my-0 mx-0 nav_right_menu ">
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="modal" href="#loginmodal"><i class="las la-user"></i> Sign
+                        <a class="nav-link" data-bs-toggle="modal" href="#loginmodal"><i class="las la-user"></i> Sign In
                         </a>
                     </li>
-                    <li class="nav-item">
+
+                     <li class="nav-item">
                         <a class="nav-link" href="{{ url(route('account.new.enrollment.page')) }}"><i
                                 class="las la-user-plus"></i> New Account</a>
                     </li>
-                    <li class="nav-item bars">
+
+
+                    <li class="nav-item d-none d-lg-block">
+                        <a class="nav-link" href="#instant-pay" onclick="instant_pay();"><i class="las la-hand-holding-usd"></i> Instant Pay</a>
+                    </li>
+
+                    
+                   
+
+                     <li class="nav-item d-none d-lg-block">
+                        <a class="nav-link" href="/golden-treasure"><i class="las la-coins"></i> Golden Treasure</a>
+                    </li>
+
+                    
+                     <li class="nav-item d-none d-lg-block">
+                        <a class="nav-link" href="/golden-fortune"><i class="las la-exclamation-circle"></i> Golden Fortune </a>
+                    </li>
+
+                  
+
+                  <li class="nav-item d-none d-lg-block">
+                    <a class="nav-link" href="{{ url(route('faq')) }}"><i class="las la-question-circle"></i> FAQs</a>
+                  </li>
+
+
+                    <li class="nav-item bars d-block d-lg-none">
                       <a id="nav-icon">
                         <span class="fa fa-bars"></span>
                       </a>
                     </li>
                 </ul>
 
-                <ul class="menu">
+                <ul class="menu d-block d-lg-none">
                   <img src="https://demo.creaadesign.com/bandhan-mutual-fund/images/cross2.svg" alt="" class="img-fluid cross_close">
                   <li>
                     <a class="nav-link" href="#instant-pay" onclick="instant_pay();"><i class="las la-hand-holding-usd"></i> Instant Pay</a>
@@ -39,14 +65,14 @@
                                     Information (Plan)</a>
                   </li> -->
 
-                   <li>
+                  <li>
                     <a class="nav-link" href="/golden-treasure"><i class="las la-coins"></i>
-                                    Golden Treasure (Plan)</a>
+                                    Golden Treasure </a>
                   </li>
 
                    <li>
                     <a class="nav-link" href="/golden-fortune"><i class="las la-exclamation-circle"></i>
-                                    Golden Fortune (Plan)</a>
+                                    Golden Fortune </a>
                   </li>
 
                   <li>
