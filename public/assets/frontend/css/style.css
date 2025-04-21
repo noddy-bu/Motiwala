@@ -59,7 +59,7 @@ header {
 }
 
 .nav_right_menu {
-    background: #ffffffe0;
+    background: transparent !important;
     padding: 10px 5px;
     border-radius: 10px;
     margin-right: 35px;
