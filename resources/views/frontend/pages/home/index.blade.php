@@ -184,7 +184,7 @@
                             <div class="step_content1 pt-lg-4 pt-0">
                                 <p class="black_color text-center">
                                     Get started by opening a new account on our website, the Motiwala
-                                    Jewels Golden Treasure Jewellery Purchase app,
+                                    Jewels Golden Treasure our Basic Monthly Saving Plan Jewellery Purchase app,
                                     or by visiting our only Store In Byculla, Mumbai Maharashtra.
                                 </p>
                             </div>
