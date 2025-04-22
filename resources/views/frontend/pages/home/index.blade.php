@@ -326,38 +326,38 @@
 
                              <table class="table table-bordered">
 								<tbody><tr class="table-light">
-										<th class="col-md-1">Gold Rate</th>
-										<th class="col-md-1">Month</th>
-										<th class="col-md-3">Monthly Payment (in INR)</th>
-										<th class="col-md-3">Equivalent gold in grams accumulated</th>
+										<th class="col-md-2">Gold Rate</th>
+										<th class="col-md-2">Month</th>
+										<th class="col-md-2">Monthly Payment (in INR)</th>
+										<th class="col-md-2">Equivalent gold in grams accumulated</th>
 								
 									</tr>
 									<tr class="table-light">
-										<td>6580</td>
+										<td>8820</td>
 										<td>1</td>
 										<td>10,000</td>
 										<td>1.519</td>
 									</tr>
 									<tr class="table-light">
-										<td>6633</td>
+										<td>8747</td>
 										<td>2</td>
 										<td>10,000</td>
 										<td>1.507</td>
 									</tr>
 									<tr class="table-light">
-										<td>6638</td>
+										<td>8741</td>
 										<td>3</td>
 										<td>10,000</td>
 										<td>1.506</td>
 									</tr>
 									<tr class="table-light">
-										<td>6740</td>
+										<td>8607</td>
 										<td>4</td>
 										<td>10,000</td>
 										<td>1.483</td>
 									</tr>
 									<tr class="table-light">
-										<td>6465</td>
+										<td>8976</td>
 										<td>5</td>
 										<td>10,000</td>
 										<td>1.546</td>
