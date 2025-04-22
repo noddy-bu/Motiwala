@@ -242,75 +242,50 @@
 							</ul>
 							<br>
 							<h4 class="text-center pb-2 pt-3">Example - <span>Monthly Savings: Rs. 10,000/- and above</span></h4>
+								
+
 								<table class="table table-bordered">
-								<tr class="table-light">
+								<tbody><tr class="table-light">
 										<th class="col-md-2">Gold Rate</th>
 										<th class="col-md-2">Month</th>
 										<th class="col-md-2">Monthly Payment (in INR)</th>
 										<th class="col-md-2">Equivalent gold in grams accumulated</th>
 								
 									</tr>
-									<tr class="table-light" >
-										<td>6580</td>
+									<tr class="table-light">
+										<td>8820</td>
 										<td>1</td>
 										<td>10,000</td>
 										<td>1.519</td>
 									</tr>
-									<tr class="table-light" >
-										<td>6633</td>
+									<tr class="table-light">
+										<td>8747</td>
 										<td>2</td>
 										<td>10,000</td>
 										<td>1.507</td>
 									</tr>
-									<tr class="table-light" >
-										<td>6638</td>
+									<tr class="table-light">
+										<td>8741</td>
 										<td>3</td>
 										<td>10,000</td>
 										<td>1.506</td>
 									</tr>
-									<tr class="table-light" >
-										<td>6740</td>
+									<tr class="table-light">
+										<td>8607</td>
 										<td>4</td>
 										<td>10,000</td>
 										<td>1.483</td>
 									</tr>
-									<tr class="table-light" >
-										<td>6465</td>
+									<tr class="table-light">
+										<td>8976</td>
 										<td>5</td>
 										<td>10,000</td>
 										<td>1.546</td>
 									</tr>
-									<tr class="table-light" >
-										<td>6575</td>
-										<td>6</td>
-										<td>10,000</td>
-										<td>1.520</td>
-									</tr>
-									<tr class="table-light" >
-										<td>6570</td>
-										<td>7</td>
-										<td>10,000</td>
-										<td>1.522</td>
-									</tr>
-									<tr class="table-light" >
-										<td>6500</td>
-										<td>8</td>
-										<td>10,000</td>
-										<td>1.538</td>
-									</tr>
-									<tr class="table-light" >
-										<td>6550</td>
-										<td>9</td>
-										<td>10,000</td>
-										<td>1.526</td>
-									</tr>
-									<tr class="table-light" >
-										<td>6600</td>
-										<td>10</td>
-										<td>10,000</td>
-										<td>1.515</td>
-									</tr>
-								</table>
+									
+								</tbody></table>
+
+
 							<br>
 							<p> <Strong> Illustration:- </Strong>If a customer pays Rs. 10.000/- every month for 11 months with gold rate as per the illustrative example table given above, the customer accumulates a total equivalent weight of 15.182 grams of gold as per the gold rate on the date of payment. At the time of purchase. The customer can buy jewellery of minimum 15.182  grams of gold accumulated and be eligible for discount on Making Charges of the selected product For the additional grammage in case of purchase over and above 15.182 gram, ' store offer shall be applicable.
 							</p>
