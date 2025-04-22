@@ -314,6 +314,21 @@ class CustomerController extends Controller
             $plan_details = !empty($combinedPlans)
                 ? implode(', ', $combinedPlans)
                 : '<span class="badge bg-danger">Incomplete</span>';
+
+            $plan_details = !empty($combinedPlans)
+                ? implode(', ', $combinedPlans)
+                : '<span class="badge bg-danger">Incomplete</span>';
+
+            if (empty($combinedPlans)) {
+                if (strtotime($row->created_at) + 86400 < strtotime(date('Y-m-d H:i:s'))) {
+                    $delete_btn = '<a href="javascript:void(0);" class="action-icon" onclick="confirmModal(\'' . route('Customer.delete', ['id' => $row->id]) . '\', responseHandler)"> <i class="ri-delete-bin-line" title="Delete"></i></a>';
+                } else {
+                    $delete_btn = null;
+                }
+            } else {
+                $delete_btn = null;
+            }
+
             
             $nestedData = [
                 'id' => $serialNumber,
@@ -322,7 +337,7 @@ class CustomerController extends Controller
                 'phone' => $row->phone,
                 'plan' => $plan_details,
                 'created_at' => $row->created_at->format('Y-m-d H:i:s'),
-                'action' => $list . $tran
+                'action' => $list . $tran . $delete_btn
             ];
     
             $data[] = $nestedData;
@@ -456,9 +471,19 @@ class CustomerController extends Controller
     public function delete($id) {
         
         $User = User::find($id);
+
+        if (!$User) {
+            $response = [
+                'status' => true,
+                'notification' => 'User not found!',
+            ];
+        }
+    
+        DB::table('userdetails')->where('user_id', $id)->delete();
+
         $User->delete();
 
-    
+
         $response = [
             'status' => true,
             'notification' => 'User deleted successfully!',
