@@ -28,11 +28,6 @@
     @endphp
 
 
-    <style>
-        header {
-            background: #fff !important;
-        }
-    </style>
     <!--banner start -->
     <!-- <section class="banner_section">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">

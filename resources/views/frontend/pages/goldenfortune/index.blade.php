@@ -88,7 +88,7 @@ $plan_Details = DB::table('plans')
             </div>
             <div class="choose_content">
               <p class="black_color">
-                Once you've completed {{ env('PLAN_2') }} of payments, you'll qualify for a special discount of 
+                Once you've completed 12 of payments, you'll qualify for a special discount of 
                 up to 100% of your first installment's value. That means more savings for you on the 
                 jewellery you desire!
               </p>

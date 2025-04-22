@@ -16,6 +16,9 @@
         url("/assets/frontend/fonts/116af611cbcd9e4bada60b4e700430c1.ttf")format("truetype");
 }
 
+header {
+    background: #fed1cc !important;
+}
 
 body {
     margin: 0;
