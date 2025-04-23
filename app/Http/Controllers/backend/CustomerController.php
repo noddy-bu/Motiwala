@@ -403,6 +403,16 @@ class CustomerController extends Controller
         // Return the view with the fetched data
         return view('backend.pages.customer.edit', compact('user', 'user_detail', 'plan_name','installment_amount','esign'));
     }
+
+    public function edit_details_prev($id, Request $request){
+        $user = User::find($id);
+        $plan_id = $user->plan_id;
+
+        $user_detail = DB::table('userdetails')->where('user_id', $id)->first();
+        $plan_name = DB::table('plans')->where('id', $plan_id)->value('name');
+    
+        return view('backend.pages.customer.details_edit', compact('user', 'user_detail', 'plan_name'));
+    }
     
 
     public function transaction($id, Request $request) {

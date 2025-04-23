@@ -248,7 +248,6 @@ public function incomplete_registration_msg()
 
                 // 1 day before the current time
                 $after1Day = Carbon::now()->subDay(1)->format('Y-m-d H');
-
                 if ($after1Day == Carbon::parse($user->updated_at)->format('Y-m-d H')) {
                     echo "After 1 day reminder: " . $user->email . ' ' . $user->id;
                     echo "<pre>";
@@ -256,6 +255,20 @@ public function incomplete_registration_msg()
                     $this->email_registration_not_completed($user->fullname, $user->email);
                     $this->wati_incomplete_registration($user->phone, $user->fullname);
                 }
+
+
+                for ($i = 2; $i <= 6; $i++) {
+                    $afterXDay = Carbon::now()->subDays($i)->format('Y-m-d H');
+                    if ($afterXDay == Carbon::parse($user->updated_at)->format('Y-m-d H')) {
+                        echo "After {$i} day(s) reminder: " . $user->email . ' ' . $user->id;
+                        echo "<pre>";
+                
+                        $this->email_registration_not_completed($user->fullname, $user->email);
+                        $this->wati_incomplete_registration($user->phone, $user->fullname);
+                    }
+                }
+
+
             }
         });
 }
@@ -297,6 +310,18 @@ public function incomplete_registration_msg()
                 foreach ($info as $row) {
                     $dueStart = Carbon::parse($row->due_start);
                     $dueEnd = Carbon::parse($row->due_end);
+
+
+                    // 15 days before due date start
+                    $before15Days = $dueStart->copy()->subDays(15)->format('Y-m-d');
+                    if ($currentDate == $before15Days) {
+                        echo "15 days reminder: " . $row->email . ' ' . $row->id;
+                        echo "<pre>";
+                        $days = 15;
+                        $this->email_before_Days($row->email, $row->installment_no, $row->plan_name, $row->fullname, $dueStart, $days, $row->installment_amount);
+
+                        $this->wati_due_reminder($row->phone, $row->fullname, $row->installment_no, $row->plan_name, $row->installment_amount, $dueStart);
+                    }
 
                     // 7 days before due date start
                     $before7Days = $dueStart->copy()->subDays(7)->format('Y-m-d');
