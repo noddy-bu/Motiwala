@@ -414,6 +414,84 @@ class CustomerController extends Controller
         return view('backend.pages.customer.details_edit', compact('user', 'user_detail', 'plan_name'));
     }
     
+    public  function edit_details_admin(Request $request){
+
+        $validator = Validator::make($request->all(), [
+
+            'fullname' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
+            // 'email' => 'required|email',
+
+            'address' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:350'],
+
+            'pan_number' => 'nullable|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:10|max:10',
+
+            'nominee_name' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:250'],
+            'nominee_phone' => 'nullable|regex:/^\d{10}$/',
+            'nominee_address' => ['nullable', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:250'],
+            'nominee_relation' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\'\/&]+$/', 'min:3', 'max:350'],
+
+            'dob' => ['required', 'date', function ($attribute, $value, $fail) {
+                $dob = Carbon::parse($value);
+                $age = $dob->diffInYears(Carbon::now());
+
+                if ($age < 18) {
+                    $fail('You must be at least 18 years old.');
+                }
+            }],
+
+            'nominee_dob' => ['required', 'date', function ($attribute, $value, $fail) {
+                $dob = Carbon::parse($value);
+                $age = $dob->diffInYears(Carbon::now());
+
+                if ($age < 18) {
+                    $fail('You must be at least 18 years old.');
+                }
+            }],
+
+            'spouse_name' => ['nullable', 'string', 'regex:/^[A-Za-z\s,.\/\'&]+$/i', 'min:3'],
+            'marital_status' => 'required',
+            'spouse_dob' => ['nullable', 'date'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'notification' => $validator->errors()->all()
+            ], 200);
+        }
+
+
+        DB::table('users')->where('id', $request->input('user_id'))->update([
+            'fullname' => $request->input('fullname'),
+        ]);
+
+        DB::table('userdetails')->where('user_id', $request->input('user_id'))->update([
+
+            'address' => $request->input('address'),
+            'dob' => $request->input('dob'),
+
+            'pan_number' => strtoupper($request->input('pan_number')),
+
+            'nominee_name' => $request->input('nominee_name'),
+            'nominee_phone' => $request->input('nominee_phone'),
+            'nominee_dob' => $request->input('nominee_dob'),
+            'nominee_address' => $request->input('nominee_address'),
+            'nominee_relation' => $request->input('nominee_relation'),
+
+            'marital_status' => $request->input('marital_status'),
+
+            'spouse_name' => $request->input('spouse_name'),
+            'spouse_dob' => $request->input('spouse_dob'),
+            'marriage_date' => $request->input('marriage_date'),
+        ]);
+
+        $response = [
+            'status' => true,
+            'notification' => 'User Profile Detail Update successfully!',
+        ];
+
+        return response()->json($response);
+    }
 
     public function transaction($id, Request $request) {
 

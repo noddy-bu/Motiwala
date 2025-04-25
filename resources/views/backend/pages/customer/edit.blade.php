@@ -161,24 +161,23 @@
         $previousPopupLink = urldecode(request()->input('previous_popup_link'));
         $previousPopupName = request()->input('previous_popup_name');
     @endphp
-
-    {{-- @if($user->status == 1)
         <div class="text-end">
-            <a href="javascript:void(0);" class="btn btn-sm btn-secondary btn-block pt-1 mt-2" 
+    @if($user->status == 1)
+
+            <a href="javascript:void(0);" class="btn btn-sm btn-primary btn-block pt-1 mt-2" 
             onclick="largeModal('{{ url(route('Customer.edit.details', ['id' => $user->id])) }}?previous_popup_link={{ $this_pop_link }}&previous_popup_name={{ $this_pop_name }}', 'Edit Details');">
                 Edit Details
             </a>
-        </div>
-    @endif --}}
+    @endif
 
     @if(!empty($previousPopupLink))
-    <div class="text-end">
+   
         <a href="javascript:void(0);" class="btn btn-sm btn-secondary btn-block pt-1 mt-2" onclick="largeModal('{{ $previousPopupLink }}', '{{ $previousPopupName }}');">
             Back
         </a>
-        </div>
+        
     @endif
-
+</div>
 
 </section>
 

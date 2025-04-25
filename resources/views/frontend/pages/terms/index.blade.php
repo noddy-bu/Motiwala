@@ -8,6 +8,10 @@
 
 @section('page.content')
 
+@php
+	$plan_minimum_installment = DB::table('plans')->where('id', 2)->value('minimum_installment_amount');
+@endphp
+
 <!-- -------------------- Terms  start ---------------- -->
 
 <section class="inner_page_banner">
@@ -241,9 +245,9 @@
 </li>
 							</ul>
 							<br>
-							<h4 class="text-center pb-2 pt-3">Example - <span>Monthly Savings: Rs. 10,000/- and above</span></h4>
+							<h4 class="text-center pb-2 pt-3">Example - <span>Monthly Savings: Rs. {{ number_format($plan_minimum_installment,0) }}/- and above</span></h4>
 								
-
+{{-- 
 								<table class="table table-bordered">
 								<tbody><tr class="table-light">
 										<th class="col-md-2">Gold Rate</th>
@@ -283,7 +287,9 @@
 										<td>1.546</td>
 									</tr>
 									
-								</tbody></table>
+								</tbody></table> --}}
+
+								@include('frontend.component.gold_rate_table')
 
 
 							<br>
