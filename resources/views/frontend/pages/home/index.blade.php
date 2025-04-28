@@ -324,7 +324,7 @@
                             </div>
                             <div class="col-lg-8 col-md-8">
 
-                             <table class="table table-bordered">
+                             {{-- <table class="table table-bordered">
 								<tbody><tr class="table-light">
 										<th class="col-md-2">Gold Rate</th>
 										<th class="col-md-2">Month</th>
@@ -363,7 +363,9 @@
 										<td>1.546</td>
 									</tr>
 									
-								</tbody></table>
+								</tbody></table> --}}
+
+                                @include('frontend.component.gold_rate_table')
 
 
                                 <p class="fs-14 pt-4 pb-2">For more details click here - <a href="/terms-conditions" style="color:#bb8042;">Terms & Conditions</a></p>
@@ -684,7 +686,8 @@
         // });
         --}}
 
-        const inputIds = ['calc', 'calc_plan2'];
+        {{-- // const inputIds = ['calc', 'calc_plan2']; --}}
+        const inputIds = ['calc'];
 
         inputIds.forEach(function(id) {
             document.getElementById(id).addEventListener('input', function(event) {
@@ -912,96 +915,97 @@
 
         /* ----- calculate plan 1 -------- */
 
-        /* ----- Calculate plan 2 -------- */
+{{--
+        // /* ----- Calculate plan 2 -------- */
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const amountSpan_plan2 = document.getElementById('amount_plan2');
-            const amount10xSpan_plan2 = document.getElementById('amount_10x_plan2');
-            const amount13xSpan_plan2 = document.getElementById('amount_13x_plan2');
-            const calcInput_plan2 = document.getElementById('calc_plan2');
-            const validationMessage_plan2 = $('#validationMessage_plan2');
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const amountSpan_plan2 = document.getElementById('amount_plan2');
+        //     const amount10xSpan_plan2 = document.getElementById('amount_10x_plan2');
+        //     const amount13xSpan_plan2 = document.getElementById('amount_13x_plan2');
+        //     const calcInput_plan2 = document.getElementById('calc_plan2');
+        //     const validationMessage_plan2 = $('#validationMessage_plan2');
 
-            const amountPlusBtn_plan2 = document.getElementById('amount_plus_plan2');
-            const amountMinusBtn_plan2 = document.getElementById('amount_minus_plan2');
+        //     const amountPlusBtn_plan2 = document.getElementById('amount_plus_plan2');
+        //     const amountMinusBtn_plan2 = document.getElementById('amount_minus_plan2');
 
-            // let currentAmount_plan2 = parseInt(calcInput_plan2.value, {{ $plan2_duration }});
-            let currentAmount_plan2 = parseInt(calcInput_plan2.value);
+        //     // let currentAmount_plan2 = parseInt(calcInput_plan2.value, {{ $plan2_duration }});
+        //     let currentAmount_plan2 = parseInt(calcInput_plan2.value);
 
-            function updateAmount_plan2() {
-                if (currentAmount_plan2 % 1000 !== 0) {
-                    validationMessage_plan2.html('Accept only multiples of thousand');
-                    validationMessage_plan2.show();
-                    return;
-                } else {
-                    validationMessage_plan2.hide();
-                }
+        //     function updateAmount_plan2() {
+        //         if (currentAmount_plan2 % 1000 !== 0) {
+        //             validationMessage_plan2.html('Accept only multiples of thousand');
+        //             validationMessage_plan2.show();
+        //             return;
+        //         } else {
+        //             validationMessage_plan2.hide();
+        //         }
 
-                amountSpan_plan2.textContent = '₹ ' + Math.ceil(currentAmount_plan2).toLocaleString();
-                amount10xSpan_plan2.textContent = '₹ ' + Math.ceil(currentAmount_plan2 * {{ $plan2_duration }}).toLocaleString();
+        //         amountSpan_plan2.textContent = '₹ ' + Math.ceil(currentAmount_plan2).toLocaleString();
+        //         amount10xSpan_plan2.textContent = '₹ ' + Math.ceil(currentAmount_plan2 * {{ $plan2_duration }}).toLocaleString();
 
-                var profit_percantage = (currentAmount_plan2 * {{ $receivable_percentage_on_time_plan_2 }}) / 100;
-                var profit = {{ $plan2_duration }} * profit_percantage;
+        //         var profit_percantage = (currentAmount_plan2 * {{ $receivable_percentage_on_time_plan_2 }}) / 100;
+        //         var profit = {{ $plan2_duration }} * profit_percantage;
 
-                var total_amt_for_gold = ((currentAmount_plan2 * {{ $plan2_duration }}) + profit);
-                var gold_rate = ({{ $gold_price }} * 10);
+        //         var total_amt_for_gold = ((currentAmount_plan2 * {{ $plan2_duration }}) + profit);
+        //         var gold_rate = ({{ $gold_price }} * 10);
 
-                console.log(gold_rate);
+        //         console.log(gold_rate);
 
-                var grams_of_gold = ((total_amt_for_gold / gold_rate) * 10);
+        //         var grams_of_gold = ((total_amt_for_gold / gold_rate) * 10);
 
-                console.log(grams_of_gold);
+        //         console.log(grams_of_gold);
 
-                amount13xSpan_plan2.textContent = (grams_of_gold).toLocaleString() + ' Gram (22 karat)';
-            }
+        //         amount13xSpan_plan2.textContent = (grams_of_gold).toLocaleString() + ' Gram (22 karat)';
+        //     }
 
-            calcInput_plan2.addEventListener('input', function() {
-                currentAmount_plan2 = parseInt(calcInput_plan2.value) || 0;
-                if (currentAmount_plan2 < {{ $plan_min_amount_plan_2 }}) {
-                    validationMessage_plan2.html('Minimum amount should be ' + roundToNearestThousand(
-                        {{ $plan_min_amount_plan_2 }}));
-                    validationMessage_plan2.show();
-                    return;
-                } else {
-                    validationMessage_plan2.hide();
-                }
-                updateAmount_plan2();
-            });
+        //     calcInput_plan2.addEventListener('input', function() {
+        //         currentAmount_plan2 = parseInt(calcInput_plan2.value) || 0;
+        //         if (currentAmount_plan2 < {{ $plan_min_amount_plan_2 }}) {
+        //             validationMessage_plan2.html('Minimum amount should be ' + roundToNearestThousand(
+        //                 {{ $plan_min_amount_plan_2 }}));
+        //             validationMessage_plan2.show();
+        //             return;
+        //         } else {
+        //             validationMessage_plan2.hide();
+        //         }
+        //         updateAmount_plan2();
+        //     });
 
-            amountPlusBtn_plan2.addEventListener('click', function(event) {
-                event.preventDefault();
-
-
-                if (currentAmount_plan2 < {{ $plan_min_amount_plan_2 }}) {
-                    validationMessage_plan2.html('Minimum amount should be ' + roundToNearestThousand(
-                        {{ $plan_min_amount_plan_2 }}));
-                    validationMessage_plan2.show();
-                } else {
-                    currentAmount_plan2 += 1000;
-                    calcInput_plan2.value = currentAmount_plan2;
-                    updateAmount_plan2();
-                }
-
-            });
-
-            amountMinusBtn_plan2.addEventListener('click', function(event) {
-                event.preventDefault();
-                if (currentAmount_plan2 > {{ $plan_min_amount_plan_2 }}) {
-                    currentAmount_plan2 -= 1000;
-                    calcInput_plan2.value = currentAmount_plan2;
-                    updateAmount_plan2();
-                } else {
-                    validationMessage_plan2.html('Minimum amount should be ' + roundToNearestThousand(
-                        {{ $plan_min_amount_plan_2 }}));
-                    validationMessage_plan2.show();
-                }
-            });
-
-            updateAmount_plan2(); // Initial update
-        });
+        //     amountPlusBtn_plan2.addEventListener('click', function(event) {
+        //         event.preventDefault();
 
 
-        /* ----- Calculate plan 2 --------*/
+        //         if (currentAmount_plan2 < {{ $plan_min_amount_plan_2 }}) {
+        //             validationMessage_plan2.html('Minimum amount should be ' + roundToNearestThousand(
+        //                 {{ $plan_min_amount_plan_2 }}));
+        //             validationMessage_plan2.show();
+        //         } else {
+        //             currentAmount_plan2 += 1000;
+        //             calcInput_plan2.value = currentAmount_plan2;
+        //             updateAmount_plan2();
+        //         }
 
+        //     });
+
+        //     amountMinusBtn_plan2.addEventListener('click', function(event) {
+        //         event.preventDefault();
+        //         if (currentAmount_plan2 > {{ $plan_min_amount_plan_2 }}) {
+        //             currentAmount_plan2 -= 1000;
+        //             calcInput_plan2.value = currentAmount_plan2;
+        //             updateAmount_plan2();
+        //         } else {
+        //             validationMessage_plan2.html('Minimum amount should be ' + roundToNearestThousand(
+        //                 {{ $plan_min_amount_plan_2 }}));
+        //             validationMessage_plan2.show();
+        //         }
+        //     });
+
+        //     updateAmount_plan2(); // Initial update
+        // });
+
+
+        // /* ----- Calculate plan 2 --------*/
+--}}
 
 
 
