@@ -86,9 +86,8 @@
                             </div>
                             <div class="choose_content">
                                 <p class="black_color">
-                                    Once you've completed 12 of payments, you'll qualify for a special discount of
-                                    up to 100% of your first installment's value. That means more savings for you on the
-                                    jewellery you desire!
+                                   Complete 12 months of payments and enjoy a special benefit — 0% making charges on the total gold accumulated in your plan. It’s our way of rewarding your commitment with even more value on the jewellery you love!
+
                                 </p>
                             </div>
                         </div>
