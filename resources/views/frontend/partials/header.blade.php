@@ -28,12 +28,12 @@
                    
 
                      <li class="nav-item d-none d-lg-block">
-                        <a class="nav-link" href="/golden-treasure"><i class="las la-coins"></i> Golden Treasure</a>
+                        <a class="nav-link" href="/golden-treasure"><i class="las la-wallet"></i>  Golden Treasure</a>
                     </li>
 
                     
                      <li class="nav-item d-none d-lg-block">
-                        <a class="nav-link" href="/golden-fortune"><i class="las la-exclamation-circle"></i> Golden Fortune </a>
+                        <a class="nav-link" href="/golden-fortune"><i class="las la-coins"></i> Golden Fortune </a>
                     </li>
 
                   
@@ -66,12 +66,12 @@
                   </li> -->
 
                   <li>
-                    <a class="nav-link" href="/golden-treasure"><i class="las la-coins"></i>
+                    <a class="nav-link" href="/golden-treasure"><i class="las la-wallet"></i>
                                     Golden Treasure </a>
                   </li>
 
                    <li>
-                    <a class="nav-link" href="/golden-fortune"><i class="las la-exclamation-circle"></i>
+                    <a class="nav-link" href="/golden-fortune"> <i class="las la-coins"></i>
                                     Golden Fortune </a>
                   </li>
 
