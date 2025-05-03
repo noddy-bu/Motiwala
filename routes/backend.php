@@ -51,6 +51,10 @@ Route::group(['prefix' => 'customer', 'middleware' => ['auth', 'role:1,2,3']], f
 
     Route::get('/edit/{id}', [CustomerController::class, 'edit'])->name('Customer.edit');
 
+    Route::get('/edit-details/{id}', [CustomerController::class, 'edit_details_prev'])->name('Customer.edit.details');
+
+    Route::post('/edit-details-admin', [CustomerController::class, 'edit_details_admin'])->name('Customer.edit.details.admin');
+
 
     Route::get('/transaction/{id}', [CustomerController::class, 'transaction'])->name('Customer.transaction');
 

@@ -68,3 +68,77 @@
 .customer_installment_modal .card {
     height: 17em;
 }
+
+
+.buttonclass1 button,
+.buttonclass1 a {
+    padding: 8px 18px 9px 18px;
+    color: #000 !important;
+    text-decoration: none;
+    font-weight: 600;
+    border: 0px solid;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    transition: 0.3s all;
+    background: transparent;
+}
+
+.buttonclass {
+    background: #E3C2AB;
+    padding: 7px 0px 10px 0px;
+    display: inline-block;
+    transition: 0.5s all;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+.buttonclass:hover {
+    background-color: #cd9f72b8;
+    transition: 0.5s all;
+    border: 1px solid #000;
+}
+
+.buttonclass1 {
+    background: #E3C2AB;
+    padding: 0px 0px 0px 0px;
+    display: inline-block;
+    transition: 0.5s all;
+    border-radius: 10px;
+    border: 1px solid transparent;
+}
+
+.buttonclass1:hover {
+    background-color: #cd9f72b8;
+    transition: 0.5s all;
+    border: 1px solid #000;
+}
+
+/* .buttonclass a:hover {
+    position: relative;
+    top: 1px;
+    left: 0;
+    transition: 0.3s all;
+    border: 1px solid #e3c2ab;
+} */
+
+/* .buttonclass1 button:hover, .buttonclass1 a:hover {
+    position: relative;
+    top: 1px;
+    left: 0;
+    transition: 0.3s all;
+    border: 1px solid #e3c2ab;
+} */
+
+.buttonclass i {
+    font-size: 24px;
+    position: relative;
+    top: 4px;
+}
+
+
+.buttonclass1 i {
+    font-size: 24px;
+    position: relative;
+    top: 4px;
+}
