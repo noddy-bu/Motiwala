@@ -86,10 +86,18 @@ class IndexController extends Controller
         return view('frontend.pages.about.index');
     }
     public function golden_fortune(){
-        return view('frontend.pages.goldenfortune.index');
+        $gold_price = DB::table('business_settings')->where('type', 'gold_rate_in_1gram_per_day')->value('value');
+        return view('frontend.pages.goldenfortune.index', compact('gold_price'));
     }
     public function golden_treasure(){
-        return view('frontend.pages.goldentreasure.index');
+        $plan_duration = DB::table('plans')->where('status', 1)->select(['id', 'installment_period'])->get();
+        // Filter the collection to get the installment_period for the plan with id = 1
+        $plan1_duration = $plan_duration->firstWhere('id', 1)?->installment_period;
+
+        // // Filter the collection to get the installment_period for the plan with id = 2
+        // $plan2_duration = $plan_duration->firstWhere('id', 2)?->installment_period;
+        
+        return view('frontend.pages.goldentreasure.index', compact('plan1_duration'));
     }
 
     public function old_scheme_closure(){
