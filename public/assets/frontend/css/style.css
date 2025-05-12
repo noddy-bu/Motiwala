@@ -2038,3 +2038,39 @@ section.inner_page_banner {
 .treaser_section_page {
     padding: 100px 0px 0px 0px;
 }
+
+.whatsappdesktop {
+    position: fixed;
+    bottom: 35px;
+    z-index: 9999;
+    left: 20px;
+}
+
+.whatsappdesktop i {
+    background: #07d353;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    line-height: 49px;
+    text-align: center;
+    font-size: 29px;
+}
+
+.calltoaction {
+    position: fixed;
+    bottom: 35px;
+    z-index: 9999;
+    right: 20px;
+}
+
+.calltoaction i {
+    background: #795548;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    line-height: 49px;
+    text-align: center;
+    font-size: 29px;
+}

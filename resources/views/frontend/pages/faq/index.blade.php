@@ -32,7 +32,7 @@
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> 
-                                What is the Golden Treasure 10+1 Plan?                            
+                                What is the Golden Treasure {{ env('PLAN_1') }} Plan?                            
                             </button>
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
@@ -46,13 +46,13 @@
                         <h2 class="accordion-header" id="headingTwo">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> 
-                                Is Golden Treasure 10+1 Plan the same as an EMI (Equated Monthly Installment)
+                                Is Golden Treasure {{ env('PLAN_1') }} Plan the same as an EMI (Equated Monthly Installment)
                             </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                No. Our Golden Treasure 10+1 Plan is a savings plan, where you first save for {{ env('PLAN_1') }} 
+                                No. Our Golden Treasure {{ env('PLAN_1') }} Plan is a savings plan, where you first save for {{ env('PLAN_1') }} 
                                 and we pay 1 month installment On Behalf  then you can make a purchase of  
                                 Jewellery after completion of the plan. 
                             </div>
@@ -79,13 +79,13 @@
                         <h2 class="accordion-header" id="headingFour">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> 
-                                How to enroll for Golden Treasure 10+1 Plan?
+                                How to enroll for Golden Treasure {{ env('PLAN_1') }} Plan?
                             </button>
                         </h2>
                         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                You can enroll for a Golden Treasure 10+1 Plan either at our store or online. Here's a
+                                You can enroll for a Golden Treasure {{ env('PLAN_1') }} Plan either at our store or online. Here's a
                                 step-by-step guide to enroll online:
                                 <ol class="enrollment_list">
                                     <li>Please click on the "Create Account" on our App or Website.</li>
@@ -93,7 +93,7 @@
                                     <li>Please enter your Aadhar Number and nominee details.</li>
                                     <li>Choose the plan and select the amount for the plan.</li>
                                     <li>Verify Aadhaar card and proceed for E-sign. After that, you’ll be redirected to the payment gateway.</li>
-                                    <li>Once the payment is successful, you will have started your Golden Treasure 10+1 Plan.</li>
+                                    <li>Once the payment is successful, you will have started your Golden Treasure {{ env('PLAN_1') }} Plan.</li>
                                 </ol>
                             </div>
                         </div>
@@ -103,8 +103,8 @@
                         <h2 class="accordion-header" id="headingFive">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive"> 
-                                Where can I find my Golden Treasure 10+1 Plan details after enrollment? 
-                                What is the Golden Treasure 10+1 Plan passbook and how do I access it?
+                                Where can I find my Golden Treasure {{ env('PLAN_1') }} Plan details after enrollment? 
+                                What is the Golden Treasure {{ env('PLAN_1') }} Plan passbook and how do I access it?
                             </button>
                         </h2>
                         <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
@@ -120,7 +120,7 @@
                         <h2 class="accordion-header" id="headingSix">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix"> 
-                                What is the minimum and maximum amount for Golden Treasure 10+1 Plan enrollment?
+                                What is the minimum and maximum amount for Golden Treasure {{ env('PLAN_1') }} Plan enrollment?
                             </button>
                         </h2>
                         <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
@@ -150,13 +150,13 @@
                         <h2 class="accordion-header" id="headingEight">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight"> 
-                                Can I cancel/refund the Golden Treasure 10+1 Plan?
+                                Can I cancel/refund the Golden Treasure {{ env('PLAN_1') }} Plan?
                             </button>
                         </h2>
                         <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                Our Golden Treasure 10+1 Plan cancellation/refund policy is available only after 6 
+                                Our Golden Treasure {{ env('PLAN_1') }} Plan cancellation/refund policy is available only after 6 
                                 installments and no extra benefits will be given.                               
                             </div>
                         </div>
@@ -197,7 +197,7 @@
                         <h2 class="accordion-header" id="headingEleven">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven"> 
-                                Can I continue my Golden Treasure 10+1 Plan after {{ env('PLAN_1') }}?
+                                Can I continue my Golden Treasure {{ env('PLAN_1') }} Plan after {{ env('PLAN_1') }}?
                             </button>
                         </h2>
                         <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven"
@@ -319,7 +319,7 @@
                         <div id="collapseEighteen" class="accordion-collapse collapse" aria-labelledby="headingEighteen"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                Yes, we offer an auto-debit feature for Golden Treasure 10+1 Plan installment payments.	
+                                Yes, we offer an auto-debit feature for Golden Treasure {{ env('PLAN_1') }} Plan installment payments.	
                             </div>
                         </div>
                     </div>
@@ -362,13 +362,13 @@
                         <h2 class="accordion-header" id="headingTwentyOne">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwentyOne" aria-expanded="false" aria-controls="collapseTwentyOne"> 
-                                How can I redeem my Golden Treasure 10+1 Plan?
+                                How can I redeem my Golden Treasure {{ env('PLAN_1') }} Plan?
                             </button>
                         </h2>
                         <div id="collapseTwentyOne" class="accordion-collapse collapse" aria-labelledby="headingTwentyOne"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                Your Golden Treasure 10+1 Plan will be auto redeemed on the maturity date. You can claim it by visiting our store.                             
+                                Your Golden Treasure {{ env('PLAN_1') }} Plan will be auto redeemed on the maturity date. You can claim it by visiting our store.                             
                             </div>
                         </div>
                     </div>
@@ -377,7 +377,7 @@
                         <h2 class="accordion-header" id="headingTwentyTwo">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwentyTwo" aria-expanded="false" aria-controls="collapseTwentyTwo"> 
-                                What is the validity of my Golden Treasure 10+1 Plan? What happens if it is not used in the validity period?
+                                What is the validity of my Golden Treasure {{ env('PLAN_1') }} Plan? What happens if it is not used in the validity period?
                             </button>
                         </h2>
                         <div id="collapseTwentyTwo" class="accordion-collapse collapse" aria-labelledby="headingTwentyTwo"
@@ -439,7 +439,7 @@
                         <h2 class="accordion-header" id="headingTwentySix">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwentySix" aria-expanded="false" aria-controls="collapseTwentySix"> 
-                                Can the validity of my Golden Treasure 10+1 Plan be extended?
+                                Can the validity of my Golden Treasure {{ env('PLAN_1') }} Plan be extended?
                             </button>
                         </h2>
                         <div id="collapseTwentySix" class="accordion-collapse collapse" aria-labelledby="headingTwentySix"
@@ -469,7 +469,7 @@
                         <h2 class="accordion-header" id="headingTwentyEight">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwentyEight" aria-expanded="false" aria-controls="collapseTwentyEight"> 
-                                Can I start a new plan with the Golden Treasure 10+1 Plan?
+                                Can I start a new plan with the Golden Treasure {{ env('PLAN_1') }} Plan?
                             </button>
                         </h2>
                         <div id="collapseTwentyEight" class="accordion-collapse collapse" aria-labelledby="headingTwentyEight"

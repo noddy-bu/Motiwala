@@ -54,7 +54,7 @@
             <li>
               <a href="{{ url(route('privacy-policy')) }}"> <i class="las la-angle-right"></i> Privacy Policy</a>
             </li>
-<li>
+            <li>
               <a href="{{ url(route('refund-policy')) }}"> <i class="las la-angle-right"></i> Refund Policy</a>
             </li>
             
@@ -84,7 +84,7 @@
           <div class="col-md-12 text-md-end text-center footer_social">
             <ul class="list-group list-group-horizontal list-unstyled">
               <li>
-                <a target="_blank" href="https://api.whatsapp.com/send?phone=+919920077780&amp;text=Hi%2C+I+am+contacting+you+through+your+website+from+desktop+view+https://motiwalajewels.in/%2F">
+                <a target="_blank" href="https://api.whatsapp.com/send?phone=+919920077780&amp;text=Hi%2C+I+am+contacting+you+through+your+website+https://treasure.motiwalajewels.in/">
                   <i class="lab la-whatsapp"></i>
                 </a>
               </li>
@@ -122,10 +122,10 @@
       <div class="row flex-md-row flex-column gap-md-0 gap-2">
        
         <div class="col-md-6">
-          <p class="text-md-start text-center mb-1 mb-md-3">Copyright © 2024 Under Motiwala Jewels Gold and Diamonds Pvt Ltd</p>
+          <p class="text-md-start text-center mb-1 mb-md-3">Copyright © 2025 Under Motiwala Jewels Gold and Diamonds Pvt Ltd</p>
         </div>    
         <div class="col-md-6 design_by_nexgeno">
-          <p class="float-end mb-md-3 mb-0"> Design By <a class="text-decoration-none text-light fw-bold" href="https://nexgeno.in/">Nexgeno</a></p>
+          <p class="float-end mb-md-3 mb-0"> Design By <a class="text-decoration-none text-light" href="https://nexgeno.in/">Nexgeno</a></p>
         </div>    
       </div>
     </div>
