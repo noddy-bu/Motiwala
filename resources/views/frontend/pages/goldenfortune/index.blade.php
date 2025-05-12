@@ -14,10 +14,10 @@
             
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="/assets/frontend/images/golden_fortune_banner.webp" class="d-md-block d-none w-100"
-                        alt="...">
-                    <img src="/assets/frontend/images/golden_fortune_banner.webp" class="d-md-none d-block w-100"
-                        alt="...">
+                    <img src="/assets/frontend/images/golden_fortune1.webp" class="d-md-block d-none w-100"
+                        alt="golden_fortune1">
+                    <img src="/assets/frontend/images/golden_fortune1.webp" class="d-md-none d-block w-100"
+                        alt="golden_fortune1">
                 </div>
             </div>
            

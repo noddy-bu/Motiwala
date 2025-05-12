@@ -31,10 +31,10 @@
            
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="/assets/frontend/images/golden_treasure_banner.webp" class="d-md-block d-none w-100"
-                        alt="...">
-                    <img src="/assets/frontend/images/golden_treasure_banner.webp" class="d-md-none d-block w-100"
-                        alt="...">
+                    <img src="/assets/frontend/images/golden_treasure_banner1.webp" class="d-md-block d-none w-100"
+                        alt="golden_treasure_banner1">
+                    <img src="/assets/frontend/images/golden_treasure_banner1.webp" class="d-md-none d-block w-100"
+                        alt="golden_treasure_banner1">
                 </div>
 
               
