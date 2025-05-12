@@ -2064,6 +2064,10 @@ section.inner_page_banner {
     right: 20px;
 }
 
+.treaser_section_page {
+    padding-top: 100px;
+}
+
 .calltoaction i {
     background: #795548;
     color: #fff;

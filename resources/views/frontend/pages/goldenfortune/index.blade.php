@@ -45,7 +45,7 @@
         </section>
 
 
-  <section class="treaser_section_page">
+  <section class="treaser_section_page ">
         <div class="container">
            
             <div class="tab-content" id="nav-tabContent">
