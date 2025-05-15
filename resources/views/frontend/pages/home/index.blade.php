@@ -302,6 +302,14 @@
                                                 <p id="amount_13x" class="amount_13x">₹ 1,20,000</p>
                                             </div>
                                         </div>
+
+                                        <div class="col-md-12 text-md-start text-center widths80">
+                                <div class="buttonclass mt-md-3 mb-md-0 mb-3">
+                                    <a href="{{ url(route('account.new.enrollment.page')) }}">Open a New Account <i
+                                            class="las la-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
                                     </div>
                                 </form>
                             </div>
@@ -367,8 +375,8 @@
 
                                 <p class="fs-14 pt-4 pb-2">For more details click here - <a href="/terms-conditions" style="color:#bb8042;">Terms & Conditions</a></p>
 
-                                <p>Note : The rate calculation is based on the gold price for 22 karat on the purchase date. <span style="    font-size: 14px;
-    color: #c1884e;">(Today Gold Rate 22 kt As Per 1 gram : Rs {{ $gold_price }})</span></p>
+                                <p>Note : The rate calculation is based on the gold price for 22 karat on the purchase date. <span style="    font-size: 18px;
+    color: #c1884e;">(Today's Gold Rate 22 kt As Per 1 gram : Rs {{ $gold_price }})</span></p>
 
 
                             </div>
@@ -388,7 +396,7 @@
                 </div>
             </div>
 
-            <div class="container">
+            <!-- <div class="container">
                 <div class="step_bottom_text">
                     <p class="black_color text-center">
                         “Delivering top-notch quality jewellery with the latest designs at prices <span>you can afford,
@@ -399,7 +407,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
 
 

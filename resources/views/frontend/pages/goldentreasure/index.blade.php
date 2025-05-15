@@ -33,7 +33,7 @@
                 <div class="carousel-item active">
                     <img src="/assets/frontend/images/golden_treasure_banner1.webp" class="d-md-block d-none w-100"
                         alt="golden_treasure_banner1">
-                    <img src="/assets/frontend/images/golden_treasure_banner1.webp" class="d-md-none d-block w-100"
+                    <img src="/assets/frontend/images/mobile_banner_treasure.webp" class="d-md-none d-block w-100"
                         alt="golden_treasure_banner1">
                 </div>
 
@@ -143,6 +143,14 @@
                                                 <p id="amount_13x" class="amount_13x">₹ 1,20,000</p>
                                             </div>
                                         </div>
+
+                                        <div class="col-md-12 text-md-start text-center widths80">
+                                <div class="buttonclass mt-md-3 mb-md-0 mb-3">
+                                    <a href="{{ url(route('account.new.enrollment.page')) }}">Open a New Account <i
+                                            class="las la-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
                                     </div>
                                 </form>
                             </div>

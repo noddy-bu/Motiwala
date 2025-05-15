@@ -2078,3 +2078,32 @@ section.inner_page_banner {
     text-align: center;
     font-size: 29px;
 }
+
+.live_price_show p {
+    position: absolute;
+    text-align: center;
+    background: #fff;
+    margin-right: auto;
+    display: block;
+    padding: 16px 30px;
+    font-size: 20px;
+    font-weight: bold !important;
+    bottom: -142px !important;
+    margin-left: -52px;
+    border-radius: 50px;
+    box-shadow: -20px 0px 43px -24px #fff;
+}
+
+section.live_price_show span {
+    color: #c1884e;
+    font-size: 30px;
+    position: relative;
+    top: 3px;
+}
+
+section.live_price_show {
+    text-align: center;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}

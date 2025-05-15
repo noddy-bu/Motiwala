@@ -9,6 +9,8 @@
         font-size: 34px !important;
     }
 
+
+
     section.steps_section {
         padding: 60px 0px 60px 0px;
     }
@@ -498,6 +500,42 @@
     .after_login_body .container:not(footer .container) {
         padding-left: 20px;
         padding-right: 20px;
+    }
+
+    section.live_price_show {
+        text-align: center;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .live_price_show p {
+        position: relative;
+        text-align: center;
+        background: #fff;
+        margin-right: auto;
+        display: block;
+        padding: 16px 5px;
+        font-size: 20px;
+        font-weight: bold !important;
+        bottom: 0px !important;
+        margin-left: 0px;
+        border-radius: 50px;
+        box-shadow: -20px 0px 43px -24px #fff;
+        padding-right: 0px;
+        margin-bottom: 0;
+    }
+
+    .treaser_section_page {
+        padding-top: 30px !important;
+    }
+
+    section.live_price_show span {
+        color: #c1884e;
+        font-size: 20px;
+        position: relative;
+        top: 3px;
+        display: block;
     }
 
     p.fontsize26 {

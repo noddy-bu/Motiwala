@@ -16,7 +16,7 @@
                 <div class="carousel-item active">
                     <img src="/assets/frontend/images/golden_fortune1.webp" class="d-md-block d-none w-100"
                         alt="golden_fortune1">
-                    <img src="/assets/frontend/images/golden_fortune1.webp" class="d-md-none d-block w-100"
+                    <img src="/assets/frontend/images/mobile_banner_fortune.webp" class="d-md-none d-block w-100"
                         alt="golden_fortune1">
                 </div>
             </div>
@@ -28,11 +28,17 @@
     <main class="main">
 
 
+
+    <section class="live_price_show">
+        <div class="container">
+      <p> Today's Gold Rate 22 kt As Per 1 gram : <span>Rs {{ $gold_price }}</span></p> 
+        </div>
+    </section>
      <section class="top_step_content">
             <div class="container">
                 <h4 class="title_heading text-center black_color pb-3 heading_font">Start Saving in Gold the Smart Way</h4>
                 <p class="text-center black_color fontsize26">
-                    Start your Golden Fortune journey with just ₹10,000 per month for 12 months and lock in 22K gold at the rate of each payment day. Want to invest more? You can add in multiples of ₹1,000! At the end of the plan, enjoy 0% making charges on your total accumulated gold. It's the smart way to save - let your fortune shine!
+                    Start your Golden Fortune journey with just ₹10,000 per month for 12 months and lock in 22K gold at the rate of each payment day. Want to invest more? You can add in multiples of ₹1,000! At the end of the plan, enjoy <b>0% making charges</b> on your total accumulated gold. It's the smart way to save - let your fortune shine!
 
                 </p>
                 <div class="text-center">
@@ -67,8 +73,8 @@
 
                                 <p class="fs-14 pt-4 pb-2">For more details click here - <a href="/terms-conditions" style="color:#bb8042;">Terms & Conditions</a></p>
 
-                                <p>Note : The rate calculation is based on the gold price for 22 karat on the purchase date. <span style="    font-size: 14px;
-    color: #c1884e;">(Today Gold Rate 22 kt As Per 1 gram : Rs {{ $gold_price }})</span></p>
+                                <p>Note : The rate calculation is based on the gold price for 22 karat on the purchase date. <span style="    font-size: 18px;
+    color: #c1884e;">(Today's Gold Rate 22 kt As Per 1 gram : Rs {{ $gold_price }})</span></p>
 
 
                             </div>
