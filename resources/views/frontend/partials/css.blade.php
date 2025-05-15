@@ -13,7 +13,7 @@
 <!-- <link rel="stylesheet" href="/assets/frontend/css/aos.css" /> -->
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-<link rel="stylesheet" href="/assets/frontend/css/responsive.css?v=1.0.5" />
+<link rel="stylesheet" href="/assets/frontend/css/responsive.css?v=1.0.8" />
 <link rel="stylesheet" href="/assets/backend/css/custom.css" />
 <link rel="stylesheet" href="/assets/frontend/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/assets/frontend/css/owl.carousel.min.css" />
