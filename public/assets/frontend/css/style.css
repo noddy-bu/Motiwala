@@ -2088,7 +2088,7 @@ section.inner_page_banner {
     padding: 16px 30px;
     font-size: 20px;
     font-weight: bold !important;
-    bottom: -142px !important;
+    top: -45px !important;
     margin-left: -52px;
     border-radius: 50px;
     box-shadow: -20px 0px 43px -24px #fff;
@@ -2103,7 +2103,8 @@ section.live_price_show span {
 
 section.live_price_show {
     text-align: center;
-    width: 400px;
+    width: 480px;
+    position: relative;
     margin-left: auto;
     margin-right: auto;
 }
