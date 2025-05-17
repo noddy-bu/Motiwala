@@ -1732,7 +1732,10 @@ class AccountController extends Controller
 
         $auto_installments = $installments;
 
-        $installments = $installments + 1;
+        if($user_plan_Details == 1){
+            $installments = $installments + 1;
+        } 
+
         $maturity_date_start = date('Y-m-d H:i:s', strtotime("+$installments month"));
         $maturity_date_end = date('Y-m-d H:i:s', strtotime($maturity_date_start . ' +1 month'));
 
