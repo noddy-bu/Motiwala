@@ -28,14 +28,29 @@ class backendAuthenticate
 
     public function handle(Request $request, Closure $next)
     {
-        // 1) If user is logged in and has one of the allowed role_ids, continue.
+        $routeName = $request->route()->getName() ?? '';
+
+        // 1) If the user IS authenticated (and has an allowed role)
         if (isset(auth()->user()->id) && in_array(auth()->user()->role_id, [1, 2, 3])) {
+            // a) If they are trying to visit any of the login/OTP pages, send them to dashboard
+            $loginRoutes = [
+                'backend.login',
+                'backend.login.phone.send',
+                'backend.login.phone.verify.form',
+                'backend.login.phone.verify',
+                'backend.login.phone.resend',
+            ];
+
+            if (in_array($routeName, $loginRoutes)) {
+                return redirect()->route('backend.dashboard');
+            }
+
+            // b) Otherwise (anything else), let them through
             return $next($request);
         }
 
-        // 2) If not logged in, allow the "backend.login" page
-        //    OR any of the OTP‐related routes (send, show‐verify, verify, resend):
-        $allowed = [
+        // 2) If the user is NOT authenticated, allow ONLY the login/OTP routes
+        $publicRoutes = [
             'backend.login',
             'backend.login.phone.send',
             'backend.login.phone.verify.form',
@@ -43,12 +58,13 @@ class backendAuthenticate
             'backend.login.phone.resend',
         ];
 
-        if (in_array($request->route()->getName(), $allowed)) {
+        if (in_array($routeName, $publicRoutes)) {
             return $next($request);
         }
 
-        // 3) Otherwise, redirect to login
-        return redirect(route('backend.login'));
+        // 3) Any other route: redirect to login
+        return redirect()->route('backend.login');
     }
+
 
 }
