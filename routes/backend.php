@@ -37,6 +37,15 @@ Route::get('/login', [AuthenticateController::class, 'index'])->name('backend.lo
 Route::post('/login', [AuthenticateController::class, 'login'])->name('backend.login');
 Route::get('/logout', [AuthenticateController::class, 'logout'])->name('backend.logout');
 
+
+// ------------------------------------------------------
+// Phone/OTP Login Routes:
+Route::post('/login/phone/send-otp', [AuthenticateController::class, 'sendOtp'])->name('backend.login.phone.send');
+Route::get('/login/phone/verify', [AuthenticateController::class, 'showVerifyOtpForm'])->name('backend.login.phone.verify.form');
+Route::post('/login/phone/verify', [AuthenticateController::class, 'verifyOtp'])->name('backend.login.phone.verify');
+// Optionally, a route to resend OTP:
+Route::post('/login/phone/resend-otp', [AuthenticateController::class, 'resendOtp'])->name('backend.login.phone.resend');
+
 //dashborad
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('backend.dashboard');
 

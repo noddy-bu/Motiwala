@@ -21,6 +21,15 @@
 
 </head>
 <body class="authentication-bg pb-0">
+@if($errors->any())
+  <div class="alert alert-danger">
+    <ul class="mb-0">
+      @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif
 
     <div class="auth-fluid">
         <!--Auth fluid left content -->
@@ -38,9 +47,12 @@
                 </div>
 
                 <div class="my-auto">
-                    <!-- title-->
-                    <h4 class="mt-0">Sign In</h4>
-                    <p class="text-muted mb-4">Enter your email address and password to access account.</p>
+
+                    <!-- Toggle Buttons -->
+                    <div class="text-end mb-4">
+                        <button id="btnEmailForm" class="btn btn-sm btn-outline-primary me-1 active">Use Email</button>
+                        <button id="btnPhoneForm" class="btn btn-sm btn-outline-primary">Use Phone/OTP</button>
+                    </div>
 
                     @if($errors->has('invalid_credential'))  
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -50,8 +62,13 @@
                     @endif  
 
                     <!-- form -->
-                    <form method="post" action="{{route('backend.login')}}">
+                    <form id="emailForm" method="post" action="{{route('backend.login')}}">
                         @csrf
+                                        
+                        <!-- title-->
+                        <h4 class="mt-0">Sign In</h4>
+                        <p class="text-muted mb-4">Enter your email address and password to access account.</p>
+                        
                         <div class="mb-3">
                             <label for="emailaddress" class="form-label">Email address</label>
                             <input class="form-control" type="email" id="emailaddress" name="email" required="" placeholder="Enter your email">
@@ -92,6 +109,30 @@
                         --}}
                     </form>
                     <!-- end form-->
+
+                    <!-- ==== PHONE/OTP FORM ==== -->
+                    <form id="phoneForm" method="POST" action="{{ route('backend.login.phone.send') }}" style="display: none;">
+                        @csrf
+                        <h4 class="mb-3">Sign In with Phone</h4>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input
+                                class="form-control"
+                                type="text"
+                                id="phone"
+                                name="phone"
+                                required
+                                placeholder="Enter your phone (e.g. 91XXXXXXXXXX)">
+                        </div>
+
+                        <div class="d-grid mb-0 text-center">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="mdi mdi-cellphone-iphone"></i> Send OTP
+                            </button>
+                        </div>
+                    </form>
+                    <!-- end phone form -->
+                    
                 </div>
 
                 <!-- Footer-->
@@ -129,5 +170,29 @@
 
     <!-- Include Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    
+{{-- ===== Minimal JS to toggle forms ===== --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const btnEmail = document.getElementById('btnEmailForm');
+        const btnPhone = document.getElementById('btnPhoneForm');
+        const emailForm = document.getElementById('emailForm');
+        const phoneForm = document.getElementById('phoneForm');
+
+        btnEmail.addEventListener('click', function () {
+            btnEmail.classList.add('active');
+            btnPhone.classList.remove('active');
+            emailForm.style.display = 'block';
+            phoneForm.style.display = 'none';
+        });
+
+        btnPhone.addEventListener('click', function () {
+            btnPhone.classList.add('active');
+            btnEmail.classList.remove('active');
+            phoneForm.style.display = 'block';
+            emailForm.style.display = 'none';
+        });
+    });
+</script>
 </body>
 </html>
