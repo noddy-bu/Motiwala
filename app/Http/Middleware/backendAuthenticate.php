@@ -31,7 +31,7 @@ class backendAuthenticate
         $routeName = $request->route()->getName() ?? '';
 
         // 1) If the user IS authenticated (and has an allowed role)
-        if (isset(auth()->user()->id) && in_array(auth()->user()->role_id, [1, 2, 3])) {
+        if (isset(auth()->user()->id) && in_array(auth()->user()->role_id, [1, 2, 3, 4])) {
             // a) If they are trying to visit any of the login/OTP pages, send them to dashboard
             $loginRoutes = [
                 'backend.login',

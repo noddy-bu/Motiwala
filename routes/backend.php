@@ -79,7 +79,7 @@ Route::group(['prefix' => 'customer', 'middleware' => ['auth', 'role:1,2,3']], f
     Route::get('/status/{id}/{status}', [CustomerController::class, 'status'])->name('Customer.status');
 });
 
-Route::group(['prefix' => 'transaction', 'middleware' => ['auth', 'role:1,2,3']], function () {
+Route::group(['prefix' => 'transaction', 'middleware' => ['auth', 'role:1,2,3,4']], function () {
     Route::get('/index', [TransactionController::class, 'index'])->name('transaction.index');
     Route::get('Customer-data', [TransactionController::class, 'getData'])->name('transaction.data');
 });
@@ -159,7 +159,7 @@ Route::group(['prefix' => 'manage-staff', 'middleware' => ['auth', 'role:1,2']],
 });
 
 //User
-Route::group(['prefix' => 'profile', 'middleware' => ['auth', 'role:1,2,3']], function () {
+Route::group(['prefix' => 'profile', 'middleware' => ['auth', 'role:1,2,3,4']], function () {
     Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::get('/reset/{id}', [UserController::class, 'password'])->name('user.password');
     Route::post('/update', [UserController::class, 'update'])->name('user.update');
