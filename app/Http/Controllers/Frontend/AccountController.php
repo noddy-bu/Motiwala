@@ -1732,7 +1732,10 @@ class AccountController extends Controller
 
         $auto_installments = $installments;
 
-        $installments = $installments + 1;
+        if($user_plan_Details == 1){
+            $installments = $installments + 1;
+        } 
+
         $maturity_date_start = date('Y-m-d H:i:s', strtotime("+$installments month"));
         $maturity_date_end = date('Y-m-d H:i:s', strtotime($maturity_date_start . ' +1 month'));
 
@@ -2222,7 +2225,9 @@ class AccountController extends Controller
 
 
 
-
+        // $fileContent = 'Manual Webhook Success';
+        // $txnid = '6c663417db5f9719a3ed';
+        // $udf1 = 'installment';
 
 
 

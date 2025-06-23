@@ -54,20 +54,23 @@
                             </a>
                         </li> 
 
-                        
-                        <li class="side-nav-item">
-                            <a href="{{ route('Customer.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
-                                <i class="ri-user-line"></i> 
-                                <span> Customers </span>
-                            </a>
-                        </li>
+                        @if(in_array(auth()->user()->role_id, [1,2,3]))
+                            <li class="side-nav-item">
+                                <a href="{{ route('Customer.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                                    <i class="ri-user-line"></i> 
+                                    <span> Customers </span>
+                                </a>
+                            </li>
+                        @endif
 
-                        <li class="side-nav-item">
-                            <a href="{{ route('transaction.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
-                                <i class="ri-wallet-line"></i> 
-                                <span> Transaction </span>
-                            </a>
-                        </li>
+                        @if(in_array(auth()->user()->role_id, [1,2,3,4]))
+                            <li class="side-nav-item">
+                                <a href="{{ route('transaction.index') }}" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                                    <i class="ri-wallet-line"></i> 
+                                    <span> Transaction </span>
+                                </a>
+                            </li>
+                        @endif
 
                         @if(in_array(auth()->user()->role_id, [1,2]))
                             <li class="side-nav-item">

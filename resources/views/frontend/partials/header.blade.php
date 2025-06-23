@@ -38,9 +38,9 @@
 
                   
 
-                  <li class="nav-item d-none d-lg-block">
+                  {{-- <li class="nav-item d-none d-lg-block">
                     <a class="nav-link" href="{{ url(route('faq')) }}"><i class="las la-question-circle"></i> FAQs</a>
-                  </li>
+                  </li> --}}
 
                   
                   <li>
@@ -88,9 +88,9 @@
                     <a class="nav-link" href="{{ url(route('contact_us')) }}"><i class="far fa-address-book"></i> Contact Us</a>
                   </li>
 
-                  <li>
+                  {{-- <li>
                     <a class="nav-link" href="{{ url(route('faq')) }}"><i class="las la-question-circle"></i> FAQs</a>
-                  </li>
+                  </li> --}}
 
                 
 

@@ -32,6 +32,7 @@
                     <option value="">---Select---</option>
                     <option value="2">Admin</option>
                     <option value="3">Staff</option>
+                    <option value="4">Accountant</option>
                 </select>
             </div>
         </div>

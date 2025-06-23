@@ -37,6 +37,15 @@ Route::get('/login', [AuthenticateController::class, 'index'])->name('backend.lo
 Route::post('/login', [AuthenticateController::class, 'login'])->name('backend.login');
 Route::get('/logout', [AuthenticateController::class, 'logout'])->name('backend.logout');
 
+
+// ------------------------------------------------------
+// Phone/OTP Login Routes:
+Route::post('/login/phone/send-otp', [AuthenticateController::class, 'sendOtp'])->name('backend.login.phone.send');
+Route::get('/login/phone/verify', [AuthenticateController::class, 'showVerifyOtpForm'])->name('backend.login.phone.verify.form');
+Route::post('/login/phone/verify', [AuthenticateController::class, 'verifyOtp'])->name('backend.login.phone.verify');
+// Optionally, a route to resend OTP:
+Route::post('/login/phone/resend-otp', [AuthenticateController::class, 'resendOtp'])->name('backend.login.phone.resend');
+
 //dashborad
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('backend.dashboard');
 
@@ -70,7 +79,7 @@ Route::group(['prefix' => 'customer', 'middleware' => ['auth', 'role:1,2,3']], f
     Route::get('/status/{id}/{status}', [CustomerController::class, 'status'])->name('Customer.status');
 });
 
-Route::group(['prefix' => 'transaction', 'middleware' => ['auth', 'role:1,2,3']], function () {
+Route::group(['prefix' => 'transaction', 'middleware' => ['auth', 'role:1,2,3,4']], function () {
     Route::get('/index', [TransactionController::class, 'index'])->name('transaction.index');
     Route::get('Customer-data', [TransactionController::class, 'getData'])->name('transaction.data');
 });
@@ -150,7 +159,7 @@ Route::group(['prefix' => 'manage-staff', 'middleware' => ['auth', 'role:1,2']],
 });
 
 //User
-Route::group(['prefix' => 'profile', 'middleware' => ['auth', 'role:1,2,3']], function () {
+Route::group(['prefix' => 'profile', 'middleware' => ['auth', 'role:1,2,3,4']], function () {
     Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::get('/reset/{id}', [UserController::class, 'password'])->name('user.password');
     Route::post('/update', [UserController::class, 'update'])->name('user.update');

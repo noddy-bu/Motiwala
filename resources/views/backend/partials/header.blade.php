@@ -374,6 +374,8 @@
                                             Superadmin
                                         @elseif(auth()->user()->role_id == 2)
                                             Admin
+                                        @elseif(auth()->user()->role_id == 4)
+                                            Accountant
                                         @else
                                             Staff
                                         @endif
