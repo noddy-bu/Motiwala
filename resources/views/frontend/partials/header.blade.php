@@ -44,7 +44,7 @@
 
                   
                   <li>
-                    <a class="nav-link d-none d-lg-block" target="_blank" href="https://motiwalajewels.in/"><i class="las la-shopping-bag"></i> Shop</a>
+                    <a class="nav-link d-none d-lg-block" target="_blank" href="https://motiwalajewels.in/"><i class="las la-shopping-bag"></i> Shop Now</a>
                   </li>
 
 
@@ -95,7 +95,7 @@
                 
 
                   <li>
-                    <a class="nav-link" target="_blank" href="https://motiwalajewels.in/"><i class="las la-shopping-bag"></i> Shop</a>
+                    <a class="nav-link" target="_blank" href="https://motiwalajewels.in/"><i class="las la-shopping-bag"></i> Shop Now</a>
                   </li>
 
                   
