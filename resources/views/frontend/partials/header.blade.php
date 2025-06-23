@@ -42,6 +42,11 @@
                     <a class="nav-link" href="{{ url(route('faq')) }}"><i class="las la-question-circle"></i> FAQs</a>
                   </li>
 
+                  
+                  <li>
+                    <a class="nav-link d-none d-lg-block" target="_blank" href="https://motiwalajewels.in/"><i class="las la-shopping-bag"></i> Shop</a>
+                  </li>
+
 
                     <li class="nav-item bars d-block d-lg-none">
                       <a id="nav-icon">
@@ -88,6 +93,10 @@
                   </li>
 
                 
+
+                  <li>
+                    <a class="nav-link" target="_blank" href="https://motiwalajewels.in/"><i class="las la-shopping-bag"></i> Shop</a>
+                  </li>
 
                   
                 </ul>

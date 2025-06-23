@@ -208,7 +208,7 @@ button.carousel-control-next {
 
 .buttonclass {
     background: #E3C2AB;
-    padding: 7px 0px 10px 0px;
+    padding: 10px 0px 10px 0px !important;
     display: inline-block;
     transition: 0.5s all;
     border: 1px solid transparent;
