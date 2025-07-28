@@ -14,13 +14,12 @@
             
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="/assets/frontend/images/golden_fortune1.webp" class="d-md-block d-none w-100"
-                        alt="golden_fortune1">
-                    <img src="/assets/frontend/images/mobile_banner_fortune.webp" class="d-md-none d-block w-100"
-                        alt="golden_fortune1">
+                    <img src="/assets/frontend/images/fortune_new_banner-1.webp" class="d-md-block d-none w-100"
+                        alt="fortune_new_banner">
+                    <img src="/assets/frontend/images/fortune_new_banner-mobile.webp" class="d-md-none d-block w-100"
+                        alt="fortune_new_banner">
                 </div>
             </div>
-           
         </a>
     </div>
 
@@ -204,7 +203,7 @@
                                 <img class="choose_img" src="/assets/frontend/images/motiwala_treasure.png"
                                     class="d-block w-100" alt="...">
                                 <div class="choose_content">
-                                    <h5 class="black_color">Motiwala Treasure</h5>
+                                    <h5 class="black_color">Motiwala Fortune</h5>
                                     <p class="black_color">
                                         A unique easy-pay system that gives you a 100% benefit on the value of your first
                                         installment when you redeem your plan.
