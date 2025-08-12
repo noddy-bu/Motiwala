@@ -163,12 +163,13 @@ document.addEventListener('DOMContentLoaded', function () {
         // Disable button
         btn.disabled = true;
         btn.innerText = 'Processing...';
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
         fetch('{{ route('aadhaar.initialize') }}', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': 'kzdnIuVxosvwYHglF42z3Z7nqS48YDspa1xElLKD',
+                'X-CSRF-TOKEN': csrfToken,
                 'Accept': 'application/json'
             },
             body: JSON.stringify({ aadhar: aadhar })
