@@ -843,12 +843,11 @@ class AccountController extends Controller
 
         // Call Surepass initialize (new flow)
         $initResp = (new AadharController)->initializeAadhaar($request);
-
         if ($initResp instanceof \Illuminate\Http\JsonResponse) {
-            $initResp = $initResp->getData(true); // true returns associative array
+            $initResp = $initResp->getData(true);
         }
-        
-        if ($initResp['response'] === 'success') {
+
+        if (!empty($initResp['response']) && $initResp['response'] === 'success') {
             session(['customer_aadhar_clientId' => $initResp['data']['client_id'] ?? null]);
             session(['aadhar_no' => $request->aadhar]);
             Session::put('step', 4);

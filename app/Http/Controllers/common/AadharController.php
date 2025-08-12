@@ -241,19 +241,10 @@ class AadharController extends Controller
 
   public function initializeAadhaarForResend($aadhar)
   {
-      $redirectUrl = route('aadhaar.callback'); 
-
-      $resp = Http::withToken(env('AADHAR_KYC_TOKEN'))
-                  ->withHeaders(['Content-Type' => 'application/json'])
-                  ->post('https://kyc-api.surepass.app/api/v1/digilocker/initialize', [
-                      'data' => [
-                          'signup_flow' => true,
-                          'redirect_url' => $redirectUrl,
-                      ]
-                  ]);
-
-      return json_encode($resp->json());
+      // This function should behave exactly like initializeAadhaar but without validating request input.
+      // Ensure route('aadhaar.callback') is public HTTPS when testing.
+      $request = new Request(['aadhar' => $aadhar]);
+      return $this->initializeAadhaar($request);
   }
-
 
 }
