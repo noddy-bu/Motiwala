@@ -200,14 +200,26 @@ class AadharController extends Controller
               Session::put('step', 5);
 
               // Redirect to your registration flow success page
-              return redirect()->route('register.form')->with('success', 'Aadhaar verified successfully!');
+              return response()->json([
+                  'response' => 'success',
+                  'message' => 'Aadhaar verified successfully!',
+              ]);
+              // return redirect()->route('register.form')->with('success', 'Aadhaar verified successfully!');
           } else {
               Log::error('Surepass download failed', ['resp' => $body]);
-              return redirect()->route('register.form')->with('error', 'Failed to fetch Aadhaar details.');
+              return response()->json([
+                  'response' => 'error',
+                  'message' => 'Failed to fetch Aadhaar details.',
+              ]);
+              // return redirect()->route('register.form')->with('error', 'Failed to fetch Aadhaar details.');
           }
       } catch (\Exception $e) {
           Log::error('Surepass download exception', ['err' => $e->getMessage()]);
-          return redirect()->route('register.form')->with('error', 'Server error fetching Aadhaar details.');
+          return response()->json([
+              'response' => 'error',
+              'message' => 'Server error fetching Aadhaar details.',
+          ]);
+          // return redirect()->route('register.form')->with('error', 'Server error fetching Aadhaar details.');
       }
   }
 
