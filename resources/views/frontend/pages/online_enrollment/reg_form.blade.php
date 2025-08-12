@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(response => response.json())
         .then(body => {
-            const rm = body.response_message || {};
+            const rm = body.response_message || body;
 
             if (rm.response === 'success' && rm.url) {
                 window.location.href = rm.url;

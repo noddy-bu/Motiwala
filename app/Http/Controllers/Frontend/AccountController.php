@@ -856,7 +856,7 @@ class AccountController extends Controller
         if (!empty($initResp['response']) && $initResp['response'] === 'success') {
             session(['customer_aadhar_clientId' => $initResp['data']['client_id'] ?? null]);
             session(['aadhar_no' => $request->aadhar]);
-            Session::put('step', 4);
+            Session::put('step', 3);
 
             return [
                 'response' => 'success',
