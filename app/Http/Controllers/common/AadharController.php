@@ -80,7 +80,8 @@ class AadharController extends Controller
       }
 
       // Use a public HTTPS redirect URL (use ngrok in local dev)
-      $redirectUrl = route('aadhaar.callback'); // ensure this is https public URL when testing
+      $redirectUrl = route('account.create', 'aadhar-otp-verify'); // ensure this is https public URL when testing
+      // $redirectUrl = route('aadhaar.callback'); // ensure this is https public URL when testing
 
       // payload MUST include "data" wrapper per Surepass docs / examples
       $payloadArray = [
@@ -155,61 +156,45 @@ class AadharController extends Controller
       ];
   }
 
-
-
-
   // Step 2: callback route — Surepass redirects here with client_id
-  public function aadhaarCallback(Request $request)
+  public function aadhaarCallback($otp, $clientId)
   {
-      $clientId = $request->get('client_id');
-
-      if (!$clientId) {
-          $rsp_msg['response'] = 'error';
-          $rsp_msg['message']  = 'Missing client_id from Surepass callback.';
-          return response()->json(['response_message' => $rsp_msg]);
-      }
-
       try {
-          $resp = Http::withToken(env('AADHAR_KYC_TOKEN'))
-                      ->withHeaders(['Content-Type' => 'application/json'])
-                      ->get('https://kyc-api.surepass.app/api/v1/digilocker/download-aadhaar/' . $clientId);
+          $curl = curl_init();
+          curl_setopt_array($curl, [
+              CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/digilocker/download-aadhaar/' . $clientId,
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => '',
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 0,
+              CURLOPT_FOLLOWLOCATION => true,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => 'GET',
+              CURLOPT_HTTPHEADER => [
+                  'Authorization: Bearer ' . env('AADHAR_KYC_TOKEN'),
+                  'Content-Type: application/json'
+              ],
+          ]);
 
-          $body = $resp->json();
+          $response = curl_exec($curl);
+          $error = curl_error($curl);
+          curl_close($curl);
 
-          if (!empty($body['success']) && $body['success'] === true) {
-              // Save ekyc & aadhar number
-              DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
-                  'ekyc' => json_encode($body),
-                  'aadhar_number' => $body['data']['aadhaar_number'] ?? Session::get('aadhar_no'),
+          if ($error) {
+              Log::error('Surepass Aadhaar cURL Error', ['error' => $error]);
+              return json_encode([
+                  'success' => false,
+                  'message' => 'API connection error: ' . $error
               ]);
-
-              // prepare customer_detail in session like before
-              $customer_detail = [
-                  'profileImage' => $body['data']['profile_image'] ?? null,
-                  'name' => $body['data']['full_name'] ?? null,
-                  'address' => $body['data']['address'] ?? null,
-                  'zip' => $body['data']['zip'] ?? null,
-                  'dob' => $body['data']['dob'] ?? null,
-                  'care_of' => $body['data']['care_of'] ?? null,
-                  'mobile' => $body['data']['mobile_hash'] ?? null,
-              ];
-              Session::put('customer_detail', $customer_detail);
-              Session::put('step', 5);
-
-              $rsp_msg['response'] = 'success';
-              $rsp_msg['message']  = 'Aadhaar verified successfully!';
-              return response()->json(['response_message' => $rsp_msg]);
-          } else {
-              Log::error('Surepass download failed', ['resp' => $body]);
-              $rsp_msg['response'] = 'error';
-              $rsp_msg['message']  = 'Failed to fetch Aadhaar details.';
-              return response()->json(['response_message' => $rsp_msg]);
           }
+
+          return $response; // raw JSON from API
       } catch (\Exception $e) {
-          Log::error('Surepass download exception', ['err' => $e->getMessage()]);
-          $rsp_msg['response'] = 'error';
-          $rsp_msg['message']  = 'Server error fetching Aadhaar details.';
-          return response()->json(['response_message' => $rsp_msg]);
+          Log::error('Surepass Aadhaar Exception', ['error' => $e->getMessage()]);
+          return json_encode([
+              'success' => false,
+              'message' => 'Server error: ' . $e->getMessage()
+          ]);
       }
   }
 

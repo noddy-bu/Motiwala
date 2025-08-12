@@ -1006,7 +1006,56 @@ class AccountController extends Controller
 
     public function aadhar_otp_verify($request)
     {
+        $clientId = $request->get('client_id');
 
+        if (!$clientId) {
+            return response()->json([
+                'response_message' => [
+                    'response' => 'error',
+                    'message' => 'Missing client_id from Surepass callback.',
+                ]
+            ]);
+        }
+
+        // Call cURL method (raw API JSON)
+        $verify = (new AadharController)->aadhaarCallback($request->otp, session('customer_aadhar_clientId'));
+        $verify = json_decode($verify);
+
+        if (!empty($verify->success) && $verify->success === true) {
+            // aadhaar_xml_data block
+            $xmlData = $verify->data->aadhaar_xml_data ?? null;
+
+            DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
+                'ekyc' => json_encode($verify),
+                'aadhar_number' => $xmlData->masked_aadhaar ?? Session::get('aadhar_no'),
+            ]);
+
+            $customer_detail = [
+                'profileImage' => $xmlData->profile_image ?? null,
+                'name' => $xmlData->full_name ?? null,
+                'address' => $xmlData->full_address ?? null,
+                'zip' => $xmlData->zip ?? null,
+                'dob' => $xmlData->dob ?? null,
+                'care_of' => $xmlData->care_of ?? null,
+                'mobile' => null, // API sample doesn't return mobile_hash here
+            ];
+
+            Session::put('customer_detail', $customer_detail);
+            Session::put('step', 5);
+
+            $rsp_msg['response'] = 'success';
+            $rsp_msg['message'] = "Aadhaar Number verified successfully!";
+        } else {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message'] = "OTP verification failed!";
+        }
+
+        return $rsp_msg;
+    }
+
+
+    /*public function aadhar_otp_verify($request)
+    {
         $validator = Validator::make($request->all(), [
             'otp' => 'required|digits:6',
         ]);
@@ -1085,7 +1134,7 @@ class AccountController extends Controller
         }
 
         return $rsp_msg;
-    }
+    }*/
 
 
 
