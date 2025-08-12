@@ -820,30 +820,38 @@ class AccountController extends Controller
     public function aadhar_verify_request_otp($request)
     {
         $validator = Validator::make($request->all(), [
+            //'aadhar' => 'required|digits:12|same:aadhar_conform',
             'aadhar' => 'required|digits:12',
+            // 'aadhar_conform' => 'required|digits:12',
         ]);
 
         if ($validator->fails()) {
-            return [
-                'response' => 'error',
-                'message'  => $validator->errors()->all(),
-            ];
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message']  = $validator->errors()->all();
+
+            return $rsp_msg;
         }
 
-        // Check if Aadhaar already registered
-        $user_detail = DB::table('userdetails')->where('aadhar_number', $request->aadhar)->first();
+        $user_detail = DB::table('userdetails')->where('aadhar_number', $request->aadhar)->get(['user_id'])->first();
+
         if ($user_detail) {
+
+            // $user = DB::table('users')->where('id', $user_detail->user_id)->where('status', '1')->get(['id'])->first();
+
             $user = DB::table('users')
                 ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
                 ->where('users.id', $user_detail->user_id)
+                // ->where('users.status', '1')
                 ->where('redemptions.status', '1')
                 ->select('users.id')
                 ->first();
+            
+
             if ($user) {
-                return [
-                    'response' => 'error',
-                    'message'  => "This No: {$request->aadhar} is already registered",
-                ];
+                $rsp_msg['response'] = 'error';
+                $rsp_msg['message']  = "this No : $request->aadhar Already registered";
+
+                return $rsp_msg;
             }
         }
 
