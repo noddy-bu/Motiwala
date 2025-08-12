@@ -1009,57 +1009,73 @@ class AccountController extends Controller
     {
         $clientId = $request->get('client_id');
 
-        Log::debug('Aadhaar OTP Verify - Start', [
+        // Log the incoming request
+        Log::debug('Aadhaar Verify - Incoming Request', [
             'client_id' => $clientId
         ]);
 
-        // Step 1: Get Aadhaar data from Surepass
-        $verify = (new AadharController)->aadhaarCallback($clientId);
-
-        Log::debug('Aadhaar OTP Verify - Raw Response', [
-            'raw' => $verify
-        ]);
-
-        // Step 2: Parse JSON
-        $verifyData = json_decode($verify, true);
-        Log::debug('Aadhaar OTP Verify - Parsed Response', [
-            'parsed' => $verifyData
-        ]);
-
-        // Step 3: Process result
-        if (isset($verifyData['success']) && $verifyData['success'] === true) {
-            $aadhaarData = $verifyData['data'] ?? [];
-
-            Log::debug('Aadhaar OTP Verify - Extracted Aadhaar Data', [
-                'name'       => $aadhaarData['name'] ?? null,
-                'dob'        => $aadhaarData['dob'] ?? null,
-                'gender'     => $aadhaarData['gender'] ?? null,
-                'address'    => $aadhaarData['address'] ?? null
-            ]);
-
-            // Store Aadhaar details in session (no OTP stored)
-            session([
-                'aadhaar_verified' => true,
-                'aadhaar_data'     => $aadhaarData
-            ]);
-
-            return response()->json([
-                'response' => 'success',
-                'message'  => 'Aadhaar verification successful.',
-                'data'     => $aadhaarData
-            ]);
+        if (!$clientId) {
+            return [
+                'response' => 'error',
+                'message' => 'Missing client_id from Surepass callback.'
+            ];
         }
 
-        // Step 4: Failure case
-        Log::error('Aadhaar OTP Verify - Verification Failed', [
-            'client_id' => $clientId,
-            'error'     => $verifyData['message'] ?? 'Unknown error'
+        // Call Surepass Aadhaar Download API
+        $verify = (new AadharController)->aadhaarCallback($clientId);
+
+        // Log the raw JSON from Surepass
+        Log::debug('Aadhaar Verify - Raw API Response', [
+            'raw_json' => $verify
         ]);
 
-        return response()->json([
-            'response' => 'error',
-            'message'  => $verifyData['message'] ?? 'Aadhaar verification failed.'
-        ], 400);
+        $verify = json_decode($verify);
+
+        // Log the parsed API response
+        Log::debug('Aadhaar Verify - Parsed Response', [
+            'parsed' => $verify
+        ]);
+
+        if (!empty($verify->success) && $verify->success === true) {
+            $xmlData = $verify->data->aadhaar_xml_data ?? null;
+
+            // Log extracted Aadhaar details
+            Log::debug('Aadhaar Verify - Extracted Aadhaar Data', [
+                'masked_aadhaar' => $xmlData->masked_aadhaar ?? null,
+                'full_name' => $xmlData->full_name ?? null,
+                'dob' => $xmlData->dob ?? null,
+                'address' => $xmlData->full_address ?? null
+            ]);
+
+            // Update DB with eKYC & Aadhaar number
+            DB::table('userdetails')
+                ->where('user_id', Session::get('temp_user_id'))
+                ->update([
+                    'ekyc' => json_encode($verify),
+                    'aadhar_number' => $xmlData->masked_aadhaar ?? Session::get('aadhar_no'),
+                ]);
+
+            // Prepare customer details in session
+            $customer_detail = [
+                'profileImage' => $xmlData->profile_image ?? null,
+                'name' => $xmlData->full_name ?? null,
+                'address' => $xmlData->full_address ?? null,
+                'zip' => $xmlData->zip ?? null,
+                'dob' => $xmlData->dob ?? null,
+                'care_of' => $xmlData->care_of ?? null,
+                'mobile' => $xmlData->mobile_hash ?? null
+            ];
+            Session::put('customer_detail', $customer_detail);
+            Session::put('step', 5);
+
+            $rsp_msg['response'] = 'success';
+            $rsp_msg['message'] = "Aadhaar verified successfully!";
+        } else {
+            $rsp_msg['response'] = 'error';
+            $rsp_msg['message'] = "Aadhaar verification failed!";
+        }
+
+        return $rsp_msg;
     }
 
 
