@@ -72,117 +72,89 @@ class AadharController extends Controller
 
   // Step 1: initialize DigiLocker flow and return redirect_url to frontend
   public function initializeAadhaar(Request $request)
-{
-    // Check token
-    $token = env('AADHAR_KYC_TOKEN');
-    if (empty($token)) {
-        Log::error('Surepass token missing from .env');
-        return [
-            'response' => 'error',
-            'success'  => false,
-            'message'  => 'Server misconfiguration: AADHAR_KYC_TOKEN missing'
-        ];
-    }
+  {
+      $token = env('AADHAR_KYC_TOKEN');
+      if (empty($token)) {
+          Log::error('Surepass token missing from .env');
+          return ['response'=>'error','success'=>false,'message'=>'Server misconfiguration: AADHAR_KYC_TOKEN missing'];
+      }
 
-    // Build redirect URL for callback
-    $redirectUrl = route('aadhaar.callback');
+      // Use a public HTTPS redirect URL (use ngrok in local dev)
+      $redirectUrl = route('aadhaar.callback'); // ensure this is https public URL when testing
 
-    // Build payload.
-    // NOTE: use the payload format you want. Many examples use top-level keys,
-    // but if your docs show a "data" wrapper, use that. Update as needed.
-    $payloadArray = [
-        // If your docs require "data" wrapper, uncomment the next line and use it.
-        // 'data' => ['signup_flow' => true, 'redirect_url' => $redirectUrl],
+      // payload MUST include "data" wrapper per Surepass docs / examples
+      $payloadArray = [
+          'data' => [
+              'signup_flow'  => true,
+              'redirect_url' => $redirectUrl,
+          ]
+      ];
+      $payload = json_encode($payloadArray);
 
-        // Most examples expect top-level keys:
-        'signup_flow'  => true,
-        'redirect_url' => $redirectUrl,
-    ];
+      $curl = curl_init();
+      curl_setopt_array($curl, [
+          CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/digilocker/initialize',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_POST => true,
+          CURLOPT_POSTFIELDS => $payload,
+          CURLOPT_HTTPHEADER => [
+              'Content-Type: application/json',
+              'Authorization: Bearer ' . $token,
+              'Accept: application/json'
+          ],
+          CURLOPT_TIMEOUT => 30,
+      ]);
 
-    $payload = json_encode($payloadArray);
+      $response = curl_exec($curl);
+      $curlErr  = curl_error($curl);
+      $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+      curl_close($curl);
 
-    $curl = curl_init();
+      $body = null;
+      if (!empty($response)) {
+          $body = json_decode($response, true);
+      }
 
-    curl_setopt_array($curl, [
-        CURLOPT_URL => 'https://kyc-api.surepass.app/api/v1/digilocker/initialize',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => $payload,
-        CURLOPT_HTTPHEADER => [
-            'Content-Type: application/json',
-            'Authorization: Bearer ' . $token,
-            'Accept: application/json'
-        ],
-        // Keep SSL verification ON in production. If your local environment has issues,
-        // you can temporarily disable with the next two opts (NOT recommended for prod).
-        // CURLOPT_SSL_VERIFYHOST => 0,
-        // CURLOPT_SSL_VERIFYPEER => 0,
-    ]);
+      Log::info('Surepass initialize response', [
+          'status'   => $httpCode,
+          'raw'      => $response,
+          'json'     => $body,
+          'curl_err' => $curlErr,
+          // remove payload logging on production
+          'payload'  => $payloadArray,
+      ]);
 
-    $response = curl_exec($curl);
-    $curlErr  = curl_error($curl);
-    $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-    curl_close($curl);
+      if (!empty($curlErr)) {
+          return ['response'=>'error','success'=>false,'message'=>'cURL error: '.$curlErr];
+      }
 
-    // try decode JSON (assoc)
-    $body = null;
-    if (!empty($response)) {
-        $body = json_decode($response, true);
-    }
+      if ($httpCode < 200 || $httpCode >= 300) {
+          return [
+              'response' => 'error',
+              'success'  => false,
+              'message'  => 'Surepass API returned HTTP '.$httpCode,
+              'detail'   => $body ?? $response,
+              'status'   => $httpCode
+          ];
+      }
 
-    // Log everything (always pass an array as context)
-    Log::info('Surepass initialize response', [
-        'status'    => $httpCode,
-        'raw'       => $response,
-        'json'      => $body,
-        'json_err'  => function_exists('json_last_error_msg') ? json_last_error_msg() : null,
-        'curl_err'  => $curlErr,
-        'payload'   => $payloadArray, // optional: remove in production if sensitive
-    ]);
+      if (is_array($body) && !empty($body['success'])) {
+          return [
+              'response' => 'success',
+              'success'  => true,
+              'message'  => 'Please complete verification at DigiLocker',
+              'data'     => $body['data'] ?? null
+          ];
+      }
 
-    // handle curl error
-    if (!empty($curlErr)) {
-        return [
-            'response' => 'error',
-            'success'  => false,
-            'message'  => 'cURL error: ' . $curlErr
-        ];
-    }
+      return [
+          'response' => 'error',
+          'success'  => false,
+          'message'  => $body['message'] ?? 'Failed to initialize digilocker flow',
+          'detail'   => $body ?? $response
+      ];
+  }
 
-    // handle non-2xx HTTP responses
-    if ($httpCode < 200 || $httpCode >= 300) {
-        return [
-            'response' => 'error',
-            'success'  => false,
-            'message'  => 'Surepass API returned HTTP ' . $httpCode,
-            'detail'   => $body ?? $response,
-            'status'   => $httpCode
-        ];
-    }
-
-    // success path (ensure body parsed & success flag)
-    if (is_array($body) && !empty($body['success'])) {
-        return [
-            'response' => 'success',
-            'success'  => true,
-            'message'  => 'Please complete verification at DigiLocker',
-            'data'     => $body['data'] ?? null
-        ];
-    }
-
-    // fallback if JSON parsed but success not true
-    return [
-        'response' => 'error',
-        'success'  => false,
-        'message'  => $body['message'] ?? 'Failed to initialize digilocker flow',
-        'detail'   => $body ?? $response
-    ];
-}
 
 
 
