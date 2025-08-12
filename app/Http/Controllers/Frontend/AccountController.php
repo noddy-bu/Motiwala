@@ -586,6 +586,11 @@ class AccountController extends Controller
         } elseif ($param == "aadhar-otp-verify") {
 
             $rsp_msg = $this->aadhar_otp_verify($request);
+            if ($rsp_msg = "true") {
+                return redirect()->route('account.new.enrollment.page');
+            }else{
+                return redirect()->route('account.new.enrollment.page');
+            }
         } elseif ($param == "esign-varification") {
 
             $rsp_msg = $this->accept_esign_term($request);
@@ -1015,7 +1020,10 @@ class AccountController extends Controller
         ]);
 
         if (!$clientId) {
-            return redirect()->route('account.create', 'aadhar-otp-verify');
+            return [
+                'response' => 'error',
+                'message' => 'Missing client_id from Surepass callback.'
+            ];
         }
 
         // Call Surepass Aadhaar Download API
@@ -1069,13 +1077,12 @@ class AccountController extends Controller
                 'care_of' => $care_of,
                 'mobile' => $mobile,
             ];
-
             Session::put('customer_detail', $customer_detail);
             Session::put('step', 5);
 
-            return redirect()->route('account.new.enrollment.page');
-        } else {
-            return redirect()->route('account.new.enrollment.page');
+            return true;
+        } else {            
+            return false;
         }
     }
 
