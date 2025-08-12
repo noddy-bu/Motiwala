@@ -164,12 +164,9 @@ class AadharController extends Controller
       $clientId = $request->get('client_id');
 
       if (!$clientId) {
-          // You can redirect back to your form with an error
-          // return redirect()->route('register.form')->with('error', 'Missing client_id from Surepass callback.');
-          return response()->json([
-              'response' => 'error',
-              'message' => 'Missing client_id from Surepass callback.',
-          ]);
+          $rsp_msg['response'] = 'error';
+          $rsp_msg['message']  = 'Missing client_id from Surepass callback.';
+          return response()->json(['response_message' => $rsp_msg]);
       }
 
       try {
@@ -199,27 +196,20 @@ class AadharController extends Controller
               Session::put('customer_detail', $customer_detail);
               Session::put('step', 5);
 
-              // Redirect to your registration flow success page
-              return response()->json([
-                  'response' => 'success',
-                  'message' => 'Aadhaar verified successfully!',
-              ]);
-              // return redirect()->route('register.form')->with('success', 'Aadhaar verified successfully!');
+              $rsp_msg['response'] = 'success';
+              $rsp_msg['message']  = 'Aadhaar verified successfully!';
+              return response()->json(['response_message' => $rsp_msg]);
           } else {
               Log::error('Surepass download failed', ['resp' => $body]);
-              return response()->json([
-                  'response' => 'error',
-                  'message' => 'Failed to fetch Aadhaar details.',
-              ]);
-              // return redirect()->route('register.form')->with('error', 'Failed to fetch Aadhaar details.');
+              $rsp_msg['response'] = 'error';
+              $rsp_msg['message']  = 'Failed to fetch Aadhaar details.';
+              return response()->json(['response_message' => $rsp_msg]);
           }
       } catch (\Exception $e) {
           Log::error('Surepass download exception', ['err' => $e->getMessage()]);
-          return response()->json([
-              'response' => 'error',
-              'message' => 'Server error fetching Aadhaar details.',
-          ]);
-          // return redirect()->route('register.form')->with('error', 'Server error fetching Aadhaar details.');
+          $rsp_msg['response'] = 'error';
+          $rsp_msg['message']  = 'Server error fetching Aadhaar details.';
+          return response()->json(['response_message' => $rsp_msg]);
       }
   }
 
