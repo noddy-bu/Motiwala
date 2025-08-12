@@ -159,13 +159,12 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Disable button
         btn.disabled = true;
         btn.innerText = 'Processing...';
 
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-        fetch('{{ url(route('account.create', ['param' =>'aadhar-verify-request-otp'])) }}', {
+        fetch('{{ url(route('account.create', ['param' => 'aadhar-verify-request-otp'])) }}', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -176,18 +175,12 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(response => response.json())
         .then(body => {
-            if (body && body.response === 'success') {
-                const redirectUrl = body.url;
-                if (redirectUrl) {
-                    window.location.href = redirectUrl;
-                } else {
-                    alert('Verification initialized but no redirect URL was returned.');
-                    btn.disabled = false;
-                    btn.innerText = 'Verify';
-                }
+            const rm = body.response_message || {};
+
+            if (rm.response === 'success' && rm.url) {
+                window.location.href = rm.url;
             } else {
-                const msg = Array.isArray(body.message) ? body.message.join('\n') : body.message || 'Failed to initialize Aadhaar verification.';
-                alert(msg);
+                alert(rm.message || 'Failed to initialize Aadhaar verification.');
                 btn.disabled = false;
                 btn.innerText = 'Verify';
             }
