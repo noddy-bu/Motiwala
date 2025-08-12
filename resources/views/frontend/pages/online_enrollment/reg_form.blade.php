@@ -149,7 +149,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const btn = document.getElementById('btn-verify-new');
 
     btn.addEventListener('click', function (e) {
-        console.log('hi');
         e.preventDefault();
 
         const aadharInput = document.getElementById('aadhar');
@@ -163,9 +162,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // Disable button
         btn.disabled = true;
         btn.innerText = 'Processing...';
+
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-        // fetch('{{ route('aadhaar.initialize') }}', {
         fetch('{{ url(route('account.create', ['param' =>'aadhar-verify-request-otp'])) }}', {
             method: 'POST',
             headers: {
@@ -177,12 +176,12 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(response => response.json())
         .then(body => {
-            if (body && body.success === true) {
-                const redirectUrl = body.data?.url;
+            if (body && body.response === 'success') {
+                const redirectUrl = body.url;
                 if (redirectUrl) {
                     window.location.href = redirectUrl;
                 } else {
-                    alert('Initialization succeeded but redirect URL is missing. Try again.');
+                    alert('Verification initialized but no redirect URL was returned.');
                     btn.disabled = false;
                     btn.innerText = 'Verify';
                 }
