@@ -1015,10 +1015,10 @@ class AccountController extends Controller
         ]);
 
         if (!$clientId) {
-            return [
+            return redirect()->route('account.create', 'aadhar-otp-verify')->with([
                 'response' => 'error',
                 'message' => 'Missing client_id from Surepass callback.'
-            ];
+            ]);
         }
 
         // Call Surepass Aadhaar Download API
@@ -1055,27 +1055,41 @@ class AccountController extends Controller
                     'aadhar_number' => $xmlData->masked_aadhaar ?? Session::get('aadhar_no'),
                 ]);
 
-            // Prepare customer details in session
+            $profileImage = $xmlData->profile_image ?? null;
+            $fullName = $xmlData->full_name ?? null;
+            $address = $xmlData->address ?? null;
+            $zip = $xmlData->zip ?? null;
+            $dob = $xmlData->dob ?? null;
+            $care_of = $xmlData->care_of ?? null;
+            $mobile = $xmlData->mobile_hash ?? null;
+
             $customer_detail = [
-                'profileImage' => $xmlData->profile_image ?? null,
-                'name' => $xmlData->full_name ?? null,
-                'address' => $xmlData->full_address ?? null,
-                'zip' => $xmlData->zip ?? null,
-                'dob' => $xmlData->dob ?? null,
-                'care_of' => $xmlData->care_of ?? null,
-                'mobile' => $xmlData->mobile_hash ?? null
+                'profileImage' => $profileImage,
+                'name' => $fullName,
+                'address' => $address,
+                'zip' => $zip,
+                'dob' => $dob,
+                'care_of' => $care_of,
+                'mobile' => $mobile,
             ];
+
             Session::put('customer_detail', $customer_detail);
             Session::put('step', 5);
 
-            $rsp_msg['response'] = 'success';
-            $rsp_msg['message'] = "Aadhaar verified successfully!";
+            return redirect()
+                ->route('account.new.enrollment.page')
+                ->with([
+                    'response' => 'success',
+                    'message' => 'Aadhaar verified successfully!'
+                ]);
         } else {
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message'] = "Aadhaar verification failed!";
+            return redirect()
+                ->route('account.new.enrollment.page')
+                ->with([
+                    'response' => 'error',
+                    'message' => 'Aadhaar verification failed!'
+                ]);
         }
-
-        return $rsp_msg;
     }
 
 
