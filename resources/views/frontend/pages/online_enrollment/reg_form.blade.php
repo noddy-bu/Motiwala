@@ -165,7 +165,8 @@ document.addEventListener('DOMContentLoaded', function () {
         btn.innerText = 'Processing...';
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-        fetch('{{ route('aadhaar.initialize') }}', {
+        // fetch('{{ route('aadhaar.initialize') }}', {
+        fetch('{{ url(route('account.create', ['param' =>'aadhar-verify-request-otp'])) }}', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

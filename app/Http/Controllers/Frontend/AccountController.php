@@ -861,7 +861,7 @@ class AccountController extends Controller
             return [
                 'response' => 'success',
                 'message'  => "Redirect user to DigiLocker for Aadhaar verification.",
-                'redirect_url' => $initResp['data']['redirect_url'] ?? null
+                'url' => $initResp['data']['url'] ?? null
             ];
         } else {
             return [
