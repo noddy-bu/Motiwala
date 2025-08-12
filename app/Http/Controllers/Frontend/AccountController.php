@@ -1005,79 +1005,63 @@ class AccountController extends Controller
         return $rsp_msg;
     }*/
 
-    public function aadhar_otp_verify($request)
+    public function aadhar_otp_verify(Request $request)
     {
         $clientId = $request->get('client_id');
 
-        // Log incoming request data
-        Log::debug('Aadhaar OTP Verify - Incoming Request', [
-            'client_id' => $clientId,
-            'session_client_id' => session('customer_aadhar_clientId'),
-            'otp' => $request->otp // remove if you don’t want OTP logged
+        Log::debug('Aadhaar OTP Verify - Start', [
+            'client_id' => $clientId
         ]);
 
-        if (!$clientId) {
-            return response()->json([
-                'response_message' => [
-                    'response' => 'error',
-                    'message' => 'Missing client_id from Surepass callback.',
-                ]
-            ]);
-        }
+        // Step 1: Get Aadhaar data from Surepass
+        $verify = (new AadharController)->aadhaarCallback($clientId);
 
-        // Call API (raw JSON response)
-        $verify = (new AadharController)->aadhaarCallback($request->otp, session('customer_aadhar_clientId'));
-
-        // Log raw API JSON
-        Log::debug('Aadhaar OTP Verify - Raw API Response', [
-            'raw_json' => $verify
+        Log::debug('Aadhaar OTP Verify - Raw Response', [
+            'raw' => $verify
         ]);
 
-        $verify = json_decode($verify);
-
-        // Log parsed JSON as array
+        // Step 2: Parse JSON
+        $verifyData = json_decode($verify, true);
         Log::debug('Aadhaar OTP Verify - Parsed Response', [
-            'parsed' => $verify
+            'parsed' => $verifyData
         ]);
 
-        if (!empty($verify->success) && $verify->success === true) {
-            $xmlData = $verify->data->aadhaar_xml_data ?? null;
+        // Step 3: Process result
+        if (isset($verifyData['success']) && $verifyData['success'] === true) {
+            $aadhaarData = $verifyData['data'] ?? [];
 
-            // Log extracted Aadhaar details
             Log::debug('Aadhaar OTP Verify - Extracted Aadhaar Data', [
-                'masked_aadhaar' => $xmlData->masked_aadhaar ?? null,
-                'full_name' => $xmlData->full_name ?? null,
-                'dob' => $xmlData->dob ?? null,
-                'address' => $xmlData->full_address ?? null,
+                'name'       => $aadhaarData['name'] ?? null,
+                'dob'        => $aadhaarData['dob'] ?? null,
+                'gender'     => $aadhaarData['gender'] ?? null,
+                'address'    => $aadhaarData['address'] ?? null
             ]);
 
-            DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
-                'ekyc' => json_encode($verify),
-                'aadhar_number' => $xmlData->masked_aadhaar ?? Session::get('aadhar_no'),
+            // Store Aadhaar details in session (no OTP stored)
+            session([
+                'aadhaar_verified' => true,
+                'aadhaar_data'     => $aadhaarData
             ]);
 
-            $customer_detail = [
-                'profileImage' => $xmlData->profile_image ?? null,
-                'name' => $xmlData->full_name ?? null,
-                'address' => $xmlData->full_address ?? null,
-                'zip' => $xmlData->zip ?? null,
-                'dob' => $xmlData->dob ?? null,
-                'care_of' => $xmlData->care_of ?? null,
-                'mobile' => null, // not present in sample
-            ];
-
-            Session::put('customer_detail', $customer_detail);
-            Session::put('step', 5);
-
-            $rsp_msg['response'] = 'success';
-            $rsp_msg['message'] = "Aadhaar Number verified successfully!";
-        } else {
-            $rsp_msg['response'] = 'error';
-            $rsp_msg['message'] = "OTP verification failed!";
+            return response()->json([
+                'response' => 'success',
+                'message'  => 'Aadhaar verification successful.',
+                'data'     => $aadhaarData
+            ]);
         }
 
-        return $rsp_msg;
+        // Step 4: Failure case
+        Log::error('Aadhaar OTP Verify - Verification Failed', [
+            'client_id' => $clientId,
+            'error'     => $verifyData['message'] ?? 'Unknown error'
+        ]);
+
+        return response()->json([
+            'response' => 'error',
+            'message'  => $verifyData['message'] ?? 'Aadhaar verification failed.'
+        ], 400);
     }
+
 
 
 

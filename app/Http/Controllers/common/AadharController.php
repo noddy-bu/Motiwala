@@ -157,7 +157,7 @@ class AadharController extends Controller
   }
 
   // Step 2: callback route — Surepass redirects here with client_id
-  public function aadhaarCallback($otp, $clientId)
+  public function aadhaarCallback($clientId)
   {
       try {
           $curl = curl_init();
@@ -182,7 +182,6 @@ class AadharController extends Controller
           // Debug log for raw API JSON
           Log::debug('Surepass Aadhaar API Raw Response', [
               'client_id' => $clientId,
-              'otp'       => $otp,
               'raw_json'  => $response
           ]);
           if ($error) {
