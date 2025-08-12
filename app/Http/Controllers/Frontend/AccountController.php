@@ -586,7 +586,7 @@ class AccountController extends Controller
         } elseif ($param == "aadhar-otp-verify") {
 
             $rsp_msg = $this->aadhar_otp_verify($request);
-            if ($rsp_msg = "true") {
+            if ($rsp_msg == true) {
                 return redirect()->route('account.new.enrollment.page');
             }else{
                 return redirect()->route('account.new.enrollment.page');
