@@ -195,14 +195,20 @@
                     type: "POST",
                     data: $(form).serialize(),
                     success: function (response) {
+                        var rm = response.response_message || response;
                         if(response.response_message.response == 'success') {
                             
                             toastr.success(response.response_message.message, response.response_message.response);
-
-                            setTimeout(function() {
-                                location.reload();
-                            }, 1500);
-
+                            if (rm.url) {
+                                // Redirect if URL is provided
+                                setTimeout(function () {
+                                    window.location.href = rm.url;
+                                }, 800);
+                            }else{
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 1500);
+                            }
                         }else{
                             $(form).find('button[type="submit"]').html(button);
                             $(form).find('button[type="submit"]').css('pointer-events', 'inherit');

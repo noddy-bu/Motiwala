@@ -856,7 +856,6 @@ class AccountController extends Controller
         if (!empty($initResp['response']) && $initResp['response'] === 'success') {
             session(['customer_aadhar_clientId' => $initResp['data']['client_id'] ?? null]);
             session(['aadhar_no' => $request->aadhar]);
-            Session::put('step', 3);
 
             return [
                 'response' => 'success',
@@ -873,32 +872,35 @@ class AccountController extends Controller
     public function resendAadharOtp($request)
     {
         $aadhar = Session::get('aadhar_no');
+        (new AadharController)->initializeAadhaarForResend($aadhar);
+        return [
+            'response' => 'success',
+            'message'  => "Please complete Aadhaar verification at DigiLocker",
+        ];
 
-        $requestOtp = json_decode((new AadharController)->initializeAadhaarForResend($aadhar));
+        // if (!empty($requestOtp->success) && $requestOtp->success === true) {
+        //     session(['customer_aadhar_clientId' => $requestOtp->data->client_id ?? null]);
+        //     session(['aadhar_no' => $aadhar]);
+        //     Session::put('step', 4);
 
-        if (!empty($requestOtp->success) && $requestOtp->success === true) {
-            session(['customer_aadhar_clientId' => $requestOtp->data->client_id ?? null]);
-            session(['aadhar_no' => $aadhar]);
-            Session::put('step', 4);
-
-            return [
-                'response' => 'success',
-                'message'  => "Please complete Aadhaar verification at DigiLocker",
-                'redirect_url' => $requestOtp->data->redirect_url ?? null
-            ];
-        } else {
-            if (isset($requestOtp->status_code) && $requestOtp->status_code == 429) {
-                return [
-                    'response' => 'error',
-                    'message'  => "Wait 60 seconds before retrying for the same Aadhaar Number."
-                ];
-            } else {
-                return [
-                    'response' => 'error',
-                    'message'  => $requestOtp->message ?? "Failed to initialize DigiLocker verification."
-                ];
-            }
-        }
+        //     return [
+        //         'response' => 'success',
+        //         'message'  => "Please complete Aadhaar verification at DigiLocker",
+        //         'redirect_url' => $requestOtp->data->redirect_url ?? null
+        //     ];
+        // } else {
+        //     if (isset($requestOtp->status_code) && $requestOtp->status_code == 429) {
+        //         return [
+        //             'response' => 'error',
+        //             'message'  => "Wait 60 seconds before retrying for the same Aadhaar Number."
+        //         ];
+        //     } else {
+        //         return [
+        //             'response' => 'error',
+        //             'message'  => $requestOtp->message ?? "Failed to initialize DigiLocker verification."
+        //         ];
+        //     }
+        // }
     }
 
     /*public function aadhar_verify_request_otp($request)
