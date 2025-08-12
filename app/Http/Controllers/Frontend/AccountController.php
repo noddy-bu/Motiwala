@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Storage;
 
 
 use Auth;
+use Log;
 
 class AccountController extends Controller
 {
@@ -1008,6 +1009,13 @@ class AccountController extends Controller
     {
         $clientId = $request->get('client_id');
 
+        // Log incoming request data
+        Log::debug('Aadhaar OTP Verify - Incoming Request', [
+            'client_id' => $clientId,
+            'session_client_id' => session('customer_aadhar_clientId'),
+            'otp' => $request->otp // remove if you don’t want OTP logged
+        ]);
+
         if (!$clientId) {
             return response()->json([
                 'response_message' => [
@@ -1017,13 +1025,31 @@ class AccountController extends Controller
             ]);
         }
 
-        // Call cURL method (raw API JSON)
+        // Call API (raw JSON response)
         $verify = (new AadharController)->aadhaarCallback($request->otp, session('customer_aadhar_clientId'));
+
+        // Log raw API JSON
+        Log::debug('Aadhaar OTP Verify - Raw API Response', [
+            'raw_json' => $verify
+        ]);
+
         $verify = json_decode($verify);
 
+        // Log parsed JSON as array
+        Log::debug('Aadhaar OTP Verify - Parsed Response', [
+            'parsed' => $verify
+        ]);
+
         if (!empty($verify->success) && $verify->success === true) {
-            // aadhaar_xml_data block
             $xmlData = $verify->data->aadhaar_xml_data ?? null;
+
+            // Log extracted Aadhaar details
+            Log::debug('Aadhaar OTP Verify - Extracted Aadhaar Data', [
+                'masked_aadhaar' => $xmlData->masked_aadhaar ?? null,
+                'full_name' => $xmlData->full_name ?? null,
+                'dob' => $xmlData->dob ?? null,
+                'address' => $xmlData->full_address ?? null,
+            ]);
 
             DB::table('userdetails')->where('user_id', Session::get('temp_user_id'))->update([
                 'ekyc' => json_encode($verify),
@@ -1037,7 +1063,7 @@ class AccountController extends Controller
                 'zip' => $xmlData->zip ?? null,
                 'dob' => $xmlData->dob ?? null,
                 'care_of' => $xmlData->care_of ?? null,
-                'mobile' => null, // API sample doesn't return mobile_hash here
+                'mobile' => null, // not present in sample
             ];
 
             Session::put('customer_detail', $customer_detail);
@@ -1052,6 +1078,7 @@ class AccountController extends Controller
 
         return $rsp_msg;
     }
+
 
 
     /*public function aadhar_otp_verify($request)

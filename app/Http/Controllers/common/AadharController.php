@@ -179,7 +179,12 @@ class AadharController extends Controller
           $response = curl_exec($curl);
           $error = curl_error($curl);
           curl_close($curl);
-
+          // Debug log for raw API JSON
+          Log::debug('Surepass Aadhaar API Raw Response', [
+              'client_id' => $clientId,
+              'otp'       => $otp,
+              'raw_json'  => $response
+          ]);
           if ($error) {
               Log::error('Surepass Aadhaar cURL Error', ['error' => $error]);
               return json_encode([
