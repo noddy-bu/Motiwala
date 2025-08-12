@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
         btn.disabled = true;
         btn.innerText = 'Processing...';
 
-        fetch('http://127.0.0.1:8000/aadhaar/initialize', {
+        fetch('{{ route('aadhaar.initialize') }}', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
