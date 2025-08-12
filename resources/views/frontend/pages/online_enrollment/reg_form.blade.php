@@ -118,56 +118,88 @@
     <!--------------------------------------------- verify otp --------------------------------->
 @endif
 
-
-
 @if (Session::has('step') && Session::get('step') == 3)
-    <!--------------------------------------------- ekyc Aadhar verify --------------------------------->
-
-    <div id="ekyc">
-
-        <div class="row">
-            <form class="col-md-12" id="aadhar-verify-request-otp"
-                action="{{ url(route('account.create', ['param' => 'aadhar-verify-request-otp'])) }}" method="post">
-                @csrf
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group mt-4 adhar_field">
-                            <label class="pb-3">Aadhaar *</label>
-                            <input type="text" class="form-control" name="aadhar" pattern="[0-9]+"
-                                minlength="12" maxlength="12" placeholder="Please Enter Aadhar No" required />
-                        </div>
-                    </div>
-                    {{-- <div class="col-md-4">
-
-                        <div class="form-group mt-4 adhar_field">
-                            <label class="pb-3">Confirm Aadhaar *</label>
-                            <input type="text" class="form-control" name="aadhar_conform" pattern="[0-9]+"
-                                minlength="12" maxlength="12" placeholder="Please Enter Aadhar No" required />
-                        </div>
-
-
-                    </div> --}}
-
-
-                </div>
-
-                <div class="form-group col-md-8 text-end">
-                    <div class="buttonclass me-4">
-                        <a class="" onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
-                    </div>
-                    <div class="buttonclass1 mt40">
-                        <button type="submit">Verify <i class="las la-arrow-right"></i></button>
+<div id="ekyc">
+    <div class="row">
+        <form class="col-md-12" id="aadhar-verify-request-otp-new" onsubmit="return false;">
+            @csrf
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group mt-4 adhar_field">
+                        <label class="pb-3">Aadhaar *</label>
+                        <input type="text" class="form-control" id="aadhar" name="aadhar" pattern="[0-9]+"
+                            minlength="12" maxlength="12" placeholder="Please Enter Aadhar No" required />
                     </div>
                 </div>
+            </div>
 
-            </form>
-
-        </div>
-
+            <div class="form-group col-md-8 text-end">
+                <div class="buttonclass me-4">
+                    <a onclick="back_to_privious();"><i class="las la-arrow-left"></i> Back</a>
+                </div>
+                <div class="buttonclass1 mt40">
+                    <button id="btn-verify-new" type="button">Verify <i class="las la-arrow-right"></i></button>
+                </div>
+            </div>
+        </form>
     </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.getElementById('btn-verify-new');
 
-    <!--------------------------------------------- ekyc Aadhar verify --------------------------------->
+    btn.addEventListener('click', function (e) {
+        console.log('hi');
+        e.preventDefault();
+
+        const aadharInput = document.getElementById('aadhar');
+        const aadhar = aadharInput.value.trim();
+
+        if (!aadhar || aadhar.length !== 12 || !/^\d{12}$/.test(aadhar)) {
+            alert('Please enter a valid 12-digit Aadhaar number.');
+            return;
+        }
+
+        // Disable button
+        btn.disabled = true;
+        btn.innerText = 'Processing...';
+
+        fetch('http://127.0.0.1:8000/aadhaar/initialize', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': 'kzdnIuVxosvwYHglF42z3Z7nqS48YDspa1xElLKD',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ aadhar: aadhar })
+        })
+        .then(response => response.json())
+        .then(body => {
+            if (body && body.success === true) {
+                const redirectUrl = body.data?.redirect_url;
+                if (redirectUrl) {
+                    window.location.href = redirectUrl;
+                } else {
+                    alert('Initialization succeeded but redirect URL is missing. Try again.');
+                    btn.disabled = false;
+                    btn.innerText = 'Verify';
+                }
+            } else {
+                const msg = Array.isArray(body.message) ? body.message.join('\n') : body.message || 'Failed to initialize Aadhaar verification.';
+                alert(msg);
+                btn.disabled = false;
+                btn.innerText = 'Verify';
+            }
+        })
+        .catch(error => {
+            alert(error.message || 'Something went wrong. Please try again.');
+            btn.disabled = false;
+            btn.innerText = 'Verify';
+        });
+    });
+});
+</script>
+
 @endif
 
 

@@ -684,7 +684,7 @@ class AccountController extends Controller
         Session::put('phone', $request->phone);
 
         //sms integration
-        $sms = (new SmsController)->smsgatewayhub_registration_otp($request->phone, $otp);
+        // $sms = (new SmsController)->smsgatewayhub_registration_otp($request->phone, $otp);
 
         Session::put('step', 2);
 
@@ -811,9 +811,92 @@ class AccountController extends Controller
         return $rsp_msg;
     }
 
-
-
     public function aadhar_verify_request_otp($request)
+    {
+        $validator = Validator::make($request->all(), [
+            'aadhar' => 'required|digits:12',
+        ]);
+
+        if ($validator->fails()) {
+            return [
+                'response' => 'error',
+                'message'  => $validator->errors()->all(),
+            ];
+        }
+
+        // Check if Aadhaar already registered
+        $user_detail = DB::table('userdetails')->where('aadhar_number', $request->aadhar)->first();
+        if ($user_detail) {
+            $user = DB::table('users')
+                ->join('redemptions', 'users.id', '=', 'redemptions.user_id')
+                ->where('users.id', $user_detail->user_id)
+                ->where('redemptions.status', '1')
+                ->select('users.id')
+                ->first();
+            if ($user) {
+                return [
+                    'response' => 'error',
+                    'message'  => "This No: {$request->aadhar} is already registered",
+                ];
+            }
+        }
+
+        // Call Surepass initialize (new flow)
+        $initResp = (new AadharController)->initializeAadhaar($request);
+
+        if ($initResp instanceof \Illuminate\Http\JsonResponse) {
+            $initResp = $initResp->getData(true); // true returns associative array
+        }
+        
+        if ($initResp['response'] === 'success') {
+            session(['customer_aadhar_clientId' => $initResp['data']['client_id'] ?? null]);
+            session(['aadhar_no' => $request->aadhar]);
+            Session::put('step', 4);
+
+            return [
+                'response' => 'success',
+                'message'  => "Redirect user to DigiLocker for Aadhaar verification.",
+                'redirect_url' => $initResp['data']['redirect_url'] ?? null
+            ];
+        } else {
+            return [
+                'response' => 'error',
+                'message'  => $initResp['message'] ?? "Failed to initialize DigiLocker verification."
+            ];
+        }
+    }
+    public function resendAadharOtp($request)
+    {
+        $aadhar = Session::get('aadhar_no');
+
+        $requestOtp = json_decode((new AadharController)->initializeAadhaarForResend($aadhar));
+
+        if (!empty($requestOtp->success) && $requestOtp->success === true) {
+            session(['customer_aadhar_clientId' => $requestOtp->data->client_id ?? null]);
+            session(['aadhar_no' => $aadhar]);
+            Session::put('step', 4);
+
+            return [
+                'response' => 'success',
+                'message'  => "Please complete Aadhaar verification at DigiLocker",
+                'redirect_url' => $requestOtp->data->redirect_url ?? null
+            ];
+        } else {
+            if (isset($requestOtp->status_code) && $requestOtp->status_code == 429) {
+                return [
+                    'response' => 'error',
+                    'message'  => "Wait 60 seconds before retrying for the same Aadhaar Number."
+                ];
+            } else {
+                return [
+                    'response' => 'error',
+                    'message'  => $requestOtp->message ?? "Failed to initialize DigiLocker verification."
+                ];
+            }
+        }
+    }
+
+    /*public function aadhar_verify_request_otp($request)
     {
 
         $validator = Validator::make($request->all(), [
@@ -883,10 +966,10 @@ class AccountController extends Controller
         }
 
         return $rsp_msg;
-    }
+    }*/
 
 
-    public function resendAadharOtp($request)
+    /*public function resendAadharOtp($request)
     {
 
         $aadhar = Session::get('aadhar_no');
@@ -920,7 +1003,7 @@ class AccountController extends Controller
         }
 
         return $rsp_msg;
-    }
+    }*/
 
     public function aadhar_otp_verify($request)
     {

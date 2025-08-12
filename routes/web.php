@@ -1,20 +1,21 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Frontend\IndexController;
-use App\Http\Controllers\Frontend\AccountController;
-
-use App\Http\Controllers\common\EsignAadharController;
-
-use App\Http\Controllers\common\PayumoneyController;
-
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Mail;
 
-use App\Http\Controllers\Common\SmsController;
+use Illuminate\Support\Facades\Route;
 
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use App\Http\Controllers\Common\SmsController;
+use App\Http\Controllers\Common\AadharController;
+
+use App\Http\Controllers\Frontend\IndexController;
+
+use App\Http\Controllers\common\PayumoneyController;
+use App\Http\Controllers\Frontend\AccountController;
+use App\Http\Controllers\common\EsignAadharController;
 
 /*
 |--------------------------------------------------------------------------
@@ -125,6 +126,8 @@ Route::get('/cron_incomplete_registration_msg', [SmsController::class, 'incomple
 
 //----------------------------- cron job ------------------------
 
+Route::post('/aadhaar/initialize', [AadharController::class, 'initializeAadhaar'])->name('aadhaar.initialize');
+Route::get('/aadhaar/callback', [AadharController::class, 'aadhaarCallback'])->name('aadhaar.callback');
 
 // Route::get('/esign', [EsignAadharController::class, 'esign_nsdl']);
 // Route::get('/esign-plan1', [AccountController::class, 'dummy_esign']);
