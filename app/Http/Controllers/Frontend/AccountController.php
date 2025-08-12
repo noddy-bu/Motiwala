@@ -1015,10 +1015,7 @@ class AccountController extends Controller
         ]);
 
         if (!$clientId) {
-            return redirect()->route('account.create', 'aadhar-otp-verify')->with([
-                'response' => 'error',
-                'message' => 'Missing client_id from Surepass callback.'
-            ]);
+            return redirect()->route('account.create', 'aadhar-otp-verify');
         }
 
         // Call Surepass Aadhaar Download API
@@ -1076,19 +1073,9 @@ class AccountController extends Controller
             Session::put('customer_detail', $customer_detail);
             Session::put('step', 5);
 
-            return redirect()
-                ->route('account.new.enrollment.page')
-                ->with([
-                    'response' => 'success',
-                    'message' => 'Aadhaar verified successfully!'
-                ]);
+            return redirect()->route('account.new.enrollment.page');
         } else {
-            return redirect()
-                ->route('account.new.enrollment.page')
-                ->with([
-                    'response' => 'error',
-                    'message' => 'Aadhaar verification failed!'
-                ]);
+            return redirect()->route('account.new.enrollment.page');
         }
     }
 
