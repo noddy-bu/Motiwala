@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(body => {
             if (body && body.success === true) {
-                const redirectUrl = body.data?.redirect_url;
+                const redirectUrl = body.data?.url;
                 if (redirectUrl) {
                     window.location.href = redirectUrl;
                 } else {
