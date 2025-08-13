@@ -1083,7 +1083,8 @@ class AccountController extends Controller
                 ->where('user_id', Session::get('temp_user_id'))
                 ->update([
                     'ekyc' => json_encode($verify),
-                    'aadhar_number' => $xmlData->masked_aadhaar ?? Session::get('aadhar_no'),
+                    'aadhar_number' => Session::get('aadhar_no'),
+                    // 'aadhar_number' => $xmlData->masked_aadhaar ?? Session::get('aadhar_no'),
                 ]);
 
             $profileImage = $xmlData->profile_image ?? null;
