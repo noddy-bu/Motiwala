@@ -706,7 +706,7 @@ class AccountController extends Controller
         Session::put('phone', $request->phone);
 
         //sms integration
-        // $sms = (new SmsController)->smsgatewayhub_registration_otp($request->phone, $otp);
+        $sms = (new SmsController)->smsgatewayhub_registration_otp($request->phone, $otp);
 
         Session::put('step', 2);
 
