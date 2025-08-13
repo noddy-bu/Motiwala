@@ -1224,7 +1224,8 @@ class AccountController extends Controller
             // 'locality' => 'required|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:3',
             // 'state' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
             // 'city' => 'required|string|regex:/^[A-Za-z\s,.\'\/&]+$/|min:3',
-            'address' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:350'],
+            // 'address' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\/\'&]+$/i', 'min:3', 'max:350'],
+            'address' => ['required', 'string', 'regex:/^[A-Za-z0-9\s,.\'\/&()\-]+$/i', 'min:3', 'max:350'],
             // 'pincode' => 'required|regex:/^[\d\s-]+$/|min:6',
             'pan_number' => 'nullable|string|regex:/^[A-Za-z0-9\s,.\'\/&]+$/|min:10|max:10',
 
