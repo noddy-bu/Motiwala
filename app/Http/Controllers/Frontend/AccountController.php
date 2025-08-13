@@ -584,13 +584,29 @@ class AccountController extends Controller
             $rsp_msg = $this->resendAadharOtp($request);
 
         } elseif ($param == "aadhar-otp-verify") {
-
             $rsp_msg = $this->aadhar_otp_verify($request);
-            if ($rsp_msg == true) {
+
+            if ($rsp_msg['response'] === 'success') {
+                session()->flash('toastr', [
+                    'type' => 'success',
+                    'message' => $rsp_msg['message'],
+                    'title' => 'Success'
+                ]);
                 return redirect()->route('account.new.enrollment.page');
-            }else{
+            } else {
+                session()->flash('toastr', [
+                    'type' => 'error',
+                    'message' => $rsp_msg['message'],
+                    'title' => 'Error'
+                ]);
                 return redirect()->route('account.new.enrollment.page');
             }
+            // $rsp_msg = $this->aadhar_otp_verify($request);
+            // if ($rsp_msg == true) {
+            //     return redirect()->route('account.new.enrollment.page');
+            // }else{
+            //     return redirect()->route('account.new.enrollment.page');
+            // }
         } elseif ($param == "esign-varification") {
 
             $rsp_msg = $this->accept_esign_term($request);
@@ -1090,9 +1106,19 @@ class AccountController extends Controller
             Session::put('customer_detail', $customer_detail);
             Session::put('step', 5);
 
-            return true;
-        } else {            
-            return false;
+            return [
+                'response' => 'success',
+                'message' => 'Aadhaar verified successfully!'
+            ];
+            // return true;
+        } else {
+            // return false;
+            // Return the actual API error message
+            $errorMsg = $verify->message ?? 'Aadhaar verification failed!';
+            return [
+                'response' => 'error',
+                'message' => $errorMsg
+            ];
         }
     }
 
