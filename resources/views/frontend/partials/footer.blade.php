@@ -49,7 +49,7 @@
           <ul class="widget-menu">
 
           <li>
-              <a href="{{ url(route('terms')) }}"> <i class="las la-angle-right"></i> Terms Conditions</a>
+              <a href="{{ url(route('terms')) }}"> <i class="las la-angle-right"></i> Terms & Conditions</a>
             </li>
             <li>
               <a href="{{ url(route('privacy-policy')) }}"> <i class="las la-angle-right"></i> Privacy Policy</a>
