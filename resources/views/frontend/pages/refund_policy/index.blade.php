@@ -103,7 +103,7 @@
 
                     <p>At the time of enrollment, the Customer should ensure that, the Golden Treasure Jewellery 
                         Purchase Plan enrollment Form is signed in the space provided, physically or electronically, 
-                        as the case may be, accepting these terms and conditions.
+                        as the case may be, accepting these terms & conditions.
                     </p>
                     </div>
     

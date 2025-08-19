@@ -249,7 +249,7 @@ cheque or online transfer.
     <div style="margin-bottom:0px">The Motiwala Jewels Golden Fortune Plan offered by Motiwala jewels Gold and
 Diamonds Pvt Ltd facilitates customers to purchase Motiwala Jewels by making monthly
 payments over a elventh-month period and avail certain special discounts on making
-charges subject to these Terms and Conditions:</div>
+charges subject to these Terms & Conditions:</div>
 </div>
 <div style="width:100%; clear:both; margin-bottom:0px;padding-top:0px;">
     <div class="text_fonts" style="margin-bottom:0px">
@@ -401,7 +401,7 @@ transferable under any circumstance.</li>
         <li style="padding-bottom:15px;">This Plan cannot be redeemed against advance booking and customer orders.</li>
 
 
-        <div style="padding-bottom:10px; padding-top:10px;"><b>Additional Terms and Conditions</b></div>
+        <div style="padding-bottom:10px; padding-top:10px;"><b>Additional Terms & Conditions</b></div>
         <li style="padding-bottom:15px;">Only Indian citizens who have attained the age of majority and are competent to
 contract shall be eligible under this Plan, and NRIs and other entities like
 companies, partnership firms or proprietorship concerns or Trusts or Hindu
@@ -414,9 +414,9 @@ under this Plan.</li>
 
         <li style="padding-bottom:15px;">At the time of enrolment, the customer should ensure that the enrolment form is
 signed in the space provided, physically or electronically, as the case may be,
-accepting these Terms and Conditions. Notwithstanding the foregoing, as soon
+accepting these Terms & Conditions. Notwithstanding the foregoing, as soon
 as the customer effects the first transaction under this Plan, it shall be deemed
-that the customer has accepted these Terms and Conditions.</li>
+that the customer has accepted these Terms & Conditions.</li>
 
         <li style="padding-bottom:15px;">.International card/transfers for online payment will not be accepted. Payments
 can be made at the Motiwala Jewels stores or through the App as may be

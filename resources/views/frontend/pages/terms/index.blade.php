@@ -26,7 +26,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h4 class="title_heading text-center black_color pb-0 heading_font">TERMS AND CONDITIONS</h4>
+					<h4 class="title_heading text-center black_color pb-0 heading_font">TERMS & CONDITIONS</h4>
 				    <ul>
 						<li><p><strong>Purpose:</strong> Both plans facilitate the purchase of gold and diamond jewellery by making payments over a specified period and offer certain discounts.</p></li>
 						<li><p><strong>Eligibility:</strong> Both plans are available only to Indian citizens who have attained the age of majority. Enrollment is not permitted for entities like companies, partnership firms, trusts, Hindu Undivided Families (HUF), or NRIs.</p></li>
@@ -75,7 +75,7 @@
 				    {{--@php echo html_entity_decode(get_settings('terms_content')) @endphp--}}	
 					<h4 class="text-center">GOLDEN TREASURE JEWELLERY PURCHASE PLAN</h4>
 					<h4>Plan</h4>	
-					<p>The Golden Treasure Jewellery Purchase Plan (hereinafter “Golden Treasure” or the “Plan”) offered by Motiwala Jewels Gold and Diamonds Pvt Ltd facilitates Customers to purchase Gold and Diamonds Jewellery by making payments for the same over a Eleven month period and the Customers will be entitled to avail certain discounts subject to these Terms and Conditions.
+					<p>The Golden Treasure Jewellery Purchase Plan (hereinafter “Golden Treasure” or the “Plan”) offered by Motiwala Jewels Gold and Diamonds Pvt Ltd facilitates Customers to purchase Gold and Diamonds Jewellery by making payments for the same over a Eleven month period and the Customers will be entitled to avail certain discounts subject to these Terms & Conditions.
 					</p> 
 
 					<p>Under this Plan, the Customer has to pay 11 (Eleven) fixed monthly installments of a 
@@ -135,7 +135,7 @@
 					<p>The Customer is required to register at <a href="https://www.motiwalajewels.in">https://www.motiwalajewels.in</a> to manage his/her Golden Treasure Jewellery Purchase Plan Account. In case of any change in contact or address details or any other details that the Customer may have furnished, the Customer shall immediately contact customer care for effecting the changes. The Customer can however change the address details through the Motiwala Jewels Gold and Diamonds Pvt Ltd website <a href="https://www.motiwalajewels.in">https://www.motiwalajewels.in</a> or Golden Treasure Jewellery Purchase Mobile Application as well, and any such modification made shall be subject to the satisfaction and discretion of Motiwala Jewels Gold and Diamonds Pvt Ltd. The Customer should especially ensure that the name is as per the identity proof provided by the Customer, and not in any other name, including nickname or short forms and the bank account details and other details as provided in the Enrollment Form shall be accurate.
 					</p>
 
-					<p>At the time of Enrollment, the Customer should ensure that, the Golden Treasure Jewellery Purchase Plan Enrollment Form is signed in the space provided, physically or electronically, as the case may be, accepting these terms and conditions.
+					<p>At the time of Enrollment, the Customer should ensure that, the Golden Treasure Jewellery Purchase Plan Enrollment Form is signed in the space provided, physically or electronically, as the case may be, accepting these terms & conditions.
 
 					</p>
 					
@@ -193,7 +193,7 @@
 
 					<p>The liability of the Company or its franchisee(s) or agents under Golden Treasure Jewellery 
 						Purchase Plan  is limited to the extent of installments/advances paid by the account holder(s) 
-						and the discount, as per the Plan and the terms and conditions contained herein, and thus 
+						and the discount, as per the Plan and the terms & conditions contained herein, and thus 
 						does not lead to any other assurance or warranty whatsoever by the Company.
 					</p>
 
@@ -220,7 +220,7 @@
 
 					<div class="col-md-12">
 						{{--@php echo html_entity_decode(get_settings('terms_content')) @endphp--}}	
-						<p> The Motiwala Jewels Golden Fortune Plan offered by Motiwala jewels Gold and Diamonds Pvt Ltd facilitates customers to purchase Motiwala Jewels by making monthly payments over a eleventh-month period and avail certain special discounts on making charges subject to these Terms and Conditions:
+						<p> The Motiwala Jewels Golden Fortune Plan offered by Motiwala jewels Gold and Diamonds Pvt Ltd facilitates customers to purchase Motiwala Jewels by making monthly payments over a eleventh-month period and avail certain special discounts on making charges subject to these Terms & Conditions:
 						</p> 
 
 						<ol>
@@ -307,12 +307,12 @@
 							
 							<strong> <li><p>This Plan cannot be redeemed against advance booking and customer orders.</p></li></strong>
 							
-							<h4> Additional Terms and Conditions</h4>
+							<h4> Additional Terms & Conditions</h4>
 							<li><p>Only Indian citizens who have attained the age of majority and are competent to contract shall be eligible under this Plan, and NRIs and other entities like companies, partnership firms or proprietorship concerns or Trusts or Hindu Undivided Family (HUF) cannot participate in the same.</p></li>
 							
 							<li><p>The customer will be required to fill an enrolment form and submit necessary documents at the time of enrolment. Bank Account details and PAN card (for monthly payment value greater than Rs 10000/-) are mandatory for enrolment under this Plan.</p></li>
 							
-							<li><p>At the time of enrolment, the customer should ensure that the enrolment form is signed in the space provided, physically or electronically, as the case may be, accepting these Terms and Conditions. Notwithstanding the foregoing, as soon as the customer effects the first transaction under this Plan, it shall be deemed that the customer has accepted these Terms and Conditions.</p></li>
+							<li><p>At the time of enrolment, the customer should ensure that the enrolment form is signed in the space provided, physically or electronically, as the case may be, accepting these Terms & Conditions. Notwithstanding the foregoing, as soon as the customer effects the first transaction under this Plan, it shall be deemed that the customer has accepted these Terms & Conditions.</p></li>
 							
 							<li><p>International card/transfers for online payment will not be accepted. Payments can be made at the Motiwala Jewels Gold and Diamonds Pvt Ltd stores or through the App as may be applicable.</p></li>
 							
