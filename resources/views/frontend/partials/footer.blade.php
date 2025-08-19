@@ -125,7 +125,7 @@
           <p class="text-md-start text-center mb-1 mb-md-3">Copyright © 2025 Under Motiwala Jewels Gold and Diamonds Pvt Ltd</p>
         </div>    
         <div class="col-md-6 design_by_nexgeno">
-          <p class="float-end mb-md-3 mb-0"> Design By <a class="text-decoration-none text-light" href="https://nexgeno.in/">Nexgeno</a></p>
+          <p class="float-end mb-md-3 mb-0"> Design By <a class="text-decoration-none text-light" href="https://nexgeno.in/" target="_blank">Nexgeno</a></p>
         </div>    
       </div>
     </div>
