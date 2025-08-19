@@ -70,7 +70,7 @@
             <li class="nav-item">
                 <a href="/terms-conditions" class="nav-link align-middle px-0">
                     <i class="las la-clipboard-list"></i>
-                    <span class="ms-1 d-sm-inline">Terms and Conditions</span>
+                    <span class="ms-1 d-sm-inline">Terms & Conditions</span>
                 </a>
             </li>
             <li class="nav-item">

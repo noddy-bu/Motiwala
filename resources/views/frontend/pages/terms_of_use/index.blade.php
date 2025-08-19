@@ -39,20 +39,20 @@
 						</p>
 						<p>
 							In using the services provided by titan.co.in, of
-							Titan Company Ltd, you are deemed to have accepted the terms and conditions listed below or as may
+							Titan Company Ltd, you are deemed to have accepted the terms & conditions listed below or as may
 							be revised from time to time, which is, for an indefinite period and you understand and agree that
-							you are bound by such terms and conditions till the time you access this website.
+							you are bound by such terms & conditions till the time you access this website.
 						</p>
 						<p>
 							Titan Company Ltd
-							reserves the right to change these terms and conditions from time to time without any obligation to
+							reserves the right to change these terms & conditions from time to time without any obligation to
 							inform you and it is your responsibility to look through them as often as possible. All rights
 							including copyright, in this website are owned by Titan Company Ltd. Any use of this website or its
 							contents, including copying or storing it in whole or part without the permission of Titan Company
 							Ltd is prohibited.
 						</p>
 						<p>
-							If you have any queries about these terms and conditions or any complaints or
+							If you have any queries about these terms & conditions or any complaints or
 							suggestions regarding our website, please feel free to write to <a href="mailto:ecomsupport@titan.co.in">ecomsupport@titan.co.in</a> or call us
 							on our 1800-108-1100 (Timings: 10.00 A.M – 7.00 P.M Indian Standard Time)
 						</p>
@@ -87,7 +87,7 @@
 						</p>
 						<p>
 							All products and the information displayed on titan.co.in constitute an invitation to offer. Your
-							order for purchase constitutes your offer which shall be subject to the terms and conditions as
+							order for purchase constitutes your offer which shall be subject to the terms & conditions as
 							listed herein. We reserve the right to accept or reject your offer in part or in full. Our
 							acceptance of your order will take place upon the dispatch of the product(s) ordered. Dispatch of
 							product(s) ordered, may or may not happen at the same time. In such a scenario, that portion of the

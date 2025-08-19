@@ -975,7 +975,7 @@
         <div>
             <div class="steps-title pt-4">
 
-                <p><b>Terms and Conditions</b></p>
+                <p><b>Terms & Conditions</b></p>
                 <p>By clicking on proceed button below, you are hereby acknowledging that you are providing your Aadhaar
                     related details voluntarily to Motiwala Jewels Gold and Diamonds Pvt Private Limited to retrieve your Aadhaar
                     Paperless-XML from the UIDAI Portal on your behalf based on the process detailed below. It is not
@@ -1024,7 +1024,7 @@
 
             <div class="form-group mt-2">
                 <input type="checkbox" name="accept_term" id="agree" value="yes" required />
-                <label for="agree">I accept <a href="{{ url(route('terms')) }}">“Terms and conditions”</a></label>
+                <label for="agree">I accept <a href="{{ url(route('terms')) }}">“Terms & conditions”</a></label>
             </div>
 
 
@@ -1205,7 +1205,7 @@
             <div class="steps-title pt-2">
                 <p>
                     You are about to be redirected to https://surepass.io, a third party website. The information you provide on
-                    the third party website is subject to the terms and conditions, privacy policies and practices of
+                    the third party website is subject to the terms & conditions, privacy policies and practices of
                     the third party website and we are not responsible for the security and privacy of any information
                     that you may provide on the third party website. </p>
             </div>
@@ -1217,7 +1217,7 @@
 
             <div class="form-group mt-2">
                 <input type="checkbox" name="accept_term" id="agree" value="yes" required />
-                <label for="agree">I accept <a href="{{ url(route('terms')) }}">“Terms and conditions”</a> </label>
+                <label for="agree">I accept <a href="{{ url(route('terms')) }}">“Terms & conditions”</a> </label>
             </div>
 
 
