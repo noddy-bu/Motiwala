@@ -47,6 +47,7 @@
             <input type="hidden" name="key" value="{{$MERCHANT_KEY}}"/>
             <input type="hidden" name="hash" value="{{$hash}}"/>
             <input type="hidden" name="txnid" value="{{$txnid}}"/>
+            <input type="hidden" name="udf2" value="treasure"/>
             <div class="px-5 pt-4 pb-5 form-block">
                 <div class="row">
                     <div class="col-12">

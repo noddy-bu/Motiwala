@@ -217,7 +217,7 @@ class AccountController extends Controller
                 'payment_status'   => 'created',
                 'payment_id'       => $txnid,
                 'ip_data'          => $ip,
-                'location'         => $ip_data['city'],
+                'location'         => $ip_data['city'] ?? 'Unknown',
                 'created_at'       => date('Y-m-d H:i:s'),
                 'updated_at'       => date('Y-m-d H:i:s')
             ]);
@@ -1889,13 +1889,15 @@ class AccountController extends Controller
         $postData = $fileContent['postData'];
         $txnid = $postData['merchantTransactionId'];
         $udf1 = $postData['udf1'];
+        $udf2 = $postData['udf2'];
+
 
         //--success------
         //order info
         $order = DB::table('temp_transactions')->where('payment_id', $txnid)->first();
 
         //avoid update if payment is paid
-        if ($order->payment_status != 'paid') {
+        if ($order->payment_status != 'paid' && $udf2 == 'treasure') {
 
             if ($udf1 != "installment") {
 
