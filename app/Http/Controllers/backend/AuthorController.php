@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class AuthorController extends Controller
 {
@@ -102,19 +103,34 @@ class AuthorController extends Controller
             ], 200);
         } 
 
-        $id = $request->input('id');
-        $author = User::find($id);
+        // $id = $request->input('id');
+        // $author = User::find($id);
 
-        $author->fullname = $request->input('fullname');
-        $author->email = $request->input('email');
-        $author->phone = $request->input('phone');
-        $author->role_id = $request->input('role_id');
+        // $author->fullname = $request->input('fullname');
+        // $author->email = $request->input('email');
+        // $author->phone = $request->input('phone');
+        // $author->role_id = $request->input('role_id');
 
-        if($request->has('password') && !empty($request->input('password')) && $request->input('password') != ""){
-            $author->password = bcrypt($request->input('password'));
-        }
+        // if($request->has('password') && !empty($request->input('password')) && $request->input('password') != ""){
+        //     $author->password = bcrypt($request->input('password'));
+        // }
     
-        $author->save();
+        // $author->save();
+
+        $id = $request->input('id');
+
+        $data = [
+            'fullname' => $request->input('fullname'),
+            'email'    => $request->input('email'),
+            'phone'    => $request->input('phone'),
+            'role_id'  => $request->input('role_id'),
+        ];
+
+        if ($request->has('password') && !empty($request->input('password'))) {
+            $data['password'] = bcrypt($request->input('password'));
+        }
+
+        DB::table('users')->where('id', $id)->update($data);
 
         $response = [
             'status' => true,
