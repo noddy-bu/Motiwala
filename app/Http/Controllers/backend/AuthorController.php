@@ -92,7 +92,7 @@ class AuthorController extends Controller
         // Validate form data
         $validator = Validator::make($request->all(), [
             'fullname' => 'required',
-            'email' => 'required|unique:Users,email,'. $request->input('id'),
+            'email' => 'required|unique:users,email,'. $request->input('id'),
             'phone' => 'required|unique:users,phone,'. $request->input('id'),
         ]);
 
@@ -103,34 +103,19 @@ class AuthorController extends Controller
             ], 200);
         } 
 
-        // $id = $request->input('id');
-        // $author = User::find($id);
-
-        // $author->fullname = $request->input('fullname');
-        // $author->email = $request->input('email');
-        // $author->phone = $request->input('phone');
-        // $author->role_id = $request->input('role_id');
-
-        // if($request->has('password') && !empty($request->input('password')) && $request->input('password') != ""){
-        //     $author->password = bcrypt($request->input('password'));
-        // }
-    
-        // $author->save();
-
         $id = $request->input('id');
+        $author = User::find($id);
 
-        $data = [
-            'fullname' => $request->input('fullname'),
-            'email'    => $request->input('email'),
-            'phone'    => $request->input('phone'),
-            'role_id'  => $request->input('role_id'),
-        ];
+        $author->fullname = $request->input('fullname');
+        $author->email = $request->input('email');
+        $author->phone = $request->input('phone');
+        $author->role_id = $request->input('role_id');
 
-        if ($request->has('password') && !empty($request->input('password'))) {
-            $data['password'] = bcrypt($request->input('password'));
+        if($request->has('password') && !empty($request->input('password')) && $request->input('password') != ""){
+            $author->password = bcrypt($request->input('password'));
         }
-
-        DB::table('users')->where('id', $id)->update($data);
+    
+        $author->save();
 
         $response = [
             'status' => true,
