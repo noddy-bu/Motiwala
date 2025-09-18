@@ -33,6 +33,7 @@
                     <option value="">---Select---</option>
                     <option value="2" @if($author->role_id == 2) selected @endif>Admin</option>
                     <option value="3" @if($author->role_id == 3) selected @endif>Staff</option>
+                    <option value="4" @if($author->role_id == 4) selected @endif>Accountant</option>
                 </select>
             </div>
         </div>
