@@ -79,7 +79,8 @@
       <div class="col-lg-3 col-12 pb-md-0 pb-4">
         <div class="footer-widget">
         <h3 class="widget-title">CONTACT DETAILS</h3>
-          <p class="pb-0 mb-0"><strong> Contact Us: </strong> <a href="tel:+91 9920077780">+91 9920077780</a></p>
+          <p class="pb-2 mb-0"><strong> Address: </strong> Shop No. 3, Fortune Tower, 337, Sir J J Road, Byculla Mumbai - 400 008. Maharashtra, India.</p>
+          <p class="pb-2 mb-0"><strong> Contact Us: </strong> <a href="tel:+91 9920077780">+91 9920077780</a></p>
           <p class="mb-2"><strong>Email: </strong> <a href="mailto:motiwalajewels786@gmail.com">motiwalajewels786@gmail.com</a></p>
           <div class="col-md-12 text-md-end text-center footer_social">
             <ul class="list-group list-group-horizontal list-unstyled">
@@ -88,13 +89,13 @@
                   <i class="lab la-whatsapp"></i>
                 </a>
               </li>
-              <li>
+              <!-- <li>
                 <a target="_blank" href="https://www.facebook.com/people/Motiwala-Jewels/pfbid0riS1PDcEineCQ4KxRQnXfZEV6Nhbng4vVqePiuW22nwYp5jxVv5ip9hK9kXEhy2hl/">
                   <i class="lab la-facebook-f"></i>
                 </a>
-              </li>
+              </li> -->
               <li>
-                <a href="https://www.instagram.com/motiwalajewelsofficial/">
+                <a href="https://www.instagram.com/motiwala.and.sons/">
                   <i class="lab la-instagram"></i>
                 </a>
               </li>
