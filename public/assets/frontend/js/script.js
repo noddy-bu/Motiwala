@@ -18,6 +18,12 @@ $(document).ready(function () {
     if (window.location.hash === "#sign") {
         openModal();
     }
+
+
+    if (new URLSearchParams(window.location.search).get("login") === "true") {
+        openModal();
+    }
+
 });
 
 function instant_pay() {

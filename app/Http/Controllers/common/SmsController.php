@@ -101,7 +101,7 @@ class SmsController extends Controller
 
     public function wati_due_reminder($phone=null, $name=null, $installment_no=null, $plan_name=null, $amount=null, $due_date=null){
         $phone = $phone;
-        $template_name = 'reminder';
+        $template_name = 'hv_reminder';
         $dynmice = [
             [
                 'name' => 'name',
@@ -127,7 +127,7 @@ class SmsController extends Controller
 
     public function wati_over_due($phone=null, $name=null, $installment_no=null, $plan_name=null, $amount=null, $due_date=null){
         $phone = $phone;
-        $template_name = 'overdue';
+        $template_name = 'hv_overdue';
         $dynmice = [
             [
                 'name' => 'name',
@@ -153,7 +153,7 @@ class SmsController extends Controller
 
     public function wati_payment_success($phone=null, $name=null, $installment_no=null, $amount=null){
         $phone = $phone;
-        $template_name = 'payment_success';
+        $template_name = 'hv_payment_success';
         $dynmice = [
             [
                 'name' => 'name',
@@ -174,24 +174,25 @@ class SmsController extends Controller
 
     public function wati_registration_success($phone=null){
         $phone = $phone;
-        $template_name = 'successful_registration';
-        $dynmice = [
-            [
-                'name' => 'attribute_1',
-                'value' => $phone
-            ],
-            [
-                'name' => 'attribute_2',
-                'value' => $phone
-            ]
-        ];
+        $template_name = 'hv_successful_registration_2';
+        // $dynmice = [
+        //     [
+        //         'name' => 'attribute_1',
+        //         'value' => $phone
+        //     ],
+        //     [
+        //         'name' => 'attribute_2',
+        //         'value' => $phone
+        //     ]
+        // ];
+        $dynmice = [];
 
         $result = send_Whatsapp_Notification($phone,$template_name,$dynmice);
     }
 
     public function wati_incomplete_registration($phone=null, $name=""){
         $phone = $phone;
-        $template_name = 'incomplete_registration';
+        $template_name = 'hv_incomplete_registration';
         $dynmice = [
             [
                 'name' => 'name',
@@ -389,6 +390,7 @@ public function incomplete_registration_msg()
         $subject = "Reminder: Upcoming Payment for Installment Plan $plan";
 
         if($days != 'same_day' && $days !="" && $due_date_end == ""){
+            $due_date = date('Y-m-d', strtotime($due_date));
             $body = '
                 <p>Dear '.$name.',</p>
                 <p>We hope this message finds you well.</p>
@@ -408,6 +410,8 @@ public function incomplete_registration_msg()
                 Mob: '.env('COMPANY_NUMBER').'</p>
             ';
         } elseif($days == 'same_day' && $due_date_end != "" ){
+            $due_date_end = date('Y-m-d', strtotime($due_date_end));
+            $due_date = date('Y-m-d', strtotime($due_date));
             $body = '
                 <p>Dear '.$name.',</p>
                 <p>We hope this message finds you well.</p>
@@ -429,6 +433,8 @@ public function incomplete_registration_msg()
                 Mob: '.env('COMPANY_NUMBER').'</p>
             ';
         } elseif ($days == 'passed' && $due_date_end != ""){
+            $due_date_end = date('Y-m-d', strtotime($due_date_end));
+            $due_date = date('Y-m-d', strtotime($due_date));
             $body = '
                 <p>Dear '.$name.',</p>
                 <p>We hope this message finds you well.</p>
