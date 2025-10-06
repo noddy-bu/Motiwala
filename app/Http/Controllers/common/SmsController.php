@@ -61,17 +61,28 @@ class SmsController extends Controller
         $recipient = $email;
         $subject = 'Congratulations! You have successfully registered at Motiwala Jewels';
 
-        $body = "Congratulations! You have successfully registered. Your login credentials are: User ID: $phone. Password: $phone. Thank you for joining us. Motiwala Jewels";
+        // $body = "Congratulations! You have successfully registered. Your login credentials are: User ID: $phone. Password: $phone. Thank you for joining us. Motiwala Jewels";
+
+        $body = view('frontend.emails.registration_success', [
+            'phone' => $phone,
+            'email' => $email
+        ])->render();
 
         sendEmail($recipient, $subject, $body);
     }
 
-    public function email_installment_payment_successful($email ,$installment, $amount){
+    public function email_installment_payment_successful($email ,$installment, $amount, $plan_name=""){
 
         $recipient = $email;
         $subject = "Your $installment installment of $amount has been successfully completed";
 
-        $body = "Your $installment installment of $amount has been successfully completed. Thank you for choosing Motiwala Jewels";
+        // $body = "Your plan '$plan_name' of $installment installment of $amount has been successfully completed. Thank you for choosing Motiwala Jewels";
+
+        $body = view('frontend.emails.installment_success', [
+            'installment' => $installment,
+            'amount' => $amount,
+            'plan_name' => $plan_name
+        ])->render();
 
         sendEmail($recipient, $subject, $body);
     }
@@ -81,17 +92,21 @@ class SmsController extends Controller
         $recipient = $email;
         $subject = 'Complete Your Registration to Access All Features at Motiwala Jewels';
 
-        $body = '<p>Dear '.$name.',</p>
+        // $body = '<p>Dear '.$name.',</p>
 
-            <p>We noticed that your registration is still incomplete. To fully access all the features and benefits, please take a moment to complete the registration process.</p>
+        //     <p>We noticed that your registration is still incomplete. To fully access all the features and benefits, please take a moment to complete the registration process.</p>
 
-            <p>If you need any assistance or have any questions, feel free to contact us.</p>
+        //     <p>If you need any assistance or have any questions, feel free to contact us.</p>
 
-            <p>Thank you for choosing us!</p>
+        //     <p>Thank you for choosing us!</p>
 
-            <p>Best regards,<br>
-            Motiwala</p>
-            <p>Mob: +91 9920077780</p>';
+        //     <p>Best regards,<br>
+        //     Motiwala</p>
+        //     <p>Mob: +91 9920077780</p>';
+
+        $body = view('frontend.emails.registration_incomplete', [
+            'name' => $name
+        ])->render();
 
         sendEmail($recipient, $subject, $body);
     }
@@ -101,23 +116,27 @@ class SmsController extends Controller
 
     public function wati_due_reminder($phone=null, $name=null, $installment_no=null, $plan_name=null, $amount=null, $due_date=null){
         $phone = $phone;
-        $template_name = 'hv_reminder';
+        $template_name = 'hv_reminder_01';
         $dynmice = [
             [
                 'name' => 'name',
                 'value' => $name
             ],
             [
-                'name' => 'allowbroadcast',
+                'name' => 'installment',
                 'value' => $installment_no
             ],
             [
-                'name' => 'attribute_1',
+                'name' => 'plan_name',
+                'value' => $plan_name
+            ],
+            [
+                'name' => 'amount',
                 'value' => 'Rs '.$amount
             ],
             [
-                'name' => 'attribute_2',
-                'value' => date('d-m-y', strtotime($due_date))
+                'name' => 'date',
+                'value' => date('d M Y', strtotime($due_date))
             ]
         ];
 
@@ -127,23 +146,23 @@ class SmsController extends Controller
 
     public function wati_over_due($phone=null, $name=null, $installment_no=null, $plan_name=null, $amount=null, $due_date=null){
         $phone = $phone;
-        $template_name = 'hv_overdue';
+        $template_name = 'hv_overdue_01';
         $dynmice = [
             [
                 'name' => 'name',
                 'value' => $name
             ],
             [
-                'name' => 'allowbroadcast',
+                'name' => 'installment',
                 'value' => $installment_no
             ],
             [
-                'name' => 'attribute_1',
+                'name' => 'amount',
                 'value' => 'Rs '.$amount
             ],
             [
-                'name' => 'attribute_2',
-                'value' => date('d-m-y', strtotime($due_date))
+                'name' => 'date',
+                'value' => date('d M Y', strtotime($due_date))
             ]
         ];
 
@@ -151,20 +170,24 @@ class SmsController extends Controller
     }
 
 
-    public function wati_payment_success($phone=null, $name=null, $installment_no=null, $amount=null){
+    public function wati_payment_success($phone=null, $name=null, $installment_no=null, $plan_name=null, $amount=null){
         $phone = $phone;
-        $template_name = 'hv_payment_success';
+        $template_name = 'hv_payment_success_02';
         $dynmice = [
             [
                 'name' => 'name',
                 'value' => $name
             ],
             [
-                'name' => 'attribute_1',
+                'name' => 'installment',
                 'value' => $installment_no
             ],
             [
-                'name' => 'attribute_2',
+                'name' => 'plan_name',
+                'value' => $plan_name
+            ],
+            [
+                'name' => 'amount',
                 'value' => 'Rs '.$amount
             ]
         ];
@@ -192,7 +215,7 @@ class SmsController extends Controller
 
     public function wati_incomplete_registration($phone=null, $name=""){
         $phone = $phone;
-        $template_name = 'hv_incomplete_registration';
+        $template_name = 'hv_incomplete_registration_01';
         $dynmice = [
             [
                 'name' => 'name',
@@ -391,72 +414,109 @@ public function incomplete_registration_msg()
 
         if($days != 'same_day' && $days !="" && $due_date_end == ""){
             $due_date = date('Y-m-d', strtotime($due_date));
-            $body = '
-                <p>Dear '.$name.',</p>
-                <p>We hope this message finds you well.</p>
-                <p>This is a friendly reminder that your payment for Installment Plan <strong>'.$plan.'</strong>, Installment No. <strong>'.$installment.'</strong>, is due on <strong>'.$due_date.'</strong>. To help you stay on track, we wanted to remind you '.$days.' days in advance.</p>
-                <p>Please ensure that your payment is completed on time to avoid any late fees or service interruptions.</p>
-                <p><strong>Payment Details:</strong></p>
-                <ul>
-                    <li><strong>Plan Name:</strong> '.$plan.'</li>
-                    <li><strong>Installment No.:</strong> '.$installment.'</li>
-                    <li><strong>Due Date:</strong> '.$due_date.'</li>
-                    <li><strong>Amount:</strong> '.$amount.'</li>
-                </ul>
-                <p>If you have any questions or need assistance, please feel free to contact our support team.</p>
-                <p>Thank you for your prompt attention to this matter.</p>
-                <p>Best regards,<br>
-                '.env('COMPANY_NAME').'<br>
-                Mob: '.env('COMPANY_NUMBER').'</p>
-            ';
+            // $body = '
+            //     <p>Dear '.$name.',</p>
+            //     <p>We hope this message finds you well.</p>
+            //     <p>This is a friendly reminder that your payment for Installment Plan <strong>'.$plan.'</strong>, Installment No. <strong>'.$installment.'</strong>, is due on <strong>'.$due_date.'</strong>. To help you stay on track, we wanted to remind you '.$days.' days in advance.</p>
+            //     <p>Please ensure that your payment is completed on time to avoid any late fees or service interruptions.</p>
+            //     <p><strong>Payment Details:</strong></p>
+            //     <ul>
+            //         <li><strong>Plan Name:</strong> '.$plan.'</li>
+            //         <li><strong>Installment No.:</strong> '.$installment.'</li>
+            //         <li><strong>Due Date:</strong> '.$due_date.'</li>
+            //         <li><strong>Amount:</strong> '.$amount.'</li>
+            //     </ul>
+            //     <p>If you have any questions or need assistance, please feel free to contact our support team.</p>
+            //     <p>Thank you for your prompt attention to this matter.</p>
+            //     <p>Best regards,<br>
+            //     '.env('COMPANY_NAME').'<br>
+            //     Mob: '.env('COMPANY_NUMBER').'</p>
+            // ';
+
+            $body = view('frontend.emails.installment_reminder', [
+                'email' => $email,
+                'installment' => $installment,
+                'plan' => $plan,
+                'name' => $name,
+                'due_date' => $due_date,
+                'due_date_end' => $due_date_end,
+                'days' => $days,
+                'amount' => $amount,
+            ])->render();
+
+
         } elseif($days == 'same_day' && $due_date_end != "" ){
             $due_date_end = date('Y-m-d', strtotime($due_date_end));
             $due_date = date('Y-m-d', strtotime($due_date));
-            $body = '
-                <p>Dear '.$name.',</p>
-                <p>We hope this message finds you well.</p>
+            // $body = '
+            //     <p>Dear '.$name.',</p>
+            //     <p>We hope this message finds you well.</p>
 
-                <p>This is a friendly reminder that your payment for Installment Plan <strong>'.$plan.'</strong>, Installment No. <strong>'.$installment.'</strong>, is currently due and must be completed by <strong>'.$due_date_end.'</strong>.</p>
+            //     <p>This is a friendly reminder that your payment for Installment Plan <strong>'.$plan.'</strong>, Installment No. <strong>'.$installment.'</strong>, is currently due and must be completed by <strong>'.$due_date_end.'</strong>.</p>
 
-                <p>Please make your payment as soon as possible to avoid any late fees or interruptions.</p>
-                <p><strong>Payment Details:</strong></p>
-                <ul>
-                    <li><strong>Plan Name:</strong> '.$plan.'</li>
-                    <li><strong>Installment No.:</strong> '.$installment.'</li>
-                    <li><strong>Due Date:</strong> '.$due_date.'</li>
-                    <li><strong>Amount:</strong> '.$amount.'</li>
-                </ul>
-                <p>If you have any questions or need assistance, please feel free to contact our support team.</p>
-                <p>Thank you for your prompt attention to this matter.</p>
-                <p>Best regards,<br>
-                '.env('COMPANY_NAME').'<br>
-                Mob: '.env('COMPANY_NUMBER').'</p>
-            ';
+            //     <p>Please make your payment as soon as possible to avoid any late fees or interruptions.</p>
+            //     <p><strong>Payment Details:</strong></p>
+            //     <ul>
+            //         <li><strong>Plan Name:</strong> '.$plan.'</li>
+            //         <li><strong>Installment No.:</strong> '.$installment.'</li>
+            //         <li><strong>Due Date:</strong> '.$due_date.'</li>
+            //         <li><strong>Amount:</strong> '.$amount.'</li>
+            //     </ul>
+            //     <p>If you have any questions or need assistance, please feel free to contact our support team.</p>
+            //     <p>Thank you for your prompt attention to this matter.</p>
+            //     <p>Best regards,<br>
+            //     '.env('COMPANY_NAME').'<br>
+            //     Mob: '.env('COMPANY_NUMBER').'</p>
+            // ';
+
+            $body = view('frontend.emails.installment_reminder', [
+                'email' => $email,
+                'installment' => $installment,
+                'plan' => $plan,
+                'name' => $name,
+                'due_date' => $due_date,
+                'due_date_end' => $due_date_end,
+                'days' => $days,
+                'amount' => $amount,
+            ])->render();
+
+
         } elseif ($days == 'passed' && $due_date_end != ""){
             $due_date_end = date('Y-m-d', strtotime($due_date_end));
             $due_date = date('Y-m-d', strtotime($due_date));
-            $body = '
-                <p>Dear '.$name.',</p>
-                <p>We hope this message finds you well.</p>
+            // $body = '
+            //     <p>Dear '.$name.',</p>
+            //     <p>We hope this message finds you well.</p>
 
-                <p>This is a gentle reminder that your payment for Installment Plan <strong>'.$plan.'</strong>, Installment No. <strong>'.$installment.'</strong>, was due on <strong>'.$due_date_end.'</strong> and is now overdue.</p>
+            //     <p>This is a gentle reminder that your payment for Installment Plan <strong>'.$plan.'</strong>, Installment No. <strong>'.$installment.'</strong>, was due on <strong>'.$due_date_end.'</strong> and is now overdue.</p>
 
-                <p>We kindly request that you make the payment as soon as possible to avoid any further penalties or interruptions to your service.</p>
+            //     <p>We kindly request that you make the payment as soon as possible to avoid any further penalties or interruptions to your service.</p>
 
-                <p>Please make your payment as soon as possible to avoid any late fees or interruptions.</p>
-                <p><strong>Payment Details:</strong></p>
-                <ul>
-                    <li><strong>Plan Name:</strong> '.$plan.'</li>
-                    <li><strong>Installment No.:</strong> '.$installment.'</li>
-                    <li><strong>Due Date:</strong> '.$due_date.'</li>
-                    <li><strong>Amount:</strong> '.$amount.'</li>
-                </ul>
-                <p>If you have any questions or need assistance, please feel free to contact our support team.</p>
-                <p>Thank you for your prompt attention to this matter.</p>
-                <p>Best regards,<br>
-                '.env('COMPANY_NAME').'<br>
-                Mob: '.env('COMPANY_NUMBER').'</p>
-            ';
+            //     <p>Please make your payment as soon as possible to avoid any late fees or interruptions.</p>
+            //     <p><strong>Payment Details:</strong></p>
+            //     <ul>
+            //         <li><strong>Plan Name:</strong> '.$plan.'</li>
+            //         <li><strong>Installment No.:</strong> '.$installment.'</li>
+            //         <li><strong>Due Date:</strong> '.$due_date.'</li>
+            //         <li><strong>Amount:</strong> '.$amount.'</li>
+            //     </ul>
+            //     <p>If you have any questions or need assistance, please feel free to contact our support team.</p>
+            //     <p>Thank you for your prompt attention to this matter.</p>
+            //     <p>Best regards,<br>
+            //     '.env('COMPANY_NAME').'<br>
+            //     Mob: '.env('COMPANY_NUMBER').'</p>
+            // ';
+
+            $body = view('frontend.emails.installment_reminder', [
+                'email' => $email,
+                'installment' => $installment,
+                'plan' => $plan,
+                'name' => $name,
+                'due_date' => $due_date,
+                'due_date_end' => $due_date_end,
+                'days' => $days,
+                'amount' => $amount,
+            ])->render();
         }
 
 

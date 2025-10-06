@@ -253,6 +253,6 @@ Route::get('/redirect-login', function () {
 
 // Route::get('/template-design', [IndexController::class, 'pdf'])->name('pdf');
 
-// Route::get('/testing-codeing', [AccountController::class, 'testing'])->name('testing');
+Route::get('/testing-codeing', [AccountController::class, 'testing'])->name('testing');
 
 Route::get('/custom-ksf-p', [IndexController::class, 'ip_get_per']);

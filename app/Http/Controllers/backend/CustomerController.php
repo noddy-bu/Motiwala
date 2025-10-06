@@ -880,13 +880,15 @@ class CustomerController extends Controller
             $installment .= 'th';
         }
 
+        $plan_name = DB::table('plans')->where('id', $redemption->plan_id)->value('name');
+
         $phone_email = DB::table('users')->where('id', $request->user_id)->select('phone', 'email', 'fullname')->first();
     
         $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone_email->phone, $installment, $amount);
 
-        $email_templet = (new SmsController)->email_installment_payment_successful($phone_email->email, $installment, $amount);
+        $email_templet = (new SmsController)->email_installment_payment_successful($phone_email->email, $installment, $amount, $plan_name ?? '');
 
-        $wati_payment_success = (new SmsController)->wati_payment_success($phone_email->phone, $phone_email->fullname, $installment, $amount);
+        $wati_payment_success = (new SmsController)->wati_payment_success($phone_email->phone, $phone_email->fullname, $installment, $plan_name ?? '', $amount);
 
         $response = [
             'status' => true,

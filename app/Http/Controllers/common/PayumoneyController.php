@@ -279,12 +279,14 @@ class PayumoneyController extends Controller
             $installment .= 'th';
         }
 
+        $plan_name = DB::table('plans')->where('id', $redemption->plan_id)->value('name');
+
         $phone = DB::table('users')->where('id', $order->temp_user_id)->value('phone');
 
     
         $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone, $installment, $amount);
 
-        $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount);
+        $email_templet = (new SmsController)->email_installment_payment_successful($email, $installment, $amount, $plan_name ?? '');
 
         // delete temp recored
         DB::table('temp_transactions')->where('payment_id', $txnid)->delete();

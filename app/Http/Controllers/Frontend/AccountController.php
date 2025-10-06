@@ -1858,7 +1858,7 @@ class AccountController extends Controller
 
         // $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
 
-        $phone_email = DB::table('users')->where('id', $order->temp_user_id)->select('phone', 'email', 'fullname')->first();
+        $phone_email = DB::table('users')->where('id', $order->temp_user_id)->select('phone', 'email', 'fullname','plan_id')->first();
 
 
         DB::table('users')->where('id', $order->temp_user_id)->update([
@@ -1910,13 +1910,15 @@ class AccountController extends Controller
 
         // $email_templet1 = (new SmsController)->email_registration_successful($phone, $email);
 
+        $plan_name = DB::table('plans')->where('id', $phone_email->plan_id)->value('name');
+
         $installment = '1st';
 
         $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone_email->phone, $installment, $amount);
 
-        $email_templet = (new SmsController)->email_installment_payment_successful($phone_email->email, $installment, $amount);
+        $email_templet = (new SmsController)->email_installment_payment_successful($phone_email->email, $installment, $amount, $plan_name ?? '');
 
-        $wati_payment_success = (new SmsController)->wati_payment_success($phone_email->phone, $phone_email->fullname, $installment, $amount);
+        $wati_payment_success = (new SmsController)->wati_payment_success($phone_email->phone, $phone_email->fullname, $installment, $plan_name ?? '', $amount);
 
         return redirect()->route('account.new.enrollment.page');
         // }
@@ -2005,10 +2007,21 @@ class AccountController extends Controller
 
     //-------------- test controller -------------------------
 
-    // public function testing()
-    // {
-    //     $this->auto_add_transactions(2, 2000);
-    // }
+    public function testing()
+    {
+
+        $name = 'Faisal Khan';
+        $phone = '9004053525';
+        $email = 'khanfaisal.makent@gmail.com';
+        $installment = '1';
+        $amount = 2000;
+        $plan_name = 'Silver Plan';
+        $due_date = date('d M Y', strtotime('+30 days'));
+        $due_date_end = date('d M Y', strtotime($due_date . ' +7 days'));
+        $days = 'passed';
+        // $this->auto_add_transactions(2, 2000);
+        $wati_registration_success = (new SmsController)->wati_registration_success($phone);
+    }
 
     //-------------- test controller -------------------------
 
@@ -2108,7 +2121,7 @@ class AccountController extends Controller
 
                 // $email = DB::table('users')->where('id', $order->temp_user_id)->value('email');
 
-                $phone_email = DB::table('users')->where('id', $order->temp_user_id)->select('phone', 'email', 'fullname')->first();
+                $phone_email = DB::table('users')->where('id', $order->temp_user_id)->select('phone', 'email', 'fullname','plan_id')->first();
 
 
                 // DB::table('users')->where('id', $order->temp_user_id)->update([
@@ -2144,13 +2157,15 @@ class AccountController extends Controller
 
                 // $email_templet1 = (new SmsController)->email_registration_successful($phone, $email);
 
+                $plan_name = DB::table('plans')->where('id', $phone_email->plan_id)->value('name');
+
                 $installment = '1st';
 
                 $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone_email->phone, $installment, $amount);
 
-                $email_templet = (new SmsController)->email_installment_payment_successful($phone_email->email, $installment, $amount);
+                $email_templet = (new SmsController)->email_installment_payment_successful($phone_email->email, $installment, $amount, $plan_name ?? '');
 
-                $wati_payment_success = (new SmsController)->wati_payment_success($phone_email->phone, $phone_email->fullname, $installment, $amount);
+                $wati_payment_success = (new SmsController)->wati_payment_success($phone_email->phone, $phone_email->fullname, $installment, $plan_name ?? '', $amount);
 
                 /*------------ success stuff --------------*/
 
@@ -2281,13 +2296,15 @@ class AccountController extends Controller
                     $installment .= 'th';
                 }
 
-                $phone_email = DB::table('users')->where('id', $order->temp_user_id)->select('phone', 'email', 'fullname')->first();
+                $phone_email = DB::table('users')->where('id', $order->temp_user_id)->select('phone', 'email', 'fullname','plan_id')->first();
+
+                $plan_name = DB::table('plans')->where('id', $phone_email->plan_id)->value('name');
 
                 $sms = (new SmsController)->smsgatewayhub_installment_payment_successful($phone_email->phone, $installment, $amount);
 
-                $email_templet = (new SmsController)->email_installment_payment_successful($phone_email->email, $installment, $amount);
+                $email_templet = (new SmsController)->email_installment_payment_successful($phone_email->email, $installment, $amount, $plan_name ?? '');
 
-                $wati_payment_success = (new SmsController)->wati_payment_success($phone_email->phone, $phone_email->fullname, $installment, $amount);
+                $wati_payment_success = (new SmsController)->wati_payment_success($phone_email->phone, $phone_email->fullname, $installment, $plan_name ?? '', $amount);
 
                 // delete temp recored
                 DB::table('temp_transactions')->where('payment_id', $txnid)->delete();
