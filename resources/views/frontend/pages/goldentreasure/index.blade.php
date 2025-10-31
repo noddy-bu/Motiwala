@@ -89,7 +89,7 @@
                             <div class="col-md-12">
                                 <h4 class="title_heading text-left black_color pb-lg-4 pb-md-4 pb-3 heading_font">{{ env('PLAN_1_NAME') }} Calculator</h4>
                             </div>
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-6 col-md-12">
                                 <form>
                                     <div class="row">
                                         <div class="col-md-12">

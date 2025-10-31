@@ -20,12 +20,12 @@
     }
 
     .benefits_bgimage img {
-        width: 40%;
+        width: 45%;
         float: right
     }
 
     .benefits_bgimage img {
-        height: 677px;
+        height: 706px;
     }
 
     .sip-calculator {
@@ -112,8 +112,17 @@
 
 @media (min-width:992px) and (max-width:1020px) {
 
-    .benefits_bgimage {
+    /* .benefits_bgimage {
         display: none;
+    } */
+
+    .benefits_bgimage img {
+        width: 45%;
+        float: right
+    }
+
+    .benefits_bgimage img {
+        height: 744px;
     }
 
     canvas#myCanvas {
@@ -128,7 +137,7 @@
     }
 
     .col-md-12 .sip-calculator-amount {
-        width: 105%;
+        width: 100%;
     }
 
     /* after login */
@@ -164,6 +173,11 @@
     .fontsize26 {
         font-size: 16px !important;
     }
+    
+    .benefits_bgimage {
+        display: none;
+    }
+     
 
     .title_heading {
         font-size: 26px !important;
@@ -351,7 +365,7 @@
     }
 
     .col-md-12 .sip-calculator-amount {
-        width: 108%
+        width: 100%
     }
 
     canvas#myCanvas {
@@ -470,6 +484,24 @@
         width: 100% !important;
     }
 
+        .live_price_show p {
+        position: relative;
+        text-align: center;
+        background: none;
+        margin-right: auto;
+        display: block;
+        padding: 16px 5px;
+        font-size: 20px;
+        font-weight: bold !important;
+        bottom: 0px !important;
+        top: 0px !important;
+        margin-left: 0px;
+        border-radius: 50px;
+        box-shadow: -20px 0px 43px -24px #fff;
+        padding-right: 0px;
+        margin-bottom: 0;
+    }
+
 
 }
 
@@ -512,7 +544,7 @@
     .live_price_show p {
         position: relative;
         text-align: center;
-        background: #fff;
+        background: none;
         margin-right: auto;
         display: block;
         padding: 16px 5px;
@@ -614,7 +646,7 @@
     }
 
     .navbar-brand {
-        width: 40% !important;
+        width: 38% !important;
         margin-right: 0px !important;
     }
 

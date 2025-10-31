@@ -2,8 +2,8 @@
 
 <footer class="footer">
   <div class="container">
-    <div class="row justify-content-md-center">
-      <div class="col-lg-3 col-6">
+    <div class="row justify-content-lg-center">
+      <div class="col-lg-3 col-md-4 col-6 pt-lg-0 pt-0 pt-md-3 pb-md-3">
         <div class="footer-widget">
           <h3 class="widget-title">USEFUL LINKS</h3>
           <ul class="widget-menu">
@@ -43,7 +43,7 @@
       </div>
 
 
-      <div class="col-lg-3 col-6 pt-lg-0 pt-0 pt-md-5">
+      <div class="col-lg-3 col-md-4 col-6 pt-lg-0 pt-0 pt-md-3 pb-md-3">
         <div class="footer-widget">
           <h3 class="widget-title">CONSUMER POLICY</h3>
           <ul class="widget-menu">
@@ -61,7 +61,7 @@
            
           </ul>
         </div>
-      </div><div class="col-lg-3 col-6">
+      </div><div class="col-lg-3 col-md-4 col-6 pt-lg-0 pt-0 pt-md-3 pb-md-3">
         <div class="footer-widget">
           <h3 class="widget-title">QUICK LINKS</h3>
           <ul class="widget-menu">

@@ -65,7 +65,7 @@
                             <div class="col-md-12">
                                 <h4 class="title_heading text-left black_color pb-lg-4 pb-md-4 pb-3 heading_font">{{ env('PLAN_2_NAME') }} Plan</h4>
                             </div>
-                            <div class="col-lg-8 col-md-8">
+                            <div class="col-lg-8 col-md-12">
 
                                 @include('frontend.component.gold_rate_table')
 
